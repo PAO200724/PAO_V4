@@ -67,6 +67,11 @@
     <Compile Include="IO\XmlPublic.cs" />
     <Compile Include="NothingType.cs" />
     <Compile Include="IO\PaoDataContractResolver.cs" />
+    <Compile Include="Part\BasePart.cs" />
+    <Compile Include="Part\Status.cs" />
+    <Compile Include="Part\Disabled\Status_Exception.cs" />
+    <Compile Include="Part\Status_Enabled.cs" />
+    <Compile Include="Part\Status_Disabled.cs" />
     <Compile Include="ReflectionPublic.cs" />
     <Compile Include="IO\SafeFileStream.cs" />
     <Compile Include="IO\DataContractXmlSerializer.cs" />
@@ -74,9 +79,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Collect\" />
+    <Folder Include="Part\Enabled\" />
     <Folder Include="Remote\" />
     <Folder Include="Security\" />
+    <Folder Include="Server\" />
     <Folder Include="Setup\" />
+    <Folder Include="Status\" />
     <Folder Include="Trans\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

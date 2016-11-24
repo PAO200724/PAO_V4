@@ -559,7 +559,139 @@
         name="PaoApplication"
         isAbstract="false"
         isLeaf="false"
+        isActiveClass="false">
+        <targetEnds>
+          <association
+            Id="aa2f4d25-738a-42ff-9ecd-5341d0a677ef"
+            isDerived="false"
+            sourceEndRoleName=""
+            targetEndRoleName="ServerList"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="52eae340-149d-47da-bffb-514b4fbc5d9d"
+              LastKnownName="BaseServer"
+              LastKnownLocation="PAODesign.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="4e95bf06-6cb0-46f2-9caa-107c83a79911"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="Composite"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="af009edb-72e7-4aca-a4b4-53d8dbdb44b9"
+                  name="ServerList"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="true">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="5d9f7648-0764-4d8f-b536-d7ee2aa9202a"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="5df64028-4363-4339-a258-1d0cc1b2f1dd"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="52eae340-149d-47da-bffb-514b4fbc5d9d"
+        name="BaseServer"
+        isAbstract="false"
+        isLeaf="false"
         isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="4d3cee87-d4e5-4c96-a116-4cb74cdcfaa6"
+        name="List&lt;BaseServer&gt;" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="6c138d40-d8fc-4c0f-81ee-66a3d3f48786"
+        name="BaseDevice"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="2c935cc8-2d1a-4df5-b237-07a13ee65ce1"
+        name="BasePart"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="9c5b6e1c-8b40-4f4b-b767-d762239a9d1b"
+            isSubstitutable="false">
+            <classMoniker
+              Id="8fa558aa-fdf2-4bfd-b6a8-14cbcc150e43"
+              LastKnownName="PaoObject"
+              LastKnownLocation="PAODesign.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="d08a525f-84c8-4363-a959-9c29ae4fb8c2"
+        name="BaseServer"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="bdda040d-c879-49c6-98a3-87a11baa0434"
+            isSubstitutable="false">
+            <classMoniker
+              Id="2c935cc8-2d1a-4df5-b237-07a13ee65ce1"
+              LastKnownName="BasePart"
+              LastKnownLocation="PAODesign.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="c3941268-0957-4942-9e0c-b8948b55d30b"
+        name="BaseDevice"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="300cb2a4-2d58-4599-8722-c8422b6a3904"
+            isSubstitutable="false">
+            <classMoniker
+              Id="2c935cc8-2d1a-4df5-b237-07a13ee65ce1"
+              LastKnownName="BasePart"
+              LastKnownLocation="PAODesign.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
     </packageHasNamedElement>
   </packagedElements>
   <primitiveType

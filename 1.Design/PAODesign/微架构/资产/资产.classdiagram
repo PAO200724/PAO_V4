@@ -1,19 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm11="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner" dslVersion="1.0.0.0" Id="50846e3b-3cd7-486d-b476-60212196f012" name="资产" linkedPackageId="8b278e4a-201f-4ea9-899b-38acf2d55d4b" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
-  <profileInstances>
-    <packageHasProfileInstances Id="5eec1131-baa7-4963-af82-1dca83da9379">
-      <profileInstance Id="ed08fb78-cc22-4670-b670-ba4e1529c715" name="StandardProfileL2">
-        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
-      </profileInstance>
-      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
-    </packageHasProfileInstances>
-    <packageHasProfileInstances Id="59de8b3c-961b-4d49-89e3-46e6fb287771">
-      <profileInstance Id="6c03ad5e-2a9e-4038-b435-214f6e645f34" name="StandardProfileL3">
-        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
-      </profileInstance>
-      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
-    </packageHasProfileInstances>
-  </profileInstances>
   <packagedElements>
     <logicalClassDesignerModelHasTypes>
       <class Id="a74f5056-d527-4b05-afc2-c47e9f48944b" name="PaoObject" isAbstract="false" isLeaf="false" isActiveClass="false">
@@ -75,8 +61,55 @@
         </generalsInternal>
       </class>
     </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="6be47ae6-ab28-4fa9-9370-8833b99715b5" name="BasePart" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="2c935cc8-2d1a-4df5-b237-07a13ee65ce1" />
+        <generalsInternal>
+          <generalization Id="05787940-e91c-4258-b7b7-6efe20ce09fe" isSubstitutable="false">
+            <classMoniker Id="a74f5056-d527-4b05-afc2-c47e9f48944b" LastKnownName="PaoObject" />
+            <elementDefinition Id="9c5b6e1c-8b40-4f4b-b767-d762239a9d1b" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="45dccf0a-d7bc-4631-9f25-35a1a6d9d2f1" name="BaseServer" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="d08a525f-84c8-4363-a959-9c29ae4fb8c2" />
+        <generalsInternal>
+          <generalization Id="5a2737ea-fdd4-497a-8005-66759d365461" isSubstitutable="false">
+            <classMoniker Id="6be47ae6-ab28-4fa9-9370-8833b99715b5" LastKnownName="BasePart" />
+            <elementDefinition Id="bdda040d-c879-49c6-98a3-87a11baa0434" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="8e897dd5-7c97-4693-9446-2bac6fb2a5b4" name="BaseDevice" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="c3941268-0957-4942-9e0c-b8948b55d30b" />
+        <generalsInternal>
+          <generalization Id="756006be-acf5-4821-968e-3fb6e49a2391" isSubstitutable="false">
+            <classMoniker Id="6be47ae6-ab28-4fa9-9370-8833b99715b5" LastKnownName="BasePart" />
+            <elementDefinition Id="300cb2a4-2d58-4599-8722-c8422b6a3904" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
   </packagedElements>
   <package Id="8b278e4a-201f-4ea9-899b-38acf2d55d4b" name="PAODesign">
     <elementDefinition Id="f7c6b53f-1c2e-4762-ad13-eb71efcb9a9d" />
+    <profileInstances>
+      <packageHasProfileInstances Id="5eec1131-baa7-4963-af82-1dca83da9379">
+        <profileInstance Id="ed08fb78-cc22-4670-b670-ba4e1529c715" name="StandardProfileL2">
+          <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+        </profileInstance>
+        <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="59de8b3c-961b-4d49-89e3-46e6fb287771">
+        <profileInstance Id="6c03ad5e-2a9e-4038-b435-214f6e645f34" name="StandardProfileL3">
+          <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+        </profileInstance>
+        <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+      </packageHasProfileInstances>
+    </profileInstances>
   </package>
 </logicalClassDesignerModel>
