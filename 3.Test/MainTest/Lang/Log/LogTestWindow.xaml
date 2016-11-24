@@ -1,0 +1,9 @@
+﻿<Window x:Class="MainTest.Lang.Log.LogTestWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="LogTestWindow" Height="300" Width="300" Activated="Window_Activated" Loaded="Window_Loaded" Initialized="Window_Initialized">
+    <Grid>
+        <Button x:Name="LogExceptionButton" Content="Log Exception" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="113" Click="LogExceptionButton_Click"/>
+        <Button x:Name="LogWarningButton" Content="Log Warning" HorizontalAlignment="Left" Margin="10,34,0,0" VerticalAlignment="Top" Width="113" Click="LogWarningButton_Click"/>
+    </Grid>
+</Window>

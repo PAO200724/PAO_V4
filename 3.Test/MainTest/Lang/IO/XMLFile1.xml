@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<z:anyType xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns:d1p1="MainTest.Lang.IO.MyGenericClass`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]" i:type="d1p1:object" xmlns:z="http://schemas.microsoft.com/2003/10/Serialization/">
+  <LazyMember>
+    <Reference>
+      <Member1>Lazy Member</Member1>
+    </Reference>
+  </LazyMember>
+  <Member1>993</Member1>
+  <ObjectMember xmlns:d2p1="MainTest.Lang.IO.MyGenericClass`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]" i:type="d2p1:object">
+    <Member1>Child Member</Member1>
+  </ObjectMember>
+  <StringMember>Test Member</StringMember>
+</z:anyType>

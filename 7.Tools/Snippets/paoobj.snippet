@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Title>paoobj</Title>
+      <Author>刘丹</Author>
+      <Description>
+      </Description>
+      <HelpUrl>
+      </HelpUrl>
+      <Shortcut>paoobj</Shortcut>
+    </Header>
+    <Snippet>
+      <References>
+        <Reference>
+          <Assembly>System.dll</Assembly>
+        </Reference>
+        <Reference>
+          <Assembly>System.Runtime.Serialization.dll</Assembly>
+        </Reference>
+        <Reference>
+          <Assembly>PAO.dll</Assembly>
+        </Reference>
+      </References>
+      <Imports>
+        <Import>
+          <Namespace>PAO</Namespace>
+        </Import>
+        <Import>
+          <Namespace>System.Runtime.Serialization</Namespace>
+        </Import>
+        <Import>
+          <Namespace>System.ComponentModel</Namespace>
+        </Import>
+      </Imports>
+      <Declarations>
+        <Literal Editable="true">
+          <ID>ClassName</ID>
+          <ToolTip>ClassName</ToolTip>
+          <Default>ClassName</Default>
+          <Function>
+          </Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>DisplayName</ID>
+          <ToolTip>DisplayName</ToolTip>
+          <Default>DisplayName</Default>
+          <Function>
+          </Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>Description</ID>
+          <ToolTip>Description</ToolTip>
+          <Default>Description</Default>
+          <Function>
+          </Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>BaseClass</ID>
+          <ToolTip>BaseClass</ToolTip>
+          <Default>PaoObject</Default>
+          <Function>
+          </Function>
+        </Literal>
+      </Declarations>
+      <Code Language="csharp" Delimiter="$"><![CDATA[/// <summary>
+    /// 类：$ClassName$
+    /// $DisplayName$
+    /// $Description$
+    /// 作者：PAO
+    /// </summary>
+    [Serializable]
+    [DataContract(Namespace = "")]
+    [DisplayName("$DisplayName$")]
+    [Description("$Description$")]
+    public class $ClassName$ : $BaseClass${
+        #region 插件属性
+        #endregion
+        public $ClassName$() {
+        }
+    }]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

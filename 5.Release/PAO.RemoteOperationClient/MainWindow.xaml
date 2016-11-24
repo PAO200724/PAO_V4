@@ -1,0 +1,8 @@
+﻿<Window x:Class="PAO.RemoteOperationClient.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="525" Loaded="Window_Loaded">
+    <Grid>
+        <TextBox x:Name="AppLocationTextBox" Height="23" Margin="29,10,22,0" TextWrapping="Wrap" Text="TextBox" RenderTransformOrigin="0.306,-1.429" VerticalAlignment="Top"/>
+    </Grid>
+</Window>

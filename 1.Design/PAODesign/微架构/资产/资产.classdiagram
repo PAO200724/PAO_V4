@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm11="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner" dslVersion="1.0.0.0" Id="50846e3b-3cd7-486d-b476-60212196f012" name="资产" linkedPackageId="8b278e4a-201f-4ea9-899b-38acf2d55d4b" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
+  <profileInstances>
+    <packageHasProfileInstances Id="5eec1131-baa7-4963-af82-1dca83da9379">
+      <profileInstance Id="ed08fb78-cc22-4670-b670-ba4e1529c715" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="59de8b3c-961b-4d49-89e3-46e6fb287771">
+      <profileInstance Id="6c03ad5e-2a9e-4038-b435-214f6e645f34" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="a74f5056-d527-4b05-afc2-c47e9f48944b" name="PaoObject" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="8fa558aa-fdf2-4bfd-b6a8-14cbcc150e43" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="38ec8695-1d9a-4f57-909d-bfdfbe934426" name="Ref&lt;T&gt;" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="7e000b94-9d65-40fa-8c5b-03dc5acee097" />
+        <generalsInternal>
+          <generalization Id="46115579-5eed-4595-85bf-332f809f5e7a" isSubstitutable="false">
+            <classMoniker Id="a74f5056-d527-4b05-afc2-c47e9f48944b" LastKnownName="PaoObject" />
+            <elementDefinition Id="37f72b12-a3b9-4f7f-baa9-b9f12c2bef92" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="6bbd8e2b-194a-4bce-b044-825a075b6503" name="Factory&lt;T&gt;" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="80cd4da9-26d6-41bf-b1f5-3e8f9be6cb17" />
+        <generalsInternal>
+          <generalization Id="1dffa82d-661a-4131-83e4-681de4fb0394" isSubstitutable="false">
+            <classMoniker Id="38ec8695-1d9a-4f57-909d-bfdfbe934426" LastKnownName="Ref&lt;T&gt;" />
+            <elementDefinition Id="6452a215-cc5d-4338-8336-12d3c26bdce9" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="dfc5db7a-a961-4464-9b26-22ab23075cd2" name="ObjectRef&lt;T&gt;" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="9bf11365-9865-4cb2-95bb-de9aea0b1d7d" />
+        <generalsInternal>
+          <generalization Id="17df7a15-f5fc-46c5-a105-b91cfb9e586a" isSubstitutable="false">
+            <classMoniker Id="38ec8695-1d9a-4f57-909d-bfdfbe934426" LastKnownName="Ref&lt;T&gt;" />
+            <elementDefinition Id="25688690-fb8f-47b9-9138-b0e35bcc5d4d" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="7d6619a4-c853-46b7-bcd2-8f08a41260e2" name="FileFactory&lt;T&gt;" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="507fde59-ed0f-419c-aa07-c0ea26d2b8fc" />
+        <generalsInternal>
+          <generalization Id="5ea8f079-60eb-4ed4-a95e-3f782e9be1ec" isSubstitutable="false">
+            <classMoniker Id="6bbd8e2b-194a-4bce-b044-825a075b6503" LastKnownName="Factory&lt;T&gt;" />
+            <elementDefinition Id="802ebb3e-00e8-42ce-a678-e23916eac13b" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="ffd461ee-258b-4cc1-8cca-d2315842ce89" name="WCFFactory&lt;T&gt;" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="ed032963-82d3-4744-a2cb-30f7cf0c4d0c" />
+        <generalsInternal>
+          <generalization Id="7d55e482-f683-432a-9d74-138c212426f6" isSubstitutable="false">
+            <classMoniker Id="6bbd8e2b-194a-4bce-b044-825a075b6503" LastKnownName="Factory&lt;T&gt;" />
+            <elementDefinition Id="242f93f5-8451-463b-97cd-fa3856c7e759" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+  </packagedElements>
+  <package Id="8b278e4a-201f-4ea9-899b-38acf2d55d4b" name="PAODesign">
+    <elementDefinition Id="f7c6b53f-1c2e-4762-ad13-eb71efcb9a9d" />
+  </package>
+</logicalClassDesignerModel>

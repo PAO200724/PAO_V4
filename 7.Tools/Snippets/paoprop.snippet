@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Title>paoprop</Title>
+      <Author>刘丹</Author>
+      <Description>
+      </Description>
+      <HelpUrl>
+      </HelpUrl>
+      <Shortcut>paoprop</Shortcut>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal Editable="true">
+          <ID>PropertyName</ID>
+          <ToolTip>PropertyName</ToolTip>
+          <Default>PropertyName</Default>
+          <Function>
+          </Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>DisplayName</ID>
+          <ToolTip>DisplayName</ToolTip>
+          <Default>DisplayName</Default>
+          <Function>
+          </Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>Description</ID>
+          <ToolTip>Description</ToolTip>
+          <Default>Description</Default>
+          <Function>
+          </Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>PropertyType</ID>
+          <ToolTip>PropertyType</ToolTip>
+          <Default>string</Default>
+          <Function>
+          </Function>
+        </Literal>
+      </Declarations>
+      <Code Language="csharp" Delimiter="$"><![CDATA[#region 属性：$PropertyName$
+        /// <summary>
+        /// 属性：$PropertyName$
+        /// $DisplayName$
+        /// $Description$
+        /// </summary>
+        [DataMember(EmitDefaultValue=false)]
+        [DisplayName("$DisplayName$")]
+        [Description("$Description$")]
+        public $PropertyType$ $PropertyName$ {
+            get;
+            set;
+        }
+        #endregion 属性：$PropertyName$]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

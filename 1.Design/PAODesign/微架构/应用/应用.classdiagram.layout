@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logicalClassDesignerDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="应用">
+  <logicalClassDesignerModelMoniker Id="93b03b80-971e-48cc-ab7d-278e3c2c4753" />
+  <nestedChildShapes>
+    <classShape Id="5dd3cbe6-f56a-43f1-9554-43359cc41a3f" absoluteBounds="4.5, 1, 1.5, 0.95263671875" hideQualifiedName="false" increaseHeight="0" customColor="181, 193, 223">
+      <classMoniker Id="7bf87fdf-509d-4bb4-bbcf-9848b05e7618" LastKnownName="PaoApplication" />
+      <nestedChildShapes>
+        <AttributeElementListCompartment Id="bb7bcdde-d427-4a2d-9f34-abe0bdeb2679" absoluteBounds="4.515, 1.3900000000000001, 1.4700000000000002, 0.226318359375" name="AttributesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <OperationElementListCompartment Id="7906ee91-5b95-4847-bef6-72140719171d" absoluteBounds="4.515, 1.626318359375, 1.4700000000000002, 0.226318359375" name="OperationsCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</logicalClassDesignerDiagram>

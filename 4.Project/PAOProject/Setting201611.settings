@@ -1,0 +1,37 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="PAOProject" GeneratedClassName="Setting201611">
+  <Profiles />
+  <Settings>
+    <Setting Name="N_扩展属性" Type="System.String" Scope="User">
+      <Value Profile="(Default)">资产注册/检索机制; 扩展属性的获取/保存; 
+PaoApplication作为资产树的根，增加ObjectIDFactory用于通过资产ID查找对象；
+事务报告时应该对资产进行快照；
+扩展属性服务;
+PaoApplication作为资产树的根，增加ObjectIDFactory用于通过资产ID查找对象；事务报告时应该对资产进行快照；</Value>
+    </Setting>
+    <Setting Name="N_服务" Type="System.String" Scope="User">
+      <Value Profile="(Default)">服务机制; 后台数据库; 服务和数据库的交互; 通用数据服务; IIS中服务的承载</Value>
+    </Setting>
+    <Setting Name="N_事务" Type="System.String" Scope="User">
+      <Value Profile="(Default)">事物机制; 事务服务; 分布式事务;</Value>
+    </Setting>
+    <Setting Name="N_资产状态" Type="System.String" Scope="User">
+      <Value Profile="(Default)">可监控资产与资产注册的关系; 如何监控; 服务状态的定义; 服务状态的监控; 第三方服务状态的监控; WCF工厂的状态;</Value>
+    </Setting>
+    <Setting Name="N_事务和日志分开" Type="System.String" Scope="User">
+      <Value Profile="(Default)">事务保存在数据库，树形结构；日志保存在日志记录中，流水结构；</Value>
+    </Setting>
+    <Setting Name="N_日志上传" Type="System.String" Scope="User">
+      <Value Profile="(Default)">增加日志上传服务; 客户端定期上传日志;</Value>
+    </Setting>
+    <Setting Name="N_反向访问" Type="System.String" Scope="User">
+      <Value Profile="(Default)">增加一个机制用于反向访问服务</Value>
+    </Setting>
+    <Setting Name="N_ORM" Type="System.String" Scope="User">
+      <Value Profile="(Default)">服务接口参数 vs 数据表字段 vs 内存对象</Value>
+    </Setting>
+    <Setting Name="N_ClientID" Type="System.String" Scope="User">
+      <Value Profile="(Default)">每个客户端有一个固定的客户端ID</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

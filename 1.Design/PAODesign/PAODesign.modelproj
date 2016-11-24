@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{09213557-006d-4411-9cfb-6d7e590db7b0}</ProjectGuid>
+    <ArchitectureToolsVersion>2.0.0.0</ArchitectureToolsVersion>
+    <Name>PAODesign</Name>
+    <RootNamespace>PAODesign</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(VSToolsPath)\ArchitectureTools\Microsoft.VisualStudio.TeamArchitect.ModelingProject.targets" Condition="'$(VSToolsPath)' != ''" />
+  <ItemGroup>
+    <Content Include="微架构\应用\应用.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="微架构\应用\应用.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>微架构\应用\应用.classdiagram</DependentUpon>
+    </Content>
+    <Content Include="微架构\资产\资产.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="微架构\资产\资产.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>微架构\资产\资产.classdiagram</DependentUpon>
+    </Content>
+    <Content Include="总体系统图.componentdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="总体系统图.componentdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>总体系统图.componentdiagram</DependentUpon>
+    </Content>
+    <Folder Include="ModelDefinition\" />
+    <Content Include="ModelDefinition\PAODesign.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Folder Include="微架构" />
+    <Folder Include="微架构\应用" />
+    <Folder Include="微架构\资产" />
+  </ItemGroup>
+  <ItemGroup>
+    <Validate Include="整体分层结构图.layerdiagram">
+      <SubType>Content</SubType>
+    </Validate>
+    <Validate Include="整体分层结构图.layerdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>整体分层结构图.layerdiagram</DependentUpon>
+    </Validate>
+    <Validate Include="整体分层结构图.layerdiagram.suppressions">
+      <SubType>Content</SubType>
+      <DependentUpon>整体分层结构图.layerdiagram</DependentUpon>
+    </Validate>
+  </ItemGroup>
+</Project>
