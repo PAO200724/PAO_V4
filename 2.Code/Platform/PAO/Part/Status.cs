@@ -19,10 +19,25 @@ namespace PAO.Part
     [DataContract(Namespace = "")]
     [DisplayName("状态")]
     [Description("状态基类")]
-    public class Status : PaoObject
+    public class Status : Object
     {
-        #region 插件属性
-        #endregion
+        private static Dictionary<Type, Status> DefaultStatusList = new Dictionary<Type, Status>();
+
+        /// <summary>
+        /// 获取默认状态对象
+        /// </summary>
+        /// <typeparam name="T">状态类型</typeparam>
+        /// <returns>默认状态对象</returns>
+        public static T Default<T>() where T : Status, new() {
+            if(DefaultStatusList.ContainsKey(typeof(T))) {
+                return (T)DefaultStatusList[typeof(T)];
+            } else {
+                T status = new T();
+                DefaultStatusList.Add(typeof(T), status);
+                return status;
+            }
+        }
+
         public Status()
         {
         }

@@ -21,6 +21,21 @@ namespace PAO.Part
     public class BasePart : PaoObject
     {
         #region 插件属性
+        #region 属性：Status
+        /// <summary>
+        /// 属性：Status
+        /// 状态
+        /// 部件状态
+        /// </summary>
+        [DataMember(EmitDefaultValue = false)]
+        [DisplayName("状态")]
+        [Description("部件状态")]
+        public Status Status
+        {
+            get;
+            set;
+        }
+        #endregion 属性：Status
         #endregion
         public BasePart()
         {

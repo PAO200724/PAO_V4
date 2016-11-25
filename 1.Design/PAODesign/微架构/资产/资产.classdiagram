@@ -94,6 +94,17 @@
         </generalsInternal>
       </class>
     </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="2efea590-74a8-4fdd-97b6-1a2bf2c8cbbc" name="PaoApplication" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="4e9e6a04-159d-4fcd-8981-89a7694f1777" />
+        <generalsInternal>
+          <generalization Id="f71e0d68-22db-4e23-94e0-63a67345a44b" isSubstitutable="false">
+            <classMoniker Id="a74f5056-d527-4b05-afc2-c47e9f48944b" LastKnownName="PaoObject" />
+            <elementDefinition Id="864865c8-07a8-447a-ace2-03850eb17dac" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
   </packagedElements>
   <package Id="8b278e4a-201f-4ea9-899b-38acf2d55d4b" name="PAODesign">
     <elementDefinition Id="f7c6b53f-1c2e-4762-ad13-eb71efcb9a9d" />

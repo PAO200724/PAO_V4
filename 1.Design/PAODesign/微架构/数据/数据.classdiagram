@@ -1,0 +1,181 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm11="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner" dslVersion="1.0.0.0" Id="0ddd4779-9162-45ee-a47b-9392f30cd446" name="数据" linkedPackageId="c645fef6-efa4-48db-b222-b48654f3a5c0" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
+  <profileInstances>
+    <packageHasProfileInstances Id="6601cee7-a999-4e40-8c2b-823266fa422d">
+      <profileInstance Id="77ed034c-2caf-4081-81dc-2da6feefd1a4" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="ef7bc98e-85a3-4ed6-a796-065ebfadecc4">
+      <profileInstance Id="f8dfb9fe-54da-46b9-b9ef-a5d4270826b2" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="efeefd4c-b837-400c-b323-3074479783a2" name="BaseDataFilter" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="2772cdd8-a782-4d17-b177-31539c1023fe" />
+        <suppliersInternal>
+          <interfaceRealization Id="d1a92934-a154-485b-8426-c9a6fd16850f">
+            <interfaceMoniker Id="469fb91a-b4fe-4eae-93f4-dc69c965d405" LastKnownName="IDataFilter" />
+            <elementDefinition Id="ab04a107-231c-4df0-8ffe-cb81baf834c4" />
+          </interfaceRealization>
+          <dependency Id="eb31dfa6-5716-4b8a-bbcb-3b574927468a">
+            <classMoniker Id="b853cd3e-5eb5-4e5e-a77c-92e65fba7564" LastKnownName="DataField" />
+            <elementDefinition Id="13e3a94d-adb8-42e6-9690-6791bb442b47" />
+          </dependency>
+        </suppliersInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="b853cd3e-5eb5-4e5e-a77c-92e65fba7564" name="DataField" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="cd69f52c-a32e-4986-bc14-de8e3d411012" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="f9b28559-55a0-48d6-8198-fc7a3556cf1c" name="DataConnection" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="c662031e-d65b-4c81-a68d-6caf6a429a8e" />
+        <targetEnds>
+          <association Id="352f6a63-d32d-40a1-ac27-9e668ed2c5c7" isDerived="false" sourceEndRoleName="" targetEndRoleName="CommandList" isLeaf="false" isAbstract="false">
+            <classMoniker Id="9d950a30-727d-4bfd-9750-46cc91c5462e" LastKnownName="DataCommandInfo" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="31cb310e-a0a3-48ee-a49a-847ebf92c6b2" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Composite" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="fc6ec710-6b3e-4764-a8dd-55c7e253ce7d" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="8b4d2199-9b85-4e39-8d25-0a4b8d69f7fd" name="CommandList" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="true">
+                  <lowerValueInternal>
+                    <literalString Id="775b80da-be33-47ac-bd72-a88ce5cc9a66" name="Lower" value="*">
+                      <elementDefinition Id="1f8c3270-1c77-4d41-9c9d-0079000c9bf5" />
+                    </literalString>
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString Id="5085f0ae-68ff-4cab-9dd2-1a3ddf111286" name="Upper" value="*">
+                      <elementDefinition Id="3085fab6-f261-4b64-a7fb-e6008874c139" />
+                    </literalString>
+                  </upperValueInternal>
+                  <elementDefinition Id="5a45be7f-59c9-402b-9bfb-82ad2eea20b7" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="df1058b4-12f0-466a-88ec-f81bb3563731" />
+          </association>
+        </targetEnds>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="9d950a30-727d-4bfd-9750-46cc91c5462e" name="DataCommandInfo" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="ec3420f5-b95b-4861-bcad-72b80fa374b8" />
+        <targetEnds>
+          <association Id="45328ed5-c0c0-47d0-9755-f40f96371ba2" isDerived="false" sourceEndRoleName="" targetEndRoleName="DataFilter" isLeaf="false" isAbstract="false">
+            <interfaceMoniker Id="469fb91a-b4fe-4eae-93f4-dc69c965d405" LastKnownName="IDataFilter" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="974d4aa4-cdb0-45bb-ae43-5a8e2fb98b6d" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Composite" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="d78fc9a7-c79c-4ef8-b59a-b98d97c93217" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="8b7ec2be-fcf9-4928-870f-bc20f5a0ad17" name="DataFilter" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="true">
+                  <elementDefinition Id="c4febbc4-6bc5-4526-b73b-d8d5e7014eb3" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="ad5b3d33-0d7c-44a6-b329-5c65e4a6c38a" />
+          </association>
+        </targetEnds>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <Interface Id="469fb91a-b4fe-4eae-93f4-dc69c965d405" name="IDataFilter" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="a48de583-0c2d-45b7-909b-02eba28ddace" />
+      </Interface>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <Interface Id="fd36ddd3-ddc6-4b26-9c7b-510d01a04bac" name="IDataService" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="cf2e1411-2dd1-4e8c-9ecf-fa2233d42a4a" />
+      </Interface>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="ea33e421-cb35-45e1-b426-23f79520d3c5" name="DbDataService" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="6b6adc4a-ac47-41d0-b6f3-dd36522d0b29" />
+        <suppliersInternal>
+          <interfaceRealization Id="5788bd82-5ab3-49aa-9c7c-f2c59b9c2802">
+            <interfaceMoniker Id="fd36ddd3-ddc6-4b26-9c7b-510d01a04bac" LastKnownName="IDataService" />
+            <elementDefinition Id="9c475868-b0e0-4b48-a9d2-29367246ce0d" />
+          </interfaceRealization>
+        </suppliersInternal>
+        <targetEnds>
+          <association Id="aa551fcc-cc72-4f59-857b-c6d1f6620649" isDerived="false" sourceEndRoleName="" targetEndRoleName="DataConnection" isLeaf="false" isAbstract="false">
+            <classMoniker Id="f9b28559-55a0-48d6-8198-fc7a3556cf1c" LastKnownName="DataConnection" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="db4bf8e6-634a-477f-9dad-1093908bce28" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Composite" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="9c048e81-7f41-466b-aa45-36eddc0ce4d2" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="4c1910a1-5511-4192-86fb-679de127b9f2" name="DataConnection" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="true">
+                  <elementDefinition Id="a2691080-47d5-4eb2-be2d-e020332cb0f3" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="e32621c7-f8c7-4870-8931-8eb9c5eed1c4" />
+          </association>
+        </targetEnds>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="d9132dba-f665-4f82-9ea5-8a58d7946c4d" name="SqlFilter" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="4e467c57-080e-4937-a49c-f1661fb660b6" />
+        <generalsInternal>
+          <generalization Id="b4233228-a15b-4003-b4c3-be8d4d60fd55" isSubstitutable="false">
+            <classMoniker Id="efeefd4c-b837-400c-b323-3074479783a2" LastKnownName="BaseDataFilter" />
+            <elementDefinition Id="318262eb-8b9e-474a-8a6f-c64562473813" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="7770dd4f-adfe-4aab-b2ab-1bd77ba73346" name="CompositeLogicFilter" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="63c74cff-4882-4ddc-8974-d053287b088b" />
+        <generalsInternal>
+          <generalization Id="4aa960f3-7fbf-41d4-a442-cf908573c8f9" isSubstitutable="false">
+            <classMoniker Id="efeefd4c-b837-400c-b323-3074479783a2" LastKnownName="BaseDataFilter" />
+            <elementDefinition Id="cea9c8ae-b399-4593-a160-2f69c0f50f7b" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="f6fc757c-9046-46de-b8d4-b259bcc78d4f" name="AndLogicalFilter" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="a545792b-ed60-4358-a7a9-8f6eb091f18a" />
+        <generalsInternal>
+          <generalization Id="d09af9ed-6b1a-4924-8d30-ffe0aff77497" isSubstitutable="false">
+            <classMoniker Id="7770dd4f-adfe-4aab-b2ab-1bd77ba73346" LastKnownName="CompositeLogicFilter" />
+            <elementDefinition Id="7679480f-4576-41ee-a21b-4b31d9b2cca1" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="3eddad2e-815b-4351-9c1b-8beaeef91296" name="OrLoicalFilter" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="878fa06b-2e7a-4ef3-84fb-602773dfd91d" />
+        <generalsInternal>
+          <generalization Id="5b3f1632-f526-45af-99d1-41ac2388174a" isSubstitutable="false">
+            <classMoniker Id="7770dd4f-adfe-4aab-b2ab-1bd77ba73346" LastKnownName="CompositeLogicFilter" />
+            <elementDefinition Id="bf34de80-65a3-4d2a-9f06-6a0842573b36" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+  </packagedElements>
+  <package Id="c645fef6-efa4-48db-b222-b48654f3a5c0" name="PAODesign">
+    <elementDefinition Id="f7c6b53f-1c2e-4762-ad13-eb71efcb9a9d" />
+  </package>
+</logicalClassDesignerModel>

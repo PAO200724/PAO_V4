@@ -34,7 +34,7 @@ namespace PAO.App {
                 XmlPublic.WriteObjectToFile(configFilePath, app);
                 LogPublic.LogInformation("应用配置保存完毕.");
             }
-            app.Run();
+            app.Start();
         }
     }
 }

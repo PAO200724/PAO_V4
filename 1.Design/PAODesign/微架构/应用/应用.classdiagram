@@ -31,6 +31,32 @@
             </relationshipOwnedElementsInternal>
             <elementDefinition Id="aa2f4d25-738a-42ff-9ecd-5341d0a677ef" />
           </association>
+          <association Id="9031bba5-b546-4921-b869-1ae31e7de5ba" isDerived="false" sourceEndRoleName="" targetEndRoleName="DeviceList" isLeaf="false" isAbstract="false">
+            <classMoniker Id="f90e6834-8f56-44fd-9b7c-bc8ca50a2b60" LastKnownName="BaseDevice" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="080917fe-5b0c-4c60-b26f-ce2394817d0f" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Composite" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="f4500616-3a73-4810-8055-dddb9ab5111a" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="e9f544ab-f7fb-4ba5-8f80-5db28099b63a" name="DeviceList" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="true">
+                  <lowerValueInternal>
+                    <literalString Id="b175f6f1-89d1-4387-96f3-da9a9a4e4e83" name="Lower" value="*">
+                      <elementDefinition Id="9f2d91db-2a26-4780-b2c8-575f4ea6c420" />
+                    </literalString>
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString Id="739f4c88-36a7-4edc-b084-8c506bbb1efa" name="Upper" value="*">
+                      <elementDefinition Id="6ea4c78e-7c44-4fe2-aa39-7e7e4ccd326a" />
+                    </literalString>
+                  </upperValueInternal>
+                  <elementDefinition Id="309dddae-d69e-4302-813f-e0c1ef7b35ca" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="a6dab8a9-1a22-4471-8306-8eea950689f7" />
+          </association>
         </targetEnds>
       </class>
     </logicalClassDesignerModelHasTypes>

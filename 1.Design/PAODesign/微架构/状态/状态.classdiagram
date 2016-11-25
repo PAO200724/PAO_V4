@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm11="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner" dslVersion="1.0.0.0" Id="bf839fd0-1757-4725-a71e-0eded45d12ed" name="状态" linkedPackageId="6072c553-c014-4a59-8180-658395524979" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
+  <profileInstances>
+    <packageHasProfileInstances Id="b6a6894f-bd76-4893-ae6d-6649a05329ca">
+      <profileInstance Id="4967b3f0-28ba-4b84-a788-c5493d99d076" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="56f029ae-c8d2-46d7-8e87-7a7cca5c850b">
+      <profileInstance Id="584c7fd0-119d-4b3a-a240-0bdadc4a7d75" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="fef0b184-0d11-4d64-83b3-ba3af5a865c4" name="Status" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="d64769c2-18e9-4056-bc7c-a1470ab4e843" />
+        <ownedOperationsInternal>
+          <operation Id="6e6776a2-e57e-41da-aed2-437bf55d393f" name="Default&lt;T&gt;" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="fdee9894-f987-4193-90b4-4677ecd3fa77" />
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="efe5be94-9ed9-4eda-9dd9-562bec598d24" name="Status_Enabled" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="b885b28b-2e73-4d57-a925-7befeffac00e" />
+        <generalsInternal>
+          <generalization Id="c697c99e-fe5e-4362-aa8f-125fbf570bfe" isSubstitutable="false">
+            <classMoniker Id="fef0b184-0d11-4d64-83b3-ba3af5a865c4" LastKnownName="Status" />
+            <elementDefinition Id="77412050-5174-42b8-b859-7d1faa99c63c" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="55d08bba-3e10-4dab-9910-b62a7f47beab" name="Status_Disabled" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="1c1364fb-e9ba-4363-bc8f-092cd5b4619f" />
+        <generalsInternal>
+          <generalization Id="545dc4ec-4f8b-4ec9-96cc-baca6beb1041" isSubstitutable="false">
+            <classMoniker Id="fef0b184-0d11-4d64-83b3-ba3af5a865c4" LastKnownName="Status" />
+            <elementDefinition Id="875e962d-2e9d-497a-b561-79174c1ba345" />
+          </generalization>
+        </generalsInternal>
+        <ownedAttributesInternal>
+          <property Id="2a7f73b4-c92f-48aa-aca9-c8bc08f8b3eb" name="Message" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="6666367f-bdfc-4b86-ad75-dd92159513bc" />
+          </property>
+        </ownedAttributesInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="c4df6149-8eed-473f-bb95-ba46eda17fd8" name="Status_Exception" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="5a833f47-72c5-4bbe-b515-033d2468dbc0" />
+        <generalsInternal>
+          <generalization Id="a41f4e1e-d7ee-458b-8feb-7d312ccfdf4b" isSubstitutable="false">
+            <classMoniker Id="55d08bba-3e10-4dab-9910-b62a7f47beab" LastKnownName="Status_Disabled" />
+            <elementDefinition Id="32645e3e-3064-4ea3-8121-8b57875a65ab" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="4942e1f2-014f-44a0-92fb-6a217b9d0241" name="Status_Pending" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="5ae2d637-d6b6-4c27-90b0-97615bbeed91" />
+        <generalsInternal>
+          <generalization Id="b0e1f5b7-fd14-4460-a4a9-6fb7154b8369" isSubstitutable="false">
+            <classMoniker Id="efe5be94-9ed9-4eda-9dd9-562bec598d24" LastKnownName="Status_Enabled" />
+            <elementDefinition Id="d5665a69-d418-45f7-b33b-7c9af77cb99f" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="7b4bb50c-4f19-4b1c-9ced-9cab1aca6d47" name="Status_Completed" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="76498ef0-bb55-4f12-aa44-2b0be1e891d3" />
+        <generalsInternal>
+          <generalization Id="358cb5d6-a892-433c-8a67-e21c9010a4bb" isSubstitutable="false">
+            <classMoniker Id="efe5be94-9ed9-4eda-9dd9-562bec598d24" LastKnownName="Status_Enabled" />
+            <elementDefinition Id="4d214794-abff-4306-b0b8-5f70df3f7bd0" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="8a480e2e-5a09-4f3b-8fac-57fab302d6f2" name="Status_Ready" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="5d1f049b-1d3f-4e77-b666-682c450ce820" />
+        <generalsInternal>
+          <generalization Id="e341e984-29a0-4b0b-8035-5c0cdb98ae5b" isSubstitutable="false">
+            <classMoniker Id="efe5be94-9ed9-4eda-9dd9-562bec598d24" LastKnownName="Status_Enabled" />
+            <elementDefinition Id="cfa627a1-80b4-4fb0-988d-7bdb20dbe855" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="2c14b291-cc23-4b01-9f23-053a86218b82" name="Status_Running" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="6ecdf9dd-38c1-47b6-b422-b52ac945cb8e" />
+        <generalsInternal>
+          <generalization Id="518566cc-6745-4c3b-ae88-d463f531ae8a" isSubstitutable="false">
+            <classMoniker Id="efe5be94-9ed9-4eda-9dd9-562bec598d24" LastKnownName="Status_Enabled" />
+            <elementDefinition Id="627af968-d48b-40b2-98d0-6bf309be9769" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="96531ed3-ceb0-425e-888f-c48aa6ee0be6" name="Status_Processing" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="5684048b-8360-43dd-8651-ed7ec78809e7" />
+        <generalsInternal>
+          <generalization Id="f704eaa8-0248-47eb-8682-868ef9133096" isSubstitutable="false">
+            <classMoniker Id="2c14b291-cc23-4b01-9f23-053a86218b82" LastKnownName="Status_Running" />
+            <elementDefinition Id="cb3f7969-723a-48cc-b59a-cd6580284bb6" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+  </packagedElements>
+  <package Id="6072c553-c014-4a59-8180-658395524979" name="PAODesign">
+    <elementDefinition Id="f7c6b53f-1c2e-4762-ad13-eb71efcb9a9d" />
+  </package>
+</logicalClassDesignerModel>

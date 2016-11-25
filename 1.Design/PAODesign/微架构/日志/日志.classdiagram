@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm11="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner" dslVersion="1.0.0.0" Id="7c3bbd76-d9a1-499a-8ad3-51999a412fab" name="日志" linkedPackageId="b2aedcf2-4849-4dd6-9bf5-b384f5259eae" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
+  <profileInstances>
+    <packageHasProfileInstances Id="4a2e3e2f-30e5-4775-b50c-be0e8d3cb5bd">
+      <profileInstance Id="b154958d-7633-4008-9f0f-3a0f8ef86161" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="ea01d9bf-7074-4da5-b0e9-4b49782b9c7e">
+      <profileInstance Id="0a0ed0cf-c67c-47a2-94f7-8423a81e6af5" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <logicalClassDesignerModelHasTypes>
+      <Interface Id="a656f1b2-cd52-4127-82ac-836b824fd2dc" name="ILog" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="c5e7adb7-9af9-49ac-917f-98141f295f32" />
+      </Interface>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="e84f2053-5f5b-4b07-9c0b-8a3343e32463" name="DebugLogger" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="e85ab97e-a8a8-439b-aedd-ceeb121b4982" />
+        <suppliersInternal>
+          <interfaceRealization Id="8fbbbbfe-2fe4-4bcd-8c00-7c3c106d1876">
+            <interfaceMoniker Id="a656f1b2-cd52-4127-82ac-836b824fd2dc" LastKnownName="ILog" />
+            <elementDefinition Id="86866147-5cfd-4fca-afab-05311a4a4962" />
+          </interfaceRealization>
+        </suppliersInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="a0f091f1-2bac-426a-a234-b00448a1c785" name="EventLogger" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="22d6439d-8405-4799-9b6b-0366fe0179b7" />
+        <suppliersInternal>
+          <interfaceRealization Id="f019bf6d-c65a-44b4-95f4-0fafc278074c">
+            <interfaceMoniker Id="a656f1b2-cd52-4127-82ac-836b824fd2dc" LastKnownName="ILog" />
+            <elementDefinition Id="b7e27c08-fe77-479a-9f2f-0ff7414e7ecf" />
+          </interfaceRealization>
+        </suppliersInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="8bf5e4e7-0c7c-420e-9470-ee44e9dd9ca0" name="LogPublic" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="1a93953a-435d-4284-bd95-d4f6ceb38959" />
+        <targetEnds>
+          <association Id="f38f1a8f-54a6-4618-b6c8-921f66ebfb91" isDerived="false" sourceEndRoleName="" targetEndRoleName="LogList" isLeaf="false" isAbstract="false">
+            <interfaceMoniker Id="a656f1b2-cd52-4127-82ac-836b824fd2dc" LastKnownName="ILog" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="3ab627b3-75e9-402f-8375-85f68330d6ce" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Composite" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="4716e8fb-e5fe-4c09-9ac0-b180a1b62e46" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="5ff6ceb6-e9db-4eef-a60d-2480d4b465e4" name="LogList" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="true">
+                  <lowerValueInternal>
+                    <literalString Id="ea250fc1-6f97-4054-bad2-b74a06317ee4" name="Lower" value="*">
+                      <elementDefinition Id="75c3952a-434f-4fce-83d4-4cb60288241a" />
+                    </literalString>
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString Id="96bdccf9-9344-4add-8b78-c8ed93bc744a" name="Upper" value="*">
+                      <elementDefinition Id="bcfc3137-63f9-411d-b8da-14c56805d118" />
+                    </literalString>
+                  </upperValueInternal>
+                  <elementDefinition Id="de8fe57f-2688-485f-b025-2275b9a4b009" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="fd926835-3ee2-4be3-ad47-b1207f7769b5" />
+          </association>
+        </targetEnds>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+  </packagedElements>
+  <package Id="b2aedcf2-4849-4dd6-9bf5-b384f5259eae" name="PAODesign">
+    <elementDefinition Id="f7c6b53f-1c2e-4762-ad13-eb71efcb9a9d" />
+  </package>
+</logicalClassDesignerModel>

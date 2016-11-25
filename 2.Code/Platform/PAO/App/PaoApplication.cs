@@ -1,4 +1,5 @@
 ﻿using PAO.Log;
+using PAO.Server;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -42,6 +43,21 @@ namespace PAO.App {
             set;
         }
         #endregion 属性：ClientID
+
+        #region 属性：ServerList
+        /// <summary>
+        /// 属性：ServerList
+        /// 服务列表
+        /// 应用中后台运行的服务列表
+        /// </summary>
+        [DataMember(EmitDefaultValue = false)]
+        [DisplayName("服务列表")]
+        [Description("应用中后台运行的服务列表")]
+        public List<Ref<BaseServer>> ServerList {
+            get;
+            set;
+        }
+        #endregion 属性：ServerList
         #endregion
 
         /// <summary>
@@ -56,6 +72,7 @@ namespace PAO.App {
         }
 
         public PaoApplication() {
+            ServerList = new List<PAO.Ref<Server.BaseServer>>();
         }
 
         public override string ToString() {
@@ -76,13 +93,14 @@ namespace PAO.App {
         /// <summary>
         /// 运行
         /// </summary>
-        public void Run() {
+        public void Start() {
             // 一个应用中只能有一个默认应用程序
             Default = this;
             try {
                 LogPublic.LogInformation("PAO应用启动");
                 OnStart();
-                
+
+                #region 插件
                 _AppDirectory = AppDomain.CurrentDomain.SetupInformation.ApplicationBase;
 
                 LogPublic.LogInformation("开始加载插件...");
@@ -96,11 +114,30 @@ namespace PAO.App {
                     }
                 }
                 LogPublic.LogInformation("插件加载完毕.");
+                #endregion 插件
 
+                #region 服务
+                LogPublic.LogInformation("服务开始启动...");
+                if(!ServerList.IsNullOrEmpty()) {
+                    foreach(var server in ServerList) {
+                        var serverObj = server.Value;
+                        if (serverObj == null)
+                            throw new Exception("服务创建失败");
+                        serverObj.Start();
+                        LogPublic.LogInformation("服务{0}启动完毕.", serverObj.ObjectToString());
+                    }
+                }
+                LogPublic.LogInformation("服务启动完毕.");
+                #endregion 服务
+
+                #region 程序
                 LogPublic.LogInformation("程序开始运行...");
-                OnRunning();
+                Run();
                 LogPublic.LogInformation("程序运行完毕.");
-            } catch (Exception err) {
+                #endregion 程序
+
+            }
+            catch (Exception err) {
                 LogPublic.LogException(err);
                 OnException(err);
             } finally {
@@ -118,6 +155,7 @@ namespace PAO.App {
         /// 程序退出
         /// </summary>
         protected virtual void OnException(Exception err) {
+            throw err;
         }
         /// <summary>
         /// 程序退出
@@ -127,7 +165,7 @@ namespace PAO.App {
         /// <summary>
         /// 程序运行
         /// </summary>
-        protected virtual void OnRunning() {
+        protected virtual void Run() {
         }
     }
 }

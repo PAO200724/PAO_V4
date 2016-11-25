@@ -68,6 +68,11 @@
     <Compile Include="NothingType.cs" />
     <Compile Include="IO\PaoDataContractResolver.cs" />
     <Compile Include="Part\BasePart.cs" />
+    <Compile Include="Part\Enabled\Status_Completed.cs" />
+    <Compile Include="Part\Enabled\Running\Status_Running.cs" />
+    <Compile Include="Part\Enabled\Status_Pending.cs" />
+    <Compile Include="Part\Enabled\Running\Status_Processing.cs" />
+    <Compile Include="Part\Enabled\Status_Ready.cs" />
     <Compile Include="Part\Status.cs" />
     <Compile Include="Part\Disabled\Status_Exception.cs" />
     <Compile Include="Part\Status_Enabled.cs" />
@@ -76,15 +81,14 @@
     <Compile Include="IO\SafeFileStream.cs" />
     <Compile Include="IO\DataContractXmlSerializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Server\BaseServer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Collect\" />
-    <Folder Include="Part\Enabled\" />
+    <Folder Include="Device\" />
     <Folder Include="Remote\" />
     <Folder Include="Security\" />
-    <Folder Include="Server\" />
     <Folder Include="Setup\" />
-    <Folder Include="Status\" />
     <Folder Include="Trans\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
