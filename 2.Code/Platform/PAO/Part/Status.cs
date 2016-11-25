@@ -19,7 +19,7 @@ namespace PAO.Part
     [DataContract(Namespace = "")]
     [DisplayName("状态")]
     [Description("状态基类")]
-    public class Status : Object
+    public abstract class Status : Object
     {
         private static Dictionary<Type, Status> DefaultStatusList = new Dictionary<Type, Status>();
 
