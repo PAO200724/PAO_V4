@@ -16,10 +16,10 @@ using System.Threading.Tasks;
 namespace PAO.Server
 {
     /// <summary>
-    /// 类：BaseServer
+    /// 类:BaseServer
     /// 基础服务器
     /// 服务器基类，服务器是在后台背景线程运行的程序
-    /// 作者：PAO
+    /// 作者:PAO
     /// </summary>
     [Serializable]
     [DataContract(Namespace = "")]
@@ -28,24 +28,24 @@ namespace PAO.Server
     public abstract class BaseServer : BasePart
     {
         #region 插件属性
-        #region 属性：StopTimeout
+        #region 属性:StopTimeout
         /// <summary>
-        /// 属性：StopTimeout
+        /// 属性:StopTimeout
         /// 停止超时
-        /// 停止服务的等待超时时间，单位：毫秒
+        /// 停止服务的等待超时时间，单位:毫秒
         /// </summary>
         [DataMember(EmitDefaultValue = false)]
         [DisplayName("停止超时")]
-        [Description("停止服务的等待超时时间，单位：毫秒")]
+        [Description("停止服务的等待超时时间，单位:毫秒")]
         public int StopTimeout {
             get;
             set;
         }
-        #endregion 属性：StopTimeout
+        #endregion 属性:StopTimeout
 
-        #region 属性：TaskCreationOptions
+        #region 属性:TaskCreationOptions
         /// <summary>
-        /// 属性：TaskCreationOptions
+        /// 属性:TaskCreationOptions
         /// 任务创建选项
         /// 服务任务创建的选项
         /// </summary>
@@ -56,7 +56,7 @@ namespace PAO.Server
             get;
             set;
         }
-        #endregion 属性：TaskCreationOptions
+        #endregion 属性:TaskCreationOptions
         #endregion
 
         /// <summary>

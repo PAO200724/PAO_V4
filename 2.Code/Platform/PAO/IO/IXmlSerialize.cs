@@ -6,9 +6,9 @@ using System.Text;
 
 namespace PAO.IO {
     /// <summary>
-    /// 接口：IXmlSerialize
+    /// 接口:IXmlSerialize
     /// 对象序列化接口
-    /// 作者：刘丹(Daniel.liu)
+    /// 作者:刘丹(Daniel.liu)
     /// </summary>
     public interface IXmlSerialize {
         /// <summary>

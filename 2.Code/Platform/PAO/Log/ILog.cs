@@ -1,13 +1,14 @@
-﻿using System;
+﻿using PAO.Trans;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
 namespace PAO.Log {
     /// <summary>
-    /// 接口：ILog
+    /// 接口:ILog
     /// 日志记录接口
-    /// 作者：PAO
+    /// 作者:PAO
     /// </summary>
     public interface ILog {
         /// <summary>
@@ -27,5 +28,10 @@ namespace PAO.Log {
         /// </summary>
         /// <param name="exception">异常</param>
         void LogException(Exception exception);
+        /// <summary>
+        /// 记录事务
+        /// </summary>
+        /// <param name="trans">事务</param>
+        void LogTransaction(PaoTransaction trans);
     }
 }

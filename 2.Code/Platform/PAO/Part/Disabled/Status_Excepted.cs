@@ -9,22 +9,21 @@ using System.Text;
 namespace PAO.Part.Disabled
 {
     /// <summary>
-    /// 类：Status_Exception
+    /// 类:Status_Excepted
     /// 异常状态
     /// 表示处于长时间异常的状态
-    /// 作者：PAO
+    /// 作者:PAO
     /// </summary>
     [Serializable]
     [DataContract(Namespace = "")]
     [DisplayName("异常状态")]
     [Description("表示处于长时间异常的状态")]
-    public class Status_Exception : Status_Disabled
+    public class Status_Excepted : Status_Disabled
     {
         #region 插件属性
-
-        #region 属性：DetailInformation
+        #region 属性:DetailInformation
         /// <summary>
-        /// 属性：DetailInformation
+        /// 属性:DetailInformation
         /// 详细信息
         /// 用字符串表示的异常详细信息
         /// </summary>
@@ -36,9 +35,9 @@ namespace PAO.Part.Disabled
             get;
             set;
         }
-        #endregion 属性：DetailInformation
+        #endregion 属性:DetailInformation
         #endregion
-        public Status_Exception()
+        public Status_Excepted()
         {
         }
 
@@ -47,7 +46,7 @@ namespace PAO.Part.Disabled
         /// </summary>
         /// <param name="message">消息</param>
         /// <param name="detailInfomation">详细信息</param>
-        public Status_Exception(string message, string detailInfomation) : base(message)
+        public Status_Excepted(string message, string detailInfomation) : base(message)
         {
             DetailInformation = detailInfomation;
         }
@@ -56,10 +55,13 @@ namespace PAO.Part.Disabled
         /// 构造方法
         /// </summary>
         /// <param name="exception">异常</param>
-        public Status_Exception(Exception exception) : base(exception.Message)
+        public Status_Excepted(Exception exception) : base(exception.Message)
         {
-            DetailInformation = exception.ObjectToString();
+            DetailInformation = exception.FormatException();
         }
 
+        public override string ToString() {
+            return this.ObjectToString(null, "Message", "DetailMessage");
+        }
     }
 }

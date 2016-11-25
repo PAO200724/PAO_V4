@@ -8,9 +8,9 @@ using System.Text;
 
 namespace PAO {
     /// <summary>
-    /// 静态类：ReflectionPublic
+    /// 静态类:ReflectionPublic
     /// 反射公共类
-    /// 作者：PAO
+    /// 作者:PAO
     /// </summary>
     public static class ReflectionPublic {
         const string FullGenericTypeNameFormat = "{0}`1[[{2}]],{1}";

@@ -10,10 +10,10 @@ using System.ComponentModel;
 namespace PAO.Data
 {
     /// <summary>
-    /// 类：DataConnectionInfo
+    /// 类:DataConnectionInfo
     /// 数据连接
     /// 数据连接以及数据库相关操作
-    /// 作者：刘丹(Daniel.liu)
+    /// 作者:刘丹(Daniel.liu)
     /// </summary>
     [DataContract(Namespace = "")]
 	[Serializable]
@@ -22,9 +22,9 @@ namespace PAO.Data
     public class DataConnection : PaoObject
     {
         #region 插件属性
-        #region 属性：DbFactoryName
+        #region 属性:DbFactoryName
         /// <summary>
-        /// 属性：DbFactoryName
+        /// 属性:DbFactoryName
         /// 数据工厂名称
         /// 用于创建数据连接的数据工厂名称
         /// </summary>
@@ -35,11 +35,11 @@ namespace PAO.Data
             get;
             set;
         }
-        #endregion 属性：DbFactoryName
+        #endregion 属性:DbFactoryName
 
-        #region 属性：ConnectionString
+        #region 属性:ConnectionString
         /// <summary>
-        /// 属性：ConnectionString
+        /// 属性:ConnectionString
         /// 数据连接字符串
         /// 数据库连接字符串
         /// </summary>
@@ -50,11 +50,11 @@ namespace PAO.Data
             get;
             set;
         }
-        #endregion 属性：ConnectionString
+        #endregion 属性:ConnectionString
 
-        #region 属性：CommandList
+        #region 属性:CommandList
         /// <summary>
-        /// 属性：CommandList
+        /// 属性:CommandList
         /// 命令列表
         /// 数据库命令列表
         /// </summary>
@@ -65,7 +65,7 @@ namespace PAO.Data
             get;
             set;
         }
-        #endregion 属性：CommandList
+        #endregion 属性:CommandList
         #endregion
         /// <summary>
         /// 构造方法

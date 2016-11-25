@@ -4,9 +4,9 @@ using System.Text;
 
 namespace PAO {
     /// <summary>
-    /// 类：NothingType
+    /// 类:NothingType
     /// 空值类型
-    /// 作者：PAO
+    /// 作者:PAO
     /// </summary>
     [Flags]
     public enum NothingType {

@@ -7,9 +7,9 @@ using PAO.IO;
 
 namespace PAO.IO {
     /// <summary>
-    /// 静态类：IOPublic
+    /// 静态类:IOPublic
     /// 输入输出公共类
-    /// 作者：PAO
+    /// 作者:PAO
     /// </summary>
     public static class XmlPublic {
         /// <summary>

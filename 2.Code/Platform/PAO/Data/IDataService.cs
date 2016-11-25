@@ -7,9 +7,9 @@ using System.Text;
 
 namespace PAO.Data {
     /// <summary>
-    /// 接口：IDataService
+    /// 接口:IDataService
     /// 数据服务接口
-    /// 作者：PAO
+    /// 作者:PAO
     /// </summary>
     public interface IDataService {
         /// <summary>

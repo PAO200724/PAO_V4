@@ -9,10 +9,10 @@ using System.ComponentModel;
 namespace PAO.Data
 {
     /// <summary>
-    /// 类：DataCommandInfo
+    /// 类:DataCommandInfo
     /// 数据命令信息
     /// 用于保存数据命令属性的对象
-    /// 作者：刘丹(Daniel.liu)
+    /// 作者:刘丹(Daniel.liu)
     /// </summary>
     [DataContract(Namespace = "")]
 	[Serializable]
@@ -22,9 +22,9 @@ namespace PAO.Data
     {
         #region 插件属性
 
-        #region 属性：Name
+        #region 属性:Name
         /// <summary>
-        /// 属性：Name
+        /// 属性:Name
         /// 名称
         /// 数据命令名称
         /// </summary>
@@ -35,11 +35,11 @@ namespace PAO.Data
             get;
             set;
         }
-        #endregion 属性：Name
+        #endregion 属性:Name
 
-        #region 属性：Sql
+        #region 属性:Sql
         /// <summary>
-        /// 属性：Sql
+        /// 属性:Sql
         /// SQL语句
         /// 数据查询语句
         /// </summary>
@@ -50,11 +50,11 @@ namespace PAO.Data
             get;
             set;
         }
-        #endregion 属性：Sql
+        #endregion 属性:Sql
 
-        #region 属性：DataFilter
+        #region 属性:DataFilter
         /// <summary>
-        /// 属性：DataFilter
+        /// 属性:DataFilter
         /// 数据过滤器
         /// 用于过滤数据的过滤器
         /// </summary>
@@ -65,7 +65,7 @@ namespace PAO.Data
             get;
             set;
         }
-        #endregion 属性：DataFilter
+        #endregion 属性:DataFilter
 
         #endregion
 

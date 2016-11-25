@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PAO.Trans;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -8,10 +9,10 @@ using System.Text;
 
 namespace PAO.Log {
     /// <summary>
-    /// 类：EventLogger
+    /// 类:EventLogger
     /// 系统日志记录器
     /// 在系统日志中记录日志的记录器
-    /// 作者：PAO
+    /// 作者:PAO
     /// </summary>
     [Serializable]
     [DataContract(Namespace = "")]
@@ -27,9 +28,9 @@ namespace PAO.Log {
         /// </summary>
         public readonly static ILog Logger = new EventLogger();
         #region 插件属性
-        #region 属性：EventSource
+        #region 属性:EventSource
         /// <summary>
-        /// 属性：EventSource
+        /// 属性:EventSource
         /// 事件源
         /// 时间记录对应的事件源
         /// </summary>
@@ -40,7 +41,7 @@ namespace PAO.Log {
             get;
             set;
         }
-        #endregion 属性：EventSource
+        #endregion 属性:EventSource
         #endregion
 
         public EventLogger() {
@@ -52,19 +53,36 @@ namespace PAO.Log {
         }
         #region ILog 成员
 
+        private string FormatMessageWithTransaction(string message){
+            if (PaoTransaction.Current == null)
+                return message;
+
+            if (PaoTransaction.Current.Name.IsNullOrEmpty()) {
+                const string Format = "事务ID: {0}\r\n{1}";
+                return String.Format(Format, PaoTransaction.Current.ID, message);
+            } else {
+                const string Format = "事务:{0}, ID: {1}\r\n{2}";
+                return String.Format(Format, PaoTransaction.Current.Name, PaoTransaction.Current.ID, message);
+            }
+        }
+
         public void LogInformation(string message, params object[] parameters) {
             var fullMessage = String.Format(message, parameters);
-            EventLog.WriteEntry(EventSource, fullMessage, EventLogEntryType.Information);
+            EventLog.WriteEntry(EventSource, FormatMessageWithTransaction(fullMessage), EventLogEntryType.Information);
         }
 
         public void LogWarning(string message, params object[] parameters) {
             var fullMessage = String.Format(message, parameters);
-            EventLog.WriteEntry(EventSource, fullMessage, EventLogEntryType.Warning);
+            EventLog.WriteEntry(EventSource, FormatMessageWithTransaction(fullMessage), EventLogEntryType.Warning);
         }
 
         public void LogException(Exception exception) {
-            var fullMessage = exception.ObjectToString();
-            EventLog.WriteEntry(EventSource, fullMessage, EventLogEntryType.Error);
+            var fullMessage = exception.FormatException();
+            EventLog.WriteEntry(EventSource, FormatMessageWithTransaction(fullMessage), EventLogEntryType.Error);
+        }
+
+        public void LogTransaction(PaoTransaction trans) {
+            EventLog.WriteEntry(EventSource, trans.ToString(), EventLogEntryType.Information);
         }
         #endregion
     }

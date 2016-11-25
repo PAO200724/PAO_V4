@@ -8,9 +8,9 @@ using System.Text;
 
 namespace PAO.App {
     /// <summary>
-    /// 静态类：AppPublic
+    /// 静态类:AppPublic
     /// 应用工具类
-    /// 作者：PAO
+    /// 作者:PAO
     /// </summary>
     public static class AppPublic {
         public const string DefaultConfigFileName = "pao.config";

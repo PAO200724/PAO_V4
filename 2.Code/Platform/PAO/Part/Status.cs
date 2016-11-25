@@ -10,10 +10,10 @@ using System.Text;
 namespace PAO.Part
 {
     /// <summary>
-    /// 类：BaseStatus
+    /// 类:BaseStatus
     /// 状态
     /// 状态基类
-    /// 作者：PAO
+    /// 作者:PAO
     /// </summary>
     [Serializable]
     [DataContract(Namespace = "")]

@@ -7,9 +7,9 @@ using System.Xml;
 
 namespace PAO.IO {
     /// <summary>
-    /// 类：PaoDataContractResolver
+    /// 类:PaoDataContractResolver
     /// 数据协议获取器
-    /// 作者：PAO
+    /// 作者:PAO
     /// </summary>
     public class PaoDataContractResolver : DataContractResolver {
         /// <summary>

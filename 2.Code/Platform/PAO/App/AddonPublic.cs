@@ -8,9 +8,9 @@ using System.Text;
 
 namespace PAO.App {
     /// <summary>
-    /// 静态类：AddonPublic
+    /// 静态类:AddonPublic
     /// 插件公共类
-    /// 作者：PAO
+    /// 作者:PAO
     /// </summary>
     public static class AddonPublic {
         const string AssemblyPattern = "PAO.*.dll";

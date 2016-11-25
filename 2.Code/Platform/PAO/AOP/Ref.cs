@@ -7,10 +7,10 @@ using System.Text;
 
 namespace PAO {
     /// <summary>
-    /// 类：Ref
+    /// 类:Ref
     /// 引用
     /// 通过工厂创建对象的类型
-    /// 作者：PAO
+    /// 作者:PAO
     /// </summary>
     [Serializable]
     [DataContract(Namespace = "")]

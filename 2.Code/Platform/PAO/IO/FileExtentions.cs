@@ -8,7 +8,7 @@ namespace PAO.IO
 {
     /// <summary>
     /// 文件扩展名
-    /// 作者：刘丹(Daniel.liu)
+    /// 作者:刘丹(Daniel.liu)
     /// </summary>
     public static class FileExtentions
     {

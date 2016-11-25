@@ -9,7 +9,7 @@ namespace PAO.Data.Filters
 {
     /// <summary>
     /// And过滤器
-    /// 作者：刘丹(Daniel.liu)
+    /// 作者:刘丹(Daniel.liu)
     /// </summary>
     /// <remarks>
     /// 创建与逻辑表达式的过滤器

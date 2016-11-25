@@ -7,12 +7,20 @@ using System.Text;
 namespace PAO.Trans
 {
     /// <summary>
-    /// 静态类：TransactionPublic
+    /// 静态类:TransactionPublic
     /// 事务公共类
-    /// 作者：PAO
+    /// 作者:PAO
     /// </summary>
     public static class TransactionPublic
     {
+        #region 事件信息
+        public const string Event_Start = "事务启动";
+        public const string Event_End = "事务启动";
+        public const string Event_Committed = "事务提交";
+        public const string Event_Excepted = "事务异常";
+        public const string Event_Rollbacked = "事务回滚";
+        public const string Event_RollbackExcepted = "回滚异常";
+        #endregion
         /// <summary>
         /// 事务服务
         /// </summary>
@@ -25,76 +33,54 @@ namespace PAO.Trans
         public static void Initialize(ITransactionService transService) {
             TransactionService = transService;
         }
-
+        
         /// <summary>
-        /// 记录当前事务的事件
+        /// 在事务中执行
         /// </summary>
-        /// <param name="transEvent">事务事件</param>
-        public static void LogTransaction(TransactionEvent transEvent, Exception exception = null) {
-            string transMessage = null;
-            switch (transEvent) {
-                case TransactionEvent.Started:
-                    transMessage = "事务启动";
-                    break;
-                case TransactionEvent.Commited:
-                    transMessage = "事务完成";
-                    break;
-                case TransactionEvent.Rollbacked:
-                    transMessage = "事务回滚";
-                    break;
-                case TransactionEvent.Excepted:
-                    transMessage = "事务异常";
-                    break;
-                case TransactionEvent.RollbackExcepted:
-                    transMessage = "回滚异常";
-                    break;
-                case TransactionEvent.Exit:
-                    transMessage = "事务退出";
-                    break;
-                default:
-                    throw new Exception("未知的事务事件类型");
-            }
-
-            if (TransactionService != null)
-                TransactionService.LogTransaction(PaoTransaction.Current, transEvent, exception.ObjectToString());
-
-            if(!exception.IsNull()) {
-                LogPublic.LogInformation(transMessage, "事务ID", PaoTransaction.Current.ID, "异常", exception.Message);
-                LogPublic.LogException(exception);
-            } else {
-                LogPublic.LogInformation(transMessage, "事务ID", PaoTransaction.Current.ID);
-            }
-            
+        /// <param name="action">动作</param>
+        /// <param name="exceptionAction">异常动作</param>
+        /// <param name="rollbackAction">回滚动作</param>
+        public static void Run(Action action, Action<Exception> exceptionAction = null, Action rollbackAction = null) {
+            Run(null, action, exceptionAction, rollbackAction);
         }
 
         /// <summary>
         /// 在事务中执行
         /// </summary>
+        /// <param name="transName">事务名称</param>
+        /// <param name="exceptionAction">异常动作</param>
         /// <param name="action">动作</param>
         /// <param name="rollbackAction">回滚动作</param>
-        public static void Run(Action action, Action rollbackAction = null) {
-            var trans = new PaoTransaction();
+        public static void Run(string transName, Action action
+            , Action<Exception> exceptionAction = null
+            , Action rollbackAction = null) {
+            var trans = new PaoTransaction(transName);
             try {
-                LogTransaction(TransactionEvent.Started);
                 action();
-                LogTransaction(TransactionEvent.Commited);
+                trans.Commit();
             }
             catch (Exception exp) {
-                LogTransaction(TransactionEvent.Excepted, exp);
-                if (rollbackAction != null) {
-                    try {
-                        rollbackAction();
-                        LogTransaction(TransactionEvent.Rollbacked);
+                try {
+                    trans.Exception(exp);
+                    if (exceptionAction != null) {
+                        exceptionAction(exp);
                     }
-                    catch (Exception rollExp) {
-                        LogTransaction(TransactionEvent.RollbackExcepted, rollExp);
+
+                    if (rollbackAction != null) {
+                        try {
+                            rollbackAction();
+                            trans.Rollback();
+                        }
+                        catch (Exception rollExp) {
+                            trans.RollbackException(rollExp);
+                        }
                     }
+                    else {
+                        throw exp;
+                    }
+                } finally {
+                    trans.Fail();
                 }
-                throw exp;
-            }
-            finally {
-                trans.End();
-                LogTransaction(TransactionEvent.Exit);
             }
         }
     }

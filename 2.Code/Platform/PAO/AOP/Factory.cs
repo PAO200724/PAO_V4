@@ -7,10 +7,10 @@ using System.Text;
 
 namespace PAO {
     /// <summary>
-    /// 类：Factory
+    /// 类:Factory
     /// 工厂类
     /// 用工厂方式创建引用的类
-    /// 作者：PAO
+    /// 作者:PAO
     /// </summary>
     [Serializable]
     [DataContract(Namespace = "")]
@@ -18,9 +18,9 @@ namespace PAO {
     [Description("用工厂方式创建引用的类")]
     public abstract class Factory<T> : Ref<T> {
         #region 插件属性
-        #region 属性：BufferInstance
+        #region 属性:BufferInstance
         /// <summary>
-        /// 属性：BufferInstance
+        /// 属性:BufferInstance
         /// 缓存实例
         /// 如果缓存了实例，则除非BuildRef，否则不重新创建实例，默认为true
         /// </summary>
@@ -31,7 +31,7 @@ namespace PAO {
             get;
             set;
         }
-        #endregion 属性：BufferInstance
+        #endregion 属性:BufferInstance
         #endregion
         /// <summary>
         /// 对象实例

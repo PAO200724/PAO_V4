@@ -14,7 +14,7 @@ namespace PAO.IO
 {
     /// <summary>
     /// WCF数据协议对象序列化器
-    /// 作者：刘丹(Daniel.liu)
+    /// 作者:刘丹(Daniel.liu)
     /// </summary>
     public class DataContractXmlSerializer : IXmlSerialize
     {

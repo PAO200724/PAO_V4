@@ -9,10 +9,10 @@ using System.Text;
 namespace PAO.Part
 {
     /// <summary>
-    /// 类：Status_Disabled
+    /// 类:Status_Disabled
     /// 失效状态
     /// 失效状态
-    /// 作者：PAO
+    /// 作者:PAO
     /// </summary>
     [Serializable]
     [DataContract(Namespace = "")]
@@ -21,9 +21,9 @@ namespace PAO.Part
     public class Status_Disabled : Status
     {
         #region 插件属性
-        #region 属性：Message
+        #region 属性:Message
         /// <summary>
-        /// 属性：Message
+        /// 属性:Message
         /// 失效消息
         /// 失效的说明
         /// </summary>
@@ -35,7 +35,7 @@ namespace PAO.Part
             get;
             set;
         }
-        #endregion 属性：Message
+        #endregion 属性:Message
         #endregion
         public Status_Disabled()
         {

@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using PAO.Log;
+using PAO.Trans;
 
 namespace PAO.Log {
     /// <summary>
-    /// 静态类：LogPublic
+    /// 静态类:LogPublic
     /// 日志公共类
-    /// 作者：PAO
+    /// 作者:PAO
     /// </summary>
     public static class LogPublic {
         /// <summary>
@@ -25,7 +26,8 @@ namespace PAO.Log {
         /// </summary>
         /// <param name="logger">日志记录器</param>
         public static void AddLogger(ILog logger) {
-            LoggerList.Add(logger);
+            if(!LoggerList.Contains(logger))
+                LoggerList.Add(logger);
         }
 
         /// <summary>
@@ -76,5 +78,16 @@ namespace PAO.Log {
             }
         }
 
+        /// <summary>
+        /// 记录信息
+        /// </summary>
+        /// <param name="trans">事务</param>
+        /// <param name="transEvent">事务事件</param>
+        /// <param name="exception">异常，如果不是异常事件则为空</param>
+        public static void LogTransaction(PaoTransaction trans) {
+            foreach (var logger in LoggerList) {
+                logger.LogTransaction(trans);
+            }
+        }
     }
 }

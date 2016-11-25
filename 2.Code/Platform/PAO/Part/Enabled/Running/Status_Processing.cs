@@ -9,10 +9,10 @@ using System.Text;
 namespace PAO.Part.Enabled.Running
 {
     /// <summary>
-    /// 类：Status_Processing
+    /// 类:Status_Processing
     /// 处理中
     /// 处理中状态
-    /// 作者：PAO
+    /// 作者:PAO
     /// </summary>
     [Serializable]
     [DataContract(Namespace = "")]
@@ -21,9 +21,9 @@ namespace PAO.Part.Enabled.Running
     public class Status_Processing : Status_Running
     {
         #region 插件属性
-        #region 属性：Step
+        #region 属性:Step
         /// <summary>
-        /// 属性：Step
+        /// 属性:Step
         /// 步骤
         /// 当前处理步骤（百分比）
         /// </summary>
@@ -35,7 +35,7 @@ namespace PAO.Part.Enabled.Running
             get;
             set;
         }
-        #endregion 属性：Step
+        #endregion 属性:Step
         #endregion
         public Status_Processing()
         {
@@ -45,5 +45,9 @@ namespace PAO.Part.Enabled.Running
         {
             Step = step;
         }
+        public override string ToString() {
+            return this.ObjectToString(null, "Step");
+        }
+
     }
 }

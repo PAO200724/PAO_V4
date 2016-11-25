@@ -11,7 +11,7 @@ namespace PAO.IO {
     /// <summary>
     /// 安全文件流
     /// 此文件流会在创建时自动创建一个临时文件，对文件的读写实际上都是对临时文件进行，关闭文件时将临时文件回写
-    /// 作者：刘丹(Daniel.liu)
+    /// 作者:刘丹(Daniel.liu)
     /// </summary>
     public class SafeFileStream : FileStream {
         private string Path;

@@ -9,10 +9,10 @@ using System.Data;
 namespace PAO.Data
 {
     /// <summary>
-    /// 类：DataField
+    /// 类:DataField
     /// 数据字段
     /// 用于保存数据列或参数的对象
-    /// 作者：刘丹(Daniel.liu)
+    /// 作者:刘丹(Daniel.liu)
     /// </remarks>
     [Serializable]
     [DataContract(Namespace = "")]
@@ -21,9 +21,9 @@ namespace PAO.Data
     public class DataField
     {
         #region 插件属性
-        #region 属性：Type
+        #region 属性:Type
         /// <summary>
-        /// 属性：Type
+        /// 属性:Type
         /// 类型
         /// 数据字段的类型
         /// </summary>
@@ -34,11 +34,11 @@ namespace PAO.Data
             get;
             set;
         }
-        #endregion 属性：Type
+        #endregion 属性:Type
 
-        #region 属性：Name
+        #region 属性:Name
         /// <summary>
-        /// 属性：Name
+        /// 属性:Name
         /// 名称
         /// 字段名称
         /// </summary>
@@ -49,11 +49,11 @@ namespace PAO.Data
             get;
             set;
         }
-        #endregion 属性：Name
+        #endregion 属性:Name
 
-        #region 属性：Caption
+        #region 属性:Caption
         /// <summary>
-        /// 属性：Caption
+        /// 属性:Caption
         /// 标题
         /// 字段标题
         /// </summary>
@@ -64,11 +64,11 @@ namespace PAO.Data
             get;
             set;
         }
-        #endregion 属性：Caption
+        #endregion 属性:Caption
 
-        #region 属性：Value
+        #region 属性:Value
         /// <summary>
-        /// 属性：Value
+        /// 属性:Value
         /// 值
         /// 字段值
         /// </summary>
@@ -79,7 +79,7 @@ namespace PAO.Data
             get;
             set;
         }
-        #endregion 属性：Value
+        #endregion 属性:Value
         #endregion
 
         public DataField() {

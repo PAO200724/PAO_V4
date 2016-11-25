@@ -9,7 +9,7 @@ namespace PAO.Data.Filters
 {
     /// <summary>
     /// 组合逻辑过滤器
-    /// 作者：刘丹(Daniel.liu)
+    /// 作者:刘丹(Daniel.liu)
     /// </summary>
     /// <remarks>
     /// 创建组合逻辑表达式的过滤器
@@ -21,9 +21,9 @@ namespace PAO.Data.Filters
     public abstract class CompositeLogicFilter : BaseDataFilter
     {
         #region 插件属性
-        #region 属性：ChildFilters
+        #region 属性:ChildFilters
         /// <summary>
-        /// 属性：ChildFilters
+        /// 属性:ChildFilters
         /// 子过滤器
         /// 自过滤器列表
         /// </summary>
@@ -34,7 +34,7 @@ namespace PAO.Data.Filters
             get;
             set;
         }
-        #endregion 属性：ChildFilters
+        #endregion 属性:ChildFilters
         #endregion
 
         /// <summary>

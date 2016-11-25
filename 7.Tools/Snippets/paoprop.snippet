@@ -45,19 +45,19 @@
         </Literal>
       </Declarations>
       <Code Language="csharp" Delimiter="$"><![CDATA[#region 属性：$PropertyName$
-        /// <summary>
-        /// 属性：$PropertyName$
-        /// $DisplayName$
-        /// $Description$
-        /// </summary>
-        [DataMember(EmitDefaultValue=false)]
-        [DisplayName("$DisplayName$")]
-        [Description("$Description$")]
-        public $PropertyType$ $PropertyName$ {
-            get;
-            set;
-        }
-        #endregion 属性：$PropertyName$]]></Code>
+/// <summary>
+/// 属性：$PropertyName$
+/// $DisplayName$
+/// $Description$
+/// </summary>
+[DataMember(EmitDefaultValue=false)]
+[DisplayName("$DisplayName$")]
+[Description("$Description$")]
+public $PropertyType$ $PropertyName$ {
+    get;
+    set;
+}
+#endregion 属性：$PropertyName$]]></Code>
     </Snippet>
   </CodeSnippet>
 </CodeSnippets>

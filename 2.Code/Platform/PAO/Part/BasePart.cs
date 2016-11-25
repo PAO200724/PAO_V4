@@ -9,10 +9,10 @@ using System.Text;
 namespace PAO.Part
 {
     /// <summary>
-    /// 类：BasePart
+    /// 类:BasePart
     /// 部件
     /// 部件基类
-    /// 作者：PAO
+    /// 作者:PAO
     /// </summary>
     [Serializable]
     [DataContract(Namespace = "")]
@@ -21,9 +21,9 @@ namespace PAO.Part
     public class BasePart : PaoObject
     {
         #region 插件属性
-        #region 属性：Status
+        #region 属性:Status
         /// <summary>
-        /// 属性：Status
+        /// 属性:Status
         /// 状态
         /// 部件状态
         /// </summary>
@@ -35,7 +35,7 @@ namespace PAO.Part
             get;
             set;
         }
-        #endregion 属性：Status
+        #endregion 属性:Status
         #endregion
         public BasePart()
         {

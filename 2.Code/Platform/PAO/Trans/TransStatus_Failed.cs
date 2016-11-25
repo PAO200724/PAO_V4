@@ -1,4 +1,5 @@
 ﻿using PAO;
+using PAO.Part.Enabled;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -6,24 +7,23 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 
-namespace PAO.Part.Enabled
+namespace PAO.Trans
 {
     /// <summary>
-    /// 类:Status_Pending
-    /// 暂停
-    /// 暂停状态
-    /// 作者:PAO
+    /// 类：TransStatus_Failed
+    /// 失败
+    /// 事务处于执行失败的状态
+    /// 作者：PAO
     /// </summary>
     [Serializable]
     [DataContract(Namespace = "")]
-    [DisplayName("暂停")]
-    [Description("暂停状态")]
-    public class Status_Pending : Status_Enabled
+    [DisplayName("失败")]
+    [Description("事务处于执行失败的状态")]
+    public class TransStatus_Failed : Status_Completed
     {
         #region 插件属性
         #endregion
-        public Status_Pending()
-        {
+        public TransStatus_Failed() {
         }
     }
 }

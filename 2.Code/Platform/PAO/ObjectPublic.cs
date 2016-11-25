@@ -8,9 +8,9 @@ using System.Text;
 
 namespace PAO {
     /// <summary>
-    /// 静态类：ObjectPublic
+    /// 静态类:ObjectPublic
     /// 对象公共类，内含对象相关的公共方法
-    /// 作者：PAO
+    /// 作者:PAO
     /// </summary>
     public static class ObjectPublic {
         #region 空值判断
@@ -322,13 +322,13 @@ namespace PAO {
         /// </summary>
         /// <param name="exception">异常</param>
         /// <returns>详细的异常字符串</returns>
-        public static string ObjectToString(this Exception exception) {
+        public static string FormatException(this Exception exception) {
             var exceptionMessage = exception.ToString();
-            var detailMessage = "详细信息：\r\n";
+            var detailMessage = "详细信息:\r\n";
             foreach (var dataItem in exception.Data.Keys) {
                 detailMessage += String.Format("\t[{0}]: {1}", dataItem, exception.Data[dataItem]);
             }
-            var fullMessage = String.Format("异常类型：{0}\r\n异常信息：{1}\r\n{2}\r\n------------------------------\r\n{3}"
+            var fullMessage = String.Format("异常类型:{0}\r\n异常信息:{1}\r\n{2}\r\n------------------------------\r\n{3}"
                 , exception.GetType().FullName
                 , exception.Message
                 , detailMessage, exception);
@@ -362,7 +362,7 @@ namespace PAO {
                 if (value == null)
                     continue;
 
-                if (propertyString.IsNullOrEmpty())
+                if (!propertyString.IsNullOrEmpty())
                     propertyString += ",";
 
                 var prop = obj.GetType().GetProperty(property);

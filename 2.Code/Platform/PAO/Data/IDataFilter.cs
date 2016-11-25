@@ -6,10 +6,10 @@ using System.Text;
 namespace PAO.Data
 {
     /// <summary>
-    /// 接口：IDataFilter
+    /// 接口:IDataFilter
     /// 数据过滤器
     /// 过滤数据的对象
-    /// 作者：刘丹(Daniel.liu)
+    /// 作者:刘丹(Daniel.liu)
     /// </summary>
     public interface IDataFilter
     {

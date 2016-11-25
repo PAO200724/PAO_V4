@@ -6,10 +6,10 @@ using System.Text;
 
 namespace PAO {
     /// <summary>
-    /// 类：PaoObject
+    /// 类:PaoObject
     /// 基础对象
     /// 插件类，所有实体对象的基类
-    /// 作者：PAO
+    /// 作者:PAO
     /// </summary>
     [Serializable]
     [DataContract(Namespace = "")]
@@ -17,9 +17,9 @@ namespace PAO {
     [Description("插件类，所有实体对象的基类")]
     public class PaoObject {
         #region 插件属性
-        #region 属性：ID
+        #region 属性:ID
         /// <summary>
-        /// 属性：ID
+        /// 属性:ID
         /// ID
         /// 唯一编号
         /// </summary>
@@ -30,9 +30,10 @@ namespace PAO {
             get;
             set;
         }
-        #endregion 属性：ID
+        #endregion 属性:ID
         #endregion 插件属性
         public PaoObject() {
+            ID = Guid.NewGuid().ToString();
             OnCreate();
         }
 
@@ -115,8 +116,10 @@ namespace PAO {
             PaoObject personObj = obj as PaoObject;
             if (personObj == null)
                 return false;
-            else
+            else if (Key != this)
                 return Key.Equals(personObj.Key);
+            else
+                return base.Equals(obj);
         }
 
         #endregion

@@ -6,9 +6,9 @@ using System.Text;
 
 namespace PAO.Data {
     /// <summary>
-    /// 静态类：DataPublic
+    /// 静态类:DataPublic
     /// 数据公共类
-    /// 作者：PAO
+    /// 作者:PAO
     /// </summary>
     public static class DataPublic {
         /// <summary>
