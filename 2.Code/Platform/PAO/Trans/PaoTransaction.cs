@@ -1,4 +1,5 @@
 ﻿using PAO;
+using PAO.Log;
 using PAO.Part;
 using System;
 using System.Collections.Generic;
@@ -73,24 +74,11 @@ namespace PAO.Trans
         }
 
         /// <summary>
-        /// 提交
-        /// </summary>
-        public void Commit() {
-            End();
-        }
-
-        /// <summary>
-        /// 回滚
-        /// </summary>
-        public void Rollback() {
-            End();
-        }
-
-        /// <summary>
         /// 结束事务
         /// </summary>
-        private void End() {
+        internal void End() {
             Current = Parent;
         }
+
     }
 }

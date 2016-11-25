@@ -12,8 +12,10 @@ namespace PAO.Trans
     public enum TransactionEvent
     {
         Started,    // 开始
-        Committed,  // 提交
+        Commited,   // 提交
         Rollbacked, // 回滚
-        Excepted    // 异常
+        Excepted,   // 异常
+        RollbackExcepted, // 回滚异常
+        Exit,       // 退出
     }
 }

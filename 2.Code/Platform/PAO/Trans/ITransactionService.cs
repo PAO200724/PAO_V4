@@ -12,14 +12,15 @@ namespace PAO.Trans
     /// 作者：PAO
     /// </summary>
     [ServiceContract]
-    public interface ITransactionServer
+    public interface ITransactionService
     {
         /// <summary>
         /// 记录事务
         /// </summary>
         /// <param name="trans">事务</param>
         /// <param name="transEvent">事务事件</param>
-        void LogTransaction(PaoTransaction trans, TransactionEvent transEvent);
+        /// <param name="extendMessage">扩展信息</param>
+        void LogTransaction(PaoTransaction trans, TransactionEvent transEvent, string extendMessage);
 
         /// <summary>
         /// 启动事务
