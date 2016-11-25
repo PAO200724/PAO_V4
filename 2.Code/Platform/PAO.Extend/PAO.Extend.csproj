@@ -42,7 +42,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AOP\ReverseWCFFactory.cs" />
     <Compile Include="Data\DbDataService.cs" />
     <Compile Include="Data\IDataService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
