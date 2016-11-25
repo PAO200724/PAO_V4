@@ -90,11 +90,7 @@
     <Compile Include="Trans\TransactionEvent.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Collect\" />
-    <Folder Include="Device\" />
-    <Folder Include="Remote\" />
     <Folder Include="Security\" />
-    <Folder Include="Setup\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
