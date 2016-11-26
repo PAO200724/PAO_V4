@@ -111,10 +111,10 @@
     <Compile Include="Trans\TransStatus_RollbackExcepted.cs" />
     <Compile Include="Trans\TransactionPublic.cs" />
     <Compile Include="Trans\TransStatus_Running.cs" />
+    <Compile Include="UI\IUserInterface.cs" />
+    <Compile Include="UI\UIPublic.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="UI\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -3,6 +3,7 @@ using PAO.Log;
 using PAO.Remote;
 using PAO.Server;
 using PAO.Trans;
+using PAO.UI;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -106,18 +107,22 @@ namespace PAO.App {
             set;
         }
         #endregion 属性：GlobalAddonList
-        #endregion
 
+        #region 属性：UserInterface
         /// <summary>
-        /// 应用程序目录
+        /// 属性：UserInterface
+        /// 用户界面
+        /// 用户界面
         /// </summary>
-        [NonSerialized]
-        private string _AppDirectory;
-        public string AppDirectory {
-            get {
-                return _AppDirectory;
-            }
+        [DataMember(EmitDefaultValue = false)]
+        [DisplayName("用户界面")]
+        [Description("用户界面")]
+        public Ref<IUserInterface> UserInterface {
+            get;
+            set;
         }
+        #endregion 属性：UserInterface
+        #endregion
 
         /// <summary>
         /// 运行方法
@@ -136,16 +141,6 @@ namespace PAO.App {
             // 将对象转换为字符串
             return ObjectPublic.ObjectToString(this, null/*,"属性名称"*/);
         }
-        #region 应用程序路径
-        /// <summary>
-        /// 获取绝对路径
-        /// </summary>
-        /// <param name="relatedPath">相对路径</param>
-        /// <returns>绝对路径</returns>
-        public string GetAbsolutePath(string relatedPath) {
-            return Path.Combine(AppDirectory, relatedPath);
-        }
-        #endregion
 
         /// <summary>
         /// 运行
@@ -155,31 +150,13 @@ namespace PAO.App {
             Default = this;
             TransactionPublic.Run("主应用程序", () =>
             {
-                //首先添加默认的日志记录器
-                LogPublic.ClearLogger();
-                LogPublic.AddLogger(DebugLogger.Logger);
-                LogPublic.AddLogger(EventLogger.Logger);
-
                 TransactionPublic.Run("启动准备", OnStart);
 
-                #region 插件
-                _AppDirectory = AppDomain.CurrentDomain.SetupInformation.ApplicationBase;
-
-                TransactionPublic.Run("加载插件", () =>
-                {
-                    LogPublic.LogInformation("开始加载插件...");
-                    AddonPublic.AddDirectory(AppDirectory);
-                    string libPathString = AppDomain.CurrentDomain.SetupInformation.PrivateBinPath;
-                    if (!libPathString.IsNullOrEmpty()) {
-                        string[] libPaths = libPathString.Split(';');
-                        foreach (var libDir in libPaths) {
-                            var libPath = GetAbsolutePath(libDir);
-                            AddonPublic.AddDirectory(libPath);
-                        }
-                    }
-                    LogPublic.LogInformation("插件加载完毕.");
-                });
-                #endregion 插件
+                #region 用户界面
+                if (UserInterface.IsNotNull()) {
+                    UIPublic.DefaultUserInterface = UserInterface.Value;
+                }
+                #endregion 用户界面
 
                 #region 日志
                 TransactionPublic.Run("准备日志", () =>
