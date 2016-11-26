@@ -73,34 +73,79 @@
       </class>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
-      <class Id="45dccf0a-d7bc-4631-9f25-35a1a6d9d2f1" name="BaseServer" isAbstract="false" isLeaf="false" isActiveClass="false">
-        <elementDefinition Id="d08a525f-84c8-4363-a959-9c29ae4fb8c2" />
+      <class Id="3ce2c007-5220-445a-9b88-9449f2871026" name="WCFRemoteFactory&lt;T&gt;" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="5ea237a9-f3e4-483f-bc5e-fd8b92166a74" />
+        <suppliersInternal>
+          <dependency Id="156da64b-18c3-4a3b-ae6b-d9bb22a446b2">
+            <classMoniker Id="ffd461ee-258b-4cc1-8cca-d2315842ce89" LastKnownName="WCFFactory&lt;T&gt;" />
+            <elementDefinition Id="9c246e38-69da-490f-889f-e4b3fd7bb519" />
+          </dependency>
+        </suppliersInternal>
         <generalsInternal>
-          <generalization Id="5a2737ea-fdd4-497a-8005-66759d365461" isSubstitutable="false">
-            <classMoniker Id="6be47ae6-ab28-4fa9-9370-8833b99715b5" LastKnownName="BasePart" />
-            <elementDefinition Id="bdda040d-c879-49c6-98a3-87a11baa0434" />
+          <generalization Id="18471b2b-4658-42a3-a439-2f3fcf15aa83" isSubstitutable="false">
+            <classMoniker Id="6bbd8e2b-194a-4bce-b044-825a075b6503" LastKnownName="Factory&lt;T&gt;" />
+            <elementDefinition Id="250a8f31-9c3a-438f-b2ae-7101c1a9d6ac" />
           </generalization>
         </generalsInternal>
       </class>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
-      <class Id="8e897dd5-7c97-4693-9446-2bac6fb2a5b4" name="BaseDevice" isAbstract="false" isLeaf="false" isActiveClass="false">
-        <elementDefinition Id="c3941268-0957-4942-9e0c-b8948b55d30b" />
+      <class Id="04bafd80-a54d-47b5-9435-1bd46a4c0295" name="PathFactory" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="b56a621a-6dfc-42cf-b146-a421df1c4c9c" />
+        <suppliersInternal>
+          <dependency Id="a1fcf717-3b91-4fee-953e-5681aa43cd2a">
+            <classMoniker Id="2a154cc8-fffa-40fe-a6d2-330fb254f2d5" LastKnownName="PaoApplication" />
+            <elementDefinition Id="9cdf8e82-ceb4-4d34-96a0-b01cc23c277f" />
+          </dependency>
+        </suppliersInternal>
         <generalsInternal>
-          <generalization Id="756006be-acf5-4821-968e-3fb6e49a2391" isSubstitutable="false">
-            <classMoniker Id="6be47ae6-ab28-4fa9-9370-8833b99715b5" LastKnownName="BasePart" />
-            <elementDefinition Id="300cb2a4-2d58-4599-8722-c8422b6a3904" />
+          <generalization Id="0986dda3-d22d-4472-9028-fce464de1a86" isSubstitutable="false">
+            <classMoniker Id="6bbd8e2b-194a-4bce-b044-825a075b6503" LastKnownName="Factory&lt;T&gt;" />
+            <elementDefinition Id="5b9a6e26-90f4-427e-b7c7-212e637e83f3" />
           </generalization>
         </generalsInternal>
       </class>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
-      <class Id="2efea590-74a8-4fdd-97b6-1a2bf2c8cbbc" name="PaoApplication" isAbstract="false" isLeaf="false" isActiveClass="false">
-        <elementDefinition Id="4e9e6a04-159d-4fcd-8981-89a7694f1777" />
+      <class Id="9d6f54f2-85e0-4149-90e4-d67529f526e1" name="AddonFactory" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="3c01ee13-9b12-4eb1-b471-3c56487aedb2" />
+        <suppliersInternal>
+          <dependency Id="9a91c031-e886-4023-8221-6f0f88b356d5">
+            <classMoniker Id="2a154cc8-fffa-40fe-a6d2-330fb254f2d5" LastKnownName="PaoApplication" />
+            <elementDefinition Id="86aec4f9-e422-4a53-ac25-eab54fe91ac2" />
+          </dependency>
+        </suppliersInternal>
         <generalsInternal>
-          <generalization Id="f71e0d68-22db-4e23-94e0-63a67345a44b" isSubstitutable="false">
-            <classMoniker Id="a74f5056-d527-4b05-afc2-c47e9f48944b" LastKnownName="PaoObject" />
-            <elementDefinition Id="864865c8-07a8-447a-ace2-03850eb17dac" />
+          <generalization Id="9fc07bdc-66eb-4def-b097-de9bdb90f303" isSubstitutable="false">
+            <classMoniker Id="6bbd8e2b-194a-4bce-b044-825a075b6503" LastKnownName="Factory&lt;T&gt;" />
+            <elementDefinition Id="f98ddd53-7c06-4290-a2a9-b46d729317c7" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="2a154cc8-fffa-40fe-a6d2-330fb254f2d5" name="PaoApplication" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="5a4bdace-d996-4ee5-a308-bd2444b86f7e" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="096e9bfd-62f4-4370-9c51-0e8df13b92f6" name="BaseDevice" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="6c138d40-d8fc-4c0f-81ee-66a3d3f48786" />
+        <generalsInternal>
+          <generalization Id="6e8f399b-1124-4616-ba6e-2b0c4697a851" isSubstitutable="false">
+            <classMoniker Id="6be47ae6-ab28-4fa9-9370-8833b99715b5" LastKnownName="BasePart" />
+            <elementDefinition Id="c6f3fa89-fa69-46ea-86a0-1821a2c5d626" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="81155524-8108-4df8-84b9-1a7ec240fb04" name="BaseServer" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="52eae340-149d-47da-bffb-514b4fbc5d9d" />
+        <generalsInternal>
+          <generalization Id="1ec740f3-4f53-4f77-9847-8ad732830f9e" isSubstitutable="false">
+            <classMoniker Id="6be47ae6-ab28-4fa9-9370-8833b99715b5" LastKnownName="BasePart" />
+            <elementDefinition Id="ea4d8baf-f5d2-49c4-a4ae-b427eb6cf8f1" />
           </generalization>
         </generalsInternal>
       </class>

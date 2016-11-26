@@ -9,7 +9,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 
-namespace PAO.Remote
+namespace PAO.Remote.WCF
 {
     /// <summary>
     /// 类：RemoteFactory
@@ -21,7 +21,7 @@ namespace PAO.Remote
     [DataContract(Namespace = "")]
     [DisplayName("远程工厂")]
     [Description("通过远程调用创建的工厂")]
-    public class RemoteFactory<T> : Factory<T>
+    public class WCFRemoteFactory<T> : Factory<T>
     {
         #region 插件属性
 
@@ -56,7 +56,7 @@ namespace PAO.Remote
         #endregion 属性：ServiceName
 
         #endregion
-        public RemoteFactory() {
+        public WCFRemoteFactory() {
         }
 
         protected override T OnCreateInstance() {

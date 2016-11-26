@@ -22,40 +22,54 @@
   </PropertyGroup>
   <Import Project="$(VSToolsPath)\ArchitectureTools\Microsoft.VisualStudio.TeamArchitect.ModelingProject.targets" Condition="'$(VSToolsPath)' != ''" />
   <ItemGroup>
-    <Content Include="微架构\应用\应用.classdiagram">
+    <Content Include="微架构\事务\Transaction.classdiagram">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="微架构\应用\应用.classdiagram.layout">
+    <Content Include="微架构\事务\Transaction.classdiagram.layout">
       <SubType>Content</SubType>
-      <DependentUpon>微架构\应用\应用.classdiagram</DependentUpon>
+      <DependentUpon>微架构\事务\Transaction.classdiagram</DependentUpon>
     </Content>
-    <Content Include="微架构\数据\数据.classdiagram">
-      <SubType>Content</SubType>
-    </Content>
-    <Content Include="微架构\数据\数据.classdiagram.layout">
-      <SubType>Content</SubType>
-      <DependentUpon>微架构\数据\数据.classdiagram</DependentUpon>
-    </Content>
-    <Content Include="微架构\日志\日志.classdiagram">
+    <Content Include="微架构\应用\App.classdiagram">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="微架构\日志\日志.classdiagram.layout">
+    <Content Include="微架构\应用\App.classdiagram.layout">
       <SubType>Content</SubType>
-      <DependentUpon>微架构\日志\日志.classdiagram</DependentUpon>
+      <DependentUpon>微架构\应用\App.classdiagram</DependentUpon>
     </Content>
-    <Content Include="微架构\状态\状态.classdiagram">
-      <SubType>Content</SubType>
-    </Content>
-    <Content Include="微架构\状态\状态.classdiagram.layout">
-      <SubType>Content</SubType>
-      <DependentUpon>微架构\状态\状态.classdiagram</DependentUpon>
-    </Content>
-    <Content Include="微架构\资产\资产.classdiagram">
+    <Content Include="微架构\数据\Data.classdiagram">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="微架构\资产\资产.classdiagram.layout">
+    <Content Include="微架构\数据\Data.classdiagram.layout">
       <SubType>Content</SubType>
-      <DependentUpon>微架构\资产\资产.classdiagram</DependentUpon>
+      <DependentUpon>微架构\数据\Data.classdiagram</DependentUpon>
+    </Content>
+    <Content Include="微架构\日志\Log.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="微架构\日志\Log.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>微架构\日志\Log.classdiagram</DependentUpon>
+    </Content>
+    <Content Include="微架构\资产\状态\Status.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="微架构\资产\状态\Status.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>微架构\资产\状态\Status.classdiagram</DependentUpon>
+    </Content>
+    <Content Include="微架构\资产\AOP.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="微架构\资产\AOP.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>微架构\资产\AOP.classdiagram</DependentUpon>
+    </Content>
+    <Content Include="微架构\远程\Remote.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="微架构\远程\Remote.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>微架构\远程\Remote.classdiagram</DependentUpon>
     </Content>
     <Content Include="总体系统图.componentdiagram">
       <SubType>Content</SubType>
@@ -69,7 +83,9 @@
       <SubType>Content</SubType>
     </Content>
     <Folder Include="微架构" />
-    <Folder Include="微架构\状态" />
+    <Folder Include="微架构\资产\状态\" />
+    <Folder Include="微架构\远程" />
+    <Folder Include="微架构\事务" />
     <Folder Include="微架构\数据" />
     <Folder Include="微架构\日志" />
     <Folder Include="微架构\应用" />

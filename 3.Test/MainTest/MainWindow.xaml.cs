@@ -17,6 +17,7 @@ using MainTest.Lang.Log;
 using PAO.Trans;
 using PAO.Remote;
 using TestLibrary;
+using PAO.Remote.WCF;
 
 namespace MainTest {
     /// <summary>
@@ -38,7 +39,7 @@ namespace MainTest {
         }
 
         private void RemoteTestButton_Click(object sender, RoutedEventArgs e) {
-            var testService = new RemoteFactory<ITestService>()
+            var testService = new WCFRemoteFactory<ITestService>()
             {
                 BaseUrl = "http://localhost:12134/RemoteService.svc",
                 ServiceName = "TestService"

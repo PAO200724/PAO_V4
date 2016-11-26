@@ -16,6 +16,7 @@
         <layer Id="e8939f3a-0d86-46f9-801c-635473f10066" name="部件: Part" />
         <layer Id="6fae861b-fd42-46dd-be66-18ac5c6c1160" name="服务: Server" />
         <layer Id="9041f8c5-f79d-4f95-a9a9-f4baf9a139af" name="设备: Device" />
+        <layer Id="e2635051-c132-4718-bbdd-fdca1ea4e952" name="界面: UI" />
       </childLayers>
     </layer>
     <layer Id="882d5d70-2e18-4b7a-bae4-b9a63866af91" name="应用平台层">

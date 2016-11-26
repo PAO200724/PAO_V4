@@ -3,6 +3,28 @@
   dslVersion="1.0.0.0"
   Id="f7c6b53f-1c2e-4762-ad13-eb71efcb9a9d"
   name="PAODesign" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <ownedCommentsInternal>
+    <comment
+      Id="0ea280ca-0590-4284-81ab-d45b4df59632">
+      <body>运行于服务端，在WCF容器中承载</body>
+      <annotatedElements>
+        <classMoniker
+          Id="05ff54e2-c19d-45c2-9ec8-a7671be60482"
+          LastKnownName="RemoteService"
+          LastKnownLocation="PAODesign.uml" />
+      </annotatedElements>
+    </comment>
+    <comment
+      Id="958202a2-03bd-428b-be00-2769d54b48a5">
+      <body>客户端调用此工厂用于创建远程对象</body>
+      <annotatedElements>
+        <classMoniker
+          Id="5ea237a9-f3e4-483f-bc5e-fd8b92166a74"
+          LastKnownName="WCFRemoteFactory&lt;T&gt;"
+          LastKnownLocation="PAODesign.uml" />
+      </annotatedElements>
+    </comment>
+  </ownedCommentsInternal>
   <profileInstances>
     <packageHasProfileInstances
       Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b">
@@ -562,49 +584,49 @@
         isActiveClass="false">
         <targetEnds>
           <association
-            Id="aa2f4d25-738a-42ff-9ecd-5341d0a677ef"
+            Id="3a7226e2-09d4-4f99-a9db-78fdc4151e8f"
             isDerived="false"
             sourceEndRoleName=""
-            targetEndRoleName="ServerList"
+            targetEndRoleName="GlobalAddonList"
             isLeaf="false"
             isAbstract="false">
             <classMoniker
-              Id="52eae340-149d-47da-bffb-514b4fbc5d9d"
-              LastKnownName="BaseServer"
+              Id="8fa558aa-fdf2-4bfd-b6a8-14cbcc150e43"
+              LastKnownName="PaoObject"
               LastKnownLocation="PAODesign.uml" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
                 <memberEnd
-                  Id="4e95bf06-6cb0-46f2-9caa-107c83a79911"
+                  Id="09d4aa55-0970-4f40-8212-95b8faa1dbb0"
                   isLeaf="false"
                   isStatic="false"
                   isReadOnly="false"
                   isDerived="false"
                   isDerivedUnion="false"
-                  aggregation="Composite"
+                  aggregation="Shared"
                   isComposite="false"
                   isNavigableOwned="false" />
               </associationHasOwnedEnds>
               <associationHasOwnedEnds>
                 <memberEnd
-                  Id="af009edb-72e7-4aca-a4b4-53d8dbdb44b9"
-                  name="ServerList"
+                  Id="43f97f13-fdbb-428a-9086-137cc6ba3ac9"
+                  name="GlobalAddonList"
                   isLeaf="false"
                   isStatic="false"
                   isReadOnly="false"
                   isDerived="false"
                   isDerivedUnion="false"
                   aggregation="None"
-                  isComposite="true">
+                  isComposite="false">
                   <lowerValueInternal>
                     <literalString
-                      Id="5d9f7648-0764-4d8f-b536-d7ee2aa9202a"
+                      Id="5f34780b-ad4b-43ae-9f49-d68888188c2c"
                       name="Lower"
                       value="*" />
                   </lowerValueInternal>
                   <upperValueInternal>
                     <literalString
-                      Id="5df64028-4363-4339-a258-1d0cc1b2f1dd"
+                      Id="915e2d9e-d3b5-4e98-b933-cf7d43d41a2d"
                       name="Upper"
                       value="*" />
                   </upperValueInternal>
@@ -613,49 +635,100 @@
             </relationshipOwnedElementsInternal>
           </association>
           <association
-            Id="a6dab8a9-1a22-4471-8306-8eea950689f7"
+            Id="2f61d3de-5bd8-48b9-931b-05333d7e9576"
             isDerived="false"
             sourceEndRoleName=""
-            targetEndRoleName="DeviceList"
+            targetEndRoleName="LoggerList"
             isLeaf="false"
             isAbstract="false">
             <classMoniker
-              Id="6c138d40-d8fc-4c0f-81ee-66a3d3f48786"
-              LastKnownName="BaseDevice"
+              Id="673ede5c-e11d-4681-9c4b-6e328fe610ee"
+              LastKnownName="ILog"
               LastKnownLocation="PAODesign.uml" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
                 <memberEnd
-                  Id="f4500616-3a73-4810-8055-dddb9ab5111a"
+                  Id="4d287c8d-5bee-43a4-8b13-13171b5acd0b"
                   isLeaf="false"
                   isStatic="false"
                   isReadOnly="false"
                   isDerived="false"
                   isDerivedUnion="false"
-                  aggregation="Composite"
+                  aggregation="Shared"
                   isComposite="false"
                   isNavigableOwned="false" />
               </associationHasOwnedEnds>
               <associationHasOwnedEnds>
                 <memberEnd
-                  Id="309dddae-d69e-4302-813f-e0c1ef7b35ca"
-                  name="DeviceList"
+                  Id="eb4baeb9-2be2-406b-b7d3-41c7a6714976"
+                  name="LoggerList"
                   isLeaf="false"
                   isStatic="false"
                   isReadOnly="false"
                   isDerived="false"
                   isDerivedUnion="false"
                   aggregation="None"
-                  isComposite="true">
+                  isComposite="false">
                   <lowerValueInternal>
                     <literalString
-                      Id="9f2d91db-2a26-4780-b2c8-575f4ea6c420"
+                      Id="a866fbad-50cd-4da6-bf96-5bb2d923c1ec"
                       name="Lower"
                       value="*" />
                   </lowerValueInternal>
                   <upperValueInternal>
                     <literalString
-                      Id="6ea4c78e-7c44-4fe2-aa39-7e7e4ccd326a"
+                      Id="e2ac4fdd-c2ce-4bfb-a194-a4a40e315364"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="fb16214c-a393-4e48-a0e9-76ec88295f64"
+            isDerived="false"
+            sourceEndRoleName=""
+            targetEndRoleName="ServiceList"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="7136c149-ecdf-4504-92f9-b5abf2287221"
+              LastKnownName="Object"
+              LastKnownLocation="PAODesign.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="9b71a19d-e0dc-412a-a44b-4db4befe09e9"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="Shared"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="98b5a826-a9f8-4190-b52d-55ccbeb4aa07"
+                  name="ServiceList"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="88c9f9f1-feb3-42f4-9861-92739603c029"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="03c12f31-52a6-440c-b6e7-b2000ea18b4f"
                       name="Upper"
                       value="*" />
                   </upperValueInternal>
@@ -672,7 +745,18 @@
         name="BaseServer"
         isAbstract="false"
         isLeaf="false"
-        isActiveClass="false" />
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="ea4d8baf-f5d2-49c4-a4ae-b427eb6cf8f1"
+            isSubstitutable="false">
+            <classMoniker
+              Id="2c935cc8-2d1a-4df5-b237-07a13ee65ce1"
+              LastKnownName="BasePart"
+              LastKnownLocation="PAODesign.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
     </packageHasNamedElement>
     <packageHasNamedElement>
       <undefinedType
@@ -685,7 +769,18 @@
         name="BaseDevice"
         isAbstract="false"
         isLeaf="false"
-        isActiveClass="false" />
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="c6f3fa89-fa69-46ea-86a0-1821a2c5d626"
+            isSubstitutable="false">
+            <classMoniker
+              Id="2c935cc8-2d1a-4df5-b237-07a13ee65ce1"
+              LastKnownName="BasePart"
+              LastKnownLocation="PAODesign.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
     </packageHasNamedElement>
     <packageHasNamedElement>
       <class
@@ -701,44 +796,6 @@
             <classMoniker
               Id="8fa558aa-fdf2-4bfd-b6a8-14cbcc150e43"
               LastKnownName="PaoObject"
-              LastKnownLocation="PAODesign.uml" />
-          </generalization>
-        </generalsInternal>
-      </class>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <class
-        Id="d08a525f-84c8-4363-a959-9c29ae4fb8c2"
-        name="BaseServer"
-        isAbstract="false"
-        isLeaf="false"
-        isActiveClass="false">
-        <generalsInternal>
-          <generalization
-            Id="bdda040d-c879-49c6-98a3-87a11baa0434"
-            isSubstitutable="false">
-            <classMoniker
-              Id="2c935cc8-2d1a-4df5-b237-07a13ee65ce1"
-              LastKnownName="BasePart"
-              LastKnownLocation="PAODesign.uml" />
-          </generalization>
-        </generalsInternal>
-      </class>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <class
-        Id="c3941268-0957-4942-9e0c-b8948b55d30b"
-        name="BaseDevice"
-        isAbstract="false"
-        isLeaf="false"
-        isActiveClass="false">
-        <generalsInternal>
-          <generalization
-            Id="300cb2a4-2d58-4599-8722-c8422b6a3904"
-            isSubstitutable="false">
-            <classMoniker
-              Id="2c935cc8-2d1a-4df5-b237-07a13ee65ce1"
-              LastKnownName="BasePart"
               LastKnownLocation="PAODesign.uml" />
           </generalization>
         </generalsInternal>
@@ -1151,25 +1208,6 @@
     </packageHasNamedElement>
     <packageHasNamedElement>
       <class
-        Id="4e9e6a04-159d-4fcd-8981-89a7694f1777"
-        name="PaoApplication"
-        isAbstract="false"
-        isLeaf="false"
-        isActiveClass="false">
-        <generalsInternal>
-          <generalization
-            Id="864865c8-07a8-447a-ace2-03850eb17dac"
-            isSubstitutable="false">
-            <classMoniker
-              Id="8fa558aa-fdf2-4bfd-b6a8-14cbcc150e43"
-              LastKnownName="PaoObject"
-              LastKnownLocation="PAODesign.uml" />
-          </generalization>
-        </generalsInternal>
-      </class>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <class
         Id="d64769c2-18e9-4056-bc7c-a1470ab4e843"
         name="Status"
         isAbstract="false"
@@ -1350,6 +1388,207 @@
               LastKnownLocation="PAODesign.uml" />
           </generalization>
         </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="5ea237a9-f3e4-483f-bc5e-fd8b92166a74"
+        name="WCFRemoteFactory&lt;T&gt;"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <suppliersInternal>
+          <dependency
+            Id="9c246e38-69da-490f-889f-e4b3fd7bb519">
+            <classMoniker
+              Id="ed032963-82d3-4744-a2cb-30f7cf0c4d0c"
+              LastKnownName="WCFFactory&lt;T&gt;"
+              LastKnownLocation="PAODesign.uml" />
+          </dependency>
+          <dependency
+            Id="e9e0b75a-52b4-48d4-aaa6-fd15f646eab5">
+            <classMoniker
+              Id="f273e2d9-99c0-486a-982f-041e62718efd"
+              LastKnownName="RemoteProxy"
+              LastKnownLocation="PAODesign.uml" />
+          </dependency>
+        </suppliersInternal>
+        <generalsInternal>
+          <generalization
+            Id="250a8f31-9c3a-438f-b2ae-7101c1a9d6ac"
+            isSubstitutable="false">
+            <classMoniker
+              Id="80cd4da9-26d6-41bf-b1f5-3e8f9be6cb17"
+              LastKnownName="Factory&lt;T&gt;"
+              LastKnownLocation="PAODesign.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="b56a621a-6dfc-42cf-b146-a421df1c4c9c"
+        name="PathFactory"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <suppliersInternal>
+          <dependency
+            Id="9cdf8e82-ceb4-4d34-96a0-b01cc23c277f">
+            <classMoniker
+              Id="5a4bdace-d996-4ee5-a308-bd2444b86f7e"
+              LastKnownName="PaoApplication"
+              LastKnownLocation="PAODesign.uml" />
+          </dependency>
+        </suppliersInternal>
+        <generalsInternal>
+          <generalization
+            Id="5b9a6e26-90f4-427e-b7c7-212e637e83f3"
+            isSubstitutable="false">
+            <classMoniker
+              Id="80cd4da9-26d6-41bf-b1f5-3e8f9be6cb17"
+              LastKnownName="Factory&lt;T&gt;"
+              LastKnownLocation="PAODesign.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="3c01ee13-9b12-4eb1-b471-3c56487aedb2"
+        name="AddonFactory"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <suppliersInternal>
+          <dependency
+            Id="86aec4f9-e422-4a53-ac25-eab54fe91ac2">
+            <classMoniker
+              Id="5a4bdace-d996-4ee5-a308-bd2444b86f7e"
+              LastKnownName="PaoApplication"
+              LastKnownLocation="PAODesign.uml" />
+          </dependency>
+        </suppliersInternal>
+        <generalsInternal>
+          <generalization
+            Id="f98ddd53-7c06-4290-a2a9-b46d729317c7"
+            isSubstitutable="false">
+            <classMoniker
+              Id="80cd4da9-26d6-41bf-b1f5-3e8f9be6cb17"
+              LastKnownName="Factory&lt;T&gt;"
+              LastKnownLocation="PAODesign.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="99c4a9ee-2e62-4fd0-89d4-45a7b24d7b54"
+        name="IRemoteService"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="05ff54e2-c19d-45c2-9ec8-a7671be60482"
+        name="RemoteService"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <suppliersInternal>
+          <interfaceRealization
+            Id="d1fe601c-bbe0-4c1b-985a-4bfbba4b0a60">
+            <interfaceMoniker
+              Id="99c4a9ee-2e62-4fd0-89d4-45a7b24d7b54"
+              LastKnownName="IRemoteService"
+              LastKnownLocation="PAODesign.uml" />
+          </interfaceRealization>
+          <dependency
+            Id="d74c4c00-2878-4c60-a277-1cc85362974d">
+            <classMoniker
+              Id="a77bc08b-35a4-46e6-9d12-386568daa3d4"
+              LastKnownName="Head"
+              LastKnownLocation="PAODesign.uml" />
+          </dependency>
+          <dependency
+            Id="c33d09f9-d9e3-4033-82bc-41ea1a910296">
+            <classMoniker
+              Id="88ccc1ad-72c2-495f-843e-b86d8d11b71a"
+              LastKnownName="PaoTransaction"
+              LastKnownLocation="PAODesign.uml" />
+          </dependency>
+        </suppliersInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="f273e2d9-99c0-486a-982f-041e62718efd"
+        name="RemoteProxy"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <suppliersInternal>
+          <dependency
+            Id="45ac1d6a-d387-42ec-912e-46d1e3c8d97a">
+            <interfaceMoniker
+              Id="99c4a9ee-2e62-4fd0-89d4-45a7b24d7b54"
+              LastKnownName="IRemoteService"
+              LastKnownLocation="PAODesign.uml" />
+          </dependency>
+        </suppliersInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="a77bc08b-35a4-46e6-9d12-386568daa3d4"
+        name="Head"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="7136c149-ecdf-4504-92f9-b5abf2287221"
+        name="Object"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="88ccc1ad-72c2-495f-843e-b86d8d11b71a"
+        name="PaoTransaction"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="3cb9da5d-30fc-41ee-8775-7ea93c93ff1e"
+            isSubstitutable="false">
+            <classMoniker
+              Id="2c935cc8-2d1a-4df5-b237-07a13ee65ce1"
+              LastKnownName="BasePart"
+              LastKnownLocation="PAODesign.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="96399e22-b9b8-47b6-b614-f9f9575a9a6d"
+        name="TransactionPublic"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <suppliersInternal>
+          <dependency
+            Id="0606d10d-00ae-49eb-b78c-a676dee1a5eb">
+            <classMoniker
+              Id="88ccc1ad-72c2-495f-843e-b86d8d11b71a"
+              LastKnownName="PaoTransaction"
+              LastKnownLocation="PAODesign.uml" />
+          </dependency>
+        </suppliersInternal>
       </class>
     </packageHasNamedElement>
   </packagedElements>
