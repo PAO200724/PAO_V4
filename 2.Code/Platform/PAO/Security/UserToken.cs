@@ -22,6 +22,36 @@ namespace PAO.Security
     {
         #region 插件属性
 
+        #region 属性：SessinID
+        /// <summary>
+        /// 属性：SessinID
+        /// 会话ID
+        /// 验证服务器生成的会话ID，每次用户登录生成一个会话
+        /// </summary>
+        [DataMember(EmitDefaultValue = false)]
+        [DisplayName("会话ID")]
+        [Description("验证服务器生成的会话ID，每次用户登录生成一个会话")]
+        public string SessinID {
+            get;
+            set;
+        }
+        #endregion 属性：SessinID
+
+        #region 属性：UserID
+        /// <summary>
+        /// 属性：UserID
+        /// 用户ID
+        /// 用户唯一编号
+        /// </summary>
+        [DataMember(EmitDefaultValue = false)]
+        [DisplayName("用户ID")]
+        [Description("用户唯一编号")]
+        public string UserID {
+            get;
+            set;
+        }
+        #endregion 属性：UserID
+
         #region 属性：ComputerID
         /// <summary>
         /// 属性：ComputerID
@@ -36,7 +66,6 @@ namespace PAO.Security
             set;
         }
         #endregion 属性：ComputerID
-
         #endregion
         public UserToken() {
         }
