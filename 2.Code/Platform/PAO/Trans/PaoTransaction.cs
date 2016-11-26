@@ -79,7 +79,7 @@ namespace PAO.Trans
             get {
                 return _Current;
             }
-            private set {
+            internal set {
                 _Current = value;
             }
         }
@@ -87,8 +87,9 @@ namespace PAO.Trans
         /// <summary>
         /// 上级事务
         /// </summary>
+        [NonSerialized]
         private PaoTransaction _Parent;
-        private PaoTransaction Parent {
+        internal PaoTransaction Parent {
             get { return _Parent; }
             set {
                 _Parent = value;
@@ -98,42 +99,49 @@ namespace PAO.Trans
                     ParentID = value.ID;
             }
         }
+        
+        internal PaoTransaction() {
+        }
 
-        internal PaoTransaction(string name = null) {
+        #region 事务方法
+        /// <summary>
+        /// 启动事务
+        /// </summary>
+        public void Start() {
             Parent = Current;
             Current = this;
-            Name = name;
             StartTime = DateTime.Now;
             Status = Status.Default<TransStatus_Running>();
             LogPublic.LogTransaction(this);
         }
+
         /// <summary>
-        /// 异常
+        /// 事务进入异常状态
         /// </summary>
-        /// <param name="exp"></param>
-        internal void Exception(Exception exp) {
+        /// <param name="exp">异常</param>
+        public void Exception(Exception exp) {
             Status = new TransStatus_Excepted(exp);
             LogPublic.LogTransaction(this);
         }
         /// <summary>
-        /// 回滚异常
+        /// 事务进入回滚异常状态
         /// </summary>
-        /// <param name="exp"></param>
-        internal void RollbackException(Exception exp) {
+        /// <param name="exp">异常</param>
+        public void RollbackException(Exception exp) {
             Status = new TransStatus_RollbackExcepted(exp);
             LogPublic.LogTransaction(this);
         }
         /// <summary>
         /// 回滚
         /// </summary>
-        internal void Rollback() {
+        public void Rollback() {
             Status = Status.Default<TransStatus_Rollbacked>();
             LogPublic.LogTransaction(this);
         }
         /// <summary>
         /// 失败
         /// </summary>
-        internal void Fail() {
+        public void Fail() {
             Status = new TransStatus_Failed() { SpendTime = DateTime.Now - StartTime };
             LogPublic.LogTransaction(this);
             End();
@@ -141,7 +149,7 @@ namespace PAO.Trans
         /// <summary>
         /// 提交
         /// </summary>
-        internal void Commit() {
+        public void Commit() {
             Status = new TransStatus_Committed() { SpendTime = DateTime.Now - StartTime };
             LogPublic.LogTransaction(this);
             End();
@@ -153,9 +161,10 @@ namespace PAO.Trans
             Current = Parent;
             Parent = null;
         }
+        #endregion
 
         public override string ToString() {
-            return this.ObjectToString(null, "ID", "ParentID", "Status");
+            return this.ObjectToString(null, "Name", "ID", "ParentID", "Status");
         }
     }
 }

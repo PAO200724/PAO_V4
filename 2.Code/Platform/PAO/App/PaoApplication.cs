@@ -87,6 +87,13 @@ namespace PAO.App {
             }
         }
 
+        /// <summary>
+        /// 运行方法
+        /// </summary>
+        /// <returns></returns>
+        [NonSerialized]
+        public Action RunAction;
+
         public PaoApplication() {
             ServerList = new List<PAO.Ref<Server.BaseServer>>();
             LoggerList = new List<PAO.Ref<Log.ILog>>();
@@ -176,6 +183,16 @@ namespace PAO.App {
         }
 
         /// <summary>
+        /// 程序运行
+        /// </summary>
+        protected virtual void Run() {
+            if (RunAction != null)
+                RunAction();
+
+            OnRunning();
+        }
+
+        /// <summary>
         /// 程序启动
         /// </summary>
         protected virtual void OnStart(){
@@ -186,10 +203,9 @@ namespace PAO.App {
         protected virtual void OnException(Exception err) {
             throw err;
         }
-        /// <summary>
-        /// 程序运行
-        /// </summary>
-        protected virtual void Run() {
+
+        protected virtual void OnRunning() {
+
         }
     }
 }

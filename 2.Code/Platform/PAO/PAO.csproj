@@ -84,7 +84,6 @@
     <Compile Include="IO\DataContractXmlSerializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Server\BaseServer.cs" />
-    <Compile Include="Trans\ITransactionService.cs" />
     <Compile Include="Trans\PaoTransaction.cs" />
     <Compile Include="Trans\TransStatus_Committed.cs" />
     <Compile Include="Trans\TransStatus_Excepted.cs" />

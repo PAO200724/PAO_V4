@@ -61,7 +61,7 @@ namespace PAO.Part.Disabled
         }
 
         public override string ToString() {
-            return this.ObjectToString(null, "Message", "DetailMessage");
+            return this.ObjectToString(null, "Message", "DetailInformation");
         }
     }
 }

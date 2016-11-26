@@ -19,7 +19,8 @@ namespace PAO.App {
         /// </summary>
         /// <param name="configFileName">配置文件名，此文件应该放于应用程序目录</param>
         /// <param name="createApplicationFunc">应用创建函数</param>
-        public static void StartApplication(string configFileName = DefaultConfigFileName, Func<PaoApplication> createApplicationFunc = null) {
+        public static void StartApplication(string configFileName = DefaultConfigFileName
+            , Func<PaoApplication> createApplicationFunc = null) {
             string appDir = AppDomain.CurrentDomain.SetupInformation.ApplicationBase;
             string configFilePath = Path.Combine(appDir, configFileName);
             PaoApplication app;

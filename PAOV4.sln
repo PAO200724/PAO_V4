@@ -40,6 +40,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ItemTemplates", "ItemTemplates", "{BE758653-0B1B-4B20-BD76-918EF9819A34}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MainTest", "3.Test\MainTest\MainTest.csproj", "{9AD3847F-237B-428B-ACDD-30018E24FE20}"
+	ProjectSection(ProjectDependencies) = postProject
+		{2F6DDD4A-9656-451E-8943-BF1F45F5F025} = {2F6DDD4A-9656-451E-8943-BF1F45F5F025}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PAO.App", "2.Code\Platform\PAO.App\PAO.App.csproj", "{A4591DB5-DA1C-4226-8FF0-086A53EA3CD5}"
 EndProject

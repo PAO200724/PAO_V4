@@ -21,27 +21,41 @@ namespace PAO.Trans
         public const string Event_Rollbacked = "事务回滚";
         public const string Event_RollbackExcepted = "回滚异常";
         #endregion
+
+        #region 运行事务
         /// <summary>
-        /// 事务服务
+        /// 事务列表
         /// </summary>
-        private static ITransactionService TransactionService;
+        private static Dictionary<string, PaoTransaction> TransactionList = new Dictionary<string, PaoTransaction>();
 
         /// <summary>
-        /// 初始化
+        /// 服务端启动事务（注意：带事务的服务必须调用此方法）
         /// </summary>
-        /// <param name="transService">事务服务</param>
-        public static void Initialize(ITransactionService transService) {
-            TransactionService = transService;
-        }
-        
-        /// <summary>
-        /// 在事务中执行
-        /// </summary>
-        /// <param name="action">动作</param>
+        /// <example>
+        /// RunService(trans, ()=> { CallSomeFunc();});
+        /// </example>
+        /// <param name="clientTrans">客户端事务</param>
+        /// <param name="transName">事务名称</param>
         /// <param name="exceptionAction">异常动作</param>
+        /// <param name="action">动作</param>
         /// <param name="rollbackAction">回滚动作</param>
-        public static void Run(Action action, Action<Exception> exceptionAction = null, Action rollbackAction = null) {
-            Run(null, action, exceptionAction, rollbackAction);
+        public static void RunService(PaoTransaction clientTrans
+            , string transName
+            , Action action
+            , Action<Exception> exceptionAction = null
+            , Action rollbackAction = null) {
+            // 将客户端事务插入当前事务中
+            if (PaoTransaction.Current != null)
+                clientTrans.Parent = PaoTransaction.Current.Parent;
+            PaoTransaction.Current = clientTrans;
+            try {
+                // 运行事务
+                Run(transName, action, exceptionAction, rollbackAction);
+            }
+            finally {
+                // 运行完成后恢复原事务
+                PaoTransaction.Current = PaoTransaction.Current.Parent;
+            }
         }
 
         /// <summary>
@@ -54,8 +68,12 @@ namespace PAO.Trans
         public static void Run(string transName, Action action
             , Action<Exception> exceptionAction = null
             , Action rollbackAction = null) {
-            var trans = new PaoTransaction(transName);
+
+            // 先从事务列表中查找可能存在的事务
+            PaoTransaction trans = new PaoTransaction() { Name = transName };
+
             try {
+                trans.Start();
                 action();
                 trans.Commit();
             }
@@ -78,10 +96,21 @@ namespace PAO.Trans
                     else {
                         throw exp;
                     }
-                } finally {
+                }
+                finally {
                     trans.Fail();
                 }
             }
         }
+        /// <summary>
+        /// 在事务中执行
+        /// </summary>
+        /// <param name="action">动作</param>
+        /// <param name="exceptionAction">异常动作</param>
+        /// <param name="rollbackAction">回滚动作</param>
+        public static void Run(Action action, Action<Exception> exceptionAction = null, Action rollbackAction = null) {
+            Run(null, action, exceptionAction, rollbackAction);
+        }
+        #endregion 运行事务
     }
 }
