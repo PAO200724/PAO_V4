@@ -16,7 +16,7 @@ using System.Windows.Shapes;
 using MainTest.Lang.Log;
 using PAO.Trans;
 using PAO.Remote;
-using PAO.Test;
+using TestLibrary;
 
 namespace MainTest {
     /// <summary>
@@ -40,7 +40,7 @@ namespace MainTest {
         private void RemoteTestButton_Click(object sender, RoutedEventArgs e) {
             var testService = new RemoteFactory<ITestService>()
             {
-                BaseUrl = "http://localhost:49893/RemoteService.svc",
+                BaseUrl = "http://localhost:12134/RemoteService.svc",
                 ServiceName = "TestService"
             };
 

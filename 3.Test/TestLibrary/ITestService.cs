@@ -1,4 +1,4 @@
-﻿namespace PAO.Test
+﻿namespace TestLibrary
 {
     public interface ITestService
     {

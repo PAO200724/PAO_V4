@@ -1,10 +1,12 @@
-﻿using PAO.App;
+﻿using PAO;
+using PAO.App;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using TestLibrary;
 
-namespace PAO.RemoteOperationWeb
+namespace WebTest
 {
     /// <summary>
     /// 类：App
@@ -16,6 +18,8 @@ namespace PAO.RemoteOperationWeb
         public static PaoApplication CreateApplication() {
             var app = new PaoApplication()
             {
+                ServiceList = new Dictionary<string, Ref<object>>()
+                     .Append("TestService", new TestService()),
             };
             return app;
         }

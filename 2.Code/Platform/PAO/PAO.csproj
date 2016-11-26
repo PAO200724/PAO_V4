@@ -94,8 +94,6 @@
     <Compile Include="Remote\RemotePublic.cs" />
     <Compile Include="Remote\RemoteService.cs" />
     <Compile Include="Server\BaseServer.cs" />
-    <Compile Include="Test\ITestService.cs" />
-    <Compile Include="Test\TestService.cs" />
     <Compile Include="Trans\PaoTransaction.cs" />
     <Compile Include="Trans\TransStatus_Committed.cs" />
     <Compile Include="Trans\TransStatus_Excepted.cs" />

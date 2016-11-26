@@ -132,6 +132,10 @@
       <Project>{13199ee0-1738-4e3a-a970-3771eb9d4d0e}</Project>
       <Name>PAO</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TestLibrary\TestLibrary.csproj">
+      <Project>{80dbfcbd-700c-4846-8e31-08dcac372b6c}</Project>
+      <Name>TestLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Lang\IO\XMLFile1.xml" />

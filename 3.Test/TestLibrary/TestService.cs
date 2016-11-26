@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace PAO.Test
+namespace TestLibrary
 {
     public class TestService : ITestService
     {
