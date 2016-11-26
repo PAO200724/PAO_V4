@@ -22,7 +22,14 @@ namespace PAO {
         public static bool IsNull(this object testObject) {
             return IsNullOrEmpty(testObject, NothingType.Nullable);
         }
-
+        /// <summary>
+        /// 对象是否不为空
+        /// </summary>
+        /// <param name="testObject">待测试对象</param>
+        /// <returns>对象不为空返回True，否则返回False</returns>
+        public static bool IsNotNull(this object testObject) {
+            return !IsNullOrEmpty(testObject, NothingType.Nullable);
+        }
         /// <summary>
         /// 对象是否为空
         /// </summary>
@@ -54,6 +61,15 @@ namespace PAO {
                     return true;
             }
             return false;
+        }
+        /// <summary>
+        /// 对象是否为不空
+        /// </summary>
+        /// <param name="testObject">待测试对象</param>
+        /// <param name="nothingType">空对象类型</param>
+        /// <returns>对象为空返回True，否则返回False</returns>
+        public static bool IsNotNullOrEmpty(this object testObject, NothingType nothingType = NothingType.All) {
+            return IsNullOrEmpty(testObject, nothingType);
         }
 
         /// <summary>

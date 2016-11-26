@@ -11,6 +11,7 @@ using PAO.Trans;
 using System.Collections;
 using PAO.IO.Text;
 using System.Runtime.Remoting.Channels;
+using PAO.Security;
 
 namespace PAO.Remote
 {
@@ -35,7 +36,7 @@ namespace PAO.Remote
         }
 
         public override IMessage Invoke(IMessage msg) {
-            var head = new Header() { Transaction = PaoTransaction.Current };
+            var head = new Header() { Transaction = PaoTransaction.Current, UserToken = SecurityPublic.CurrentUser };
             var headString = Serializer.ObjectToText(head);
 
             IMethodCallMessage methodMessage = new MethodCallMessageWrapper((IMethodCallMessage)msg);

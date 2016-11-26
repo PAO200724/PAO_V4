@@ -1,5 +1,6 @@
 ﻿using PAO;
 using PAO.IO.Text;
+using PAO.Security;
 using PAO.Trans;
 using System;
 using System.Collections.Concurrent;
@@ -38,6 +39,9 @@ namespace PAO.Remote
             if (!header.IsNullOrEmpty()) {
                 head = (Header)serializer.TextToObject(header);
             }
+
+            // 设置线程用户
+            SecurityPublic.ThreadUser = head.UserToken;
 
             string result = null;
             Action callService = () =>

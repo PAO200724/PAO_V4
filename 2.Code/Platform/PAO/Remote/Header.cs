@@ -1,4 +1,5 @@
 ﻿using PAO;
+using PAO.Security;
 using PAO.Trans;
 using System;
 using System.Collections.Generic;
@@ -37,6 +38,21 @@ namespace PAO.Remote
             set;
         }
         #endregion 属性：Transaction
+
+        #region 属性：UserToken
+        /// <summary>
+        /// 属性：UserToken
+        /// 用户令牌
+        /// 当前用户的令牌
+        /// </summary>
+        [DataMember(EmitDefaultValue = false)]
+        [DisplayName("用户令牌")]
+        [Description("当前用户的令牌")]
+        public UserToken UserToken {
+            get;
+            set;
+        }
+        #endregion 属性：UserToken
         #endregion
         public Header() {
         }

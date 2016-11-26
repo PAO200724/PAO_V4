@@ -34,6 +34,7 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.IdentityModel" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml" />
@@ -51,6 +52,7 @@
     <Compile Include="Data\DataConnection.cs" />
     <Compile Include="Data\DataField.cs" />
     <Compile Include="Data\DataPublic.cs" />
+    <Compile Include="Data\DbDataService.cs" />
     <Compile Include="Data\Filters\AndLogicFilter.cs" />
     <Compile Include="Data\Filters\BaseDataFilter.cs" />
     <Compile Include="Data\Filters\CompositeLogicFilter.cs" />
@@ -62,6 +64,7 @@
     <Compile Include="IO\Binary\BinarySerializer.cs" />
     <Compile Include="IO\Binary\XmlBinarySerializer.cs" />
     <Compile Include="IO\FileExtentions.cs" />
+    <Compile Include="IO\IOPublic.cs" />
     <Compile Include="IO\ISerialize.cs" />
     <Compile Include="Log\DebugLogger.cs" />
     <Compile Include="Log\ILog.cs" />
@@ -95,6 +98,10 @@
     <Compile Include="Remote\RemoteProxy.cs" />
     <Compile Include="Remote\RemotePublic.cs" />
     <Compile Include="Remote\RemoteService.cs" />
+    <Compile Include="Remote\WCF\WCFFactory.cs" />
+    <Compile Include="Remote\WCF\WCFRemoteFactory.cs" />
+    <Compile Include="Security\SecurityPublic.cs" />
+    <Compile Include="Security\UserToken.cs" />
     <Compile Include="Server\BaseServer.cs" />
     <Compile Include="Trans\PaoTransaction.cs" />
     <Compile Include="Trans\TransStatus_Committed.cs" />
@@ -106,7 +113,6 @@
     <Compile Include="Trans\TransStatus_Running.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Security\" />
     <Folder Include="UI\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

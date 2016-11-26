@@ -87,10 +87,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\2.Code\Platform\PAO.Extend\PAO.Extend.csproj">
-      <Project>{aeee7c78-1dbe-4a1f-bd5d-82d253eee224}</Project>
-      <Name>PAO.Extend</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\2.Code\Platform\PAO\PAO.csproj">
       <Project>{13199ee0-1738-4e3a-a970-3771eb9d4d0e}</Project>
       <Name>PAO</Name>
