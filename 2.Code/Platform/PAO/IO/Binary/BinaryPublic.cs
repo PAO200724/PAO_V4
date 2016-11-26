@@ -3,58 +3,46 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using PAO.IO;
 
-namespace PAO.IO {
+namespace PAO.IO.Binary
+{
     /// <summary>
-    /// 静态类:IOPublic
-    /// 输入输出公共类
-    /// 作者:PAO
+    /// 静态类：BinaryPublic
+    /// 二进制公共类
+    /// 作者：PAO
     /// </summary>
-    public static class XmlPublic {
-        /// <summary>
-        /// 系统默认编码
-        /// </summary>
-        public static Encoding DefaultEncoding = Encoding.UTF8;
-
-        #region XmlSerializer
-        public static IXmlSerialize DefaultSerializer = new DataContractXmlSerializer();
+    public static class BinaryPublic
+    {
+        public static IBinarySerialize DefaultSerializer = new BinarySerializer();
 
         /// <summary>
-        /// 重新创建
+        /// 将Binary转换为对象
         /// </summary>
-        public static void RebuildSerializer() {
-            DefaultSerializer.RebuildSerializer();
-        }
-
-        /// <summary>
-        /// 将XML转换为对象
-        /// </summary>
-        /// <param name="xml">XML字符串</param>
+        /// <param name="Binary">Binary数组</param>
         /// <param name="types">需要用到的对象类型</param>
         /// <returns>对象</returns>
-        public static object XmlStringToObject(string xml) {
-            return DefaultSerializer.XmlStringToObject(xml);
+        public static object BinaryToObject(byte[] Binary) {
+            return DefaultSerializer.BinaryToObject(Binary);
         }
 
         /// <summary>
-        /// 将对象转换为XML
+        /// 将对象转换为Binary
         /// </summary>
         /// <param name="obj">对象</param>
         /// <param name="types">需要用到的对象类型</param>
-        /// <returns>XML字符串</returns>
-        public static string ObjectToXmlString(object obj) {
-            return DefaultSerializer.ObjectToXmlString(obj);
+        /// <returns>Binary数组</returns>
+        public static byte[] ObjectToBinary(object obj) {
+            return DefaultSerializer.ObjectToBinary(obj);
         }
 
         /// <summary>
-        /// 将对象以Xml的方式写入流
+        /// 将对象以Binary的方式写入流
         /// </summary>
-        /// <param name="stream">Xml字符流</param>
+        /// <param name="stream">Binary字符流</param>
         /// <param name="obj">对象</param>
         /// <param name="types">需要用到的对象类型</param>
-        public static void WriteObjectToXmlStream(Stream stream, object obj) {
-            DefaultSerializer.WriteObjectToXmlStream(stream, obj);
+        public static void WriteObjectToBinaryStream(Stream stream, object obj) {
+            DefaultSerializer.WriteObjectToStream(stream, obj);
         }
 
         /// <summary>
@@ -64,17 +52,17 @@ namespace PAO.IO {
         /// <param name="obj">对象</param>
         public static void WriteObjectToFile(string fileName, object obj) {
             using (SafeFileStream fileStream = new SafeFileStream(fileName, FileMode.Create, FileAccess.Write)) {
-                XmlPublic.WriteObjectToXmlStream(fileStream, obj);
+                BinaryPublic.WriteObjectToBinaryStream(fileStream, obj);
             }
         }
         /// <summary>
-        /// 从Xml流中读取对象
+        /// 从Binary流中读取对象
         /// </summary>
-        /// <param name="stream">Xml字符流</param>
+        /// <param name="stream">Binary字符流</param>
         /// <param name="types">需要用到的对象类型</param>
         /// <returns>对象</returns>
-        public static object ReadObjectFromXmlStream(Stream stream) {
-            return DefaultSerializer.ReadObjectFromXmlStream(stream);
+        public static object ReadObjectFromBinaryStream(Stream stream) {
+            return DefaultSerializer.ReadObjectFromStream(stream);
         }
 
         /// <summary>
@@ -87,23 +75,22 @@ namespace PAO.IO {
                 return null;
 
             using (SafeFileStream fileStream = new SafeFileStream(fileName, FileMode.Open, FileAccess.Read)) {
-                object obj = XmlPublic.ReadObjectFromXmlStream(fileStream);
+                object obj = BinaryPublic.ReadObjectFromBinaryStream(fileStream);
                 return obj;
             }
         }
         /// <summary>
-        /// 通过Xml克隆对象
+        /// 通过Binary克隆对象
         /// </summary>
         /// <param name="sourceObject">源对象</param>
         /// <returns>克隆后的对象</returns>
         public static object ObjectClone(this object sourceObject) {
             MemoryStream buffer = new MemoryStream();
-            WriteObjectToXmlStream(buffer, sourceObject);
+            WriteObjectToBinaryStream(buffer, sourceObject);
 
             buffer.Seek(0, SeekOrigin.Begin);
 
-            return ReadObjectFromXmlStream(buffer);
+            return ReadObjectFromBinaryStream(buffer);
         }
-        #endregion
     }
 }

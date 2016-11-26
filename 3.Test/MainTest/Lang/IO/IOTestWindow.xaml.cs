@@ -1,5 +1,6 @@
 ﻿using PAO;
 using PAO.IO;
+using PAO.IO.Text;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,9 +38,9 @@ namespace MainTest.Lang.IO {
                     Member1 = "Lazy Member"
                 }
             };
-            TextBlock.Text = XmlPublic.ObjectToXmlString(myObj);
+            TextBlock.Text = TextPublic.ObjectToXmlString(myObj);
 
-            var clonObj = XmlPublic.XmlStringToObject(TextBlock.Text) as MyGenericClass<int>;
+            var clonObj = TextPublic.XmlStringToObject(TextBlock.Text) as MyGenericClass<int>;
             MessageBox.Show(clonObj.LazyMember.ToString());
         }
     }

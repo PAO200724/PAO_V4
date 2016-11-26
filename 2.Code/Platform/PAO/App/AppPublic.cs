@@ -1,4 +1,5 @@
 ﻿using PAO.IO;
+using PAO.IO.Text;
 using PAO.Log;
 using System;
 using System.Collections.Generic;
@@ -25,14 +26,14 @@ namespace PAO.App {
             string configFilePath = Path.Combine(appDir, configFileName);
             PaoApplication app;
             if (createApplicationFunc == null) {
-                app = XmlPublic.ReadObjectFromFile(configFilePath).As<PaoApplication>();
+                app = TextPublic.ReadObjectFromFile(configFilePath).As<PaoApplication>();
             } else {
                 LogPublic.LogInformation("开始创建应用配置...");
                 // 用应用创建函数启动应用
                 app = createApplicationFunc();
                 // 保存配置文件
                 LogPublic.LogInformation("开始保存应用配置...");
-                XmlPublic.WriteObjectToFile(configFilePath, app);
+                TextPublic.WriteObjectToFile(configFilePath, app);
                 LogPublic.LogInformation("应用配置保存完毕.");
             }
             app.Start();

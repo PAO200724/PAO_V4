@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="Data\DbDataService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Remote\RemoteFactory.cs" />
     <Compile Include="Remote\WCFFactory.cs" />
   </ItemGroup>
   <ItemGroup>

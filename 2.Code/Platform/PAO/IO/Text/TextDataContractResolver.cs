@@ -5,13 +5,14 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Xml;
 
-namespace PAO.IO {
+namespace PAO.IO.Text
+{
     /// <summary>
     /// 类:PaoDataContractResolver
     /// 数据协议获取器
     /// 作者:PAO
     /// </summary>
-    public class PaoDataContractResolver : DataContractResolver {
+    public class TextDataContractResolver : DataContractResolver {
         /// <summary>
         /// 对象类名
         /// </summary>

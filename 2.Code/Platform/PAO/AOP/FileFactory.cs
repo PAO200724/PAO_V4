@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using PAO.IO;
+using PAO.IO.Text;
 
 namespace PAO {
     /// <summary>
@@ -38,7 +39,7 @@ namespace PAO {
         }
 
         protected override T OnCreateInstance() {
-            return XmlPublic.ReadObjectFromFile(FilePath).As<T>();
+            return TextPublic.ReadObjectFromFile(FilePath).As<T>();
         }
     }
 }
