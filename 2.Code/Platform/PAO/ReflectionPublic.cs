@@ -17,27 +17,6 @@ namespace PAO {
         const string GenericTypeNameFormat = "{0}`1[[{1}]]";
         const string TypeElmentTag = "Type";
         const string NullString = "NULL";
-        /// <summary>
-        /// 基础类型
-        /// </summary>
-        public static Type[] BasicType = new Type[] 
-        {
-            typeof(SByte)
-            , typeof(Int16)
-            , typeof(Int32)
-            , typeof(Int64)
-            , typeof(Byte)
-            , typeof(UInt16)
-            , typeof(UInt32)
-            , typeof(UInt64)
-            , typeof(Char)
-            , typeof(Single)
-            , typeof(Double)
-            , typeof(Decimal)
-            , typeof(String)
-            , typeof(DateTime)
-            , typeof(Boolean)
-        };
 
         #region 类型
         public static Type GetType(string typeName) {

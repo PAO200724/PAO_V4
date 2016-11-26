@@ -1,7 +1,6 @@
 ﻿using MainTest.Properties;
 using PAO.App;
 using PAO.Remote;
-using PAO.Test;
 using PAO.Trans;
 using System;
 using System.Collections.Generic;

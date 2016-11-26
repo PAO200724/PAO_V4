@@ -91,6 +91,21 @@ namespace PAO.App {
             set;
         }
         #endregion 属性：ServiceList
+
+        #region 属性：GlobalAddonList
+        /// <summary>
+        /// 属性：GlobalAddonList
+        /// 全局插件列表
+        /// 此列表用于检索应用中的插件，当建立插件引用时，应当在此表中增加插件
+        /// </summary>
+        [DataMember(EmitDefaultValue = false)]
+        [DisplayName("全局插件列表")]
+        [Description("此列表用于检索应用中的插件，当建立插件引用时，应当在此表中增加插件")]
+        public Dictionary<string, Ref<PaoObject>> GlobalAddonList {
+            get;
+            set;
+        }
+        #endregion 属性：GlobalAddonList
         #endregion
 
         /// <summary>
