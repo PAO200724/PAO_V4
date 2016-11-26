@@ -14,6 +14,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MainTest.Lang.Log;
+using PAO.Trans;
+using PAO.Remote;
+using PAO.Test;
 
 namespace MainTest {
     /// <summary>
@@ -32,6 +35,17 @@ namespace MainTest {
         private void LogTestButton_Click(object sender, RoutedEventArgs e) {
             var logTestWindow = new LogTestWindow();
             logTestWindow.ShowDialog();
+        }
+
+        private void RemoteTestButton_Click(object sender, RoutedEventArgs e) {
+            var testService = new RemoteFactory<ITestService>()
+            {
+                BaseUrl = "http://localhost:49893/RemoteService.svc",
+                ServiceName = "TestService"
+            };
+
+            var result = testService.Value.GetString("这是源数据");
+            MessageBox.Show(result);
         }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using PAO;
 using PAO.IO.Text;
+using PAO.Remote.WCF;
+using PAO.Trans;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,7 +23,6 @@ namespace PAO.Remote
     [Description("通过远程调用创建的工厂")]
     public class RemoteFactory<T> : Factory<T>
     {
-        public static ITextSerialize Serializer = new DataContractTextSerializer();
         #region 插件属性
 
         #region 属性：BaseUrl
@@ -59,12 +60,17 @@ namespace PAO.Remote
         }
 
         protected override T OnCreateInstance() {
-            var remoteService = new WCFFactory<IRemoteService>
+            T result = default(T);
+            TransactionPublic.Run("", () =>
             {
-                Url = BaseUrl
-            };
-            var proxy = new RemoteProxy(typeof(T), remoteService.Value, Serializer, ServiceName );
-            return (T)proxy.GetTransparentProxy();
+                var remoteService = new WCFFactory<IRemoteService>
+                {
+                    Url = BaseUrl
+                };
+                var proxy = new RemoteProxy(typeof(T), remoteService.Value, RemotePublic.DefaultSerializer, ServiceName);
+                result = (T)proxy.GetTransparentProxy();
+            });
+            return result;
         }
     }
 }

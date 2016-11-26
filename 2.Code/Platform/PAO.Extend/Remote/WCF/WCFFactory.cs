@@ -7,7 +7,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
 
-namespace PAO.Remote{
+namespace PAO.Remote.WCF{
     /// <summary>
     /// 类：WCFFactory
     /// WCF工厂

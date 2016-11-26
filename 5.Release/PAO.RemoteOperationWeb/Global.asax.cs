@@ -1,5 +1,6 @@
 ﻿using PAO.App;
 using PAO.RemoteOperationWeb.Properties;
+using PAO.Test;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,7 +42,11 @@ namespace PAO.RemoteOperationWeb {
         }
 
         private static PaoApplication CreateApplication() {
-            var app = new PaoApplication();
+            var app = new PaoApplication()
+            {
+                ServiceList = new Dictionary<string, Ref<object>>()
+                     .Append("TestService", new TestService()),
+            };
             return app;
         }
     }

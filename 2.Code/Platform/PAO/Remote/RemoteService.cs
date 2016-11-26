@@ -23,45 +23,15 @@ namespace PAO.Remote
     [DataContract(Namespace = "")]
     [DisplayName("远程服务")]
     [Description("提供远程调用服务协议并分发到具体服务的服务")]
-    [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
     public class RemoteService : PaoObject, IRemoteService
     {
         #region 插件属性
-        #region 属性：Serializer
-        /// <summary>
-        /// 属性：Serializer
-        /// 序列化器
-        /// 用于序列化参数的序列化器
-        /// </summary>
-        [DataMember(EmitDefaultValue = false)]
-        [DisplayName("序列化器")]
-        [Description("用于序列化参数的序列化器")]
-        public Ref<ITextSerialize> Serializer {
-            get;
-            set;
-        }
-        #endregion 属性：Serializer
-
-        #region 属性：ServiceList
-        /// <summary>
-        /// 属性：ServiceList
-        /// 服务列表
-        /// 服务列表
-        /// </summary>
-        [DataMember(EmitDefaultValue = false)]
-        [DisplayName("服务列表")]
-        [Description("服务列表")]
-        public ConcurrentDictionary<string, Ref<object>> ServiceList {
-            get;
-            set;
-        }
-        #endregion 属性：ServiceList
         #endregion
         public RemoteService() {
         }
 
         public string CallService(string serviceName, string functionName, string header, string inputParameters) {
-            var serializer = Serializer.Value;
+            var serializer = RemotePublic.DefaultSerializer;
 
             // 获取头信息
             Header head = null;
@@ -73,10 +43,10 @@ namespace PAO.Remote
             Action callService = () =>
             {
                 // 获取服务对象
-                if (!ServiceList.ContainsKey(serviceName)) {
+                if (!RemotePublic.ServiceList.ContainsKey(serviceName)) {
                     throw new Exception("找不到指定的服务名称").AddDetail("服务名称", serviceName);
                 }
-                var serviceObject = ServiceList[serviceName];
+                var serviceObject = RemotePublic.ServiceList[serviceName];
 
                 // 获取参数信息
                 object[] inputParamList = null;

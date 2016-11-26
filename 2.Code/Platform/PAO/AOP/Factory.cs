@@ -70,7 +70,7 @@ namespace PAO {
         public override T Value {
             get {
                 // 如果从未创建过实例或者不缓存实例，则创建实例，否则直接范围实例
-                if (!Builden && !BufferInstance) {
+                if (!Builden || !BufferInstance) {
                     BuildRef();
                 }
                 return Instance;

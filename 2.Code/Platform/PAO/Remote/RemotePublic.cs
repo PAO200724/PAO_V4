@@ -1,6 +1,7 @@
 ﻿using PAO;
 using PAO.IO.Text;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -16,5 +17,13 @@ namespace PAO.Remote
     /// </summary>
     public static class RemotePublic
     {
+        /// <summary>
+        /// 默认的序列化器
+        /// </summary>
+        public static ITextSerialize DefaultSerializer = new DataContractTextSerializer();
+        /// <summary>
+        /// 服务列表
+        /// </summary>
+        public static Dictionary<string, object> ServiceList = new Dictionary<string, object>();
     }
 }

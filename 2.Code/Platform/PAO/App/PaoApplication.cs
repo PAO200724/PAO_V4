@@ -1,4 +1,6 @@
-﻿using PAO.Log;
+﻿using PAO.IO.Text;
+using PAO.Log;
+using PAO.Remote;
 using PAO.Server;
 using PAO.Trans;
 using System;
@@ -45,6 +47,21 @@ namespace PAO.App {
         }
         #endregion 属性:ClientID
 
+        #region 属性:LoggerList
+        /// <summary>
+        /// 属性:LoggerList
+        /// 日志记录器列表
+        /// 记录日志的日志记录器列表
+        /// </summary>
+        [DataMember(EmitDefaultValue = false)]
+        [DisplayName("日志记录器列表")]
+        [Description("记录日志的日志记录器列表")]
+        public List<Ref<ILog>> LoggerList {
+            get;
+            set;
+        }
+        #endregion 属性:LoggerList
+
         #region 属性:ServerList
         /// <summary>
         /// 属性:ServerList
@@ -60,20 +77,20 @@ namespace PAO.App {
         }
         #endregion 属性:ServerList
 
-        #region 属性:LoggerList
+        #region 属性：ServiceList
         /// <summary>
-        /// 属性:LoggerList
-        /// 日志记录器列表
-        /// 记录日志的日志记录器列表
+        /// 属性：ServiceList
+        /// 服务列表
+        /// 加载在远程服务器中的服务列表
         /// </summary>
         [DataMember(EmitDefaultValue = false)]
-        [DisplayName("日志记录器列表")]
-        [Description("记录日志的日志记录器列表")]
-        public List<Ref<ILog>> LoggerList {
+        [DisplayName("服务列表")]
+        [Description("加载在远程服务器中的服务列表")]
+        public Dictionary<string, Ref<object>> ServiceList {
             get;
             set;
         }
-        #endregion 属性:LoggerList
+        #endregion 属性：ServiceList
         #endregion
 
         /// <summary>
@@ -97,6 +114,7 @@ namespace PAO.App {
         public PaoApplication() {
             ServerList = new List<PAO.Ref<Server.BaseServer>>();
             LoggerList = new List<PAO.Ref<Log.ILog>>();
+            ServiceList = new Dictionary<string, PAO.Ref<object>>();
         }
 
         public override string ToString() {
@@ -161,8 +179,23 @@ namespace PAO.App {
                  });
                 #endregion 日志
 
-                #region 服务
-                TransactionPublic.Run("启动服务", () =>
+                #region 远程服务
+                TransactionPublic.Run("加载远程服务", () =>
+                {
+                    if (ServiceList.IsNullOrEmpty())
+                        return;
+
+                    // 默认为DataContract序列化器
+                    RemotePublic.DefaultSerializer = new DataContractTextSerializer();
+                    RemotePublic.ServiceList = new Dictionary<string, object>();
+                    foreach(var key in ServiceList.Keys) {
+                        RemotePublic.ServiceList.Add(key, ServiceList[key].Value);
+                    }
+                });
+                #endregion
+                
+                #region 服务器
+                TransactionPublic.Run("启动服务器列表", () =>
                 {
                     if (!ServerList.IsNullOrEmpty()) {
                         foreach (var server in ServerList) {

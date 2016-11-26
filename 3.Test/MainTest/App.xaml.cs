@@ -1,5 +1,7 @@
 ﻿using MainTest.Properties;
 using PAO.App;
+using PAO.Remote;
+using PAO.Test;
 using PAO.Trans;
 using System;
 using System.Collections.Generic;
@@ -25,12 +27,7 @@ namespace MainTest {
             {
                 RunAction = () =>
                 {
-                    // 执行工作
-                    TransactionPublic.Run("客户端程序", ()=>
-                    {
-                        var testClient = new TestService.TestServiceClient();
-                        testClient.DoWork(PaoTransaction.Current);
-                    });
+
                 }
             };
             return app;

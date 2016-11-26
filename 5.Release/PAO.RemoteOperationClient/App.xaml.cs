@@ -1,5 +1,6 @@
 ﻿using PAO.App;
 using PAO.RemoteOperationClient.Properties;
+using PAO.Test;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -20,6 +21,7 @@ namespace PAO.RemoteOperationClient {
 
         private static PaoApplication CreateApplication() {
             var app = new PaoApplication() {
+
             };
             return app;
         }
