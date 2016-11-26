@@ -14,7 +14,7 @@ namespace PAO.RemoteOperationWeb {
         protected void Application_Start(object sender, EventArgs e) {
             // 应用程序启动时创建PaoApplication
             AppPublic.StartApplication(AppPublic.DefaultConfigFileName
-                , Settings.Default.ConfigStart ? (Func<PaoApplication>)null : CreateApplication);
+                , Settings.Default.ConfigStart ? (Func<PaoApplication>)null : RemoteOperationWeb.AppConfig.CreateApplication);
         }
 
         protected void Session_Start(object sender, EventArgs e) {
@@ -41,13 +41,6 @@ namespace PAO.RemoteOperationWeb {
 
         }
 
-        private static PaoApplication CreateApplication() {
-            var app = new PaoApplication()
-            {
-                ServiceList = new Dictionary<string, Ref<object>>()
-                     .Append("TestService", new TestService()),
-            };
-            return app;
-        }
+
     }
 }

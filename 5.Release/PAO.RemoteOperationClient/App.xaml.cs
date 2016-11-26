@@ -16,7 +16,7 @@ namespace PAO.RemoteOperationClient {
         private void Application_Startup(object sender, StartupEventArgs e) {
             // 应用程序启动时创建PaoApplication
             AppPublic.StartApplication(AppPublic.DefaultConfigFileName
-                , Settings.Default.ConfigStart? (Func<PaoApplication>)null : CreateApplication);
+                , Settings.Default.ConfigStart? (Func<PaoApplication>)null : AppConfig.CreateApplication);
         }
 
         private static PaoApplication CreateApplication() {
