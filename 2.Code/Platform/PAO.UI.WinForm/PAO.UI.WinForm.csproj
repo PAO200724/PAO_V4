@@ -50,6 +50,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExceptionControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ExceptionControl.Designer.cs">
+      <DependentUpon>ExceptionControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WinFormUI.cs" />
   </ItemGroup>
@@ -60,6 +66,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ExceptionControl.resx">
+      <DependentUpon>ExceptionControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
