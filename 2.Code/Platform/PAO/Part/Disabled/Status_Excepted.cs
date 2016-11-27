@@ -45,10 +45,10 @@ namespace PAO.Part.Disabled
         /// 构造方法
         /// </summary>
         /// <param name="message">消息</param>
-        /// <param name="detailInfomation">详细信息</param>
-        public Status_Excepted(string message, string detailInfomation) : base(message)
+        /// <param name="detailInformation">详细信息</param>
+        public Status_Excepted(string message, string detailInformation) : base(message)
         {
-            DetailInformation = detailInfomation;
+            DetailInformation = detailInformation;
         }
 
         /// <summary>

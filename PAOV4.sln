@@ -15,6 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.测试", "3.测试", "{BF
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.项目", "4.项目", "{AB258F19-8A4F-4C84-9EBC-728A78D12A9C}"
 	ProjectSection(SolutionItems) = preProject
+		4.Project\工作任务清单.html = 4.Project\工作任务清单.html
 		4.Project\工作任务清单.xlsx = 4.Project\工作任务清单.xlsx
 	EndProjectSection
 EndProject
@@ -58,6 +59,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PAO.Config", "2.Code\Platform\PAO.Config\PAO.Config.csproj", "{A0F88184-CB49-4C7D-A56B-AE323FDB67BA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PAO.UI.WPF", "2.Code\Platform\PAO.UI.WPF\PAO.UI.WPF.csproj", "{AD7BE02B-CDD6-4482-9ED1-62BC59B7023E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinFormTest", "3.Test\WinFormTest\WinFormTest.csproj", "{6B03CA87-3740-44DE-85CC-904F2C22ADBD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -109,6 +112,10 @@ Global
 		{AD7BE02B-CDD6-4482-9ED1-62BC59B7023E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AD7BE02B-CDD6-4482-9ED1-62BC59B7023E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AD7BE02B-CDD6-4482-9ED1-62BC59B7023E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B03CA87-3740-44DE-85CC-904F2C22ADBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B03CA87-3740-44DE-85CC-904F2C22ADBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B03CA87-3740-44DE-85CC-904F2C22ADBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B03CA87-3740-44DE-85CC-904F2C22ADBD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -129,5 +136,6 @@ Global
 		{49BD4858-22C7-431E-A0AC-638A182FD35E} = {43B24246-03C7-474A-99AD-A5876EA5F86B}
 		{A0F88184-CB49-4C7D-A56B-AE323FDB67BA} = {43B24246-03C7-474A-99AD-A5876EA5F86B}
 		{AD7BE02B-CDD6-4482-9ED1-62BC59B7023E} = {43B24246-03C7-474A-99AD-A5876EA5F86B}
+		{6B03CA87-3740-44DE-85CC-904F2C22ADBD} = {BF37856D-8BF3-43F0-927D-051C4738BEF0}
 	EndGlobalSection
 EndGlobal

@@ -69,7 +69,7 @@ namespace PAO {
         /// <param name="nothingType">空对象类型</param>
         /// <returns>对象为空返回True，否则返回False</returns>
         public static bool IsNotNullOrEmpty(this object testObject, NothingType nothingType = NothingType.All) {
-            return IsNullOrEmpty(testObject, nothingType);
+            return !IsNullOrEmpty(testObject, nothingType);
         }
 
         /// <summary>
@@ -425,6 +425,20 @@ namespace PAO {
         public static Dictionary<K, V> Append<K, V>(this Dictionary<K, V> dict, IEnumerable<KeyValuePair<K, V>> elements) {
             foreach (KeyValuePair<K, V> element in elements) {
                 dict.Add(element.Key, element.Value);
+            }
+            return dict;
+        }
+
+        /// <summary>
+        /// 添加元素到字典
+        /// </summary>
+        /// <param name="dict">字典</param>
+        /// <param name="key">键</param>
+        /// <param name="value">值</param>
+        /// <returns>字典</returns>
+        public static Dictionary<K, V> Append<K, V>(this Dictionary<K, V> dict, IDictionary elements) {
+            foreach (object key in elements.Keys) {
+                dict.Add((K)key, (V)elements[key]);
             }
             return dict;
         }
