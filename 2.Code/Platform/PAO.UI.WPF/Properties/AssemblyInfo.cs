@@ -5,13 +5,13 @@ using System.Runtime.InteropServices;
 // 有关程序集的一般信息由以下
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("PAO WinForm UI基础库")]
-[assembly: AssemblyDescription("用WinForm实现的UI基础哭")]
+[assembly: AssemblyTitle("PAO.UI.WPF")]
+[assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("PAO")]
-[assembly: AssemblyProduct("Programming of Aspect Oriented")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("PAO.UI.WPF")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
-[assembly: AssemblyTrademark("PAO")]
+[assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
 //将 ComVisible 设置为 false 将使此程序集中的类型
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // 如果此项目向 COM 公开，则下列 GUID 用于类型库的 ID
-[assembly: Guid("49bd4858-22c7-431e-a0ac-638a182fd35e")]
+[assembly: Guid("ad7be02b-cdd6-4482-9ed1-62bc59b7023e")]
 
 // 程序集的版本信息由下列四个值组成: 
 //

@@ -1,0 +1,11 @@
+﻿<dx:DXWindow xmlns:Views="clr-namespace:PAO.UI.WPF.Views" 
+    x:Class="PAO.UI.WPF.Views.ExceptionForm"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    Title="异常" Height="350" Width="525"
+    >
+    <Grid>
+        <Views:ExceptionControl />
+    </Grid>
+</dx:DXWindow>
