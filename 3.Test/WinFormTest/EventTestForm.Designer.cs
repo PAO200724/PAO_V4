@@ -1,4 +1,6 @@
-﻿namespace WinFormTest
+﻿using PAO.UI.WinForm.Controls;
+
+namespace WinFormTest
 {
     partial class EventTestForm
     {
@@ -25,7 +27,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            this.EventControl = new PAO.UI.WinForm.EventControl();
+            this.EventControl = new EventControl();
             this.SuspendLayout();
             // 
             // EventControl
@@ -50,6 +52,6 @@
 
         #endregion
 
-        private PAO.UI.WinForm.EventControl EventControl;
+        private EventControl EventControl;
     }
 }
