@@ -1,6 +1,6 @@
-﻿using PAO.IO;
+﻿using PAO.Event;
+using PAO.IO;
 using PAO.IO.Text;
-using PAO.Log;
 using PAO.Trans;
 using System;
 using System.Collections.Generic;
@@ -49,13 +49,13 @@ namespace PAO.App {
             string configFilePath = Path.Combine(_AppDirectory, configFileName);
             
             //首先添加默认的日志记录器
-            LogPublic.ClearLogger();
-            LogPublic.AddLogger(DebugLogger.Logger);
-            LogPublic.AddLogger(EventLogger.Logger);
+            EventPublic.ClearEventProcessor();
+            EventPublic.AddEventProcessor(DebugLogger.Default);
+            EventPublic.AddEventProcessor(EventLogger.Default);
 
             TransactionPublic.Run("加载插件", () =>
             {
-                LogPublic.LogInformation("开始加载插件...");
+                EventPublic.Information("开始加载插件...");
                 AddonPublic.AddDirectory(AppDirectory);
                 string libPathString = AppDomain.CurrentDomain.SetupInformation.PrivateBinPath;
                 if (!libPathString.IsNullOrEmpty()) {
@@ -65,20 +65,20 @@ namespace PAO.App {
                         AddonPublic.AddDirectory(libPath);
                     }
                 }
-                LogPublic.LogInformation("插件加载完毕.");
+                EventPublic.Information("插件加载完毕.");
             });
 
             PaoApplication app;
             if (createApplicationFunc == null) {
                 app = TextPublic.ReadObjectFromFile(configFilePath).As<PaoApplication>();
             } else {
-                LogPublic.LogInformation("开始创建应用配置...");
+                EventPublic.Information("开始创建应用配置...");
                 // 用应用创建函数启动应用
                 app = createApplicationFunc();
                 // 保存配置文件
-                LogPublic.LogInformation("开始保存应用配置...");
+                EventPublic.Information("开始保存应用配置...");
                 TextPublic.WriteObjectToFile(configFilePath, app);
-                LogPublic.LogInformation("应用配置保存完毕.");
+                EventPublic.Information("应用配置保存完毕.");
             }
             app.Start();
         }

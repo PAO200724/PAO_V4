@@ -48,7 +48,7 @@ namespace PAO.Remote
             {
                 // 获取服务对象
                 if (!RemotePublic.ServiceList.ContainsKey(serviceName)) {
-                    throw new Exception("找不到指定的服务名称").AddDetail("服务名称", serviceName);
+                    throw new Exception("找不到指定的服务名称").AddExceptionData("服务名称", serviceName);
                 }
                 var serviceObject = RemotePublic.ServiceList[serviceName];
 

@@ -1,5 +1,7 @@
 ﻿using PAO;
 using PAO.App;
+using PAO.Drawing;
+using PAO.IO.Text;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -23,6 +25,10 @@ namespace PAO.Event
     [Description("异常或其他的事件信息")]
     public class EventInfo : PaoObject
     {
+        public const string EventType_Information = "信息";
+        public const string EventType_Warning = "警告";
+        public const string EventType_Error = "错误";
+
         #region 插件属性
 
         #region 属性：Time
@@ -49,6 +55,7 @@ namespace PAO.Event
         [DataMember(EmitDefaultValue = false)]
         [DisplayName("事件源")]
         [Description("事件源")]
+        [DefaultValue("PAO")]
         public string Source {
             get;
             set;
@@ -84,22 +91,7 @@ namespace PAO.Event
             set;
         }
         #endregion 属性：Type
-
-        #region 属性：DetailInformation
-        /// <summary>
-        /// 属性：DetailInformation
-        /// 详细信息
-        /// 事件详细信息
-        /// </summary>
-        [DataMember(EmitDefaultValue = false)]
-        [DisplayName("详细信息")]
-        [Description("事件详细信息")]
-        public string DetailInformation {
-            get;
-            set;
-        }
-        #endregion 属性：DetailInformation
-
+        
         #region 属性：Data
         /// <summary>
         /// 属性：Data
@@ -114,21 +106,6 @@ namespace PAO.Event
             set;
         }
         #endregion 属性：Data
-
-        #region 属性：ExceptionType
-        /// <summary>
-        /// 属性：ExceptionType
-        /// 异常类型
-        /// 异常类型
-        /// </summary>
-        [DataMember(EmitDefaultValue = false)]
-        [DisplayName("异常类型")]
-        [Description("异常类型")]
-        public Type ExceptionType {
-            get;
-            set;
-        }
-        #endregion 属性：ExceptionType
 
         #region 属性：ScreenShot
         /// <summary>
@@ -162,6 +139,67 @@ namespace PAO.Event
         #endregion 属性：AssetSnapshot
         #endregion
         public EventInfo() {
+            Source = "PAO";
+        }
+
+        /// <summary>
+        /// 创建事件
+        /// </summary>
+        /// <param name="source">源</param>
+        /// <param name="message">消息</param>
+        /// <param name="type">事件类型</param>
+        /// <param name="screenshot">是否截屏</param>
+        /// <param name="snapshot">是否进行快照</param>
+        /// <returns></returns>
+        public EventInfo(string type
+            , string message
+            , bool screenshot = false
+            , bool snapshot = false) {
+            Source = "PAO";
+            Time = DateTime.Now;
+            Message = message;
+            Type = type;
+            ScreenShot = screenshot ? DrawingPublic.ScreenShot() : (Image)null;
+            AssetSnapshot = snapshot ? TextPublic.ObjectClone(PaoApplication.Default) : null;
+        }
+
+        /// <summary>
+        /// 转换为字符串
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString() {
+            const string Format = "[{0} {1} {2:yyyy-MM-dd HH:mm:ss.fffff}] {3}";
+
+            return String.Format(Format, Source, Type, Time, DetailMessage);
+        }
+
+        /// <summary>
+        /// 数据消息
+        /// </summary>
+        public virtual string DataMessage {
+            get {
+                if (Data.IsNullOrEmpty())
+                    return null;
+
+                string dataMessage = null;
+                foreach (var dataKV in Data) {
+                    if (dataMessage.IsNotNullOrEmpty()) {
+                        dataMessage += ", ";
+                    }
+                    dataMessage += String.Format("[{0} : {1}]", dataKV.Key, dataKV.Value);
+                }
+                return dataMessage;
+            }
+        }
+
+        /// <summary>
+        /// 详细消息
+        /// </summary>
+        public virtual string DetailMessage {
+            get {
+                var dataMessage = DataMessage;
+                return String.Format("{0}{1}", Message, DataMessage.IsNullOrEmpty()?null:"\r\n" + DataMessage);
+            }
         }
     }
 }

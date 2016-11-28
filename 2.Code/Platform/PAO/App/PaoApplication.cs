@@ -1,5 +1,5 @@
-﻿using PAO.IO.Text;
-using PAO.Log;
+﻿using PAO.Event;
+using PAO.IO.Text;
 using PAO.Remote;
 using PAO.Server;
 using PAO.Trans;
@@ -48,20 +48,20 @@ namespace PAO.App {
         }
         #endregion 属性:ClientID
 
-        #region 属性:LoggerList
+        #region 属性:EventProcessorList
         /// <summary>
-        /// 属性:LoggerList
+        /// 属性:EventProcessorList
         /// 日志记录器列表
         /// 记录日志的日志记录器列表
         /// </summary>
         [DataMember(EmitDefaultValue = false)]
         [DisplayName("日志记录器列表")]
         [Description("记录日志的日志记录器列表")]
-        public List<Ref<ILog>> LoggerList {
+        public List<Ref<IEventProcess>> EventProcessorList {
             get;
             set;
         }
-        #endregion 属性:LoggerList
+        #endregion 属性:EventProcessorList
 
         #region 属性:ServerList
         /// <summary>
@@ -133,7 +133,7 @@ namespace PAO.App {
 
         public PaoApplication() {
             ServerList = new List<PAO.Ref<Server.BaseServer>>();
-            LoggerList = new List<PAO.Ref<Log.ILog>>();
+            EventProcessorList = new List<PAO.Ref<IEventProcess>>();
             ServiceList = new Dictionary<string, PAO.Ref<object>>();
         }
 
@@ -141,6 +141,11 @@ namespace PAO.App {
             // 将对象转换为字符串
             return ObjectPublic.ObjectToString(this, null/*,"属性名称"*/);
         }
+
+        /// <summary>
+        /// 异常响应方法
+        /// </summary>
+        public Action<Exception> OnException;
 
         /// <summary>
         /// 运行
@@ -161,11 +166,11 @@ namespace PAO.App {
                 #region 日志
                 TransactionPublic.Run("准备日志", () =>
                 {
-                     if (!LoggerList.IsNullOrEmpty()) {
-                         LogPublic.ClearLogger();
-                         foreach (var logger in LoggerList) {
-                             var logObj = logger.Value;
-                             LogPublic.AddLogger(logObj);
+                     if (!EventProcessorList.IsNullOrEmpty()) {
+                         EventPublic.ClearEventProcessor();
+                         foreach (var EventProcessor in EventProcessorList) {
+                             var logObj = EventProcessor.Value;
+                             EventPublic.AddEventProcessor(logObj);
                          }
                      }
                  });
@@ -195,7 +200,7 @@ namespace PAO.App {
                             if (serverObj == null)
                                 throw new Exception("服务创建失败");
                             serverObj.Start();
-                            LogPublic.LogInformation("服务{0}启动完毕.", serverObj.ObjectToString());
+                            EventPublic.Information("服务{0}启动完毕.", serverObj.ObjectToString());
                         }
                     }
                 });
@@ -221,12 +226,6 @@ namespace PAO.App {
         /// 程序启动
         /// </summary>
         protected virtual void OnStart(){
-        }
-        /// <summary>
-        /// 程序退出
-        /// </summary>
-        protected virtual void OnException(Exception err) {
-            throw err;
         }
 
         protected virtual void OnRunning() {

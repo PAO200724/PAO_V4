@@ -1,4 +1,4 @@
-﻿using PAO.Log;
+﻿using PAO.Event;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -34,15 +34,15 @@ namespace PAO.App {
         /// <param name="includeSubDir">是否包含子目录，默认为True</param>
         public static Assembly AddFile(string file) {
             // 此处不能使用LoadFrom，因为KF.Base冲突
-            LogPublic.LogInformation("开始加载插件文件:{0}", file);
+            EventPublic.Information("开始加载插件文件:{0}", file);
             try {
                 AssemblyName assemblyName = AssemblyName.GetAssemblyName(file);
                 var assembly = AppDomain.CurrentDomain.Load(assemblyName);
-                LogPublic.LogInformation("插件文件加载完毕:{0}", file);
+                EventPublic.Information("插件文件加载完毕:{0}", file);
                 return assembly;
             } catch (Exception err) {
                 // 加载文件时记录异常，不报错
-                LogPublic.LogException(err);
+                EventPublic.Exception(err);
                 return null;
             }
         }
@@ -53,12 +53,12 @@ namespace PAO.App {
         /// <param name="dir">目录</param>
         /// <param name="includeSubDir">是否包含子目录，默认为True</param>
         public static void AddDirectory(string dir, bool includeSubDir = true) {
-            LogPublic.LogInformation("开始加载插件目录:{0}", dir);
+            EventPublic.Information("开始加载插件目录:{0}", dir);
             var files = Directory.GetFiles(dir, AssemblyPattern, includeSubDir ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly);
             foreach (var file in files) {
                 AddFile(file);
             }
-            LogPublic.LogInformation("插件目录加载完毕:{0}", dir);
+            EventPublic.Information("插件目录加载完毕:{0}", dir);
         }
 
 
@@ -86,7 +86,7 @@ namespace PAO.App {
                     propertyValue = property.GetValue(rootObj);
                 }
                 catch (Exception err) {
-                    LogPublic.LogException(err);
+                    EventPublic.Exception(err);
                 }
 
                 if (propertyValue == null)
@@ -183,7 +183,7 @@ namespace PAO.App {
                 else {
                     FieldInfo fieldInfo = type.GetField(propertyName, BindingFlags.Public | BindingFlags.GetField | BindingFlags.SetField);
                     if (fieldInfo == null)
-                        throw new Exception("在对象中找不到指定的属性").AddDetail("类型", type).AddDetail("属性", propertyName);
+                        throw new Exception("在对象中找不到指定的属性").AddExceptionData("类型", type).AddExceptionData("属性", propertyName);
                     propertyValue = fieldInfo.GetValue(originalObject);
                 }
             }
@@ -269,7 +269,7 @@ namespace PAO.App {
                 else {
                     FieldInfo fieldInfo = type.GetField(propertyName, BindingFlags.Public | BindingFlags.GetField | BindingFlags.SetField);
                     if (fieldInfo == null)
-                        throw new Exception("在对象中找不到指定的属性").AddDetail("类型", type).AddDetail("属性", propertyName);
+                        throw new Exception("在对象中找不到指定的属性").AddExceptionData("类型", type).AddExceptionData("属性", propertyName);
 
                     if (properties.Length == 1) {
                         // 如果是最后一个"."，则设置属性

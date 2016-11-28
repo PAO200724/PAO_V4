@@ -1,5 +1,5 @@
 ﻿using PAO;
-using PAO.Log;
+using PAO.Event;
 using PAO.Part;
 using PAO.Part.Disabled;
 using PAO.Part.Enabled;
@@ -78,7 +78,7 @@ namespace PAO.Server
         public void Start() {
             Stopped = false;
             if (Status is Status_Disabled) {
-                LogPublic.LogWarning("服务被禁止，不能启动.");
+                EventPublic.Warning("服务被禁止，不能启动.");
                 return;
             }
 

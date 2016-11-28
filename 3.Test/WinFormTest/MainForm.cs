@@ -20,11 +20,8 @@ namespace WinFormTest
 
         private void ButtonTestInformation_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             var form = new EventTestForm();
-            form.Initialize(EventPublic.CreateEvent("PAO"
-                , EventPublic.EventType_Information
+            form.Initialize(new EventInfo(EventInfo.EventType_Information
                 , "这是测试消息"
-                , "详细的测试消息"
-                , null
                 , true
                 , true));
             form.ShowDialog();
@@ -32,10 +29,9 @@ namespace WinFormTest
 
         private void ButtonTestException_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             var form = new EventTestForm();
-            form.Initialize(EventPublic.CreateExceptionEvent("PAO"
-                , new Exception("这是测试消息").AddDetail("测试","测试")
+            form.Initialize(new ExceptionEventInfo(new Exception("这是测试消息")
                 , true
-                , true));
+                , true).AddEventData("测试", "测试"));
             form.ShowDialog();
         }
     }

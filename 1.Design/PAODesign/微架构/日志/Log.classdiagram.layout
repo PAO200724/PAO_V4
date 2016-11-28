@@ -10,7 +10,7 @@
       </nestedChildShapes>
     </interfaceShape>
     <classShape Id="e59d728f-9356-44cd-8160-8cd1e1ad3f46" absoluteBounds="3.25, 2, 1.5, 0.95263671875" hideQualifiedName="false" increaseHeight="0" customColor="181, 193, 223">
-      <classMoniker Id="e84f2053-5f5b-4b07-9c0b-8a3343e32463" LastKnownName="DebugLogger" />
+      <classMoniker Id="e84f2053-5f5b-4b07-9c0b-8a3343e32463" LastKnownName="DebugEventProcessor" />
       <nestedChildShapes>
         <AttributeElementListCompartment Id="fd7c058e-a03e-4aa2-bed4-18994fc7e489" absoluteBounds="3.2650000000000006, 2.39, 1.4700000000000002, 0.226318359375" name="AttributesCompartment" titleTextColor="Black" itemTextColor="Black" />
         <OperationElementListCompartment Id="08045133-4989-4955-b746-92bc4d765568" absoluteBounds="3.2650000000000006, 2.626318359375, 1.4700000000000002, 0.226318359375" name="OperationsCompartment" titleTextColor="Black" itemTextColor="Black" />
@@ -25,7 +25,7 @@
       </nodes>
     </realizationConnector>
     <classShape Id="5733e632-af21-49c1-9370-27c6aba4f5ba" absoluteBounds="5.25, 2, 1.5, 0.95263671875" hideQualifiedName="false" increaseHeight="0" customColor="181, 193, 223">
-      <classMoniker Id="a0f091f1-2bac-426a-a234-b00448a1c785" LastKnownName="EventLogger" />
+      <classMoniker Id="a0f091f1-2bac-426a-a234-b00448a1c785" LastKnownName="EventEventProcessor" />
       <nestedChildShapes>
         <AttributeElementListCompartment Id="e6c82247-6cce-47a6-a830-174ebd09d2cf" absoluteBounds="5.265, 2.39, 1.4700000000000002, 0.226318359375" name="AttributesCompartment" titleTextColor="Black" itemTextColor="Black" />
         <OperationElementListCompartment Id="e5cbd030-e2e7-4a4f-9610-9efb4d6e4dff" absoluteBounds="5.265, 2.626318359375, 1.4700000000000002, 0.226318359375" name="OperationsCompartment" titleTextColor="Black" itemTextColor="Black" />
@@ -40,7 +40,7 @@
       </nodes>
     </realizationConnector>
     <classShape Id="170dc2f9-6100-49b6-963d-3cbda49ce673" absoluteBounds="7, 0.5, 1.5, 0.95263671875" hideQualifiedName="false" increaseHeight="0" customColor="181, 193, 223">
-      <classMoniker Id="8bf5e4e7-0c7c-420e-9470-ee44e9dd9ca0" LastKnownName="LogPublic" />
+      <classMoniker Id="8bf5e4e7-0c7c-420e-9470-ee44e9dd9ca0" LastKnownName="EventPublic" />
       <nestedChildShapes>
         <AttributeElementListCompartment Id="bc221739-3f4e-4790-b9eb-7b6121866e5d" absoluteBounds="7.015, 0.89000000000000012, 1.4700000000000002, 0.226318359375" name="AttributesCompartment" titleTextColor="Black" itemTextColor="Black" />
         <OperationElementListCompartment Id="dd0bd5d5-b0dd-4eb3-929d-2b1e968e96d6" absoluteBounds="7.015, 1.126318359375, 1.4700000000000002, 0.226318359375" name="OperationsCompartment" titleTextColor="Black" itemTextColor="Black" />

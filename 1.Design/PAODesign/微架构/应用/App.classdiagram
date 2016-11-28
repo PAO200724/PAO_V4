@@ -31,7 +31,7 @@
             </relationshipOwnedElementsInternal>
             <elementDefinition Id="3a7226e2-09d4-4f99-a9db-78fdc4151e8f" />
           </association>
-          <association Id="c49611e9-b3b6-4125-b994-6c5632ed2291" isDerived="false" sourceEndRoleName="" targetEndRoleName="LoggerList" isLeaf="false" isAbstract="false">
+          <association Id="c49611e9-b3b6-4125-b994-6c5632ed2291" isDerived="false" sourceEndRoleName="" targetEndRoleName="EventProcessorList" isLeaf="false" isAbstract="false">
             <classMoniker Id="40387403-2cb0-422f-923a-5fd5397e236b" LastKnownName="ILog" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
@@ -40,7 +40,7 @@
                 </memberEnd>
               </associationHasOwnedEnds>
               <associationHasOwnedEnds>
-                <memberEnd Id="d6e55c65-0fb5-4190-8401-6b4b5ef2349a" name="LoggerList" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                <memberEnd Id="d6e55c65-0fb5-4190-8401-6b4b5ef2349a" name="EventProcessorList" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
                   <lowerValueInternal>
                     <literalString Id="6dfa0499-bce0-4ae3-bb6c-1c42583d844d" name="Lower" value="*">
                       <elementDefinition Id="a866fbad-50cd-4da6-bf96-5bb2d923c1ec" />

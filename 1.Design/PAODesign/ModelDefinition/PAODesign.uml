@@ -638,7 +638,7 @@
             Id="2f61d3de-5bd8-48b9-931b-05333d7e9576"
             isDerived="false"
             sourceEndRoleName=""
-            targetEndRoleName="LoggerList"
+            targetEndRoleName="EventProcessorList"
             isLeaf="false"
             isAbstract="false">
             <classMoniker
@@ -661,7 +661,7 @@
               <associationHasOwnedEnds>
                 <memberEnd
                   Id="eb4baeb9-2be2-406b-b7d3-41c7a6714976"
-                  name="LoggerList"
+                  name="EventProcessorList"
                   isLeaf="false"
                   isStatic="false"
                   isReadOnly="false"
@@ -819,7 +819,7 @@
     <packageHasNamedElement>
       <class
         Id="e85ab97e-a8a8-439b-aedd-ceeb121b4982"
-        name="DebugLogger"
+        name="DebugEventProcessor"
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
@@ -837,7 +837,7 @@
     <packageHasNamedElement>
       <class
         Id="22d6439d-8405-4799-9b6b-0366fe0179b7"
-        name="EventLogger"
+        name="EventEventProcessor"
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
@@ -855,7 +855,7 @@
     <packageHasNamedElement>
       <class
         Id="1a93953a-435d-4284-bd95-d4f6ceb38959"
-        name="LogPublic"
+        name="EventPublic"
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">

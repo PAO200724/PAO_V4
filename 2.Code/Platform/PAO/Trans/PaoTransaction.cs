@@ -1,5 +1,5 @@
 ﻿using PAO;
-using PAO.Log;
+using PAO.Event;
 using PAO.Part;
 using PAO.Part.Enabled;
 using System;
@@ -112,7 +112,7 @@ namespace PAO.Trans
             Current = this;
             StartTime = DateTime.Now;
             Status = Status.Default<TransStatus_Running>();
-            LogPublic.LogTransaction(this);
+            TransactionPublic.ProcessTransactionEvent(this);
         }
 
         /// <summary>
@@ -121,7 +121,7 @@ namespace PAO.Trans
         /// <param name="exp">异常</param>
         public void Exception(Exception exp) {
             Status = new TransStatus_Excepted(exp);
-            LogPublic.LogTransaction(this);
+            TransactionPublic.ProcessTransactionEvent(this);
         }
         /// <summary>
         /// 事务进入回滚异常状态
@@ -129,21 +129,21 @@ namespace PAO.Trans
         /// <param name="exp">异常</param>
         public void RollbackException(Exception exp) {
             Status = new TransStatus_RollbackExcepted(exp);
-            LogPublic.LogTransaction(this);
+            TransactionPublic.ProcessTransactionEvent(this);
         }
         /// <summary>
         /// 回滚
         /// </summary>
         public void Rollback() {
             Status = Status.Default<TransStatus_Rollbacked>();
-            LogPublic.LogTransaction(this);
+            TransactionPublic.ProcessTransactionEvent(this);
         }
         /// <summary>
         /// 失败
         /// </summary>
         public void Fail() {
             Status = new TransStatus_Failed() { SpendTime = DateTime.Now - StartTime };
-            LogPublic.LogTransaction(this);
+            TransactionPublic.ProcessTransactionEvent(this);
             End();
         }
         /// <summary>
@@ -151,7 +151,7 @@ namespace PAO.Trans
         /// </summary>
         public void Commit() {
             Status = new TransStatus_Committed() { SpendTime = DateTime.Now - StartTime };
-            LogPublic.LogTransaction(this);
+            TransactionPublic.ProcessTransactionEvent(this);
             End();
         }
         /// <summary>

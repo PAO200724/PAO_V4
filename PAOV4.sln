@@ -14,9 +14,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.测试", "3.测试", "{BF37856D-8BF3-43F0-927D-051C4738BEF0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.项目", "4.项目", "{AB258F19-8A4F-4C84-9EBC-728A78D12A9C}"
-	ProjectSection(SolutionItems) = preProject
-		4.Project\工作任务清单.html = 4.Project\工作任务清单.html
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5.发行", "5.发行", "{93208A83-04F9-411A-87A6-331A8EA988C6}"
 EndProject

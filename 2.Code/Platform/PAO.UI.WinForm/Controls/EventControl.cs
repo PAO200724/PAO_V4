@@ -37,8 +37,8 @@ namespace PAO.UI.WinForm.Controls
             this.TextEditSource.Text = _EventInfo.Source;
             this.TextEditMessage.Text = _EventInfo.Message;
             this.TextEditTime.Text = _EventInfo.Time.ToString();
-            this.TextEditType.Text = _EventInfo.ExceptionType == null ? _EventInfo.Type : _EventInfo.Type + " : " + _EventInfo.ExceptionType.Name;
-            this.MemoEditDetail.Text = _EventInfo.DetailInformation.ToString();
+            this.TextEditType.Text = _EventInfo.Type;
+            this.MemoEditDetail.Text = _EventInfo.DetailMessage;
             // 数据
             if (_EventInfo.Data.IsNotNullOrEmpty()) {
                 this.GridControlData.DataSource = this._EventInfo.Data.Select(p => new

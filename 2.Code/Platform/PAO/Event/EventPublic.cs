@@ -16,64 +16,98 @@ namespace PAO.Event
     /// </summary>
     public static class EventPublic
     {
-        public const string EventType_Information = "信息";
-        public const string EventType_Warning = "警告";
-        public const string EventType_Error = "错误";
-        public const string EventType_Exception = "异常";
-
         /// <summary>
-        /// 创建异常事件
+        /// 添加数据
         /// </summary>
-        /// <param name="source">源</param>
-        /// <param name="exception">异常</param>
-        /// <param name="screenshot">是否截屏</param>
-        /// <param name="snapshot">是否进行快照</param>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
         /// <returns></returns>
-        public static EventInfo CreateExceptionEvent(string source, Exception exception, bool screenshot = false, bool snapshot = false) {
-            var eventInfo = new EventInfo()
-            {
-                Source = source,
-                Time = DateTime.Now,
-                Message = exception.Message,
-                DetailInformation = exception.FormatException(),
-                Type = EventType_Exception,
-                ExceptionType = exception.GetType(),
-                Data = new Dictionary<string, object>().Append(exception.Data),
-                ScreenShot = screenshot ? DrawingPublic.ScreenShot() : (Image)null,
-                AssetSnapshot = snapshot ? TextPublic.ObjectClone(PaoApplication.Default) : null
-            };
+        public static T AddEventData<T>(this T eventInfo, string key, object value) where T : EventInfo {
+            if (eventInfo.Data == null)
+                eventInfo.Data = new Dictionary<string, object>();
+            eventInfo.Data.Add(key, value);
             return eventInfo;
         }
 
+        #region 事件处理机
+        /// <summary>
+        /// Log列表
+        /// </summary>
+        public readonly static List<IEventProcess> ProcessorList = new List<IEventProcess>();
+
+        static EventPublic() {
+            AddEventProcessor(DebugLogger.Default);
+        }
 
         /// <summary>
-        /// 创建事件
+        /// 添加记录器
         /// </summary>
-        /// <param name="source">源</param>
-        /// <param name="detailInformation">详细信息</param>
-        /// <param name="message">消息</param>
-        /// <param name="type">事件类型</param>
-        /// <param name="data">扩展数据</param>
-        /// <param name="screenshot">是否截屏</param>
-        /// <param name="snapshot">是否进行快照</param>
-        /// <returns></returns>
-        public static EventInfo CreateEvent(string source
-            , string type
-            , string message
-            , string detailInformation = null
-            , Dictionary<string, object> data = null
-            , bool screenshot = false, bool snapshot = false) {
-            return new EventInfo()
-            {
-                Source = source,
-                Time = DateTime.Now,
-                Message = message,
-                Type = type,
-                DetailInformation = detailInformation,
-                Data = data,
-                ScreenShot = screenshot ? DrawingPublic.ScreenShot() : (Image)null,
-                AssetSnapshot = snapshot ? TextPublic.ObjectClone(PaoApplication.Default) : null
-            };
+        /// <param name="EventProcessor">日志记录器</param>
+        public static void AddEventProcessor(IEventProcess eventProcessor) {
+            if (!ProcessorList.Contains(eventProcessor))
+                ProcessorList.Add(eventProcessor);
         }
+
+        /// <summary>
+        /// 移除记录器
+        /// </summary>
+        /// <param name="EventProcessor">日志记录器</param>
+        public static void RemoveEventProcessor(IEventProcess eventProcessor) {
+            if (ProcessorList.Contains(eventProcessor))
+                ProcessorList.Remove(eventProcessor);
+        }
+
+        /// <summary>
+        /// 清除记录器
+        /// </summary>
+        public static void ClearEventProcessor() {
+            ProcessorList.Clear();
+        }
+
+        /// <summary>
+        /// 记录信息
+        /// </summary>
+        /// <param name="eventInfo">事件信息</param>
+        public static void FireEvent(EventInfo eventInfo) {
+            foreach (var EventProcessor in ProcessorList) {
+                EventProcessor.ProcessEvent(eventInfo);
+            }
+        }
+
+        /// <summary>
+        /// 记录信息
+        /// </summary>
+        /// <param name="message">消息</param>
+        /// <param name="parameters">消息参数</param>
+        public static void Information(string message, params object[] parameters) {
+            FireEvent(new EventInfo(EventInfo.EventType_Information, String.Format(message, parameters)));
+        }
+
+        /// <summary>
+        /// 记录警告
+        /// </summary>
+        /// <param name="message">消息</param>
+        /// <param name="parameters">消息参数</param>
+        public static void Warning(string message, params object[] parameters) {
+            FireEvent(new EventInfo(EventInfo.EventType_Warning, String.Format(message, parameters)));
+        }
+
+        /// <summary>
+        /// 记录错误
+        /// </summary>
+        /// <param name="message">消息</param>
+        /// <param name="parameters">消息参数</param>
+        public static void Error(string message, params object[] parameters) {
+            FireEvent(new EventInfo(EventInfo.EventType_Error, String.Format(message, parameters)));
+        }
+
+        /// <summary>
+        /// 记录异常
+        /// </summary>
+        /// <param name="err">异常</param>
+        public static void Exception(Exception err) {
+            FireEvent(new ExceptionEventInfo(err));
+        }
+        #endregion
     }
 }

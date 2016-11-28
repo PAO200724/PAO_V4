@@ -1,4 +1,4 @@
-﻿using PAO.Log;
+﻿using PAO.Event;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -94,7 +94,7 @@ namespace PAO.Trans
                         }
                     }
                     else {
-                        throw exp;
+                        throw;
                     }
                 }
                 finally {
@@ -112,5 +112,9 @@ namespace PAO.Trans
             Run(null, action, exceptionAction, rollbackAction);
         }
         #endregion 运行事务
+
+        public static void ProcessTransactionEvent(PaoTransaction trans) {
+            EventPublic.FireEvent(new TransactionEventInfo(trans));
+        }
     }
 }

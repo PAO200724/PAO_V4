@@ -41,14 +41,14 @@ namespace PAO.Part.Disabled
         {
         }
 
+        [NonSerialized]
+        private Exception _Exception;
         /// <summary>
-        /// 构造方法
+        /// 异常
         /// </summary>
-        /// <param name="message">消息</param>
-        /// <param name="detailInformation">详细信息</param>
-        public Status_Excepted(string message, string detailInformation) : base(message)
-        {
-            DetailInformation = detailInformation;
+        public Exception Exception {
+            get { return _Exception; }
+            set { _Exception = value; }
         }
 
         /// <summary>
@@ -57,6 +57,7 @@ namespace PAO.Part.Disabled
         /// <param name="exception">异常</param>
         public Status_Excepted(Exception exception) : base(exception.Message)
         {
+            Exception = exception;
             DetailInformation = exception.FormatException();
         }
 

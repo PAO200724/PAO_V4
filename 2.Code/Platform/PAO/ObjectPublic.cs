@@ -270,15 +270,15 @@ namespace PAO {
             if (obj is DataRow) {
                 var dataRow = obj.As<DataRow>();
                 if (!dataRow.Table.Columns.Contains(propertyName))
-                    throw new Exception("数据行中找不到指定的列").AddDetail("ColumnName", propertyName);
+                    throw new Exception("数据行中找不到指定的列").AddExceptionData("ColumnName", propertyName);
                 if (dataRow.IsNull(propertyName))
                     return default(T);
                 return dataRow[propertyName].As<T>();
             }
 
             throw new Exception("找不到指定的成员")
-                .AddDetail("Type", objType)
-                .AddDetail("MemberName", propertyName);
+                .AddExceptionData("Type", objType)
+                .AddExceptionData("MemberName", propertyName);
         }
 
         /// <summary>
@@ -324,7 +324,7 @@ namespace PAO {
             if (obj is DataRow) {
                 var dataRow = obj.As<DataRow>();
                 if (!dataRow.Table.Columns.Contains(propertyName))
-                    throw new Exception("数据行中找不到指定的列").AddDetail("ColumnName", propertyName);
+                    throw new Exception("数据行中找不到指定的列").AddExceptionData("ColumnName", propertyName);
 
                 dataRow[propertyName] = propertyValue;
             }
@@ -398,7 +398,7 @@ namespace PAO {
         /// </summary>
         /// <param name="key">键</param>
         /// <param name="value">值</param>
-        public static T AddDetail<T>(this T exception, string key, object value) where T : Exception {
+        public static T AddExceptionData<T>(this T exception, string key, object value) where T : Exception {
             exception.Data.Add(key, value);
             return exception;
         }
@@ -437,6 +437,9 @@ namespace PAO {
         /// <param name="value">值</param>
         /// <returns>字典</returns>
         public static Dictionary<K, V> Append<K, V>(this Dictionary<K, V> dict, IDictionary elements) {
+            if (elements.IsNullOrEmpty())
+                return dict;
+
             foreach (object key in elements.Keys) {
                 dict.Add((K)key, (V)elements[key]);
             }

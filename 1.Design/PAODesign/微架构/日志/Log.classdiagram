@@ -21,7 +21,7 @@
       </Interface>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
-      <class Id="e84f2053-5f5b-4b07-9c0b-8a3343e32463" name="DebugLogger" isAbstract="false" isLeaf="false" isActiveClass="false">
+      <class Id="e84f2053-5f5b-4b07-9c0b-8a3343e32463" name="DebugEventProcessor" isAbstract="false" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="e85ab97e-a8a8-439b-aedd-ceeb121b4982" />
         <suppliersInternal>
           <interfaceRealization Id="8fbbbbfe-2fe4-4bcd-8c00-7c3c106d1876">
@@ -32,7 +32,7 @@
       </class>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
-      <class Id="a0f091f1-2bac-426a-a234-b00448a1c785" name="EventLogger" isAbstract="false" isLeaf="false" isActiveClass="false">
+      <class Id="a0f091f1-2bac-426a-a234-b00448a1c785" name="EventEventProcessor" isAbstract="false" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="22d6439d-8405-4799-9b6b-0366fe0179b7" />
         <suppliersInternal>
           <interfaceRealization Id="f019bf6d-c65a-44b4-95f4-0fafc278074c">
@@ -43,7 +43,7 @@
       </class>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
-      <class Id="8bf5e4e7-0c7c-420e-9470-ee44e9dd9ca0" name="LogPublic" isAbstract="false" isLeaf="false" isActiveClass="false">
+      <class Id="8bf5e4e7-0c7c-420e-9470-ee44e9dd9ca0" name="EventPublic" isAbstract="false" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="1a93953a-435d-4284-bd95-d4f6ceb38959" />
         <targetEnds>
           <association Id="f38f1a8f-54a6-4618-b6c8-921f66ebfb91" isDerived="false" sourceEndRoleName="" targetEndRoleName="LogList" isLeaf="false" isAbstract="false">
