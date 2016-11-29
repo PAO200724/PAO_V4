@@ -1,5 +1,6 @@
 ﻿using DevExpress.XtraEditors;
 using PAO;
+using PAO.UI.WinForm.Forms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -26,6 +27,16 @@ namespace PAO.UI.WinForm
         #region 插件属性
         #endregion
         public DevExpressUI() {
+        }
+
+        public DialogResult ShowDialog(Control childControl) {
+            var dialog = new Dialog();
+            dialog.ChildControl = childControl;
+            return dialog.ShowDialog();
+        }
+
+        public DialogResult ShowDialog(string caption, Control childControl, bool cancelButton = true, bool applyButton = false) {
+            throw new NotImplementedException();
         }
 
         public void ShowExceptionDialog(Exception exception) {

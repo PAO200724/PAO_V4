@@ -11,7 +11,7 @@ using PAO.IO;
 
 namespace PAO.UI.WinForm.Controls
 {
-    public partial class ImageControl : DevExpress.XtraEditors.XtraUserControl
+    public partial class ImageControl : BaseDialogControl
     {
         [DefaultValue(50f)]
         public double MinZoomPercent { get; set; }
@@ -22,6 +22,7 @@ namespace PAO.UI.WinForm.Controls
             MinZoomPercent = 50f;
             MaxZoomPercent = 200f;
             SetControlStatus();
+            ShowApplyButton = false;
         }
 
 

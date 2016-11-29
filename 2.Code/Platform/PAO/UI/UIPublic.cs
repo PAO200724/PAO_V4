@@ -98,6 +98,16 @@ namespace PAO.UI
         public static DialogResult ShowSaveFileDialog(string caption, ref string fileName, params string[] fileFilters) {
             return DefaultUserInterface.ShowSaveFileDialog(caption, FileExtentions.BuildFileFilter(fileFilters), ref fileName);
         }
+
+        /// <summary>
+        /// 显示对话框
+        /// </summary>
+        /// <param name="childControl">子控件</param>
+        /// <returns></returns>
+        public static DialogResult ShowDialog(Control childControl) {
+            return DefaultUserInterface.ShowDialog(childControl);
+        }
+
         #endregion
     }
 }

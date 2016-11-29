@@ -9,30 +9,35 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using PAO;
+using DevExpress.XtraEditors;
+using PAO.UI.WinForm.Controls;
+using PAO.UI;
 
 namespace WinFormTest
 {
-    public partial class MainForm : Form
+    public partial class MainForm : XtraForm
     {
         public MainForm() {
             InitializeComponent();
         }
 
         private void ButtonTestInformation_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            var form = new EventTestForm();
-            form.Initialize(new EventInfo(EventInfo.EventType_Information
+            var eventInfo = new EventInfo(EventInfo.EventType_Information
                 , "这是测试消息"
                 , true
-                , true));
-            form.ShowDialog();
+                , true);
+            var eventControl = new EventControl();
+            eventControl.Initialize(eventInfo);
+            UIPublic.ShowDialog(eventControl);
         }
 
         private void ButtonTestException_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            var form = new EventTestForm();
-            form.Initialize(new ExceptionEventInfo(new Exception("这是测试消息")
+            var eventInfo = new ExceptionEventInfo(new Exception("这是测试消息")
                 , true
-                , true).AddEventData("测试", "测试"));
-            form.ShowDialog();
+                , true).AddEventData("测试", "测试");
+            var eventControl = new EventControl();
+            eventControl.Initialize(eventInfo);
+            UIPublic.ShowDialog(eventControl);
         }
     }
 }

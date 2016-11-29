@@ -44,6 +44,15 @@ namespace PAO.UI
         /// <param name="fileName">文件名</param>
         /// <param name="filter">文件过滤器</param>
         DialogResult ShowSaveFileDialog(string caption, string filter, ref string fileName);
+
+        /// <summary>
+        /// 显示对话框
+        /// </summary>
+        /// <param name="childControl">子控件</param>
+        /// <param name="cancelButton">取消按钮</param>
+        /// <param name="applyButton">应用按钮</param>
+        /// <returns></returns>
+        DialogResult ShowDialog(Control childControl);
         #endregion
     }
 }
