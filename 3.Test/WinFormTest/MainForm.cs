@@ -12,6 +12,8 @@ using PAO;
 using DevExpress.XtraEditors;
 using PAO.UI.WinForm.Controls;
 using PAO.UI;
+using PAO.Config;
+using PAO.App;
 
 namespace WinFormTest
 {
@@ -38,6 +40,12 @@ namespace WinFormTest
             var eventControl = new EventControl();
             eventControl.Initialize(eventInfo);
             UIPublic.ShowDialog(eventControl);
+        }
+
+        private void ButtonConfigTools_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+            var objectTreeControl = new ObjectTreeControl();
+            objectTreeControl.SelectedObject = PaoApplication.Default;
+            UIPublic.ShowDialog(objectTreeControl);
         }
     }
 }

@@ -39,6 +39,7 @@ namespace PAO.App {
         /// 客户端ID
         /// 客户端应用的唯一标识
         /// </summary>
+        [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
         [DisplayName("客户端ID")]
         [Description("客户端应用的唯一标识")]
@@ -51,12 +52,13 @@ namespace PAO.App {
         #region 属性:EventProcessorList
         /// <summary>
         /// 属性:EventProcessorList
-        /// 日志记录器列表
-        /// 记录日志的日志记录器列表
+        /// 事件处理器列表
+        /// 事件处理器列表
         /// </summary>
+        [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
-        [DisplayName("日志记录器列表")]
-        [Description("记录日志的日志记录器列表")]
+        [DisplayName("事件处理器列表")]
+        [Description("事件处理器列表")]
         public List<Ref<IEventProcess>> EventProcessorList {
             get;
             set;
@@ -69,6 +71,7 @@ namespace PAO.App {
         /// 服务列表
         /// 应用中后台运行的服务列表
         /// </summary>
+        [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
         [DisplayName("服务列表")]
         [Description("应用中后台运行的服务列表")]
@@ -84,6 +87,7 @@ namespace PAO.App {
         /// 服务列表
         /// 加载在远程服务器中的服务列表
         /// </summary>
+        [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
         [DisplayName("服务列表")]
         [Description("加载在远程服务器中的服务列表")]
@@ -99,6 +103,7 @@ namespace PAO.App {
         /// 全局插件列表
         /// 此列表用于检索应用中的插件，当建立插件引用时，应当在此表中增加插件
         /// </summary>
+        [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
         [DisplayName("全局插件列表")]
         [Description("此列表用于检索应用中的插件，当建立插件引用时，应当在此表中增加插件")]
@@ -114,6 +119,7 @@ namespace PAO.App {
         /// 用户界面
         /// 用户界面
         /// </summary>
+        [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
         [DisplayName("用户界面")]
         [Description("用户界面")]
@@ -163,8 +169,8 @@ namespace PAO.App {
                 }
                 #endregion 用户界面
 
-                #region 日志
-                TransactionPublic.Run("准备日志", () =>
+                #region 事件处理器
+                TransactionPublic.Run("准备事件处理器", () =>
                 {
                      if (!EventProcessorList.IsNullOrEmpty()) {
                          EventPublic.ClearEventProcessor();

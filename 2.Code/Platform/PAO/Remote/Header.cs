@@ -30,6 +30,7 @@ namespace PAO.Remote
         /// 事务
         /// 客户端事务
         /// </summary>
+        [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
         [DisplayName("事务")]
         [Description("客户端事务")]
@@ -45,6 +46,7 @@ namespace PAO.Remote
         /// 用户令牌
         /// 当前用户的令牌
         /// </summary>
+        [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
         [DisplayName("用户令牌")]
         [Description("当前用户的令牌")]

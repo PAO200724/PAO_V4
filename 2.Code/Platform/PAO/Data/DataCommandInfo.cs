@@ -28,6 +28,7 @@ namespace PAO.Data
         /// 名称
         /// 数据命令名称
         /// </summary>
+        [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
         [DisplayName("名称")]
         [Description("数据命令名称")]
@@ -43,6 +44,7 @@ namespace PAO.Data
         /// SQL语句
         /// 数据查询语句
         /// </summary>
+        [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
         [DisplayName("SQL语句")]
         [Description("数据查询语句")]
@@ -58,6 +60,7 @@ namespace PAO.Data
         /// 数据过滤器
         /// 用于过滤数据的过滤器
         /// </summary>
+        [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
         [DisplayName("数据过滤器")]
         [Description("用于过滤数据的过滤器")]

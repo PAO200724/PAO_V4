@@ -1,6 +1,6 @@
 ﻿namespace PAO.UI.WinForm.Controls
 {
-    partial class BaseDialogControl
+    partial class DialogControl
     {
         /// <summary> 
         /// Required designer variable.

@@ -7,6 +7,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WinFormTest.Properties;
+using PAO;
+using PAO.Event;
 
 namespace WinFormTest
 {
@@ -29,6 +31,9 @@ namespace WinFormTest
         private static PaoApplication CreateApplication() {
             var app = new PaoApplication()
             {
+                EventProcessorList = new List<PAO.Ref<PAO.Event.IEventProcess>>()
+                    .Append(DebugLogger.Default.ToRef())
+                    .Append(EventLogger.Default.ToRef()),
                 RunAction = () =>
                 {
                     Application.Run(new MainForm());

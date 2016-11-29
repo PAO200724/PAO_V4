@@ -53,11 +53,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplyButtonStateChangedEventArgs.cs" />
-    <Compile Include="Controls\BaseDialogControl.cs">
+    <Compile Include="Controls\DialogControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\BaseDialogControl.Designer.cs">
-      <DependentUpon>BaseDialogControl.cs</DependentUpon>
+    <Compile Include="Controls\DialogControl.Designer.cs">
+      <DependentUpon>DialogControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\EventControl.cs">
       <SubType>UserControl</SubType>
@@ -105,8 +105,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Controls\BaseDialogControl.resx">
-      <DependentUpon>BaseDialogControl.cs</DependentUpon>
+    <EmbeddedResource Include="Controls\DialogControl.resx">
+      <DependentUpon>DialogControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\EventControl.resx">
       <DependentUpon>EventControl.cs</DependentUpon>

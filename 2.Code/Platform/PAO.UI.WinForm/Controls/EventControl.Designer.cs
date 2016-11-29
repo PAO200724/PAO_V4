@@ -109,6 +109,7 @@ namespace PAO.UI.WinForm.Controls
             this.ImageControl.MaxZoomPercent = 200D;
             this.ImageControl.MinZoomPercent = 50D;
             this.ImageControl.Name = "ImageControl";
+            this.ImageControl.ReadOnly = true;
             this.ImageControl.ShowApplyButton = false;
             this.ImageControl.ShowCancelButton = true;
             this.ImageControl.Size = new System.Drawing.Size(479, 357);

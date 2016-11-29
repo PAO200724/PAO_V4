@@ -28,6 +28,7 @@ namespace PAO.Data
         /// 数据工厂名称
         /// 用于创建数据连接的数据工厂名称
         /// </summary>
+        [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
         [DisplayName("数据工厂名称")]
         [Description("用于创建数据连接的数据工厂名称")]
@@ -43,6 +44,7 @@ namespace PAO.Data
         /// 数据连接字符串
         /// 数据库连接字符串
         /// </summary>
+        [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
         [DisplayName("数据连接字符串")]
         [Description("数据库连接字符串")]
@@ -58,6 +60,7 @@ namespace PAO.Data
         /// 命令列表
         /// 数据库命令列表
         /// </summary>
+        [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
         [DisplayName("命令列表")]
         [Description("数据库命令列表")]

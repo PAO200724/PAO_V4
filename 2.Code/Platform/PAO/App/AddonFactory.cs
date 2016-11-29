@@ -27,6 +27,7 @@ namespace PAO.App
         /// 插件ID
         /// 插件ID
         /// </summary>
+        [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
         [DisplayName("插件ID")]
         [Description("插件ID")]

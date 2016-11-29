@@ -35,6 +35,8 @@
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.DefaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
+            this.MenuItemConfigTools = new DevExpress.XtraBars.BarSubItem();
+            this.ButtonConfigTools = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.BarManager)).BeginInit();
             this.SuspendLayout();
             // 
@@ -50,8 +52,10 @@
             this.BarManager.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.ButtonTestInformation,
             this.barSubItem1,
-            this.ButtonTestException});
-            this.BarManager.MaxItemId = 3;
+            this.ButtonTestException,
+            this.MenuItemConfigTools,
+            this.ButtonConfigTools});
+            this.BarManager.MaxItemId = 5;
             // 
             // bar1
             // 
@@ -60,7 +64,8 @@
             this.bar1.DockRow = 0;
             this.bar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
             this.bar1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.barSubItem1)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.barSubItem1),
+            new DevExpress.XtraBars.LinkPersistInfo(this.MenuItemConfigTools)});
             this.bar1.Text = "Tools";
             // 
             // barSubItem1
@@ -91,38 +96,53 @@
             this.barDockControlTop.CausesValidation = false;
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(881, 28);
+            this.barDockControlTop.Size = new System.Drawing.Size(1028, 29);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 575);
-            this.barDockControlBottom.Size = new System.Drawing.Size(881, 0);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 671);
+            this.barDockControlBottom.Size = new System.Drawing.Size(1028, 0);
             // 
             // barDockControlLeft
             // 
             this.barDockControlLeft.CausesValidation = false;
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 28);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 547);
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 29);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 642);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(881, 28);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 547);
+            this.barDockControlRight.Location = new System.Drawing.Point(1028, 29);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 642);
             // 
             // DefaultLookAndFeel
             // 
-            this.DefaultLookAndFeel.LookAndFeel.SkinName = "Visual Studio 2013 Dark";
+            this.DefaultLookAndFeel.LookAndFeel.SkinName = "Office 2010 Blue";
+            // 
+            // MenuItemConfigTools
+            // 
+            this.MenuItemConfigTools.Caption = "配置工具测试(&C)";
+            this.MenuItemConfigTools.Id = 3;
+            this.MenuItemConfigTools.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonConfigTools)});
+            this.MenuItemConfigTools.Name = "MenuItemConfigTools";
+            // 
+            // ButtonConfigTools
+            // 
+            this.ButtonConfigTools.Caption = "配置工具";
+            this.ButtonConfigTools.Id = 4;
+            this.ButtonConfigTools.Name = "ButtonConfigTools";
+            this.ButtonConfigTools.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonConfigTools_ItemClick);
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(881, 575);
+            this.ClientSize = new System.Drawing.Size(1028, 671);
             this.Controls.Add(this.barDockControlLeft);
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
@@ -147,6 +167,8 @@
         private DevExpress.XtraBars.BarSubItem barSubItem1;
         private DevExpress.XtraBars.BarButtonItem ButtonTestException;
         private DevExpress.LookAndFeel.DefaultLookAndFeel DefaultLookAndFeel;
+        private DevExpress.XtraBars.BarSubItem MenuItemConfigTools;
+        private DevExpress.XtraBars.BarButtonItem ButtonConfigTools;
     }
 }
 

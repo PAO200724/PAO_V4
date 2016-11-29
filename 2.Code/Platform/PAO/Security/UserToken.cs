@@ -28,6 +28,7 @@ namespace PAO.Security
         /// 会话ID
         /// 验证服务器生成的会话ID，每次用户登录生成一个会话
         /// </summary>
+        [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
         [DisplayName("会话ID")]
         [Description("验证服务器生成的会话ID，每次用户登录生成一个会话")]
@@ -43,6 +44,7 @@ namespace PAO.Security
         /// 用户ID
         /// 用户唯一编号
         /// </summary>
+        [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
         [DisplayName("用户ID")]
         [Description("用户唯一编号")]
@@ -58,6 +60,7 @@ namespace PAO.Security
         /// 计算机ID
         /// 当前计算机的唯一标识
         /// </summary>
+        [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
         [DisplayName("计算机ID")]
         [Description("当前计算机的唯一标识")]

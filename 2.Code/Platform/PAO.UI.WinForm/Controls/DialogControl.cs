@@ -13,9 +13,9 @@ namespace PAO.UI.WinForm.Controls
     /// <summary>
     /// 基础对话框控件
     /// </summary>
-    public partial class BaseDialogControl : DevExpress.XtraEditors.XtraUserControl, IDialogControl
+    public partial class DialogControl : DevExpress.XtraEditors.XtraUserControl, IDialogControl
     {
-        public BaseDialogControl() {
+        public DialogControl() {
             InitializeComponent();
             ShowApplyButton = true;
             ShowCancelButton = true;

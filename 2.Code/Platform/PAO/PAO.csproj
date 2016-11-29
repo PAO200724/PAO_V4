@@ -43,6 +43,8 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AOP\AddonAttribute.cs" />
+    <Compile Include="AOP\AddonPropertyAttribute.cs" />
     <Compile Include="App\AddonFactory.cs" />
     <Compile Include="App\AddonPublic.cs" />
     <Compile Include="App\AppPublic.cs" />

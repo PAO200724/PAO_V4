@@ -24,6 +24,7 @@ namespace PAO {
         /// 缓存实例
         /// 如果缓存了实例，则除非BuildRef，否则不重新创建实例，默认为true
         /// </summary>
+        [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
         [DisplayName("缓存实例")]
         [Description("如果缓存了实例，则除非BuildRef，否则不重新创建实例，默认为true")]

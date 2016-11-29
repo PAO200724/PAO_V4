@@ -25,6 +25,7 @@ namespace PAO.Data {
         /// 数据连接
         /// 用于连接数据库的数据连接
         /// </summary>
+        [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
         [DisplayName("数据连接")]
         [Description("用于连接数据库的数据连接")]

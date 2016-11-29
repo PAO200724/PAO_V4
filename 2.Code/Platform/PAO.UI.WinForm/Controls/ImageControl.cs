@@ -11,7 +11,7 @@ using PAO.IO;
 
 namespace PAO.UI.WinForm.Controls
 {
-    public partial class ImageControl : BaseDialogControl
+    public partial class ImageControl : DialogControl
     {
         [DefaultValue(50f)]
         public double MinZoomPercent { get; set; }
@@ -23,8 +23,19 @@ namespace PAO.UI.WinForm.Controls
             MaxZoomPercent = 200f;
             SetControlStatus();
             ShowApplyButton = false;
+            ShowCancelButton = false;
         }
 
+        [DefaultValue(false)]
+        public bool ReadOnly {
+            get {
+                return PictureEdit.Properties.ReadOnly;
+            }
+
+            set {
+                PictureEdit.Properties.ReadOnly = value;
+            }
+        }
 
         private void SetControlStatus() {
             var imageNull = (Image == null);

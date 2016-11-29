@@ -475,5 +475,11 @@ namespace PAO {
             return list;
         }
         #endregion
+
+        #region Ref
+        public static Ref<T> ToRef<T>(this T obj) {
+            return new ObjectRef<T>(obj);
+        }
+        #endregion
     }
 }

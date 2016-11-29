@@ -31,6 +31,7 @@ namespace PAO.Remote.WCF
         /// 地址
         /// 服务基础地址
         /// </summary>
+        [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
         [DisplayName("地址")]
         [Description("服务基础地址")]
@@ -46,6 +47,7 @@ namespace PAO.Remote.WCF
         /// 服务名称
         /// 服务对应的名称
         /// </summary>
+        [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
         [DisplayName("服务名称")]
         [Description("服务对应的名称")]

@@ -27,6 +27,7 @@ namespace PAO.Part.Enabled.Running
         /// 步骤
         /// 当前处理步骤（百分比）
         /// </summary>
+        [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
         [DisplayName("步骤")]
         [Description("当前处理步骤（百分比）")]

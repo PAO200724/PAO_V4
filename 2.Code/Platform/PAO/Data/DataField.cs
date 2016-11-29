@@ -27,6 +27,7 @@ namespace PAO.Data
         /// 类型
         /// 数据字段的类型
         /// </summary>
+        [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
         [DisplayName("类型")]
         [Description("数据字段的类型")]
@@ -42,6 +43,7 @@ namespace PAO.Data
         /// 名称
         /// 字段名称
         /// </summary>
+        [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
         [DisplayName("名称")]
         [Description("字段名称")]
@@ -57,6 +59,7 @@ namespace PAO.Data
         /// 标题
         /// 字段标题
         /// </summary>
+        [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
         [DisplayName("标题")]
         [Description("字段标题")]
@@ -72,6 +75,7 @@ namespace PAO.Data
         /// 值
         /// 字段值
         /// </summary>
+        [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
         [DisplayName("值")]
         [Description("字段值")]

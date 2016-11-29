@@ -27,6 +27,7 @@ namespace PAO.Part.Enabled
         /// 耗时
         /// 程序完成所耗费的时间
         /// </summary>
+        [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
         [DisplayName("耗时")]
         [Description("程序完成所耗费的时间")]

@@ -30,6 +30,7 @@ namespace PAO.Trans
         /// 上级事务ID
         /// 上级事务的唯一标识
         /// </summary>
+        [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
         [DisplayName("上级事务ID")]
         [Description("上级事务的唯一标识")]
@@ -45,6 +46,7 @@ namespace PAO.Trans
         /// 事务名称
         /// 事务名称
         /// </summary>
+        [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
         [DisplayName("事务名称")]
         [Description("事务名称")]
@@ -60,6 +62,7 @@ namespace PAO.Trans
         /// 启动时间
         /// 事务启动时间
         /// </summary>
+        [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
         [DisplayName("启动时间")]
         [Description("事务启动时间")]
