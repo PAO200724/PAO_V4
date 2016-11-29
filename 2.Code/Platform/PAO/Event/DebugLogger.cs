@@ -18,11 +18,11 @@ namespace PAO.Event {
     [DataContract(Namespace = "")]
     [DisplayName("调试记录器")]
     [Description("将日志记录在调试窗口")]
-    public class DebugLogger : PaoObject, IEventProcess {
+    public class DebugLogger : BaseEventProcessor {
         /// <summary>
         /// 默认记录器
         /// </summary>
-        public readonly static IEventProcess Default = new DebugLogger();
+        public readonly static BaseEventProcessor Default = new DebugLogger();
         /// <summary>
         /// 日志格式
         /// </summary>
@@ -32,7 +32,7 @@ namespace PAO.Event {
         public DebugLogger() {
         }
 
-        public void ProcessEvent(EventInfo eventInfo) {
+        public override void ProcessEvent(EventInfo eventInfo) {
             Debug.WriteLine(eventInfo.ToString());
         }
 

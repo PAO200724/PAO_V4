@@ -19,11 +19,11 @@ namespace PAO.Event {
     [DataContract(Namespace = "")]
     [DisplayName("系统日志记录器")]
     [Description("在系统日志中记录日志的记录器")]
-    public class EventLogger : PaoObject, IEventProcess {
+    public class EventLogger : BaseEventProcessor {
         /// <summary>
         /// 默认记录器
         /// </summary>
-        public readonly static IEventProcess Default = new EventLogger();
+        public readonly static BaseEventProcessor Default = new EventLogger();
         #region 插件属性
         #endregion
 
@@ -35,7 +35,7 @@ namespace PAO.Event {
         }
 
 
-        public void ProcessEvent(EventInfo eventInfo) {
+        public override void ProcessEvent(EventInfo eventInfo) {
             EventLog.WriteEntry(eventInfo.Source, eventInfo.ToString());
         }
     }

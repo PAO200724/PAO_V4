@@ -57,7 +57,7 @@ namespace PAO.App {
         [DataMember(EmitDefaultValue = false)]
         [DisplayName("日志记录器列表")]
         [Description("记录日志的日志记录器列表")]
-        public List<Ref<IEventProcess>> EventProcessorList {
+        public List<Ref<BaseEventProcessor>> EventProcessorList {
             get;
             set;
         }
@@ -133,7 +133,7 @@ namespace PAO.App {
 
         public PaoApplication() {
             ServerList = new List<PAO.Ref<Server.BaseServer>>();
-            EventProcessorList = new List<PAO.Ref<IEventProcess>>();
+            EventProcessorList = new List<PAO.Ref<BaseEventProcessor>>();
             ServiceList = new Dictionary<string, PAO.Ref<object>>();
         }
 
@@ -147,6 +147,15 @@ namespace PAO.App {
         /// </summary>
         public Action<Exception> OnException;
 
+        /// <summary>
+        /// 程序启动
+        /// </summary>
+        public Action OnStart;
+
+        /// <summary>
+        /// 程序运行
+        /// </summary>
+        public Action OnRunning;
         /// <summary>
         /// 运行
         /// </summary>
@@ -163,8 +172,8 @@ namespace PAO.App {
                 }
                 #endregion 用户界面
 
-                #region 日志
-                TransactionPublic.Run("准备日志", () =>
+                #region 事件
+                TransactionPublic.Run("事件处理机准备", () =>
                 {
                      if (!EventProcessorList.IsNullOrEmpty()) {
                          EventPublic.ClearEventProcessor();
@@ -220,16 +229,6 @@ namespace PAO.App {
                 RunAction();
 
             OnRunning();
-        }
-
-        /// <summary>
-        /// 程序启动
-        /// </summary>
-        protected virtual void OnStart(){
-        }
-
-        protected virtual void OnRunning() {
-
         }
     }
 }

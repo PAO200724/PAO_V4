@@ -66,7 +66,7 @@
     <Compile Include="Event\EventInfo.cs" />
     <Compile Include="Event\EventPublic.cs" />
     <Compile Include="Event\ExceptionEventInfo.cs" />
-    <Compile Include="Event\IEventProcess.cs" />
+    <Compile Include="Event\BaseEventProcessor.cs" />
     <Compile Include="IO\Binary\BinaryPublic.cs" />
     <Compile Include="IO\Binary\BinarySerializer.cs" />
     <Compile Include="IO\Binary\XmlBinarySerializer.cs" />

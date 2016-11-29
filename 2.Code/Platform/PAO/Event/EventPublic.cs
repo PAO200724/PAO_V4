@@ -33,7 +33,7 @@ namespace PAO.Event
         /// <summary>
         /// Log列表
         /// </summary>
-        public readonly static List<IEventProcess> ProcessorList = new List<IEventProcess>();
+        public readonly static List<BaseEventProcessor> ProcessorList = new List<BaseEventProcessor>();
 
         static EventPublic() {
             AddEventProcessor(DebugLogger.Default);
@@ -43,7 +43,7 @@ namespace PAO.Event
         /// 添加记录器
         /// </summary>
         /// <param name="EventProcessor">日志记录器</param>
-        public static void AddEventProcessor(IEventProcess eventProcessor) {
+        public static void AddEventProcessor(BaseEventProcessor eventProcessor) {
             if (!ProcessorList.Contains(eventProcessor))
                 ProcessorList.Add(eventProcessor);
         }
@@ -52,7 +52,7 @@ namespace PAO.Event
         /// 移除记录器
         /// </summary>
         /// <param name="EventProcessor">日志记录器</param>
-        public static void RemoveEventProcessor(IEventProcess eventProcessor) {
+        public static void RemoveEventProcessor(BaseEventProcessor eventProcessor) {
             if (ProcessorList.Contains(eventProcessor))
                 ProcessorList.Remove(eventProcessor);
         }
@@ -69,7 +69,8 @@ namespace PAO.Event
         /// </summary>
         /// <param name="eventInfo">事件信息</param>
         public static void FireEvent(EventInfo eventInfo) {
-            foreach (var EventProcessor in ProcessorList) {
+            var processorSortByPriority = ProcessorList.OrderBy(p => p.Priority);
+            foreach (var EventProcessor in processorSortByPriority) {
                 EventProcessor.ProcessEvent(eventInfo);
             }
         }
