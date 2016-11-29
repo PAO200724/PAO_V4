@@ -7,6 +7,7 @@ using System.Text;
 using System.Linq;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
+using PAO.IO;
 
 namespace PAO.UI.WinForm.Controls
 {
@@ -36,19 +37,22 @@ namespace PAO.UI.WinForm.Controls
         public Image Image {
             get { return PictureEdit.Image; }
             set { PictureEdit.Image = value;
+                StretchScreenShot();
                 SetControlStatus();
             }
         }
 
-
-        private void ButtonFitSize_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+        private void StretchScreenShot() {
             var image = PictureEdit.Image;
-            if(image != null) {
+            if (image != null) {
                 var horzZoomPercent = (double)PictureEdit.ClientRectangle.Width / image.Width;
                 var vertZoomPercent = (double)PictureEdit.ClientRectangle.Height / image.Height;
                 PictureEdit.Properties.ZoomPercent = Math.Min(horzZoomPercent, vertZoomPercent) * 98f;
             }
+        }
 
+        private void ButtonFitSize_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+            StretchScreenShot();
             SetControlStatus();
         }
 
@@ -71,13 +75,16 @@ namespace PAO.UI.WinForm.Controls
 
             SetControlStatus();
         }
-
-        private void ButtonTakePicture_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            // TODO: PAO, 此处实现拍照功能
-        }
-
+        
         private void ButtonSave_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            // TODO: PAO, 此处实现保存功能
+            string fileName = "*.png";
+            if(UIPublic.ShowSaveFileDialog("保存图片", ref fileName
+                , FileExtentions.PNG
+                , FileExtentions.JPG
+                , FileExtentions.BMP
+                , FileExtentions.All) == DialogResult.OK) {
+                PictureEdit.Image.Save(fileName);
+            }
         }
     }
 }

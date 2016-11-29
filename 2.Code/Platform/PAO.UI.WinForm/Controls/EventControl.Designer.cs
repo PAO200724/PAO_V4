@@ -41,8 +41,6 @@ namespace PAO.UI.WinForm.Controls
             this.TextEditMessage = new DevExpress.XtraEditors.TextEdit();
             this.RootGroup = new DevExpress.XtraLayout.LayoutControlGroup();
             this.TabbedControlGroup = new DevExpress.XtraLayout.TabbedControlGroup();
-            this.LayoutControlGroupScreenShot = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.LayoutControlItemPicture = new DevExpress.XtraLayout.LayoutControlItem();
             this.LayoutControlGroupCommon = new DevExpress.XtraLayout.LayoutControlGroup();
             this.LayoutControlItemTime = new DevExpress.XtraLayout.LayoutControlItem();
             this.LayoutControlItemMessage = new DevExpress.XtraLayout.LayoutControlItem();
@@ -52,6 +50,8 @@ namespace PAO.UI.WinForm.Controls
             this.LayoutControlItemSource = new DevExpress.XtraLayout.LayoutControlItem();
             this.LayoutControlGroupData = new DevExpress.XtraLayout.LayoutControlGroup();
             this.LayoutControlItemData = new DevExpress.XtraLayout.LayoutControlItem();
+            this.LayoutControlGroupScreenShot = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.LayoutControlItemPicture = new DevExpress.XtraLayout.LayoutControlItem();
             this.LayoutControlGroupAssetSnapshot = new DevExpress.XtraLayout.LayoutControlGroup();
             this.LayoutControlItemAssetSnapshot = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.LayoutControl)).BeginInit();
@@ -66,8 +66,6 @@ namespace PAO.UI.WinForm.Controls
             ((System.ComponentModel.ISupportInitialize)(this.TextEditMessage.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RootGroup)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TabbedControlGroup)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.LayoutControlGroupScreenShot)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.LayoutControlItemPicture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.LayoutControlGroupCommon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.LayoutControlItemTime)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.LayoutControlItemMessage)).BeginInit();
@@ -77,6 +75,8 @@ namespace PAO.UI.WinForm.Controls
             ((System.ComponentModel.ISupportInitialize)(this.LayoutControlItemSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.LayoutControlGroupData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.LayoutControlItemData)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.LayoutControlGroupScreenShot)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.LayoutControlItemPicture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.LayoutControlGroupAssetSnapshot)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.LayoutControlItemAssetSnapshot)).BeginInit();
             this.SuspendLayout();
@@ -105,6 +105,8 @@ namespace PAO.UI.WinForm.Controls
             // 
             this.ImageControl.Image = null;
             this.ImageControl.Location = new System.Drawing.Point(86, 24);
+            this.ImageControl.MaxZoomPercent = 200D;
+            this.ImageControl.MinZoomPercent = 50D;
             this.ImageControl.Name = "ImageControl";
             this.ImageControl.Size = new System.Drawing.Size(462, 337);
             this.ImageControl.TabIndex = 12;
@@ -215,8 +217,8 @@ namespace PAO.UI.WinForm.Controls
             this.TabbedControlGroup.HeaderOrientation = DevExpress.XtraTab.TabOrientation.Horizontal;
             this.TabbedControlGroup.Location = new System.Drawing.Point(0, 0);
             this.TabbedControlGroup.Name = "TabbedControlGroup";
-            this.TabbedControlGroup.SelectedTabPage = this.LayoutControlGroupCommon;
-            this.TabbedControlGroup.SelectedTabPageIndex = 0;
+            this.TabbedControlGroup.SelectedTabPage = this.LayoutControlGroupScreenShot;
+            this.TabbedControlGroup.SelectedTabPageIndex = 2;
             this.TabbedControlGroup.Size = new System.Drawing.Size(552, 365);
             this.TabbedControlGroup.TabPages.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.LayoutControlGroupCommon,
@@ -224,25 +226,6 @@ namespace PAO.UI.WinForm.Controls
             this.LayoutControlGroupScreenShot,
             this.LayoutControlGroupAssetSnapshot});
             this.TabbedControlGroup.TextLocation = DevExpress.Utils.Locations.Left;
-            // 
-            // LayoutControlGroupScreenShot
-            // 
-            this.LayoutControlGroupScreenShot.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.LayoutControlItemPicture});
-            this.LayoutControlGroupScreenShot.Location = new System.Drawing.Point(0, 0);
-            this.LayoutControlGroupScreenShot.Name = "LayoutControlGroupScreenShot";
-            this.LayoutControlGroupScreenShot.Size = new System.Drawing.Size(466, 341);
-            this.LayoutControlGroupScreenShot.Text = "屏幕截图";
-            // 
-            // LayoutControlItemPicture
-            // 
-            this.LayoutControlItemPicture.Control = this.ImageControl;
-            this.LayoutControlItemPicture.Location = new System.Drawing.Point(0, 0);
-            this.LayoutControlItemPicture.Name = "LayoutControlItemPicture";
-            this.LayoutControlItemPicture.Size = new System.Drawing.Size(466, 341);
-            this.LayoutControlItemPicture.Text = "屏幕截图";
-            this.LayoutControlItemPicture.TextSize = new System.Drawing.Size(0, 0);
-            this.LayoutControlItemPicture.TextVisible = false;
             // 
             // LayoutControlGroupCommon
             // 
@@ -334,6 +317,25 @@ namespace PAO.UI.WinForm.Controls
             this.LayoutControlItemData.TextSize = new System.Drawing.Size(0, 0);
             this.LayoutControlItemData.TextVisible = false;
             // 
+            // LayoutControlGroupScreenShot
+            // 
+            this.LayoutControlGroupScreenShot.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.LayoutControlItemPicture});
+            this.LayoutControlGroupScreenShot.Location = new System.Drawing.Point(0, 0);
+            this.LayoutControlGroupScreenShot.Name = "LayoutControlGroupScreenShot";
+            this.LayoutControlGroupScreenShot.Size = new System.Drawing.Size(466, 341);
+            this.LayoutControlGroupScreenShot.Text = "屏幕截图";
+            // 
+            // LayoutControlItemPicture
+            // 
+            this.LayoutControlItemPicture.Control = this.ImageControl;
+            this.LayoutControlItemPicture.Location = new System.Drawing.Point(0, 0);
+            this.LayoutControlItemPicture.Name = "LayoutControlItemPicture";
+            this.LayoutControlItemPicture.Size = new System.Drawing.Size(466, 341);
+            this.LayoutControlItemPicture.Text = "屏幕截图";
+            this.LayoutControlItemPicture.TextSize = new System.Drawing.Size(0, 0);
+            this.LayoutControlItemPicture.TextVisible = false;
+            // 
             // LayoutControlGroupAssetSnapshot
             // 
             this.LayoutControlGroupAssetSnapshot.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
@@ -373,8 +375,6 @@ namespace PAO.UI.WinForm.Controls
             ((System.ComponentModel.ISupportInitialize)(this.TextEditMessage.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.RootGroup)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TabbedControlGroup)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.LayoutControlGroupScreenShot)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.LayoutControlItemPicture)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.LayoutControlGroupCommon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.LayoutControlItemTime)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.LayoutControlItemMessage)).EndInit();
@@ -384,6 +384,8 @@ namespace PAO.UI.WinForm.Controls
             ((System.ComponentModel.ISupportInitialize)(this.LayoutControlItemSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.LayoutControlGroupData)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.LayoutControlItemData)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.LayoutControlGroupScreenShot)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.LayoutControlItemPicture)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.LayoutControlGroupAssetSnapshot)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.LayoutControlItemAssetSnapshot)).EndInit();
             this.ResumeLayout(false);

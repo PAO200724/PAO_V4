@@ -100,5 +100,24 @@ namespace PAO.IO
         /// 图像文件
         /// </summary>
         public const string Images = "图像文件(*.bmp;*.jpg;*.gif;*.png;*.tiff)|*.bmp;*.jpg;*.gif;*.png;*.tiff";
+
+        /// <summary>
+        /// 创建文件过滤器
+        /// </summary>
+        /// <returns></returns>
+        public static string BuildFileFilter(params string[] filters) {
+            if (filters.IsNullOrEmpty())
+                return null;
+
+            string fullFilter = null;
+            foreach(var filter in filters) {
+                if(fullFilter.IsNotNullOrEmpty()) {
+                    fullFilter += "|";
+                }
+                fullFilter += filter;
+            }
+
+            return fullFilter;
+        }
     }
 }

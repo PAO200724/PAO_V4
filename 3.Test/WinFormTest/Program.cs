@@ -1,4 +1,6 @@
 ﻿using PAO.App;
+using PAO.UI;
+using PAO.UI.WinForm;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +17,8 @@ namespace WinFormTest
         /// </summary>
         [STAThread]
         static void Main() {
+            UIPublic.DefaultUserInterface = new DevExpressUI();
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             // 应用程序启动时创建PaoApplication

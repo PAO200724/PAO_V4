@@ -63,7 +63,6 @@
     <Compile Include="Views\ExceptionForm.xaml.cs">
       <DependentUpon>ExceptionForm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="WPFUI.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PAO\PAO.csproj">

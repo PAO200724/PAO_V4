@@ -70,7 +70,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="WinFormUI.cs" />
+    <Compile Include="DevExpressUI.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PAO\PAO.csproj">
