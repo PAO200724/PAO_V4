@@ -42,7 +42,7 @@ namespace PAO.Event
         /// <summary>
         /// 添加记录器
         /// </summary>
-        /// <param name="EventProcessor">日志记录器</param>
+        /// <param name="eventProcessor">日志记录器</param>
         public static void AddEventProcessor(BaseEventProcessor eventProcessor) {
             if (!ProcessorList.Contains(eventProcessor))
                 ProcessorList.Add(eventProcessor);
@@ -51,7 +51,7 @@ namespace PAO.Event
         /// <summary>
         /// 移除记录器
         /// </summary>
-        /// <param name="EventProcessor">日志记录器</param>
+        /// <param name="eventProcessor">日志记录器</param>
         public static void RemoveEventProcessor(BaseEventProcessor eventProcessor) {
             if (ProcessorList.Contains(eventProcessor))
                 ProcessorList.Remove(eventProcessor);
@@ -70,8 +70,11 @@ namespace PAO.Event
         /// <param name="eventInfo">事件信息</param>
         public static void FireEvent(EventInfo eventInfo) {
             var processorSortByPriority = ProcessorList.OrderBy(p => p.Priority);
-            foreach (var EventProcessor in processorSortByPriority) {
-                EventProcessor.ProcessEvent(eventInfo);
+            foreach (var eventProcessor in processorSortByPriority) {
+                eventProcessor.ProcessEvent(eventInfo);
+                // 如果事件处理机Handle了事件，则直接退出循环
+                if (eventProcessor.Handled)
+                    break;
             }
         }
 

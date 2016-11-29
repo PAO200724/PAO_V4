@@ -74,7 +74,8 @@ namespace PAO.Trans
 
             try {
                 trans.Start();
-                action();
+                if(action != null)
+                    action();
                 trans.Commit();
             }
             catch (Exception exp) {

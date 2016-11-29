@@ -36,9 +36,26 @@ namespace PAO.Event
             set;
         }
         #endregion 属性：Priority
+
+        #region 属性：Handled
+        /// <summary>
+        /// 属性：Handled
+        /// 已处理
+        /// 设定了此属性为True时，不再执行优先级低的事件处理机
+        /// </summary>
+        [DataMember(EmitDefaultValue = false)]
+        [DisplayName("已处理")]
+        [Description("设定了此属性为True时，不再执行优先级低的事件处理机")]
+        [DefaultValue("false")]
+        public bool Handled {
+            get;
+            set;
+        }
+        #endregion 属性：Handled
         #endregion
         public BaseEventProcessor() {
             Priority = 10;
+            Handled = false;
         }
 
         public abstract void ProcessEvent(EventInfo eventInfo);
