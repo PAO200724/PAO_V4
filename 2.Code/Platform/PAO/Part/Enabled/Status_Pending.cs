@@ -16,7 +16,7 @@ namespace PAO.Part.Enabled
     /// </summary>
     [Serializable]
     [DataContract(Namespace = "")]
-    [DisplayName("暂停")]
+    [Name("暂停")]
     [Description("暂停状态")]
     public class Status_Pending : Status_Enabled
     {

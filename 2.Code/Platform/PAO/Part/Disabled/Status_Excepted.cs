@@ -16,7 +16,7 @@ namespace PAO.Part.Disabled
     /// </summary>
     [Serializable]
     [DataContract(Namespace = "")]
-    [DisplayName("异常状态")]
+    [Name("异常状态")]
     [Description("表示处于长时间异常的状态")]
     public class Status_Excepted : Status_Disabled
     {
@@ -29,7 +29,7 @@ namespace PAO.Part.Disabled
         /// </summary>
         [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
-        [DisplayName("详细信息")]
+        [Name("详细信息")]
         [Description("用字符串表示的异常详细信息")]
         public string DetailInformation
         {

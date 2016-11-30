@@ -14,7 +14,7 @@ namespace PAO {
     [Serializable]
     [Addon]
     [DataContract(Namespace = "")]
-    [DisplayName("基础对象")]
+    [Name("基础对象")]
     [Description("插件类，所有实体对象的基类")]
     public class PaoObject {
         #region 插件属性
@@ -26,7 +26,7 @@ namespace PAO {
         /// </summary>
         [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
-        [DisplayName("ID")]
+        [Name("ID")]
         [Description("唯一编号")]
         public string ID {
             get;

@@ -17,7 +17,7 @@ namespace PAO.Trans
     /// </summary>
     [Serializable]
     [DataContract(Namespace = "")]
-    [DisplayName("运行中")]
+    [Name("运行中")]
     [Description("运行中状态")]
     public class TransStatus_Running : Status_Running
     {

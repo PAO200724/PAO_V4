@@ -16,7 +16,7 @@ namespace PAO.Event {
     /// </summary>
     [Serializable]
     [DataContract(Namespace = "")]
-    [DisplayName("调试记录器")]
+    [Name("调试记录器")]
     [Description("将日志记录在调试窗口")]
     public class DebugLogger : BaseEventProcessor {
         /// <summary>

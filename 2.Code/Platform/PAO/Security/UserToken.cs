@@ -16,7 +16,7 @@ namespace PAO.Security
     /// </summary>
     [Serializable]
     [DataContract(Namespace = "")]
-    [DisplayName("用户令牌")]
+    [Name("用户令牌")]
     [Description("包含用户基础信息的令牌")]
     public class UserToken : PaoObject
     {
@@ -30,7 +30,7 @@ namespace PAO.Security
         /// </summary>
         [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
-        [DisplayName("会话ID")]
+        [Name("会话ID")]
         [Description("验证服务器生成的会话ID，每次用户登录生成一个会话")]
         public string SessinID {
             get;
@@ -46,7 +46,7 @@ namespace PAO.Security
         /// </summary>
         [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
-        [DisplayName("用户ID")]
+        [Name("用户ID")]
         [Description("用户唯一编号")]
         public string UserID {
             get;
@@ -62,7 +62,7 @@ namespace PAO.Security
         /// </summary>
         [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
-        [DisplayName("计算机ID")]
+        [Name("计算机ID")]
         [Description("当前计算机的唯一标识")]
         public string ComputerID {
             get;

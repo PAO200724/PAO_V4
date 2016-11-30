@@ -18,7 +18,7 @@ namespace PAO.Remote
     /// </summary>
     [Serializable]
     [DataContract(Namespace = "")]
-    [DisplayName("协议头")]
+    [Name("协议头")]
     [Description("远程调用的协议头")]
     public class Header : Object
     {
@@ -32,7 +32,7 @@ namespace PAO.Remote
         /// </summary>
         [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
-        [DisplayName("事务")]
+        [Name("事务")]
         [Description("客户端事务")]
         public PaoTransaction Transaction {
             get;
@@ -48,7 +48,7 @@ namespace PAO.Remote
         /// </summary>
         [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
-        [DisplayName("用户令牌")]
+        [Name("用户令牌")]
         [Description("当前用户的令牌")]
         public UserToken UserToken {
             get;

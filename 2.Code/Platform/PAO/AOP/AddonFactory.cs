@@ -1,4 +1,5 @@
 ﻿using PAO;
+using PAO.App;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -6,7 +7,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 
-namespace PAO.App
+namespace PAO
 {
     /// <summary>
     /// 类：AddonFactory
@@ -16,7 +17,7 @@ namespace PAO.App
     /// </summary>
     [Serializable]
     [DataContract(Namespace = "")]
-    [DisplayName("插件工厂")]
+    [Name("插件工厂")]
     [Description("是在默认应用中的GlobalAddonList查找插件的工厂")]
     public class AddonFactory<T> : Factory<T> where T : PaoObject
     {
@@ -29,7 +30,7 @@ namespace PAO.App
         /// </summary>
         [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
-        [DisplayName("插件ID")]
+        [Name("插件ID")]
         [Description("插件ID")]
         public string AddonID {
             get;

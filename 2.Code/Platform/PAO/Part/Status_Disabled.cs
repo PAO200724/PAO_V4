@@ -16,7 +16,7 @@ namespace PAO.Part
     /// </summary>
     [Serializable]
     [DataContract(Namespace = "")]
-    [DisplayName("失效状态")]
+    [Name("失效状态")]
     [Description("失效状态")]
     public class Status_Disabled : Status
     {
@@ -28,7 +28,7 @@ namespace PAO.Part
         /// 失效的说明
         /// </summary>
         [DataMember(EmitDefaultValue = false)]
-        [DisplayName("异常消息")]
+        [Name("异常消息")]
         [Description("失效的说明")]
         public string Message
         {

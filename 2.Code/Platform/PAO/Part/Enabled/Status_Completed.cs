@@ -16,7 +16,7 @@ namespace PAO.Part.Enabled
     /// </summary>
     [Serializable]
     [DataContract(Namespace = "")]
-    [DisplayName("完成")]
+    [Name("完成")]
     [Description("完成状态")]
     public class Status_Completed : Status_Enabled
     {
@@ -29,7 +29,7 @@ namespace PAO.Part.Enabled
         /// </summary>
         [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
-        [DisplayName("耗时")]
+        [Name("耗时")]
         [Description("程序完成所耗费的时间")]
         public TimeSpan SpendTime {
             get;

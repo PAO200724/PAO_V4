@@ -16,7 +16,7 @@ namespace PAO.Data.Filters
     /// </remarks>
     [DataContract(Namespace = "")]
     [Serializable]
-    [DisplayName("组合逻辑过滤器")]
+    [Name("组合逻辑过滤器")]
     [Description("创建And逻辑表达式的过滤器")]
     public abstract class CompositeLogicFilter : BaseDataFilter
     {
@@ -29,7 +29,7 @@ namespace PAO.Data.Filters
         /// </summary>
         [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
-        [DisplayName("子过滤器")]
+        [Name("子过滤器")]
         [Description("自过滤器列表")]
         public List<IDataFilter> ChildFilters {
             get;

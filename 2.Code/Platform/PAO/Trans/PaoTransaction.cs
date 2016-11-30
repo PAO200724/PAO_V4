@@ -19,7 +19,7 @@ namespace PAO.Trans
     /// </summary>
     [Serializable]
     [DataContract(Namespace = "")]
-    [DisplayName("事务")]
+    [Name("事务")]
     [Description("PAO架构中的事务支持类")]
     public class PaoTransaction : BasePart
     {
@@ -32,7 +32,7 @@ namespace PAO.Trans
         /// </summary>
         [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
-        [DisplayName("上级事务ID")]
+        [Name("上级事务ID")]
         [Description("上级事务的唯一标识")]
         public string ParentID {
             get;
@@ -48,7 +48,7 @@ namespace PAO.Trans
         /// </summary>
         [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
-        [DisplayName("事务名称")]
+        [Name("事务名称")]
         [Description("事务名称")]
         public string Name {
             get;
@@ -64,7 +64,7 @@ namespace PAO.Trans
         /// </summary>
         [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
-        [DisplayName("启动时间")]
+        [Name("启动时间")]
         [Description("事务启动时间")]
         public DateTime StartTime {
             get;

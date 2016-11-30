@@ -22,7 +22,7 @@ namespace PAO.App {
     /// </summary>
     [Serializable]
     [DataContract(Namespace = "")]
-    [DisplayName("Pao应用")]
+    [Name("Pao应用")]
     [Description("包含了Pao框架启动所需的基本功能")]
     public class PaoApplication : PaoObject {
         /// <summary>
@@ -41,7 +41,7 @@ namespace PAO.App {
         /// </summary>
         [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
-        [DisplayName("客户端ID")]
+        [Name("客户端ID")]
         [Description("客户端应用的唯一标识")]
         public string ClientID {
             get;
@@ -57,7 +57,7 @@ namespace PAO.App {
         /// </summary>
         [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
-        [DisplayName("日志记录器列表")]
+        [Name("日志记录器列表")]
         [Description("记录日志的日志记录器列表")]
         public List<Ref<BaseEventProcessor>> EventProcessorList {
             get;
@@ -73,7 +73,7 @@ namespace PAO.App {
         /// </summary>
         [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
-        [DisplayName("服务列表")]
+        [Name("服务列表")]
         [Description("应用中后台运行的服务列表")]
         public List<Ref<BaseServer>> ServerList {
             get;
@@ -89,7 +89,7 @@ namespace PAO.App {
         /// </summary>
         [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
-        [DisplayName("服务列表")]
+        [Name("服务列表")]
         [Description("加载在远程服务器中的服务列表")]
         public Dictionary<string, Ref<object>> ServiceList {
             get;
@@ -105,7 +105,7 @@ namespace PAO.App {
         /// </summary>
         [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
-        [DisplayName("全局插件列表")]
+        [Name("全局插件列表")]
         [Description("此列表用于检索应用中的插件，当建立插件引用时，应当在此表中增加插件")]
         public Dictionary<string, Ref<PaoObject>> GlobalAddonList {
             get;
@@ -121,7 +121,7 @@ namespace PAO.App {
         /// </summary>
         [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
-        [DisplayName("用户界面")]
+        [Name("用户界面")]
         [Description("用户界面")]
         public Ref<IUserInterface> UserInterface {
             get;
@@ -234,7 +234,8 @@ namespace PAO.App {
             if (RunAction != null)
                 RunAction();
 
-            OnRunning();
+            if(OnRunning != null)
+                OnRunning();
         }
     }
 }

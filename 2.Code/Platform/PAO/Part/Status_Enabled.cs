@@ -16,7 +16,7 @@ namespace PAO.Part
     /// </summary>
     [Serializable]
     [DataContract(Namespace = "")]
-    [DisplayName("有效状态")]
+    [Name("有效状态")]
     [Description("有效状态")]
     public class Status_Enabled : Status
     {

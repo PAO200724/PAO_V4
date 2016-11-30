@@ -31,7 +31,7 @@ namespace WinFormTest
         private static PaoApplication CreateApplication() {
             var app = new PaoApplication()
             {
-                EventProcessorList = new List<PAO.Ref<PAO.Event.IEventProcess>>()
+                EventProcessorList = new List<PAO.Ref<BaseEventProcessor>>()
                     .Append(DebugLogger.Default.ToRef())
                     .Append(EventLogger.Default.ToRef()),
                 RunAction = () =>

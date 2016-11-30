@@ -17,7 +17,7 @@ namespace PAO.Trans
     /// </summary>
     [Serializable]
     [DataContract(Namespace = "")]
-    [DisplayName("失败")]
+    [Name("失败")]
     [Description("事务处于执行失败的状态")]
     public class TransStatus_Failed : Status_Completed
     {

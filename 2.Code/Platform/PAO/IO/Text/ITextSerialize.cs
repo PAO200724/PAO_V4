@@ -11,6 +11,7 @@ namespace PAO.IO.Text
     /// 对象序列化接口
     /// 作者:刘丹(Daniel.liu)
     /// </summary>
+    [Addon]
     public interface ITextSerialize : ISerialize{
         /// <summary>
         /// 将XML转换为对象

@@ -16,7 +16,7 @@ namespace PAO.Part.Enabled.Running
     /// </summary>
     [Serializable]
     [DataContract(Namespace = "")]
-    [DisplayName("处理中")]
+    [Name("处理中")]
     [Description("处理中状态")]
     public class Status_Processing : Status_Running
     {
@@ -29,7 +29,7 @@ namespace PAO.Part.Enabled.Running
         /// </summary>
         [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
-        [DisplayName("步骤")]
+        [Name("步骤")]
         [Description("当前处理步骤（百分比）")]
         public double Step
         {

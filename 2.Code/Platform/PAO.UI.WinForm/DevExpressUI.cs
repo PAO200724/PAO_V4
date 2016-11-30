@@ -20,7 +20,7 @@ namespace PAO.UI.WinForm
     /// </summary>
     [Serializable]
     [DataContract(Namespace = "")]
-    [DisplayName("WinForm式UI")]
+    [Name("WinForm式UI")]
     [Description("Windows Form模式的用户界面")]
     public class DevExpressUI : PaoObject, IUserInterface
     {

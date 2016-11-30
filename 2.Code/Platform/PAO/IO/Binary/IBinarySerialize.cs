@@ -11,6 +11,7 @@ namespace PAO.IO.Binary
     /// 二进制序列化接口
     /// 作者：PAO
     /// </summary>
+    [Addon]
     public interface IBinarySerialize : ISerialize
     {
         /// <summary>

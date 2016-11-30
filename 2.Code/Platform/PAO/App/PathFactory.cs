@@ -16,7 +16,7 @@ namespace PAO.App
     /// </summary>
     [Serializable]
     [DataContract(Namespace = "")]
-    [DisplayName("路径工厂")]
+    [Name("路径工厂")]
     [Description("根据路径来查找对象的工厂")]
     public class PathFactory<T> : Factory<T>
     {
@@ -30,7 +30,7 @@ namespace PAO.App
         /// </summary>
         [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
-        [DisplayName("属性路径")]
+        [Name("属性路径")]
         [Description("根据路径在默认应用中查找对象")]
         public string PropertyPath {
             get;

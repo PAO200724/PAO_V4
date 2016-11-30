@@ -16,7 +16,7 @@ namespace PAO.Part
     /// </summary>
     [Serializable]
     [DataContract(Namespace = "")]
-    [DisplayName("部件")]
+    [Name("部件")]
     [Description("部件基类")]
     public class BasePart : PaoObject
     {
@@ -29,7 +29,7 @@ namespace PAO.Part
         /// </summary>
         [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
-        [DisplayName("状态")]
+        [Name("状态")]
         [Description("部件状态")]
         public Status Status
         {

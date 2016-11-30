@@ -17,7 +17,7 @@ namespace PAO.Data.Filters
     /// </remarks>
     [DataContract(Namespace = "")]
     [Serializable]
-    [DisplayName("Sql语句过滤器")]
+    [Name("Sql语句过滤器")]
     [Description("通过Sql语句生成过滤字符串")]
     public class SqlFilter : DataField, IDataFilter
     {
@@ -30,7 +30,7 @@ namespace PAO.Data.Filters
         /// </summary>
         [AddonProperty]
         [DataMember(EmitDefaultValue=false)]
-        [DisplayName("Sql语句")]
+        [Name("Sql语句")]
         [Description("用于过滤语法的Sql语句")]
         public string Sql {
             get;

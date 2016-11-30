@@ -22,7 +22,7 @@ namespace PAO.Remote
     /// </summary>
     [Serializable]
     [DataContract(Namespace = "")]
-    [DisplayName("远程服务")]
+    [Name("远程服务")]
     [Description("提供远程调用服务协议并分发到具体服务的服务")]
     public class RemoteService : PaoObject, IRemoteService
     {

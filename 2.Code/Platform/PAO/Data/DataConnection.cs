@@ -17,7 +17,7 @@ namespace PAO.Data
     /// </summary>
     [DataContract(Namespace = "")]
 	[Serializable]
-    [DisplayName("数据连接信息")]
+    [Name("数据连接信息")]
     [Description("数据连接相关的属性")]
     public class DataConnection : PaoObject
     {
@@ -30,7 +30,7 @@ namespace PAO.Data
         /// </summary>
         [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
-        [DisplayName("数据工厂名称")]
+        [Name("数据工厂名称")]
         [Description("用于创建数据连接的数据工厂名称")]
         public string DbFactoryName {
             get;
@@ -46,7 +46,7 @@ namespace PAO.Data
         /// </summary>
         [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
-        [DisplayName("数据连接字符串")]
+        [Name("数据连接字符串")]
         [Description("数据库连接字符串")]
         public string ConnectionString {
             get;
@@ -62,7 +62,7 @@ namespace PAO.Data
         /// </summary>
         [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
-        [DisplayName("命令列表")]
+        [Name("命令列表")]
         [Description("数据库命令列表")]
         public List<DataCommandInfo> CommandList {
             get;

@@ -18,7 +18,7 @@ namespace PAO.Trans
     /// </summary>
     [Serializable]
     [DataContract(Namespace = "")]
-    [DisplayName("已提交")]
+    [Name("已提交")]
     [Description("事务提交完毕状态")]
     public class TransStatus_Committed : Status_Completed
     {

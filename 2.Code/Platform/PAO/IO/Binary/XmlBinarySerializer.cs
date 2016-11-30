@@ -18,7 +18,7 @@ namespace PAO.IO.Binary
     /// </summary>
     [Serializable]
     [DataContract(Namespace = "")]
-    [DisplayName("Xml序列化器")]
+    [Name("Xml序列化器")]
     [Description("通过XmlPublic序列化对象的序列化器")]
     public class XmlBinarySerializer : PaoObject, IBinarySerialize
     {

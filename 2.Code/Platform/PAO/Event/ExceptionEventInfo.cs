@@ -16,7 +16,7 @@ namespace PAO.Event
     /// </summary>
     [Serializable]
     [DataContract(Namespace = "")]
-    [DisplayName("异常事件信息")]
+    [Name("异常事件信息")]
     [Description("包含异常的事件信息")]
     public class ExceptionEventInfo : EventInfo
     {
@@ -32,7 +32,7 @@ namespace PAO.Event
         /// </summary>
         [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
-        [DisplayName("异常类型")]
+        [Name("异常类型")]
         [Description("异常类型")]
         public Type ExceptionType {
             get;
@@ -48,7 +48,7 @@ namespace PAO.Event
         /// </summary>
         [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
-        [DisplayName("堆栈信息")]
+        [Name("堆栈信息")]
         [Description("异常堆栈信息")]
         public string StackTrace {
             get;
@@ -64,7 +64,7 @@ namespace PAO.Event
         /// </summary>
         [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
-        [DisplayName("内部异常信息")]
+        [Name("内部异常信息")]
         [Description("内部异常信息")]
         public ExceptionEventInfo InnerExceptionInfo {
             get;

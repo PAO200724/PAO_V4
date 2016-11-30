@@ -16,7 +16,7 @@ namespace PAO.Data
     /// </remarks>
     [Serializable]
     [DataContract(Namespace = "")]
-    [DisplayName("数据字段")]
+    [Name("数据字段")]
     [Description("用于保存数据列或参数的对象")]
     public class DataField
     {
@@ -29,7 +29,7 @@ namespace PAO.Data
         /// </summary>
         [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
-        [DisplayName("类型")]
+        [Name("类型")]
         [Description("数据字段的类型")]
         public DbType Type {
             get;
@@ -45,7 +45,7 @@ namespace PAO.Data
         /// </summary>
         [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
-        [DisplayName("名称")]
+        [Name("名称")]
         [Description("字段名称")]
         public string Name {
             get;
@@ -61,7 +61,7 @@ namespace PAO.Data
         /// </summary>
         [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
-        [DisplayName("标题")]
+        [Name("标题")]
         [Description("字段标题")]
         public string Caption {
             get;
@@ -77,7 +77,7 @@ namespace PAO.Data
         /// </summary>
         [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
-        [DisplayName("值")]
+        [Name("值")]
         [Description("字段值")]
         public object Value {
             get;

@@ -12,7 +12,7 @@ using DevExpress.XtraTreeList;
 using PAO.UI.WinForm.Controls;
 using System.Collections;
 
-namespace PAO.Config
+namespace PAO.Config.Controls
 {
     /// <summary>
     /// 对象树控件
@@ -36,5 +36,6 @@ namespace PAO.Config
                 }
             }
         }
+
     }
 }

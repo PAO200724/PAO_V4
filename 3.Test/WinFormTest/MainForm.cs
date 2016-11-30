@@ -14,6 +14,7 @@ using PAO.UI.WinForm.Controls;
 using PAO.UI;
 using PAO.Config;
 using PAO.App;
+using PAO.Config.Controls;
 
 namespace WinFormTest
 {

@@ -14,7 +14,7 @@ namespace PAO {
     /// </summary>
     [Serializable]
     [DataContract(Namespace = "")]
-    [DisplayName("引用")]
+    [Name("引用")]
     [Description("通过工厂创建对象的类型")]
     public abstract class Ref<T> : PaoObject{
         public Ref() {

@@ -16,7 +16,7 @@ namespace PAO.Data.Filters
     /// </remarks>
     [DataContract(Namespace = "")]
     [Serializable]
-    [DisplayName("And过滤器")]
+    [Name("And过滤器")]
     [Description("创建与逻辑表达式的过滤器")]
     public class AndLogicFilter : CompositeLogicFilter
     {

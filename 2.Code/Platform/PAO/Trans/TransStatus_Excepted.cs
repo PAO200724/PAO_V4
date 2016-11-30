@@ -17,7 +17,7 @@ namespace PAO.Trans
     /// </summary>
     [Serializable]
     [DataContract(Namespace = "")]
-    [DisplayName("异常")]
+    [Name("异常")]
     [Description("事务处于异常状态")]
     public class TransStatus_Excepted : Status_Excepted
     {

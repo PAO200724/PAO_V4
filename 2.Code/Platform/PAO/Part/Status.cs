@@ -17,7 +17,7 @@ namespace PAO.Part
     /// </summary>
     [Serializable]
     [DataContract(Namespace = "")]
-    [DisplayName("状态")]
+    [Name("状态")]
     [Description("状态基类")]
     public abstract class Status : Object
     {

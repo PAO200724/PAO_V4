@@ -17,7 +17,7 @@ namespace PAO.Trans
     /// </summary>
     [Serializable]
     [DataContract(Namespace = "")]
-    [DisplayName("回滚异常")]
+    [Name("回滚异常")]
     [Description("回滚异常状态")]
     public class TransStatus_RollbackExcepted : Status_Excepted
     {

@@ -16,7 +16,7 @@ namespace PAO.Event
     /// </summary>
     [Serializable]
     [DataContract(Namespace = "")]
-    [DisplayName("事件处理器")]
+    [Name("事件处理器")]
     [Description("基础事件处理器")]
     public abstract class BaseEventProcessor : PaoObject
     {
@@ -28,7 +28,7 @@ namespace PAO.Event
         /// 事件处理优先级，默认为10
         /// </summary>
         [DataMember(EmitDefaultValue = false)]
-        [DisplayName("优先级")]
+        [Name("优先级")]
         [Description("事件处理优先级，默认为10")]
         [DefaultValue("10")]
         public int Priority {
@@ -44,7 +44,7 @@ namespace PAO.Event
         /// 设定了此属性为True时，不再执行优先级低的事件处理机
         /// </summary>
         [DataMember(EmitDefaultValue = false)]
-        [DisplayName("已处理")]
+        [Name("已处理")]
         [Description("设定了此属性为True时，不再执行优先级低的事件处理机")]
         [DefaultValue("false")]
         public bool Handled {

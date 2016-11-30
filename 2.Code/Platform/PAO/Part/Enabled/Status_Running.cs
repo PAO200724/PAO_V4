@@ -16,7 +16,7 @@ namespace PAO.Part.Enabled
     /// </summary>
     [Serializable]
     [DataContract(Namespace = "")]
-    [DisplayName("运行中")]
+    [Name("运行中")]
     [Description("运行中状态")]
     public class Status_Running : Status_Enabled
     {

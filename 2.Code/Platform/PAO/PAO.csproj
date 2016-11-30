@@ -45,8 +45,9 @@
   <ItemGroup>
     <Compile Include="AOP\AddonAttribute.cs" />
     <Compile Include="AOP\AddonPropertyAttribute.cs" />
-    <Compile Include="App\AddonFactory.cs" />
-    <Compile Include="App\AddonPublic.cs" />
+    <Compile Include="AOP\AddonFactory.cs" />
+    <Compile Include="AOP\AddonPublic.cs" />
+    <Compile Include="AOP\NameAttribute.cs" />
     <Compile Include="App\AppPublic.cs" />
     <Compile Include="App\PaoApplication.cs" />
     <Compile Include="AOP\Factory.cs" />

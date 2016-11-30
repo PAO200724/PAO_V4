@@ -18,7 +18,7 @@ namespace PAO.IO.Binary
     /// </summary>
     [Serializable]
     [DataContract(Namespace = "")]
-    [DisplayName("二进制序列化器")]
+    [Name("二进制序列化器")]
     [Description("利用BinaryFormatter进行序列化的二进制序列化器")]
     public class BinarySerializer : PaoObject, IBinarySerialize
     {

@@ -19,7 +19,7 @@ namespace PAO.Trans
     /// </summary>
     [Serializable]
     [DataContract(Namespace = "")]
-    [DisplayName("事务事件信息")]
+    [Name("事务事件信息")]
     [Description("记录事务事件信息的类")]
     public class TransactionEventInfo : EventInfo
     {
@@ -40,7 +40,7 @@ namespace PAO.Trans
         /// </summary>
         [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
-        [DisplayName("事务")]
+        [Name("事务")]
         [Description("事件对应的事务")]
         public PaoTransaction Transaction {
             get;
@@ -56,7 +56,7 @@ namespace PAO.Trans
         /// </summary>
         [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
-        [DisplayName("内部异常信息")]
+        [Name("内部异常信息")]
         [Description("当事务处于异常或回滚异常时，此属性有效")]
         public ExceptionEventInfo InnerExceptionInfo {
             get;

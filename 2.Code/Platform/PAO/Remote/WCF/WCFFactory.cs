@@ -16,7 +16,7 @@ namespace PAO.Remote.WCF{
     /// </summary>
     [Serializable]
     [DataContract(Namespace = "")]
-    [DisplayName("WCF工厂")]
+    [Name("WCF工厂")]
     [Description("通过WCF方式创建对象的工厂")]
     public class WCFFactory<T> : Factory<T> {
         #region 插件属性
@@ -28,7 +28,7 @@ namespace PAO.Remote.WCF{
         /// </summary>
         [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
-        [DisplayName("Url")]
+        [Name("Url")]
         [Description("WCF服务地址")]
         public string Url {
             get;

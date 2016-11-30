@@ -16,7 +16,7 @@ namespace PAO {
     /// </summary>
     [Serializable]
     [DataContract(Namespace = "")]
-    [DisplayName("文件工厂")]
+    [Name("文件工厂")]
     [Description("从配置文件创建对象的工厂")]
     public class FileFactory<T> : Factory<T> {
         #region 插件属性
@@ -28,7 +28,7 @@ namespace PAO {
         /// </summary>
         [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
-        [DisplayName("文件路径")]
+        [Name("文件路径")]
         [Description("保存对象配置的文件路径")]
         public string FilePath {
             get;

@@ -17,7 +17,7 @@ namespace PAO.Event {
     /// </summary>
     [Serializable]
     [DataContract(Namespace = "")]
-    [DisplayName("系统日志记录器")]
+    [Name("系统日志记录器")]
     [Description("在系统日志中记录日志的记录器")]
     public class EventLogger : BaseEventProcessor {
         /// <summary>

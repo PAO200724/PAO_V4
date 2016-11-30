@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 
@@ -11,6 +12,7 @@ namespace PAO.Data
     /// 过滤数据的对象
     /// 作者:刘丹(Daniel.liu)
     /// </summary>
+    [Addon]
     public interface IDataFilter
     {
         /// <summary>

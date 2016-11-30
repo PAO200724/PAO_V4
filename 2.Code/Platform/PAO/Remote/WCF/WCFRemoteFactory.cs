@@ -19,7 +19,7 @@ namespace PAO.Remote.WCF
     /// </summary>
     [Serializable]
     [DataContract(Namespace = "")]
-    [DisplayName("远程工厂")]
+    [Name("远程工厂")]
     [Description("通过远程调用创建的工厂")]
     public class WCFRemoteFactory<T> : Factory<T>
     {
@@ -33,7 +33,7 @@ namespace PAO.Remote.WCF
         /// </summary>
         [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
-        [DisplayName("地址")]
+        [Name("地址")]
         [Description("服务基础地址")]
         public string BaseUrl {
             get;
@@ -49,7 +49,7 @@ namespace PAO.Remote.WCF
         /// </summary>
         [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
-        [DisplayName("服务名称")]
+        [Name("服务名称")]
         [Description("服务对应的名称")]
         public string ServiceName {
             get;

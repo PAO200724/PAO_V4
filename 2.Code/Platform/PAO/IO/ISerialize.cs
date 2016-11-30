@@ -11,6 +11,7 @@ namespace PAO.IO
     /// 序列化接口
     /// 作者：PAO
     /// </summary>
+    [Addon]
     public interface ISerialize
     {
 

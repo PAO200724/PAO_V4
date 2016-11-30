@@ -65,6 +65,8 @@ namespace PAO.App {
                         AddonPublic.AddDirectory(libPath);
                     }
                 }
+                // 重建插件类型列表
+                AddonPublic.RebuildAddonTypeList();
                 EventPublic.Information("插件加载完毕.");
             });
 

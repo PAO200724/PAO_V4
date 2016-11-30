@@ -15,6 +15,29 @@ namespace PAO.Config
     /// </summary>
     public static class ConfigPublic
     {
+
+        #region 生成配置树
+        /// <summary>
+        /// 节点选择图片索引号
+        /// </summary>
+        public static int ImageIndex_Selected = 0;
+        /// <summary>
+        /// 对象图标索引号
+        /// </summary>
+        public static int ImageIndex_Object = 1;
+        /// <summary>
+        /// 属性图标索引号
+        /// </summary>
+        public static int ImageIndex_Property = 2;
+        /// <summary>
+        /// 列表图标索引号
+        /// </summary>
+        public static int ImageIndex_List = 3;
+        /// <summary>
+        /// 字典图标索引号
+        /// </summary>
+        public static int ImageIndex_Dictionary = 3;
+
         /// <summary>
         /// 创建树节点
         /// </summary>
@@ -25,7 +48,7 @@ namespace PAO.Config
                 , GetObjectString(obj));
             var objNode = nodes.Add(propString, null, null, obj, ElementType.Object);
             // 创建属性
-            objNode.ImageIndex = 1;
+            objNode.ImageIndex = ImageIndex_Object;
             CreateTreeNodeByObject(objNode, obj);
         }
 
@@ -42,7 +65,7 @@ namespace PAO.Config
             if (obj is PaoObject) {
                 // 获取对象属性并添加到树中
                 foreach (PropertyDescriptor propDesc in TypeDescriptor.GetProperties(objType)) {
-                    if(propDesc.Attributes.GetAttribute<AddonPropertyAttribute>() != null)
+                    if (propDesc.Attributes.GetAttribute<AddonPropertyAttribute>() != null)
                         CreateTreeNodesByProperty(node, obj, propDesc);
                 }
             }
@@ -58,7 +81,7 @@ namespace PAO.Config
                         , key
                         , value == null ? null : String.Format(" = {0}", GetObjectString(value)));
                     var elementNode = node.Nodes.Add(elementString, key, value, obj, ElementType.Dictionary);
-                    elementNode.ImageIndex = 4;
+                    elementNode.ImageIndex = ImageIndex_Dictionary;
                     CreateTreeNodeByObject(elementNode, value);
                 }
             }
@@ -73,7 +96,7 @@ namespace PAO.Config
                         , i
                         , element == null ? null : String.Format(" = {0}", GetObjectString(element)));
                     var elementNode = node.Nodes.Add(elementString, i, element, obj, ElementType.List);
-                    elementNode.ImageIndex = 3;
+                    elementNode.ImageIndex = ImageIndex_List;
                     CreateTreeNodeByObject(elementNode, element);
                     i++;
                 }
@@ -91,10 +114,10 @@ namespace PAO.Config
             var propType = propDesc.GetType();
             var displayAttribute = propDesc.Attributes.GetAttribute<DisplayNameAttribute>();
             string propString = String.Format("[{0}]{1}"
-                , displayAttribute == null? propDesc.Name : displayAttribute.DisplayName
+                , displayAttribute == null ? propDesc.Name : displayAttribute.DisplayName
                 , propVal == null ? null : String.Format(" = {0}", GetObjectString(propVal)));
             var propNode = node.Nodes.Add(propString, propDesc, propVal, obj, ElementType.Property);
-            propNode.ImageIndex = 2;
+            propNode.ImageIndex = ImageIndex_Property;
             CreateTreeNodeByObject(propNode, propVal);
         }
 
@@ -107,11 +130,21 @@ namespace PAO.Config
             if (obj == null)
                 return null;
 
+            var objType = obj.GetType();
+            var typeName = objType.Name;
+
+            string objString = null;
             var displayAttribute = obj.GetType().GetAttribute<DisplayNameAttribute>(false);
             if (displayAttribute != null)
-                return displayAttribute.DisplayName;
-
-            return obj.ToString();
+                objString = displayAttribute.DisplayName;
+            else if (objType.IsDerivedFrom(typeof(IDictionary)))
+                objString = "树";
+            else if (objType.IsDerivedFrom(typeof(List<>)) || objType.IsArray)
+                objString = "列表";
+            else
+                objString = obj.ToString();
+            return String.Format("{0}:{1}", typeName, objString);
         }
+        #endregion
     }
 }

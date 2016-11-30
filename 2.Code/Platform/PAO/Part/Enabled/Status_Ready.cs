@@ -16,7 +16,7 @@ namespace PAO.Part.Enabled
     /// </summary>
     [Serializable]
     [DataContract(Namespace = "")]
-    [DisplayName("准备好")]
+    [Name("准备好")]
     [Description("准备完成的状态")]
     public class Status_Ready : Status_Enabled
     {

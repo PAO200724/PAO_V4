@@ -11,6 +11,8 @@ namespace PAO.Data {
     /// 数据服务接口
     /// 作者:PAO
     /// </summary>
+    [Addon]
+    [ServiceContract]
     public interface IDataService {
         /// <summary>
         /// 获取数据表格式

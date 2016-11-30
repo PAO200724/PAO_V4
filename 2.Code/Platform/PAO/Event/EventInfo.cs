@@ -21,7 +21,7 @@ namespace PAO.Event
     /// </summary>
     [Serializable]
     [DataContract(Namespace = "")]
-    [DisplayName("事件信息")]
+    [Name("事件信息")]
     [Description("异常或其他的事件信息")]
     public class EventInfo : PaoObject
     {
@@ -39,7 +39,7 @@ namespace PAO.Event
         /// </summary>
         [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
-        [DisplayName("时间")]
+        [Name("时间")]
         [Description("事件发生的时间")]
         public DateTime Time {
             get;
@@ -55,7 +55,7 @@ namespace PAO.Event
         /// </summary>
         [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
-        [DisplayName("事件源")]
+        [Name("事件源")]
         [Description("事件源")]
         [DefaultValue("PAO")]
         public string Source {
@@ -72,7 +72,7 @@ namespace PAO.Event
         /// </summary>
         [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
-        [DisplayName("消息")]
+        [Name("消息")]
         [Description("事件消息")]
         public string Message {
             get;
@@ -88,7 +88,7 @@ namespace PAO.Event
         /// </summary>
         [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
-        [DisplayName("事件类型")]
+        [Name("事件类型")]
         [Description("事件类型，如果是异常，则是异常的Type字符串")]
         public string Type {
             get;
@@ -104,7 +104,7 @@ namespace PAO.Event
         /// </summary>
         [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
-        [DisplayName("数据")]
+        [Name("数据")]
         [Description("异常数据或其他数据")]
         public Dictionary<string, object> Data {
             get;
@@ -120,7 +120,7 @@ namespace PAO.Event
         /// </summary>
         [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
-        [DisplayName("截屏")]
+        [Name("截屏")]
         [Description("屏幕截图")]
         public Image ScreenShot {
             get;
@@ -137,7 +137,7 @@ namespace PAO.Event
         /// </summary>
         [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
-        [DisplayName("资产快照")]
+        [Name("资产快照")]
         [Description("系统资产的快照")]
         public object AssetSnapshot {
             get;

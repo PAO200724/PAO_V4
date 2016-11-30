@@ -16,7 +16,7 @@ namespace PAO.Data.Filters
     /// </remarks>
     [DataContract(Namespace = "")]
     [Serializable]
-    [DisplayName("Or过滤器")]
+    [Name("Or过滤器")]
     [Description("创建或逻辑表达式的过滤器")]
     public class OrLogicFilter : CompositeLogicFilter
     {

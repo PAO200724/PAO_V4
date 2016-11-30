@@ -14,7 +14,7 @@ namespace PAO {
     /// </summary>
     [Serializable]
     [DataContract(Namespace = "")]
-    [DisplayName("对象连接")]
+    [Name("对象连接")]
     [Description("直接链接到对象的Ref类")]
     public class ObjectRef<T> : Ref<T> {
         #region 插件属性
@@ -25,7 +25,7 @@ namespace PAO {
         /// </summary>
         [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
-        [DisplayName("对象的直接引用")]
+        [Name("对象的直接引用")]
         [Description("对象的直接引用")]
         public T Reference {
             get;

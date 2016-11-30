@@ -23,7 +23,7 @@ namespace PAO.Server
     /// </summary>
     [Serializable]
     [DataContract(Namespace = "")]
-    [DisplayName("基础服务器")]
+    [Name("基础服务器")]
     [Description("服务器基类，服务器是在后台背景线程运行的程序")]
     public abstract class BaseServer : BasePart
     {
@@ -36,7 +36,7 @@ namespace PAO.Server
         /// </summary>
         [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
-        [DisplayName("停止超时")]
+        [Name("停止超时")]
         [Description("停止服务的等待超时时间，单位:毫秒")]
         public int StopTimeout {
             get;
@@ -52,7 +52,7 @@ namespace PAO.Server
         /// </summary>
         [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
-        [DisplayName("任务创建选项")]
+        [Name("任务创建选项")]
         [Description("服务任务创建的选项")]
         public TaskCreationOptions TaskCreationOptions {
             get;

@@ -21,7 +21,7 @@ namespace PAO.Remote
     /// 代理远程对象的类
     /// 作者：PAO
     /// </summary>
-    [DisplayName("远程代理")]
+    [Name("远程代理")]
     [Description("代理远程对象的类")]
     public class RemoteProxy : RealProxy
     {

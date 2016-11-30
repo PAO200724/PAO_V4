@@ -10,13 +10,47 @@ using System.Reflection;
 using System.Runtime.Serialization;
 using System.Text;
 
-namespace PAO.App {
+namespace PAO {
     /// <summary>
     /// 静态类:AddonPublic
     /// 插件公共类
     /// 作者:PAO
     /// </summary>
     public static class AddonPublic {
+        #region 插件类型判断
+        /// <summary>
+        /// 判断是否为插件类
+        /// </summary>
+        /// <param name="objType">对象类型</param>
+        /// <returns>如果为插件类，返回true，否则返回false</returns>
+        public static bool IsAddonClass(Type objType) {
+            if (objType.IsDerivedFrom(typeof(PaoObject)))
+                return true;
+
+            return false;
+        }
+        #endregion
+
+        #region 插件类型列表
+        /// <summary>
+        /// 插件对象类型列表
+        /// </summary>
+        public static List<Type> AddonTypeList = new List<Type>();
+
+        public static void RebuildAddonTypeList() {
+            AddonTypeList = new List<Type>();
+            foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies()) {
+                foreach (var type in assembly.GetTypes()) {
+                    if (type.HasAttribute<AddonAttribute>(true)) {
+                        AddonTypeList.Add(type);
+                        EventPublic.Information("插件加载：{0}", type);
+                    }
+                }
+            }
+        }
+        #endregion
+
+        #region 插件类型检索
         const string AssemblyPattern = "PAO.*.dll";
 
         /// <summary>
@@ -135,9 +169,9 @@ namespace PAO.App {
                 }
             }
         }
+        #endregion
 
-
-        #region 通过KeyValue方式获取属性
+        #region 插件属性路径
         /// <summary>
         /// 用键值对的方式来设置属性
         /// </summary>
@@ -197,9 +231,7 @@ namespace PAO.App {
             }
             return null;
         }
-        #endregion
 
-        #region 通过KeyValue方式设置属性
         /// <summary>
         /// 用键值对的方式来设置属性
         /// </summary>

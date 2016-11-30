@@ -18,7 +18,7 @@ namespace PAO.Trans
     /// </summary>
     [Serializable]
     [DataContract(Namespace = "")]
-    [DisplayName("已经回滚")]
+    [Name("已经回滚")]
     [Description("已经回滚状态")]
     public class TransStatus_Rollbacked : Status_Enabled
     {

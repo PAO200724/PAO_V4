@@ -11,6 +11,7 @@ namespace PAO.Remote
     /// 远程服务
     /// 作者：PAO
     /// </summary>
+    [Addon]
     [ServiceContract]
     public interface IRemoteService
     {

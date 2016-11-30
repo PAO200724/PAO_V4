@@ -1,4 +1,4 @@
-﻿namespace PAO.Config
+﻿namespace PAO.Config.Controls
 {
     partial class ObjectTreeControl
     {

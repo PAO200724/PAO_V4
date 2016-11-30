@@ -15,7 +15,7 @@ namespace PAO.Data {
     /// </summary>
     [Serializable]
     [DataContract(Namespace = "")]
-    [DisplayName("数据服务")]
+    [Name("数据服务")]
     [Description("数据库服务")]
     public class DbDataService : PaoObject, IDataService {
         #region 插件属性
@@ -27,7 +27,7 @@ namespace PAO.Data {
         /// </summary>
         [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
-        [DisplayName("数据连接")]
+        [Name("数据连接")]
         [Description("用于连接数据库的数据连接")]
         public DataConnection DataConnection {
             get;
