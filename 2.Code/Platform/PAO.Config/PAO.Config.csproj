@@ -97,22 +97,52 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\add_32x32.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\remove_32x32.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\apply_32x32.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\cancel_32x32.png" />
+    <None Include="Resources\addfile_16x16.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\addfile_32x32.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\save_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\removeitem_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="Resources\removeitem_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\insert_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\insert_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\remove_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\remove_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\new_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\new_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cancel_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cancel_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\apply_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\apply_32x32.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

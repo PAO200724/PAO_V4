@@ -11,6 +11,8 @@ using DevExpress.XtraTreeList.Nodes;
 using DevExpress.XtraTreeList;
 using PAO.UI.WinForm.Controls;
 using System.Collections;
+using PAO.App;
+using PAO.UI;
 
 namespace PAO.Config.Controls
 {
@@ -83,6 +85,7 @@ namespace PAO.Config.Controls
 
         private void SetElementInfomation(TreeListNode node) {
             this.LabelControlPropertyTitle.Text = node.GetValue(ColumnPropertyName) as string;
+            this.GroupControlObject.Text = this.LabelControlPropertyTitle.Text;
             this.LabelControlValue.Text = node.GetValue(ColumnPropertyValueString) as string;
             this.LabelControlPropertyType.Text = String.Format("值类型: {0}", node.GetValue(ColumnPropertyTypeString));
             var elementType = (ElementType)node.GetValue(ColumnPropertyElementType);
@@ -144,6 +147,7 @@ namespace PAO.Config.Controls
             // 创建属性
             objNode.ImageIndex = ImageIndex_Object;
             CreateChildNodesByObject(objNode, obj);
+            objNode.Expanded = true;
         }
 
         /// <summary>
@@ -254,10 +258,34 @@ namespace PAO.Config.Controls
         }
         #endregion
 
+        private void SetControlStatus() {
+
+        }
+
         private void TreeListObject_FocusedNodeChanged(object sender, FocusedNodeChangedEventArgs e) {
             if(e.Node != null) {
                 SetElementInfomation(e.Node);
             }
+
+            SetControlStatus();
+        }
+
+        private void ButtonCreate_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+            var typeSelectControl = new TypeSelectControl();
+            typeSelectControl.Initialize(AddonPublic.AddonTypeList);
+            UIPublic.ShowDialog(typeSelectControl);
+        }
+
+        private void ButtonAdd_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+
+        }
+        
+        private void ButtonDelete_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+
+        }
+
+        public override void SetFormState(Form form) {
+            form.WindowState = FormWindowState.Maximized;
         }
     }
 }

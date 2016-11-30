@@ -8,6 +8,19 @@ using System.Text;
 namespace PAO {
     /// <summary>
     /// 类:Ref
+    /// 引用基类
+    /// 通过工厂创建对象的引用类型的基类
+    /// 作者:PAO
+    /// </summary>
+    [Serializable]
+    [DataContract(Namespace = "")]
+    [Name("引用基类")]
+    [Description("通过工厂创建对象的引用类型的基类")]
+    public abstract class Ref : PaoObject
+    {
+    }
+    /// <summary>
+    /// 类:Ref
     /// 引用
     /// 通过工厂创建对象的类型
     /// 作者:PAO
@@ -16,7 +29,8 @@ namespace PAO {
     [DataContract(Namespace = "")]
     [Name("引用")]
     [Description("通过工厂创建对象的类型")]
-    public abstract class Ref<T> : PaoObject{
+    public abstract class Ref<T> : Ref
+    {
         public Ref() {
 
         }

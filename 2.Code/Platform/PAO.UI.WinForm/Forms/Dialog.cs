@@ -54,7 +54,9 @@ namespace PAO.UI.WinForm.Forms
 
                 PanelClient.SuspendLayout();
                 PanelClient.Controls.Clear();
-                if (_ChildControl != null) { 
+                if (_ChildControl != null) {
+                    this.Width += _ChildControl.Width - PanelClient.ClientRectangle.Width;
+                    this.Height += _ChildControl.Height - PanelClient.ClientRectangle.Height;
                     PanelClient.Controls.Add(value);
                     Text = _ChildControl.Text;
                     _ChildControl.Dock = DockStyle.Fill;

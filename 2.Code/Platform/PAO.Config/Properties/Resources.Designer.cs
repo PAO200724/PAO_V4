@@ -63,9 +63,9 @@ namespace PAO.Config.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap add_32x32 {
+        internal static System.Drawing.Bitmap addfile_16x16 {
             get {
-                object obj = ResourceManager.GetObject("add_32x32", resourceCulture);
+                object obj = ResourceManager.GetObject("addfile_16x16", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -83,9 +83,29 @@ namespace PAO.Config.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap apply_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("apply_16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap apply_32x32 {
             get {
                 object obj = ResourceManager.GetObject("apply_32x32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap cancel_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("cancel_16x16", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -103,6 +123,56 @@ namespace PAO.Config.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap insert_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("insert_16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap insert_32x32 {
+            get {
+                object obj = ResourceManager.GetObject("insert_32x32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap new_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("new_16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap new_32x32 {
+            get {
+                object obj = ResourceManager.GetObject("new_32x32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap remove_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("remove_16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap remove_32x32 {
             get {
                 object obj = ResourceManager.GetObject("remove_32x32", resourceCulture);
@@ -113,9 +183,39 @@ namespace PAO.Config.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap removeitem_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("removeitem_16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap removeitem_32x32 {
             get {
                 object obj = ResourceManager.GetObject("removeitem_32x32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap save_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("save_16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap save_32x32 {
+            get {
+                object obj = ResourceManager.GetObject("save_32x32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

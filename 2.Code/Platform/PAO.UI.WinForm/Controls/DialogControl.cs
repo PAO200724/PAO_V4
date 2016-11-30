@@ -25,6 +25,8 @@ namespace PAO.UI.WinForm.Controls
 
         public virtual bool ShowCancelButton { get; set; }
 
+        public Action<Form> OnSetFormState;
+
         public event EventHandler<ApplyButtonStateChangedEventArgs> ApplyButtonStateChanged;
 
         protected void FileApplyButtonStateChanged(bool enabled) {
@@ -40,6 +42,9 @@ namespace PAO.UI.WinForm.Controls
         }
 
         public virtual void SetFormState(Form form) {
+            if(OnSetFormState != null) {
+                OnSetFormState(form);
+            }
         }
     }
 }

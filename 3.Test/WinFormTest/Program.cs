@@ -71,6 +71,18 @@ namespace WinFormTest
         }
 
         private static void GenericTypeTest() {
+            Test("typeof(Factory<>).BaseType", typeof(Factory<>).BaseType);
+            Test("typeof(Factory<>).BaseType == typeof(Ref<>)", typeof(Factory<>).BaseType == typeof(Ref<>));
+            Test("typeof(Factory<>).BaseType.GetGenericTypeDefinition() == typeof(Ref<>).GetGenericTypeDefinition()", typeof(Factory<>).BaseType.GetGenericTypeDefinition() == typeof(Ref<>).GetGenericTypeDefinition());
+            Test("typeof(Factory<>).GetGenericTypeDefinition().IsAssignableFrom(typeof(Ref<>).GetGenericTypeDefinition())", typeof(Factory<>).GetGenericTypeDefinition().IsAssignableFrom(typeof(Ref<>).GetGenericTypeDefinition()));
+
+            Test("typeof(Ref<>).IsAssignableFrom(typeof(PaoApplication))", typeof(Ref<>).IsAssignableFrom(typeof(PaoApplication)));
+            Test("typeof(PaoApplication).IsAssignableFrom(typeof(Ref<>))", typeof(PaoApplication).IsAssignableFrom(typeof(Ref<>)));
+            Test("typeof(Ref<>).IsAssignableFrom(typeof(Factory<>)))", typeof(Ref<>).IsAssignableFrom(typeof(Factory<>)));
+            Test("typeof(Ref<>).IsAssignableFrom(typeof(Factory<object>)))", typeof(Ref<>).IsAssignableFrom(typeof(Factory<object>)));
+            Test("typeof(Ref<object>).IsAssignableFrom(typeof(Factory<object>)))", typeof(Ref<object>).IsAssignableFrom(typeof(Factory<object>)));
+            Test("typeof(Ref<string>).IsAssignableFrom(typeof(Factory<object>)))", typeof(Ref<string>).IsAssignableFrom(typeof(Factory<object>)));
+
             Test("typeof(PaoObject[]).ToString()", typeof(PaoObject[]).ToString());
             Test("typeof(List<PaoObject>).ToString()", typeof(List<PaoObject>).ToString());
             Test("typeof(List<PaoObject>).FullName", typeof(List<PaoObject>).FullName);

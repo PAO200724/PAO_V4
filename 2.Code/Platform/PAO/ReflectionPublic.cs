@@ -202,13 +202,13 @@ namespace PAO {
             }
 
             foreach (var interfaceType in collectionType.GetInterfaces()) {
-                if (interfaceType.IsDerivedFrom(typeof(IDictionary<,>))) {
+                if (interfaceType.IsGenericType && interfaceType.IsDerivedFrom(typeof(IDictionary))) {
                     return interfaceType.GetGenericArguments()[1];
                 }
             }
 
             foreach (var interfaceType in collectionType.GetInterfaces()) {
-                if (interfaceType.IsDerivedFrom(typeof(IEnumerable<>))) {
+                if (interfaceType.IsGenericType && interfaceType.IsDerivedFrom(typeof(IEnumerable))) {
                     return interfaceType.GetGenericArguments()[0];
                 }
             }
@@ -292,10 +292,10 @@ namespace PAO {
         /// <param name="parentType">父类</param>
         /// <returns>是否从父类继承</returns>
         public static bool IsDerivedFrom(this Type testType, Type parentType) {
-            return testType == parentType
-                || (testType.IsGenericType && parentType != null && parentType.IsAssignableFrom(testType.GetGenericTypeDefinition()))
-                || parentType.IsAssignableFrom(testType)
-                || testType.FindInterface(parentType);
+            if (parentType.IsAssignableFrom(testType))
+                return true;
+
+            return false;
         }
         /// <summary>
         /// 是否从父类继承
@@ -327,7 +327,7 @@ namespace PAO {
         /// <returns>如果是某个指定元素类型的枚举类型返回true，否则返回false</returns>
         public static bool IsEnumerableOf(this Type type, Type elmentType) {
             if (type.IsGenericType
-                && type.GetGenericTypeDefinition().IsDerivedFrom(typeof(IEnumerable<>))
+                && type.GetGenericTypeDefinition().IsDerivedFrom(typeof(IEnumerable))
                 && type.GetGenericArguments()[0].IsDerivedFrom(elmentType))
                 return true;
 
@@ -342,7 +342,7 @@ namespace PAO {
         /// <returns>如果是某个指定元素类型的字典类型返回true，否则返回false</returns>
         public static bool IsDictionaryOf(this Type type, Type elmentType) {
             if (type.IsGenericType
-                && type.GetGenericTypeDefinition() == typeof(IDictionary<,>)
+                && type.GetGenericTypeDefinition().IsDerivedFrom(typeof(IDictionary))
                 && type.GetGenericArguments()[1].IsDerivedFrom(elmentType))
                 return true;
 
@@ -433,6 +433,32 @@ namespace PAO {
                 }
 
                 return string.Format("{0}<{1}>", typeName, genericTypeString);
+            }
+
+            return type.Name;
+        }
+
+        /// <summary>
+        /// 获取类型字符串
+        /// </summary>
+        /// <param name="type">类型</param>
+        /// <returns>类型字符串，泛型用尖括号，数组用方括号</returns>
+        public static string GetTypeFullString(this Type type) {
+            if (type.IsGenericType) {
+                string typeName = String.Format("{0}.{1}", type.Namespace, type.Name);
+                string[] typeNameParts = typeName.Split('`');
+                typeName = typeNameParts[0];
+                int genericTypeCount = Convert.ToInt32(typeNameParts[1]);
+                string genericTypeString = null;
+                var genericTypes = type.GetGenericArguments();
+                for (int i = 0; i < genericTypes.Length; i++) {
+                    if (genericTypeString.IsNotNullOrEmpty()) {
+                        genericTypeString += ",";
+                    }
+                    genericTypeString += GetTypeString(genericTypes[i]);
+                }
+
+                return string.Format("{0}.{1}<{2}>", type.Namespace, typeName, genericTypeString);
             }
 
             return type.Name;

@@ -37,7 +37,7 @@ namespace PAO {
         /// <returns>如果是插件枚举或者插件数组，返回true，否则返回false</returns>
         public static bool IsAddonEnumerableType(this Type objType) {
             if(objType.IsGenericType 
-                && objType.GetGenericTypeDefinition().IsDerivedFrom(typeof(IEnumerable<>)) 
+                && objType.GetGenericTypeDefinition().IsDerivedFrom(typeof(IEnumerable)) 
                 && objType.GetGenericArguments()[0].IsAddon()) {
                 return true;
             }
