@@ -9,6 +9,8 @@ using System.Windows.Forms;
 using WinFormTest.Properties;
 using PAO;
 using PAO.Event;
+using System.Diagnostics;
+using PAO.Data;
 
 namespace WinFormTest
 {
@@ -23,6 +25,7 @@ namespace WinFormTest
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            Test();
             // 应用程序启动时创建PaoApplication
             AppPublic.StartApplication(AppPublic.DefaultConfigFileName
                 , Settings.Default.ConfigStart ? (Func<PaoApplication>)null : CreateApplication);
@@ -40,6 +43,48 @@ namespace WinFormTest
                 }
             };
             return app;
+        }
+
+        private static void Test() {
+            GenericTypeTest();
+            AddonTest();
+
+            MessageBox.Show("测试完成！");
+        }
+
+        private static void AddonTest() {
+            Test("typeof(PaoObject).IsAddon()", typeof(PaoObject).IsAddon());
+
+            Test("typeof(Ref<PaoObject>).IsAddon()", typeof(Ref<PaoObject>).IsAddon());
+
+            Test("typeof(Factory<PaoObject>).IsAddon()", typeof(Factory<PaoObject>).IsAddon());
+
+            Test("typeof(Ref<IDataFilter>).IsAddon()", typeof(Ref<IDataFilter>).IsAddon());
+
+            Test("typeof(List<IDataFilter>).IsAddon()", typeof(List<IDataFilter>).IsAddon());
+
+            Test("typeof(List<Ref<IDataFilter>>).IsAddon()", typeof(List<Ref<IDataFilter>>).IsAddon());
+
+            Test("typeof(List<List<Ref<IDataFilter>>>).IsAddon()", typeof(List<List<Ref<IDataFilter>>>).IsAddon());
+
+            Test("typeof(object).IsAddon()", typeof(object).IsAddon());
+        }
+
+        private static void GenericTypeTest() {
+            Test("typeof(PaoObject[]).ToString()", typeof(PaoObject[]).ToString());
+            Test("typeof(List<PaoObject>).ToString()", typeof(List<PaoObject>).ToString());
+            Test("typeof(List<PaoObject>).FullName", typeof(List<PaoObject>).FullName);
+            Test("typeof(List<PaoObject>).Name", typeof(List<PaoObject>).Name);
+            Test("typeof(List<PaoObject>).AssemblyQualifiedName", typeof(List<PaoObject>).AssemblyQualifiedName);
+
+            Test("typeof(List<PaoObject>).GetTypeString()", typeof(List<PaoObject>).GetTypeString());
+            Test("typeof(Dictionary<string,PaoObject>).GetTypeString()", typeof(Dictionary<string, PaoObject>).GetTypeString());
+            Test("typeof(List<List<Ref<IDataFilter>>>).GetTypeString()", typeof(List<List<Ref<IDataFilter>>>).GetTypeString());
+            Test("typeof(List<Dictionary<string,Ref<IDataFilter>>>).GetTypeString()", typeof(List<Dictionary<string, Ref<IDataFilter>>>).GetTypeString());
+        }
+
+        private static void Test(string testString, object resultObject) {
+            Debug.WriteLine("{0}={1}", testString, resultObject);
         }
     }
 }

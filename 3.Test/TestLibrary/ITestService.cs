@@ -1,4 +1,6 @@
-﻿namespace TestLibrary
+﻿using PAO;
+
+namespace TestLibrary
 {
     [Addon]
     public interface ITestService

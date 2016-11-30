@@ -30,10 +30,6 @@ namespace PAO.Event {
         public EventLogger() {
         }
 
-        public override string ToString() {
-            return ObjectPublic.ObjectToString(this, null, "EventSource");
-        }
-
 
         public override void ProcessEvent(EventInfo eventInfo) {
             EventLog.WriteEntry(eventInfo.Source, eventInfo.ToString());

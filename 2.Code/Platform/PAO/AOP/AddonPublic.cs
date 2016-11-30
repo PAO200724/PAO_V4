@@ -19,22 +19,68 @@ namespace PAO {
     public static class AddonPublic {
         #region 插件类型判断
         /// <summary>
-        /// 判断是否为插件类
+        /// 判断是否为插件类型
         /// </summary>
         /// <param name="objType">对象类型</param>
-        /// <returns>如果为插件类，返回true，否则返回false</returns>
-        public static bool IsAddonClass(Type objType) {
-            if (objType.IsDerivedFrom(typeof(PaoObject)))
+        /// <returns>如果类型用AddonAttribute修饰，返回true，否则返回false</returns>
+        public static bool IsAddonType(this Type objType) {
+            if (objType.HasAttribute<AddonAttribute>(true))
                 return true;
 
             return false;
         }
+
+        /// <summary>
+        /// 判断是否为插件枚举类型
+        /// </summary>
+        /// <param name="objType">对象类型</param>
+        /// <returns>如果是插件枚举或者插件数组，返回true，否则返回false</returns>
+        public static bool IsAddonEnumerableType(this Type objType) {
+            if(objType.IsGenericType 
+                && objType.GetGenericTypeDefinition().IsDerivedFrom(typeof(IEnumerable<>)) 
+                && objType.GetGenericArguments()[0].IsAddon()) {
+                return true;
+            }
+
+            if (objType.IsArray
+                && objType.GetElementType().IsAddon()) {
+                return true;
+            }
+
+            return false;
+        }
+        /// <summary>
+        /// 判断是否为插件字典类型
+        /// </summary>
+        /// <param name="objType">对象类型</param>
+        /// <returns>如果是插件字典，返回true，否则返回false</returns>
+        public static bool IsAddonDictionaryType(this Type objType) {
+            if (objType.IsGenericType
+                && objType.GetGenericTypeDefinition().IsDerivedFrom(typeof(IDictionary<,>))
+                && objType.GetGenericArguments()[1].IsAddon()) {
+                return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// 判断是否为插件类型
+        /// </summary>
+        /// <param name="objType">对象类型</param>
+        /// <returns>如果是插件类、插件列表类或插件字典类，返回true，否则返回false</returns>
+        public static bool IsAddon(this Type objType) {
+            if (IsAddonType(objType) || IsAddonEnumerableType(objType) || IsAddonDictionaryType(objType)) {
+                return true;
+            }
+            return false;
+        }
         #endregion
 
-        #region 插件类型列表
-        /// <summary>
-        /// 插件对象类型列表
-        /// </summary>
+            #region 插件类型列表
+            /// <summary>
+            /// 插件对象类型列表
+            /// </summary>
         public static List<Type> AddonTypeList = new List<Type>();
 
         public static void RebuildAddonTypeList() {

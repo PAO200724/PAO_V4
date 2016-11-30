@@ -25,14 +25,17 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ObjectTreeControl));
             this.TreeListObject = new DevExpress.XtraTreeList.TreeList();
             this.ColumnPropertyName = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.ColumnObjectString = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.ColumnTypeName = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.ColumnPropertyDescriptor = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.ColumnPropertyValue = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.ColumnObject = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.ColumnElementType = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.ImageCollectionTree = new DevExpress.Utils.ImageCollection();
+            this.ImageCollectionTree = new DevExpress.Utils.ImageCollection(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.TreeListObject)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImageCollectionTree)).BeginInit();
             this.SuspendLayout();
@@ -41,6 +44,8 @@
             // 
             this.TreeListObject.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
             this.ColumnPropertyName,
+            this.ColumnObjectString,
+            this.ColumnTypeName,
             this.ColumnPropertyDescriptor,
             this.ColumnPropertyValue,
             this.ColumnObject,
@@ -48,10 +53,17 @@
             this.TreeListObject.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TreeListObject.Location = new System.Drawing.Point(0, 0);
             this.TreeListObject.Name = "TreeListObject";
-            this.TreeListObject.OptionsBehavior.Editable = false;
+            this.TreeListObject.OptionsBehavior.ReadOnly = true;
             this.TreeListObject.OptionsClipboard.AllowCopy = DevExpress.Utils.DefaultBoolean.True;
             this.TreeListObject.OptionsClipboard.CopyNodeHierarchy = DevExpress.Utils.DefaultBoolean.True;
-            this.TreeListObject.OptionsView.ShowColumns = false;
+            this.TreeListObject.OptionsCustomization.AllowBandMoving = false;
+            this.TreeListObject.OptionsCustomization.AllowBandResizing = false;
+            this.TreeListObject.OptionsCustomization.AllowColumnMoving = false;
+            this.TreeListObject.OptionsCustomization.AllowQuickHideColumns = false;
+            this.TreeListObject.OptionsCustomization.ShowBandsInCustomizationForm = false;
+            this.TreeListObject.OptionsFind.AllowFindPanel = true;
+            this.TreeListObject.OptionsFind.AlwaysVisible = true;
+            this.TreeListObject.OptionsFind.FindNullPrompt = "输入文字查找...";
             this.TreeListObject.OptionsView.ShowIndicator = false;
             this.TreeListObject.SelectImageList = this.ImageCollectionTree;
             this.TreeListObject.Size = new System.Drawing.Size(418, 571);
@@ -65,6 +77,25 @@
             this.ColumnPropertyName.Name = "ColumnPropertyName";
             this.ColumnPropertyName.Visible = true;
             this.ColumnPropertyName.VisibleIndex = 0;
+            this.ColumnPropertyName.Width = 193;
+            // 
+            // ColumnObjectString
+            // 
+            this.ColumnObjectString.Caption = "对象名称";
+            this.ColumnObjectString.FieldName = "ObjectString";
+            this.ColumnObjectString.Name = "ColumnObjectString";
+            this.ColumnObjectString.Visible = true;
+            this.ColumnObjectString.VisibleIndex = 2;
+            this.ColumnObjectString.Width = 114;
+            // 
+            // ColumnTypeName
+            // 
+            this.ColumnTypeName.Caption = "类型名称";
+            this.ColumnTypeName.FieldName = "TypeName";
+            this.ColumnTypeName.Name = "ColumnTypeName";
+            this.ColumnTypeName.Visible = true;
+            this.ColumnTypeName.VisibleIndex = 1;
+            this.ColumnTypeName.Width = 109;
             // 
             // ColumnPropertyDescriptor
             // 
@@ -126,5 +157,7 @@
         private DevExpress.XtraTreeList.Columns.TreeListColumn ColumnPropertyValue;
         private DevExpress.XtraTreeList.Columns.TreeListColumn ColumnObject;
         private DevExpress.XtraTreeList.Columns.TreeListColumn ColumnElementType;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn ColumnObjectString;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn ColumnTypeName;
     }
 }

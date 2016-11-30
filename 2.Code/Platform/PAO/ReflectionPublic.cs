@@ -297,6 +297,14 @@ namespace PAO {
                 || parentType.IsAssignableFrom(testType)
                 || testType.FindInterface(parentType);
         }
+        /// <summary>
+        /// 是否从父类继承
+        /// </summary>
+        /// <typeparam name="T">父类</typeparam>
+        /// <returns>是否从父类继承</returns>
+        public static bool IsDerivedFrom<T>(this Type testType) {
+            return IsDerivedFrom(testType, typeof(T));
+        }
 
         /// <summary>
         /// 是否是指定類別
@@ -402,6 +410,32 @@ namespace PAO {
                 return false;
             else
                 return true;
+        }
+
+        /// <summary>
+        /// 获取类型字符串
+        /// </summary>
+        /// <param name="type">类型</param>
+        /// <returns>类型字符串，泛型用尖括号，数组用方括号</returns>
+        public static string GetTypeString(this Type type) {
+            if (type.IsGenericType) {
+                string typeName = type.Name;
+                string[] typeNameParts = typeName.Split('`');
+                typeName = typeNameParts[0];
+                int genericTypeCount = Convert.ToInt32(typeNameParts[1]);
+                string genericTypeString = null;
+                var genericTypes = type.GetGenericArguments();
+                for (int i=0;i< genericTypes.Length; i++) {
+                    if(genericTypeString.IsNotNullOrEmpty()) {
+                        genericTypeString += ",";
+                    }
+                    genericTypeString += GetTypeString(genericTypes[i]);
+                }
+
+                return string.Format("{0}<{1}>", typeName, genericTypeString);
+            }
+
+            return type.Name;
         }
         #endregion
 

@@ -9,7 +9,7 @@ using System.Text;
 namespace PAO
 {
     [System.AttributeUsage(AttributeTargets.Class | AttributeTargets.Interface, Inherited = true, AllowMultiple = false)]
-    sealed class AddonAttribute : Attribute
+    public class AddonAttribute : Attribute
     {
     }
 }
