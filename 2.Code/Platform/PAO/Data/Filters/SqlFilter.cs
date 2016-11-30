@@ -28,6 +28,7 @@ namespace PAO.Data.Filters
         /// Sql语句
         /// 用于过滤语法的Sql语句
         /// </summary>
+        [AddonProperty]
         [DataMember(EmitDefaultValue=false)]
         [DisplayName("Sql语句")]
         [Description("用于过滤语法的Sql语句")]

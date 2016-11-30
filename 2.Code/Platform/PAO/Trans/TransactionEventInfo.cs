@@ -38,6 +38,7 @@ namespace PAO.Trans
         /// 事务
         /// 事务
         /// </summary>
+        [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
         [DisplayName("事务")]
         [Description("事件对应的事务")]
@@ -53,6 +54,7 @@ namespace PAO.Trans
         /// 内部异常信息
         /// 当事务处于异常或回滚异常时，此属性有效
         /// </summary>
+        [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
         [DisplayName("内部异常信息")]
         [Description("当事务处于异常或回滚异常时，此属性有效")]

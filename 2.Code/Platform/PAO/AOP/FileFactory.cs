@@ -26,6 +26,7 @@ namespace PAO {
         /// 文件路径
         /// 保存对象配置的文件路径
         /// </summary>
+        [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
         [DisplayName("文件路径")]
         [Description("保存对象配置的文件路径")]

@@ -28,6 +28,7 @@ namespace PAO.App
         /// 属性路径
         /// 根据路径在默认应用中查找对象
         /// </summary>
+        [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
         [DisplayName("属性路径")]
         [Description("根据路径在默认应用中查找对象")]

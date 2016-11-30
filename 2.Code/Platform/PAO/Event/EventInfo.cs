@@ -37,6 +37,7 @@ namespace PAO.Event
         /// 时间
         /// 事件发生的时间
         /// </summary>
+        [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
         [DisplayName("时间")]
         [Description("事件发生的时间")]
@@ -52,6 +53,7 @@ namespace PAO.Event
         /// 事件源
         /// 事件源
         /// </summary>
+        [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
         [DisplayName("事件源")]
         [Description("事件源")]
@@ -68,6 +70,7 @@ namespace PAO.Event
         /// 消息
         /// 事件消息
         /// </summary>
+        [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
         [DisplayName("消息")]
         [Description("事件消息")]
@@ -83,6 +86,7 @@ namespace PAO.Event
         /// 事件类型
         /// 事件类型，如果是异常，则是异常的Type字符串
         /// </summary>
+        [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
         [DisplayName("事件类型")]
         [Description("事件类型，如果是异常，则是异常的Type字符串")]
@@ -91,13 +95,14 @@ namespace PAO.Event
             set;
         }
         #endregion 属性：Type
-        
+
         #region 属性：Data
         /// <summary>
         /// 属性：Data
         /// 数据
         /// 异常数据或其他数据
         /// </summary>
+        [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
         [DisplayName("数据")]
         [Description("异常数据或其他数据")]
@@ -113,6 +118,7 @@ namespace PAO.Event
         /// 截屏
         /// 屏幕截图
         /// </summary>
+        [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
         [DisplayName("截屏")]
         [Description("屏幕截图")]
@@ -129,6 +135,7 @@ namespace PAO.Event
         /// 资产快照
         /// 系统资产的快照
         /// </summary>
+        [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
         [DisplayName("资产快照")]
         [Description("系统资产的快照")]

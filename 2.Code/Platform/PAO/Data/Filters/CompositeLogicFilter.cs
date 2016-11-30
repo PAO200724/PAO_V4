@@ -27,6 +27,7 @@ namespace PAO.Data.Filters
         /// 子过滤器
         /// 自过滤器列表
         /// </summary>
+        [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
         [DisplayName("子过滤器")]
         [Description("自过滤器列表")]

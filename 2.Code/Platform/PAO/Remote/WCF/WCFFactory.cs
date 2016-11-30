@@ -26,6 +26,7 @@ namespace PAO.Remote.WCF{
         /// Url
         /// WCF服务地址
         /// </summary>
+        [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
         [DisplayName("Url")]
         [Description("WCF服务地址")]

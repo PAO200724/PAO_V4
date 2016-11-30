@@ -30,6 +30,7 @@ namespace PAO.Event
         /// 异常类型
         /// 异常类型
         /// </summary>
+        [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
         [DisplayName("异常类型")]
         [Description("异常类型")]
@@ -45,6 +46,7 @@ namespace PAO.Event
         /// 堆栈信息
         /// 异常堆栈信息
         /// </summary>
+        [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
         [DisplayName("堆栈信息")]
         [Description("异常堆栈信息")]
@@ -60,6 +62,7 @@ namespace PAO.Event
         /// 内部异常信息
         /// 内部异常信息
         /// </summary>
+        [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
         [DisplayName("内部异常信息")]
         [Description("内部异常信息")]

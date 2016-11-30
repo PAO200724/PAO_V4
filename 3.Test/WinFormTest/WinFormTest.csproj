@@ -50,12 +50,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EventTestForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="EventTestForm.Designer.cs">
-      <DependentUpon>EventTestForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -64,9 +58,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="EventTestForm.resx">
-      <DependentUpon>EventTestForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -95,6 +86,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\2.Code\Platform\PAO.Config\PAO.Config.csproj">
+      <Project>{a0f88184-cb49-4c7d-a56b-ae323fdb67ba}</Project>
+      <Name>PAO.Config</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\2.Code\Platform\PAO.UI.WinForm\PAO.UI.WinForm.csproj">
       <Project>{49bd4858-22c7-431e-a0ac-638a182fd35e}</Project>
       <Name>PAO.UI.WinForm</Name>

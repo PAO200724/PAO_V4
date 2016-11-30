@@ -34,6 +34,7 @@ namespace PAO.Server
         /// 停止超时
         /// 停止服务的等待超时时间，单位:毫秒
         /// </summary>
+        [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
         [DisplayName("停止超时")]
         [Description("停止服务的等待超时时间，单位:毫秒")]
@@ -49,6 +50,7 @@ namespace PAO.Server
         /// 任务创建选项
         /// 服务任务创建的选项
         /// </summary>
+        [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
         [DisplayName("任务创建选项")]
         [Description("服务任务创建的选项")]

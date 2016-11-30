@@ -27,6 +27,7 @@ namespace PAO.Part
         /// 状态
         /// 部件状态
         /// </summary>
+        [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
         [DisplayName("状态")]
         [Description("部件状态")]

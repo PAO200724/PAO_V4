@@ -27,6 +27,7 @@ namespace PAO.Part.Disabled
         /// 详细信息
         /// 用字符串表示的异常详细信息
         /// </summary>
+        [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
         [DisplayName("详细信息")]
         [Description("用字符串表示的异常详细信息")]

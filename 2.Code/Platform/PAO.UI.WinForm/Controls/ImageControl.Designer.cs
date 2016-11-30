@@ -32,7 +32,6 @@
             this.ButtonOriginalSize = new DevExpress.XtraBars.BarButtonItem();
             this.ButtonZoomOut = new DevExpress.XtraBars.BarButtonItem();
             this.ButtonZoomIn = new DevExpress.XtraBars.BarButtonItem();
-            this.ButtonTakePicture = new DevExpress.XtraBars.BarButtonItem();
             this.ButtonSave = new DevExpress.XtraBars.BarButtonItem();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
@@ -57,7 +56,6 @@
             this.ButtonOriginalSize,
             this.ButtonZoomOut,
             this.ButtonZoomIn,
-            this.ButtonTakePicture,
             this.ButtonSave});
             this.BarManager.MaxItemId = 10;
             // 
@@ -72,8 +70,7 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.ButtonOriginalSize),
             new DevExpress.XtraBars.LinkPersistInfo(this.ButtonZoomOut, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.ButtonZoomIn),
-            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonTakePicture, true),
-            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonSave)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonSave, true)});
             this.BarTools.Text = "工具条";
             // 
             // ButtonFitSize
@@ -107,13 +104,6 @@
             this.ButtonZoomIn.Id = 7;
             this.ButtonZoomIn.Name = "ButtonZoomIn";
             this.ButtonZoomIn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonZoomIn_ItemClick);
-            // 
-            // ButtonTakePicture
-            // 
-            this.ButtonTakePicture.Caption = "拍照(&C)";
-            this.ButtonTakePicture.Id = 8;
-            this.ButtonTakePicture.Name = "ButtonTakePicture";
-            this.ButtonTakePicture.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonTakePicture_ItemClick);
             // 
             // ButtonSave
             // 
@@ -195,7 +185,6 @@
         private DevExpress.XtraBars.BarButtonItem ButtonOriginalSize;
         private DevExpress.XtraBars.BarButtonItem ButtonZoomOut;
         private DevExpress.XtraBars.BarButtonItem ButtonZoomIn;
-        private DevExpress.XtraBars.BarButtonItem ButtonTakePicture;
         private DevExpress.XtraBars.BarButtonItem ButtonSave;
     }
 }

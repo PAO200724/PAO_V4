@@ -93,6 +93,7 @@ namespace PAO.UI.WinForm.Controls
             this.LayoutControl.Controls.Add(this.TextEditMessage);
             this.LayoutControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LayoutControl.Location = new System.Drawing.Point(0, 0);
+            this.LayoutControl.Margin = new System.Windows.Forms.Padding(0);
             this.LayoutControl.Name = "LayoutControl";
             this.LayoutControl.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(606, 161, 250, 350);
             this.LayoutControl.OptionsView.IsReadOnly = DevExpress.Utils.DefaultBoolean.True;
@@ -104,26 +105,31 @@ namespace PAO.UI.WinForm.Controls
             // ImageControl
             // 
             this.ImageControl.Image = null;
-            this.ImageControl.Location = new System.Drawing.Point(86, 24);
+            this.ImageControl.Location = new System.Drawing.Point(79, 14);
+            this.ImageControl.MaxZoomPercent = 200D;
+            this.ImageControl.MinZoomPercent = 50D;
             this.ImageControl.Name = "ImageControl";
-            this.ImageControl.Size = new System.Drawing.Size(462, 337);
+            this.ImageControl.ReadOnly = true;
+            this.ImageControl.ShowApplyButton = false;
+            this.ImageControl.ShowCancelButton = true;
+            this.ImageControl.Size = new System.Drawing.Size(479, 357);
             this.ImageControl.TabIndex = 12;
             // 
             // TextEditSource
             // 
-            this.TextEditSource.Location = new System.Drawing.Point(125, 24);
+            this.TextEditSource.Location = new System.Drawing.Point(118, 14);
             this.TextEditSource.Name = "TextEditSource";
             this.TextEditSource.Properties.ReadOnly = true;
-            this.TextEditSource.Size = new System.Drawing.Size(190, 20);
+            this.TextEditSource.Size = new System.Drawing.Size(199, 20);
             this.TextEditSource.StyleController = this.LayoutControl;
             this.TextEditSource.TabIndex = 11;
             // 
             // GridControlData
             // 
-            this.GridControlData.Location = new System.Drawing.Point(86, 24);
+            this.GridControlData.Location = new System.Drawing.Point(79, 14);
             this.GridControlData.MainView = this.GridViewData;
             this.GridControlData.Name = "GridControlData";
-            this.GridControlData.Size = new System.Drawing.Size(462, 337);
+            this.GridControlData.Size = new System.Drawing.Size(479, 357);
             this.GridControlData.TabIndex = 10;
             this.GridControlData.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.GridViewData});
@@ -156,46 +162,46 @@ namespace PAO.UI.WinForm.Controls
             // 
             // TreeListAssetSnapshot
             // 
-            this.TreeListAssetSnapshot.Location = new System.Drawing.Point(86, 24);
+            this.TreeListAssetSnapshot.Location = new System.Drawing.Point(79, 14);
             this.TreeListAssetSnapshot.Name = "TreeListAssetSnapshot";
             this.TreeListAssetSnapshot.OptionsClipboard.AllowCopy = DevExpress.Utils.DefaultBoolean.True;
             this.TreeListAssetSnapshot.OptionsClipboard.CopyNodeHierarchy = DevExpress.Utils.DefaultBoolean.True;
-            this.TreeListAssetSnapshot.Size = new System.Drawing.Size(462, 337);
+            this.TreeListAssetSnapshot.Size = new System.Drawing.Size(479, 357);
             this.TreeListAssetSnapshot.TabIndex = 9;
             // 
             // MemoEditDetail
             // 
-            this.MemoEditDetail.Location = new System.Drawing.Point(89, 118);
+            this.MemoEditDetail.Location = new System.Drawing.Point(82, 108);
             this.MemoEditDetail.Name = "MemoEditDetail";
             this.MemoEditDetail.Properties.ReadOnly = true;
-            this.MemoEditDetail.Size = new System.Drawing.Size(456, 240);
+            this.MemoEditDetail.Size = new System.Drawing.Size(473, 260);
             this.MemoEditDetail.StyleController = this.LayoutControl;
             this.MemoEditDetail.TabIndex = 7;
             // 
             // TextEditType
             // 
-            this.TextEditType.Location = new System.Drawing.Point(125, 48);
+            this.TextEditType.Location = new System.Drawing.Point(118, 38);
             this.TextEditType.Name = "TextEditType";
             this.TextEditType.Properties.ReadOnly = true;
-            this.TextEditType.Size = new System.Drawing.Size(423, 20);
+            this.TextEditType.Size = new System.Drawing.Size(440, 20);
             this.TextEditType.StyleController = this.LayoutControl;
             this.TextEditType.TabIndex = 6;
             // 
             // TextEditTime
             // 
-            this.TextEditTime.Location = new System.Drawing.Point(358, 24);
+            this.TextEditTime.Location = new System.Drawing.Point(360, 14);
             this.TextEditTime.Name = "TextEditTime";
             this.TextEditTime.Properties.ReadOnly = true;
-            this.TextEditTime.Size = new System.Drawing.Size(190, 20);
+            this.TextEditTime.Size = new System.Drawing.Size(198, 20);
             this.TextEditTime.StyleController = this.LayoutControl;
             this.TextEditTime.TabIndex = 5;
             // 
             // TextEditMessage
             // 
-            this.TextEditMessage.Location = new System.Drawing.Point(125, 72);
+            this.TextEditMessage.Location = new System.Drawing.Point(118, 62);
             this.TextEditMessage.Name = "TextEditMessage";
             this.TextEditMessage.Properties.ReadOnly = true;
-            this.TextEditMessage.Size = new System.Drawing.Size(423, 20);
+            this.TextEditMessage.Size = new System.Drawing.Size(440, 20);
             this.TextEditMessage.StyleController = this.LayoutControl;
             this.TextEditMessage.TabIndex = 4;
             // 
@@ -207,6 +213,7 @@ namespace PAO.UI.WinForm.Controls
             this.TabbedControlGroup});
             this.RootGroup.Location = new System.Drawing.Point(0, 0);
             this.RootGroup.Name = "Root";
+            this.RootGroup.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
             this.RootGroup.Size = new System.Drawing.Size(572, 385);
             this.RootGroup.TextVisible = false;
             // 
@@ -217,7 +224,7 @@ namespace PAO.UI.WinForm.Controls
             this.TabbedControlGroup.Name = "TabbedControlGroup";
             this.TabbedControlGroup.SelectedTabPage = this.LayoutControlGroupCommon;
             this.TabbedControlGroup.SelectedTabPageIndex = 0;
-            this.TabbedControlGroup.Size = new System.Drawing.Size(552, 365);
+            this.TabbedControlGroup.Size = new System.Drawing.Size(572, 385);
             this.TabbedControlGroup.TabPages.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.LayoutControlGroupCommon,
             this.LayoutControlGroupData,
@@ -231,7 +238,7 @@ namespace PAO.UI.WinForm.Controls
             this.LayoutControlItemPicture});
             this.LayoutControlGroupScreenShot.Location = new System.Drawing.Point(0, 0);
             this.LayoutControlGroupScreenShot.Name = "LayoutControlGroupScreenShot";
-            this.LayoutControlGroupScreenShot.Size = new System.Drawing.Size(466, 341);
+            this.LayoutControlGroupScreenShot.Size = new System.Drawing.Size(483, 361);
             this.LayoutControlGroupScreenShot.Text = "屏幕截图";
             // 
             // LayoutControlItemPicture
@@ -239,7 +246,7 @@ namespace PAO.UI.WinForm.Controls
             this.LayoutControlItemPicture.Control = this.ImageControl;
             this.LayoutControlItemPicture.Location = new System.Drawing.Point(0, 0);
             this.LayoutControlItemPicture.Name = "LayoutControlItemPicture";
-            this.LayoutControlItemPicture.Size = new System.Drawing.Size(466, 341);
+            this.LayoutControlItemPicture.Size = new System.Drawing.Size(483, 361);
             this.LayoutControlItemPicture.Text = "屏幕截图";
             this.LayoutControlItemPicture.TextSize = new System.Drawing.Size(0, 0);
             this.LayoutControlItemPicture.TextVisible = false;
@@ -254,15 +261,15 @@ namespace PAO.UI.WinForm.Controls
             this.LayoutControlItemSource});
             this.LayoutControlGroupCommon.Location = new System.Drawing.Point(0, 0);
             this.LayoutControlGroupCommon.Name = "LayoutControlGroupCommon";
-            this.LayoutControlGroupCommon.Size = new System.Drawing.Size(466, 341);
+            this.LayoutControlGroupCommon.Size = new System.Drawing.Size(483, 361);
             this.LayoutControlGroupCommon.Text = "异常信息";
             // 
             // LayoutControlItemTime
             // 
             this.LayoutControlItemTime.Control = this.TextEditTime;
-            this.LayoutControlItemTime.Location = new System.Drawing.Point(233, 0);
+            this.LayoutControlItemTime.Location = new System.Drawing.Point(242, 0);
             this.LayoutControlItemTime.Name = "LayoutControlItemTime";
-            this.LayoutControlItemTime.Size = new System.Drawing.Size(233, 24);
+            this.LayoutControlItemTime.Size = new System.Drawing.Size(241, 24);
             this.LayoutControlItemTime.Text = "时间：";
             this.LayoutControlItemTime.TextSize = new System.Drawing.Size(36, 14);
             // 
@@ -271,7 +278,7 @@ namespace PAO.UI.WinForm.Controls
             this.LayoutControlItemMessage.Control = this.TextEditMessage;
             this.LayoutControlItemMessage.Location = new System.Drawing.Point(0, 48);
             this.LayoutControlItemMessage.Name = "LayoutControlItemMessage";
-            this.LayoutControlItemMessage.Size = new System.Drawing.Size(466, 24);
+            this.LayoutControlItemMessage.Size = new System.Drawing.Size(483, 24);
             this.LayoutControlItemMessage.Text = "消息：";
             this.LayoutControlItemMessage.TextSize = new System.Drawing.Size(36, 14);
             // 
@@ -280,7 +287,7 @@ namespace PAO.UI.WinForm.Controls
             this.LayoutControlItemType.Control = this.TextEditType;
             this.LayoutControlItemType.Location = new System.Drawing.Point(0, 24);
             this.LayoutControlItemType.Name = "LayoutControlItemType";
-            this.LayoutControlItemType.Size = new System.Drawing.Size(466, 24);
+            this.LayoutControlItemType.Size = new System.Drawing.Size(483, 24);
             this.LayoutControlItemType.Text = "类型：";
             this.LayoutControlItemType.TextSize = new System.Drawing.Size(36, 14);
             // 
@@ -291,7 +298,7 @@ namespace PAO.UI.WinForm.Controls
             this.LayoutControlGroupDetail.Location = new System.Drawing.Point(0, 72);
             this.LayoutControlGroupDetail.Name = "LayoutControlGroupDetail";
             this.LayoutControlGroupDetail.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-            this.LayoutControlGroupDetail.Size = new System.Drawing.Size(466, 269);
+            this.LayoutControlGroupDetail.Size = new System.Drawing.Size(483, 289);
             this.LayoutControlGroupDetail.Text = "详细信息";
             // 
             // LayoutControlItemDetail
@@ -299,7 +306,7 @@ namespace PAO.UI.WinForm.Controls
             this.LayoutControlItemDetail.Control = this.MemoEditDetail;
             this.LayoutControlItemDetail.Location = new System.Drawing.Point(0, 0);
             this.LayoutControlItemDetail.Name = "LayoutControlItemDetail";
-            this.LayoutControlItemDetail.Size = new System.Drawing.Size(460, 244);
+            this.LayoutControlItemDetail.Size = new System.Drawing.Size(477, 264);
             this.LayoutControlItemDetail.Text = "详细信息";
             this.LayoutControlItemDetail.TextLocation = DevExpress.Utils.Locations.Top;
             this.LayoutControlItemDetail.TextSize = new System.Drawing.Size(0, 0);
@@ -310,7 +317,7 @@ namespace PAO.UI.WinForm.Controls
             this.LayoutControlItemSource.Control = this.TextEditSource;
             this.LayoutControlItemSource.Location = new System.Drawing.Point(0, 0);
             this.LayoutControlItemSource.Name = "LayoutControlItemSource";
-            this.LayoutControlItemSource.Size = new System.Drawing.Size(233, 24);
+            this.LayoutControlItemSource.Size = new System.Drawing.Size(242, 24);
             this.LayoutControlItemSource.Text = "源：";
             this.LayoutControlItemSource.TextSize = new System.Drawing.Size(36, 14);
             // 
@@ -320,7 +327,7 @@ namespace PAO.UI.WinForm.Controls
             this.LayoutControlItemData});
             this.LayoutControlGroupData.Location = new System.Drawing.Point(0, 0);
             this.LayoutControlGroupData.Name = "LayoutControlGroupData";
-            this.LayoutControlGroupData.Size = new System.Drawing.Size(466, 341);
+            this.LayoutControlGroupData.Size = new System.Drawing.Size(483, 361);
             this.LayoutControlGroupData.Text = "消息数据";
             // 
             // LayoutControlItemData
@@ -328,7 +335,7 @@ namespace PAO.UI.WinForm.Controls
             this.LayoutControlItemData.Control = this.GridControlData;
             this.LayoutControlItemData.Location = new System.Drawing.Point(0, 0);
             this.LayoutControlItemData.Name = "LayoutControlItemData";
-            this.LayoutControlItemData.Size = new System.Drawing.Size(466, 341);
+            this.LayoutControlItemData.Size = new System.Drawing.Size(483, 361);
             this.LayoutControlItemData.Text = "消息数据";
             this.LayoutControlItemData.TextLocation = DevExpress.Utils.Locations.Top;
             this.LayoutControlItemData.TextSize = new System.Drawing.Size(0, 0);
@@ -340,7 +347,7 @@ namespace PAO.UI.WinForm.Controls
             this.LayoutControlItemAssetSnapshot});
             this.LayoutControlGroupAssetSnapshot.Location = new System.Drawing.Point(0, 0);
             this.LayoutControlGroupAssetSnapshot.Name = "LayoutControlGroupAssetSnapshot";
-            this.LayoutControlGroupAssetSnapshot.Size = new System.Drawing.Size(466, 341);
+            this.LayoutControlGroupAssetSnapshot.Size = new System.Drawing.Size(483, 361);
             this.LayoutControlGroupAssetSnapshot.Text = "资产快照";
             // 
             // LayoutControlItemAssetSnapshot
@@ -348,7 +355,7 @@ namespace PAO.UI.WinForm.Controls
             this.LayoutControlItemAssetSnapshot.Control = this.TreeListAssetSnapshot;
             this.LayoutControlItemAssetSnapshot.Location = new System.Drawing.Point(0, 0);
             this.LayoutControlItemAssetSnapshot.Name = "LayoutControlItemAssetSnapshot";
-            this.LayoutControlItemAssetSnapshot.Size = new System.Drawing.Size(466, 341);
+            this.LayoutControlItemAssetSnapshot.Size = new System.Drawing.Size(483, 361);
             this.LayoutControlItemAssetSnapshot.Text = "资产快照";
             this.LayoutControlItemAssetSnapshot.TextLocation = DevExpress.Utils.Locations.Top;
             this.LayoutControlItemAssetSnapshot.TextSize = new System.Drawing.Size(0, 0);

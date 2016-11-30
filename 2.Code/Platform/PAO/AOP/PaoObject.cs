@@ -12,6 +12,7 @@ namespace PAO {
     /// 作者:PAO
     /// </summary>
     [Serializable]
+    [Addon]
     [DataContract(Namespace = "")]
     [DisplayName("基础对象")]
     [Description("插件类，所有实体对象的基类")]
@@ -23,6 +24,7 @@ namespace PAO {
         /// ID
         /// 唯一编号
         /// </summary>
+        [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
         [DisplayName("ID")]
         [Description("唯一编号")]

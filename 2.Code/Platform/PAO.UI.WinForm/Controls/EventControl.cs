@@ -15,7 +15,7 @@ namespace PAO.UI.WinForm.Controls
     /// 事件控件
     /// 显示事件信息
     /// </summary>
-    public partial class EventControl : DevExpress.XtraEditors.XtraUserControl
+    public partial class EventControl : DialogControl
     {
         private EventInfo _EventInfo;
         /// <summary>
@@ -30,6 +30,8 @@ namespace PAO.UI.WinForm.Controls
 
         public EventControl() {
             InitializeComponent();
+            ShowApplyButton = false;
+            ShowCancelButton = false;
         }
 
         public void Initialize(EventInfo eventInfo) {
