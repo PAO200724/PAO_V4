@@ -18,7 +18,7 @@ namespace WebTest
         public static PaoApplication CreateApplication() {
             var app = new PaoApplication()
             {
-                ServiceList = new Dictionary<string, Ref<object>>()
+                ServiceList = new Dictionary<string, Ref<PaoObject>>()
                      .Append("TestService", new TestService()),
             };
             return app;

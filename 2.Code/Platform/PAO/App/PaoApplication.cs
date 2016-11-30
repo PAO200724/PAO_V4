@@ -5,6 +5,7 @@ using PAO.Server;
 using PAO.Trans;
 using PAO.UI;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -91,27 +92,11 @@ namespace PAO.App {
         [DataMember(EmitDefaultValue = false)]
         [Name("服务列表")]
         [Description("加载在远程服务器中的服务列表")]
-        public Dictionary<string, Ref<object>> ServiceList {
+        public Dictionary<string, Ref<PaoObject>> ServiceList {
             get;
             set;
         }
         #endregion 属性：ServiceList
-
-        #region 属性：GlobalAddonList
-        /// <summary>
-        /// 属性：GlobalAddonList
-        /// 全局插件列表
-        /// 此列表用于检索应用中的插件，当建立插件引用时，应当在此表中增加插件
-        /// </summary>
-        [AddonProperty]
-        [DataMember(EmitDefaultValue = false)]
-        [Name("全局插件列表")]
-        [Description("此列表用于检索应用中的插件，当建立插件引用时，应当在此表中增加插件")]
-        public Dictionary<string, Ref<PaoObject>> GlobalAddonList {
-            get;
-            set;
-        }
-        #endregion 属性：GlobalAddonList
 
         #region 属性：UserInterface
         /// <summary>
@@ -128,6 +113,22 @@ namespace PAO.App {
             set;
         }
         #endregion 属性：UserInterface
+
+        #region 属性：ExtendAddonList
+        /// <summary>
+        /// 属性：ExtendAddonList
+        /// 扩展插件
+        /// 扩展的全局插件
+        /// </summary>
+        [AddonProperty]
+        [DataMember(EmitDefaultValue = false)]
+        [Name("扩展插件")]
+        [Description("扩展的全局插件")]
+        public List<PaoObject> ExtendAddonList {
+            get;
+            set;
+        }
+        #endregion 属性：ExtendAddonList
         #endregion
 
         /// <summary>
@@ -137,11 +138,19 @@ namespace PAO.App {
         [NonSerialized]
         public Action RunAction;
 
+        /// <summary>
+        /// 全局插件列表
+        /// 此列表用于检索应用中的插件，当建立插件引用时，应当在此表中增加插件
+        /// </summary>
+        [NonSerialized]
+        public Dictionary<string, PaoObject> GlobalAddonList = new Dictionary<string, PaoObject>();
+
         public PaoApplication() {
             ServerList = new List<PAO.Ref<Server.BaseServer>>();
             EventProcessorList = new List<PAO.Ref<BaseEventProcessor>>();
-            ServiceList = new Dictionary<string, PAO.Ref<object>>();
+            ServiceList = new Dictionary<string, PAO.Ref<PaoObject>>();
         }
+
 
         public override string ToString() {
             // 将对象转换为字符串
@@ -177,6 +186,13 @@ namespace PAO.App {
                     UIPublic.DefaultUserInterface = UserInterface.Value;
                 }
                 #endregion 用户界面
+
+                #region 全局插件
+                TransactionPublic.Run("检索全局插件", () =>
+                {
+                    AddGlobalAddons();
+                });
+                #endregion
 
                 #region 事件
                 TransactionPublic.Run("事件处理机准备", () =>
@@ -224,7 +240,45 @@ namespace PAO.App {
                 #region 程序
                 TransactionPublic.Run("启动服务", Run);
                 #endregion 程序
+
             }, OnException);
+        }
+
+        /// <summary>
+        /// 检索全局插件
+        /// </summary>
+        private void AddGlobalAddons() {
+            GlobalAddonList = new Dictionary<string, PaoObject>();
+            AddGlobalAddons(this);
+        }
+
+        public void AddGlobalAddons(PaoObject obj) {
+            if (GlobalAddonList.ContainsKey(obj.ID))
+                GlobalAddonList.Add(obj.ID, obj);
+
+            var properties = TypeDescriptor.GetProperties(obj);
+            foreach(PropertyDescriptor property in properties) {
+                if(property.Attributes.GetAttribute<AddonPropertyAttribute>() != null) {
+                    var propObj = property.GetValue(obj);
+                    if (propObj == null)
+                        continue;
+
+                    if(propObj is PaoObject) {
+                        AddGlobalAddons((PaoObject)propObj);
+                    } else if(propObj.GetType().IsAddonListType()) {
+                        foreach(var element in propObj.As<IList>()) {
+                            if(element is PaoObject)
+                                AddGlobalAddons((PaoObject)propObj);
+                        }
+                    }
+                    else if (propObj.GetType().IsAddonDictionaryType()) {
+                        foreach (var element in propObj.As<IDictionary>().Values) {
+                            if (element is PaoObject)
+                                AddGlobalAddons((PaoObject)propObj);
+                        }
+                    }
+                }
+            }
         }
 
         /// <summary>

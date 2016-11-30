@@ -50,11 +50,11 @@ namespace PAO.Config.Controls
                 if (p.IsInterface) {
                     imageIndex = ImageIndex_Interface;
                 }
-                else if (p.IsDerivedFrom(typeof(Ref))) {
-                    imageIndex = ImageIndex_Ref;
-                }
                 else if (p.IsAbstract) {
                     imageIndex = ImageIndex_Abstract;
+                }
+                else if (p.IsDerivedFrom(typeof(Ref<>))) {
+                    imageIndex = ImageIndex_Ref;
                 }
                 var displayAttr = p.GetAttribute<DisplayNameAttribute>(false);
                 return new

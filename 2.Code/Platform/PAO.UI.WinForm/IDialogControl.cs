@@ -25,8 +25,9 @@ namespace PAO.UI.WinForm
         /// <summary>
         /// 退出时事件
         /// </summary>
+        /// <param name="dialogResult">对话框结果</param>
         /// <param name="cancel">取消</param>
-        void OnClosing(ref bool cancel);
+        void OnClosing(DialogResult dialogResult, ref bool cancel);
 
         /// <summary>
         /// 应用按钮按下时的事件

@@ -69,6 +69,8 @@ namespace WinFormTest
         }
 
         private static void GenericTypeTest() {
+            Test("typeof(Factory<>).IsGenericTypeDefinition", typeof(Factory<>).IsGenericTypeDefinition);
+
             Test("typeof(Factory<>).BaseType", typeof(Factory<>).BaseType);
             Test("typeof(Factory<>).BaseType == typeof(Ref<>)", typeof(Factory<>).BaseType == typeof(Ref<>));
             Test("typeof(Factory<>).BaseType.GetGenericTypeDefinition() == typeof(Ref<>).GetGenericTypeDefinition()", typeof(Factory<>).BaseType.GetGenericTypeDefinition() == typeof(Ref<>).GetGenericTypeDefinition());

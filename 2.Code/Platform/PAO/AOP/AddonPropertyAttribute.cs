@@ -11,6 +11,13 @@ namespace PAO
     [System.AttributeUsage(AttributeTargets.Property, Inherited = true, AllowMultiple = false)]
     public sealed class AddonPropertyAttribute : Attribute
     {
+        /// <summary>
+        /// 是否在编辑器中可见
+        /// </summary>
+        public bool ShowInEditor { get; set; }
 
+        public AddonPropertyAttribute() {
+            ShowInEditor = true;
+        }
     }
 }

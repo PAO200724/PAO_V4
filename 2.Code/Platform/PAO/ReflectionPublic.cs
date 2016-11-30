@@ -202,13 +202,13 @@ namespace PAO {
             }
 
             foreach (var interfaceType in collectionType.GetInterfaces()) {
-                if (interfaceType.IsGenericType && interfaceType.IsDerivedFrom(typeof(IDictionary))) {
+                if (interfaceType.IsGenericType && interfaceType.IsDerivedFrom(typeof(IDictionary<,>))) {
                     return interfaceType.GetGenericArguments()[1];
                 }
             }
 
             foreach (var interfaceType in collectionType.GetInterfaces()) {
-                if (interfaceType.IsGenericType && interfaceType.IsDerivedFrom(typeof(IEnumerable))) {
+                if (interfaceType.IsGenericType && interfaceType.IsDerivedFrom(typeof(IEnumerable<>))) {
                     return interfaceType.GetGenericArguments()[0];
                 }
             }
@@ -295,8 +295,25 @@ namespace PAO {
             if (parentType.IsAssignableFrom(testType))
                 return true;
 
+            if (testType.IsGenericType && parentType.IsGenericTypeDefinition) {
+                if(testType.GetGenericTypeDefinition() == parentType.GetGenericTypeDefinition()) {
+                    return true;
+                }
+
+                if(parentType.IsInterface) {
+                    foreach(var interfaceType in testType.GetInterfaces()) {
+                        if (interfaceType.IsGenericType && interfaceType.GetGenericTypeDefinition() == parentType.GetGenericTypeDefinition()) {
+                            return true;
+                        }
+                    }
+                } else if(testType.BaseType != null) {
+                    return IsDerivedFrom(testType.BaseType, parentType);
+                }
+            }
+
             return false;
         }
+
         /// <summary>
         /// 是否从父类继承
         /// </summary>

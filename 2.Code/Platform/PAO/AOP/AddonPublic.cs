@@ -1,4 +1,5 @@
-﻿using PAO.Event;
+﻿using PAO.App;
+using PAO.Event;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -35,9 +36,9 @@ namespace PAO {
         /// </summary>
         /// <param name="objType">对象类型</param>
         /// <returns>如果是插件枚举或者插件数组，返回true，否则返回false</returns>
-        public static bool IsAddonEnumerableType(this Type objType) {
+        public static bool IsAddonListType(this Type objType) {
             if(objType.IsGenericType 
-                && objType.GetGenericTypeDefinition().IsDerivedFrom(typeof(IEnumerable)) 
+                && objType.IsDerivedFrom(typeof(IList<>)) 
                 && objType.GetGenericArguments()[0].IsAddon()) {
                 return true;
             }
@@ -56,7 +57,8 @@ namespace PAO {
         /// <returns>如果是插件字典，返回true，否则返回false</returns>
         public static bool IsAddonDictionaryType(this Type objType) {
             if (objType.IsGenericType
-                && objType.GetGenericTypeDefinition().IsDerivedFrom(typeof(IDictionary))
+                && objType.IsDerivedFrom(typeof(IDictionary<,>))
+                && objType.GetGenericArguments()[0] == typeof(string)
                 && objType.GetGenericArguments()[1].IsAddon()) {
                 return true;
             }
@@ -70,17 +72,17 @@ namespace PAO {
         /// <param name="objType">对象类型</param>
         /// <returns>如果是插件类、插件列表类或插件字典类，返回true，否则返回false</returns>
         public static bool IsAddon(this Type objType) {
-            if (IsAddonType(objType) || IsAddonEnumerableType(objType) || IsAddonDictionaryType(objType)) {
+            if (IsAddonType(objType) || IsAddonListType(objType) || IsAddonDictionaryType(objType)) {
                 return true;
             }
             return false;
         }
         #endregion
 
-            #region 插件类型列表
-            /// <summary>
-            /// 插件对象类型列表
-            /// </summary>
+        #region 插件类型列表
+        /// <summary>
+        /// 插件对象类型列表
+        /// </summary>
         public static List<Type> AddonTypeList = new List<Type>();
 
         public static void RebuildAddonTypeList() {

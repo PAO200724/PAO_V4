@@ -109,19 +109,6 @@ namespace PAO.UI
         }
 
         /// <summary>
-        /// 等待执行
-        /// </summary>
-        /// <param name="action">动作</param>
-        public static void WaitForRunning(Action action) {
-            ShowWaitingForm();
-            try {
-                action();
-            } finally {
-                CloseWaitingForm();
-            }
-        }
-
-        /// <summary>
         /// 显示等待窗体
         /// </summary>
         public static void ShowWaitingForm() {

@@ -80,7 +80,7 @@ namespace PAO.UI.WinForm.Forms
             if (_ChildControl is IDialogControl) {
                 var dialogControl = _ChildControl as IDialogControl;
                 bool cancel = e.Cancel;
-                dialogControl.OnClosing(ref cancel);
+                dialogControl.OnClosing(DialogResult, ref cancel);
                 e.Cancel = cancel;
             }
             base.OnClosing(e);

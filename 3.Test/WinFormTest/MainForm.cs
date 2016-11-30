@@ -26,41 +26,36 @@ namespace WinFormTest
         }
 
         private void ButtonTestInformation_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            UIPublic.WaitForRunning(() =>
-            {
-                var eventInfo = new EventInfo(EventInfo.EventType_Information
-                    , "这是测试消息"
-                    , true
-                    , true);
-                var eventControl = new EventControl();
-                eventControl.Initialize(eventInfo);
-                UIPublic.ShowDialog(eventControl);
-            });
+            UIPublic.ShowWaitingForm();
+            var eventInfo = new EventInfo(EventInfo.EventType_Information
+                , "这是测试消息"
+                , true
+                , true);
+            var eventControl = new EventControl();
+            eventControl.Initialize(eventInfo);
+            UIPublic.ShowDialog(eventControl);
 
         }
 
         private void ButtonTestException_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            UIPublic.WaitForRunning(() =>
-            {
-                var eventInfo = new ExceptionEventInfo(new Exception("这是测试消息")
-                    , true
-                    , true).AddEventData("测试", "测试");
-                var eventControl = new EventControl();
-                eventControl.Initialize(eventInfo);
-                UIPublic.ShowDialog(eventControl);
-            });
+            UIPublic.ShowWaitingForm();
+            var eventInfo = new ExceptionEventInfo(new Exception("这是测试消息")
+                , true
+                , true).AddEventData("测试", "测试");
+            var eventControl = new EventControl();
+            eventControl.Initialize(eventInfo);
+            UIPublic.ShowDialog(eventControl);
         }
 
         private void ButtonConfigTools_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            UIPublic.WaitForRunning(() =>
-            {
-                var objectTreeControl = new ObjectTreeControl();
-                objectTreeControl.SelectedObject = PaoApplication.Default;
-                UIPublic.ShowDialog(objectTreeControl);
-            });
+            UIPublic.ShowWaitingForm();
+            var objectTreeControl = new ObjectTreeControl();
+            objectTreeControl.SelectedObject = PaoApplication.Default;
+            UIPublic.ShowDialog(objectTreeControl);
         }
 
         private void ButtonAddonSelect_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+            UIPublic.ShowWaitingForm();
             var typeSelectControl = new TypeSelectControl();
             typeSelectControl.Initialize(p=>
             {

@@ -26,7 +26,7 @@ namespace PAO.Config
         /// <param name="propDesc">属性描述</param>
         /// <return>属性值</return>
         public static bool CreateNewAddonValue(Type objectType, bool createElement, out object newObject) {
-            if (objectType.IsAddonDictionaryType() || objectType.IsAddonEnumerableType()) {
+            if (objectType.IsAddonDictionaryType() || objectType.IsAddonListType()) {
                 if(createElement) {
                     var listElementType = ReflectionPublic.GetCollectionElementType(objectType);
                     if (listElementType == null) {
@@ -43,16 +43,16 @@ namespace PAO.Config
             }
             else {
                 var typeSelectControl = new TypeSelectControl();
-                if (objectType.IsGenericType && objectType.IsDerivedFrom<Ref>()) {
+                if (objectType.IsGenericType && objectType.IsDerivedFrom(typeof(Ref<>))) {
                     var refType = objectType.GetGenericArguments()[0];
                     typeSelectControl.Initialize(p =>
                     {
-                        return p.IsDerivedFrom(refType) || (p.IsDerivedFrom<Ref>() && !p.IsAbstract);
+                        return (p.IsDerivedFrom(refType) || p.IsDerivedFrom(typeof(Factory<>))) && p.IsClass && !p.IsAbstract;
                     });
                     if (UIPublic.ShowDialog(typeSelectControl) == DialogResult.OK) {
                         var selectedAddonType = typeSelectControl.SelectedType;
                         if (selectedAddonType != null) {
-                            if (selectedAddonType.IsDerivedFrom<Ref>()) {
+                            if (selectedAddonType.IsDerivedFrom(typeof(Ref<>))) {
                                 // 创建新的工厂
                                 var objectRefType = selectedAddonType.MakeGenericType(refType);
                                 newObject = objectRefType.CreateInstance();

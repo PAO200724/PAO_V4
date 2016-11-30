@@ -38,7 +38,7 @@ namespace PAO.UI.WinForm.Controls
             
         }
 
-        public virtual void OnClosing(ref bool cancel) {
+        public virtual void OnClosing(DialogResult dialogResult, ref bool cancel) {
         }
 
         public virtual void SetFormState(Form form) {

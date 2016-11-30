@@ -46,7 +46,7 @@ namespace PAO
             if (addonList.IsNullOrEmpty() || !addonList.ContainsKey(AddonID))
                 return default(T);
 
-            return (T)addonList[AddonID].Value;
+            return (T)addonList[AddonID];
         }
     }
 }
