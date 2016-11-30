@@ -48,8 +48,6 @@ namespace WinFormTest
         private static void Test() {
             GenericTypeTest();
             AddonTest();
-
-            MessageBox.Show("测试完成！");
         }
 
         private static void AddonTest() {

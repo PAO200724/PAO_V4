@@ -196,7 +196,7 @@ namespace PAO {
         /// </summary>
         /// <param name="collectionType">集合类型</param>
         /// <returns>集合中元素类型</returns>
-        public static Type GetElementType(this Type collectionType) {
+        public static Type GetCollectionElementType(this Type collectionType) {
             if (collectionType.IsArray) {
                 return collectionType.GetElementType();
             }

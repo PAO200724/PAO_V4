@@ -56,7 +56,7 @@ namespace PAO {
         /// <returns>如果是插件字典，返回true，否则返回false</returns>
         public static bool IsAddonDictionaryType(this Type objType) {
             if (objType.IsGenericType
-                && objType.GetGenericTypeDefinition().IsDerivedFrom(typeof(IDictionary<,>))
+                && objType.GetGenericTypeDefinition().IsDerivedFrom(typeof(IDictionary))
                 && objType.GetGenericArguments()[1].IsAddon()) {
                 return true;
             }

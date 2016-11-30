@@ -13,6 +13,7 @@ using PAO.UI.WinForm.Controls;
 using System.Collections;
 using PAO.App;
 using PAO.UI;
+using PAO;
 
 namespace PAO.Config.Controls
 {
@@ -49,33 +50,32 @@ namespace PAO.Config.Controls
         /// <returns></returns>
         public void SetPropertNewValue(TreeListNode node, object newObject) {
             var obj = node.GetValue(ColumnObject);
-            var propObject = node.GetValue(ColumnPropertyDescriptor);
+            var propDesc = (PropertyDescriptor)node.GetValue(ColumnPropertyDescriptor);
             var elementType = (ElementType)node.GetValue(ColumnPropertyElementType);
             node.SetValue(ColumnPropertyValue, newObject);
             node.SetValue(ColumnPropertyValueString, GetObjectString(newObject));
             node.SetValue(ColumnPropertyTypeString, GetObjectTypeString(newObject));
             switch (elementType) {
                 case ElementType.Property:
-                    var propDesc = propObject as PropertyDescriptor;
                     propDesc.SetValue(obj, newObject);
                     node.Nodes.Clear();
-                    CreateChildNodesByObject(node, newObject);
+                    CreateChildNodesByObject(node, newObject, propDesc);
                     break;
                 case ElementType.List:
-                    var index = (int)propObject;
+                    var index = (int)node.GetValue(ColumnIndex);
                     ((IList)obj)[index] = newObject;
                     node.Nodes.Clear();
-                    CreateChildNodesByObject(node, newObject);
+                    CreateChildNodesByObject(node, newObject, null);
                     break;
                 case ElementType.Dictionary:
-                    var key = propObject;
+                    var key = node.GetValue(ColumnIndex);
                     ((IDictionary)obj)[key] = newObject;
                     node.Nodes.Clear();
-                    CreateChildNodesByObject(node, newObject);
+                    CreateChildNodesByObject(node, newObject, null);
                     break;
                 case ElementType.Object:
                     node.Nodes.Clear();
-                    CreateChildNodesByObject(node, newObject);
+                    CreateChildNodesByObject(node, newObject, null);
                     break;
                 default:
                     throw new Exception("此节点不支持更改数据");
@@ -89,10 +89,9 @@ namespace PAO.Config.Controls
             this.LabelControlValue.Text = node.GetValue(ColumnPropertyValueString) as string;
             this.LabelControlPropertyType.Text = String.Format("值类型: {0}", node.GetValue(ColumnPropertyTypeString));
             var elementType = (ElementType)node.GetValue(ColumnPropertyElementType);
-            var propObject = node.GetValue(ColumnPropertyDescriptor);
+            var propDesc = (PropertyDescriptor)node.GetValue(ColumnPropertyDescriptor);
             switch (elementType) {
                 case ElementType.Property:
-                    var propDesc = propObject as PropertyDescriptor;
                     this.LabelControlObjectType.Text = String.Format("属性类型: {0}", propDesc.PropertyType.GetTypeString());
                     break;
                 case ElementType.List:
@@ -143,10 +142,11 @@ namespace PAO.Config.Controls
                 , null
                 , null
                 , obj
-                , ElementType.Object);
+                , ElementType.Object
+                , null);
             // 创建属性
             objNode.ImageIndex = ImageIndex_Object;
-            CreateChildNodesByObject(objNode, obj);
+            CreateChildNodesByObject(objNode, obj, null);
             objNode.Expanded = true;
         }
 
@@ -155,15 +155,16 @@ namespace PAO.Config.Controls
         /// </summary>
         /// <param name="node">节点</param>
         /// <param name="obj">对象</param>
-        private static void CreateChildNodesByObject(TreeListNode node, object obj) {
+        private static void CreateChildNodesByObject(TreeListNode node, object obj, PropertyDescriptor parentPropDesc) {
             if (obj == null)
                 return;
             var objType = obj.GetType();
 
-            if (objType.IsAddonType()) {
+            if (obj is PaoObject) {
                 // 获取对象属性并添加到树中
                 foreach (PropertyDescriptor propDesc in TypeDescriptor.GetProperties(objType)) {
-                    if (propDesc.Attributes.GetAttribute<AddonPropertyAttribute>() != null)
+                    if (propDesc.Attributes.GetAttribute<AddonPropertyAttribute>() != null 
+                        && (propDesc.PropertyType.IsAddon()))
                         CreateTreeNodesByProperty(node, obj, propDesc);
                 }
             }
@@ -179,12 +180,13 @@ namespace PAO.Config.Controls
                     var elementNode = node.Nodes.Add(elementString
                         , GetObjectString(value)
                         , GetObjectTypeString(value)
-                        , key
+                        , parentPropDesc
                         , value
                         , obj
-                        , ElementType.Dictionary);
+                        , ElementType.Dictionary
+                        , key);
                     elementNode.ImageIndex = ImageIndex_Dictionary;
-                    CreateChildNodesByObject(elementNode, value);
+                    CreateChildNodesByObject(elementNode, value, null);
                 }
             }
             else if (objType.IsAddonEnumerableType()) {
@@ -198,12 +200,13 @@ namespace PAO.Config.Controls
                     var elementNode = node.Nodes.Add(elementString
                         , GetObjectString(element)
                         , GetObjectTypeString(element)
-                        , i
+                        , parentPropDesc
                         , element
                         , obj
-                        , ElementType.List);
+                        , ElementType.List
+                        , i);
                     elementNode.ImageIndex = ImageIndex_List;
-                    CreateChildNodesByObject(elementNode, element);
+                    CreateChildNodesByObject(elementNode, element, null);
                     i++;
                 }
             }
@@ -224,9 +227,10 @@ namespace PAO.Config.Controls
                 , propDesc
                 , propVal
                 , obj
-                , ElementType.Property);
+                , ElementType.Property
+                , null);
             propNode.ImageIndex = ImageIndex_Property;
-            CreateChildNodesByObject(propNode, propVal);
+            CreateChildNodesByObject(propNode, propVal, propDesc);
         }
 
         /// <summary>
@@ -259,7 +263,12 @@ namespace PAO.Config.Controls
         #endregion
 
         private void SetControlStatus() {
+            var focusNode = this.TreeListObject.FocusedNode;
+            var elementType = (ElementType)focusNode.GetValue(ColumnPropertyElementType);
+            var propertyValue = focusNode.GetValue(ColumnPropertyValue);
 
+            this.ButtonCreate.Enabled = (elementType != ElementType.Object);
+            this.ButtonDelete.Enabled = (propertyValue.IsNotNull());
         }
 
         private void TreeListObject_FocusedNodeChanged(object sender, FocusedNodeChangedEventArgs e) {
@@ -271,9 +280,20 @@ namespace PAO.Config.Controls
         }
 
         private void ButtonCreate_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            var typeSelectControl = new TypeSelectControl();
-            typeSelectControl.Initialize(AddonPublic.AddonTypeList);
-            UIPublic.ShowDialog(typeSelectControl);
+            var focusNode = this.TreeListObject.FocusedNode;
+            var elementType = (ElementType)focusNode.GetValue(ColumnPropertyElementType);
+            var propertyName = (string)focusNode.GetValue(ColumnPropertyName);
+            var propDesc = (PropertyDescriptor)focusNode.GetValue(ColumnPropertyDescriptor);
+            var propertyValue = focusNode.GetValue(ColumnPropertyValue);
+            object newObject = null;
+            if (!propertyValue.IsNotNull() || UIPublic.ShowYesNoDialog("您需要清除对象值并创建新的对象吗？") == DialogResult.Yes) {
+                if (ConfigPublic.CreateNewAddonValue(propDesc.PropertyType
+                    , elementType == ElementType.List || elementType == ElementType.Dictionary  // 如果是List或者Dictionary，则创建元素
+                    , out newObject)) {
+                    SetPropertNewValue(focusNode, newObject);
+                }
+                SetControlStatus();
+            }
         }
 
         private void ButtonAdd_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {

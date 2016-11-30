@@ -26,6 +26,7 @@ namespace PAO.Config.Controls
         public TypeSelectControl() {
             InitializeComponent();
             Text = "类型选择";
+            ShowCancelButton = true;
         }
 
         /// <summary>
@@ -78,7 +79,7 @@ namespace PAO.Config.Controls
                 return (Type)this.TressListType.FocusedNode.GetValue("Type");
             }
         }
-
+        
         public override void SetFormState(Form form) {
             form.WindowState = FormWindowState.Maximized;
         }
