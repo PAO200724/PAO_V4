@@ -17,6 +17,7 @@ namespace PAO.Config.Controls
     {
         public TypeSelectControl() {
             InitializeComponent();
+            Text = "类型选择";
         }
     }
 }

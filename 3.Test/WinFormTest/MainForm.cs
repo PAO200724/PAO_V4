@@ -25,28 +25,38 @@ namespace WinFormTest
         }
 
         private void ButtonTestInformation_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            var eventInfo = new EventInfo(EventInfo.EventType_Information
-                , "这是测试消息"
-                , true
-                , true);
-            var eventControl = new EventControl();
-            eventControl.Initialize(eventInfo);
-            UIPublic.ShowDialog(eventControl);
+            UIPublic.WaitForRunning(() =>
+            {
+                var eventInfo = new EventInfo(EventInfo.EventType_Information
+                    , "这是测试消息"
+                    , true
+                    , true);
+                var eventControl = new EventControl();
+                eventControl.Initialize(eventInfo);
+                UIPublic.ShowDialog(eventControl);
+            });
+
         }
 
         private void ButtonTestException_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            var eventInfo = new ExceptionEventInfo(new Exception("这是测试消息")
-                , true
-                , true).AddEventData("测试", "测试");
-            var eventControl = new EventControl();
-            eventControl.Initialize(eventInfo);
-            UIPublic.ShowDialog(eventControl);
+            UIPublic.WaitForRunning(() =>
+            {
+                var eventInfo = new ExceptionEventInfo(new Exception("这是测试消息")
+                    , true
+                    , true).AddEventData("测试", "测试");
+                var eventControl = new EventControl();
+                eventControl.Initialize(eventInfo);
+                UIPublic.ShowDialog(eventControl);
+            });
         }
 
         private void ButtonConfigTools_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            var objectTreeControl = new ObjectTreeControl();
-            objectTreeControl.SelectedObject = PaoApplication.Default;
-            UIPublic.ShowDialog(objectTreeControl);
+            UIPublic.WaitForRunning(() =>
+            {
+                var objectTreeControl = new ObjectTreeControl();
+                objectTreeControl.SelectedObject = PaoApplication.Default;
+                UIPublic.ShowDialog(objectTreeControl);
+            });
         }
     }
 }

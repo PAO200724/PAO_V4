@@ -108,6 +108,46 @@ namespace PAO.UI
             return DefaultUserInterface.ShowDialog(childControl);
         }
 
+        /// <summary>
+        /// 等待执行
+        /// </summary>
+        /// <param name="action">动作</param>
+        public static void WaitForRunning(Action action) {
+            ShowWaitingForm();
+            try {
+                action();
+            } finally {
+                CloseWaitingForm();
+            }
+        }
+
+        /// <summary>
+        /// 显示等待窗体
+        /// </summary>
+        public static void ShowWaitingForm() {
+            DefaultUserInterface.ShowWaitingForm();
+        }
+
+        /// <summary>
+        /// 显示SplashScreen
+        /// </summary>
+        public static void ShowSplashScreen() {
+            DefaultUserInterface.ShowSplashScreen();
+        }
+
+        /// <summary>
+        /// 关闭等待窗体
+        /// </summary>
+        public static void CloseWaitingForm() {
+            DefaultUserInterface.CloseWaitingForm();
+        }
+
+        /// <summary>
+        /// 关闭SplashScreen
+        /// </summary>
+        public static void CloseSplashScreen() {
+            DefaultUserInterface.CloseSplashScreen();
+        }
         #endregion
     }
 }

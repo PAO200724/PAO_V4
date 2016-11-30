@@ -21,6 +21,7 @@ namespace PAO.Config.Controls
     {
         public ObjectTreeControl() {
             InitializeComponent();
+            Text = "对象编辑器";
         }
 
         private object _SelectedObject;
@@ -34,6 +35,74 @@ namespace PAO.Config.Controls
                     this.TreeListObject.Nodes.Clear();
                     CreateTreeNode(this.TreeListObject.Nodes, _SelectedObject);
                 }
+            }
+        }
+
+        #region 对属性的操作
+        /// <summary>
+        /// 设置属性新值
+        /// </summary>
+        /// <param name="node">树节点</param>
+        /// <param name="newObject">新对象</param>
+        /// <returns></returns>
+        public void SetPropertNewValue(TreeListNode node, object newObject) {
+            var obj = node.GetValue(ColumnObject);
+            var propObject = node.GetValue(ColumnPropertyDescriptor);
+            var elementType = (ElementType)node.GetValue(ColumnPropertyElementType);
+            node.SetValue(ColumnPropertyValue, newObject);
+            node.SetValue(ColumnPropertyValueString, GetObjectString(newObject));
+            node.SetValue(ColumnPropertyTypeString, GetObjectTypeString(newObject));
+            switch (elementType) {
+                case ElementType.Property:
+                    var propDesc = propObject as PropertyDescriptor;
+                    propDesc.SetValue(obj, newObject);
+                    node.Nodes.Clear();
+                    CreateChildNodesByObject(node, newObject);
+                    break;
+                case ElementType.List:
+                    var index = (int)propObject;
+                    ((IList)obj)[index] = newObject;
+                    node.Nodes.Clear();
+                    CreateChildNodesByObject(node, newObject);
+                    break;
+                case ElementType.Dictionary:
+                    var key = propObject;
+                    ((IDictionary)obj)[key] = newObject;
+                    node.Nodes.Clear();
+                    CreateChildNodesByObject(node, newObject);
+                    break;
+                case ElementType.Object:
+                    node.Nodes.Clear();
+                    CreateChildNodesByObject(node, newObject);
+                    break;
+                default:
+                    throw new Exception("此节点不支持更改数据");
+            }
+        }
+        #endregion
+
+        private void SetElementInfomation(TreeListNode node) {
+            this.LabelControlPropertyTitle.Text = node.GetValue(ColumnPropertyName) as string;
+            this.LabelControlValue.Text = node.GetValue(ColumnPropertyValueString) as string;
+            this.LabelControlPropertyType.Text = String.Format("值类型: {0}", node.GetValue(ColumnPropertyTypeString));
+            var elementType = (ElementType)node.GetValue(ColumnPropertyElementType);
+            var propObject = node.GetValue(ColumnPropertyDescriptor);
+            switch (elementType) {
+                case ElementType.Property:
+                    var propDesc = propObject as PropertyDescriptor;
+                    this.LabelControlObjectType.Text = String.Format("属性类型: {0}", propDesc.PropertyType.GetTypeString());
+                    break;
+                case ElementType.List:
+                    this.LabelControlObjectType.Text = "列表元素";
+                    break;
+                case ElementType.Dictionary:
+                    this.LabelControlObjectType.Text = "字典值";
+                    break;
+                case ElementType.Object:
+                    this.LabelControlObjectType.Text = "object";
+                    break;
+                default:
+                    throw new Exception("此节点不支持显示数据");
             }
         }
 
@@ -74,7 +143,7 @@ namespace PAO.Config.Controls
                 , ElementType.Object);
             // 创建属性
             objNode.ImageIndex = ImageIndex_Object;
-            CreateTreeNodeByObject(objNode, obj);
+            CreateChildNodesByObject(objNode, obj);
         }
 
         /// <summary>
@@ -82,7 +151,7 @@ namespace PAO.Config.Controls
         /// </summary>
         /// <param name="node">节点</param>
         /// <param name="obj">对象</param>
-        private static void CreateTreeNodeByObject(TreeListNode node, object obj) {
+        private static void CreateChildNodesByObject(TreeListNode node, object obj) {
             if (obj == null)
                 return;
             var objType = obj.GetType();
@@ -111,7 +180,7 @@ namespace PAO.Config.Controls
                         , obj
                         , ElementType.Dictionary);
                     elementNode.ImageIndex = ImageIndex_Dictionary;
-                    CreateTreeNodeByObject(elementNode, value);
+                    CreateChildNodesByObject(elementNode, value);
                 }
             }
             else if (objType.IsAddonEnumerableType()) {
@@ -130,7 +199,7 @@ namespace PAO.Config.Controls
                         , obj
                         , ElementType.List);
                     elementNode.ImageIndex = ImageIndex_List;
-                    CreateTreeNodeByObject(elementNode, element);
+                    CreateChildNodesByObject(elementNode, element);
                     i++;
                 }
             }
@@ -153,7 +222,7 @@ namespace PAO.Config.Controls
                 , obj
                 , ElementType.Property);
             propNode.ImageIndex = ImageIndex_Property;
-            CreateTreeNodeByObject(propNode, propVal);
+            CreateChildNodesByObject(propNode, propVal);
         }
 
         /// <summary>
@@ -184,5 +253,11 @@ namespace PAO.Config.Controls
             return obj.GetType().GetTypeString();
         }
         #endregion
+
+        private void TreeListObject_FocusedNodeChanged(object sender, FocusedNodeChangedEventArgs e) {
+            if(e.Node != null) {
+                SetElementInfomation(e.Node);
+            }
+        }
     }
 }

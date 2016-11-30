@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraEditors;
+using DevExpress.XtraSplashScreen;
 using PAO;
 using PAO.UI.WinForm.Forms;
 using System;
@@ -29,16 +30,20 @@ namespace PAO.UI.WinForm
         public DevExpressUI() {
         }
 
+        public void CloseSplashScreen() {
+            SplashScreenManager.CloseForm();
+        }
+
+        public void CloseWaitingForm() {
+            SplashScreenManager.CloseForm();
+        }
+
         public DialogResult ShowDialog(Control childControl) {
             var dialog = new Dialog();
             dialog.ChildControl = childControl;
             return dialog.ShowDialog();
         }
-
-        public DialogResult ShowDialog(string caption, Control childControl, bool cancelButton = true, bool applyButton = false) {
-            throw new NotImplementedException();
-        }
-
+   
         public void ShowExceptionDialog(Exception exception) {
             XtraMessageBox.Show(exception.FormatException(), "异常", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
@@ -65,6 +70,14 @@ namespace PAO.UI.WinForm
             if (fileDialog.IsNotNullOrEmpty())
                 fileDialog.InitialDirectory = Path.GetDirectoryName(fileName);
             return fileDialog.ShowDialog();
+        }
+
+        public void ShowSplashScreen() {
+            SplashScreenManager.ShowForm(typeof(PaoSplashScreen));
+        }
+
+        public void ShowWaitingForm() {
+            SplashScreenManager.ShowForm(typeof(PaoWaitForm));
         }
     }
 }

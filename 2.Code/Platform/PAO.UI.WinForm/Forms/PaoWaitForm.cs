@@ -13,18 +13,18 @@ namespace PAO.UI.WinForm.Forms
     {
         public PaoWaitForm() {
             InitializeComponent();
-            this.progressPanel1.AutoHeight = true;
+            this.ProgressPanel.AutoHeight = true;
         }
 
         #region Overrides
 
         public override void SetCaption(string caption) {
             base.SetCaption(caption);
-            this.progressPanel1.Caption = caption;
+            this.ProgressPanel.Caption = caption;
         }
         public override void SetDescription(string description) {
             base.SetDescription(description);
-            this.progressPanel1.Description = description;
+            this.ProgressPanel.Description = description;
         }
         public override void ProcessCommand(Enum cmd, object arg) {
             base.ProcessCommand(cmd, arg);

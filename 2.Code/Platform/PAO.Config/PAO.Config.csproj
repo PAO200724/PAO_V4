@@ -53,18 +53,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConfigPublic.cs" />
-    <Compile Include="Controls\AddonConfigControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\AddonConfigControl.Designer.cs">
-      <DependentUpon>AddonConfigControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\PropertyConfigControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\PropertyConfigControl.Designer.cs">
-      <DependentUpon>PropertyConfigControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="Controls\TypeSelectControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -96,12 +84,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Controls\AddonConfigControl.resx">
-      <DependentUpon>AddonConfigControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\PropertyConfigControl.resx">
-      <DependentUpon>PropertyConfigControl.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Controls\TypeSelectControl.resx">
       <DependentUpon>TypeSelectControl.cs</DependentUpon>
     </EmbeddedResource>
