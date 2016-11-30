@@ -26,6 +26,7 @@ namespace PAO.Config.Controls
         public ObjectTreeControl() {
             InitializeComponent();
             Text = "对象编辑器";
+            SetControlStatus();
         }
 
         #region 公共属性
@@ -43,6 +44,7 @@ namespace PAO.Config.Controls
                     this.TreeListObject.Nodes.Clear();
                     CreateTreeNode(this.TreeListObject.Nodes, _SelectedObject);
                 }
+                SetControlStatus();
             }
         }
         #endregion
@@ -53,23 +55,35 @@ namespace PAO.Config.Controls
 
         private void SetControlStatus() {
             var focusNode = this.TreeListObject.FocusedNode;
-            var elementType = (ElementType)focusNode.GetValue(ColumnPropertyElementType);
-            var propDesc = (PropertyDescriptor)focusNode.GetValue(ColumnPropertyDescriptor);
-            var propertyValue = focusNode.GetValue(ColumnPropertyValue);
-            var obj = focusNode.GetValue(ColumnObject);
+            if (focusNode != null && focusNode.Id >= 0) {
+                var elementType = (ElementType)focusNode.GetValue(ColumnPropertyElementType);
+                var propDesc = (PropertyDescriptor)focusNode.GetValue(ColumnPropertyDescriptor);
+                var propertyValue = focusNode.GetValue(ColumnPropertyValue);
+                var obj = focusNode.GetValue(ColumnObject);
 
-            this.ButtonCreate.Enabled = (elementType != ElementType.Object);
-            this.ButtonAdd.Enabled = propDesc != null 
-                && propertyValue != null
-                && elementType == ElementType.Property 
-                && (propDesc.PropertyType.IsAddonDictionaryType() || propDesc.PropertyType.IsAddonListType());
-            this.ButtonDelete.Enabled = (elementType != ElementType.Object) && propertyValue.IsNotNull() && obj != null;
-            this.ButtonModifyKey.Enabled = obj != null && elementType == ElementType.Dictionary;
+                this.ButtonCreate.Enabled = (elementType != ElementType.Object);
+                this.ButtonAdd.Enabled = propDesc != null
+                    && propertyValue != null
+                    && elementType == ElementType.Property
+                    && (propDesc.PropertyType.IsAddonDictionaryType() || propDesc.PropertyType.IsAddonListType());
+                this.ButtonDelete.Enabled = (elementType != ElementType.Object) && propertyValue.IsNotNull() && obj != null;
+                this.ButtonModifyKey.Enabled = obj != null && elementType == ElementType.Dictionary;
+                this.ObjectEditControl.SelectedObject = propertyValue;
+            }
+            else {
+                this.ButtonCreate.Enabled = false;
+                this.ButtonAdd.Enabled = false;
+                this.ButtonDelete.Enabled = false;
+                this.ButtonModifyKey.Enabled = false;
+            }
+            this.ButtonSave.Enabled = (SelectedObject != null);
         }
 
-        private void SetElementInfomation(TreeListNode node) {
+        private void FocuseNode(TreeListNode node) {
+            var propertyValue = node.GetValue(ColumnPropertyValue);
+
             this.LabelControlPropertyTitle.Text = node.GetValue(ColumnPropertyName) as string;
-            this.GroupControlObject.Text = this.LabelControlPropertyTitle.Text;
+            this.SplitContainerControlMain.Panel2.Text = this.LabelControlPropertyTitle.Text;
             this.LabelControlValue.Text = node.GetValue(ColumnPropertyValueString) as string;
             this.LabelControlPropertyType.Text = String.Format("值类型: {0}", node.GetValue(ColumnPropertyTypeString));
             var elementType = (ElementType)node.GetValue(ColumnPropertyElementType);
@@ -90,6 +104,8 @@ namespace PAO.Config.Controls
                 default:
                     throw new Exception("此节点不支持显示数据");
             }
+
+            this.ObjectEditControl.SelectedObject = propertyValue;
         }
         #region 对属性的操作
         /// <summary>
@@ -166,7 +182,7 @@ namespace PAO.Config.Controls
                 , GetObjectString(obj)
                 , GetObjectTypeString(obj)
                 , null
-                , null
+                , obj
                 , obj
                 , ElementType.Object
                 , null);
@@ -306,8 +322,8 @@ namespace PAO.Config.Controls
 
         #region 事件
         private void TreeListObject_FocusedNodeChanged(object sender, FocusedNodeChangedEventArgs e) {
-            if (e.Node != null) {
-                SetElementInfomation(e.Node);
+            if (e.Node != null && e.Node.Id >= 0) {
+                FocuseNode(e.Node);
             }
 
             SetControlStatus();

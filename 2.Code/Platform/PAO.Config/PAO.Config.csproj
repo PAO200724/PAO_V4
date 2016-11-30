@@ -41,6 +41,7 @@
     <Reference Include="DevExpress.XtraLayout.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraPrinting.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraTreeList.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraVerticalGrid.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -53,6 +54,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConfigPublic.cs" />
+    <Compile Include="Controls\ObjectEditControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ObjectEditControl.Designer.cs">
+      <DependentUpon>ObjectEditControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\InputKeyControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -90,6 +97,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Controls\ObjectEditControl.resx">
+      <DependentUpon>ObjectEditControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\InputKeyControl.resx">
       <DependentUpon>InputKeyControl.cs</DependentUpon>
     </EmbeddedResource>

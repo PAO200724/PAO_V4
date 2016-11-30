@@ -69,12 +69,12 @@ namespace PAO.App {
         #region 属性:ServerList
         /// <summary>
         /// 属性:ServerList
-        /// 服务列表
+        /// 服务器列表
         /// 应用中后台运行的服务列表
         /// </summary>
         [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
-        [Name("服务列表")]
+        [Name("服务器列表")]
         [Description("应用中后台运行的服务列表")]
         public List<Ref<BaseServer>> ServerList {
             get;
@@ -268,13 +268,13 @@ namespace PAO.App {
                     } else if(propObj.GetType().IsAddonListType()) {
                         foreach(var element in propObj.As<IList>()) {
                             if(element is PaoObject)
-                                AddGlobalAddons((PaoObject)propObj);
+                                AddGlobalAddons((PaoObject)element);
                         }
                     }
                     else if (propObj.GetType().IsAddonDictionaryType()) {
                         foreach (var element in propObj.As<IDictionary>().Values) {
                             if (element is PaoObject)
-                                AddGlobalAddons((PaoObject)propObj);
+                                AddGlobalAddons((PaoObject)element);
                         }
                     }
                 }
