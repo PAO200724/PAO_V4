@@ -30,13 +30,14 @@
             this.barSubItem1 = new DevExpress.XtraBars.BarSubItem();
             this.ButtonTestInformation = new DevExpress.XtraBars.BarButtonItem();
             this.ButtonTestException = new DevExpress.XtraBars.BarButtonItem();
+            this.MenuItemConfigTools = new DevExpress.XtraBars.BarSubItem();
+            this.ButtonConfigTools = new DevExpress.XtraBars.BarButtonItem();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.DefaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
-            this.MenuItemConfigTools = new DevExpress.XtraBars.BarSubItem();
-            this.ButtonConfigTools = new DevExpress.XtraBars.BarButtonItem();
+            this.ButtonAddonSelect = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.BarManager)).BeginInit();
             this.SuspendLayout();
             // 
@@ -54,8 +55,9 @@
             this.barSubItem1,
             this.ButtonTestException,
             this.MenuItemConfigTools,
-            this.ButtonConfigTools});
-            this.BarManager.MaxItemId = 5;
+            this.ButtonConfigTools,
+            this.ButtonAddonSelect});
+            this.BarManager.MaxItemId = 6;
             // 
             // bar1
             // 
@@ -91,6 +93,22 @@
             this.ButtonTestException.Name = "ButtonTestException";
             this.ButtonTestException.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonTestException_ItemClick);
             // 
+            // MenuItemConfigTools
+            // 
+            this.MenuItemConfigTools.Caption = "配置工具测试(&C)";
+            this.MenuItemConfigTools.Id = 3;
+            this.MenuItemConfigTools.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonConfigTools),
+            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonAddonSelect)});
+            this.MenuItemConfigTools.Name = "MenuItemConfigTools";
+            // 
+            // ButtonConfigTools
+            // 
+            this.ButtonConfigTools.Caption = "配置工具";
+            this.ButtonConfigTools.Id = 4;
+            this.ButtonConfigTools.Name = "ButtonConfigTools";
+            this.ButtonConfigTools.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonConfigTools_ItemClick);
+            // 
             // barDockControlTop
             // 
             this.barDockControlTop.CausesValidation = false;
@@ -123,20 +141,12 @@
             // 
             this.DefaultLookAndFeel.LookAndFeel.SkinName = "Office 2010 Blue";
             // 
-            // MenuItemConfigTools
+            // ButtonAddonSelect
             // 
-            this.MenuItemConfigTools.Caption = "配置工具测试(&C)";
-            this.MenuItemConfigTools.Id = 3;
-            this.MenuItemConfigTools.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonConfigTools)});
-            this.MenuItemConfigTools.Name = "MenuItemConfigTools";
-            // 
-            // ButtonConfigTools
-            // 
-            this.ButtonConfigTools.Caption = "配置工具";
-            this.ButtonConfigTools.Id = 4;
-            this.ButtonConfigTools.Name = "ButtonConfigTools";
-            this.ButtonConfigTools.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonConfigTools_ItemClick);
+            this.ButtonAddonSelect.Caption = "插件选择(&A)";
+            this.ButtonAddonSelect.Id = 5;
+            this.ButtonAddonSelect.Name = "ButtonAddonSelect";
+            this.ButtonAddonSelect.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonAddonSelect_ItemClick);
             // 
             // MainForm
             // 
@@ -169,6 +179,7 @@
         private DevExpress.LookAndFeel.DefaultLookAndFeel DefaultLookAndFeel;
         private DevExpress.XtraBars.BarSubItem MenuItemConfigTools;
         private DevExpress.XtraBars.BarButtonItem ButtonConfigTools;
+        private DevExpress.XtraBars.BarButtonItem ButtonAddonSelect;
     }
 }
 

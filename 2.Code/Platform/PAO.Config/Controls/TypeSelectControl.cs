@@ -8,6 +8,7 @@ using System.Linq;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using PAO.UI.WinForm.Controls;
+using PAO.App;
 
 namespace PAO.Config.Controls
 {
@@ -25,6 +26,17 @@ namespace PAO.Config.Controls
         public TypeSelectControl() {
             InitializeComponent();
             Text = "类型选择";
+        }
+
+        /// <summary>
+        /// 根据类型过滤器初始化
+        /// </summary>
+        /// <param name="typeFilter">类型过滤器</param>
+        public void Initialize(Func<Type, bool> typeFilter = null) {
+            if (typeFilter == null)
+                Initialize(AddonPublic.AddonTypeList);
+            else
+                Initialize(AddonPublic.AddonTypeList.Where(typeFilter));
         }
 
         /// <summary>

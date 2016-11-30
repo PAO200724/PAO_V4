@@ -15,6 +15,7 @@ using PAO.UI;
 using PAO.Config;
 using PAO.App;
 using PAO.Config.Controls;
+using PAO.Data;
 
 namespace WinFormTest
 {
@@ -57,6 +58,15 @@ namespace WinFormTest
                 objectTreeControl.SelectedObject = PaoApplication.Default;
                 UIPublic.ShowDialog(objectTreeControl);
             });
+        }
+
+        private void ButtonAddonSelect_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+            var typeSelectControl = new TypeSelectControl();
+            typeSelectControl.Initialize(p=>
+            {
+                return p.IsDerivedFrom<IDataFilter>();
+            });
+            UIPublic.ShowDialog(typeSelectControl);
         }
     }
 }

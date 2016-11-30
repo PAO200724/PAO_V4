@@ -30,6 +30,13 @@
           </Function>
         </Literal>
         <Literal Editable="true">
+          <ID>Description</ID>
+          <ToolTip>Description</ToolTip>
+          <Default>Description</Default>
+          <Function>
+          </Function>
+        </Literal>
+        <Literal Editable="true">
           <ID>Author</ID>
           <ToolTip>Author</ToolTip>
           <Default>PAO</Default>
@@ -37,11 +44,16 @@
           </Function>
         </Literal>
       </Declarations>
-      <Code Language="csharp" Delimiter="$"><![CDATA[/// <summary>
+      <Code Language="csharp" Delimiter="$">
+  <![CDATA[/// <summary>
 /// 接口：$ClassName$
 /// $Comment$
+/// $Description$
 /// 作者：$Author$
 /// </summary>
+[Addon]
+[Name($Comment$)]
+[Description($Description$)]
 public interface $ClassName$ {
             
 }]]></Code>
