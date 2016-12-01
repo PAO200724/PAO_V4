@@ -18,6 +18,7 @@ namespace PAO.Config
     /// </summary>
     public static class ConfigPublic
     {
+        #region NewAddonValue
         /// <summary>
         /// 创建新的属性值
         /// </summary>
@@ -27,7 +28,7 @@ namespace PAO.Config
         /// <return>属性值</return>
         public static bool CreateNewAddonValue(Type objectType, bool createElement, out object newObject) {
             if (objectType.IsAddonDictionaryType() || objectType.IsAddonListType()) {
-                if(createElement) {
+                if (createElement) {
                     var listElementType = ReflectionPublic.GetCollectionElementType(objectType);
                     if (listElementType == null) {
                         newObject = null;
@@ -35,7 +36,8 @@ namespace PAO.Config
                     }
 
                     return CreateNewAddonValue(listElementType, false, out newObject);
-                } else {
+                }
+                else {
                     // 创建新的对象
                     newObject = objectType.CreateInstance();
                     return true;
@@ -86,5 +88,58 @@ namespace PAO.Config
             newObject = null;
             return false;
         }
+        #endregion
+
+        #region Editors
+        /// <summary>
+        /// 编辑器类型映射
+        /// </summary>
+        public static readonly Dictionary<Type, Type> EditorTypeMapping = new Dictionary<Type, Type>();
+
+        /// <summary>
+        /// 注册编辑器
+        /// </summary>
+        /// <param name="objType">对象类型</param>
+        /// <param name="editorType">编辑器类型</param>
+        public static void RegisterEditor(Type objType, Type editorType) {
+            if(EditorTypeMapping.ContainsKey(objType)) {
+                EditorTypeMapping[objType] = editorType;
+            } else {
+                EditorTypeMapping.Add(objType, editorType);
+            }
+        }
+
+        /// <summary>
+        /// 获取某个类型的编辑器类型
+        /// </summary>
+        /// <param name="type">类型</param>
+        /// <returns>编辑器类型</returns>
+        public static Type GetTypeEditorType(Type type) {
+            foreach (var kv in EditorTypeMapping) {
+                if (type.IsDerivedFrom(kv.Key)) {
+                    return kv.Value;
+                }
+            }
+
+            var addonAttr = type.GetAttribute<AddonAttribute>(true);
+            if (addonAttr != null && addonAttr.EditorType != null)
+                return addonAttr.EditorType;
+
+            return null;
+        }
+
+        /// <summary>
+        /// 获取某个属性的编辑器类型
+        /// </summary>
+        /// <param name="propertyDescriptor">属性</param>
+        /// <returns>编辑器类型</returns>
+        public static Type GetPropertyEditorType(PropertyDescriptor propertyDescriptor) {
+            var addonAttr = propertyDescriptor.Attributes.GetAttribute<AddonPropertyAttribute>();
+            if (addonAttr != null && addonAttr.EditorType != null)
+                return addonAttr.EditorType;
+
+            return GetTypeEditorType(propertyDescriptor.PropertyType);
+        }
+        #endregion
     }
 }

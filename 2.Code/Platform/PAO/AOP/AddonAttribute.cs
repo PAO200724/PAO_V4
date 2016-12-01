@@ -11,5 +11,12 @@ namespace PAO
     [System.AttributeUsage(AttributeTargets.Class | AttributeTargets.Interface, Inherited = true, AllowMultiple = false)]
     public class AddonAttribute : Attribute
     {
+        /// <summary>
+        /// 编辑器类型
+        /// </summary>
+        public Type EditorType { get; set; }
+        public AddonAttribute() {
+
+        }        
     }
 }

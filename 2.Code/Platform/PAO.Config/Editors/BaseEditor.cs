@@ -27,6 +27,9 @@ namespace PAO.Config.Editors
         public BaseEditor() {
         }
 
+        [NonSerialized]
+        internal Type ObjectType;
+
         public abstract RepositoryItem CreateEditor();
     }
 }

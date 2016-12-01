@@ -11,6 +11,7 @@ using PAO.UI;
 using PAO.IO.Text;
 using DevExpress.XtraEditors;
 using PAO.Config.Controls.EditControls;
+using System.Collections;
 
 namespace PAO.Config.Editors
 {
@@ -42,11 +43,24 @@ namespace PAO.Config.Editors
         private void Edit_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e) {
             var edit = (ButtonEdit)sender;
             if (e.Button.Kind == DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis) {
-                var objectTreeControl = new ObjectTreeEditControl();
-                if(edit.EditValue.IsNotNull()) {
-                    objectTreeControl.SelectedObject = TextPublic.ObjectClone(edit.EditValue);
-                    if(UIPublic.ShowDialog(objectTreeControl) == System.Windows.Forms.DialogResult.OK) {
-                        edit.EditValue = objectTreeControl.SelectedObject;
+                var editValue = edit.EditValue;
+                BaseEditControl editControl;
+                if(editValue is IList) {
+                    var listControl = new ListEditControl();
+                    listControl.ListType = ObjectType;
+                    editControl = listControl;
+                } else if (editValue is IDictionary) {
+                    var dictionaryControl = new DictionaryEditControl();
+                    dictionaryControl.ListType = ObjectType;
+                    editControl = dictionaryControl;
+                }
+                else {
+                    editControl = new ObjectEditControl();
+                }
+                if (edit.EditValue.IsNotNull()) {
+                    editControl.SelectedObject = TextPublic.ObjectClone(editValue);
+                    if (UIPublic.ShowDialog(editControl) == System.Windows.Forms.DialogResult.OK) {
+                        edit.EditValue = editControl.SelectedObject;
                     }
                 }
             }

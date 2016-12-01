@@ -15,7 +15,10 @@ namespace PAO
         /// 是否在编辑器中可见
         /// </summary>
         public bool ShowInEditor { get; set; }
-
+        /// <summary>
+        /// 编辑器类型
+        /// </summary>
+        public Type EditorType { get; set; }
         public AddonPropertyAttribute() {
             ShowInEditor = true;
         }

@@ -17,6 +17,7 @@ namespace PAO.Config.Controls.EditControls
     {
         public ObjectEditControl() {
             InitializeComponent();
+            SetControlStatus();
         }
 
         public override object SelectedObject {
@@ -27,7 +28,12 @@ namespace PAO.Config.Controls.EditControls
             set {
                 base.SelectedObject = value;
                 this.PropertyGridControl.SelectedObject = value;
+                SetControlStatus();
             }
+        }
+
+        private void SetControlStatus() {
+            this.Enabled = SelectedObject != null;
         }
 
         private void PropertyGridControl_CellValueChanged(object sender

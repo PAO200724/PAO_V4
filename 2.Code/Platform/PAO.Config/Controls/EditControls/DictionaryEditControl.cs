@@ -45,6 +45,7 @@ namespace PAO.Config.Controls.EditControls
             }
 
             set {
+                SourceList = value as IDictionary;
                 if (value == null) {
                     this.BindingSourceList.DataSource = null;
                 }
@@ -52,7 +53,6 @@ namespace PAO.Config.Controls.EditControls
                     throw new Exception("列表编辑器只支持插件列表的编辑。");
                 }
                 else {
-                    SourceList = value as IDictionary;
                     AddonList = new List<ListElement>();
                     int i = 0;
                     foreach (var key in SourceList.Keys) {
