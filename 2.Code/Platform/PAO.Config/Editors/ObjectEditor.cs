@@ -10,6 +10,7 @@ using PAO.Config.Controls;
 using PAO.UI;
 using PAO.IO.Text;
 using DevExpress.XtraEditors;
+using PAO.Config.Controls.EditControls;
 
 namespace PAO.Config.Editors
 {
@@ -34,7 +35,6 @@ namespace PAO.Config.Editors
         public override RepositoryItem CreateEditor() {
             var edit = new RepositoryItemButtonEdit();
             edit.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            edit.CustomDisplayText += Edit_CustomDisplayText;
             edit.ButtonClick += Edit_ButtonClick;
             return edit;
         }
@@ -42,7 +42,7 @@ namespace PAO.Config.Editors
         private void Edit_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e) {
             var edit = (ButtonEdit)sender;
             if (e.Button.Kind == DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis) {
-                var objectTreeControl = new ObjectTreeControl();
+                var objectTreeControl = new ObjectTreeEditControl();
                 if(edit.EditValue.IsNotNull()) {
                     objectTreeControl.SelectedObject = TextPublic.ObjectClone(edit.EditValue);
                     if(UIPublic.ShowDialog(objectTreeControl) == System.Windows.Forms.DialogResult.OK) {
@@ -51,13 +51,6 @@ namespace PAO.Config.Editors
                 }
             }
         }
-
-        private void Edit_CustomDisplayText(object sender, DevExpress.XtraEditors.Controls.CustomDisplayTextEventArgs e) {
-            if (e.Value.IsNull())
-                e.DisplayText = null;
-            else {
-                e.DisplayText = e.Value.ObjectToString();
-            }
-        }
+        
     }
 }

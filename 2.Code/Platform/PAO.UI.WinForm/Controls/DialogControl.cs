@@ -13,31 +13,30 @@ namespace PAO.UI.WinForm.Controls
     /// <summary>
     /// 基础对话框控件
     /// </summary>
-    public partial class DialogControl : DevExpress.XtraEditors.XtraUserControl, IDialogControl
+    public partial class DialogControl : DevExpress.XtraEditors.XtraUserControl
     {
         public DialogControl() {
             InitializeComponent();
             ShowApplyButton = true;
             ShowCancelButton = true;
+            DataModified = false;
         }
 
         public virtual bool ShowApplyButton { get; set; }
 
         public virtual bool ShowCancelButton { get; set; }
 
+        public virtual bool DataModified { get; private set; }
+
         public Action<Form> OnSetFormState;
 
-        public event EventHandler<ApplyButtonStateChangedEventArgs> ApplyButtonStateChanged;
+        public event EventHandler<DataModifyStateChangedEventArgs> DataModifyStateChanged;
 
-        protected void FileApplyButtonStateChanged(bool enabled) {
-            if (ApplyButtonStateChanged != null)
-                ApplyButtonStateChanged(this, new ApplyButtonStateChangedEventArgs() { Enabled = enabled});
+        protected void FileDataModifyStateChangedEvent(bool dataModifed) {
+            if (DataModifyStateChanged != null)
+                DataModifyStateChanged(this, new DataModifyStateChangedEventArgs() { DataModified = dataModifed });
         }
-
-        public virtual void OnApply() {
-            
-        }
-
+        
         public virtual void OnClosing(DialogResult dialogResult, ref bool cancel) {
         }
 
@@ -45,6 +44,16 @@ namespace PAO.UI.WinForm.Controls
             if(OnSetFormState != null) {
                 OnSetFormState(form);
             }
+        }
+
+        public virtual void ModifyData() {
+            DataModified = true;
+            FileDataModifyStateChangedEvent(DataModified);
+        }
+
+        public virtual void Apply() {
+            DataModified = false;
+            FileDataModifyStateChangedEvent(DataModified);
         }
     }
 }

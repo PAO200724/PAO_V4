@@ -7,6 +7,7 @@ using System.Text;
 using System.Linq;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
+using PAO.UI.WinForm.Controls;
 
 namespace PAO.UI.WinForm.Forms
 {
@@ -44,11 +45,11 @@ namespace PAO.UI.WinForm.Forms
 
             set {
                 _ChildControl = value;
-                if (value is IDialogControl) {
-                    var dialogControl = value as IDialogControl;
+                if (value is DialogControl) {
+                    var dialogControl = value as DialogControl;
                     ShowCancelButton = dialogControl.ShowCancelButton;
                     ShowApplyButton = dialogControl.ShowApplyButton;
-                    dialogControl.ApplyButtonStateChanged += DialogControl_ApplyButtonStateChanged;
+                    dialogControl.DataModifyStateChanged += DialogControl_DataModifyStateChanged;
                     dialogControl.SetFormState(this);
                 }
 
@@ -65,20 +66,20 @@ namespace PAO.UI.WinForm.Forms
             }
         }
 
-        private void DialogControl_ApplyButtonStateChanged(object sender, ApplyButtonStateChangedEventArgs e) {
-            ButtonApply.Enabled = e.Enabled;
+        private void DialogControl_DataModifyStateChanged(object sender, DataModifyStateChangedEventArgs e) {
+            ButtonApply.Enabled = e.DataModified;
         }
-
+        
         private void ButtonApply_Click(object sender, EventArgs e) {
-            if (_ChildControl is IDialogControl) {
-                var dialogControl = _ChildControl as IDialogControl;
-                dialogControl.OnApply();
+            if (_ChildControl is DialogControl) {
+                var dialogControl = _ChildControl as DialogControl;
+                dialogControl.Apply();
             }
         }
 
         protected override void OnClosing(CancelEventArgs e) {
-            if (_ChildControl is IDialogControl) {
-                var dialogControl = _ChildControl as IDialogControl;
+            if (_ChildControl is DialogControl) {
+                var dialogControl = _ChildControl as DialogControl;
                 bool cancel = e.Cancel;
                 dialogControl.OnClosing(DialogResult, ref cancel);
                 e.Cancel = cancel;

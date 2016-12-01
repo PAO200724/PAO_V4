@@ -16,6 +16,7 @@ using PAO.Config;
 using PAO.App;
 using PAO.Config.Controls;
 using PAO.Data;
+using PAO.Config.Controls.EditControls;
 
 namespace WinFormTest
 {
@@ -49,7 +50,7 @@ namespace WinFormTest
 
         private void ButtonConfigTools_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             UIPublic.ShowWaitingForm();
-            var objectTreeControl = new ObjectTreeControl();
+            var objectTreeControl = new ObjectTreeEditControl();
             objectTreeControl.SelectedObject = PaoApplication.Default;
             UIPublic.ShowDialog(objectTreeControl);
         }

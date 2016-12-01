@@ -40,7 +40,7 @@ namespace PAO {
         }
         public override string ToString() {
             // 将对象转换为字符串
-            return ObjectPublic.ObjectToString(this, null/*,"属性名称"*/);
+            return ObjectPublic.ObjectToString(this, null, "Reference");
         }
 
         /// <summary>

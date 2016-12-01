@@ -60,7 +60,10 @@ namespace PAO.Remote.WCF
         #endregion
         public WCFRemoteFactory() {
         }
-
+        public override string ToString() {
+            // 将对象转换为字符串
+            return ObjectPublic.ObjectToString(this, null, "BaseUrl", "ServiceName");
+        }
         protected override T OnCreateInstance() {
             T result = default(T);
             TransactionPublic.Run("", () =>

@@ -38,7 +38,10 @@ namespace PAO {
         #endregion
         public FileFactory() {
         }
-
+        public override string ToString() {
+            // 将对象转换为字符串
+            return ObjectPublic.ObjectToString(this, null, "FilePath");
+        }
         protected override T OnCreateInstance() {
             return TextPublic.ReadObjectFromFile(FilePath).As<T>();
         }

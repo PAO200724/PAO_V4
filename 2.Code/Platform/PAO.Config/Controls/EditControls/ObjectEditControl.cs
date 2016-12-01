@@ -8,25 +8,31 @@ using System.Linq;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 
-namespace PAO.Config.Controls
+namespace PAO.Config.Controls.EditControls
 {
     /// <summary>
     /// 插件编辑控件
     /// </summary>
-    public partial class ObjectEditControl : DevExpress.XtraEditors.XtraUserControl
+    public partial class ObjectEditControl : BaseEditControl
     {
         public ObjectEditControl() {
             InitializeComponent();
         }
 
-        public object SelectedObject {
+        public override object SelectedObject {
             get {
-                return PropertyGridControl.SelectedObject;
+                return base.SelectedObject;
             }
 
             set {
+                base.SelectedObject = value;
                 this.PropertyGridControl.SelectedObject = value;
             }
+        }
+
+        private void PropertyGridControl_CellValueChanged(object sender
+            , DevExpress.XtraVerticalGrid.Events.CellValueChangedEventArgs e) {
+            ModifyData();
         }
     }
 }

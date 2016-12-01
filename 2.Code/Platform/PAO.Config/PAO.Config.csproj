@@ -55,16 +55,29 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConfigPublic.cs" />
-    <Compile Include="Controls\ListEditControl.cs">
+    <Compile Include="Controls\EditControls\BaseEditControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\ListEditControl.Designer.cs">
+    <Compile Include="Controls\EditControls\BaseEditControl.Designer.cs">
+      <DependentUpon>BaseEditControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\EditControls\DictionaryEditControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\EditControls\DictionaryEditControl.Designer.cs">
+      <DependentUpon>DictionaryEditControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\EditControls\ListEditControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\EditControls\ListEditControl.Designer.cs">
       <DependentUpon>ListEditControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\ObjectEditControl.cs">
+    <Compile Include="ListElement.cs" />
+    <Compile Include="Controls\EditControls\ObjectEditControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\ObjectEditControl.Designer.cs">
+    <Compile Include="Controls\EditControls\ObjectEditControl.Designer.cs">
       <DependentUpon>ObjectEditControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\InputKeyControl.cs">
@@ -82,11 +95,11 @@
     <Compile Include="Editors\BaseEditor.cs" />
     <Compile Include="Editors\ObjectEditor.cs" />
     <Compile Include="ObjectTreeNodeType.cs" />
-    <Compile Include="Controls\ObjectTreeControl.cs">
+    <Compile Include="Controls\EditControls\ObjectTreeEditControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\ObjectTreeControl.Designer.cs">
-      <DependentUpon>ObjectTreeControl.cs</DependentUpon>
+    <Compile Include="Controls\EditControls\ObjectTreeEditControl.Designer.cs">
+      <DependentUpon>ObjectTreeEditControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -106,10 +119,16 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Controls\ListEditControl.resx">
+    <EmbeddedResource Include="Controls\EditControls\BaseEditControl.resx">
+      <DependentUpon>BaseEditControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\EditControls\DictionaryEditControl.resx">
+      <DependentUpon>DictionaryEditControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\EditControls\ListEditControl.resx">
       <DependentUpon>ListEditControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\ObjectEditControl.resx">
+    <EmbeddedResource Include="Controls\EditControls\ObjectEditControl.resx">
       <DependentUpon>ObjectEditControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\InputKeyControl.resx">
@@ -118,8 +137,8 @@
     <EmbeddedResource Include="Controls\TypeSelectControl.resx">
       <DependentUpon>TypeSelectControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\ObjectTreeControl.resx">
-      <DependentUpon>ObjectTreeControl.cs</DependentUpon>
+    <EmbeddedResource Include="Controls\EditControls\ObjectTreeEditControl.resx">
+      <DependentUpon>ObjectTreeEditControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -174,6 +193,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\apply_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\moveup_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\moveup_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\movedown_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\movedown_32x32.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

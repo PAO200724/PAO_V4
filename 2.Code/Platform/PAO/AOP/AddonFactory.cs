@@ -41,6 +41,11 @@ namespace PAO
         public AddonFactory() {
         }
 
+        public override string ToString() {
+            // 将对象转换为字符串
+            return ObjectPublic.ObjectToString(this, null, "AddonID");
+        }
+
         protected override T OnCreateInstance() {
             var addonList = PaoApplication.Default.GlobalAddonList;
             if (addonList.IsNullOrEmpty() || !addonList.ContainsKey(AddonID))

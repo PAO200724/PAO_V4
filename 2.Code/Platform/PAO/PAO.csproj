@@ -54,6 +54,7 @@
     <Compile Include="AOP\Factory.cs" />
     <Compile Include="AOP\FileFactory.cs" />
     <Compile Include="App\PathFactory.cs" />
+    <Compile Include="CollectionPublic.cs" />
     <Compile Include="Data\DataCommandInfo.cs" />
     <Compile Include="Data\DataConnection.cs" />
     <Compile Include="Data\DataField.cs" />
