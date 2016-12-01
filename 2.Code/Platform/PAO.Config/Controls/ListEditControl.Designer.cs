@@ -1,6 +1,6 @@
 ﻿namespace PAO.Config.Controls
 {
-    partial class ObjectEditControl
+    partial class ListEditControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -26,10 +26,7 @@
         /// </summary>
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ObjectEditControl));
-            this.PropertyDescriptionControl = new DevExpress.XtraVerticalGrid.PropertyDescriptionControl();
-            this.PropertyGridControl = new DevExpress.XtraVerticalGrid.PropertyGridControl();
-            this.SplitContainerControl = new DevExpress.XtraEditors.SplitContainerControl();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ListEditControl));
             this.BarManagerObject = new DevExpress.XtraBars.BarManager(this.components);
             this.BarToolObject = new DevExpress.XtraBars.Bar();
             this.ButtonExport = new DevExpress.XtraBars.BarButtonItem();
@@ -38,49 +35,16 @@
             this.barDockControl2 = new DevExpress.XtraBars.BarDockControl();
             this.barDockControl3 = new DevExpress.XtraBars.BarDockControl();
             this.barDockControl4 = new DevExpress.XtraBars.BarDockControl();
-            ((System.ComponentModel.ISupportInitialize)(this.PropertyGridControl)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.SplitContainerControl)).BeginInit();
-            this.SplitContainerControl.SuspendLayout();
+            this.GridControlList = new DevExpress.XtraGrid.GridControl();
+            this.BindingSourceList = new System.Windows.Forms.BindingSource(this.components);
+            this.GridViewList = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.ColumnIndex = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.ColumnObject = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.BarManagerObject)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GridControlList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BindingSourceList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GridViewList)).BeginInit();
             this.SuspendLayout();
-            // 
-            // PropertyDescriptionControl
-            // 
-            this.PropertyDescriptionControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PropertyDescriptionControl.Location = new System.Drawing.Point(0, 0);
-            this.PropertyDescriptionControl.Name = "PropertyDescriptionControl";
-            this.PropertyDescriptionControl.PropertyGrid = this.PropertyGridControl;
-            this.PropertyDescriptionControl.Size = new System.Drawing.Size(603, 100);
-            this.PropertyDescriptionControl.TabIndex = 0;
-            this.PropertyDescriptionControl.TabStop = false;
-            // 
-            // PropertyGridControl
-            // 
-            this.PropertyGridControl.AutoGenerateRows = true;
-            this.PropertyGridControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PropertyGridControl.Location = new System.Drawing.Point(0, 0);
-            this.PropertyGridControl.Name = "PropertyGridControl";
-            this.PropertyGridControl.OptionsView.FixRowHeaderPanelWidth = true;
-            this.PropertyGridControl.OptionsView.MinRowAutoHeight = 30;
-            this.PropertyGridControl.RecordWidth = 120;
-            this.PropertyGridControl.RowHeaderWidth = 80;
-            this.PropertyGridControl.Size = new System.Drawing.Size(603, 285);
-            this.PropertyGridControl.TabIndex = 0;
-            // 
-            // SplitContainerControl
-            // 
-            this.SplitContainerControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SplitContainerControl.FixedPanel = DevExpress.XtraEditors.SplitFixedPanel.Panel2;
-            this.SplitContainerControl.Horizontal = false;
-            this.SplitContainerControl.Location = new System.Drawing.Point(0, 31);
-            this.SplitContainerControl.Name = "SplitContainerControl";
-            this.SplitContainerControl.Panel1.Controls.Add(this.PropertyGridControl);
-            this.SplitContainerControl.Panel1.Text = "Panel1";
-            this.SplitContainerControl.Panel2.Controls.Add(this.PropertyDescriptionControl);
-            this.SplitContainerControl.Panel2.Text = "Panel2";
-            this.SplitContainerControl.Size = new System.Drawing.Size(603, 390);
-            this.SplitContainerControl.TabIndex = 1;
-            this.SplitContainerControl.Text = "splitContainerControl1";
             // 
             // BarManagerObject
             // 
@@ -131,44 +95,92 @@
             this.barDockControl1.CausesValidation = false;
             this.barDockControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControl1.Location = new System.Drawing.Point(0, 0);
-            this.barDockControl1.Size = new System.Drawing.Size(603, 31);
+            this.barDockControl1.Size = new System.Drawing.Size(623, 31);
             // 
             // barDockControl2
             // 
             this.barDockControl2.CausesValidation = false;
             this.barDockControl2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControl2.Location = new System.Drawing.Point(0, 421);
-            this.barDockControl2.Size = new System.Drawing.Size(603, 0);
+            this.barDockControl2.Location = new System.Drawing.Point(0, 507);
+            this.barDockControl2.Size = new System.Drawing.Size(623, 0);
             // 
             // barDockControl3
             // 
             this.barDockControl3.CausesValidation = false;
             this.barDockControl3.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControl3.Location = new System.Drawing.Point(0, 31);
-            this.barDockControl3.Size = new System.Drawing.Size(0, 390);
+            this.barDockControl3.Size = new System.Drawing.Size(0, 476);
             // 
             // barDockControl4
             // 
             this.barDockControl4.CausesValidation = false;
             this.barDockControl4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControl4.Location = new System.Drawing.Point(603, 31);
-            this.barDockControl4.Size = new System.Drawing.Size(0, 390);
+            this.barDockControl4.Location = new System.Drawing.Point(623, 31);
+            this.barDockControl4.Size = new System.Drawing.Size(0, 476);
             // 
-            // ObjectEditControl
+            // GridControlList
+            // 
+            this.GridControlList.DataSource = this.BindingSourceList;
+            this.GridControlList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.GridControlList.Location = new System.Drawing.Point(0, 31);
+            this.GridControlList.MainView = this.GridViewList;
+            this.GridControlList.MenuManager = this.BarManagerObject;
+            this.GridControlList.Name = "GridControlList";
+            this.GridControlList.Size = new System.Drawing.Size(623, 476);
+            this.GridControlList.TabIndex = 4;
+            this.GridControlList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.GridViewList});
+            // 
+            // BindingSourceList
+            // 
+            this.BindingSourceList.DataSource = typeof(PAO.Config.Controls.ListElement);
+            // 
+            // GridViewList
+            // 
+            this.GridViewList.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.ColumnIndex,
+            this.ColumnObject});
+            this.GridViewList.GridControl = this.GridControlList;
+            this.GridViewList.Name = "GridViewList";
+            this.GridViewList.OptionsCustomization.AllowSort = false;
+            this.GridViewList.OptionsView.ShowGroupPanel = false;
+            this.GridViewList.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
+            new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.ColumnIndex, DevExpress.Data.ColumnSortOrder.Ascending)});
+            // 
+            // ColumnIndex
+            // 
+            this.ColumnIndex.Caption = "索引号";
+            this.ColumnIndex.FieldName = "Index";
+            this.ColumnIndex.Name = "ColumnIndex";
+            this.ColumnIndex.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+            this.ColumnIndex.OptionsColumn.FixedWidth = true;
+            this.ColumnIndex.Visible = true;
+            this.ColumnIndex.VisibleIndex = 0;
+            this.ColumnIndex.Width = 76;
+            // 
+            // ColumnObject
+            // 
+            this.ColumnObject.Caption = "对象";
+            this.ColumnObject.FieldName = "Element";
+            this.ColumnObject.Name = "ColumnObject";
+            this.ColumnObject.Visible = true;
+            this.ColumnObject.VisibleIndex = 1;
+            // 
+            // ListEditControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.SplitContainerControl);
+            this.Controls.Add(this.GridControlList);
             this.Controls.Add(this.barDockControl3);
             this.Controls.Add(this.barDockControl4);
             this.Controls.Add(this.barDockControl2);
             this.Controls.Add(this.barDockControl1);
-            this.Name = "ObjectEditControl";
-            this.Size = new System.Drawing.Size(603, 421);
-            ((System.ComponentModel.ISupportInitialize)(this.PropertyGridControl)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.SplitContainerControl)).EndInit();
-            this.SplitContainerControl.ResumeLayout(false);
+            this.Name = "ListEditControl";
+            this.Size = new System.Drawing.Size(623, 507);
             ((System.ComponentModel.ISupportInitialize)(this.BarManagerObject)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GridControlList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BindingSourceList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GridViewList)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -176,9 +188,6 @@
 
         #endregion
 
-        private DevExpress.XtraVerticalGrid.PropertyDescriptionControl PropertyDescriptionControl;
-        private DevExpress.XtraEditors.SplitContainerControl SplitContainerControl;
-        private DevExpress.XtraVerticalGrid.PropertyGridControl PropertyGridControl;
         private DevExpress.XtraBars.BarManager BarManagerObject;
         private DevExpress.XtraBars.Bar BarToolObject;
         private DevExpress.XtraBars.BarButtonItem ButtonExport;
@@ -187,5 +196,10 @@
         private DevExpress.XtraBars.BarDockControl barDockControl2;
         private DevExpress.XtraBars.BarDockControl barDockControl3;
         private DevExpress.XtraBars.BarDockControl barDockControl4;
+        private DevExpress.XtraGrid.GridControl GridControlList;
+        private DevExpress.XtraGrid.Views.Grid.GridView GridViewList;
+        private DevExpress.XtraGrid.Columns.GridColumn ColumnIndex;
+        private DevExpress.XtraGrid.Columns.GridColumn ColumnObject;
+        private System.Windows.Forms.BindingSource BindingSourceList;
     }
 }

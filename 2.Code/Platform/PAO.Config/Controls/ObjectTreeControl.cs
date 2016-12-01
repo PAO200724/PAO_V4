@@ -56,18 +56,18 @@ namespace PAO.Config.Controls
         private void SetControlStatus() {
             var focusNode = this.TreeListObject.FocusedNode;
             if (focusNode != null && focusNode.Id >= 0) {
-                var elementType = (ElementType)focusNode.GetValue(ColumnPropertyElementType);
+                var nodeType = (ObjectTreeNodeType)focusNode.GetValue(ColumnPropertyElementType);
                 var propDesc = (PropertyDescriptor)focusNode.GetValue(ColumnPropertyDescriptor);
                 var propertyValue = focusNode.GetValue(ColumnPropertyValue);
                 var obj = focusNode.GetValue(ColumnObject);
 
-                this.ButtonCreate.Enabled = (elementType != ElementType.Object);
+                this.ButtonCreate.Enabled = (nodeType != ObjectTreeNodeType.Object);
                 this.ButtonAdd.Enabled = propDesc != null
                     && propertyValue != null
-                    && elementType == ElementType.Property
+                    && (nodeType == ObjectTreeNodeType.ObjectProperty || nodeType == ObjectTreeNodeType.ListProperty || nodeType == ObjectTreeNodeType.DictionaryProperty)
                     && (propDesc.PropertyType.IsAddonDictionaryType() || propDesc.PropertyType.IsAddonListType());
-                this.ButtonDelete.Enabled = (elementType != ElementType.Object) && propertyValue.IsNotNull() && obj != null;
-                this.ButtonModifyKey.Enabled = obj != null && elementType == ElementType.Dictionary;
+                this.ButtonDelete.Enabled = (nodeType != ObjectTreeNodeType.Object) && propertyValue.IsNotNull() && obj != null;
+                this.ButtonModifyKey.Enabled = (obj != null && nodeType == ObjectTreeNodeType.DictionaryElement);
                 this.ObjectEditControl.SelectedObject = propertyValue;
             }
             else {
@@ -86,26 +86,36 @@ namespace PAO.Config.Controls
             this.SplitContainerControlMain.Panel2.Text = this.LabelControlPropertyTitle.Text;
             this.LabelControlValue.Text = node.GetValue(ColumnPropertyValueString) as string;
             this.LabelControlPropertyType.Text = String.Format("值类型: {0}", node.GetValue(ColumnPropertyTypeString));
-            var elementType = (ElementType)node.GetValue(ColumnPropertyElementType);
+            var elementType = (ObjectTreeNodeType)node.GetValue(ColumnPropertyElementType);
             var propDesc = (PropertyDescriptor)node.GetValue(ColumnPropertyDescriptor);
             switch (elementType) {
-                case ElementType.Property:
-                    this.LabelControlObjectType.Text = String.Format("属性类型: {0}", propDesc.PropertyType.GetTypeString());
+                case ObjectTreeNodeType.ObjectProperty:
+                    this.LabelControlObjectType.Text = String.Format("插件属性: {0}", propDesc.PropertyType.GetTypeString());
+                    this.ObjectEditControl.SelectedObject = propertyValue;
                     break;
-                case ElementType.List:
+                case ObjectTreeNodeType.ListProperty:
+                    this.LabelControlObjectType.Text = String.Format("列表属性: {0}", propDesc.PropertyType.GetTypeString());
+                    this.ListEditControl.SelectedObject = propertyValue;
+                    break;
+                case ObjectTreeNodeType.DictionaryProperty:
+                    this.LabelControlObjectType.Text = String.Format("字典属性: {0}", propDesc.PropertyType.GetTypeString());
+                    break;
+                case ObjectTreeNodeType.ListElement:
                     this.LabelControlObjectType.Text = "列表元素";
+                    this.ObjectEditControl.SelectedObject = propertyValue;
                     break;
-                case ElementType.Dictionary:
+                case ObjectTreeNodeType.DictionaryElement:
                     this.LabelControlObjectType.Text = "字典值";
+                    this.ObjectEditControl.SelectedObject = propertyValue;
                     break;
-                case ElementType.Object:
+                case ObjectTreeNodeType.Object:
                     this.LabelControlObjectType.Text = "object";
+                    this.ObjectEditControl.SelectedObject = propertyValue;
                     break;
                 default:
                     throw new Exception("此节点不支持显示数据");
             }
 
-            this.ObjectEditControl.SelectedObject = propertyValue;
         }
         #region 对属性的操作
         /// <summary>
@@ -117,29 +127,31 @@ namespace PAO.Config.Controls
         public void SetPropertNewValue(TreeListNode node, object newObject) {
             var obj = node.GetValue(ColumnObject);
             var propDesc = (PropertyDescriptor)node.GetValue(ColumnPropertyDescriptor);
-            var elementType = (ElementType)node.GetValue(ColumnPropertyElementType);
+            var elementType = (ObjectTreeNodeType)node.GetValue(ColumnPropertyElementType);
             node.SetValue(ColumnPropertyValue, newObject);
             node.SetValue(ColumnPropertyValueString, GetObjectString(newObject));
             node.SetValue(ColumnPropertyTypeString, GetObjectTypeString(newObject));
             switch (elementType) {
-                case ElementType.Property:
+                case ObjectTreeNodeType.ObjectProperty:
+                case ObjectTreeNodeType.ListProperty:
+                case ObjectTreeNodeType.DictionaryProperty:
                     propDesc.SetValue(obj, newObject);
                     node.Nodes.Clear();
                     CreateChildNodesByObject(node, newObject, propDesc);
                     break;
-                case ElementType.List:
+                case ObjectTreeNodeType.ListElement:
                     var index = (int)node.GetValue(ColumnIndex);
                     ((IList)obj)[index] = newObject;
                     node.Nodes.Clear();
                     CreateChildNodesByObject(node, newObject, null);
                     break;
-                case ElementType.Dictionary:
+                case ObjectTreeNodeType.DictionaryElement:
                     var key = node.GetValue(ColumnIndex);
                     ((IDictionary)obj)[key] = newObject;
                     node.Nodes.Clear();
                     CreateChildNodesByObject(node, newObject, null);
                     break;
-                case ElementType.Object:
+                case ObjectTreeNodeType.Object:
                     node.Nodes.Clear();
                     CreateChildNodesByObject(node, newObject, null);
                     break;
@@ -162,15 +174,23 @@ namespace PAO.Config.Controls
         /// <summary>
         /// 属性图标索引号
         /// </summary>
-        public static int ImageIndex_Property = 2;
+        public static int ImageIndex_ObjectProperty = 2;
         /// <summary>
         /// 列表图标索引号
         /// </summary>
-        public static int ImageIndex_List = 3;
+        public static int ImageIndex_ListProperty = 3;
         /// <summary>
         /// 字典图标索引号
         /// </summary>
-        public static int ImageIndex_Dictionary = 4;
+        public static int ImageIndex_DictionaryProperty = 4;
+        /// <summary>
+        /// 列表图标索引号
+        /// </summary>
+        public static int ImageIndex_ListElement = 5;
+        /// <summary>
+        /// 字典图标索引号
+        /// </summary>
+        public static int ImageIndex_DictionaryElement = 6;
 
         /// <summary>
         /// 创建树节点
@@ -184,7 +204,7 @@ namespace PAO.Config.Controls
                 , null
                 , obj
                 , obj
-                , ElementType.Object
+                , ObjectTreeNodeType.Object
                 , null);
             // 创建属性
             objNode.ImageIndex = ImageIndex_Object;
@@ -247,9 +267,9 @@ namespace PAO.Config.Controls
                 , parentPropDesc
                 , value
                 , obj
-                , ElementType.Dictionary
+                , ObjectTreeNodeType.DictionaryElement
                 , key);
-            elementNode.ImageIndex = ImageIndex_Dictionary;
+            elementNode.ImageIndex = ImageIndex_DictionaryElement;
             CreateChildNodesByObject(elementNode, value, null);
         }
 
@@ -264,29 +284,37 @@ namespace PAO.Config.Controls
                 , parentPropDesc
                 , element
                 , obj
-                , ElementType.List
+                , ObjectTreeNodeType.ListElement
                 , index);
-            elementNode.ImageIndex = ImageIndex_List;
+            elementNode.ImageIndex = ImageIndex_ListElement;
             CreateChildNodesByObject(elementNode, element, null);
         }
-        /// <summary>
-        /// 创建树节点
-        /// </summary>
-        /// <param name="node">节点</param>
-        /// <param name="propDesc">属性描述</param>
-        /// <param name="obj">对象</param>
+
         private static void CreateTreeNodesByProperty(TreeListNode node, object obj, PropertyDescriptor propDesc) {
             var propVal = propDesc.GetValue(obj);
             var displayAttribute = propDesc.Attributes.GetAttribute<DisplayNameAttribute>();
+            ObjectTreeNodeType nodeType;
+            int imageIndex;
+            if(propDesc.PropertyType.IsAddonDictionaryType()) {
+                nodeType = ObjectTreeNodeType.DictionaryProperty;
+                imageIndex = ImageIndex_DictionaryProperty;
+            } else if(propDesc.PropertyType.IsAddonListType()) {
+                nodeType = ObjectTreeNodeType.ListProperty;
+                imageIndex = ImageIndex_ListProperty;
+            }
+            else {
+                nodeType = ObjectTreeNodeType.ObjectProperty;
+                imageIndex = ImageIndex_ObjectProperty;
+            }
             var propNode = node.Nodes.Add(displayAttribute == null ? propDesc.Name : displayAttribute.DisplayName
                 , GetObjectString(propVal)
                 , GetObjectTypeString(propVal)
                 , propDesc
                 , propVal
                 , obj
-                , ElementType.Property
+                , nodeType
                 , null);
-            propNode.ImageIndex = ImageIndex_Property;
+            propNode.ImageIndex = imageIndex;
             CreateChildNodesByObject(propNode, propVal, propDesc);
         }
 
@@ -331,14 +359,14 @@ namespace PAO.Config.Controls
 
         private void ButtonCreate_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             var focusNode = this.TreeListObject.FocusedNode;
-            var elementType = (ElementType)focusNode.GetValue(ColumnPropertyElementType);
+            var nodeType = (ObjectTreeNodeType)focusNode.GetValue(ColumnPropertyElementType);
             var propertyName = (string)focusNode.GetValue(ColumnPropertyName);
             var propDesc = (PropertyDescriptor)focusNode.GetValue(ColumnPropertyDescriptor);
             var propertyValue = focusNode.GetValue(ColumnPropertyValue);
             object newObject = null;
             if (!propertyValue.IsNotNull() || UIPublic.ShowYesNoDialog("您需要清除对象值并创建新的对象吗？") == DialogResult.Yes) {
                 if (ConfigPublic.CreateNewAddonValue(propDesc.PropertyType
-                    , elementType == ElementType.List || elementType == ElementType.Dictionary  // 如果是List或者Dictionary，则创建元素
+                    , nodeType == ObjectTreeNodeType.ListElement || nodeType == ObjectTreeNodeType.DictionaryElement  // 如果是List或者Dictionary，则创建元素
                     , out newObject)) {
                     SetPropertNewValue(focusNode, newObject);
                 }
@@ -348,7 +376,7 @@ namespace PAO.Config.Controls
 
         private void ButtonAdd_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             var focusNode = this.TreeListObject.FocusedNode;
-            var elementType = (ElementType)focusNode.GetValue(ColumnPropertyElementType);
+            var nodeType = (ObjectTreeNodeType)focusNode.GetValue(ColumnPropertyElementType);
             var propDesc = (PropertyDescriptor)focusNode.GetValue(ColumnPropertyDescriptor);
             var propertyValue = focusNode.GetValue(ColumnPropertyValue);
             propertyValue.CheckNotNull("属性值为空时不能添加。");
@@ -374,49 +402,51 @@ namespace PAO.Config.Controls
                     }
                 }
             } else {
-                throw new Exception("此属性类型不支持添加元素.").AddExceptionData("ElementType", elementType);
+                throw new Exception("此属性类型不支持添加元素.").AddExceptionData("ElementType", nodeType);
             }
             SetControlStatus();
         }
 
         private void ButtonDelete_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             var focusNode = this.TreeListObject.FocusedNode;
-            var elementType = (ElementType)focusNode.GetValue(ColumnPropertyElementType);
+            var nodeType = (ObjectTreeNodeType)focusNode.GetValue(ColumnPropertyElementType);
             var propDesc = (PropertyDescriptor)focusNode.GetValue(ColumnPropertyDescriptor);
             var obj = focusNode.GetValue(ColumnObject);
             var propertyValue = focusNode.GetValue(ColumnPropertyValue);
 
-            switch (elementType) {
-                case ElementType.Property:
+            switch (nodeType) {
+                case ObjectTreeNodeType.ObjectProperty:
+                case ObjectTreeNodeType.ListProperty:
+                case ObjectTreeNodeType.DictionaryProperty:
                     propDesc.SetValue(obj, null);
                     SetPropertNewValue(focusNode, null);
                     break;
-                case ElementType.List:
+                case ObjectTreeNodeType.ListElement:
                     int index = (int)focusNode.GetValue(ColumnIndex);
                     obj.As<IList>().RemoveAt(index);
                     if (focusNode.ParentNode != null)
                         focusNode.ParentNode.Nodes.Remove(focusNode);
                     break;
-                case ElementType.Dictionary:
+                case ObjectTreeNodeType.DictionaryElement:
                     var key = focusNode.GetValue(ColumnIndex);
                     obj.As<IDictionary>().Remove(key);
                     if (focusNode.ParentNode != null)
                         focusNode.ParentNode.Nodes.Remove(focusNode);
                     break;
                 default:
-                    throw new Exception("此属性不允许被删除").AddExceptionData("ElementType", elementType);
+                    throw new Exception("此属性不允许被删除").AddExceptionData("ElementType", nodeType);
             }
             SetControlStatus();
         }
 
         private void ButtonModifyKey_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             var focusNode = this.TreeListObject.FocusedNode;
-            var elementType = (ElementType)focusNode.GetValue(ColumnPropertyElementType);
+            var nodeType = (ObjectTreeNodeType)focusNode.GetValue(ColumnPropertyElementType);
             var obj = focusNode.GetValue(ColumnObject);
             var propertyValue = focusNode.GetValue(ColumnPropertyValue);
 
             obj.CheckNotNull("字典对象不能为空");
-            (elementType == ElementType.Dictionary).CheckTrue("只有字典元素允许修改键值");
+            (nodeType == ObjectTreeNodeType.DictionaryElement).CheckTrue("只有字典元素允许修改键值");
             string oldKey = (string)focusNode.GetValue(ColumnIndex);
 
             var keyInputControl = new InputKeyControl();

@@ -45,6 +45,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -54,6 +55,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConfigPublic.cs" />
+    <Compile Include="Controls\ListEditControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ListEditControl.Designer.cs">
+      <DependentUpon>ListEditControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\ObjectEditControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -72,7 +79,9 @@
     <Compile Include="Controls\TypeSelectControl.Designer.cs">
       <DependentUpon>TypeSelectControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="ElementType.cs" />
+    <Compile Include="Editors\BaseEditor.cs" />
+    <Compile Include="Editors\ObjectEditor.cs" />
+    <Compile Include="ObjectTreeNodeType.cs" />
     <Compile Include="Controls\ObjectTreeControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -97,6 +106,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Controls\ListEditControl.resx">
+      <DependentUpon>ListEditControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\ObjectEditControl.resx">
       <DependentUpon>ObjectEditControl.cs</DependentUpon>
     </EmbeddedResource>

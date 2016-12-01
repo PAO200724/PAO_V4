@@ -36,23 +36,23 @@ namespace PAO.IO.Binary
                 return null;
 
             var xmlString = DefaultEncoding.GetString(binary);
-            return TextPublic.XmlStringToObject(xmlString);
+            return TextPublic.TextToObject(xmlString);
         }
 
         public byte[] ObjectToBinary(object obj) {
             if (obj.IsNull())
                 return null;
 
-            var xmlString = TextPublic.ObjectToXmlString(obj);
+            var xmlString = TextPublic.ObjectToText(obj);
             return DefaultEncoding.GetBytes(xmlString);
         }
 
         public object ReadObjectFromStream(Stream stream) {
-            return TextPublic.ReadObjectFromXmlStream(stream);
+            return TextPublic.ReadObjectFromStream(stream);
         }
 
         public void WriteObjectToStream(Stream stream, object obj) {
-            TextPublic.WriteObjectToXmlStream(stream, obj);
+            TextPublic.WriteObjectToStream(stream, obj);
         }
     }
 }

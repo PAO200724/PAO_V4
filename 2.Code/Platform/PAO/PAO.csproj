@@ -47,6 +47,7 @@
     <Compile Include="AOP\AddonPropertyAttribute.cs" />
     <Compile Include="AOP\AddonFactory.cs" />
     <Compile Include="AOP\AddonPublic.cs" />
+    <Compile Include="AOP\IconAttribute.cs" />
     <Compile Include="AOP\NameAttribute.cs" />
     <Compile Include="App\AppPublic.cs" />
     <Compile Include="App\PaoApplication.cs" />

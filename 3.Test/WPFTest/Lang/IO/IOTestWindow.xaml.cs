@@ -38,9 +38,9 @@ namespace MainTest.Lang.IO {
                     Member1 = "Lazy Member"
                 }
             };
-            TextBlock.Text = TextPublic.ObjectToXmlString(myObj);
+            TextBlock.Text = TextPublic.ObjectToText(myObj);
 
-            var clonObj = TextPublic.XmlStringToObject(TextBlock.Text) as MyGenericClass<int>;
+            var clonObj = TextPublic.TextToObject(TextBlock.Text) as MyGenericClass<int>;
             MessageBox.Show(clonObj.LazyMember.ToString());
         }
     }

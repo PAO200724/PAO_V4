@@ -16,22 +16,22 @@ namespace PAO.IO.Text
         public static ITextSerialize DefaultSerializer = new DataContractTextSerializer();
 
         /// <summary>
-        /// 将XML转换为对象
+        /// 将文本转换为对象
         /// </summary>
-        /// <param name="xml">XML字符串</param>
+        /// <param name="text">文本字符串</param>
         /// <param name="types">需要用到的对象类型</param>
         /// <returns>对象</returns>
-        public static object XmlStringToObject(string xml) {
-            return DefaultSerializer.TextToObject(xml);
+        public static object TextToObject(string text) {
+            return DefaultSerializer.TextToObject(text);
         }
 
         /// <summary>
-        /// 将对象转换为XML
+        /// 将对象转换为文本
         /// </summary>
         /// <param name="obj">对象</param>
         /// <param name="types">需要用到的对象类型</param>
-        /// <returns>XML字符串</returns>
-        public static string ObjectToXmlString(object obj) {
+        /// <returns>文本字符串</returns>
+        public static string ObjectToText(object obj) {
             return DefaultSerializer.ObjectToText(obj);
         }
 
@@ -41,7 +41,7 @@ namespace PAO.IO.Text
         /// <param name="stream">Xml字符流</param>
         /// <param name="obj">对象</param>
         /// <param name="types">需要用到的对象类型</param>
-        public static void WriteObjectToXmlStream(Stream stream, object obj) {
+        public static void WriteObjectToStream(Stream stream, object obj) {
             DefaultSerializer.WriteObjectToStream(stream, obj);
         }
 
@@ -52,7 +52,7 @@ namespace PAO.IO.Text
         /// <param name="obj">对象</param>
         public static void WriteObjectToFile(string fileName, object obj) {
             using (SafeFileStream fileStream = new SafeFileStream(fileName, FileMode.Create, FileAccess.Write)) {
-                WriteObjectToXmlStream(fileStream, obj);
+                WriteObjectToStream(fileStream, obj);
             }
         }
         /// <summary>
@@ -61,7 +61,7 @@ namespace PAO.IO.Text
         /// <param name="stream">Xml字符流</param>
         /// <param name="types">需要用到的对象类型</param>
         /// <returns>对象</returns>
-        public static object ReadObjectFromXmlStream(Stream stream) {
+        public static object ReadObjectFromStream(Stream stream) {
             return DefaultSerializer.ReadObjectFromStream(stream);
         }
 
@@ -75,7 +75,7 @@ namespace PAO.IO.Text
                 return null;
 
             using (SafeFileStream fileStream = new SafeFileStream(fileName, FileMode.Open, FileAccess.Read)) {
-                object obj = ReadObjectFromXmlStream(fileStream);
+                object obj = ReadObjectFromStream(fileStream);
                 return obj;
             }
         }
@@ -86,11 +86,11 @@ namespace PAO.IO.Text
         /// <returns>克隆后的对象</returns>
         public static object ObjectClone(this object sourceObject) {
             MemoryStream buffer = new MemoryStream();
-            WriteObjectToXmlStream(buffer, sourceObject);
+            WriteObjectToStream(buffer, sourceObject);
 
             buffer.Seek(0, SeekOrigin.Begin);
 
-            return ReadObjectFromXmlStream(buffer);
+            return ReadObjectFromStream(buffer);
         }
     }
 }
