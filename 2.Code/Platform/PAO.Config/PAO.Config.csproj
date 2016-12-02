@@ -73,6 +73,21 @@
     <Compile Include="Controls\EditControls\ListEditControl.Designer.cs">
       <DependentUpon>ListEditControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Editors\ColorEditor.cs" />
+    <Compile Include="Editors\GuidEdit.cs" />
+    <Compile Include="Editors\PictureEditor.cs" />
+    <Compile Include="Editors\MemoEditor.cs" />
+    <Compile Include="Editors\ToggleSwitchEditor.cs" />
+    <Compile Include="Editors\ImageEditor.cs" />
+    <Compile Include="Editors\ColorPickEditor.cs" />
+    <Compile Include="Editors\FontEditor.cs" />
+    <Compile Include="Editors\SpinEditor.cs" />
+    <Compile Include="Editors\CalcEditor.cs" />
+    <Compile Include="Editors\TimeEditor.cs" />
+    <Compile Include="Editors\DateEditor.cs" />
+    <Compile Include="Editors\CheckEditor.cs" />
+    <Compile Include="Editors\MemoExEditor.cs" />
+    <Compile Include="Editors\TextEditor.cs" />
     <Compile Include="ListElement.cs" />
     <Compile Include="Controls\EditControls\ObjectEditControl.cs">
       <SubType>UserControl</SubType>

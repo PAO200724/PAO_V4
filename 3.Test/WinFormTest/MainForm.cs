@@ -27,7 +27,6 @@ namespace WinFormTest
         }
 
         private void ButtonTestInformation_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            UIPublic.ShowWaitingForm();
             var eventInfo = new EventInfo(EventInfo.EventType_Information
                 , "这是测试消息"
                 , true
@@ -39,7 +38,6 @@ namespace WinFormTest
         }
 
         private void ButtonTestException_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            UIPublic.ShowWaitingForm();
             var eventInfo = new ExceptionEventInfo(new Exception("这是测试消息")
                 , true
                 , true).AddEventData("测试", "测试");
@@ -49,14 +47,12 @@ namespace WinFormTest
         }
 
         private void ButtonConfigTools_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            UIPublic.ShowWaitingForm();
             var objectTreeControl = new ObjectTreeEditControl();
             objectTreeControl.SelectedObject = PaoApplication.Default;
             UIPublic.ShowDialog(objectTreeControl);
         }
 
         private void ButtonAddonSelect_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            UIPublic.ShowWaitingForm();
             var typeSelectControl = new TypeSelectControl();
             typeSelectControl.Initialize(p=>
             {

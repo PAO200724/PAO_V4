@@ -12,6 +12,7 @@ using PAO.IO.Text;
 using DevExpress.XtraEditors;
 using PAO.Config.Controls.EditControls;
 using System.Collections;
+using PAO.UI.WinForm;
 
 namespace PAO.Config.Editors
 {
@@ -35,6 +36,7 @@ namespace PAO.Config.Editors
 
         public override RepositoryItem CreateEditor() {
             var edit = new RepositoryItemButtonEdit();
+            DevExpressPublic.AddClearButton(edit);
             edit.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             edit.ButtonClick += Edit_ButtonClick;
             return edit;
@@ -43,16 +45,27 @@ namespace PAO.Config.Editors
         private void Edit_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e) {
             var edit = (ButtonEdit)sender;
             if (e.Button.Kind == DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis) {
+                if (edit.EditValue.IsNull()) {
+                    object newObject;
+                    if (!ConfigPublic.CreateNewAddonValue(ObjectType, false, out newObject))
+                        return;
+                    edit.EditValue = newObject;
+                }
                 var editValue = edit.EditValue;
+                Type objectEditorControlType = ConfigPublic.GetTypeEditorType(ObjectType);
+
                 BaseEditControl editControl;
-                if(editValue is IList) {
+                if (editValue is IList) {
                     var listControl = new ListEditControl();
                     listControl.ListType = ObjectType;
                     editControl = listControl;
-                } else if (editValue is IDictionary) {
+                }
+                else if (editValue is IDictionary) {
                     var dictionaryControl = new DictionaryEditControl();
                     dictionaryControl.ListType = ObjectType;
                     editControl = dictionaryControl;
+                } else if(objectEditorControlType != null) {
+                    editControl = objectEditorControlType.CreateInstance() as ObjectEditControl;
                 }
                 else {
                     editControl = new ObjectEditControl();

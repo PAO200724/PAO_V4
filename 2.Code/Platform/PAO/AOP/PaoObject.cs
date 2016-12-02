@@ -24,7 +24,6 @@ namespace PAO {
         /// ID
         /// 唯一编号
         /// </summary>
-        [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
         [Name("ID")]
         [Description("唯一编号")]

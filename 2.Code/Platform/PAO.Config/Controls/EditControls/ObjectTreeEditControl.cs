@@ -354,6 +354,7 @@ namespace PAO.Config.Controls.EditControls
                 var newObject = editControl.SelectedObject;
                 if(propDesc != null) {
                     propDesc.SetValue(obj, newObject);
+                    focusNode.Nodes.Clear();
                     CreateChildNodesByObject(focusNode, newObject, propDesc);
                 } else {
                     focusNode.Nodes.Clear();

@@ -1,10 +1,13 @@
-﻿using DevExpress.XtraTreeList.Nodes;
+﻿using DevExpress.XtraEditors.Repository;
+using DevExpress.XtraTreeList.Nodes;
 using PAO.Config.Controls;
+using PAO.Config.Editors;
 using PAO.UI;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -139,6 +142,61 @@ namespace PAO.Config
                 return addonAttr.EditorType;
 
             return GetTypeEditorType(propertyDescriptor.PropertyType);
+        }
+
+        /// <summary>
+        /// 创建默认编辑器
+        /// </summary>
+        /// <param name="propertyDescriptor">属性</param>
+        /// <returns>编辑器</returns>
+        public static RepositoryItem CreateDefaultEditor(PropertyDescriptor propertyDescriptor) {
+            var editorType = GetPropertyEditorType(propertyDescriptor);
+            if(editorType != null) {
+                var editor = editorType.CreateInstance() as BaseEditor;
+                editor.ObjectType = propertyDescriptor.PropertyType;
+                return editor.CreateEditor();
+            }
+
+            return CreateDefaultEditor(propertyDescriptor.PropertyType);
+        }
+
+        /// <summary>
+        /// 创建默认编辑器
+        /// </summary>
+        /// <param name="type">类型</param>
+        /// <returns>编辑器</returns>
+        public static RepositoryItem CreateDefaultEditor(Type type) {
+            BaseEditor editor;
+
+            if (type == typeof(Color)) {
+                editor = new ColorPickEditor();
+            }
+            else if (type == typeof(Font)) {
+                editor = new FontEditor();
+            }
+            else if (type == typeof(DateTime)) {
+                editor = new DateEditor();
+            }
+            else if (type == typeof(bool)) {
+                editor = new ToggleSwitchEditor();
+            }
+            else if (type == typeof(Image)) {
+                editor = new ImageEditor();
+            }
+            else if (type == typeof(Color)) {
+                editor = new ColorEditor();
+            }
+            else if (type == typeof(Color)) {
+                editor = new ColorEditor();
+            }
+            else if (type == typeof(Color)) {
+                editor = new ColorEditor();
+            }
+            else {
+                editor = new ObjectEditor();
+            }
+            editor.ObjectType = type;
+            return editor.CreateEditor();
         }
         #endregion
     }

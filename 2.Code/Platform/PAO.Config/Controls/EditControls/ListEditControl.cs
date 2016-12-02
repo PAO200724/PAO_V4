@@ -75,6 +75,14 @@ namespace PAO.Config.Controls.EditControls
             this.ButtonDelete.Enabled = (position >= 0 && position < AddonList.Count);
         }
 
+        private void DeleteElement(int position) {
+            AddonList.RemoveAt(position);
+            ResetIndex();
+            this.GridControlList.RefreshDataSource();
+            SetControlStatus();
+            ModifyData();
+        }
+
         private void ResetIndex() {
             if(AddonList.IsNotNullOrEmpty()) {
                 for(int i=0;i<AddonList.Count;i++) {
@@ -84,11 +92,17 @@ namespace PAO.Config.Controls.EditControls
         }
 
         private void GridViewList_RowUpdated(object sender, DevExpress.XtraGrid.Views.Base.RowObjectEventArgs e) {
-            if (this.BindingSourceList.Position >= 0 && SourceList.IsNotNullOrEmpty()) {
-                var listElement = this.BindingSourceList.Current as ListElement;
-                SourceList[this.BindingSourceList.Position] = listElement.Element;
-                SetControlStatus();
-                ModifyData();
+            var position = e.RowHandle;
+            var newValue = this.GridViewList.GetRowCellValue(e.RowHandle, ColumnObject);
+
+            if (position >= 0 && SourceList.IsNotNullOrEmpty()) {
+                if(newValue == null) {
+                    DeleteElement(position);
+                } else {
+                    SourceList[position] = newValue;
+                    SetControlStatus();
+                    ModifyData();
+                }
             }
         }
 
@@ -127,13 +141,10 @@ namespace PAO.Config.Controls.EditControls
         private void ButtonDelete_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             var position = this.BindingSourceList.Position;
             if ((position >= 0 && position < AddonList.Count)) {
-                AddonList.RemoveAt(position);
-                ResetIndex();
-                this.GridControlList.RefreshDataSource();
-                SetControlStatus();
-                ModifyData();
+                DeleteElement(position);
             }
         }
+
 
         private void BindingSourceList_PositionChanged(object sender, EventArgs e) {
             SetControlStatus();

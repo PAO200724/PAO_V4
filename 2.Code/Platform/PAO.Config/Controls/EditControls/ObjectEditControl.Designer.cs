@@ -66,6 +66,8 @@
             this.PropertyGridControl.RowHeaderWidth = 80;
             this.PropertyGridControl.Size = new System.Drawing.Size(603, 285);
             this.PropertyGridControl.TabIndex = 0;
+            this.PropertyGridControl.CustomRecordCellEdit += new DevExpress.XtraVerticalGrid.Events.GetCustomRowCellEditEventHandler(this.PropertyGridControl_CustomRecordCellEdit);
+            this.PropertyGridControl.CustomRecordCellEditForEditing += new DevExpress.XtraVerticalGrid.Events.GetCustomRowCellEditEventHandler(this.PropertyGridControl_CustomRecordCellEditForEditing);
             this.PropertyGridControl.CellValueChanged += new DevExpress.XtraVerticalGrid.Events.CellValueChangedEventHandler(this.PropertyGridControl_CellValueChanged);
             // 
             // SplitContainerControl
