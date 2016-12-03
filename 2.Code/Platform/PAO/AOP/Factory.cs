@@ -48,6 +48,7 @@ namespace PAO {
         /// <summary>
         /// 对象实例是否创建
         /// </summary>
+        [Browsable(false)]
         public bool IsBuilden {
             get {
                 return Builden;
@@ -68,6 +69,7 @@ namespace PAO {
             return ObjectPublic.ObjectToString(this, null/*,"属性名称"*/);
         }
 
+        [Browsable(false)]
         public override T Value {
             get {
                 // 如果从未创建过实例或者不缓存实例，则创建实例，否则直接范围实例

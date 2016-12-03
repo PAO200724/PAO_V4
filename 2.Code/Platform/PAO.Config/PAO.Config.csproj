@@ -74,7 +74,7 @@
       <DependentUpon>ListEditControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Editors\ColorEditor.cs" />
-    <Compile Include="Editors\GuidEdit.cs" />
+    <Compile Include="Editors\GuidEditor.cs" />
     <Compile Include="Editors\PictureEditor.cs" />
     <Compile Include="Editors\MemoEditor.cs" />
     <Compile Include="Editors\ToggleSwitchEditor.cs" />
@@ -116,6 +116,14 @@
     <Compile Include="Controls\EditControls\ObjectTreeEditControl.Designer.cs">
       <DependentUpon>ObjectTreeEditControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\AddonSelectControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\AddonSelectControl.Designer.cs">
+      <DependentUpon>AddonSelectControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PaoConfig\AddonIDEditor.cs" />
+    <Compile Include="Controls\AddonInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -154,6 +162,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\EditControls\ObjectTreeEditControl.resx">
       <DependentUpon>ObjectTreeEditControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\AddonSelectControl.resx">
+      <DependentUpon>AddonSelectControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">

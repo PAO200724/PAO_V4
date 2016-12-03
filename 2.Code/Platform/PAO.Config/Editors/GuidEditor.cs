@@ -9,6 +9,7 @@ using DevExpress.XtraEditors.Repository;
 using PAO.UI.WinForm;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
+using PAO.UI;
 
 namespace PAO.Config.Editors
 {
@@ -23,24 +24,28 @@ namespace PAO.Config.Editors
     [DataContract(Namespace = "")]
     [Name("GUID编辑器")]
     [Description("GUID编辑器")]
-    public class GuidEdit : BaseEditor
+    public class GuidEditor : BaseEditor
     {
         #region 插件属性
         #endregion
-        public GuidEdit() {
+        public GuidEditor() {
         }
 
         public override RepositoryItem CreateEditor() {
             var edit = new RepositoryItemButtonEdit();
+            edit.Buttons.Clear();
+            edit.Buttons.Add(new EditorButton(ButtonPredefines.Plus));
             edit.ButtonClick += Edit_ButtonClick;
             DevExpressPublic.AddClearButton(edit);
             return edit;
         }
 
         private void Edit_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e) {
-            if(e.Button.Kind == ButtonPredefines.Ellipsis) {
-                var edit = sender as ButtonEdit;
-                edit.EditValue = Guid.NewGuid().ToString();
+            if(e.Button.Kind == ButtonPredefines.Plus) {
+                if(UIPublic.ShowYesNoDialog("您是否要创建一个新的Guid?") == System.Windows.Forms.DialogResult.Yes) {
+                    var edit = sender as ButtonEdit;
+                    edit.EditValue = Guid.NewGuid().ToString();
+                }
             }
         }
     }

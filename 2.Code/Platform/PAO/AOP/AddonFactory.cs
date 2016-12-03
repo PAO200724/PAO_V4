@@ -19,7 +19,7 @@ namespace PAO
     [DataContract(Namespace = "")]
     [Name("插件工厂")]
     [Description("是在默认应用中的GlobalAddonList查找插件的工厂")]
-    public class AddonFactory<T> : Factory<T> where T : PaoObject
+    public class AddonFactory<T> : Factory<T> where T : class
     {
         #region 插件属性
         #region 属性：AddonID
@@ -47,11 +47,7 @@ namespace PAO
         }
 
         protected override T OnCreateInstance() {
-            var addonList = PaoApplication.Default.GlobalAddonList;
-            if (addonList.IsNullOrEmpty() || !addonList.ContainsKey(AddonID))
-                return default(T);
-
-            return (T)addonList[AddonID];
+            return AddonPublic.GetRuntimeAddonByID(AddonID) as T;
         }
     }
 }

@@ -66,8 +66,11 @@ namespace PAO.Config.Controls
                     DisplayName = displayAttr==null? p.GetTypeString() : displayAttr.DisplayName,
                     Namespace = p.Namespace
                 };
-            });
-            this.BindingSourceTypes.DataSource = types;
+            }).ToList();
+            if (types.Count == 0)
+                this.BindingSourceTypes.DataSource = null;
+            else
+                this.BindingSourceTypes.DataSource = types;
         }
 
         public Type SelectedType {

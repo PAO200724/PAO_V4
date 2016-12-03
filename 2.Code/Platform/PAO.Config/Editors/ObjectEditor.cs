@@ -47,22 +47,22 @@ namespace PAO.Config.Editors
             if (e.Button.Kind == DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis) {
                 if (edit.EditValue.IsNull()) {
                     object newObject;
-                    if (!ConfigPublic.CreateNewAddonValue(ObjectType, false, out newObject))
+                    if (!ConfigPublic.CreateNewAddonValue(PropertyDescriptor.PropertyType, false, out newObject))
                         return;
                     edit.EditValue = newObject;
                 }
                 var editValue = edit.EditValue;
-                Type objectEditorControlType = ConfigPublic.GetTypeEditorType(ObjectType);
+                Type objectEditorControlType = ConfigPublic.GetTypeEditControlType(PropertyDescriptor.PropertyType);
 
                 BaseEditControl editControl;
                 if (editValue is IList) {
                     var listControl = new ListEditControl();
-                    listControl.ListType = ObjectType;
+                    listControl.ListType = PropertyDescriptor.PropertyType;
                     editControl = listControl;
                 }
                 else if (editValue is IDictionary) {
                     var dictionaryControl = new DictionaryEditControl();
-                    dictionaryControl.ListType = ObjectType;
+                    dictionaryControl.ListType = PropertyDescriptor.PropertyType;
                     editControl = dictionaryControl;
                 } else if(objectEditorControlType != null) {
                     editControl = objectEditorControlType.CreateInstance() as ObjectEditControl;

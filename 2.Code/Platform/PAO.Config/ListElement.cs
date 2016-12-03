@@ -14,12 +14,7 @@ namespace PAO.Config
     /// 列表项目
     /// 作者：PAO
     /// </summary>
-    [Addon]
-    [Serializable]
-    [DataContract(Namespace = "")]
-    [Name("列表项目")]
-    [Description("列表项目")]
-    public class ListElement : PaoObject
+    public class ListElement
     {
         #region 插件属性
         #region 属性：Index
@@ -28,10 +23,6 @@ namespace PAO.Config
         /// 索引
         /// 列表索引号,如果是字典元素，则是Key
         /// </summary>
-        [AddonProperty]
-        [DataMember(EmitDefaultValue = false)]
-        [Name("索引")]
-        [Description("列表索引号,如果是字典元素，则是Key")]
         public object Index {
             get;
             set;
@@ -45,10 +36,6 @@ namespace PAO.Config
         /// 元素
         /// 列表元素对象
         /// </summary>
-        [AddonProperty]
-        [DataMember(EmitDefaultValue = false)]
-        [Name("元素")]
-        [Description("列表元素对象")]
         public object Element {
             get;
             set;

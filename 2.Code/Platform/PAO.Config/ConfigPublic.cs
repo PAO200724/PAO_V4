@@ -2,6 +2,7 @@
 using DevExpress.XtraTreeList.Nodes;
 using PAO.Config.Controls;
 using PAO.Config.Editors;
+using PAO.Config.PaoConfig;
 using PAO.UI;
 using System;
 using System.Collections;
@@ -21,6 +22,42 @@ namespace PAO.Config
     /// </summary>
     public static class ConfigPublic
     {
+        static ConfigPublic() {
+            RegisterEditors();
+        }
+
+        #region 插件列表
+        /// <summary>
+        /// 编辑时根对象
+        /// </summary>
+        public static object RootEditingObject;
+
+        /// <summary>
+        /// 根据插件ID查找编辑中的插件
+        /// </summary>
+        /// <param name="addonID">插件ID</param>
+        /// <returns></returns>
+        public static PaoObject GetEditiongAddonByID(string addonID) {
+            if (RootEditingObject == null)
+                return null;
+            PaoObject addonEditing = null;
+            AddonPublic.TraverseAddon((addon) =>
+            {
+                if (addon is PaoObject) {
+                    var paoObj = addon as PaoObject;
+                    if (paoObj.ID == addonID) {
+                        addonEditing = paoObj;
+                        return true;
+                    }
+                }
+
+                return false;
+            }, RootEditingObject);
+
+            return addonEditing;
+        }
+        #endregion
+
         #region NewAddonValue
         /// <summary>
         /// 创建新的属性值
@@ -93,22 +130,22 @@ namespace PAO.Config
         }
         #endregion
 
-        #region Editors
+        #region 类型的EditorCotrols
         /// <summary>
         /// 编辑器类型映射
         /// </summary>
-        public static readonly Dictionary<Type, Type> EditorTypeMapping = new Dictionary<Type, Type>();
+        public static readonly Dictionary<Type, Type> EditControlTypeMapping = new Dictionary<Type, Type>();
 
         /// <summary>
         /// 注册编辑器
         /// </summary>
         /// <param name="objType">对象类型</param>
-        /// <param name="editorType">编辑器类型</param>
-        public static void RegisterEditor(Type objType, Type editorType) {
-            if(EditorTypeMapping.ContainsKey(objType)) {
-                EditorTypeMapping[objType] = editorType;
+        /// <param name="editControlType">编辑器类型</param>
+        public static void RegisterEditControlType(Type objType, Type editControlType) {
+            if(EditControlTypeMapping.ContainsKey(objType)) {
+                EditControlTypeMapping[objType] = editControlType;
             } else {
-                EditorTypeMapping.Add(objType, editorType);
+                EditControlTypeMapping.Add(objType, editControlType);
             }
         }
 
@@ -117,8 +154,8 @@ namespace PAO.Config
         /// </summary>
         /// <param name="type">类型</param>
         /// <returns>编辑器类型</returns>
-        public static Type GetTypeEditorType(Type type) {
-            foreach (var kv in EditorTypeMapping) {
+        public static Type GetTypeEditControlType(Type type) {
+            foreach (var kv in EditControlTypeMapping) {
                 if (type.IsDerivedFrom(kv.Key)) {
                     return kv.Value;
                 }
@@ -130,20 +167,49 @@ namespace PAO.Config
 
             return null;
         }
+        #endregion
 
+        #region 属性的Editors
+        /// <summary>
+        /// 属性编辑器类型映射
+        /// </summary>
+        public static readonly Dictionary<PropertyDescriptor, Type> EditorTypeMapping = new Dictionary<PropertyDescriptor, Type>();
+
+        /// <summary>
+        /// 注册编辑器
+        /// </summary>
+        /// <param name="objType">对象类型</param>
+        /// <param name="editorType">编辑器类型</param>
+        public static void RegisterEditorType(Type objType, string propertyName, Type editorType) {
+            var properties = TypeDescriptor.GetProperties(objType);
+            var propDesc = properties[propertyName];
+            if(propDesc != null) {
+                if (EditorTypeMapping.ContainsKey(propDesc)) {
+                    EditorTypeMapping[propDesc] = editorType;
+                }
+                else {
+                    EditorTypeMapping.Add(propDesc, editorType);
+                }
+            }
+        }
+        
         /// <summary>
         /// 获取某个属性的编辑器类型
         /// </summary>
         /// <param name="propertyDescriptor">属性</param>
         /// <returns>编辑器类型</returns>
         public static Type GetPropertyEditorType(PropertyDescriptor propertyDescriptor) {
+            if(EditorTypeMapping.ContainsKey(propertyDescriptor)) {
+                return EditorTypeMapping[propertyDescriptor];
+            }
+
             var addonAttr = propertyDescriptor.Attributes.GetAttribute<AddonPropertyAttribute>();
             if (addonAttr != null && addonAttr.EditorType != null)
                 return addonAttr.EditorType;
 
-            return GetTypeEditorType(propertyDescriptor.PropertyType);
+            return GetTypeEditControlType(propertyDescriptor.PropertyType);
         }
-
+        
         /// <summary>
         /// 创建默认编辑器
         /// </summary>
@@ -153,11 +219,11 @@ namespace PAO.Config
             var editorType = GetPropertyEditorType(propertyDescriptor);
             if(editorType != null) {
                 var editor = editorType.CreateInstance() as BaseEditor;
-                editor.ObjectType = propertyDescriptor.PropertyType;
+                editor.PropertyDescriptor = propertyDescriptor;
                 return editor.CreateEditor();
             }
 
-            return CreateDefaultEditor(propertyDescriptor.PropertyType);
+            return CreateDefaultEditorByPropertyType(propertyDescriptor);
         }
 
         /// <summary>
@@ -165,9 +231,9 @@ namespace PAO.Config
         /// </summary>
         /// <param name="type">类型</param>
         /// <returns>编辑器</returns>
-        public static RepositoryItem CreateDefaultEditor(Type type) {
+        public static RepositoryItem CreateDefaultEditorByPropertyType(PropertyDescriptor propertyDescriptor) {
             BaseEditor editor;
-
+            var type = propertyDescriptor.PropertyType;
             if (type == typeof(string)) {
                 editor = new TextEditor();
             }
@@ -198,8 +264,18 @@ namespace PAO.Config
             else {
                 editor = new ObjectEditor();
             }
-            editor.ObjectType = type;
+            editor.PropertyDescriptor = propertyDescriptor;
             return editor.CreateEditor();
+        }
+        #endregion
+
+        #region PAO项目内的Editor注册
+        /// <summary>
+        /// 注册编辑器
+        /// </summary>
+        public static void RegisterEditors() {
+            ConfigPublic.RegisterEditorType(typeof(PaoObject), "ID", typeof(GuidEditor));
+            ConfigPublic.RegisterEditorType(typeof(AddonFactory<>), "AddonID", typeof(AddonIDEditor));
         }
         #endregion
     }

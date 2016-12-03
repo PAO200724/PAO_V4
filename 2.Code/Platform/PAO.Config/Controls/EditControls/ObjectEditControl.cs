@@ -47,7 +47,7 @@ namespace PAO.Config.Controls.EditControls
 
         private void PropertyGridControl_CustomRecordCellEdit(object sender, DevExpress.XtraVerticalGrid.Events.GetCustomRowCellEditEventArgs e) {
             var propDesc = PropertyGridControl.GetPropertyDescriptor(e.Row);
-            e.RepositoryItem = ConfigPublic.CreateDefaultEditor(propDesc.PropertyType);
+            e.RepositoryItem = ConfigPublic.CreateDefaultEditor(propDesc);
         }
     }
 }

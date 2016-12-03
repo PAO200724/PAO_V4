@@ -128,7 +128,7 @@ namespace PAO.App {
         /// 此列表用于检索应用中的插件，当建立插件引用时，应当在此表中增加插件
         /// </summary>
         [NonSerialized]
-        public Dictionary<string, PaoObject> GlobalAddonList = new Dictionary<string, PaoObject>();
+        private Dictionary<string, PaoObject> GlobalAddonList = new Dictionary<string, PaoObject>();
 
         public PaoApplication() {
             ServerList = new List<PAO.Ref<Server.BaseServer>>();
@@ -175,6 +175,7 @@ namespace PAO.App {
                 TransactionPublic.Run("检索全局插件", () =>
                 {
                     AddGlobalAddons();
+                    AddonPublic.RuntimeAddonList = GlobalAddonList;
                 });
                 #endregion
 
@@ -218,38 +219,9 @@ namespace PAO.App {
         /// </summary>
         private void AddGlobalAddons() {
             GlobalAddonList = new Dictionary<string, PaoObject>();
-            AddGlobalAddons(this);
+            AddonPublic.TraverseAddon(GlobalAddonList, this);
         }
-
-        public void AddGlobalAddons(PaoObject obj) {
-            if (GlobalAddonList.ContainsKey(obj.ID))
-                GlobalAddonList.Add(obj.ID, obj);
-
-            var properties = TypeDescriptor.GetProperties(obj);
-            foreach(PropertyDescriptor property in properties) {
-                if(property.Attributes.GetAttribute<AddonPropertyAttribute>() != null) {
-                    var propObj = property.GetValue(obj);
-                    if (propObj == null)
-                        continue;
-
-                    if(propObj is PaoObject) {
-                        AddGlobalAddons((PaoObject)propObj);
-                    } else if(propObj.GetType().IsAddonListType()) {
-                        foreach(var element in propObj.As<IList>()) {
-                            if(element is PaoObject)
-                                AddGlobalAddons((PaoObject)element);
-                        }
-                    }
-                    else if (propObj.GetType().IsAddonDictionaryType()) {
-                        foreach (var element in propObj.As<IDictionary>().Values) {
-                            if (element is PaoObject)
-                                AddGlobalAddons((PaoObject)element);
-                        }
-                    }
-                }
-            }
-        }
-
+        
         /// <summary>
         /// 程序运行
         /// </summary>

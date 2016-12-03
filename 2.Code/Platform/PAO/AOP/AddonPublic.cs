@@ -18,6 +18,121 @@ namespace PAO {
     /// 作者:PAO
     /// </summary>
     public static class AddonPublic {
+        #region 插件列表
+        /// <summary>
+        /// 运行时插件列表
+        /// </summary>
+        public static Dictionary<string, PaoObject> RuntimeAddonList;
+        /// <summary>
+        /// 获取插件ID
+        /// </summary>
+        /// <param name="addonID">插件ID</param>
+        /// <returns>插件ID</returns>
+        public static PaoObject GetRuntimeAddonByID(string addonID) {
+            if (RuntimeAddonList == null)
+                return null;
+            if (RuntimeAddonList.ContainsKey(addonID))
+                return RuntimeAddonList[addonID];
+            return null;
+        }
+        #endregion
+
+        #region 插件检索
+        /// <summary>
+        /// 遍历插件，检索插件以及子插件，并将这些插件放入addonList
+        /// </summary>
+        /// <param name="addonList">插件列表</param>
+        /// <param name="rootObj">根插件</param>
+        public static void TraverseAddon(Dictionary<string, PaoObject> addonList, object rootObj) {
+            TraverseAddon((addon) =>
+            {
+                if(addon is PaoObject) {
+                    var paoObj = addon as PaoObject;
+                    // 如果已经存在此插件，则直接返回
+                    if (addonList.ContainsKey(paoObj.ID))
+                        return false;
+
+                    addonList.Add(paoObj.ID, paoObj);
+                }
+                return false;
+            }, rootObj);
+        }
+
+        /// <summary>
+        /// 遍历插件，检索插件以及子插件，并将这些插件放入addonList
+        /// </summary>
+        /// <param name="addonAction">对插件的操作</param>
+        /// <param name="rootObj">根插件</param>
+        public static void TraverseAddon(Func<object, bool> addonAction, object rootObj) {
+            if (rootObj == null)
+                return;
+
+            // 如果插件动作返回true，则退出检索
+            if (addonAction(rootObj))
+                return;
+
+            var properties = TypeDescriptor.GetProperties(rootObj);
+            foreach (PropertyDescriptor property in properties) {
+                if (property.Attributes.GetAttribute<AddonPropertyAttribute>() == null)
+                    continue;
+
+                // 获取属性值，然后根据属性值的状况查找子插件
+                object propertyValue = null;
+                try {
+                    propertyValue = property.GetValue(rootObj);
+                }
+                catch (Exception err) {
+                    EventPublic.Exception(err);
+                }
+
+                if (propertyValue == null)
+                    continue;
+
+                var propertyType = propertyValue.GetType();
+                // 跳过值类型和字符串
+                if (propertyType.IsValueType || propertyType == typeof(string)) {
+                    continue;
+                }
+
+                if (propertyValue is PaoObject) {
+                    // 插件属性
+                    TraverseAddon(addonAction, propertyValue);
+                }
+                else if (propertyValue is IDictionary) {
+                    // 处理字典
+                    var dict = propertyValue as IDictionary;
+                    foreach (object element in dict.Values) {
+                        if (element == null) {
+                            continue;
+                        }
+
+                        if (element is PaoObject) {
+                            TraverseAddon(addonAction, element);
+                        }
+                    }
+                }
+                else if (propertyValue is IEnumerable) {
+                    // 跳过基础类型数组，避免过长的循环
+                    var elementType = propertyType.GetElementType();
+                    if (propertyType.IsArray && (elementType.IsValueType || elementType == typeof(string)))
+                        continue;
+
+                    // 处理列表
+                    foreach (object element in propertyValue as IEnumerable) {
+                        if (element == null) {
+                            continue;
+                        }
+
+                        if (element is PaoObject) {
+                            TraverseAddon(addonAction, element);
+                        }
+                    }
+                }
+            }
+        }
+        
+        #endregion
+
         #region 插件类型判断
         /// <summary>
         /// 判断是否为插件类型
@@ -144,79 +259,6 @@ namespace PAO {
         }
 
 
-        /// <summary>
-        /// 遍历插件，检索插件以及子插件，并将这些插件放入addonList
-        /// </summary>
-        /// <param name="addonList">插件列表</param>
-        /// <param name="rootObj">根插件</param>
-        public static void TraverseAddon(Dictionary<string, PaoObject> addonList, PaoObject rootObj) {
-            if (rootObj == null)
-                return;
-
-            // 如果已经存在此插件，则直接返回
-            if (addonList.ContainsKey(rootObj.ID))
-                return;
-
-            addonList.Add(rootObj.ID, rootObj);
-
-            var properties = TypeDescriptor.GetProperties(rootObj
-                , new Attribute[] { new DisplayNameAttribute(), new DescriptionAttribute(), new DataMemberAttribute() });
-            foreach (PropertyDescriptor property in properties) {
-                // 获取属性值，然后根据属性值的状况查找子插件
-                object propertyValue = null;
-                try {
-                    propertyValue = property.GetValue(rootObj);
-                }
-                catch (Exception err) {
-                    EventPublic.Exception(err);
-                }
-
-                if (propertyValue == null)
-                    continue;
-
-                var propertyType = propertyValue.GetType();
-                // 跳过值类型和字符串
-                if (propertyType.IsValueType || propertyType == typeof(string)) {
-                    continue;
-                }
-
-                if (propertyValue is PaoObject) {
-                    // 插件属性
-                    TraverseAddon(addonList, propertyValue as PaoObject);
-                }
-                else if (propertyValue is IDictionary) {
-                    // 处理字典
-                    var dict = propertyValue as IDictionary;
-                    foreach (object key in dict.Keys) {
-                        object element = dict[key];
-                        if (element == null) {
-                            continue;
-                        }
-
-                        if (element is PaoObject) {
-                            TraverseAddon(addonList, element as PaoObject);
-                        }
-                    }
-                }
-                else if (propertyValue is IEnumerable) {
-                    // 跳过基础类型数组，避免过长的循环
-                    var elementType = propertyType.GetElementType();
-                    if (propertyType.IsArray && (elementType.IsValueType || elementType == typeof(string)))
-                        continue;
-
-                    // 处理列表
-                    foreach (object element in propertyValue as IEnumerable) {
-                        if (element == null) {
-                            continue;
-                        }
-
-                        if (element is PaoObject) {
-                            TraverseAddon(addonList, element as PaoObject);
-                        }
-                    }
-                }
-            }
-        }
         #endregion
 
         #region 插件属性路径

@@ -155,7 +155,7 @@ namespace PAO.Config.Controls.EditControls
         /// <param name="obj">对象</param>
         /// <param name="key">键</param>
         /// <param name="value">值</param>
-        private static void CreateElementNode(TreeListNode parentNode
+        private static TreeListNode CreateElementNode(TreeListNode parentNode
             , PropertyDescriptor parentPropDesc
             , object obj
             , object key, object value) {
@@ -185,6 +185,7 @@ namespace PAO.Config.Controls.EditControls
                 , key);
             elementNode.ImageIndex = imageIndex;
             CreateChildNodesByObject(elementNode, value, null);
+            return elementNode;
         }
 
         /// <summary>
@@ -193,7 +194,7 @@ namespace PAO.Config.Controls.EditControls
         /// <param name="parentNode">上级节点</param>
         /// <param name="obj">对象</param>
         /// <param name="propDesc">属性描述</param>
-        private static void CreateTreeNodesByProperty(TreeListNode parentNode, object obj, PropertyDescriptor propDesc) {
+        private static TreeListNode CreateTreeNodesByProperty(TreeListNode parentNode, object obj, PropertyDescriptor propDesc) {
             var propVal = propDesc.GetValue(obj);
             var displayAttribute = propDesc.Attributes.GetAttribute<DisplayNameAttribute>();
             ObjectTreeNodeType nodeType;
@@ -219,6 +220,7 @@ namespace PAO.Config.Controls.EditControls
                 , null);
             propNode.ImageIndex = imageIndex;
             CreateChildNodesByObject(propNode, propVal, propDesc);
+            return propNode;
         }
 
         /// <summary>
@@ -387,6 +389,10 @@ namespace PAO.Config.Controls.EditControls
                         CreateChildNodesByObject(focusNode, newObject, propDesc);
                         break;
                     case ObjectTreeNodeType.Object:
+                        focusNode.Nodes.Clear();
+                        CreateChildNodesByObject(focusNode, newObject, null);
+                        break;
+                    default:
                         throw new Exception("此节点不支持显示数据");
                 }
                 
@@ -417,6 +423,7 @@ namespace PAO.Config.Controls.EditControls
                     , out newObject)) {
                     SetPropertNewValue(focusNode, newObject);
                 }
+                FocuseNode(focusNode);
                 SetControlStatus();
             }
         }
@@ -434,8 +441,9 @@ namespace PAO.Config.Controls.EditControls
                     , true
                     , out newObject)) {
                     int index = propertyValue.As<IList>().Add(newObject);
-                    CreateElementNode(focusNode, propDesc, propertyValue, index, newObject);
+                    var newNode = CreateElementNode(focusNode, propDesc, propertyValue, index, newObject);
                     focusNode.Expanded = true;
+                    TreeListObject.FocusedNode = newNode;
                 }
             }
             else if(propDesc.PropertyType.IsAddonDictionaryType()) {
@@ -446,8 +454,9 @@ namespace PAO.Config.Controls.EditControls
                         , true
                         , out newObject)) {
                         propertyValue.As<IDictionary>().Add(key, newObject);
-                        CreateElementNode(focusNode, propDesc, propertyValue, key, newObject);
+                        var newNode = CreateElementNode(focusNode, propDesc, propertyValue, key, newObject);
                         focusNode.Expanded = true;
+                        TreeListObject.FocusedNode = newNode;
                     }
                 }
             } else {
@@ -508,6 +517,8 @@ namespace PAO.Config.Controls.EditControls
                 focusNode.SetValue(ColumnIndex, newKey);
                 string elementString = String.Format("[键：{0}]", newKey);
                 focusNode.SetValue(ColumnPropertyTypeString, newKey);
+                FocuseNode(focusNode);
+                SetControlStatus();
             }
         }
 
@@ -527,6 +538,10 @@ namespace PAO.Config.Controls.EditControls
             if (e.DataModified == true) {
                 ResetNodeValueByEditControl(DictionaryEditControl);
             }
+        }
+
+        private void ObjectTreeEditControl_Enter(object sender, EventArgs e) {
+            ConfigPublic.RootEditingObject = this.SelectedObject;
         }
         #endregion
 

@@ -28,7 +28,7 @@ namespace PAO.Config.Editors
         }
 
         [NonSerialized]
-        internal Type ObjectType;
+        internal PropertyDescriptor PropertyDescriptor;
 
         public abstract RepositoryItem CreateEditor();
     }

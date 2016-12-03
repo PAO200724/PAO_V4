@@ -393,6 +393,7 @@
             // ObjectEditControl
             // 
             this.ObjectEditControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ObjectEditControl.Enabled = false;
             this.ObjectEditControl.Location = new System.Drawing.Point(0, 0);
             this.ObjectEditControl.Name = "ObjectEditControl";
             this.ObjectEditControl.SelectedObject = null;
@@ -453,6 +454,7 @@
             this.Controls.Add(this.barDockControlTop);
             this.Name = "ObjectTreeEditControl";
             this.Size = new System.Drawing.Size(922, 571);
+            this.Enter += new System.EventHandler(this.ObjectTreeEditControl_Enter);
             ((System.ComponentModel.ISupportInitialize)(this.ImageCollectionTree)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BarManagerObjectTree)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainerControlMain)).EndInit();
