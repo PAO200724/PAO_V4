@@ -133,6 +133,7 @@ namespace PAO.App {
         public PaoApplication() {
             ServerList = new List<PAO.Ref<Server.BaseServer>>();
             EventProcessorList = new List<PAO.Ref<BaseEventProcessor>>();
+            OnException = ShowExceptionDialog;
         }
 
 
@@ -163,52 +164,55 @@ namespace PAO.App {
             Default = this;
             TransactionPublic.Run("主应用程序", () =>
             {
-                TransactionPublic.Run("启动准备", OnStart);
-
-                #region 用户界面
-                if (UserInterface.IsNotNull()) {
-                    UIPublic.DefaultUserInterface = UserInterface.Value;
-                }
-                #endregion 用户界面
-
-                #region 全局插件
-                TransactionPublic.Run("检索全局插件", () =>
+                TransactionPublic.Run("初始化", () =>
                 {
-                    AddGlobalAddons();
-                    AddonPublic.RuntimeAddonList = GlobalAddonList;
-                });
-                #endregion
+                    TransactionPublic.Run("启动准备", OnStart);
 
-                #region 事件
-                TransactionPublic.Run("事件处理机准备", () =>
-                {
-                     if (!EventProcessorList.IsNullOrEmpty()) {
-                         EventPublic.ClearEventProcessor();
-                         foreach (var EventProcessor in EventProcessorList) {
-                             var logObj = EventProcessor.Value;
-                             EventPublic.AddEventProcessor(logObj);
-                         }
-                     }
-                 });
-                #endregion 日志
-                
-                #region 服务器
-                TransactionPublic.Run("启动服务器列表", () =>
-                {
-                    if (!ServerList.IsNullOrEmpty()) {
-                        foreach (var server in ServerList) {
-                            var serverObj = server.Value;
-                            if (serverObj == null)
-                                throw new Exception("服务创建失败");
-                            serverObj.Start();
-                            EventPublic.Information("服务{0}启动完毕.", serverObj.ObjectToString());
-                        }
+                    #region 用户界面
+                    if (UserInterface.IsNotNull()) {
+                        UIPublic.DefaultUserInterface = UserInterface.Value;
                     }
+                    #endregion 用户界面
+
+                    #region 全局插件
+                    TransactionPublic.Run("检索全局插件", () =>
+                    {
+                        AddGlobalAddons();
+                        AddonPublic.RuntimeAddonList = GlobalAddonList;
+                    });
+                    #endregion
+
+                    #region 事件
+                    TransactionPublic.Run("事件处理机准备", () =>
+                    {
+                        if (!EventProcessorList.IsNullOrEmpty()) {
+                            EventPublic.ClearEventProcessor();
+                            foreach (var EventProcessor in EventProcessorList) {
+                                var logObj = EventProcessor.Value;
+                                EventPublic.AddEventProcessor(logObj);
+                            }
+                        }
+                    });
+                    #endregion 日志
+
+                    #region 服务器
+                    TransactionPublic.Run("启动服务器列表", () =>
+                    {
+                        if (!ServerList.IsNullOrEmpty()) {
+                            foreach (var server in ServerList) {
+                                var serverObj = server.Value;
+                                if (serverObj == null)
+                                    throw new Exception("服务创建失败");
+                                serverObj.Start();
+                                EventPublic.Information("服务{0}启动完毕.", serverObj.ObjectToString());
+                            }
+                        }
+                    });
+                    #endregion 服务
                 });
-                #endregion 服务
 
                 #region 程序
-                TransactionPublic.Run("启动服务", Run);
+                TransactionPublic.Run("启动程序", Run);
                 #endregion 程序
 
             }, OnException);
@@ -231,6 +235,14 @@ namespace PAO.App {
 
             if(OnRunning != null)
                 OnRunning();
+        }
+
+        /// <summary>
+        /// 显示异常对话框
+        /// </summary>
+        /// <param name="exception">异常对话框</param>
+        protected virtual void ShowExceptionDialog(Exception exception) {
+            UIPublic.ShowEventDialog(new ExceptionEventInfo(exception, true, true));
         }
     }
 }

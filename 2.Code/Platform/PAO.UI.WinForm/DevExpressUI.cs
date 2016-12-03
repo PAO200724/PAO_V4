@@ -1,6 +1,8 @@
 ﻿using DevExpress.XtraEditors;
 using DevExpress.XtraSplashScreen;
 using PAO;
+using PAO.Event;
+using PAO.UI.WinForm.Controls;
 using PAO.UI.WinForm.Forms;
 using System;
 using System.Collections.Generic;
@@ -36,8 +38,10 @@ namespace PAO.UI.WinForm
             return dialog.ShowDialog();
         }
    
-        public void ShowExceptionDialog(Exception exception) {
-            XtraMessageBox.Show(exception.FormatException(), "异常", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        public void ShowEventDialog(EventInfo eventInfo) {
+            var eventControl = new EventControl();
+            eventControl.Initialize(eventInfo);
+            UIPublic.ShowDialog(eventControl);
         }
 
         public DialogResult ShowMessageBox(string text, string caption, MessageBoxButtons buttons, MessageBoxIcon icon) {

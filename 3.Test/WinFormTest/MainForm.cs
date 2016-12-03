@@ -96,7 +96,7 @@ namespace WinFormTest
                 testService.GetString("Exception");
             } catch (Exception err) {
                 DevExpressPublic.CloseWaitingForm();
-                UIPublic.ShowExceptionDialog(err);
+                UIPublic.ShowEventDialog(new ExceptionEventInfo(err, true, true));
             }
         }
     }

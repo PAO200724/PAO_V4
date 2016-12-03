@@ -27,6 +27,7 @@ namespace PAO.Config.Controls.EditControls
             InitializeComponent();
             Text = "对象编辑器";
             SetControlStatus();
+            EditMode = true;
         }
 
         #region 公共属性
@@ -46,6 +47,18 @@ namespace PAO.Config.Controls.EditControls
                 SetControlStatus();
             }
         }
+
+        private bool _EditMode;
+
+        public bool EditMode {
+            get { return _EditMode; }
+            set {
+                _EditMode = value;
+                this.BarMainTools.Visible = _EditMode;
+                this.SplitContainerControlMain.Panel2.Visible = _EditMode;
+            }
+        }
+
         #endregion
 
         #region DialogControl

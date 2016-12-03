@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PAO.Event;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,8 +18,8 @@ namespace PAO.UI
         /// <summary>
         /// 显示异常对话框
         /// </summary>
-        /// <param name="exception">异常</param>
-        void ShowExceptionDialog(Exception exception);
+        /// <param name="eventInfo">事件信息</param>
+        void ShowEventDialog(EventInfo eventInfo);
 
         /// <summary>
         /// 显示消息对话框

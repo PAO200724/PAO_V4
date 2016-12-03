@@ -84,8 +84,7 @@ namespace PAO.Trans
                     if (exceptionAction != null) {
                         exceptionAction(exp);
                     }
-
-                    if (rollbackAction != null) {
+                    else if (rollbackAction != null) {
                         try {
                             rollbackAction();
                             trans.Rollback();
