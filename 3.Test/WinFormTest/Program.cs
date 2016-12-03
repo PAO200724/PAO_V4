@@ -11,6 +11,7 @@ using PAO;
 using PAO.Event;
 using System.Diagnostics;
 using PAO.Data;
+using PAO.Remote.Tcp;
 
 namespace WinFormTest
 {

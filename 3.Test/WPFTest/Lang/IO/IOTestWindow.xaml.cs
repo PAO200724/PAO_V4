@@ -36,7 +36,7 @@ namespace MainTest.Lang.IO {
                 LazyMember = new MyGenericClass<string>()
                 {
                     Member1 = "Lazy Member"
-                }
+                }.ToRef()
             };
             TextBlock.Text = TextPublic.ObjectToText(myObj);
 

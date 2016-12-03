@@ -27,53 +27,29 @@ namespace PAO.Remote
     public class RemoteService : PaoObject, IRemoteService
     {
         #region 插件属性
+
+        #region 属性：ServiceList
+        /// <summary>
+        /// 属性：ServiceList
+        /// 服务列表
+        /// 远程服务列表
+        /// </summary>
+        [AddonProperty]
+        [DataMember(EmitDefaultValue = false)]
+        [Name("服务列表")]
+        [Description("远程服务列表")]
+        public Dictionary<string, Ref<PaoObject>> ServiceList {
+            get;
+            set;
+        }
+        #endregion 属性：ServiceList
+
         #endregion
         public RemoteService() {
         }
 
         public string CallService(string serviceName, string functionName, string header, string inputParameters) {
-            var serializer = RemotePublic.DefaultSerializer;
-
-            // 获取头信息
-            Header head = null;
-            if (!header.IsNullOrEmpty()) {
-                head = (Header)serializer.TextToObject(header);
-            }
-
-            // 设置线程用户
-            SecurityPublic.ThreadUser = head.UserToken;
-
-            string result = null;
-            Action callService = () =>
-            {
-                // 获取服务对象
-                if (!RemotePublic.ServiceList.ContainsKey(serviceName)) {
-                    throw new Exception("找不到指定的服务名称").AddExceptionData("服务名称", serviceName);
-                }
-                var serviceObject = RemotePublic.ServiceList[serviceName];
-
-                // 获取参数信息
-                object[] inputParamList = null;
-                if (!inputParameters.IsNullOrEmpty()) {
-                    inputParamList = (object[])serializer.TextToObject(inputParameters);
-                }
-
-                // 获取方法
-                var method = serviceObject.GetType().GetMethod(functionName
-                    , BindingFlags.Public | BindingFlags.Instance);
-
-                // 调用方法
-                var resultObj = method.Invoke(serviceObject, inputParamList);
-                result = serializer.ObjectToText(resultObj);
-            };
-
-            // 在事务中调用服务
-            var transName = String.Format("{0}.{1}", serviceName, functionName);
-            if (head != null && head.Transaction != null) {
-                TransactionPublic.RunService(head.Transaction, transName, callService);
-            } else {
-                TransactionPublic.Run(transName, callService);
-            }
+            var result = RemotePublic.CallService(ServiceList, serviceName, functionName, header, inputParameters);
 
             return result;
         }

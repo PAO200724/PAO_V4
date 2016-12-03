@@ -49,6 +49,7 @@
     <Compile Include="AOP\AddonPublic.cs" />
     <Compile Include="AOP\IconAttribute.cs" />
     <Compile Include="AOP\NameAttribute.cs" />
+    <Compile Include="AOP\BaseRef.cs" />
     <Compile Include="App\AppPublic.cs" />
     <Compile Include="App\PaoApplication.cs" />
     <Compile Include="AOP\Factory.cs" />
@@ -108,11 +109,16 @@
     <Compile Include="Remote\RemoteProxy.cs" />
     <Compile Include="Remote\RemotePublic.cs" />
     <Compile Include="Remote\RemoteService.cs" />
+    <Compile Include="Remote\Tcp\RemoteTcpServer.cs" />
+    <Compile Include="Remote\Tcp\TcpRemoteFactory.cs" />
+    <Compile Include="Remote\Tcp\TcpRemoteClient.cs" />
+    <Compile Include="Remote\BaseRemoteFactory.cs" />
     <Compile Include="Remote\WCF\WCFFactory.cs" />
     <Compile Include="Remote\WCF\WCFRemoteFactory.cs" />
     <Compile Include="Security\SecurityPublic.cs" />
     <Compile Include="Security\UserToken.cs" />
     <Compile Include="Server\BaseServer.cs" />
+    <Compile Include="ThreadPublic.cs" />
     <Compile Include="Trans\PaoTransaction.cs" />
     <Compile Include="Trans\TransactionEventInfo.cs" />
     <Compile Include="Trans\TransStatus_Committed.cs" />

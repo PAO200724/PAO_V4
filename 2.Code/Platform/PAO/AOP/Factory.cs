@@ -16,7 +16,7 @@ namespace PAO {
     [DataContract(Namespace = "")]
     [Name("工厂类")]
     [Description("用工厂方式创建引用的类")]
-    public abstract class Factory<T> : Ref<T> {
+    public abstract class Factory<T> : BaseRef<T> {
         #region 插件属性
         #region 属性:BufferInstance
         /// <summary>

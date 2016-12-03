@@ -340,11 +340,13 @@ namespace PAO {
         /// <returns>详细的异常字符串</returns>
         public static string FormatException(this Exception exception) {
             var exceptionMessage = exception.ToString();
-            var detailMessage = "详细信息:\r\n";
+            var dataMessage = "";
             foreach (var dataItem in exception.Data.Keys) {
-                detailMessage += String.Format("\t[{0}]: {1}", dataItem, exception.Data[dataItem]);
+                dataMessage += String.Format("[{0}]: {1}\r\n", dataItem, exception.Data[dataItem]);
             }
-            var fullMessage = String.Format("异常类型:{0}\r\n异常信息:{1}\r\n{2}\r\n------------------------------\r\n{3}"
+            string detailMessage = dataMessage.IsNullOrEmpty()?null: string.Format("详细信息:\r\n{0}\r\n", dataMessage);
+            
+            var fullMessage = String.Format("异常类型:{0}\r\n异常信息:{1}\r\n{2}------------------------------\r\n{3}"
                 , exception.GetType().FullName
                 , exception.Message
                 , detailMessage, exception);

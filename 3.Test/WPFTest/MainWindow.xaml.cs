@@ -41,7 +41,7 @@ namespace MainTest {
         private void RemoteTestButton_Click(object sender, RoutedEventArgs e) {
             var testService = new WCFRemoteFactory<ITestService>()
             {
-                BaseUrl = "http://localhost:12134/RemoteService.svc",
+                ServerAddress = "http://localhost:12134/RemoteService.svc",
                 ServiceName = "TestService"
             };
 

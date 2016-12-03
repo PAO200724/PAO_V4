@@ -16,7 +16,7 @@ namespace PAO {
     [DataContract(Namespace = "")]
     [Name("对象连接")]
     [Description("直接链接到对象的Ref类")]
-    public class ObjectRef<T> : Ref<T> {
+    public class ObjectRef<T> : BaseRef<T> {
         #region 插件属性
         /// <summary>
         /// 属性:Reference

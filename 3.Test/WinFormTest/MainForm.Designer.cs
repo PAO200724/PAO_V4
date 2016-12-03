@@ -27,17 +27,20 @@
         private void InitializeComponent() {
             this.BarManager = new DevExpress.XtraBars.BarManager();
             this.bar1 = new DevExpress.XtraBars.Bar();
-            this.barSubItem1 = new DevExpress.XtraBars.BarSubItem();
+            this.MenuEventTest = new DevExpress.XtraBars.BarSubItem();
             this.ButtonTestInformation = new DevExpress.XtraBars.BarButtonItem();
             this.ButtonTestException = new DevExpress.XtraBars.BarButtonItem();
-            this.MenuItemConfigTools = new DevExpress.XtraBars.BarSubItem();
+            this.MenuConfigTest = new DevExpress.XtraBars.BarSubItem();
             this.ButtonConfigTools = new DevExpress.XtraBars.BarButtonItem();
+            this.ButtonAddonSelect = new DevExpress.XtraBars.BarButtonItem();
+            this.MenuRemoteTest = new DevExpress.XtraBars.BarSubItem();
+            this.ButtonCallRemote = new DevExpress.XtraBars.BarButtonItem();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.DefaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
-            this.ButtonAddonSelect = new DevExpress.XtraBars.BarButtonItem();
+            this.ButtonRemoteException = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.BarManager)).BeginInit();
             this.SuspendLayout();
             // 
@@ -52,12 +55,15 @@
             this.BarManager.Form = this;
             this.BarManager.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.ButtonTestInformation,
-            this.barSubItem1,
+            this.MenuEventTest,
             this.ButtonTestException,
-            this.MenuItemConfigTools,
+            this.MenuConfigTest,
             this.ButtonConfigTools,
-            this.ButtonAddonSelect});
-            this.BarManager.MaxItemId = 6;
+            this.ButtonAddonSelect,
+            this.MenuRemoteTest,
+            this.ButtonCallRemote,
+            this.ButtonRemoteException});
+            this.BarManager.MaxItemId = 9;
             // 
             // bar1
             // 
@@ -66,18 +72,19 @@
             this.bar1.DockRow = 0;
             this.bar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
             this.bar1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.barSubItem1),
-            new DevExpress.XtraBars.LinkPersistInfo(this.MenuItemConfigTools)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.MenuEventTest),
+            new DevExpress.XtraBars.LinkPersistInfo(this.MenuConfigTest),
+            new DevExpress.XtraBars.LinkPersistInfo(this.MenuRemoteTest)});
             this.bar1.Text = "Tools";
             // 
-            // barSubItem1
+            // MenuEventTest
             // 
-            this.barSubItem1.Caption = "事件测试";
-            this.barSubItem1.Id = 1;
-            this.barSubItem1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            this.MenuEventTest.Caption = "事件测试";
+            this.MenuEventTest.Id = 1;
+            this.MenuEventTest.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.ButtonTestInformation),
             new DevExpress.XtraBars.LinkPersistInfo(this.ButtonTestException)});
-            this.barSubItem1.Name = "barSubItem1";
+            this.MenuEventTest.Name = "MenuEventTest";
             // 
             // ButtonTestInformation
             // 
@@ -93,14 +100,14 @@
             this.ButtonTestException.Name = "ButtonTestException";
             this.ButtonTestException.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonTestException_ItemClick);
             // 
-            // MenuItemConfigTools
+            // MenuConfigTest
             // 
-            this.MenuItemConfigTools.Caption = "配置工具测试(&C)";
-            this.MenuItemConfigTools.Id = 3;
-            this.MenuItemConfigTools.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            this.MenuConfigTest.Caption = "配置测试";
+            this.MenuConfigTest.Id = 3;
+            this.MenuConfigTest.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.ButtonConfigTools),
             new DevExpress.XtraBars.LinkPersistInfo(this.ButtonAddonSelect)});
-            this.MenuItemConfigTools.Name = "MenuItemConfigTools";
+            this.MenuConfigTest.Name = "MenuConfigTest";
             // 
             // ButtonConfigTools
             // 
@@ -108,6 +115,29 @@
             this.ButtonConfigTools.Id = 4;
             this.ButtonConfigTools.Name = "ButtonConfigTools";
             this.ButtonConfigTools.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonConfigTools_ItemClick);
+            // 
+            // ButtonAddonSelect
+            // 
+            this.ButtonAddonSelect.Caption = "插件选择";
+            this.ButtonAddonSelect.Id = 5;
+            this.ButtonAddonSelect.Name = "ButtonAddonSelect";
+            this.ButtonAddonSelect.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonAddonSelect_ItemClick);
+            // 
+            // MenuRemoteTest
+            // 
+            this.MenuRemoteTest.Caption = "远程测试(&R)";
+            this.MenuRemoteTest.Id = 6;
+            this.MenuRemoteTest.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonCallRemote),
+            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonRemoteException)});
+            this.MenuRemoteTest.Name = "MenuRemoteTest";
+            // 
+            // ButtonCallRemote
+            // 
+            this.ButtonCallRemote.Caption = "调用远程服务";
+            this.ButtonCallRemote.Id = 7;
+            this.ButtonCallRemote.Name = "ButtonCallRemote";
+            this.ButtonCallRemote.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonCallRemote_ItemClick);
             // 
             // barDockControlTop
             // 
@@ -141,12 +171,12 @@
             // 
             this.DefaultLookAndFeel.LookAndFeel.SkinName = "Office 2010 Blue";
             // 
-            // ButtonAddonSelect
+            // ButtonRemoteException
             // 
-            this.ButtonAddonSelect.Caption = "插件选择(&A)";
-            this.ButtonAddonSelect.Id = 5;
-            this.ButtonAddonSelect.Name = "ButtonAddonSelect";
-            this.ButtonAddonSelect.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonAddonSelect_ItemClick);
+            this.ButtonRemoteException.Caption = "调用异常";
+            this.ButtonRemoteException.Id = 8;
+            this.ButtonRemoteException.Name = "ButtonRemoteException";
+            this.ButtonRemoteException.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonRemoteException_ItemClick);
             // 
             // MainForm
             // 
@@ -174,12 +204,15 @@
         private DevExpress.XtraBars.BarDockControl barDockControlLeft;
         private DevExpress.XtraBars.BarDockControl barDockControlRight;
         private DevExpress.XtraBars.BarButtonItem ButtonTestInformation;
-        private DevExpress.XtraBars.BarSubItem barSubItem1;
+        private DevExpress.XtraBars.BarSubItem MenuEventTest;
         private DevExpress.XtraBars.BarButtonItem ButtonTestException;
         private DevExpress.LookAndFeel.DefaultLookAndFeel DefaultLookAndFeel;
-        private DevExpress.XtraBars.BarSubItem MenuItemConfigTools;
+        private DevExpress.XtraBars.BarSubItem MenuConfigTest;
         private DevExpress.XtraBars.BarButtonItem ButtonConfigTools;
         private DevExpress.XtraBars.BarButtonItem ButtonAddonSelect;
+        private DevExpress.XtraBars.BarSubItem MenuRemoteTest;
+        private DevExpress.XtraBars.BarButtonItem ButtonCallRemote;
+        private DevExpress.XtraBars.BarButtonItem ButtonRemoteException;
     }
 }
 

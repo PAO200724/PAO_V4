@@ -82,23 +82,7 @@ namespace PAO.App {
             set;
         }
         #endregion 属性:ServerList
-
-        #region 属性：ServiceList
-        /// <summary>
-        /// 属性：ServiceList
-        /// 服务列表
-        /// 加载在远程服务器中的服务列表
-        /// </summary>
-        [AddonProperty]
-        [DataMember(EmitDefaultValue = false)]
-        [Name("服务列表")]
-        [Description("加载在远程服务器中的服务列表")]
-        public Dictionary<string, Ref<PaoObject>> ServiceList {
-            get;
-            set;
-        }
-        #endregion 属性：ServiceList
-
+        
         #region 属性：UserInterface
         /// <summary>
         /// 属性：UserInterface
@@ -149,7 +133,6 @@ namespace PAO.App {
         public PaoApplication() {
             ServerList = new List<PAO.Ref<Server.BaseServer>>();
             EventProcessorList = new List<PAO.Ref<BaseEventProcessor>>();
-            ServiceList = new Dictionary<string, PAO.Ref<PaoObject>>();
         }
 
 
@@ -207,21 +190,6 @@ namespace PAO.App {
                      }
                  });
                 #endregion 日志
-
-                #region 远程服务
-                TransactionPublic.Run("加载远程服务", () =>
-                {
-                    if (ServiceList.IsNullOrEmpty())
-                        return;
-
-                    // 默认为DataContract序列化器
-                    RemotePublic.DefaultSerializer = new DataContractTextSerializer();
-                    RemotePublic.ServiceList = new Dictionary<string, object>();
-                    foreach(var key in ServiceList.Keys) {
-                        RemotePublic.ServiceList.Add(key, ServiceList[key].Value);
-                    }
-                });
-                #endregion
                 
                 #region 服务器
                 TransactionPublic.Run("启动服务器列表", () =>

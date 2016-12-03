@@ -83,24 +83,22 @@ namespace PAO.Server
                 EventPublic.Warning("服务被禁止，不能启动.");
                 return;
             }
-
+            OnStart();
             Status = Status.Default<Status_Running>();
-            ServerTask = new Task(() =>
+            ServerTask = Task.Factory.StartNew(() =>
             {
                 Run();
                 if(Status is Status_Enabled) {
                     Status = Status.Default<Status_Ready>();
                 }
-                OnStop();
             }, TaskCreationOptions);
-            ServerTask.Start();
         }
 
         /// <summary>
         /// 停止服务
         /// </summary>
         public void Stop() {
-            StopRunning();
+            OnStop();
             Stopped = true;
             ServerTask.Wait(StopTimeout);
         }
@@ -124,11 +122,5 @@ namespace PAO.Server
         /// 在方法中可以设定服务的状态，如异常时禁用等
         /// </summary>
         protected abstract void Run();
-
-
-        /// <summary>
-        /// 停止运行的方法，如果在Running中已经考虑了Stopped状态并停止了服务，则不需要实现此方法
-        /// </summary>
-        protected virtual void StopRunning() { }
     }
 }
