@@ -74,6 +74,6 @@ namespace PAO.Remote
             return result;
         }
 
-        protected abstract IRemoteService CreateRemoteService();
+        protected abstract IRemote CreateRemoteService();
     }
 }

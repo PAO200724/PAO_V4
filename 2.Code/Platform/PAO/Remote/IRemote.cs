@@ -13,7 +13,7 @@ namespace PAO.Remote
     /// </summary>
     [Addon]
     [ServiceContract]
-    public interface IRemoteService
+    public interface IRemote
     {
         /// <summary>
         /// 调用服务

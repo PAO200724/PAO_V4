@@ -25,11 +25,11 @@ namespace PAO.Remote
     [Description("代理远程对象的类")]
     public class RemoteProxy : RealProxy
     {
-        private IRemoteService RemoteService;
+        private IRemote RemoteService;
         private ITextSerialize Serializer;
         private string ServiceName;
 
-        public RemoteProxy(Type proxyType, IRemoteService remoteService, ITextSerialize serializer, string serviceName) : base(proxyType) {
+        public RemoteProxy(Type proxyType, IRemote remoteService, ITextSerialize serializer, string serviceName) : base(proxyType) {
             RemoteService = remoteService;
             Serializer = serializer;
             ServiceName = serviceName;

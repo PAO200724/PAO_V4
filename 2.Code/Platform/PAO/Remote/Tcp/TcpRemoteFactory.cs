@@ -28,8 +28,8 @@ namespace PAO.Remote.Tcp
         #endregion
         public TcpRemoteFactory() {
         }
-        protected override IRemoteService CreateRemoteService() {
-            return new TcpRemoteClient()
+        protected override IRemote CreateRemoteService() {
+            return new TcpRemote()
             {
                 ServerAddress = ServerAddress
             };

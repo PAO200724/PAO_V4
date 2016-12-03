@@ -22,7 +22,7 @@ namespace PAO.Remote.Tcp
     [DataContract(Namespace = "")]
     [Name("Tcp远程服务")]
     [Description("用Tcp方式提供远程服务的服务")]
-    public class TcpRemoteClient : PaoObject, IRemoteService
+    public class TcpRemote : PaoObject, IRemote
     {
         #region 插件属性
 
@@ -43,7 +43,7 @@ namespace PAO.Remote.Tcp
         #endregion 属性：ServerAddress
         
         #endregion
-        public TcpRemoteClient() {
+        public TcpRemote() {
         }
 
         public string CallService(string serviceName, string functionName, string header, string inputParameters) {

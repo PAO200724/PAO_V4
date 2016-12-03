@@ -28,8 +28,8 @@ namespace PAO.Remote.WCF
         public WCFRemoteFactory() {
         }
 
-        protected override IRemoteService CreateRemoteService() {
-            return new WCFFactory<IRemoteService>
+        protected override IRemote CreateRemoteService() {
+            return new WCFFactory<IRemote>
             {
                 Url = ServerAddress
             }.Value;

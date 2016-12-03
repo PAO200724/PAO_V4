@@ -12,7 +12,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
 
-namespace PAO.Remote
+namespace PAO.Remote.WCF
 {
     /// <summary>
     /// 类：RemoteService
@@ -24,28 +24,14 @@ namespace PAO.Remote
     [DataContract(Namespace = "")]
     [Name("远程服务")]
     [Description("提供远程调用服务协议并分发到具体服务的服务")]
-    public class RemoteService : PaoObject, IRemoteService
+    public class WCFRemoteService : PaoObject, IRemote
     {
         #region 插件属性
-
-        #region 属性：ServiceList
-        /// <summary>
-        /// 属性：ServiceList
-        /// 服务列表
-        /// 远程服务列表
-        /// </summary>
-        [AddonProperty]
-        [DataMember(EmitDefaultValue = false)]
-        [Name("服务列表")]
-        [Description("远程服务列表")]
-        public Dictionary<string, Ref<PaoObject>> ServiceList {
-            get;
-            set;
-        }
-        #endregion 属性：ServiceList
-
         #endregion
-        public RemoteService() {
+
+        internal static Dictionary<string, Ref<PaoObject>> ServiceList;
+
+        public WCFRemoteService() {
         }
 
         public string CallService(string serviceName, string functionName, string header, string inputParameters) {
