@@ -160,9 +160,6 @@
     <None Include="Resources\zoomout_32x32.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\zoomout_32x321.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\save_32x32.png" />
   </ItemGroup>
   <ItemGroup>
