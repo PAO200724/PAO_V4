@@ -97,6 +97,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="DevExpressUI.cs" />
+    <Compile Include="Waiting.cs">
+      <SubType>Component</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PAO\PAO.csproj">

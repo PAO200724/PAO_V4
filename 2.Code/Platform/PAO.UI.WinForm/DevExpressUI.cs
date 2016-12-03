@@ -30,14 +30,6 @@ namespace PAO.UI.WinForm
         public DevExpressUI() {
         }
 
-        public void CloseSplashScreen() {
-            SplashScreenManager.CloseForm();
-        }
-
-        public void CloseWaitingForm() {
-            SplashScreenManager.CloseForm();
-        }
-
         public DialogResult ShowDialog(Control childControl) {
             var dialog = new Dialog();
             dialog.ChildControl = childControl;
@@ -70,14 +62,6 @@ namespace PAO.UI.WinForm
             if (fileDialog.IsNotNullOrEmpty())
                 fileDialog.InitialDirectory = Path.GetDirectoryName(fileName);
             return fileDialog.ShowDialog();
-        }
-
-        public void ShowSplashScreen() {
-            SplashScreenManager.ShowForm(typeof(PaoSplashScreen));
-        }
-
-        public void ShowWaitingForm() {
-            SplashScreenManager.ShowForm(typeof(PaoWaitForm));
         }
     }
 }
