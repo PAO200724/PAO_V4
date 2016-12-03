@@ -12,6 +12,8 @@ using PAO.Event;
 using System.Diagnostics;
 using PAO.Data;
 using PAO.Remote.Tcp;
+using TestLibrary;
+
 namespace WinFormTest
 {
     static class Program
@@ -37,6 +39,14 @@ namespace WinFormTest
                 EventProcessorList = new List<PAO.Ref<BaseEventProcessor>>()
                     .Append(DebugLogger.Default.ToRef())
                     .Append(EventLogger.Default.ToRef()),
+                ServerList = new List<PAO.Ref<PAO.Server.BaseServer>>()
+                    .Append(new RemoteTcpServer()
+                    {
+                        Port = 7991,
+                        ServiceList = new Dictionary<string, Ref<PaoObject>>()
+                             .Append("TestService", new TestService().ToRef())
+                             .Append("DataService", new DbDataService().ToRef()),
+                    }.ToRef()),
                 RunAction = () =>
                 {
                     Application.Run(new MainForm());

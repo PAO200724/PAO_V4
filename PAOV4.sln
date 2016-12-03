@@ -20,6 +20,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "6.库存", "6.库存", "{5DE5579E-81AF-4EFD-B5D7-BD65046F272C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "平台", "平台", "{43B24246-03C7-474A-99AD-A5876EA5F86B}"
+	ProjectSection(SolutionItems) = preProject
+		2.Code\Platform\PAO.Config\Editors\CheckEditor.cs = 2.Code\Platform\PAO.Config\Editors\CheckEditor.cs
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "7.工具", "7.工具", "{F9928C92-2191-446A-A8BB-5FABB1A4377C}"
 EndProject

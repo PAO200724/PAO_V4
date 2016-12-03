@@ -113,7 +113,7 @@ namespace PAO.App {
             get;
             set;
         }
-        #endregion 属性：ExtendAddonList
+        #endregion 属性：ExtendAddonList       
         #endregion
 
         /// <summary>

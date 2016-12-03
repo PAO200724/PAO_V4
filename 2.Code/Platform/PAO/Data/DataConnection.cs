@@ -85,13 +85,17 @@ namespace PAO.Data
         /// </summary>
         /// <returns>数据提供器工厂</returns>
         public DbProviderFactory CreateDbProviderFactoryy() {
+            if (DbFactoryName.IsNullOrEmpty())
+                return null;
             return DbProviderFactories.GetFactory(DbFactoryName);
         }
 
+        [NonSerialized]
         private DbProviderFactory _ProviderFac;
         /// <summary>
         /// 工厂
         /// </summary>
+        [Browsable(false)]
         public DbProviderFactory Factory {
             get {
                 /// 只用创建一次连接器工厂

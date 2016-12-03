@@ -50,6 +50,7 @@
     <Compile Include="AOP\IconAttribute.cs" />
     <Compile Include="AOP\NameAttribute.cs" />
     <Compile Include="AOP\BaseRef.cs" />
+    <Compile Include="AOP\ObjectFolder.cs" />
     <Compile Include="App\AppPublic.cs" />
     <Compile Include="App\PaoApplication.cs" />
     <Compile Include="AOP\Factory.cs" />

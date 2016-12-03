@@ -73,7 +73,10 @@
     <Compile Include="Controls\EditControls\ListEditControl.Designer.cs">
       <DependentUpon>ListEditControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Editors\CheckComboBoxEditor.cs" />
     <Compile Include="Editors\ColorEditor.cs" />
+    <Compile Include="Editors\EnumEditor.cs" />
+    <Compile Include="PaoConfig\DbFactoryEditor.cs" />
     <Compile Include="Editors\GuidEditor.cs" />
     <Compile Include="Editors\PictureEditor.cs" />
     <Compile Include="Editors\MemoEditor.cs" />

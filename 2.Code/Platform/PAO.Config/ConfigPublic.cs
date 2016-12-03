@@ -3,6 +3,7 @@ using DevExpress.XtraTreeList.Nodes;
 using PAO.Config.Controls;
 using PAO.Config.Editors;
 using PAO.Config.PaoConfig;
+using PAO.Data;
 using PAO.UI;
 using System;
 using System.Collections;
@@ -236,6 +237,8 @@ namespace PAO.Config
             var type = propertyDescriptor.PropertyType;
             if (type == typeof(string)) {
                 editor = new TextEditor();
+            } else if(type.IsEnum) {
+                editor = new EnumEditor();
             }
             else if (type == typeof(Color)) {
                 editor = new ColorPickEditor();
@@ -276,6 +279,8 @@ namespace PAO.Config
         public static void RegisterEditors() {
             ConfigPublic.RegisterEditorType(typeof(PaoObject), "ID", typeof(GuidEditor));
             ConfigPublic.RegisterEditorType(typeof(AddonFactory<>), "AddonID", typeof(AddonIDEditor));
+            ConfigPublic.RegisterEditorType(typeof(DataConnection), "DbFactoryName", typeof(DbFactoryEditor));
+            ConfigPublic.RegisterEditorType(typeof(DataCommandInfo), "Sql", typeof(MemoExEditor));
         }
         #endregion
     }

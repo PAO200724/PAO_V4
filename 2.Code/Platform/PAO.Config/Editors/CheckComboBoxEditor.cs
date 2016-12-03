@@ -12,24 +12,24 @@ namespace PAO.Config.Editors
 {
     /// <summary>
     /// 类：CheckEditor
-    /// 复选框编辑器
-    /// 复选框编辑器
+    /// 组合框式复选框
+    /// 组合框式复选框
     /// 作者：PAO
     /// </summary>
     [Addon]
     [Serializable]
     [DataContract(Namespace = "")]
-    [Name("复选框编辑器")]
-    [Description("复选框编辑器")]
-    public class CheckEditor : BaseEditor
+    [Name("组合框式复选框")]
+    [Description("组合框式复选框")]
+    public class CheckComboBoxEditor : BaseEditor
     {
         #region 插件属性
         #endregion
-        public CheckEditor() {
+        public CheckComboBoxEditor() {
         }
 
         public override RepositoryItem CreateEditor() {
-            var edit = new RepositoryItemCheckEdit();
+            var edit = new RepositoryItemCheckedComboBoxEdit();
             return edit;
         }
     }
