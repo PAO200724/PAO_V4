@@ -21,8 +21,8 @@ namespace PAO.Config.Controls.EditControls
     /// <summary>
     /// 对象树控件
     /// </summary>
-    public partial class ObjectTreeEditControl : BaseEditControl
-    {
+    public partial class ObjectTreeEditControl : BaseEditControl {
+
         public ObjectTreeEditControl() {
             InitializeComponent();
             Text = "对象编辑器";

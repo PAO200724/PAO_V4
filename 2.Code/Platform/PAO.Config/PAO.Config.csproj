@@ -76,6 +76,12 @@
     <Compile Include="Editors\CheckComboBoxEditor.cs" />
     <Compile Include="Editors\ColorEditor.cs" />
     <Compile Include="Editors\EnumEditor.cs" />
+    <Compile Include="PaoConfig\DataCommandInfoEditControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PaoConfig\DataCommandInfoEditControl.Designer.cs">
+      <DependentUpon>DataCommandInfoEditControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="PaoConfig\DataFilterEditControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -175,6 +181,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\AddonSelectControl.resx">
       <DependentUpon>AddonSelectControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PaoConfig\DataCommandInfoEditControl.resx">
+      <DependentUpon>DataCommandInfoEditControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PaoConfig\DataFilterEditControl.resx">
       <DependentUpon>DataFilterEditControl.cs</DependentUpon>

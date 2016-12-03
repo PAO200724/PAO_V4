@@ -46,17 +46,16 @@ namespace PAO.Config.PaoConfig
             }
 
             set {
+                FilterInfoList = new List<DataFilterInfo>();
+                this.BindingSourceDataFilter.DataSource = FilterInfoList;
                 if (value != null) {
                     value.CheckType<IDataFilter>("DataFilterEditControl只支持IDataFilter类型的编辑");
                     RootDataFilter = value as IDataFilter;
-                    FilterInfoList = new List<DataFilterInfo>();
                     InitByDataFilter(FilterInfoList, RootDataFilter, null);
-                    this.BindingSourceDataFilter.DataSource = FilterInfoList;
                     this.TreeListDataFilter.ExpandAll();
                 }
                 else {
                     RootDataFilter = null;
-                    this.BindingSourceDataFilter.DataSource = null;
                 }
                 SetControlStatus();
             }
@@ -96,6 +95,12 @@ namespace PAO.Config.PaoConfig
             var dataFilter = filterType.CreateInstance() as IDataFilter;
             if (this.BindingSourceDataFilter.Count == 0) {
                 RootDataFilter = dataFilter;
+                FilterInfoList.Add(new DataFilterInfo()
+                {
+                    ParentID = null,
+                    ImageIndex = imageIndex,
+                    DataFilter = dataFilter
+                });
             }
             else {
                 var currentFilter = this.BindingSourceDataFilter.Current.As<DataFilterInfo>().DataFilter as CompositeLogicFilter;
@@ -106,10 +111,10 @@ namespace PAO.Config.PaoConfig
                     DataFilter = dataFilter
                 });
                 currentFilter.ChildFilters.Add(dataFilter);
-                ModifyData();
-                this.TreeListDataFilter.RefreshDataSource();
-                this.TreeListDataFilter.ExpandAll();
             }
+            ModifyData();
+            this.TreeListDataFilter.RefreshDataSource();
+            this.TreeListDataFilter.ExpandAll();
             SetControlStatus();
             return dataFilter;
         }
@@ -138,6 +143,7 @@ namespace PAO.Config.PaoConfig
                     this.ButtonSql.Enabled = false;
                 }
             }
+            this.ButtonDelete.Enabled = this.BindingSourceDataFilter.Current != null;
         }
 
         private void ButtonAnd_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
@@ -159,6 +165,7 @@ namespace PAO.Config.PaoConfig
                 ModifyData();
                 this.TreeListDataFilter.RefreshDataSource();
                 this.TreeListDataFilter.ExpandAll();
+                SetControlStatus();
             }
         }
 

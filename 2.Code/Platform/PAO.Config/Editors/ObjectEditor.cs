@@ -45,36 +45,45 @@ namespace PAO.Config.Editors
         private void Edit_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e) {
             var edit = (ButtonEdit)sender;
             if (e.Button.Kind == DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis) {
-                if (edit.EditValue.IsNull()) {
+                if (edit.EditValue.IsNull() && PropertyDescriptor != null) {
                     object newObject;
                     if (!ConfigPublic.CreateNewAddonValue(PropertyDescriptor.PropertyType, false, out newObject))
                         return;
                     edit.EditValue = newObject;
                 }
                 var editValue = edit.EditValue;
-
-                Type objectEditorControlType = ConfigPublic.GetTypeEditControlType(PropertyDescriptor.PropertyType);
-
-                BaseEditControl editControl;
+                Type objectType = null;
+                if(PropertyDescriptor == null) {
+                    objectType = editValue.GetType();
+                } else {
+                    objectType = PropertyDescriptor.PropertyType;
+                }
+                if (objectType == null) {
+                    // 如果无法确定对象类型，则退出
+                    return;
+                }
+                BaseEditControl editControl = null;
+                Type objectEditorControlType = ConfigPublic.GetTypeEditControlType(objectType);
                 if (objectEditorControlType != null) {
                     // 以预定义的编辑器对象优先
                     editControl = objectEditorControlType.CreateInstance() as BaseEditControl;
                 }
                 else if (editValue is IList) {
                     var listControl = new ListEditControl();
-                    listControl.ListType = PropertyDescriptor.PropertyType;
+                    listControl.ListType = objectType;
                     editControl = listControl;
                 }
                 else if (editValue is IDictionary) {
                     var dictionaryControl = new DictionaryEditControl();
-                    dictionaryControl.ListType = PropertyDescriptor.PropertyType;
+                    dictionaryControl.ListType = objectType;
                     editControl = dictionaryControl;
-                } else if (editValue is PaoObject) {
+                }
+                else if (editValue is PaoObject) {
                     editControl = new ObjectTreeEditControl();
                 }
-                else {
+                else
                     editControl = new ObjectEditControl();
-                }
+
                 if (edit.EditValue.IsNotNull()) {
                     editControl.SelectedObject = TextPublic.ObjectClone(editValue);
                     if (UIPublic.ShowDialog(editControl) == System.Windows.Forms.DialogResult.OK) {

@@ -21,7 +21,10 @@ namespace PAO.Config.Controls.EditControls
     {
         public DictionaryEditControl() {
             InitializeComponent();
-            this.ColumnObject.ColumnEdit = new ObjectEditor().CreateEditor();
+            this.ColumnObject.ColumnEdit = new ObjectEditor()
+            {
+                PropertyDescriptor = typeof(ListElement).GetPropertyDescriptor("Element")
+            }.CreateEditor();
             this.ColumnIndex.ColumnEdit = new RepositoryItemTextEdit();
         }
 

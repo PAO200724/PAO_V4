@@ -15,6 +15,10 @@ namespace PAO.Config.Controls.EditControls
     /// </summary>
     public partial class ObjectEditControl : BaseEditControl
     {
+        static ObjectEditControl() {
+            ConfigPublic.RegisterEditors();
+        }
+
         public ObjectEditControl() {
             InitializeComponent();
             SetControlStatus();

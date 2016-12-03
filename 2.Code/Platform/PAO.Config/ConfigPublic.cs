@@ -23,10 +23,6 @@ namespace PAO.Config
     /// </summary>
     public static class ConfigPublic
     {
-        static ConfigPublic() {
-            RegisterEditors();
-        }
-
         #region 插件列表
         /// <summary>
         /// 编辑时根对象
@@ -143,11 +139,46 @@ namespace PAO.Config
         /// <param name="objType">对象类型</param>
         /// <param name="editControlType">编辑器类型</param>
         public static void RegisterEditControlType(Type objType, Type editControlType) {
-            if(EditControlTypeMapping.ContainsKey(objType)) {
+            if (objType.IsGenericType) {
+                objType = objType.GetGenericTypeDefinition();
+            }
+
+            if (EditControlTypeMapping.ContainsKey(objType)) {
                 EditControlTypeMapping[objType] = editControlType;
             } else {
                 EditControlTypeMapping.Add(objType, editControlType);
             }
+        }
+
+        /// <summary>
+        /// 从类型映射中查找编辑器类型
+        /// </summary>
+        /// <param name="type">类型</param>
+        /// <returns>编辑器类型</returns>
+        private static Type GetEditControlFromTypeMapping(Type type) {
+            if (type.IsGenericType) {
+                type = type.GetGenericTypeDefinition();
+            }
+
+            foreach (var kv in EditControlTypeMapping) {
+                if (type == kv.Key) {
+                    return kv.Value;
+                }
+            }
+
+            if(type.BaseType != null) {
+                var foundType = GetEditControlFromTypeMapping(type.BaseType);
+                if (foundType != null)
+                    return foundType;
+            }
+
+            foreach (var kv in EditControlTypeMapping) {
+                if (type.IsDerivedFrom(kv.Key)) {
+                    return kv.Value;
+                }
+            }
+
+            return null;
         }
 
         /// <summary>
@@ -156,11 +187,9 @@ namespace PAO.Config
         /// <param name="type">类型</param>
         /// <returns>编辑器类型</returns>
         public static Type GetTypeEditControlType(Type type) {
-            foreach (var kv in EditControlTypeMapping) {
-                if (type.IsDerivedFrom(kv.Key)) {
-                    return kv.Value;
-                }
-            }
+            var controlType = GetEditControlFromTypeMapping(type);
+            if (controlType != null)
+                return controlType;
 
             var addonAttr = type.GetAttribute<AddonAttribute>(true);
             if (addonAttr != null && addonAttr.EditorType != null)
@@ -279,6 +308,7 @@ namespace PAO.Config
             ConfigPublic.RegisterEditorType(typeof(DataCommandInfo), "Sql", typeof(MemoExEditor));
 
             ConfigPublic.RegisterEditControlType(typeof(IDataFilter), typeof(DataFilterEditControl));
+            ConfigPublic.RegisterEditControlType(typeof(DataCommandInfo), typeof(DataCommandInfoEditControl));
         }
         #endregion
     }

@@ -24,6 +24,8 @@ namespace PAO.Config.Controls.EditControls
         /// <summary>
         /// 当前选择的对象
         /// </summary>
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public virtual object SelectedObject {
             get;
             set;
