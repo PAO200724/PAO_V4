@@ -131,7 +131,7 @@ namespace PAO.Config.Controls.EditControls
                     if (!(value is PaoObject))
                         break;
 
-                    CreateDictionaryNode(node, parentPropDesc, obj, key, value);
+                    CreateElementNode(node, parentPropDesc, obj, key, value);
                 }
             }
             else if (objType.IsAddonListType()) {
@@ -141,47 +141,59 @@ namespace PAO.Config.Controls.EditControls
                     if (!(element is PaoObject))
                         break;
 
-                    CreateListNode(node, parentPropDesc, obj, i, element);
+                    CreateElementNode(node, parentPropDesc, obj, i, element);
                     i++;
                 }
             }
         }
-
-        private static void CreateDictionaryNode(TreeListNode node
+        
+        /// <summary>
+        /// 创建字典元素节点
+        /// </summary>
+        /// <param name="parentNode">上级节点</param>
+        /// <param name="parentPropDesc">上级属性描述</param>
+        /// <param name="obj">对象</param>
+        /// <param name="key">键</param>
+        /// <param name="value">值</param>
+        private static void CreateElementNode(TreeListNode parentNode
             , PropertyDescriptor parentPropDesc
             , object obj
             , object key, object value) {
-            string elementString = String.Format("[键：{0}]", key);
-            var elementNode = node.Nodes.Add(elementString
+            string elementString;
+            ObjectTreeNodeType nodeType;
+            int imageIndex;
+            if (parentPropDesc.PropertyType.IsAddonListType()) {
+                elementString = String.Format("[索引：{0}]", key);
+                nodeType = ObjectTreeNodeType.ListElement;
+                imageIndex = ImageIndex_ListElement;
+            }
+            else if(parentPropDesc.PropertyType.IsAddonDictionaryType()) {
+                elementString = String.Format("[键：{0}]", key);
+                nodeType = ObjectTreeNodeType.DictionaryElement;
+                imageIndex = ImageIndex_DictionaryElement;
+            }
+            else {
+                throw new Exception("此类型的属性不支持增加元素节点").AddExceptionData("属性类型", parentPropDesc.PropertyType);
+            }
+            var elementNode = parentNode.Nodes.Add(elementString
                 , GetObjectString(value)
                 , GetObjectTypeString(value)
                 , parentPropDesc
                 , value
                 , obj
-                , ObjectTreeNodeType.DictionaryElement
+                , nodeType
                 , key);
-            elementNode.ImageIndex = ImageIndex_DictionaryElement;
+            elementNode.ImageIndex = imageIndex;
             CreateChildNodesByObject(elementNode, value, null);
         }
 
-        private static void CreateListNode(TreeListNode node
-            , PropertyDescriptor parentPropDesc
-            , object obj
-            , int index, object element) {
-            string elementString = String.Format("[索引：{0}]", index);
-            var elementNode = node.Nodes.Add(elementString
-                , GetObjectString(element)
-                , GetObjectTypeString(element)
-                , parentPropDesc
-                , element
-                , obj
-                , ObjectTreeNodeType.ListElement
-                , index);
-            elementNode.ImageIndex = ImageIndex_ListElement;
-            CreateChildNodesByObject(elementNode, element, null);
-        }
-
-        private static void CreateTreeNodesByProperty(TreeListNode node, object obj, PropertyDescriptor propDesc) {
+        /// <summary>
+        /// 利用属性描述创建节点
+        /// </summary>
+        /// <param name="parentNode">上级节点</param>
+        /// <param name="obj">对象</param>
+        /// <param name="propDesc">属性描述</param>
+        private static void CreateTreeNodesByProperty(TreeListNode parentNode, object obj, PropertyDescriptor propDesc) {
             var propVal = propDesc.GetValue(obj);
             var displayAttribute = propDesc.Attributes.GetAttribute<DisplayNameAttribute>();
             ObjectTreeNodeType nodeType;
@@ -197,7 +209,7 @@ namespace PAO.Config.Controls.EditControls
                 nodeType = ObjectTreeNodeType.ObjectProperty;
                 imageIndex = ImageIndex_ObjectProperty;
             }
-            var propNode = node.Nodes.Add(displayAttribute == null ? propDesc.Name : displayAttribute.DisplayName
+            var propNode = parentNode.Nodes.Add(displayAttribute == null ? propDesc.Name : displayAttribute.DisplayName
                 , GetObjectString(propVal)
                 , GetObjectTypeString(propVal)
                 , propDesc
@@ -318,8 +330,8 @@ namespace PAO.Config.Controls.EditControls
             this.LabelControlPropertyDescription.Text = propDesc == null ? null : propDesc.Description;
             this.LabelControlPropertyType.Text = propDesc == null ? null : propDesc.PropertyType.GetTypeFullString();
 
-            var elementType = (ObjectTreeNodeType)node.GetValue(ColumnPropertyElementType);
-            switch (elementType) {
+            var nodeType = (ObjectTreeNodeType)node.GetValue(ColumnPropertyElementType);
+            switch (nodeType) {
                 case ObjectTreeNodeType.ListProperty:
                     this.ListEditControl.SelectedObject = propertyValue;
                     this.ListEditControl.ListType = propDesc.PropertyType;
@@ -345,21 +357,39 @@ namespace PAO.Config.Controls.EditControls
         /// <summary>
         /// 根据编辑控件重置对象
         /// </summary>
-        /// <param name="editControl"></param>
+        /// <param name="editControl">编辑控件</param>
         private void ResetNodeValueByEditControl(BaseEditControl editControl) {
             var focusNode = this.TreeListObject.FocusedNode;
             if (focusNode != null) {
                 var propDesc = (PropertyDescriptor)focusNode.GetValue(ColumnPropertyDescriptor);
+                var nodeType = (ObjectTreeNodeType)focusNode.GetValue(ColumnPropertyElementType);
                 var obj = focusNode.GetValue(ColumnObject);
                 var newObject = editControl.SelectedObject;
-                if(propDesc != null) {
-                    propDesc.SetValue(obj, newObject);
-                    focusNode.Nodes.Clear();
-                    CreateChildNodesByObject(focusNode, newObject, propDesc);
-                } else {
-                    focusNode.Nodes.Clear();
-                    CreateChildNodesByObject(focusNode, newObject, null);
+
+                switch (nodeType) {
+                    case ObjectTreeNodeType.ListElement:
+                        var index = (int)focusNode.GetValue(ColumnIndex);
+                        obj.As<IList>()[index] = newObject;
+                        focusNode.Nodes.Clear();
+                        CreateChildNodesByObject(focusNode, newObject, propDesc);
+                        break;
+                    case ObjectTreeNodeType.DictionaryElement:
+                        var key = focusNode.GetValue(ColumnIndex);
+                        obj.As<IDictionary>()[key] = newObject;
+                        focusNode.Nodes.Clear();
+                        CreateChildNodesByObject(focusNode, newObject, propDesc);
+                        break;
+                    case ObjectTreeNodeType.ListProperty:
+                    case ObjectTreeNodeType.DictionaryProperty:
+                    case ObjectTreeNodeType.ObjectProperty:
+                        propDesc.SetValue(obj, newObject);
+                        focusNode.Nodes.Clear();
+                        CreateChildNodesByObject(focusNode, newObject, propDesc);
+                        break;
+                    case ObjectTreeNodeType.Object:
+                        throw new Exception("此节点不支持显示数据");
                 }
+                
                 focusNode.Expanded = true;
             }
         }
@@ -404,7 +434,7 @@ namespace PAO.Config.Controls.EditControls
                     , true
                     , out newObject)) {
                     int index = propertyValue.As<IList>().Add(newObject);
-                    CreateListNode(focusNode, propDesc, propertyValue, index, newObject);
+                    CreateElementNode(focusNode, propDesc, propertyValue, index, newObject);
                     focusNode.Expanded = true;
                 }
             }
@@ -416,7 +446,7 @@ namespace PAO.Config.Controls.EditControls
                         , true
                         , out newObject)) {
                         propertyValue.As<IDictionary>().Add(key, newObject);
-                        CreateDictionaryNode(focusNode, propDesc, propertyValue, key, newObject);
+                        CreateElementNode(focusNode, propDesc, propertyValue, key, newObject);
                         focusNode.Expanded = true;
                     }
                 }

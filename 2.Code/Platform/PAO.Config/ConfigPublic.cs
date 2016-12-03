@@ -168,7 +168,10 @@ namespace PAO.Config
         public static RepositoryItem CreateDefaultEditor(Type type) {
             BaseEditor editor;
 
-            if (type == typeof(Color)) {
+            if (type == typeof(string)) {
+                editor = new TextEditor();
+            }
+            else if (type == typeof(Color)) {
                 editor = new ColorPickEditor();
             }
             else if (type == typeof(Font)) {

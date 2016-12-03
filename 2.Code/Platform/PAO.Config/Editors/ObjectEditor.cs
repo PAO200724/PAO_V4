@@ -66,6 +66,8 @@ namespace PAO.Config.Editors
                     editControl = dictionaryControl;
                 } else if(objectEditorControlType != null) {
                     editControl = objectEditorControlType.CreateInstance() as ObjectEditControl;
+                } else if (editValue is PaoObject) {
+                    editControl = new ObjectTreeEditControl();
                 }
                 else {
                     editControl = new ObjectEditControl();

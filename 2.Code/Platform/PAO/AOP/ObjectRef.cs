@@ -46,6 +46,7 @@ namespace PAO {
         /// <summary>
         /// 获取引用的值
         /// </summary>
+        [Browsable(false)]
         public override T Value {
             get {
                 return Reference;

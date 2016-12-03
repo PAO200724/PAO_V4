@@ -25,11 +25,11 @@ namespace PAO.Event
         /// <summary>
         /// 属性：Priority
         /// 优先级
-        /// 事件处理优先级，默认为10
+        /// 事件处理优先级，默认为10，数值越大，优先级越高。
         /// </summary>
         [DataMember(EmitDefaultValue = false)]
         [Name("优先级")]
-        [Description("事件处理优先级，默认为10")]
+        [Description("事件处理优先级，默认为10，数值越大，优先级越高。")]
         [DefaultValue("10")]
         public int Priority {
             get;
@@ -40,11 +40,11 @@ namespace PAO.Event
         #region 属性：Handled
         /// <summary>
         /// 属性：Handled
-        /// 已处理
+        /// 停止处理
         /// 设定了此属性为True时，不再执行优先级低的事件处理机
         /// </summary>
         [DataMember(EmitDefaultValue = false)]
-        [Name("已处理")]
+        [Name("停止处理")]
         [Description("设定了此属性为True时，不再执行优先级低的事件处理机")]
         [DefaultValue("false")]
         public bool Handled {

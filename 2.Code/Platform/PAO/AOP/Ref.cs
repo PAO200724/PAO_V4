@@ -12,6 +12,7 @@ namespace PAO {
     /// 通过工厂创建对象的类型
     /// 作者:PAO
     /// </summary>
+    [Addon]
     [Name("引用")]
     [Description("通过工厂创建对象的类型")]
     public interface Ref<out T>
