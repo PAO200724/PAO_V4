@@ -16,6 +16,10 @@ namespace PAO.Data
     public interface IDataFilter
     {
         /// <summary>
+        /// ID
+        /// </summary>
+        string ID { get; }
+        /// <summary>
         /// 获取过滤字符串
         /// </summary>
         /// <param name="paramValues">参数值</param>

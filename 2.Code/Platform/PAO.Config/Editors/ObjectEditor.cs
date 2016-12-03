@@ -52,10 +52,15 @@ namespace PAO.Config.Editors
                     edit.EditValue = newObject;
                 }
                 var editValue = edit.EditValue;
+
                 Type objectEditorControlType = ConfigPublic.GetTypeEditControlType(PropertyDescriptor.PropertyType);
 
                 BaseEditControl editControl;
-                if (editValue is IList) {
+                if (objectEditorControlType != null) {
+                    // 以预定义的编辑器对象优先
+                    editControl = objectEditorControlType.CreateInstance() as BaseEditControl;
+                }
+                else if (editValue is IList) {
                     var listControl = new ListEditControl();
                     listControl.ListType = PropertyDescriptor.PropertyType;
                     editControl = listControl;
@@ -64,8 +69,6 @@ namespace PAO.Config.Editors
                     var dictionaryControl = new DictionaryEditControl();
                     dictionaryControl.ListType = PropertyDescriptor.PropertyType;
                     editControl = dictionaryControl;
-                } else if(objectEditorControlType != null) {
-                    editControl = objectEditorControlType.CreateInstance() as ObjectEditControl;
                 } else if (editValue is PaoObject) {
                     editControl = new ObjectTreeEditControl();
                 }

@@ -17,7 +17,7 @@ namespace PAO.UI.WinForm.Controls
     {
         public DialogControl() {
             InitializeComponent();
-            ShowApplyButton = true;
+            ShowApplyButton = false;
             ShowCancelButton = true;
             DataModified = false;
         }

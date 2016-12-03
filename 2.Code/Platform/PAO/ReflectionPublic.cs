@@ -480,6 +480,28 @@ namespace PAO {
 
             return type.Name;
         }
+
+        /// <summary>
+        /// 获取属性描述
+        /// </summary>
+        /// <param name="type">类型</param>
+        /// <param name="propertyName">属性名称</param>
+        /// <returns>属性描述</returns>
+        public static PropertyDescriptor GetPropertyDescriptor(this Type type, string propertyName) {
+            var properties = TypeDescriptor.GetProperties(type);
+            return properties.OfType<PropertyDescriptor>().Where(p => p.Name == propertyName).FirstOrDefault();
+        }
+
+
+        /// <summary>
+        /// 获取属性描述
+        /// </summary>
+        /// <param name="type">类型</param>
+        /// <param name="propertyName">属性名称</param>
+        /// <returns>属性描述</returns>
+        public static PropertyDescriptor GetPropertyDescriptor<T>(string propertyName) {
+            return GetPropertyDescriptor(typeof(T), propertyName);
+        }
         #endregion
 
         #region 程序集

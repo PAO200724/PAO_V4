@@ -204,11 +204,7 @@ namespace PAO.Config
                 return EditorTypeMapping[propertyDescriptor];
             }
 
-            var addonAttr = propertyDescriptor.Attributes.GetAttribute<AddonPropertyAttribute>();
-            if (addonAttr != null && addonAttr.EditorType != null)
-                return addonAttr.EditorType;
-
-            return GetTypeEditControlType(propertyDescriptor.PropertyType);
+            return null;
         }
         
         /// <summary>
@@ -281,6 +277,8 @@ namespace PAO.Config
             ConfigPublic.RegisterEditorType(typeof(AddonFactory<>), "AddonID", typeof(AddonIDEditor));
             ConfigPublic.RegisterEditorType(typeof(DataConnection), "DbFactoryName", typeof(DbFactoryEditor));
             ConfigPublic.RegisterEditorType(typeof(DataCommandInfo), "Sql", typeof(MemoExEditor));
+
+            ConfigPublic.RegisterEditControlType(typeof(IDataFilter), typeof(DataFilterEditControl));
         }
         #endregion
     }

@@ -1,0 +1,189 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
+using System.Data;
+using System.Text;
+using System.Linq;
+using System.Windows.Forms;
+using DevExpress.XtraEditors;
+using PAO.Config.Controls.EditControls;
+using PAO.Data.Filters;
+using PAO.Data;
+using PAO.Config.Editors;
+
+namespace PAO.Config.PaoConfig
+{
+    /// <summary>
+    /// 数据过滤器编辑器
+    /// </summary>
+    public partial class DataFilterEditControl : BaseEditControl
+    {
+        const int ImageIndex_AndFilter = 0;
+        const int ImageIndex_OrFilter = 1;
+        const int ImageIndex_SqlFilter = 2;
+
+        public DataFilterEditControl() {
+            InitializeComponent();
+            this.ColumnFilter.ColumnEdit = new MemoExEditor().CreateEditor();
+            this.ColumnDataType.ColumnEdit = new EnumEditor()
+            {
+                PropertyDescriptor = typeof(DataFilterInfo).GetPropertyDescriptor("DataType")
+            }.CreateEditor();
+        }
+
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        private IDataFilter RootDataFilter;
+
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        private List<DataFilterInfo> FilterInfoList;
+
+        public override object SelectedObject {
+            get {
+                return RootDataFilter;
+            }
+
+            set {
+                if (value != null) {
+                    value.CheckType<IDataFilter>("DataFilterEditControl只支持IDataFilter类型的编辑");
+                    RootDataFilter = value as IDataFilter;
+                    FilterInfoList = new List<DataFilterInfo>();
+                    InitByDataFilter(FilterInfoList, RootDataFilter, null);
+                    this.BindingSourceDataFilter.DataSource = FilterInfoList;
+                    this.TreeListDataFilter.ExpandAll();
+                }
+                else {
+                    RootDataFilter = null;
+                    this.BindingSourceDataFilter.DataSource = null;
+                }
+                SetControlStatus();
+            }
+        }
+
+        private static void InitByDataFilter(List<DataFilterInfo> filterInfoList, IDataFilter dataFilter, string parentID) {
+            if (dataFilter == null)
+                return;
+
+            int imageIndex;
+            if (dataFilter is SqlFilter)
+                imageIndex = ImageIndex_SqlFilter;
+            else if (dataFilter is AndLogicFilter)
+                imageIndex = ImageIndex_AndFilter;
+            else if (dataFilter is OrLogicFilter)
+                imageIndex = ImageIndex_OrFilter;
+            else
+                throw new Exception("不支持的过滤器类型").AddExceptionData("过滤器", dataFilter);
+            filterInfoList.Add(new DataFilterInfo()
+            {
+                ParentID = parentID,
+                ImageIndex = imageIndex,
+                DataFilter = dataFilter
+            });
+
+            if (dataFilter is CompositeLogicFilter) {
+                var childFilters = dataFilter.As<CompositeLogicFilter>().ChildFilters;
+                if (childFilters.IsNotNullOrEmpty()) {
+                    foreach (var childFilter in childFilters) {
+                        InitByDataFilter(filterInfoList, childFilter, dataFilter.As<PaoObject>().ID);
+                    }
+                }
+            }
+        }
+
+        private IDataFilter AddDataFilter(Type filterType, int imageIndex) {
+            var dataFilter = filterType.CreateInstance() as IDataFilter;
+            if (this.BindingSourceDataFilter.Count == 0) {
+                RootDataFilter = dataFilter;
+            }
+            else {
+                var currentFilter = this.BindingSourceDataFilter.Current.As<DataFilterInfo>().DataFilter as CompositeLogicFilter;
+                FilterInfoList.Add(new DataFilterInfo()
+                {
+                    ParentID = currentFilter.ID,
+                    ImageIndex = imageIndex,
+                    DataFilter = dataFilter
+                });
+                currentFilter.ChildFilters.Add(dataFilter);
+                ModifyData();
+                this.TreeListDataFilter.RefreshDataSource();
+                this.TreeListDataFilter.ExpandAll();
+            }
+            SetControlStatus();
+            return dataFilter;
+        }
+
+        private void DeleteFilter(string dataFilterID) {
+            var filter = FilterInfoList.Where(p => p.ID == dataFilterID).FirstOrDefault();
+            if (filter == null)
+                return;
+            FilterInfoList.Remove(filter);
+
+            var childFilters = FilterInfoList.Where(p => p.ParentID == dataFilterID).ToList();
+            foreach(var childFilter in childFilters) {
+                DeleteFilter(childFilter.ID);
+            }
+        }
+
+        private void SetControlStatus() {
+            this.ButtonAnd.Enabled = true;
+            this.ButtonOr.Enabled = true;
+            this.ButtonSql.Enabled = true;
+            if (this.BindingSourceDataFilter.Current != null) {
+                var currentFilter = this.BindingSourceDataFilter.Current.As<DataFilterInfo>().DataFilter as IDataFilter;
+                if (currentFilter != null && currentFilter is SqlFilter) {
+                    this.ButtonAnd.Enabled = false;
+                    this.ButtonOr.Enabled = false;
+                    this.ButtonSql.Enabled = false;
+                }
+            }
+        }
+
+        private void ButtonAnd_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+            AddDataFilter(typeof(AndLogicFilter), ImageIndex_AndFilter);
+        }
+
+        private void ButtonOr_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+            AddDataFilter(typeof(OrLogicFilter), ImageIndex_AndFilter);
+        }
+
+        private void ButtonSql_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+            AddDataFilter(typeof(SqlFilter), ImageIndex_SqlFilter);
+        }
+
+        private void ButtonDelete_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+            var currentFilter = this.BindingSourceDataFilter.Current.As<DataFilterInfo>().DataFilter;
+            if (currentFilter != null) {
+                DeleteFilter(currentFilter.ID);
+                ModifyData();
+                this.TreeListDataFilter.RefreshDataSource();
+                this.TreeListDataFilter.ExpandAll();
+            }
+        }
+
+        private void TreeListDataFilter_FocusedNodeChanged(object sender, DevExpress.XtraTreeList.FocusedNodeChangedEventArgs e) {
+            SetControlStatus();
+        }
+        
+        private void TreeListDataFilter_GetNodeDisplayValue(object sender, DevExpress.XtraTreeList.GetNodeDisplayValueEventArgs e) {
+            var dataFilterInfo = this.TreeListDataFilter.GetDataRecordByNode(e.Node) as DataFilterInfo;
+            if (dataFilterInfo != null && dataFilterInfo.DataFilter is CompositeLogicFilter) {
+                if(e.Column != ColumnName) {
+                    e.Value = null;
+                }
+            }
+        }
+
+        private void TreeListDataFilter_ShowingEditor(object sender, CancelEventArgs e) {
+            var dataFilterInfo = this.TreeListDataFilter.GetDataRecordByNode(TreeListDataFilter.FocusedNode) as DataFilterInfo;
+            if (dataFilterInfo != null && dataFilterInfo.DataFilter is CompositeLogicFilter) {
+                e.Cancel = true;
+            }
+        }
+
+        private void TreeListDataFilter_CellValueChanged(object sender, DevExpress.XtraTreeList.CellValueChangedEventArgs e) {
+            ModifyData();
+        }
+    }
+}

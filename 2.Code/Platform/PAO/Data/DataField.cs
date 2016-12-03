@@ -18,7 +18,7 @@ namespace PAO.Data
     [DataContract(Namespace = "")]
     [Name("数据字段")]
     [Description("用于保存数据列或参数的对象")]
-    public class DataField
+    public class DataField : PaoObject
     {
         #region 插件属性
         #region 属性:Type

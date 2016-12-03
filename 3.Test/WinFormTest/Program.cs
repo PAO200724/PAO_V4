@@ -45,7 +45,17 @@ namespace WinFormTest
                         Port = 7991,
                         ServiceList = new Dictionary<string, Ref<PaoObject>>()
                              .Append("TestService", new TestService().ToRef())
-                             .Append("DataService", new DbDataService().ToRef()),
+                             .Append("DataService", new DbDataService()
+                             {
+                                 DataConnection = new DataConnection()
+                                 {
+                                     CommandList = new List<DataCommandInfo>()
+                                        .Append(new DataCommandInfo()
+                                        {
+                                            Name = "数据命令"
+                                        }),
+                                 }
+                             }.ToRef()),
                     }.ToRef()),
                 RunAction = () =>
                 {
