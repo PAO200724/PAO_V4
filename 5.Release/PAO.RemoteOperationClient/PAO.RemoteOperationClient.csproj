@@ -150,10 +150,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\2.Code\Platform\PAO.App\PAO.App.csproj">
-      <Project>{a4591db5-da1c-4226-8ff0-086a53ea3cd5}</Project>
-      <Name>PAO.App</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\2.Code\Platform\PAO\PAO.csproj">
       <Project>{13199ee0-1738-4e3a-a970-3771eb9d4d0e}</Project>
       <Name>PAO</Name>
