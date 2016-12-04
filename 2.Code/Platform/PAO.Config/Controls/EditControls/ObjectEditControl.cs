@@ -33,6 +33,7 @@ namespace PAO.Config.Controls.EditControls
             set {
                 base.SelectedObject = value;
                 this.PropertyGridControl.SelectedObject = value;
+                this.PropertyGridControl.Refresh();
                 SetControlStatus();
             }
         }

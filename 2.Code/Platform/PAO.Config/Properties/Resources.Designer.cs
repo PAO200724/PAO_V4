@@ -243,6 +243,26 @@ namespace PAO.Config.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap properties_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("properties_16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap properties_32x32 {
+            get {
+                object obj = ResourceManager.GetObject("properties_32x32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap remove_16x16 {
             get {
                 object obj = ResourceManager.GetObject("remove_16x16", resourceCulture);

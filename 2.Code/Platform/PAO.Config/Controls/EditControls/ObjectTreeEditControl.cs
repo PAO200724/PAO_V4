@@ -269,12 +269,12 @@ namespace PAO.Config.Controls.EditControls
 
         #region 私有方法
         private void SetControlStatus() {
-            var focusNode = this.TreeListObject.FocusedNode;
-            if (focusNode != null && focusNode.Id >= 0) {
-                var nodeType = (ObjectTreeNodeType)focusNode.GetValue(ColumnPropertyElementType);
-                var propDesc = (PropertyDescriptor)focusNode.GetValue(ColumnPropertyDescriptor);
-                var propertyValue = focusNode.GetValue(ColumnPropertyValue);
-                var obj = focusNode.GetValue(ColumnObject);
+            var focusedNode = this.TreeListObject.FocusedNode;
+            if (focusedNode != null && focusedNode.Id >= 0) {
+                var nodeType = (ObjectTreeNodeType)focusedNode.GetValue(ColumnPropertyElementType);
+                var propDesc = (PropertyDescriptor)focusedNode.GetValue(ColumnPropertyDescriptor);
+                var propertyValue = focusedNode.GetValue(ColumnPropertyValue);
+                var obj = focusedNode.GetValue(ColumnObject);
 
                 this.ButtonCreate.Enabled = (nodeType != ObjectTreeNodeType.Object);
                 this.ButtonAdd.Enabled = propDesc != null
@@ -284,12 +284,14 @@ namespace PAO.Config.Controls.EditControls
                 this.ButtonDelete.Enabled = (nodeType != ObjectTreeNodeType.Object) && propertyValue.IsNotNull() && obj != null;
                 this.ButtonModifyKey.Enabled = (obj != null && nodeType == ObjectTreeNodeType.DictionaryElement);
                 this.ObjectEditControl.SelectedObject = propertyValue;
+                this.ButtonProperty.Enabled = (propertyValue != null && ConfigPublic.GetTypeEditControlType(propertyValue.GetType()) != null);
             }
             else {
                 this.ButtonCreate.Enabled = false;
                 this.ButtonAdd.Enabled = false;
                 this.ButtonDelete.Enabled = false;
                 this.ButtonModifyKey.Enabled = false;
+                this.ButtonProperty.Enabled = false;
             }
             this.ButtonExport.Enabled = (SelectedObject != null);
         }
@@ -376,42 +378,42 @@ namespace PAO.Config.Controls.EditControls
         /// </summary>
         /// <param name="editControl">编辑控件</param>
         private void ResetNodeValueByEditControl(BaseEditControl editControl) {
-            var focusNode = this.TreeListObject.FocusedNode;
-            if (focusNode != null) {
-                var propDesc = (PropertyDescriptor)focusNode.GetValue(ColumnPropertyDescriptor);
-                var nodeType = (ObjectTreeNodeType)focusNode.GetValue(ColumnPropertyElementType);
-                var obj = focusNode.GetValue(ColumnObject);
+            var focusedNode = this.TreeListObject.FocusedNode;
+            if (focusedNode != null) {
+                var propDesc = (PropertyDescriptor)focusedNode.GetValue(ColumnPropertyDescriptor);
+                var nodeType = (ObjectTreeNodeType)focusedNode.GetValue(ColumnPropertyElementType);
+                var obj = focusedNode.GetValue(ColumnObject);
                 var newObject = editControl.SelectedObject;
 
                 switch (nodeType) {
                     case ObjectTreeNodeType.ListElement:
-                        var index = (int)focusNode.GetValue(ColumnIndex);
+                        var index = (int)focusedNode.GetValue(ColumnIndex);
                         obj.As<IList>()[index] = newObject;
-                        focusNode.Nodes.Clear();
-                        CreateChildNodesByObject(focusNode, newObject, propDesc);
+                        focusedNode.Nodes.Clear();
+                        CreateChildNodesByObject(focusedNode, newObject, propDesc);
                         break;
                     case ObjectTreeNodeType.DictionaryElement:
-                        var key = focusNode.GetValue(ColumnIndex);
+                        var key = focusedNode.GetValue(ColumnIndex);
                         obj.As<IDictionary>()[key] = newObject;
-                        focusNode.Nodes.Clear();
-                        CreateChildNodesByObject(focusNode, newObject, propDesc);
+                        focusedNode.Nodes.Clear();
+                        CreateChildNodesByObject(focusedNode, newObject, propDesc);
                         break;
                     case ObjectTreeNodeType.ListProperty:
                     case ObjectTreeNodeType.DictionaryProperty:
                     case ObjectTreeNodeType.ObjectProperty:
                         propDesc.SetValue(obj, newObject);
-                        focusNode.Nodes.Clear();
-                        CreateChildNodesByObject(focusNode, newObject, propDesc);
+                        focusedNode.Nodes.Clear();
+                        CreateChildNodesByObject(focusedNode, newObject, propDesc);
                         break;
                     case ObjectTreeNodeType.Object:
-                        focusNode.Nodes.Clear();
-                        CreateChildNodesByObject(focusNode, newObject, null);
+                        focusedNode.Nodes.Clear();
+                        CreateChildNodesByObject(focusedNode, newObject, null);
                         break;
                     default:
                         throw new Exception("此节点不支持显示数据");
                 }
                 
-                focusNode.Expanded = true;
+                focusedNode.Expanded = true;
             }
         }
         #endregion
@@ -426,28 +428,28 @@ namespace PAO.Config.Controls.EditControls
         }
 
         private void ButtonCreate_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            var focusNode = this.TreeListObject.FocusedNode;
-            var nodeType = (ObjectTreeNodeType)focusNode.GetValue(ColumnPropertyElementType);
-            var propertyName = (string)focusNode.GetValue(ColumnPropertyName);
-            var propDesc = (PropertyDescriptor)focusNode.GetValue(ColumnPropertyDescriptor);
-            var propertyValue = focusNode.GetValue(ColumnPropertyValue);
+            var focusedNode = this.TreeListObject.FocusedNode;
+            var nodeType = (ObjectTreeNodeType)focusedNode.GetValue(ColumnPropertyElementType);
+            var propertyName = (string)focusedNode.GetValue(ColumnPropertyName);
+            var propDesc = (PropertyDescriptor)focusedNode.GetValue(ColumnPropertyDescriptor);
+            var propertyValue = focusedNode.GetValue(ColumnPropertyValue);
             object newObject = null;
             if (!propertyValue.IsNotNull() || UIPublic.ShowYesNoDialog("您需要清除对象值并创建新的对象吗？") == DialogResult.Yes) {
                 if (ConfigPublic.CreateNewAddonValue(propDesc.PropertyType
                     , nodeType == ObjectTreeNodeType.ListElement || nodeType == ObjectTreeNodeType.DictionaryElement  // 如果是List或者Dictionary，则创建元素
                     , out newObject)) {
-                    SetPropertNewValue(focusNode, newObject);
+                    SetPropertNewValue(focusedNode, newObject);
                 }
-                FocuseNode(focusNode);
+                FocuseNode(focusedNode);
                 SetControlStatus();
             }
         }
 
         private void ButtonAdd_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            var focusNode = this.TreeListObject.FocusedNode;
-            var nodeType = (ObjectTreeNodeType)focusNode.GetValue(ColumnPropertyElementType);
-            var propDesc = (PropertyDescriptor)focusNode.GetValue(ColumnPropertyDescriptor);
-            var propertyValue = focusNode.GetValue(ColumnPropertyValue);
+            var focusedNode = this.TreeListObject.FocusedNode;
+            var nodeType = (ObjectTreeNodeType)focusedNode.GetValue(ColumnPropertyElementType);
+            var propDesc = (PropertyDescriptor)focusedNode.GetValue(ColumnPropertyDescriptor);
+            var propertyValue = focusedNode.GetValue(ColumnPropertyValue);
             propertyValue.CheckNotNull("属性值为空时不能添加。");
             object newObject = null;
 
@@ -456,8 +458,8 @@ namespace PAO.Config.Controls.EditControls
                     , true
                     , out newObject)) {
                     int index = propertyValue.As<IList>().Add(newObject);
-                    var newNode = CreateElementNode(focusNode, propDesc, propertyValue, index, newObject);
-                    focusNode.Expanded = true;
+                    var newNode = CreateElementNode(focusedNode, propDesc, propertyValue, index, newObject);
+                    focusedNode.Expanded = true;
                     TreeListObject.FocusedNode = newNode;
                 }
             }
@@ -469,8 +471,8 @@ namespace PAO.Config.Controls.EditControls
                         , true
                         , out newObject)) {
                         propertyValue.As<IDictionary>().Add(key, newObject);
-                        var newNode = CreateElementNode(focusNode, propDesc, propertyValue, key, newObject);
-                        focusNode.Expanded = true;
+                        var newNode = CreateElementNode(focusedNode, propDesc, propertyValue, key, newObject);
+                        focusedNode.Expanded = true;
                         TreeListObject.FocusedNode = newNode;
                     }
                 }
@@ -481,30 +483,30 @@ namespace PAO.Config.Controls.EditControls
         }
 
         private void ButtonDelete_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            var focusNode = this.TreeListObject.FocusedNode;
-            var nodeType = (ObjectTreeNodeType)focusNode.GetValue(ColumnPropertyElementType);
-            var propDesc = (PropertyDescriptor)focusNode.GetValue(ColumnPropertyDescriptor);
-            var obj = focusNode.GetValue(ColumnObject);
-            var propertyValue = focusNode.GetValue(ColumnPropertyValue);
+            var focusedNode = this.TreeListObject.FocusedNode;
+            var nodeType = (ObjectTreeNodeType)focusedNode.GetValue(ColumnPropertyElementType);
+            var propDesc = (PropertyDescriptor)focusedNode.GetValue(ColumnPropertyDescriptor);
+            var obj = focusedNode.GetValue(ColumnObject);
+            var propertyValue = focusedNode.GetValue(ColumnPropertyValue);
 
             switch (nodeType) {
                 case ObjectTreeNodeType.ObjectProperty:
                 case ObjectTreeNodeType.ListProperty:
                 case ObjectTreeNodeType.DictionaryProperty:
                     propDesc.SetValue(obj, null);
-                    SetPropertNewValue(focusNode, null);
+                    SetPropertNewValue(focusedNode, null);
                     break;
                 case ObjectTreeNodeType.ListElement:
-                    int index = (int)focusNode.GetValue(ColumnIndex);
+                    int index = (int)focusedNode.GetValue(ColumnIndex);
                     obj.As<IList>().RemoveAt(index);
-                    if (focusNode.ParentNode != null)
-                        focusNode.ParentNode.Nodes.Remove(focusNode);
+                    if (focusedNode.ParentNode != null)
+                        focusedNode.ParentNode.Nodes.Remove(focusedNode);
                     break;
                 case ObjectTreeNodeType.DictionaryElement:
-                    var key = focusNode.GetValue(ColumnIndex);
+                    var key = focusedNode.GetValue(ColumnIndex);
                     obj.As<IDictionary>().Remove(key);
-                    if (focusNode.ParentNode != null)
-                        focusNode.ParentNode.Nodes.Remove(focusNode);
+                    if (focusedNode.ParentNode != null)
+                        focusedNode.ParentNode.Nodes.Remove(focusedNode);
                     break;
                 default:
                     throw new Exception("此属性不允许被删除").AddExceptionData("ElementType", nodeType);
@@ -513,14 +515,14 @@ namespace PAO.Config.Controls.EditControls
         }
 
         private void ButtonModifyKey_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            var focusNode = this.TreeListObject.FocusedNode;
-            var nodeType = (ObjectTreeNodeType)focusNode.GetValue(ColumnPropertyElementType);
-            var obj = focusNode.GetValue(ColumnObject);
-            var propertyValue = focusNode.GetValue(ColumnPropertyValue);
+            var focusedNode = this.TreeListObject.FocusedNode;
+            var nodeType = (ObjectTreeNodeType)focusedNode.GetValue(ColumnPropertyElementType);
+            var obj = focusedNode.GetValue(ColumnObject);
+            var propertyValue = focusedNode.GetValue(ColumnPropertyValue);
 
             obj.CheckNotNull("字典对象不能为空");
             (nodeType == ObjectTreeNodeType.DictionaryElement).CheckTrue("只有字典元素允许修改键值");
-            string oldKey = (string)focusNode.GetValue(ColumnIndex);
+            string oldKey = (string)focusedNode.GetValue(ColumnIndex);
 
             var keyInputControl = new InputKeyControl();
             keyInputControl.KeyValue = oldKey;
@@ -529,10 +531,10 @@ namespace PAO.Config.Controls.EditControls
                 var dict = obj.As<IDictionary>();
                 dict.Remove(oldKey);
                 dict.Add(newKey, propertyValue);
-                focusNode.SetValue(ColumnIndex, newKey);
+                focusedNode.SetValue(ColumnIndex, newKey);
                 string elementString = String.Format("[键：{0}]", newKey);
-                focusNode.SetValue(ColumnPropertyTypeString, newKey);
-                FocuseNode(focusNode);
+                focusedNode.SetValue(ColumnPropertyTypeString, newKey);
+                FocuseNode(focusedNode);
                 SetControlStatus();
             }
         }
@@ -566,6 +568,22 @@ namespace PAO.Config.Controls.EditControls
         private void ButtonImport_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             ImportSelectedObject();
         }
+
+        private void ButtonProperty_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+            UIPublic.ShowWaitingForm();
+            var focusedNode = this.TreeListObject.FocusedNode;
+            var propertyValue = focusedNode.GetValue(ColumnPropertyValue);
+            Type editControlType = ConfigPublic.GetTypeEditControlType(propertyValue.GetType());
+            var editControl = editControlType.CreateInstance() as BaseEditControl;
+            editControl.SelectedObject = propertyValue;
+            UIPublic.CloseWaitingForm();
+            if (UIPublic.ShowDialog(editControl) == DialogResult.OK) {
+                SetPropertNewValue(focusedNode, editControl.SelectedObject);
+            }
+            FocuseNode(focusedNode);
+            SetControlStatus();
+        }
         #endregion
+
     }
 }

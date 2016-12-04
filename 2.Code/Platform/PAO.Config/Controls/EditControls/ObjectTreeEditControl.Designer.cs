@@ -35,6 +35,7 @@
             this.ButtonAdd = new DevExpress.XtraBars.BarButtonItem();
             this.ButtonDelete = new DevExpress.XtraBars.BarButtonItem();
             this.ButtonModifyKey = new DevExpress.XtraBars.BarButtonItem();
+            this.ButtonProperty = new DevExpress.XtraBars.BarButtonItem();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
@@ -107,8 +108,9 @@
             this.ButtonCreate,
             this.ButtonDelete,
             this.ButtonModifyKey,
-            this.ButtonImport});
-            this.BarManagerObjectTree.MaxItemId = 10;
+            this.ButtonImport,
+            this.ButtonProperty});
+            this.BarManagerObjectTree.MaxItemId = 11;
             // 
             // BarMainTools
             // 
@@ -122,7 +124,8 @@
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.ButtonCreate, "", true, true, true, 0, null, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.ButtonAdd, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.ButtonDelete, "", true, true, true, 0, null, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.ButtonModifyKey, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph)});
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.ButtonModifyKey, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.ButtonProperty, "", true, true, true, 0, null, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph)});
             this.BarMainTools.OptionsBar.AllowQuickCustomization = false;
             this.BarMainTools.OptionsBar.DisableCustomization = true;
             this.BarMainTools.Text = "主工具条";
@@ -184,6 +187,15 @@
             this.ButtonModifyKey.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("ButtonModifyKey.LargeGlyph")));
             this.ButtonModifyKey.Name = "ButtonModifyKey";
             this.ButtonModifyKey.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonModifyKey_ItemClick);
+            // 
+            // ButtonProperty
+            // 
+            this.ButtonProperty.Caption = "属性(&P)";
+            this.ButtonProperty.Glyph = global::PAO.Config.Properties.Resources.properties_16x16;
+            this.ButtonProperty.Id = 10;
+            this.ButtonProperty.LargeGlyph = global::PAO.Config.Properties.Resources.properties_32x32;
+            this.ButtonProperty.Name = "ButtonProperty";
+            this.ButtonProperty.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonProperty_ItemClick);
             // 
             // barDockControlTop
             // 
@@ -516,5 +528,6 @@
         private ListEditControl ListEditControl;
         private DictionaryEditControl DictionaryEditControl;
         private DevExpress.XtraBars.BarButtonItem ButtonImport;
+        private DevExpress.XtraBars.BarButtonItem ButtonProperty;
     }
 }
