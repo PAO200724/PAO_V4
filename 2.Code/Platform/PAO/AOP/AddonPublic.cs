@@ -40,6 +40,16 @@ namespace PAO {
                 return RuntimeAddonList[addonID];
             return null;
         }
+
+        /// <summary>
+        /// 搜索运行时插件
+        /// </summary>
+        /// <param name="rootObj"></param>
+        public static void SearchRuntimeAddons(object rootObj) {
+            if(RuntimeAddonList == null)
+                RuntimeAddonList = new Dictionary<string, PAO.PaoObject>();
+            TraverseAddon(RuntimeAddonList, rootObj);
+        }
         #endregion
 
         #region 插件检索

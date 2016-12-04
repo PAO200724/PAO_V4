@@ -140,6 +140,12 @@ namespace PAO.App {
         public Action RunAction;
 
         /// <summary>
+        /// 程序准备动作
+        /// </summary>
+        [NonSerialized]
+        public Action PrepareAction;
+
+        /// <summary>
         /// 全局插件列表
         /// 此列表用于检索应用中的插件，当建立插件引用时，应当在此表中增加插件
         /// </summary>
@@ -164,14 +170,20 @@ namespace PAO.App {
         public Action<Exception> OnException;
 
         /// <summary>
-        /// 程序启动
+        /// 准备
         /// </summary>
-        public Action OnStart;
+        public virtual void OnPreparing() {
+            if (RunAction != null)
+                RunAction();
+        }
 
         /// <summary>
-        /// 程序运行
+        /// 运行
         /// </summary>
-        public Action OnRunning;
+        public virtual void OnRunning() {
+            if (RunAction != null)
+                RunAction();
+        }
         /// <summary>
         /// 运行
         /// </summary>
@@ -197,7 +209,11 @@ namespace PAO.App {
                         }, PaoApplication.Default);
                     });
 
-                    TransactionPublic.Run("启动准备", OnStart);
+                    TransactionPublic.Run("检索全局插件", ()=> {
+                        AddonPublic.SearchRuntimeAddons(this);
+                    });
+
+                    TransactionPublic.Run("准备启动", OnPreparing);
 
                     #region 用户界面
                     if (UserInterface.IsNotNull()) {
@@ -261,11 +277,7 @@ namespace PAO.App {
         /// 程序运行
         /// </summary>
         protected virtual void Run() {
-            if (RunAction != null)
-                RunAction();
-
-            if(OnRunning != null)
-                OnRunning();
+            OnRunning();
         }
 
         /// <summary>

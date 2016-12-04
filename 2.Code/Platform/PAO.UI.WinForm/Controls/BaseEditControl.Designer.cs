@@ -1,4 +1,4 @@
-﻿namespace PAO.Config.Controls.EditControls
+﻿namespace PAO.UI.WinForm
 {
     partial class BaseEditControl
     {

@@ -25,12 +25,11 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ObjectEditControl));
             this.PropertyDescriptionControl = new DevExpress.XtraVerticalGrid.PropertyDescriptionControl();
             this.PropertyGridControl = new DevExpress.XtraVerticalGrid.PropertyGridControl();
             this.SplitContainerControl = new DevExpress.XtraEditors.SplitContainerControl();
-            this.BarManagerObject = new DevExpress.XtraBars.BarManager(this.components);
+            this.BarManagerObject = new DevExpress.XtraBars.BarManager();
             this.BarToolObject = new DevExpress.XtraBars.Bar();
             this.ButtonExport = new DevExpress.XtraBars.BarButtonItem();
             this.ButtonImport = new DevExpress.XtraBars.BarButtonItem();
@@ -50,7 +49,7 @@
             this.PropertyDescriptionControl.Location = new System.Drawing.Point(0, 0);
             this.PropertyDescriptionControl.Name = "PropertyDescriptionControl";
             this.PropertyDescriptionControl.PropertyGrid = this.PropertyGridControl;
-            this.PropertyDescriptionControl.Size = new System.Drawing.Size(603, 100);
+            this.PropertyDescriptionControl.Size = new System.Drawing.Size(466, 100);
             this.PropertyDescriptionControl.TabIndex = 0;
             this.PropertyDescriptionControl.TabStop = false;
             // 
@@ -60,11 +59,8 @@
             this.PropertyGridControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PropertyGridControl.Location = new System.Drawing.Point(0, 0);
             this.PropertyGridControl.Name = "PropertyGridControl";
-            this.PropertyGridControl.OptionsView.FixRowHeaderPanelWidth = true;
             this.PropertyGridControl.OptionsView.MinRowAutoHeight = 30;
-            this.PropertyGridControl.RecordWidth = 120;
-            this.PropertyGridControl.RowHeaderWidth = 80;
-            this.PropertyGridControl.Size = new System.Drawing.Size(603, 285);
+            this.PropertyGridControl.Size = new System.Drawing.Size(466, 537);
             this.PropertyGridControl.TabIndex = 0;
             this.PropertyGridControl.CustomRecordCellEdit += new DevExpress.XtraVerticalGrid.Events.GetCustomRowCellEditEventHandler(this.PropertyGridControl_CustomRecordCellEdit);
             this.PropertyGridControl.CustomRecordCellEditForEditing += new DevExpress.XtraVerticalGrid.Events.GetCustomRowCellEditEventHandler(this.PropertyGridControl_CustomRecordCellEditForEditing);
@@ -75,13 +71,13 @@
             this.SplitContainerControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SplitContainerControl.FixedPanel = DevExpress.XtraEditors.SplitFixedPanel.Panel2;
             this.SplitContainerControl.Horizontal = false;
-            this.SplitContainerControl.Location = new System.Drawing.Point(0, 31);
+            this.SplitContainerControl.Location = new System.Drawing.Point(0, 29);
             this.SplitContainerControl.Name = "SplitContainerControl";
             this.SplitContainerControl.Panel1.Controls.Add(this.PropertyGridControl);
             this.SplitContainerControl.Panel1.Text = "Panel1";
             this.SplitContainerControl.Panel2.Controls.Add(this.PropertyDescriptionControl);
             this.SplitContainerControl.Panel2.Text = "Panel2";
-            this.SplitContainerControl.Size = new System.Drawing.Size(603, 390);
+            this.SplitContainerControl.Size = new System.Drawing.Size(466, 643);
             this.SplitContainerControl.TabIndex = 1;
             this.SplitContainerControl.Text = "splitContainerControl1";
             // 
@@ -136,28 +132,28 @@
             this.barDockControl1.CausesValidation = false;
             this.barDockControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControl1.Location = new System.Drawing.Point(0, 0);
-            this.barDockControl1.Size = new System.Drawing.Size(603, 31);
+            this.barDockControl1.Size = new System.Drawing.Size(466, 29);
             // 
             // barDockControl2
             // 
             this.barDockControl2.CausesValidation = false;
             this.barDockControl2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControl2.Location = new System.Drawing.Point(0, 421);
-            this.barDockControl2.Size = new System.Drawing.Size(603, 0);
+            this.barDockControl2.Location = new System.Drawing.Point(0, 672);
+            this.barDockControl2.Size = new System.Drawing.Size(466, 0);
             // 
             // barDockControl3
             // 
             this.barDockControl3.CausesValidation = false;
             this.barDockControl3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControl3.Location = new System.Drawing.Point(0, 31);
-            this.barDockControl3.Size = new System.Drawing.Size(0, 390);
+            this.barDockControl3.Location = new System.Drawing.Point(0, 29);
+            this.barDockControl3.Size = new System.Drawing.Size(0, 643);
             // 
             // barDockControl4
             // 
             this.barDockControl4.CausesValidation = false;
             this.barDockControl4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControl4.Location = new System.Drawing.Point(603, 31);
-            this.barDockControl4.Size = new System.Drawing.Size(0, 390);
+            this.barDockControl4.Location = new System.Drawing.Point(466, 29);
+            this.barDockControl4.Size = new System.Drawing.Size(0, 643);
             // 
             // ObjectEditControl
             // 
@@ -169,7 +165,7 @@
             this.Controls.Add(this.barDockControl2);
             this.Controls.Add(this.barDockControl1);
             this.Name = "ObjectEditControl";
-            this.Size = new System.Drawing.Size(603, 421);
+            this.Size = new System.Drawing.Size(466, 672);
             this.Leave += new System.EventHandler(this.ObjectEditControl_Leave);
             ((System.ComponentModel.ISupportInitialize)(this.PropertyGridControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainerControl)).EndInit();

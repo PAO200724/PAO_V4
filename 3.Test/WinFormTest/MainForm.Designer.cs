@@ -35,12 +35,12 @@
             this.ButtonAddonSelect = new DevExpress.XtraBars.BarButtonItem();
             this.MenuRemoteTest = new DevExpress.XtraBars.BarSubItem();
             this.ButtonCallRemote = new DevExpress.XtraBars.BarButtonItem();
+            this.ButtonRemoteException = new DevExpress.XtraBars.BarButtonItem();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.DefaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
-            this.ButtonRemoteException = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.BarManager)).BeginInit();
             this.SuspendLayout();
             // 
@@ -139,6 +139,13 @@
             this.ButtonCallRemote.Name = "ButtonCallRemote";
             this.ButtonCallRemote.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonCallRemote_ItemClick);
             // 
+            // ButtonRemoteException
+            // 
+            this.ButtonRemoteException.Caption = "调用异常";
+            this.ButtonRemoteException.Id = 8;
+            this.ButtonRemoteException.Name = "ButtonRemoteException";
+            this.ButtonRemoteException.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonRemoteException_ItemClick);
+            // 
             // barDockControlTop
             // 
             this.barDockControlTop.CausesValidation = false;
@@ -171,13 +178,6 @@
             // 
             this.DefaultLookAndFeel.LookAndFeel.SkinName = "Office 2010 Blue";
             // 
-            // ButtonRemoteException
-            // 
-            this.ButtonRemoteException.Caption = "调用异常";
-            this.ButtonRemoteException.Id = 8;
-            this.ButtonRemoteException.Name = "ButtonRemoteException";
-            this.ButtonRemoteException.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonRemoteException_ItemClick);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -189,6 +189,7 @@
             this.Controls.Add(this.barDockControlTop);
             this.Name = "MainForm";
             this.Text = "测试窗体";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.BarManager)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

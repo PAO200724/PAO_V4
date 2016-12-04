@@ -43,10 +43,9 @@ namespace PAO.Remote.WCF
 
         #endregion
         public WCFRemoteApplication() {
-            OnStart = OnAppliationStart;
         }
 
-        private void OnAppliationStart() {
+        public override void OnPreparing() {
             WCFRemoteService.ServiceList = ServiceList;
         }
     }

@@ -11,6 +11,7 @@ using PAO.Config.Controls.EditControls;
 using PAO.App;
 using PAO.Config.PaoConfig;
 using PAO.Config;
+using PAO.UI.WinForm;
 
 namespace PAO.Controls
 {

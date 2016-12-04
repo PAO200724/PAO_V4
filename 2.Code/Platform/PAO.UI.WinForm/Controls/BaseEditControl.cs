@@ -13,7 +13,7 @@ using PAO.IO;
 using PAO.IO.Text;
 using System.IO;
 
-namespace PAO.Config.Controls.EditControls
+namespace PAO.UI.WinForm
 {
     /// <summary>
     /// 基础编辑控件

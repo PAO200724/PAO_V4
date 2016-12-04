@@ -12,6 +12,7 @@ using PAO.Data.Filters;
 using PAO.Data;
 using PAO.Config.Editors;
 using DevExpress.XtraTreeList.Nodes;
+using PAO.UI.WinForm;
 
 namespace PAO.Config.PaoConfig
 {

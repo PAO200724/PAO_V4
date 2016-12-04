@@ -54,6 +54,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\BaseEditControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\BaseEditControl.Designer.cs">
+      <DependentUpon>BaseEditControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="DataModifyStateChangedEventArgs.cs" />
     <Compile Include="Controls\DialogControl.cs">
       <SubType>UserControl</SubType>
@@ -73,12 +79,28 @@
     <Compile Include="Controls\ImageControl.Designer.cs">
       <DependentUpon>ImageControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="MVC\BaseView.cs">
+    <Compile Include="MDI\DockPanels\TreeMenuController.cs" />
+    <Compile Include="MDI\DockPanels\TreeMenuView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MVC\BaseView.Designer.cs">
-      <DependentUpon>BaseView.cs</DependentUpon>
+    <Compile Include="MDI\DockPanels\TreeMenuView.Designer.cs">
+      <DependentUpon>TreeMenuView.cs</DependentUpon>
     </Compile>
+    <Compile Include="MVC\Controller.cs" />
+    <Compile Include="MDI\ChildForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MDI\ChildForm.Designer.cs">
+      <DependentUpon>ChildForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MVC\IMainForm.cs" />
+    <Compile Include="MDI\MDIMainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MDI\MDIMainForm.Designer.cs">
+      <DependentUpon>MDIMainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MDI\MDIApplication.cs" />
     <Compile Include="WinFormPublic.cs" />
     <Compile Include="Forms\PaoSplashScreen.cs">
       <SubType>Form</SubType>
@@ -113,6 +135,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Controls\BaseEditControl.resx">
+      <DependentUpon>BaseEditControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\DialogControl.resx">
       <DependentUpon>DialogControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -131,8 +156,11 @@
     <EmbeddedResource Include="Forms\PaoWaitForm.resx">
       <DependentUpon>PaoWaitForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MVC\BaseView.resx">
-      <DependentUpon>BaseView.cs</DependentUpon>
+    <EmbeddedResource Include="MDI\DockPanels\TreeMenuView.resx">
+      <DependentUpon>TreeMenuView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MDI\MDIMainForm.resx">
+      <DependentUpon>MDIMainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
