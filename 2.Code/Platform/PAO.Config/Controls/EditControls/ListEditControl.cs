@@ -10,6 +10,10 @@ using DevExpress.XtraEditors;
 using PAO.UI.WinForm.Controls;
 using System.Collections;
 using PAO.Config.Editors;
+using PAO.UI;
+using PAO.IO;
+using PAO.IO.Text;
+using System.IO;
 
 namespace PAO.Config.Controls.EditControls
 {
@@ -30,6 +34,8 @@ namespace PAO.Config.Controls.EditControls
 
         private List<ListElement> AddonList;
         private IList SourceList;
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public override object SelectedObject {
             get {
                 if (SourceList == null)
@@ -73,6 +79,7 @@ namespace PAO.Config.Controls.EditControls
             this.ButtonMoveUp.Enabled = AddonList.IsNotNullOrEmpty() && AddonList.CanMoveUp(position);
             this.ButtonMoveDown.Enabled = AddonList.IsNotNullOrEmpty() && AddonList.CanMoveDown(position);
             this.ButtonDelete.Enabled = (position >= 0 && position < AddonList.Count);
+            this.ButtonExport.Enabled = (AddonList.IsNotNullOrEmpty());
         }
 
         private void DeleteElement(int position) {
@@ -148,6 +155,14 @@ namespace PAO.Config.Controls.EditControls
 
         private void BindingSourceList_PositionChanged(object sender, EventArgs e) {
             SetControlStatus();
+        }
+
+        private void ButtonExport_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+            ExportSelectedObject();
+        }
+        
+        private void ButtonImport_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+            ImportSelectedObject();
         }
     }
 }

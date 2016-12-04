@@ -57,9 +57,12 @@ namespace PAO.UI.WinForm
             fileDialog.Title = caption;
             fileDialog.FileName = fileName;
             fileDialog.Filter = filter;
+            fileDialog.AddExtension = true;
             if (fileDialog.IsNotNullOrEmpty())
                 fileDialog.InitialDirectory = Path.GetDirectoryName(fileName);
-            return fileDialog.ShowDialog();
+            var result = fileDialog.ShowDialog();
+            fileName = fileDialog.FileName;
+            return result;
         }
 
         public DialogResult ShowSaveFileDialog(string caption, string filter, ref string fileName) {
@@ -67,9 +70,12 @@ namespace PAO.UI.WinForm
             fileDialog.Title = caption;
             fileDialog.FileName = fileName;
             fileDialog.Filter = filter;
+            fileDialog.AddExtension = true;
             if (fileDialog.IsNotNullOrEmpty())
                 fileDialog.InitialDirectory = Path.GetDirectoryName(fileName);
-            return fileDialog.ShowDialog();
+            var result = fileDialog.ShowDialog();
+            fileName = fileDialog.FileName;
+            return result;
         }
 
         public void ShowWaitingForm() {

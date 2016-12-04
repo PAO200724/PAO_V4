@@ -25,12 +25,12 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ObjectTreeEditControl));
-            this.ImageCollectionTree = new DevExpress.Utils.ImageCollection(this.components);
-            this.BarManagerObjectTree = new DevExpress.XtraBars.BarManager(this.components);
+            this.ImageCollectionTree = new DevExpress.Utils.ImageCollection();
+            this.BarManagerObjectTree = new DevExpress.XtraBars.BarManager();
             this.BarMainTools = new DevExpress.XtraBars.Bar();
-            this.ButtonSave = new DevExpress.XtraBars.BarButtonItem();
+            this.ButtonExport = new DevExpress.XtraBars.BarButtonItem();
+            this.ButtonImport = new DevExpress.XtraBars.BarButtonItem();
             this.ButtonCreate = new DevExpress.XtraBars.BarButtonItem();
             this.ButtonAdd = new DevExpress.XtraBars.BarButtonItem();
             this.ButtonDelete = new DevExpress.XtraBars.BarButtonItem();
@@ -102,12 +102,13 @@
             this.BarManagerObjectTree.DockControls.Add(this.barDockControlRight);
             this.BarManagerObjectTree.Form = this;
             this.BarManagerObjectTree.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
-            this.ButtonSave,
+            this.ButtonExport,
             this.ButtonAdd,
             this.ButtonCreate,
             this.ButtonDelete,
-            this.ButtonModifyKey});
-            this.BarManagerObjectTree.MaxItemId = 9;
+            this.ButtonModifyKey,
+            this.ButtonImport});
+            this.BarManagerObjectTree.MaxItemId = 10;
             // 
             // BarMainTools
             // 
@@ -116,7 +117,8 @@
             this.BarMainTools.DockRow = 0;
             this.BarMainTools.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
             this.BarMainTools.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.ButtonSave, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.ButtonExport, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.ButtonImport, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.ButtonCreate, "", true, true, true, 0, null, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.ButtonAdd, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.ButtonDelete, "", true, true, true, 0, null, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
@@ -125,14 +127,24 @@
             this.BarMainTools.OptionsBar.DisableCustomization = true;
             this.BarMainTools.Text = "主工具条";
             // 
-            // ButtonSave
+            // ButtonExport
             // 
-            this.ButtonSave.Caption = "保存(&S)";
-            this.ButtonSave.Glyph = global::PAO.Config.Properties.Resources.save_16x16;
-            this.ButtonSave.Hint = "保存整个对象";
-            this.ButtonSave.Id = 1;
-            this.ButtonSave.LargeGlyph = global::PAO.Config.Properties.Resources.save_32x32;
-            this.ButtonSave.Name = "ButtonSave";
+            this.ButtonExport.Caption = "导出(&E)";
+            this.ButtonExport.Glyph = global::PAO.Config.Properties.Resources.saveto_16x16;
+            this.ButtonExport.Hint = "保存整个对象";
+            this.ButtonExport.Id = 1;
+            this.ButtonExport.LargeGlyph = global::PAO.Config.Properties.Resources.saveto_32x32;
+            this.ButtonExport.Name = "ButtonExport";
+            this.ButtonExport.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonExport_ItemClick);
+            // 
+            // ButtonImport
+            // 
+            this.ButtonImport.Caption = "导入(&I)";
+            this.ButtonImport.Glyph = global::PAO.Config.Properties.Resources.loadfrom_16x16;
+            this.ButtonImport.Id = 9;
+            this.ButtonImport.LargeGlyph = global::PAO.Config.Properties.Resources.loadfrom_32x32;
+            this.ButtonImport.Name = "ButtonImport";
+            this.ButtonImport.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonImport_ItemClick);
             // 
             // ButtonCreate
             // 
@@ -178,7 +190,7 @@
             this.barDockControlTop.CausesValidation = false;
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(922, 31);
+            this.barDockControlTop.Size = new System.Drawing.Size(922, 29);
             // 
             // barDockControlBottom
             // 
@@ -191,21 +203,21 @@
             // 
             this.barDockControlLeft.CausesValidation = false;
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 31);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 540);
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 29);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 542);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(922, 31);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 540);
+            this.barDockControlRight.Location = new System.Drawing.Point(922, 29);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 542);
             // 
             // SplitContainerControlMain
             // 
             this.SplitContainerControlMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SplitContainerControlMain.FixedPanel = DevExpress.XtraEditors.SplitFixedPanel.Panel2;
-            this.SplitContainerControlMain.Location = new System.Drawing.Point(0, 31);
+            this.SplitContainerControlMain.Location = new System.Drawing.Point(0, 29);
             this.SplitContainerControlMain.Name = "SplitContainerControlMain";
             this.SplitContainerControlMain.Panel1.Controls.Add(this.SplitContainerControlLeft);
             this.SplitContainerControlMain.Panel1.Text = "Panel1";
@@ -214,7 +226,7 @@
             this.SplitContainerControlMain.Panel2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Default;
             this.SplitContainerControlMain.Panel2.Controls.Add(this.TabControlObject);
             this.SplitContainerControlMain.Panel2.ShowCaption = true;
-            this.SplitContainerControlMain.Size = new System.Drawing.Size(922, 540);
+            this.SplitContainerControlMain.Size = new System.Drawing.Size(922, 542);
             this.SplitContainerControlMain.SplitterPosition = 358;
             this.SplitContainerControlMain.TabIndex = 7;
             this.SplitContainerControlMain.Text = "splitContainerControl1";
@@ -233,7 +245,7 @@
             this.SplitContainerControlLeft.Panel2.Controls.Add(this.LabelControlPropertyType);
             this.SplitContainerControlLeft.Panel2.Controls.Add(this.LabelControlPropertyTitle);
             this.SplitContainerControlLeft.Panel2.Text = "Panel2";
-            this.SplitContainerControlLeft.Size = new System.Drawing.Size(559, 540);
+            this.SplitContainerControlLeft.Size = new System.Drawing.Size(558, 542);
             this.SplitContainerControlLeft.SplitterPosition = 123;
             this.SplitContainerControlLeft.TabIndex = 0;
             this.SplitContainerControlLeft.Text = "splitContainerControl2";
@@ -268,7 +280,7 @@
             this.TreeListObject.OptionsView.ShowAutoFilterRow = true;
             this.TreeListObject.OptionsView.ShowIndicator = false;
             this.TreeListObject.SelectImageList = this.ImageCollectionTree;
-            this.TreeListObject.Size = new System.Drawing.Size(559, 412);
+            this.TreeListObject.Size = new System.Drawing.Size(558, 413);
             this.TreeListObject.TabIndex = 1;
             this.TreeListObject.FocusedNodeChanged += new DevExpress.XtraTreeList.FocusedNodeChangedEventHandler(this.TreeListObject_FocusedNodeChanged);
             // 
@@ -340,7 +352,7 @@
             this.LabelControlPropertyDescription.Margin = new System.Windows.Forms.Padding(0);
             this.LabelControlPropertyDescription.Name = "LabelControlPropertyDescription";
             this.LabelControlPropertyDescription.Padding = new System.Windows.Forms.Padding(5, 3, 5, 3);
-            this.LabelControlPropertyDescription.Size = new System.Drawing.Size(555, 63);
+            this.LabelControlPropertyDescription.Size = new System.Drawing.Size(554, 63);
             this.LabelControlPropertyDescription.TabIndex = 14;
             this.LabelControlPropertyDescription.Text = "属性描述";
             // 
@@ -352,7 +364,7 @@
             this.LabelControlPropertyType.Margin = new System.Windows.Forms.Padding(0);
             this.LabelControlPropertyType.Name = "LabelControlPropertyType";
             this.LabelControlPropertyType.Padding = new System.Windows.Forms.Padding(5, 3, 5, 3);
-            this.LabelControlPropertyType.Size = new System.Drawing.Size(555, 20);
+            this.LabelControlPropertyType.Size = new System.Drawing.Size(554, 20);
             this.LabelControlPropertyType.TabIndex = 8;
             this.LabelControlPropertyType.Text = "属性类型";
             // 
@@ -365,7 +377,7 @@
             this.LabelControlPropertyTitle.Margin = new System.Windows.Forms.Padding(0);
             this.LabelControlPropertyTitle.Name = "LabelControlPropertyTitle";
             this.LabelControlPropertyTitle.Padding = new System.Windows.Forms.Padding(5);
-            this.LabelControlPropertyTitle.Size = new System.Drawing.Size(555, 36);
+            this.LabelControlPropertyTitle.Size = new System.Drawing.Size(554, 36);
             this.LabelControlPropertyTitle.TabIndex = 2;
             this.LabelControlPropertyTitle.Text = "属性";
             // 
@@ -376,7 +388,7 @@
             this.TabControlObject.Name = "TabControlObject";
             this.TabControlObject.SelectedTabPage = this.TabPageObject;
             this.TabControlObject.ShowTabHeader = DevExpress.Utils.DefaultBoolean.False;
-            this.TabControlObject.Size = new System.Drawing.Size(354, 500);
+            this.TabControlObject.Size = new System.Drawing.Size(354, 504);
             this.TabControlObject.TabIndex = 1;
             this.TabControlObject.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.TabPageObject,
@@ -387,7 +399,7 @@
             // 
             this.TabPageObject.Controls.Add(this.ObjectEditControl);
             this.TabPageObject.Name = "TabPageObject";
-            this.TabPageObject.Size = new System.Drawing.Size(348, 494);
+            this.TabPageObject.Size = new System.Drawing.Size(348, 498);
             this.TabPageObject.Text = "插件";
             // 
             // ObjectEditControl
@@ -396,10 +408,9 @@
             this.ObjectEditControl.Enabled = false;
             this.ObjectEditControl.Location = new System.Drawing.Point(0, 0);
             this.ObjectEditControl.Name = "ObjectEditControl";
-            this.ObjectEditControl.SelectedObject = null;
             this.ObjectEditControl.ShowApplyButton = true;
             this.ObjectEditControl.ShowCancelButton = true;
-            this.ObjectEditControl.Size = new System.Drawing.Size(348, 494);
+            this.ObjectEditControl.Size = new System.Drawing.Size(348, 498);
             this.ObjectEditControl.TabIndex = 1;
             this.ObjectEditControl.DataModifyStateChanged += new System.EventHandler<PAO.UI.WinForm.DataModifyStateChangedEventArgs>(this.ObjectEditControl_DataModifyStateChanged);
             // 
@@ -407,7 +418,7 @@
             // 
             this.TabPageList.Controls.Add(this.ListEditControl);
             this.TabPageList.Name = "TabPageList";
-            this.TabPageList.Size = new System.Drawing.Size(348, 494);
+            this.TabPageList.Size = new System.Drawing.Size(348, 498);
             this.TabPageList.Text = "列表";
             // 
             // ListEditControl
@@ -416,10 +427,9 @@
             this.ListEditControl.ListType = null;
             this.ListEditControl.Location = new System.Drawing.Point(0, 0);
             this.ListEditControl.Name = "ListEditControl";
-            this.ListEditControl.SelectedObject = null;
             this.ListEditControl.ShowApplyButton = true;
             this.ListEditControl.ShowCancelButton = true;
-            this.ListEditControl.Size = new System.Drawing.Size(348, 494);
+            this.ListEditControl.Size = new System.Drawing.Size(348, 498);
             this.ListEditControl.TabIndex = 0;
             this.ListEditControl.DataModifyStateChanged += new System.EventHandler<PAO.UI.WinForm.DataModifyStateChangedEventArgs>(this.ListEditControl_DataModifyStateChanged);
             // 
@@ -427,7 +437,7 @@
             // 
             this.TabPageDictionary.Controls.Add(this.DictionaryEditControl);
             this.TabPageDictionary.Name = "TabPageDictionary";
-            this.TabPageDictionary.Size = new System.Drawing.Size(348, 494);
+            this.TabPageDictionary.Size = new System.Drawing.Size(348, 498);
             this.TabPageDictionary.Text = "字典";
             // 
             // DictionaryEditControl
@@ -436,10 +446,9 @@
             this.DictionaryEditControl.ListType = null;
             this.DictionaryEditControl.Location = new System.Drawing.Point(0, 0);
             this.DictionaryEditControl.Name = "DictionaryEditControl";
-            this.DictionaryEditControl.SelectedObject = null;
             this.DictionaryEditControl.ShowApplyButton = true;
             this.DictionaryEditControl.ShowCancelButton = true;
-            this.DictionaryEditControl.Size = new System.Drawing.Size(348, 494);
+            this.DictionaryEditControl.Size = new System.Drawing.Size(348, 498);
             this.DictionaryEditControl.TabIndex = 0;
             this.DictionaryEditControl.DataModifyStateChanged += new System.EventHandler<PAO.UI.WinForm.DataModifyStateChangedEventArgs>(this.DictionaryEditControl_DataModifyStateChanged);
             // 
@@ -480,7 +489,7 @@
         private DevExpress.XtraBars.BarDockControl barDockControlBottom;
         private DevExpress.XtraBars.BarDockControl barDockControlLeft;
         private DevExpress.XtraBars.BarDockControl barDockControlRight;
-        private DevExpress.XtraBars.BarButtonItem ButtonSave;
+        private DevExpress.XtraBars.BarButtonItem ButtonExport;
         private DevExpress.XtraBars.BarButtonItem ButtonAdd;
         private DevExpress.XtraBars.BarButtonItem ButtonCreate;
         private DevExpress.XtraBars.BarButtonItem ButtonDelete;
@@ -506,5 +515,6 @@
         private DevExpress.XtraTab.XtraTabPage TabPageDictionary;
         private ListEditControl ListEditControl;
         private DictionaryEditControl DictionaryEditControl;
+        private DevExpress.XtraBars.BarButtonItem ButtonImport;
     }
 }

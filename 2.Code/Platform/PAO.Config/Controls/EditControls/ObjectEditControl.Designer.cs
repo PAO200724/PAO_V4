@@ -25,15 +25,14 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ObjectEditControl));
             this.PropertyDescriptionControl = new DevExpress.XtraVerticalGrid.PropertyDescriptionControl();
             this.PropertyGridControl = new DevExpress.XtraVerticalGrid.PropertyGridControl();
             this.SplitContainerControl = new DevExpress.XtraEditors.SplitContainerControl();
-            this.BarManagerObject = new DevExpress.XtraBars.BarManager(this.components);
+            this.BarManagerObject = new DevExpress.XtraBars.BarManager();
             this.BarToolObject = new DevExpress.XtraBars.Bar();
             this.ButtonExport = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
+            this.ButtonImport = new DevExpress.XtraBars.BarButtonItem();
             this.barDockControl1 = new DevExpress.XtraBars.BarDockControl();
             this.barDockControl2 = new DevExpress.XtraBars.BarDockControl();
             this.barDockControl3 = new DevExpress.XtraBars.BarDockControl();
@@ -64,7 +63,7 @@
             this.PropertyGridControl.OptionsView.MinRowAutoHeight = 30;
             this.PropertyGridControl.RecordWidth = 120;
             this.PropertyGridControl.RowHeaderWidth = 80;
-            this.PropertyGridControl.Size = new System.Drawing.Size(603, 285);
+            this.PropertyGridControl.Size = new System.Drawing.Size(603, 286);
             this.PropertyGridControl.TabIndex = 0;
             this.PropertyGridControl.CustomRecordCellEdit += new DevExpress.XtraVerticalGrid.Events.GetCustomRowCellEditEventHandler(this.PropertyGridControl_CustomRecordCellEdit);
             this.PropertyGridControl.CustomRecordCellEditForEditing += new DevExpress.XtraVerticalGrid.Events.GetCustomRowCellEditEventHandler(this.PropertyGridControl_CustomRecordCellEditForEditing);
@@ -75,13 +74,13 @@
             this.SplitContainerControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SplitContainerControl.FixedPanel = DevExpress.XtraEditors.SplitFixedPanel.Panel2;
             this.SplitContainerControl.Horizontal = false;
-            this.SplitContainerControl.Location = new System.Drawing.Point(0, 31);
+            this.SplitContainerControl.Location = new System.Drawing.Point(0, 29);
             this.SplitContainerControl.Name = "SplitContainerControl";
             this.SplitContainerControl.Panel1.Controls.Add(this.PropertyGridControl);
             this.SplitContainerControl.Panel1.Text = "Panel1";
             this.SplitContainerControl.Panel2.Controls.Add(this.PropertyDescriptionControl);
             this.SplitContainerControl.Panel2.Text = "Panel2";
-            this.SplitContainerControl.Size = new System.Drawing.Size(603, 390);
+            this.SplitContainerControl.Size = new System.Drawing.Size(603, 392);
             this.SplitContainerControl.TabIndex = 1;
             this.SplitContainerControl.Text = "splitContainerControl1";
             // 
@@ -97,7 +96,7 @@
             this.BarManagerObject.Form = this;
             this.BarManagerObject.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.ButtonExport,
-            this.barButtonItem1});
+            this.ButtonImport});
             this.BarManagerObject.MaxItemId = 4;
             // 
             // BarToolObject
@@ -108,7 +107,7 @@
             this.BarToolObject.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
             this.BarToolObject.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.ButtonExport, "", true, true, true, 0, null, DevExpress.XtraBars.BarItemPaintStyle.CaptionInMenu),
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.barButtonItem1, DevExpress.XtraBars.BarItemPaintStyle.CaptionInMenu)});
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.ButtonImport, DevExpress.XtraBars.BarItemPaintStyle.CaptionInMenu)});
             this.BarToolObject.OptionsBar.AllowQuickCustomization = false;
             this.BarToolObject.OptionsBar.DisableCustomization = true;
             this.BarToolObject.Text = "对象工具条";
@@ -120,21 +119,23 @@
             this.ButtonExport.Id = 2;
             this.ButtonExport.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("ButtonExport.LargeGlyph")));
             this.ButtonExport.Name = "ButtonExport";
+            this.ButtonExport.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonExport_ItemClick);
             // 
-            // barButtonItem1
+            // ButtonImport
             // 
-            this.barButtonItem1.Caption = "导入(&I)";
-            this.barButtonItem1.Glyph = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.Glyph")));
-            this.barButtonItem1.Id = 3;
-            this.barButtonItem1.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.LargeGlyph")));
-            this.barButtonItem1.Name = "barButtonItem1";
+            this.ButtonImport.Caption = "导入(&I)";
+            this.ButtonImport.Glyph = ((System.Drawing.Image)(resources.GetObject("ButtonImport.Glyph")));
+            this.ButtonImport.Id = 3;
+            this.ButtonImport.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("ButtonImport.LargeGlyph")));
+            this.ButtonImport.Name = "ButtonImport";
+            this.ButtonImport.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonImport_ItemClick);
             // 
             // barDockControl1
             // 
             this.barDockControl1.CausesValidation = false;
             this.barDockControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControl1.Location = new System.Drawing.Point(0, 0);
-            this.barDockControl1.Size = new System.Drawing.Size(603, 31);
+            this.barDockControl1.Size = new System.Drawing.Size(603, 29);
             // 
             // barDockControl2
             // 
@@ -147,15 +148,15 @@
             // 
             this.barDockControl3.CausesValidation = false;
             this.barDockControl3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControl3.Location = new System.Drawing.Point(0, 31);
-            this.barDockControl3.Size = new System.Drawing.Size(0, 390);
+            this.barDockControl3.Location = new System.Drawing.Point(0, 29);
+            this.barDockControl3.Size = new System.Drawing.Size(0, 392);
             // 
             // barDockControl4
             // 
             this.barDockControl4.CausesValidation = false;
             this.barDockControl4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControl4.Location = new System.Drawing.Point(603, 31);
-            this.barDockControl4.Size = new System.Drawing.Size(0, 390);
+            this.barDockControl4.Location = new System.Drawing.Point(603, 29);
+            this.barDockControl4.Size = new System.Drawing.Size(0, 392);
             // 
             // ObjectEditControl
             // 
@@ -185,7 +186,7 @@
         private DevExpress.XtraBars.BarManager BarManagerObject;
         private DevExpress.XtraBars.Bar BarToolObject;
         private DevExpress.XtraBars.BarButtonItem ButtonExport;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem1;
+        private DevExpress.XtraBars.BarButtonItem ButtonImport;
         private DevExpress.XtraBars.BarDockControl barDockControl1;
         private DevExpress.XtraBars.BarDockControl barDockControl2;
         private DevExpress.XtraBars.BarDockControl barDockControl3;

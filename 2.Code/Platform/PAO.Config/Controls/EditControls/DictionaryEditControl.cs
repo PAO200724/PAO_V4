@@ -21,10 +21,7 @@ namespace PAO.Config.Controls.EditControls
     {
         public DictionaryEditControl() {
             InitializeComponent();
-            this.ColumnObject.ColumnEdit = new ObjectEditor()
-            {
-                PropertyDescriptor = typeof(ListElement).GetPropertyDescriptor("Element")
-            }.CreateEditor();
+            this.ColumnObject.ColumnEdit = new ObjectEditor().CreateEditor();
             this.ColumnIndex.ColumnEdit = new RepositoryItemTextEdit();
         }
 
@@ -35,6 +32,8 @@ namespace PAO.Config.Controls.EditControls
 
         private List<ListElement> AddonList;
         private IDictionary SourceList;
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public override object SelectedObject {
             get {
                 if (SourceList == null)
@@ -134,6 +133,14 @@ namespace PAO.Config.Controls.EditControls
 
         private void BindingSourceList_PositionChanged(object sender, EventArgs e) {
             SetControlStatus();
+        }
+
+        private void ButtonExport_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+            ExportSelectedObject();
+        }
+
+        private void ButtonImport_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+            ImportSelectedObject();
         }
     }
 }

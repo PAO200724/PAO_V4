@@ -263,6 +263,18 @@
   <ItemGroup>
     <None Include="Resources\text_align_justify.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\loadfrom_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\loadfrom_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\saveto_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\saveto_32x32.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

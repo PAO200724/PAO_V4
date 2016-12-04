@@ -15,6 +15,8 @@ using PAO.App;
 using PAO.UI;
 using PAO;
 using DevExpress.XtraSplashScreen;
+using PAO.IO;
+using PAO.IO.Text;
 
 namespace PAO.Config.Controls.EditControls
 {
@@ -289,7 +291,7 @@ namespace PAO.Config.Controls.EditControls
                 this.ButtonDelete.Enabled = false;
                 this.ButtonModifyKey.Enabled = false;
             }
-            this.ButtonSave.Enabled = (SelectedObject != null);
+            this.ButtonExport.Enabled = (SelectedObject != null);
         }
 
         /// <summary>
@@ -556,7 +558,14 @@ namespace PAO.Config.Controls.EditControls
         private void ObjectTreeEditControl_Enter(object sender, EventArgs e) {
             ConfigPublic.RootEditingObject = this.SelectedObject;
         }
-        #endregion
 
+        private void ButtonExport_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+            ExportSelectedObject();
+        }
+
+        private void ButtonImport_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+            ImportSelectedObject();
+        }
+        #endregion
     }
 }

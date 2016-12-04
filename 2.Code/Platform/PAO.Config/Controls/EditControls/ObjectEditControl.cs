@@ -23,7 +23,8 @@ namespace PAO.Config.Controls.EditControls
             InitializeComponent();
             SetControlStatus();
         }
-
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public override object SelectedObject {
             get {
                 return base.SelectedObject;
@@ -52,6 +53,14 @@ namespace PAO.Config.Controls.EditControls
         private void PropertyGridControl_CustomRecordCellEdit(object sender, DevExpress.XtraVerticalGrid.Events.GetCustomRowCellEditEventArgs e) {
             var propDesc = PropertyGridControl.GetPropertyDescriptor(e.Row);
             e.RepositoryItem = ConfigPublic.CreateDefaultEditor(propDesc);
+        }
+
+        private void ButtonExport_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+            ExportSelectedObject();
+        }
+
+        private void ButtonImport_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+            ImportSelectedObject();
         }
     }
 }

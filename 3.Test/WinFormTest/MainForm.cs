@@ -77,12 +77,19 @@ namespace WinFormTest
 
         private void ButtonCallRemote_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             UIPublic.ShowWaitingForm();
-            var testService = new TcpRemoteFactory<ITestService>() {
-                ServerAddress = "localhost:7990",
-                ServiceName = "TestService"
-            }.Value;
+            string resultString = "";
+            var task = Task.Factory.StartNew(() =>
+            {
+                var testService = new TcpRemoteFactory<ITestService>()
+                {
+                    ServerAddress = "localhost:7990",
+                    ServiceName = "TestService"
+                }.Value;
+                resultString = testService.GetString("Hello world!");
+            });
+            task.Wait();
             UIPublic.CloseWaitingForm();
-            UIPublic.ShowInfomationDialog(testService.GetString("Hello world!"));
+            UIPublic.ShowInfomationDialog(resultString);
         }
 
         private void ButtonRemoteException_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
