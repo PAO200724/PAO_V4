@@ -43,7 +43,7 @@ namespace PAO.Config.Controls.EditControls
             if (UIPublic.ShowSaveFileDialog("导出", ref fileName
                 , FileExtentions.CONFIG
                 , FileExtentions.XML
-                , FileExtentions.All) == DialogResult.OK) {
+                , FileExtentions.All) == DialogReturn.OK) {
                 if (fileName.IsNullOrEmpty())
                     UIPublic.ShowErrorDialog("输入了错误的文件名");
                 else {
@@ -61,7 +61,7 @@ namespace PAO.Config.Controls.EditControls
             if (UIPublic.ShowOpenFileDialog("导入", ref fileName
                 , FileExtentions.CONFIG
                 , FileExtentions.XML
-                , FileExtentions.All) == DialogResult.OK) {
+                , FileExtentions.All) == DialogReturn.OK) {
                 if (!File.Exists(fileName))
                     UIPublic.ShowErrorDialog("选择的文件不存在");
                 else {

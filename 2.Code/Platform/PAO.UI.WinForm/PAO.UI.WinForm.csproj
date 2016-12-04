@@ -73,7 +73,7 @@
     <Compile Include="Controls\ImageControl.Designer.cs">
       <DependentUpon>ImageControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="DevExpressPublic.cs" />
+    <Compile Include="WinFormPublic.cs" />
     <Compile Include="Forms\PaoSplashScreen.cs">
       <SubType>Form</SubType>
     </Compile>

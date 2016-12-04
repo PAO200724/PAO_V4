@@ -33,7 +33,7 @@ namespace PAO.Config.PaoConfig
 
         public override RepositoryItem CreateEditor() {
             var edit = new RepositoryItemComboBox();
-            DevExpressPublic.AddClearButton(edit);
+            WinFormPublic.AddClearButton(edit);
             var factoryClasses = DbProviderFactories.GetFactoryClasses();
             foreach(DataRow dataRow in factoryClasses.Rows) {
                 edit.Items.Add(dataRow["InvariantName"]);

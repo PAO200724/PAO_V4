@@ -32,7 +32,7 @@ namespace PAO.Config.Editors
             var edit = new RepositoryItemButtonEdit();
             edit.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
             edit.Buttons.RemoveAt(0);
-            DevExpressPublic.AddClearButton(edit);
+            WinFormPublic.AddClearButton(edit);
             return edit;
         }
     }

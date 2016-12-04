@@ -2,9 +2,9 @@
 using PAO.IO;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Windows.Forms;
 
 namespace PAO.UI
 {
@@ -32,7 +32,7 @@ namespace PAO.UI
         /// <param name="text">文本</param>
         /// <param name="caption">标题</param>
         public static void ShowInfomationDialog(string text, string caption = null) {
-            DefaultUserInterface.ShowMessageBox(text, caption, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            DefaultUserInterface.ShowMessageDialog(text, caption, DialogType.Information);
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace PAO.UI
         /// <param name="text">文本</param>
         /// <param name="caption">标题</param>
         public static void ShowWarningDialog(string text, string caption = null) {
-            DefaultUserInterface.ShowMessageBox(text, caption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            DefaultUserInterface.ShowMessageDialog(text, caption, DialogType.Warning);
         }
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace PAO.UI
         /// <param name="text">文本</param>
         /// <param name="caption">标题</param>
         public static void ShowErrorDialog(string text, string caption = null) {
-            DefaultUserInterface.ShowMessageBox(text, caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            DefaultUserInterface.ShowMessageDialog(text, caption, DialogType.Error);
         }
 
         /// <summary>
@@ -58,8 +58,8 @@ namespace PAO.UI
         /// </summary>
         /// <param name="text">文本</param>
         /// <param name="caption">标题</param>
-        public static DialogResult ShowYesNoDialog(string text, string caption = null) {
-            return DefaultUserInterface.ShowMessageBox(text, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+        public static DialogReturn ShowYesNoDialog(string text, string caption = null) {
+            return DefaultUserInterface.ShowMessageDialog(text, caption, DialogType.YesNo);
         }
 
         /// <summary>
@@ -67,8 +67,8 @@ namespace PAO.UI
         /// </summary>
         /// <param name="text">文本</param>
         /// <param name="caption">标题</param>
-        public static DialogResult ShowYesNoCancelDialog(string text, string caption = null) {
-            return DefaultUserInterface.ShowMessageBox(text, caption, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+        public static DialogReturn ShowYesNoCancelDialog(string text, string caption = null) {
+            return DefaultUserInterface.ShowMessageDialog(text, caption, DialogType.YesNoCancel);
         }
 
         /// <summary>
@@ -76,37 +76,33 @@ namespace PAO.UI
         /// </summary>
         /// <param name="text">文本</param>
         /// <param name="caption">标题</param>
-        public static DialogResult ShowOKCancelDialog(string text, string caption = null) {
-            return DefaultUserInterface.ShowMessageBox(text, caption, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+        public static DialogReturn ShowOKCancelDialog(string text, string caption = null) {
+            return DefaultUserInterface.ShowMessageDialog(text, caption, DialogType.OKCancel);
+        }
+
+        /// <summary>
+        /// 显示打开文件对话框
+        /// </summary>
+        /// <param name="caption">标题</param>
+        /// <param name="fileName">文件名</param>
+        /// <param name="fileFilters">文件过滤器</param>
+        public static DialogReturn ShowOpenFileDialog(string caption, ref string fileName, params string[] fileFilters) {
+            return DefaultUserInterface.ShowFileDialog(true, caption, FileExtentions.BuildFileFilter(fileFilters), ref fileName);
+        }
+
+        /// <summary>
+        /// 显示打开文件对话框
+        /// </summary>
+        /// <param name="caption">标题</param>
+        /// <param name="fileName">文件名</param>
+        /// <param name="fileFilters">文件过滤器</param>
+        public static DialogReturn ShowSaveFileDialog(string caption, ref string fileName, params string[] fileFilters) {
+            return DefaultUserInterface.ShowFileDialog(false, caption, FileExtentions.BuildFileFilter(fileFilters), ref fileName);
         }
         
-        /// <summary>
-        /// 显示打开文件对话框
-        /// </summary>
-        /// <param name="caption">标题</param>
-        /// <param name="fileName">文件名</param>
-        /// <param name="fileFilters">文件过滤器</param>
-        public static DialogResult ShowOpenFileDialog(string caption, ref string fileName, params string[] fileFilters) {
-            return DefaultUserInterface.ShowOpenFileDialog(caption, FileExtentions.BuildFileFilter(fileFilters), ref fileName);
-        }
 
-        /// <summary>
-        /// 显示打开文件对话框
-        /// </summary>
-        /// <param name="caption">标题</param>
-        /// <param name="fileName">文件名</param>
-        /// <param name="fileFilters">文件过滤器</param>
-        public static DialogResult ShowSaveFileDialog(string caption, ref string fileName, params string[] fileFilters) {
-            return DefaultUserInterface.ShowSaveFileDialog(caption, FileExtentions.BuildFileFilter(fileFilters), ref fileName);
-        }
-
-        /// <summary>
-        /// 显示对话框
-        /// </summary>
-        /// <param name="childControl">子控件</param>
-        /// <returns></returns>
-        public static DialogResult ShowDialog(Control childControl) {
-            return DefaultUserInterface.ShowDialog(childControl);
+        public static Image ScreenShot() {
+            return DefaultUserInterface.ScreenShot();
         }
         #endregion
 
@@ -120,24 +116,6 @@ namespace PAO.UI
         public static void ShowWaitingForm() {
             CloseWaitingForm();
             DefaultUserInterface.ShowWaitingForm();
-        }
-
-        /// <summary>
-        /// 等待
-        /// </summary>
-        /// <param name="action">动作</param>
-        /// <param name="waitingCursor">等待鼠标</param>
-        public static void Waiting(Action action, bool waitingCursor = true) {
-            ShowWaitingForm();
-            if (waitingCursor)
-                Cursor.Current = Cursors.WaitCursor;
-            try {
-                action();
-            }
-            finally {
-                CloseWaitingForm();
-                Cursor.Current = Cursors.Arrow;
-            }
         }
         #endregion
     }

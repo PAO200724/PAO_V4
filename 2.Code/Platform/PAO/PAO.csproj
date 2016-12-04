@@ -38,7 +38,6 @@
     <Reference Include="System.IdentityModel" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
@@ -69,7 +68,6 @@
     <Compile Include="Data\Filters\SqlFilter.cs" />
     <Compile Include="Data\IDataFilter.cs" />
     <Compile Include="Data\IDataService.cs" />
-    <Compile Include="Drawing\DrawingPublic.cs" />
     <Compile Include="Event\EventInfo.cs" />
     <Compile Include="Event\EventPublic.cs" />
     <Compile Include="Event\ExceptionEventInfo.cs" />
@@ -130,7 +128,9 @@
     <Compile Include="Trans\TransStatus_RollbackExcepted.cs" />
     <Compile Include="Trans\TransactionPublic.cs" />
     <Compile Include="Trans\TransStatus_Running.cs" />
+    <Compile Include="UI\DialogReturn.cs" />
     <Compile Include="UI\IUserInterface.cs" />
+    <Compile Include="UI\DialogType.cs" />
     <Compile Include="UI\UIPublic.cs" />
   </ItemGroup>
   <ItemGroup />

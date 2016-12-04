@@ -94,7 +94,7 @@ namespace PAO.UI.WinForm.Controls
                 , FileExtentions.PNG
                 , FileExtentions.JPG
                 , FileExtentions.BMP
-                , FileExtentions.All) == DialogResult.OK) {
+                , FileExtentions.All) == DialogReturn.OK) {
                 PictureEdit.Image.Save(fileName);
             }
         }

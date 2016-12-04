@@ -31,17 +31,16 @@ namespace WinFormTest
 
         private void ButtonTestInformation_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             EventControl eventControl = null;
-            UIPublic.Waiting(() =>
-            {
-                var eventInfo = new EventInfo(EventInfo.EventType_Information
-                    , "这是测试消息"
-                    , true
-                    , true);
-                eventControl = new EventControl();
-                eventControl.Initialize(eventInfo);
-            });
+            UIPublic.ShowWaitingForm();
+            var eventInfo = new EventInfo(EventInfo.EventType_Information
+                , "这是测试消息"
+                , true
+                , true);
+            eventControl = new EventControl();
+            eventControl.Initialize(eventInfo);
+            UIPublic.CloseWaitingForm();
 
-            UIPublic.ShowDialog(eventControl);
+            WinFormPublic.ShowDialog(eventControl);
 
         }
 
@@ -53,7 +52,7 @@ namespace WinFormTest
             var eventControl = new EventControl();
             eventControl.Initialize(eventInfo);
             UIPublic.CloseWaitingForm();
-            UIPublic.ShowDialog(eventControl);
+            WinFormPublic.ShowDialog(eventControl);
         }
 
         private void ButtonConfigTools_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
@@ -61,7 +60,7 @@ namespace WinFormTest
             var objectTreeControl = new ObjectTreeEditControl();
             objectTreeControl.SelectedObject = PaoApplication.Default;
             UIPublic.CloseWaitingForm();
-            UIPublic.ShowDialog(objectTreeControl);
+            WinFormPublic.ShowDialog(objectTreeControl);
         }
 
         private void ButtonAddonSelect_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
@@ -72,7 +71,7 @@ namespace WinFormTest
                 return p.IsDerivedFrom<IDataFilter>();
             });
             UIPublic.CloseWaitingForm();
-            UIPublic.ShowDialog(typeSelectControl);
+            WinFormPublic.ShowDialog(typeSelectControl);
         }
 
         private void ButtonCallRemote_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {

@@ -17,6 +17,7 @@ using PAO;
 using DevExpress.XtraSplashScreen;
 using PAO.IO;
 using PAO.IO.Text;
+using PAO.UI.WinForm;
 
 namespace PAO.Config.Controls.EditControls
 {
@@ -434,7 +435,7 @@ namespace PAO.Config.Controls.EditControls
             var propDesc = (PropertyDescriptor)focusedNode.GetValue(ColumnPropertyDescriptor);
             var propertyValue = focusedNode.GetValue(ColumnPropertyValue);
             object newObject = null;
-            if (!propertyValue.IsNotNull() || UIPublic.ShowYesNoDialog("您需要清除对象值并创建新的对象吗？") == DialogResult.Yes) {
+            if (!propertyValue.IsNotNull() || UIPublic.ShowYesNoDialog("您需要清除对象值并创建新的对象吗？") == DialogReturn.Yes) {
                 if (ConfigPublic.CreateNewAddonValue(propDesc.PropertyType
                     , nodeType == ObjectTreeNodeType.ListElement || nodeType == ObjectTreeNodeType.DictionaryElement  // 如果是List或者Dictionary，则创建元素
                     , out newObject)) {
@@ -465,7 +466,7 @@ namespace PAO.Config.Controls.EditControls
             }
             else if(propDesc.PropertyType.IsAddonDictionaryType()) {
                 var keyInputControl = new InputKeyControl();
-                if(UIPublic.ShowDialog(keyInputControl) == DialogResult.OK) {
+                if(WinFormPublic.ShowDialog(keyInputControl) == DialogReturn.OK) {
                     string key = keyInputControl.KeyValue;
                     if (ConfigPublic.CreateNewAddonValue(propDesc.PropertyType
                         , true
@@ -526,7 +527,7 @@ namespace PAO.Config.Controls.EditControls
 
             var keyInputControl = new InputKeyControl();
             keyInputControl.KeyValue = oldKey;
-            if (UIPublic.ShowDialog(keyInputControl) == DialogResult.OK) {
+            if (WinFormPublic.ShowDialog(keyInputControl) == DialogReturn.OK) {
                 string newKey = keyInputControl.KeyValue;
                 var dict = obj.As<IDictionary>();
                 dict.Remove(oldKey);
@@ -577,7 +578,7 @@ namespace PAO.Config.Controls.EditControls
             var editControl = editControlType.CreateInstance() as BaseEditControl;
             editControl.SelectedObject = propertyValue;
             UIPublic.CloseWaitingForm();
-            if (UIPublic.ShowDialog(editControl) == DialogResult.OK) {
+            if (WinFormPublic.ShowDialog(editControl) == DialogReturn.OK) {
                 SetPropertNewValue(focusedNode, editControl.SelectedObject);
             }
             FocuseNode(focusedNode);

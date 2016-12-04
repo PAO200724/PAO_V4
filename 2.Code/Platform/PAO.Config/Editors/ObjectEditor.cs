@@ -36,7 +36,7 @@ namespace PAO.Config.Editors
 
         public override RepositoryItem CreateEditor() {
             var edit = new RepositoryItemButtonEdit();
-            DevExpressPublic.AddClearButton(edit);
+            WinFormPublic.AddClearButton(edit);
             edit.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             edit.ButtonClick += Edit_ButtonClick;
             return edit;
@@ -86,7 +86,7 @@ namespace PAO.Config.Editors
 
                 if (edit.EditValue.IsNotNull()) {
                     editControl.SelectedObject = TextPublic.ObjectClone(editValue);
-                    if (UIPublic.ShowDialog(editControl) == System.Windows.Forms.DialogResult.OK) {
+                    if (WinFormPublic.ShowDialog(editControl) == DialogReturn.OK) {
                         edit.EditValue = editControl.SelectedObject;
                     }
                 }

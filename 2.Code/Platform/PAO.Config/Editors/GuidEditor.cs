@@ -36,13 +36,13 @@ namespace PAO.Config.Editors
             edit.Buttons.Clear();
             edit.Buttons.Add(new EditorButton(ButtonPredefines.Plus));
             edit.ButtonClick += Edit_ButtonClick;
-            DevExpressPublic.AddClearButton(edit);
+            WinFormPublic.AddClearButton(edit);
             return edit;
         }
 
         private void Edit_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e) {
             if(e.Button.Kind == ButtonPredefines.Plus) {
-                if(UIPublic.ShowYesNoDialog("您是否要创建一个新的Guid?") == System.Windows.Forms.DialogResult.Yes) {
+                if(UIPublic.ShowYesNoDialog("您是否要创建一个新的Guid?") == DialogReturn.Yes) {
                     var edit = sender as ButtonEdit;
                     edit.EditValue = Guid.NewGuid().ToString();
                 }

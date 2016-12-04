@@ -242,11 +242,9 @@ namespace PAO.App {
         /// </summary>
         /// <param name="exception">异常对话框</param>
         protected virtual void ShowExceptionDialog(Exception exception) {
-            ExceptionEventInfo eventInfo = null;
-            UIPublic.Waiting(() =>
-            {
-                eventInfo = new ExceptionEventInfo(exception, true, true);
-            });
+            UIPublic.ShowWaitingForm();
+            var eventInfo = new ExceptionEventInfo(exception, true, true);
+            UIPublic.CloseWaitingForm();
             UIPublic.ShowEventDialog(eventInfo);
         }
     }

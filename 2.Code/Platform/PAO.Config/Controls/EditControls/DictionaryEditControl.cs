@@ -11,6 +11,7 @@ using System.Collections;
 using PAO.Config.Editors;
 using DevExpress.XtraEditors.Repository;
 using PAO.UI;
+using PAO.UI.WinForm;
 
 namespace PAO.Config.Controls.EditControls
 {
@@ -108,7 +109,7 @@ namespace PAO.Config.Controls.EditControls
         private void ButtonAdd_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             object newObject;
             var inputKeyControl = new InputKeyControl();
-            if(UIPublic.ShowDialog(inputKeyControl) == DialogResult.OK) {
+            if(WinFormPublic.ShowDialog(inputKeyControl) == DialogReturn.OK) {
                 if (ConfigPublic.CreateNewAddonValue(ListType
                     , true
                     , out newObject)) {

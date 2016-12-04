@@ -30,7 +30,7 @@ namespace PAO.Config.Editors
 
         public override RepositoryItem CreateEditor() {
             var edit = new RepositoryItemTimeEdit();
-            DevExpressPublic.AddClearButton(edit);
+            WinFormPublic.AddClearButton(edit);
             return edit;
         }
     }

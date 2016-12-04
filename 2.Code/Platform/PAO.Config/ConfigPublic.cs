@@ -5,6 +5,7 @@ using PAO.Config.Editors;
 using PAO.Config.PaoConfig;
 using PAO.Data;
 using PAO.UI;
+using PAO.UI.WinForm;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -88,7 +89,7 @@ namespace PAO.Config
                     {
                         return (p.IsDerivedFrom(refType) || p.IsDerivedFrom(typeof(Factory<>))) && p.IsClass && !p.IsAbstract;
                     });
-                    if (UIPublic.ShowDialog(typeSelectControl) == DialogResult.OK) {
+                    if (WinFormPublic.ShowDialog(typeSelectControl) == DialogReturn.OK) {
                         var selectedAddonType = typeSelectControl.SelectedType;
                         if (selectedAddonType != null) {
                             if (selectedAddonType.IsDerivedFrom(typeof(Ref<>))) {
@@ -112,7 +113,7 @@ namespace PAO.Config
                     {
                         return p.IsDerivedFrom(objectType) && p.IsClass && !p.IsAbstract;
                     });
-                    if (UIPublic.ShowDialog(typeSelectControl) == DialogResult.OK) {
+                    if (WinFormPublic.ShowDialog(typeSelectControl) == DialogReturn.OK) {
                         var selectedAddonType = typeSelectControl.SelectedType;
                         if (selectedAddonType != null) {
                             // 创建新的对象

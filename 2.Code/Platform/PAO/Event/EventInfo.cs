@@ -1,7 +1,7 @@
 ﻿using PAO;
 using PAO.App;
-using PAO.Drawing;
 using PAO.IO.Text;
+using PAO.UI;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -166,7 +166,7 @@ namespace PAO.Event
             Time = DateTime.Now;
             Message = message;
             Type = type;
-            ScreenShot = screenshot ? DrawingPublic.ScreenShot() : (Image)null;
+            ScreenShot = screenshot ? UIPublic.ScreenShot() : (Image)null;
             AssetSnapshot = snapshot ? TextPublic.ObjectClone(PaoApplication.Default) : null;
         }
 

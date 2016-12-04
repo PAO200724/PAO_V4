@@ -7,6 +7,7 @@ using PAO.UI.WinForm.Forms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -36,50 +37,82 @@ namespace PAO.UI.WinForm
             SplashScreenManager.CloseForm(false);
         }
 
-        public DialogResult ShowDialog(Control childControl) {
-            var dialog = new Dialog();
-            dialog.ChildControl = childControl;
-            return dialog.ShowDialog();
-        }
    
         public void ShowEventDialog(EventInfo eventInfo) {
             var eventControl = new EventControl();
             eventControl.Initialize(eventInfo);
-            UIPublic.ShowDialog(eventControl);
+            WinFormPublic.ShowDialog(eventControl);
         }
 
         public DialogResult ShowMessageBox(string text, string caption, MessageBoxButtons buttons, MessageBoxIcon icon) {
             return XtraMessageBox.Show(text, caption, buttons, icon);
         }
 
-        public DialogResult ShowOpenFileDialog(string caption, string filter, ref string fileName) {
-            var fileDialog = new OpenFileDialog();
-            fileDialog.Title = caption;
-            fileDialog.FileName = fileName;
-            fileDialog.Filter = filter;
-            fileDialog.AddExtension = true;
-            if (fileDialog.IsNotNullOrEmpty())
-                fileDialog.InitialDirectory = Path.GetDirectoryName(fileName);
-            var result = fileDialog.ShowDialog();
-            fileName = fileDialog.FileName;
-            return result;
-        }
-
-        public DialogResult ShowSaveFileDialog(string caption, string filter, ref string fileName) {
-            var fileDialog = new SaveFileDialog();
-            fileDialog.Title = caption;
-            fileDialog.FileName = fileName;
-            fileDialog.Filter = filter;
-            fileDialog.AddExtension = true;
-            if (fileDialog.IsNotNullOrEmpty())
-                fileDialog.InitialDirectory = Path.GetDirectoryName(fileName);
-            var result = fileDialog.ShowDialog();
-            fileName = fileDialog.FileName;
-            return result;
-        }
-
         public void ShowWaitingForm() {
             SplashScreenManager.ShowForm(typeof(PaoWaitForm));
         }
+        /// <summary>
+        /// 截屏（主屏幕）
+        /// </summary>
+        /// <returns>主屏幕图片</returns>
+        public Image ScreenShot() {
+            return WinFormPublic.ScreenShot(Screen.PrimaryScreen);
+        }
+
+        public DialogReturn ShowMessageDialog(string message, string caption, DialogType dialogType) {
+            MessageBoxButtons buttons;
+            MessageBoxIcon icon;
+            switch (dialogType) {
+                case DialogType.Information:
+                    buttons = MessageBoxButtons.OK;
+                    icon = MessageBoxIcon.Information;
+                    break;
+                case DialogType.Warning:
+                    buttons = MessageBoxButtons.OK;
+                    icon = MessageBoxIcon.Warning;
+                    break;
+                case DialogType.Error:
+                    buttons = MessageBoxButtons.OK;
+                    icon = MessageBoxIcon.Error;
+                    break;
+                case DialogType.OKCancel:
+                    buttons = MessageBoxButtons.OKCancel;
+                    icon = MessageBoxIcon.Question;
+                    break;
+                case DialogType.YesNo:
+                    buttons = MessageBoxButtons.YesNo;
+                    icon = MessageBoxIcon.Question;
+                    break;
+                case DialogType.YesNoCancel:
+                    buttons = MessageBoxButtons.YesNoCancel;
+                    icon = MessageBoxIcon.Question;
+                    break;
+                default:
+                    buttons = MessageBoxButtons.OK;
+                    icon = MessageBoxIcon.None;
+                    break;
+            }
+
+            var result = XtraMessageBox.Show(message, caption, buttons, icon);
+            return WinFormPublic.DialogResultToDialogReturn(result);
+        }
+
+        public DialogReturn ShowFileDialog(bool openOrSave, string caption, string filter, ref string fileName) {
+            FileDialog fileDialog;
+            if (openOrSave)
+                fileDialog = new OpenFileDialog();
+            else
+                fileDialog = new SaveFileDialog();
+            fileDialog.Title = caption;
+            fileDialog.FileName = fileName;
+            fileDialog.Filter = filter;
+            fileDialog.AddExtension = true;
+            if (fileDialog.IsNotNullOrEmpty())
+                fileDialog.InitialDirectory = Path.GetDirectoryName(fileName);
+            var result = fileDialog.ShowDialog();
+            fileName = fileDialog.FileName;
+            return WinFormPublic.DialogResultToDialogReturn(result);
+        }
+
     }
 }

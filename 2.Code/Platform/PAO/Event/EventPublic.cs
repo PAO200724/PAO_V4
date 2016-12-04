@@ -1,5 +1,4 @@
 ﻿using PAO.App;
-using PAO.Drawing;
 using PAO.IO.Text;
 using System;
 using System.Collections.Generic;

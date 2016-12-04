@@ -30,7 +30,7 @@ namespace PAO.Config.Editors
 
         public override RepositoryItem CreateEditor() {
             var edit = new RepositoryItemComboBox();
-            DevExpressPublic.AddClearButton(edit);
+            WinFormPublic.AddClearButton(edit);
             // 添加枚举项
             var enumType = PropertyDescriptor.PropertyType;
             if (!enumType.IsEnum)
