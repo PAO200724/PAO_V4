@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AOP\AddonAttribute.cs" />
+    <Compile Include="AOP\AddonExtention.cs" />
     <Compile Include="AOP\AddonPropertyAttribute.cs" />
     <Compile Include="AOP\AddonFactory.cs" />
     <Compile Include="AOP\AddonPublic.cs" />

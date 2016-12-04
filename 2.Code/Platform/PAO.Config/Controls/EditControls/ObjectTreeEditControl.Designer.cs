@@ -25,9 +25,10 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ObjectTreeEditControl));
-            this.ImageCollectionTree = new DevExpress.Utils.ImageCollection();
-            this.BarManagerObjectTree = new DevExpress.XtraBars.BarManager();
+            this.ImageCollectionTree = new DevExpress.Utils.ImageCollection(this.components);
+            this.BarManagerObjectTree = new DevExpress.XtraBars.BarManager(this.components);
             this.BarMainTools = new DevExpress.XtraBars.Bar();
             this.ButtonExport = new DevExpress.XtraBars.BarButtonItem();
             this.ButtonImport = new DevExpress.XtraBars.BarButtonItem();
@@ -54,6 +55,7 @@
             this.LabelControlPropertyDescription = new DevExpress.XtraEditors.LabelControl();
             this.LabelControlPropertyType = new DevExpress.XtraEditors.LabelControl();
             this.LabelControlPropertyTitle = new DevExpress.XtraEditors.LabelControl();
+            this.SplitContainerControlProperty = new DevExpress.XtraEditors.SplitContainerControl();
             this.TabControlObject = new DevExpress.XtraTab.XtraTabControl();
             this.TabPageObject = new DevExpress.XtraTab.XtraTabPage();
             this.ObjectEditControl = new PAO.Config.Controls.EditControls.ObjectEditControl();
@@ -61,6 +63,7 @@
             this.ListEditControl = new PAO.Config.Controls.EditControls.ListEditControl();
             this.TabPageDictionary = new DevExpress.XtraTab.XtraTabPage();
             this.DictionaryEditControl = new PAO.Config.Controls.EditControls.DictionaryEditControl();
+            this.AddonExtentionEditControl = new PAO.Config.Controls.EditControls.AddonExtentionEditControl();
             ((System.ComponentModel.ISupportInitialize)(this.ImageCollectionTree)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BarManagerObjectTree)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainerControlMain)).BeginInit();
@@ -68,6 +71,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainerControlLeft)).BeginInit();
             this.SplitContainerControlLeft.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TreeListObject)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SplitContainerControlProperty)).BeginInit();
+            this.SplitContainerControlProperty.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TabControlObject)).BeginInit();
             this.TabControlObject.SuspendLayout();
             this.TabPageObject.SuspendLayout();
@@ -202,7 +207,7 @@
             this.barDockControlTop.CausesValidation = false;
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(922, 29);
+            this.barDockControlTop.Size = new System.Drawing.Size(922, 31);
             // 
             // barDockControlBottom
             // 
@@ -215,31 +220,31 @@
             // 
             this.barDockControlLeft.CausesValidation = false;
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 29);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 542);
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 31);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 540);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(922, 29);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 542);
+            this.barDockControlRight.Location = new System.Drawing.Point(922, 31);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 540);
             // 
             // SplitContainerControlMain
             // 
             this.SplitContainerControlMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SplitContainerControlMain.FixedPanel = DevExpress.XtraEditors.SplitFixedPanel.Panel2;
-            this.SplitContainerControlMain.Location = new System.Drawing.Point(0, 29);
+            this.SplitContainerControlMain.FixedPanel = DevExpress.XtraEditors.SplitFixedPanel.None;
+            this.SplitContainerControlMain.Location = new System.Drawing.Point(0, 31);
             this.SplitContainerControlMain.Name = "SplitContainerControlMain";
             this.SplitContainerControlMain.Panel1.Controls.Add(this.SplitContainerControlLeft);
             this.SplitContainerControlMain.Panel1.Text = "Panel1";
             this.SplitContainerControlMain.Panel2.AppearanceCaption.Font = new System.Drawing.Font("微软雅黑", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SplitContainerControlMain.Panel2.AppearanceCaption.Options.UseFont = true;
             this.SplitContainerControlMain.Panel2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Default;
-            this.SplitContainerControlMain.Panel2.Controls.Add(this.TabControlObject);
+            this.SplitContainerControlMain.Panel2.Controls.Add(this.SplitContainerControlProperty);
             this.SplitContainerControlMain.Panel2.ShowCaption = true;
-            this.SplitContainerControlMain.Size = new System.Drawing.Size(922, 542);
-            this.SplitContainerControlMain.SplitterPosition = 358;
+            this.SplitContainerControlMain.Size = new System.Drawing.Size(922, 540);
+            this.SplitContainerControlMain.SplitterPosition = 504;
             this.SplitContainerControlMain.TabIndex = 7;
             this.SplitContainerControlMain.Text = "splitContainerControl1";
             // 
@@ -257,7 +262,7 @@
             this.SplitContainerControlLeft.Panel2.Controls.Add(this.LabelControlPropertyType);
             this.SplitContainerControlLeft.Panel2.Controls.Add(this.LabelControlPropertyTitle);
             this.SplitContainerControlLeft.Panel2.Text = "Panel2";
-            this.SplitContainerControlLeft.Size = new System.Drawing.Size(558, 542);
+            this.SplitContainerControlLeft.Size = new System.Drawing.Size(504, 540);
             this.SplitContainerControlLeft.SplitterPosition = 123;
             this.SplitContainerControlLeft.TabIndex = 0;
             this.SplitContainerControlLeft.Text = "splitContainerControl2";
@@ -292,7 +297,7 @@
             this.TreeListObject.OptionsView.ShowAutoFilterRow = true;
             this.TreeListObject.OptionsView.ShowIndicator = false;
             this.TreeListObject.SelectImageList = this.ImageCollectionTree;
-            this.TreeListObject.Size = new System.Drawing.Size(558, 413);
+            this.TreeListObject.Size = new System.Drawing.Size(504, 412);
             this.TreeListObject.TabIndex = 1;
             this.TreeListObject.FocusedNodeChanged += new DevExpress.XtraTreeList.FocusedNodeChangedEventHandler(this.TreeListObject_FocusedNodeChanged);
             // 
@@ -364,7 +369,7 @@
             this.LabelControlPropertyDescription.Margin = new System.Windows.Forms.Padding(0);
             this.LabelControlPropertyDescription.Name = "LabelControlPropertyDescription";
             this.LabelControlPropertyDescription.Padding = new System.Windows.Forms.Padding(5, 3, 5, 3);
-            this.LabelControlPropertyDescription.Size = new System.Drawing.Size(554, 63);
+            this.LabelControlPropertyDescription.Size = new System.Drawing.Size(500, 63);
             this.LabelControlPropertyDescription.TabIndex = 14;
             this.LabelControlPropertyDescription.Text = "属性描述";
             // 
@@ -376,7 +381,7 @@
             this.LabelControlPropertyType.Margin = new System.Windows.Forms.Padding(0);
             this.LabelControlPropertyType.Name = "LabelControlPropertyType";
             this.LabelControlPropertyType.Padding = new System.Windows.Forms.Padding(5, 3, 5, 3);
-            this.LabelControlPropertyType.Size = new System.Drawing.Size(554, 20);
+            this.LabelControlPropertyType.Size = new System.Drawing.Size(500, 20);
             this.LabelControlPropertyType.TabIndex = 8;
             this.LabelControlPropertyType.Text = "属性类型";
             // 
@@ -389,9 +394,27 @@
             this.LabelControlPropertyTitle.Margin = new System.Windows.Forms.Padding(0);
             this.LabelControlPropertyTitle.Name = "LabelControlPropertyTitle";
             this.LabelControlPropertyTitle.Padding = new System.Windows.Forms.Padding(5);
-            this.LabelControlPropertyTitle.Size = new System.Drawing.Size(554, 36);
+            this.LabelControlPropertyTitle.Size = new System.Drawing.Size(500, 36);
             this.LabelControlPropertyTitle.TabIndex = 2;
             this.LabelControlPropertyTitle.Text = "属性";
+            // 
+            // SplitContainerControlProperty
+            // 
+            this.SplitContainerControlProperty.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SplitContainerControlProperty.FixedPanel = DevExpress.XtraEditors.SplitFixedPanel.None;
+            this.SplitContainerControlProperty.Horizontal = false;
+            this.SplitContainerControlProperty.Location = new System.Drawing.Point(0, 0);
+            this.SplitContainerControlProperty.Name = "SplitContainerControlProperty";
+            this.SplitContainerControlProperty.Panel1.Controls.Add(this.TabControlObject);
+            this.SplitContainerControlProperty.Panel1.Text = "Panel1";
+            this.SplitContainerControlProperty.Panel2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Default;
+            this.SplitContainerControlProperty.Panel2.Controls.Add(this.AddonExtentionEditControl);
+            this.SplitContainerControlProperty.Panel2.ShowCaption = true;
+            this.SplitContainerControlProperty.Panel2.Text = "扩展属性";
+            this.SplitContainerControlProperty.Size = new System.Drawing.Size(409, 500);
+            this.SplitContainerControlProperty.SplitterPosition = 288;
+            this.SplitContainerControlProperty.TabIndex = 2;
+            this.SplitContainerControlProperty.Text = "splitContainerControl1";
             // 
             // TabControlObject
             // 
@@ -400,7 +423,7 @@
             this.TabControlObject.Name = "TabControlObject";
             this.TabControlObject.SelectedTabPage = this.TabPageObject;
             this.TabControlObject.ShowTabHeader = DevExpress.Utils.DefaultBoolean.False;
-            this.TabControlObject.Size = new System.Drawing.Size(354, 504);
+            this.TabControlObject.Size = new System.Drawing.Size(409, 288);
             this.TabControlObject.TabIndex = 1;
             this.TabControlObject.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.TabPageObject,
@@ -411,7 +434,7 @@
             // 
             this.TabPageObject.Controls.Add(this.ObjectEditControl);
             this.TabPageObject.Name = "TabPageObject";
-            this.TabPageObject.Size = new System.Drawing.Size(348, 498);
+            this.TabPageObject.Size = new System.Drawing.Size(403, 282);
             this.TabPageObject.Text = "插件";
             // 
             // ObjectEditControl
@@ -422,7 +445,7 @@
             this.ObjectEditControl.Name = "ObjectEditControl";
             this.ObjectEditControl.ShowApplyButton = true;
             this.ObjectEditControl.ShowCancelButton = true;
-            this.ObjectEditControl.Size = new System.Drawing.Size(348, 498);
+            this.ObjectEditControl.Size = new System.Drawing.Size(403, 282);
             this.ObjectEditControl.TabIndex = 1;
             this.ObjectEditControl.DataModifyStateChanged += new System.EventHandler<PAO.UI.WinForm.DataModifyStateChangedEventArgs>(this.ObjectEditControl_DataModifyStateChanged);
             // 
@@ -430,7 +453,7 @@
             // 
             this.TabPageList.Controls.Add(this.ListEditControl);
             this.TabPageList.Name = "TabPageList";
-            this.TabPageList.Size = new System.Drawing.Size(348, 498);
+            this.TabPageList.Size = new System.Drawing.Size(348, 283);
             this.TabPageList.Text = "列表";
             // 
             // ListEditControl
@@ -441,7 +464,7 @@
             this.ListEditControl.Name = "ListEditControl";
             this.ListEditControl.ShowApplyButton = true;
             this.ListEditControl.ShowCancelButton = true;
-            this.ListEditControl.Size = new System.Drawing.Size(348, 498);
+            this.ListEditControl.Size = new System.Drawing.Size(348, 283);
             this.ListEditControl.TabIndex = 0;
             this.ListEditControl.DataModifyStateChanged += new System.EventHandler<PAO.UI.WinForm.DataModifyStateChangedEventArgs>(this.ListEditControl_DataModifyStateChanged);
             // 
@@ -449,7 +472,7 @@
             // 
             this.TabPageDictionary.Controls.Add(this.DictionaryEditControl);
             this.TabPageDictionary.Name = "TabPageDictionary";
-            this.TabPageDictionary.Size = new System.Drawing.Size(348, 498);
+            this.TabPageDictionary.Size = new System.Drawing.Size(348, 283);
             this.TabPageDictionary.Text = "字典";
             // 
             // DictionaryEditControl
@@ -460,9 +483,20 @@
             this.DictionaryEditControl.Name = "DictionaryEditControl";
             this.DictionaryEditControl.ShowApplyButton = true;
             this.DictionaryEditControl.ShowCancelButton = true;
-            this.DictionaryEditControl.Size = new System.Drawing.Size(348, 498);
+            this.DictionaryEditControl.Size = new System.Drawing.Size(348, 283);
             this.DictionaryEditControl.TabIndex = 0;
             this.DictionaryEditControl.DataModifyStateChanged += new System.EventHandler<PAO.UI.WinForm.DataModifyStateChangedEventArgs>(this.DictionaryEditControl_DataModifyStateChanged);
+            // 
+            // AddonExtentionEditControl
+            // 
+            this.AddonExtentionEditControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.AddonExtentionEditControl.Location = new System.Drawing.Point(0, 0);
+            this.AddonExtentionEditControl.Name = "AddonExtentionEditControl";
+            this.AddonExtentionEditControl.OriginAddon = null;
+            this.AddonExtentionEditControl.ShowApplyButton = false;
+            this.AddonExtentionEditControl.ShowCancelButton = true;
+            this.AddonExtentionEditControl.Size = new System.Drawing.Size(405, 184);
+            this.AddonExtentionEditControl.TabIndex = 0;
             // 
             // ObjectTreeEditControl
             // 
@@ -483,6 +517,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainerControlLeft)).EndInit();
             this.SplitContainerControlLeft.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.TreeListObject)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SplitContainerControlProperty)).EndInit();
+            this.SplitContainerControlProperty.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.TabControlObject)).EndInit();
             this.TabControlObject.ResumeLayout(false);
             this.TabPageObject.ResumeLayout(false);
@@ -522,12 +558,14 @@
         private DevExpress.XtraEditors.LabelControl LabelControlPropertyTitle;
         private DevExpress.XtraTab.XtraTabControl TabControlObject;
         private DevExpress.XtraTab.XtraTabPage TabPageObject;
-        private ObjectEditControl ObjectEditControl;
         private DevExpress.XtraTab.XtraTabPage TabPageList;
         private DevExpress.XtraTab.XtraTabPage TabPageDictionary;
         private ListEditControl ListEditControl;
         private DictionaryEditControl DictionaryEditControl;
         private DevExpress.XtraBars.BarButtonItem ButtonImport;
         private DevExpress.XtraBars.BarButtonItem ButtonProperty;
+        private DevExpress.XtraEditors.SplitContainerControl SplitContainerControlProperty;
+        private ObjectEditControl ObjectEditControl;
+        private AddonExtentionEditControl AddonExtentionEditControl;
     }
 }

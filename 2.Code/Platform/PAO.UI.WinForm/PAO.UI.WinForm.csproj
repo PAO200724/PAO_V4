@@ -98,7 +98,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="DevExpressUI.cs" />
+    <Compile Include="WinFormUI.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PAO\PAO.csproj">

@@ -55,6 +55,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConfigPublic.cs" />
+    <Compile Include="Controls\EditControls\AddonExtentionEditControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\EditControls\AddonExtentionEditControl.Designer.cs">
+      <DependentUpon>AddonExtentionEditControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\EditControls\AddonPropertyInfo.cs" />
     <Compile Include="Controls\EditControls\BaseEditControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -158,6 +165,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Controls\EditControls\AddonExtentionEditControl.resx">
+      <DependentUpon>AddonExtentionEditControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\EditControls\BaseEditControl.resx">
       <DependentUpon>BaseEditControl.cs</DependentUpon>
     </EmbeddedResource>

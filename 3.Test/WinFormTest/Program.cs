@@ -23,7 +23,7 @@ namespace WinFormTest
         /// </summary>
         [STAThread]
         static void Main() {
-            UIPublic.DefaultUserInterface = new DevExpressUI();
+            UIPublic.DefaultUserInterface = new WinFormUI();
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

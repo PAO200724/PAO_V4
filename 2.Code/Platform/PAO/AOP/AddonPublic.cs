@@ -294,12 +294,12 @@ namespace PAO {
                 }
             }
             else if (originalObject is IList) {
-                // 设置列表元素值
+                // 获取列表元素值
                 int index = Convert.ToInt32(propertyName);
                 propertyValue = ((IList)originalObject)[index];
             }
             else {
-                // 设置属性值
+                // 获取属性值
                 PropertyInfo propertyInfo = type.GetProperty(propertyName, BindingFlags.Public | BindingFlags.GetProperty | BindingFlags.SetProperty | BindingFlags.Instance);
                 if (propertyInfo != null) {
                     propertyValue = propertyInfo.GetValue(originalObject, null);

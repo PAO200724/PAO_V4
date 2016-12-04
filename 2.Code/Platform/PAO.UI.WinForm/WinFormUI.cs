@@ -26,11 +26,11 @@ namespace PAO.UI.WinForm
     [DataContract(Namespace = "")]
     [Name("WinForm式UI")]
     [Description("Windows Form模式的用户界面")]
-    public class DevExpressUI : PaoObject, IUserInterface
+    public class WinFormUI : PaoObject, IUserInterface
     {
         #region 插件属性
         #endregion
-        public DevExpressUI() {
+        public WinFormUI() {
         }
 
         public void CloseWaitingForm() {

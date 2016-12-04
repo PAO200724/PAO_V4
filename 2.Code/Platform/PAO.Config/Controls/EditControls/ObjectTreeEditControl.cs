@@ -349,8 +349,8 @@ namespace PAO.Config.Controls.EditControls
             this.SplitContainerControlMain.Panel2.Text = this.LabelControlPropertyTitle.Text;
             this.LabelControlPropertyDescription.Text = propDesc == null ? null : propDesc.Description;
             this.LabelControlPropertyType.Text = propDesc == null ? null : propDesc.PropertyType.GetTypeFullString();
-
             var nodeType = (ObjectTreeNodeType)node.GetValue(ColumnPropertyElementType);
+            this.AddonExtentionEditControl.Enabled = false;
             switch (nodeType) {
                 case ObjectTreeNodeType.ListProperty:
                     this.ListEditControl.SelectedObject = propertyValue;
@@ -366,6 +366,11 @@ namespace PAO.Config.Controls.EditControls
                 case ObjectTreeNodeType.ListElement:
                 case ObjectTreeNodeType.DictionaryElement:
                 case ObjectTreeNodeType.Object:
+                    if(propertyValue is PaoObject) {
+                        this.AddonExtentionEditControl.Enabled = true;
+                        this.AddonExtentionEditControl.OriginAddon = propertyValue as PaoObject;
+                        this.AddonExtentionEditControl.SelectedObject = null;
+                    }
                     this.ObjectEditControl.SelectedObject = propertyValue;
                     this.TabControlObject.SelectedTabPage = TabPageObject;
                     break;

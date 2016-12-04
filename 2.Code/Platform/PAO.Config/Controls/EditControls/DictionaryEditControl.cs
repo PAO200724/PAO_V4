@@ -37,6 +37,8 @@ namespace PAO.Config.Controls.EditControls
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public override object SelectedObject {
             get {
+                this.GridViewList.CloseEditor();
+
                 if (SourceList == null)
                     return null;
 
