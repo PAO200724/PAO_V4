@@ -25,8 +25,9 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ListEditControl));
-            this.BarManagerObject = new DevExpress.XtraBars.BarManager();
+            this.BarManagerObject = new DevExpress.XtraBars.BarManager(this.components);
             this.BarToolObject = new DevExpress.XtraBars.Bar();
             this.ButtonExport = new DevExpress.XtraBars.BarButtonItem();
             this.ButtonImport = new DevExpress.XtraBars.BarButtonItem();
@@ -39,7 +40,7 @@
             this.barDockControl3 = new DevExpress.XtraBars.BarDockControl();
             this.barDockControl4 = new DevExpress.XtraBars.BarDockControl();
             this.GridControlList = new DevExpress.XtraGrid.GridControl();
-            this.BindingSourceList = new System.Windows.Forms.BindingSource();
+            this.BindingSourceList = new System.Windows.Forms.BindingSource(this.components);
             this.GridViewList = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.ColumnIndex = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ColumnObject = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -142,7 +143,7 @@
             this.barDockControl1.CausesValidation = false;
             this.barDockControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControl1.Location = new System.Drawing.Point(0, 0);
-            this.barDockControl1.Size = new System.Drawing.Size(623, 29);
+            this.barDockControl1.Size = new System.Drawing.Size(623, 31);
             // 
             // barDockControl2
             // 
@@ -155,25 +156,25 @@
             // 
             this.barDockControl3.CausesValidation = false;
             this.barDockControl3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControl3.Location = new System.Drawing.Point(0, 29);
-            this.barDockControl3.Size = new System.Drawing.Size(0, 478);
+            this.barDockControl3.Location = new System.Drawing.Point(0, 31);
+            this.barDockControl3.Size = new System.Drawing.Size(0, 476);
             // 
             // barDockControl4
             // 
             this.barDockControl4.CausesValidation = false;
             this.barDockControl4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControl4.Location = new System.Drawing.Point(623, 29);
-            this.barDockControl4.Size = new System.Drawing.Size(0, 478);
+            this.barDockControl4.Location = new System.Drawing.Point(623, 31);
+            this.barDockControl4.Size = new System.Drawing.Size(0, 476);
             // 
             // GridControlList
             // 
             this.GridControlList.DataSource = this.BindingSourceList;
             this.GridControlList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.GridControlList.Location = new System.Drawing.Point(0, 29);
+            this.GridControlList.Location = new System.Drawing.Point(0, 31);
             this.GridControlList.MainView = this.GridViewList;
             this.GridControlList.MenuManager = this.BarManagerObject;
             this.GridControlList.Name = "GridControlList";
-            this.GridControlList.Size = new System.Drawing.Size(623, 478);
+            this.GridControlList.Size = new System.Drawing.Size(623, 476);
             this.GridControlList.TabIndex = 4;
             this.GridControlList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.GridViewList});
@@ -228,6 +229,7 @@
             this.Controls.Add(this.barDockControl1);
             this.Name = "ListEditControl";
             this.Size = new System.Drawing.Size(623, 507);
+            this.Leave += new System.EventHandler(this.ListEditControl_Leave);
             ((System.ComponentModel.ISupportInitialize)(this.BarManagerObject)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridControlList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BindingSourceList)).EndInit();

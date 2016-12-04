@@ -97,6 +97,7 @@ namespace PAO.Config.Controls.EditControls
                 AddonPropertyList = null;
                 this.BindingSourceAddonPropertyInfo.DataSource = null;
             }
+            this.GridViewAddonExtention.RefreshData();
         }
 
         /// <summary>
@@ -122,6 +123,10 @@ namespace PAO.Config.Controls.EditControls
 
         private void GridViewAddonExtention_RowUpdated(object sender, DevExpress.XtraGrid.Views.Base.RowObjectEventArgs e) {
             ModifyData();
+        }
+
+        private void GridControlAddonExtention_Leave(object sender, EventArgs e) {
+            this.GridViewAddonExtention.CloseEditor();
         }
     }
 }

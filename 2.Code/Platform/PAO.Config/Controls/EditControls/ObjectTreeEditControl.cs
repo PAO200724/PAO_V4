@@ -100,6 +100,12 @@ namespace PAO.Config.Controls.EditControls
         public override void SetFormState(Form form) {
             form.WindowState = FormWindowState.Maximized;
         }
+
+        public override void OnClosing(DialogResult dialogResult, ref bool cancel) {
+            /// 保存
+            AddonPublic.SaveAddonExtendPropertiesFromStorage(ExtendPropertyDataTable, ExtendPropertyStorage);
+            base.OnClosing(dialogResult, ref cancel);
+        }
         #endregion
 
         #region 生成配置树
@@ -626,7 +632,6 @@ namespace PAO.Config.Controls.EditControls
         private void AddonExtentionEditControl_DataModifyStateChanged(object sender, DataModifyStateChangedEventArgs e) {
             // 保存到扩展存储中
             this.AddonExtentionEditControl.GetDataFromControl();
-            AddonPublic.SaveAddonExtendPropertiesFromStorage(ExtendPropertyDataTable, ExtendPropertyStorage);
         }
         #endregion
 

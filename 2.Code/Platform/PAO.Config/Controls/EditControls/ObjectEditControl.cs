@@ -64,5 +64,9 @@ namespace PAO.Config.Controls.EditControls
         private void ButtonImport_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             ImportSelectedObject();
         }
+
+        private void ObjectEditControl_Leave(object sender, EventArgs e) {
+            this.PropertyGridControl.CloseEditor();
+        }
     }
 }

@@ -53,6 +53,7 @@
             this.GridControlAddonExtention.TabIndex = 5;
             this.GridControlAddonExtention.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.GridViewAddonExtention});
+            this.GridControlAddonExtention.Leave += new System.EventHandler(this.GridControlAddonExtention_Leave);
             // 
             // GridViewAddonExtention
             // 
