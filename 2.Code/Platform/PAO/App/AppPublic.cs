@@ -52,36 +52,38 @@ namespace PAO.App {
             EventPublic.ClearEventProcessor();
             EventPublic.AddEventProcessor(DebugLogger.Default);
             EventPublic.AddEventProcessor(EventLogger.Default);
+            PaoApplication app = null;
 
-            TransactionPublic.Run("加载插件", () =>
-            {
-                EventPublic.Information("开始加载插件...");
-                AddonPublic.AddDirectory(AppDirectory);
-                string libPathString = AppDomain.CurrentDomain.SetupInformation.PrivateBinPath;
-                if (!libPathString.IsNullOrEmpty()) {
-                    string[] libPaths = libPathString.Split(';');
-                    foreach (var libDir in libPaths) {
-                        var libPath = GetAbsolutePath(libDir);
-                        AddonPublic.AddDirectory(libPath);
+            TransactionPublic.Run("插件引擎启动", () => {
+                TransactionPublic.Run("加载插件库", () =>
+                {
+                    AddonPublic.AddDirectory(AppDirectory);
+                    string libPathString = AppDomain.CurrentDomain.SetupInformation.PrivateBinPath;
+                    if (!libPathString.IsNullOrEmpty()) {
+                        string[] libPaths = libPathString.Split(';');
+                        foreach (var libDir in libPaths) {
+                            var libPath = GetAbsolutePath(libDir);
+                            AddonPublic.AddDirectory(libPath);
+                        }
                     }
-                }
-                // 重建插件类型列表
-                AddonPublic.RebuildAddonTypeList();
-                EventPublic.Information("插件加载完毕.");
+                    // 重建插件类型列表
+                    AddonPublic.RebuildAddonTypeList();
+                });
+
+                TransactionPublic.Run("加载配置", () =>
+                {
+                    if (createApplicationFunc == null) {
+                        app = TextPublic.ReadObjectFromFile(configFilePath).As<PaoApplication>();
+                    }
+                    else {
+                        // 用应用创建函数启动应用
+                        app = createApplicationFunc();
+                        // 保存配置文件
+                        TextPublic.WriteObjectToFile(configFilePath, app);
+                    }
+                });
             });
 
-            PaoApplication app;
-            if (createApplicationFunc == null) {
-                app = TextPublic.ReadObjectFromFile(configFilePath).As<PaoApplication>();
-            } else {
-                EventPublic.Information("开始创建应用配置...");
-                // 用应用创建函数启动应用
-                app = createApplicationFunc();
-                // 保存配置文件
-                EventPublic.Information("开始保存应用配置...");
-                TextPublic.WriteObjectToFile(configFilePath, app);
-                EventPublic.Information("应用配置保存完毕.");
-            }
             app.Start();
         }
     }

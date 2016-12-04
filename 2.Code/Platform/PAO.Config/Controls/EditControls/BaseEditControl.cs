@@ -39,42 +39,17 @@ namespace PAO.Config.Controls.EditControls
         /// 导出当前对象
         /// </summary>
         public void ExportSelectedObject() {
-            string fileName = null;
-            if (UIPublic.ShowSaveFileDialog("导出", ref fileName
-                , FileExtentions.CONFIG
-                , FileExtentions.XML
-                , FileExtentions.All) == DialogReturn.OK) {
-                if (fileName.IsNullOrEmpty())
-                    UIPublic.ShowErrorDialog("输入了错误的文件名");
-                else {
-                    var obj = this.SelectedObject;
-                    TextPublic.WriteObjectToFile(fileName, obj);
-                }
-            }
+            IOPublic.ExportObject(this.SelectedObject);
         }
 
         /// <summary>
         /// 导入对象
         /// </summary>
         public void ImportSelectedObject() {
-            string fileName = null;
-            if (UIPublic.ShowOpenFileDialog("导入", ref fileName
-                , FileExtentions.CONFIG
-                , FileExtentions.XML
-                , FileExtentions.All) == DialogReturn.OK) {
-                if (!File.Exists(fileName))
-                    UIPublic.ShowErrorDialog("选择的文件不存在");
-                else {
-                    var obj = TextPublic.ReadObjectFromFile(fileName);
-                    try {
-                        this.SelectedObject = obj;
-                        ModifyData();
-                    }
-                    catch (Exception err) {
-                        UIPublic.ShowErrorDialog(err.Message);
-                    }
-                }
-            }
+            IOPublic.ImportObject((obj)=> {
+                this.SelectedObject = obj;
+                ModifyData();
+            });
         }
     }
 

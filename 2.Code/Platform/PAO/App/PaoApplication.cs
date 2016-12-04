@@ -114,6 +114,22 @@ namespace PAO.App {
             set;
         }
         #endregion 属性：ExtendAddonList       
+
+        #region 属性：ExtendPropertyStorageList
+        /// <summary>
+        /// 属性：ExtendPropertyStorage
+        /// 扩展属性存储
+        /// 存储扩展属性的存储器
+        /// </summary>
+        [AddonProperty]
+        [DataMember(EmitDefaultValue = false)]
+        [Name("扩展属性存储")]
+        [Description("存储扩展属性的存储器")]
+        public Ref<IExtendPropertyStorage> ExtendPropertyStorage {
+            get;
+            set;
+        }
+        #endregion 属性：ExtendPropertyStorageList
         #endregion
 
         /// <summary>
@@ -164,8 +180,23 @@ namespace PAO.App {
             Default = this;
             TransactionPublic.Run("主应用程序", () =>
             {
-                TransactionPublic.Run("初始化", () =>
+                TransactionPublic.Run("应用程序初始化", () =>
                 {
+                    TransactionPublic.Run("加载扩展配置", () =>
+                    {
+                        if (ExtendPropertyStorage != null) {
+                            AddonPublic.LoadAddonExtendPropertiesFromStorage(ExtendPropertyStorage.Value);
+                        }
+                        //  遍历插件，应用插件
+                        AddonPublic.TraverseAddon((addon) =>
+                        {
+                            if(addon is PaoObject) {
+                                AddonPublic.ApplyAddonExtendProperties(addon as PaoObject);
+                            }
+                            return false;
+                        }, PaoApplication.Default);
+                    });
+
                     TransactionPublic.Run("启动准备", OnStart);
 
                     #region 用户界面

@@ -36,6 +36,8 @@ namespace PAO.IO.Text
         /// <param name="types">需要用到的对象类型</param>
         /// <returns>对象</returns>
         public object TextToObject(string text) {
+            if (text.IsNotNullOrEmpty())
+                return null;
             StringReader reader = new StringReader(text);
             XmlReader textReader = XmlReader.Create(reader);
             object result = Serializer.ReadObject(textReader);
@@ -50,7 +52,8 @@ namespace PAO.IO.Text
         /// <param name="types">需要用到的对象类型</param>
         /// <returns>TEXT字符串</returns>
         public string ObjectToText(object obj) {
-            obj.CheckNotNull();
+            if (obj.IsNull())
+                return null;
 
             StringWriter writer = new StringWriter();
             XmlTextWriter textWriter = new XmlTextWriter(writer);

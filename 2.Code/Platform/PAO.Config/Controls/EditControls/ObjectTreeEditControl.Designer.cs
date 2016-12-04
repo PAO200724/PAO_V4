@@ -64,6 +64,9 @@
             this.TabPageDictionary = new DevExpress.XtraTab.XtraTabPage();
             this.DictionaryEditControl = new PAO.Config.Controls.EditControls.DictionaryEditControl();
             this.AddonExtentionEditControl = new PAO.Config.Controls.EditControls.AddonExtentionEditControl();
+            this.ButtonImportExtend = new DevExpress.XtraBars.BarButtonItem();
+            this.ButtonExportExtend = new DevExpress.XtraBars.BarButtonItem();
+            this.MenuItemExtend = new DevExpress.XtraBars.BarSubItem();
             ((System.ComponentModel.ISupportInitialize)(this.ImageCollectionTree)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BarManagerObjectTree)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainerControlMain)).BeginInit();
@@ -114,8 +117,11 @@
             this.ButtonDelete,
             this.ButtonModifyKey,
             this.ButtonImport,
-            this.ButtonProperty});
-            this.BarManagerObjectTree.MaxItemId = 11;
+            this.ButtonProperty,
+            this.ButtonImportExtend,
+            this.ButtonExportExtend,
+            this.MenuItemExtend});
+            this.BarManagerObjectTree.MaxItemId = 14;
             // 
             // BarMainTools
             // 
@@ -126,6 +132,7 @@
             this.BarMainTools.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.ButtonExport, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.ButtonImport, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
+            new DevExpress.XtraBars.LinkPersistInfo(this.MenuItemExtend, true),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.ButtonCreate, "", true, true, true, 0, null, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.ButtonAdd, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.ButtonDelete, "", true, true, true, 0, null, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
@@ -453,7 +460,7 @@
             // 
             this.TabPageList.Controls.Add(this.ListEditControl);
             this.TabPageList.Name = "TabPageList";
-            this.TabPageList.Size = new System.Drawing.Size(348, 283);
+            this.TabPageList.Size = new System.Drawing.Size(403, 282);
             this.TabPageList.Text = "列表";
             // 
             // ListEditControl
@@ -464,7 +471,7 @@
             this.ListEditControl.Name = "ListEditControl";
             this.ListEditControl.ShowApplyButton = true;
             this.ListEditControl.ShowCancelButton = true;
-            this.ListEditControl.Size = new System.Drawing.Size(348, 283);
+            this.ListEditControl.Size = new System.Drawing.Size(403, 282);
             this.ListEditControl.TabIndex = 0;
             this.ListEditControl.DataModifyStateChanged += new System.EventHandler<PAO.UI.WinForm.DataModifyStateChangedEventArgs>(this.ListEditControl_DataModifyStateChanged);
             // 
@@ -472,7 +479,7 @@
             // 
             this.TabPageDictionary.Controls.Add(this.DictionaryEditControl);
             this.TabPageDictionary.Name = "TabPageDictionary";
-            this.TabPageDictionary.Size = new System.Drawing.Size(348, 283);
+            this.TabPageDictionary.Size = new System.Drawing.Size(403, 282);
             this.TabPageDictionary.Text = "字典";
             // 
             // DictionaryEditControl
@@ -483,7 +490,7 @@
             this.DictionaryEditControl.Name = "DictionaryEditControl";
             this.DictionaryEditControl.ShowApplyButton = true;
             this.DictionaryEditControl.ShowCancelButton = true;
-            this.DictionaryEditControl.Size = new System.Drawing.Size(348, 283);
+            this.DictionaryEditControl.Size = new System.Drawing.Size(403, 282);
             this.DictionaryEditControl.TabIndex = 0;
             this.DictionaryEditControl.DataModifyStateChanged += new System.EventHandler<PAO.UI.WinForm.DataModifyStateChangedEventArgs>(this.DictionaryEditControl_DataModifyStateChanged);
             // 
@@ -497,6 +504,30 @@
             this.AddonExtentionEditControl.ShowCancelButton = true;
             this.AddonExtentionEditControl.Size = new System.Drawing.Size(405, 184);
             this.AddonExtentionEditControl.TabIndex = 0;
+            this.AddonExtentionEditControl.DataModifyStateChanged += new System.EventHandler<PAO.UI.WinForm.DataModifyStateChangedEventArgs>(this.AddonExtentionEditControl_DataModifyStateChanged);
+            // 
+            // ButtonImportExtend
+            // 
+            this.ButtonImportExtend.Caption = "导入扩展配置";
+            this.ButtonImportExtend.Id = 11;
+            this.ButtonImportExtend.Name = "ButtonImportExtend";
+            this.ButtonImportExtend.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonImportExtend_ItemClick);
+            // 
+            // ButtonExportExtend
+            // 
+            this.ButtonExportExtend.Caption = "导出扩展配置";
+            this.ButtonExportExtend.Id = 12;
+            this.ButtonExportExtend.Name = "ButtonExportExtend";
+            this.ButtonExportExtend.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonExportExtend_ItemClick);
+            // 
+            // MenuItemExtend
+            // 
+            this.MenuItemExtend.Caption = "扩展配置(&T)";
+            this.MenuItemExtend.Id = 13;
+            this.MenuItemExtend.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonImportExtend),
+            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonExportExtend)});
+            this.MenuItemExtend.Name = "MenuItemExtend";
             // 
             // ObjectTreeEditControl
             // 
@@ -567,5 +598,8 @@
         private DevExpress.XtraEditors.SplitContainerControl SplitContainerControlProperty;
         private ObjectEditControl ObjectEditControl;
         private AddonExtentionEditControl AddonExtentionEditControl;
+        private DevExpress.XtraBars.BarSubItem MenuItemExtend;
+        private DevExpress.XtraBars.BarButtonItem ButtonImportExtend;
+        private DevExpress.XtraBars.BarButtonItem ButtonExportExtend;
     }
 }

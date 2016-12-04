@@ -34,6 +34,7 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.IdentityModel" />
     <Reference Include="System.Runtime.Serialization" />
@@ -47,7 +48,14 @@
     <Compile Include="AOP\AddonPropertyAttribute.cs" />
     <Compile Include="AOP\AddonFactory.cs" />
     <Compile Include="AOP\AddonPublic.cs" />
+    <Compile Include="AOP\DataSetExtendProperty.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetExtendProperty.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="AOP\FileExtendPropertyStorage.cs" />
     <Compile Include="AOP\IconAttribute.cs" />
+    <Compile Include="AOP\IExtendPropertyStorage.cs" />
     <Compile Include="AOP\NameAttribute.cs" />
     <Compile Include="AOP\BaseRef.cs" />
     <Compile Include="AOP\ObjectFolder.cs" />
@@ -134,7 +142,20 @@
     <Compile Include="UI\DialogType.cs" />
     <Compile Include="UI\UIPublic.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="AOP\DataSetExtendProperty.xsc">
+      <DependentUpon>DataSetExtendProperty.xsd</DependentUpon>
+    </None>
+    <None Include="AOP\DataSetExtendProperty.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetExtendProperty.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>PAO</CustomToolNamespace>
+    </None>
+    <None Include="AOP\DataSetExtendProperty.xss">
+      <DependentUpon>DataSetExtendProperty.xsd</DependentUpon>
+    </None>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

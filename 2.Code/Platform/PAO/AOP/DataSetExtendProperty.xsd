@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DataSetExtendProperty" targetNamespace="http://tempuri.org/DataSetExtendProperty.xsd" xmlns:mstns="http://tempuri.org/DataSetExtendProperty.xsd" xmlns="http://tempuri.org/DataSetExtendProperty.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DataSetExtendProperty" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSetExtendProperty" msprop:Generator_UserDSName="DataSetExtendProperty">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="ExtendProperty" msprop:Generator_TableClassName="ExtendPropertyDataTable" msprop:Generator_TableVarName="tableExtendProperty" msprop:Generator_RowChangedName="ExtendPropertyRowChanged" msprop:Generator_TablePropName="ExtendProperty" msprop:Generator_RowDeletingName="ExtendPropertyRowDeleting" msprop:Generator_RowChangingName="ExtendPropertyRowChanging" msprop:Generator_RowEvHandlerName="ExtendPropertyRowChangeEventHandler" msprop:Generator_RowDeletedName="ExtendPropertyRowDeleted" msprop:Generator_RowClassName="ExtendPropertyRow" msprop:Generator_UserTableName="ExtendProperty" msprop:Generator_RowEvArgName="ExtendPropertyRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="AddonID" msprop:nullValue="_null" msprop:Generator_ColumnPropNameInRow="AddonID" msprop:Generator_ColumnVarNameInTable="columnAddonID" msprop:Generator_ColumnPropNameInTable="AddonIDColumn" msprop:Generator_UserColumnName="AddonID" type="xs:string" default="null" />
+              <xs:element name="PropertyName" msprop:nullValue="_null" msprop:Generator_ColumnPropNameInRow="PropertyName" msprop:Generator_ColumnVarNameInTable="columnPropertyName" msprop:Generator_ColumnPropNameInTable="PropertyNameColumn" msprop:Generator_UserColumnName="PropertyName" type="xs:string" default="null" />
+              <xs:element name="PropertyValue" msprop:nullValue="_null" msprop:Generator_ColumnPropNameInRow="PropertyValue" msprop:Generator_ColumnVarNameInTable="columnPropertyValue" msprop:Generator_ColumnPropNameInTable="PropertyValueColumn" msprop:Generator_UserColumnName="PropertyValue" type="xs:string" default="null" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:ExtendProperty" />
+      <xs:field xpath="mstns:AddonID" />
+      <xs:field xpath="mstns:PropertyName" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

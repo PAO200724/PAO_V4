@@ -7,6 +7,8 @@ using System.Text;
 using System.Linq;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
+using static PAO.DataSetExtendProperty;
+using PAO.IO.Text;
 
 namespace PAO.Config.Controls.EditControls
 {
@@ -21,47 +23,50 @@ namespace PAO.Config.Controls.EditControls
         }
 
         /// <summary>
-        /// 插件扩展
+        /// 扩展属性表
         /// </summary>
-        private AddonExtention AddonExtention;
+        ExtendPropertyDataTable _ExtendPropertyDataTable;
         private List<AddonPropertyInfo> AddonPropertyList;
+        /// <summary>
+        /// 原始对象
+        /// </summary>
         private PaoObject _OriginAddon;
 
         public PaoObject OriginAddon {
-            get {
-                return _OriginAddon;
-            }
-
-            set {
-                _OriginAddon = value;
+            get { return _OriginAddon; }
+            set { _OriginAddon = value;
+                SetDataToControl();
             }
         }
 
+
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public override object SelectedObject {
             get {
-                SetData();
-                return AddonExtention; 
+                GetDataFromControl();
+                return _ExtendPropertyDataTable; 
             }
 
             set {
                 if(value == null) {
-                    AddonExtention = new AddonExtention();
-                } else if(!(value is AddonExtention)) {
-                    throw new Exception("AddonExtentionEditControl只能编辑类型为AddonExtention的对象");
+                    _ExtendPropertyDataTable = null;
+                } else if(!(value is ExtendPropertyDataTable)) {
+                    throw new Exception("AddonExtentionEditControl只能编辑类型为ExtendPropertyDataTable的对象");
                 } else {
-                    AddonExtention = value as AddonExtention;
+                    _ExtendPropertyDataTable = value as ExtendPropertyDataTable;
                 }
-                GetData();
+                SetDataToControl();
             }
         }
 
         /// <summary>
         /// 用数据生成画面
         /// </summary>
-        private void GetData() {
-            AddonPropertyList = new List<EditControls.AddonPropertyInfo>();
-            if(_OriginAddon != null) {
-                var properties = TypeDescriptor.GetProperties(_OriginAddon.GetType());
+        public void SetDataToControl() {
+            if(OriginAddon != null) {
+                AddonPropertyList = new List<EditControls.AddonPropertyInfo>();
+                var properties = TypeDescriptor.GetProperties(OriginAddon.GetType());
                 foreach(PropertyDescriptor propDesc in properties) {
                     if(propDesc.Attributes.GetAttribute<AddonPropertyAttribute>() != null) {
                         var displayName = propDesc.DisplayName;
@@ -70,26 +75,26 @@ namespace PAO.Config.Controls.EditControls
                             Checked = false,
                             DisplayName = displayName,
                             Property = propDesc,
-                            OriginValue = propDesc.GetValue(_OriginAddon)
+                            OriginValue = propDesc.GetValue(OriginAddon)
                         };
                         AddonPropertyList.Add(propertyInfo);
                     }
                 }
-            }
 
-            if(AddonExtention.ExtendProperties == null)
-                AddonExtention.ExtendProperties = new Dictionary<string, object>();
-            foreach (var kv in AddonExtention.ExtendProperties) {
-                var propInfo = AddonPropertyList.Where(p => p.Property.Name == kv.Key).FirstOrDefault();
-                if(propInfo != null) {
-                    propInfo.Checked = true;
-                    propInfo.PropertyValue = kv.Value;
+                if (_ExtendPropertyDataTable != null) {
+                    var extendPropertyRows = _ExtendPropertyDataTable.AsEnumerable<ExtendPropertyRow>().Where(p => p.AddonID == OriginAddon.ID);
+                    foreach(var extendPropertyRow in extendPropertyRows) {
+                        var propInfo = AddonPropertyList.Where(p => p.Property.Name == extendPropertyRow.PropertyName).FirstOrDefault();
+                        if (propInfo != null) {
+                            propInfo.Checked = true;
+                            propInfo.PropertyValue = TextPublic.TextToObject(extendPropertyRow.PropertyValue);
+                        }
+                    }
                 }
-            }
-
-            if(AddonPropertyList.IsNotNullOrEmpty()) {
                 this.BindingSourceAddonPropertyInfo.DataSource = AddonPropertyList;
-            } else {
+            }
+            else {
+                AddonPropertyList = null;
                 this.BindingSourceAddonPropertyInfo.DataSource = null;
             }
         }
@@ -97,32 +102,26 @@ namespace PAO.Config.Controls.EditControls
         /// <summary>
         /// 将数据从画面读取
         /// </summary>
-        private void SetData() {
-            this.GridViewAddonExtention.CloseEditor();
-            if (AddonExtention == null) {
-                if(_OriginAddon == null)
-                    return;
-                AddonExtention = new AddonExtention() { ID = _OriginAddon.ID };
-            }
-            AddonExtention.ExtendProperties = new Dictionary<string, object>();
-            if (AddonPropertyList.IsNotNullOrEmpty()) {
-                foreach(var propInfo in AddonPropertyList.Where(p=>p.Checked)) {
-                    AddonExtention.ExtendProperties.Add(propInfo.Property.Name
-                        , propInfo.PropertyValue ?? propInfo.OriginValue);
+        public void GetDataFromControl() {
+            if (OriginAddon != null) {
+                this.GridViewAddonExtention.CloseEditor();
+                var extendPropertyRows = _ExtendPropertyDataTable.AsEnumerable<ExtendPropertyRow>().Where(p => p.AddonID == OriginAddon.ID).ToList();
+                foreach (var extendPropertyRow in extendPropertyRows) {
+                    extendPropertyRow.Delete();
                 }
+                if (AddonPropertyList.IsNotNullOrEmpty()) {
+                    foreach (var propInfo in AddonPropertyList.Where(p => p.Checked)) {
+                        var newRow = _ExtendPropertyDataTable.AddExtendPropertyRow(OriginAddon.ID
+                            , propInfo.Property.Name
+                            , TextPublic.ObjectToText(propInfo.PropertyValue??propInfo.OriginValue));
+                    }
+                }
+                _ExtendPropertyDataTable.AcceptChanges();
             }
         }
 
         private void GridViewAddonExtention_RowUpdated(object sender, DevExpress.XtraGrid.Views.Base.RowObjectEventArgs e) {
             ModifyData();
-        }
-
-        private void ButtonExport_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            ExportSelectedObject();
-        }
-
-        private void ButtonImport_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            ImportSelectedObject();
         }
     }
 }
