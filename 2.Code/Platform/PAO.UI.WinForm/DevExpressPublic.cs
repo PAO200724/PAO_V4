@@ -36,38 +36,5 @@ namespace PAO.UI.WinForm
         }
         #endregion
 
-        #region WaitingForm
-        
-        public static void CloseWaitingForm() {
-            SplashScreenManager.CloseForm(false);
-        }
-
-        public static void ShowSplashScreen() {
-            CloseWaitingForm();
-            SplashScreenManager.ShowForm(typeof(PaoSplashScreen));
-        }
-
-        public static void ShowWaitingForm() {
-            CloseWaitingForm();
-            SplashScreenManager.ShowForm(typeof(PaoWaitForm));
-        }
-
-        /// <summary>
-        /// 等待
-        /// </summary>
-        /// <param name="action">动作</param>
-        /// <param name="waitingCursor">等待鼠标</param>
-        public static void Waiting(Action action, bool waitingCursor = true) {
-            ShowWaitingForm();
-            if (waitingCursor)
-                Cursor.Current = Cursors.WaitCursor;
-            try {
-                action();
-            } finally {
-                CloseWaitingForm();
-                Cursor.Current = Cursors.Arrow;
-            }
-        }
-        #endregion
     }
 }

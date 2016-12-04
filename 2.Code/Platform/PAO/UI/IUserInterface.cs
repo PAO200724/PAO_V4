@@ -54,6 +54,16 @@ namespace PAO.UI
         /// <param name="applyButton">应用按钮</param>
         /// <returns></returns>
         DialogResult ShowDialog(Control childControl);
+
+        /// <summary>
+        /// 显示等待窗体
+        /// </summary>
+        void ShowWaitingForm();
+
+        /// <summary>
+        /// 关闭等待窗体
+        /// </summary>
+        void CloseWaitingForm();
         #endregion
     }
 }

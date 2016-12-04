@@ -28,8 +28,11 @@ namespace PAO.UI.WinForm.Controls
         /// </summary>
         private void InitializeComponent() {
             this.LayoutControl = new DevExpress.XtraLayout.LayoutControl();
+            this.SplitContainerControlAsset = new DevExpress.XtraEditors.SplitContainerControl();
             this.TreeListSnapShot = new DevExpress.XtraTreeList.TreeList();
-            this.ColumnAsset = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.ColumnName = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.ColumnAddon = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.PropertyGridControl = new DevExpress.XtraVerticalGrid.PropertyGridControl();
             this.ImageControl = new PAO.UI.WinForm.Controls.ImageControl();
             this.TextEditSource = new DevExpress.XtraEditors.TextEdit();
             this.GridControlData = new DevExpress.XtraGrid.GridControl();
@@ -57,7 +60,10 @@ namespace PAO.UI.WinForm.Controls
             this.LayoutControlItemPicture = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.LayoutControl)).BeginInit();
             this.LayoutControl.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SplitContainerControlAsset)).BeginInit();
+            this.SplitContainerControlAsset.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TreeListSnapShot)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PropertyGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextEditSource.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridControlData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewData)).BeginInit();
@@ -84,7 +90,7 @@ namespace PAO.UI.WinForm.Controls
             // 
             // LayoutControl
             // 
-            this.LayoutControl.Controls.Add(this.TreeListSnapShot);
+            this.LayoutControl.Controls.Add(this.SplitContainerControlAsset);
             this.LayoutControl.Controls.Add(this.ImageControl);
             this.LayoutControl.Controls.Add(this.TextEditSource);
             this.LayoutControl.Controls.Add(this.GridControlData);
@@ -99,15 +105,30 @@ namespace PAO.UI.WinForm.Controls
             this.LayoutControl.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(606, 161, 250, 350);
             this.LayoutControl.OptionsView.IsReadOnly = DevExpress.Utils.DefaultBoolean.True;
             this.LayoutControl.Root = this.RootGroup;
-            this.LayoutControl.Size = new System.Drawing.Size(855, 602);
+            this.LayoutControl.Size = new System.Drawing.Size(1051, 758);
             this.LayoutControl.TabIndex = 0;
             this.LayoutControl.Text = "LayoutControl";
+            // 
+            // SplitContainerControlAsset
+            // 
+            this.SplitContainerControlAsset.Location = new System.Drawing.Point(76, 14);
+            this.SplitContainerControlAsset.Name = "SplitContainerControlAsset";
+            this.SplitContainerControlAsset.Panel1.Controls.Add(this.TreeListSnapShot);
+            this.SplitContainerControlAsset.Panel1.Text = "Panel1";
+            this.SplitContainerControlAsset.Panel2.Controls.Add(this.PropertyGridControl);
+            this.SplitContainerControlAsset.Panel2.Text = "Panel2";
+            this.SplitContainerControlAsset.Size = new System.Drawing.Size(961, 730);
+            this.SplitContainerControlAsset.SplitterPosition = 594;
+            this.SplitContainerControlAsset.TabIndex = 14;
+            this.SplitContainerControlAsset.Text = "splitContainerControl1";
             // 
             // TreeListSnapShot
             // 
             this.TreeListSnapShot.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
-            this.ColumnAsset});
-            this.TreeListSnapShot.Location = new System.Drawing.Point(76, 14);
+            this.ColumnName,
+            this.ColumnAddon});
+            this.TreeListSnapShot.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TreeListSnapShot.Location = new System.Drawing.Point(0, 0);
             this.TreeListSnapShot.Name = "TreeListSnapShot";
             this.TreeListSnapShot.OptionsBehavior.EnableFiltering = true;
             this.TreeListSnapShot.OptionsBehavior.ReadOnly = true;
@@ -117,16 +138,32 @@ namespace PAO.UI.WinForm.Controls
             this.TreeListSnapShot.OptionsFind.AlwaysVisible = true;
             this.TreeListSnapShot.OptionsFind.FindNullPrompt = "输入文字查找...";
             this.TreeListSnapShot.OptionsView.ShowAutoFilterRow = true;
-            this.TreeListSnapShot.Size = new System.Drawing.Size(765, 574);
-            this.TreeListSnapShot.TabIndex = 13;
+            this.TreeListSnapShot.Size = new System.Drawing.Size(594, 730);
+            this.TreeListSnapShot.TabIndex = 14;
+            this.TreeListSnapShot.FocusedNodeChanged += new DevExpress.XtraTreeList.FocusedNodeChangedEventHandler(this.TreeListSnapShot_FocusedNodeChanged);
             // 
-            // ColumnAsset
+            // ColumnName
             // 
-            this.ColumnAsset.Caption = "资产";
-            this.ColumnAsset.FieldName = "AssetString";
-            this.ColumnAsset.Name = "ColumnAsset";
-            this.ColumnAsset.Visible = true;
-            this.ColumnAsset.VisibleIndex = 0;
+            this.ColumnName.Caption = "资产";
+            this.ColumnName.FieldName = "Name";
+            this.ColumnName.Name = "ColumnName";
+            this.ColumnName.Visible = true;
+            this.ColumnName.VisibleIndex = 0;
+            // 
+            // ColumnAddon
+            // 
+            this.ColumnAddon.Caption = "插件";
+            this.ColumnAddon.FieldName = "Addon";
+            this.ColumnAddon.Name = "ColumnAddon";
+            // 
+            // PropertyGridControl
+            // 
+            this.PropertyGridControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PropertyGridControl.Location = new System.Drawing.Point(0, 0);
+            this.PropertyGridControl.Name = "PropertyGridControl";
+            this.PropertyGridControl.OptionsBehavior.Editable = false;
+            this.PropertyGridControl.Size = new System.Drawing.Size(361, 730);
+            this.PropertyGridControl.TabIndex = 0;
             // 
             // ImageControl
             // 
@@ -138,7 +175,7 @@ namespace PAO.UI.WinForm.Controls
             this.ImageControl.ReadOnly = true;
             this.ImageControl.ShowApplyButton = false;
             this.ImageControl.ShowCancelButton = true;
-            this.ImageControl.Size = new System.Drawing.Size(765, 574);
+            this.ImageControl.Size = new System.Drawing.Size(961, 730);
             this.ImageControl.TabIndex = 12;
             // 
             // TextEditSource
@@ -146,7 +183,7 @@ namespace PAO.UI.WinForm.Controls
             this.TextEditSource.Location = new System.Drawing.Point(115, 14);
             this.TextEditSource.Name = "TextEditSource";
             this.TextEditSource.Properties.ReadOnly = true;
-            this.TextEditSource.Size = new System.Drawing.Size(343, 20);
+            this.TextEditSource.Size = new System.Drawing.Size(441, 20);
             this.TextEditSource.StyleController = this.LayoutControl;
             this.TextEditSource.TabIndex = 11;
             // 
@@ -155,7 +192,7 @@ namespace PAO.UI.WinForm.Controls
             this.GridControlData.Location = new System.Drawing.Point(76, 14);
             this.GridControlData.MainView = this.GridViewData;
             this.GridControlData.Name = "GridControlData";
-            this.GridControlData.Size = new System.Drawing.Size(765, 574);
+            this.GridControlData.Size = new System.Drawing.Size(961, 730);
             this.GridControlData.TabIndex = 10;
             this.GridControlData.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.GridViewData});
@@ -191,7 +228,7 @@ namespace PAO.UI.WinForm.Controls
             this.MemoEditDetail.Location = new System.Drawing.Point(79, 108);
             this.MemoEditDetail.Name = "MemoEditDetail";
             this.MemoEditDetail.Properties.ReadOnly = true;
-            this.MemoEditDetail.Size = new System.Drawing.Size(759, 477);
+            this.MemoEditDetail.Size = new System.Drawing.Size(955, 633);
             this.MemoEditDetail.StyleController = this.LayoutControl;
             this.MemoEditDetail.TabIndex = 7;
             // 
@@ -200,16 +237,16 @@ namespace PAO.UI.WinForm.Controls
             this.TextEditType.Location = new System.Drawing.Point(115, 38);
             this.TextEditType.Name = "TextEditType";
             this.TextEditType.Properties.ReadOnly = true;
-            this.TextEditType.Size = new System.Drawing.Size(726, 20);
+            this.TextEditType.Size = new System.Drawing.Size(922, 20);
             this.TextEditType.StyleController = this.LayoutControl;
             this.TextEditType.TabIndex = 6;
             // 
             // TextEditTime
             // 
-            this.TextEditTime.Location = new System.Drawing.Point(501, 14);
+            this.TextEditTime.Location = new System.Drawing.Point(599, 14);
             this.TextEditTime.Name = "TextEditTime";
             this.TextEditTime.Properties.ReadOnly = true;
-            this.TextEditTime.Size = new System.Drawing.Size(340, 20);
+            this.TextEditTime.Size = new System.Drawing.Size(438, 20);
             this.TextEditTime.StyleController = this.LayoutControl;
             this.TextEditTime.TabIndex = 5;
             // 
@@ -218,7 +255,7 @@ namespace PAO.UI.WinForm.Controls
             this.TextEditMessage.Location = new System.Drawing.Point(115, 62);
             this.TextEditMessage.Name = "TextEditMessage";
             this.TextEditMessage.Properties.ReadOnly = true;
-            this.TextEditMessage.Size = new System.Drawing.Size(726, 20);
+            this.TextEditMessage.Size = new System.Drawing.Size(922, 20);
             this.TextEditMessage.StyleController = this.LayoutControl;
             this.TextEditMessage.TabIndex = 4;
             // 
@@ -231,7 +268,7 @@ namespace PAO.UI.WinForm.Controls
             this.RootGroup.Location = new System.Drawing.Point(0, 0);
             this.RootGroup.Name = "Root";
             this.RootGroup.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-            this.RootGroup.Size = new System.Drawing.Size(855, 602);
+            this.RootGroup.Size = new System.Drawing.Size(1051, 758);
             this.RootGroup.TextVisible = false;
             // 
             // TabbedControlGroup
@@ -239,9 +276,9 @@ namespace PAO.UI.WinForm.Controls
             this.TabbedControlGroup.HeaderOrientation = DevExpress.XtraTab.TabOrientation.Horizontal;
             this.TabbedControlGroup.Location = new System.Drawing.Point(0, 0);
             this.TabbedControlGroup.Name = "TabbedControlGroup";
-            this.TabbedControlGroup.SelectedTabPage = this.LayoutControlGroupAssetSnapshot;
-            this.TabbedControlGroup.SelectedTabPageIndex = 3;
-            this.TabbedControlGroup.Size = new System.Drawing.Size(855, 602);
+            this.TabbedControlGroup.SelectedTabPage = this.LayoutControlGroupCommon;
+            this.TabbedControlGroup.SelectedTabPageIndex = 0;
+            this.TabbedControlGroup.Size = new System.Drawing.Size(1051, 758);
             this.TabbedControlGroup.TabPages.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.LayoutControlGroupCommon,
             this.LayoutControlGroupData,
@@ -255,15 +292,15 @@ namespace PAO.UI.WinForm.Controls
             this.LayoutControlItemSnapShot});
             this.LayoutControlGroupAssetSnapshot.Location = new System.Drawing.Point(0, 0);
             this.LayoutControlGroupAssetSnapshot.Name = "LayoutControlGroupAssetSnapshot";
-            this.LayoutControlGroupAssetSnapshot.Size = new System.Drawing.Size(769, 578);
+            this.LayoutControlGroupAssetSnapshot.Size = new System.Drawing.Size(965, 734);
             this.LayoutControlGroupAssetSnapshot.Text = "资产快照";
             // 
             // LayoutControlItemSnapShot
             // 
-            this.LayoutControlItemSnapShot.Control = this.TreeListSnapShot;
+            this.LayoutControlItemSnapShot.Control = this.SplitContainerControlAsset;
             this.LayoutControlItemSnapShot.Location = new System.Drawing.Point(0, 0);
             this.LayoutControlItemSnapShot.Name = "LayoutControlItemSnapShot";
-            this.LayoutControlItemSnapShot.Size = new System.Drawing.Size(769, 578);
+            this.LayoutControlItemSnapShot.Size = new System.Drawing.Size(965, 734);
             this.LayoutControlItemSnapShot.Text = "资产快照";
             this.LayoutControlItemSnapShot.TextSize = new System.Drawing.Size(0, 0);
             this.LayoutControlItemSnapShot.TextVisible = false;
@@ -278,15 +315,15 @@ namespace PAO.UI.WinForm.Controls
             this.LayoutControlItemSource});
             this.LayoutControlGroupCommon.Location = new System.Drawing.Point(0, 0);
             this.LayoutControlGroupCommon.Name = "LayoutControlGroupCommon";
-            this.LayoutControlGroupCommon.Size = new System.Drawing.Size(769, 578);
+            this.LayoutControlGroupCommon.Size = new System.Drawing.Size(965, 734);
             this.LayoutControlGroupCommon.Text = "事件信息";
             // 
             // LayoutControlItemTime
             // 
             this.LayoutControlItemTime.Control = this.TextEditTime;
-            this.LayoutControlItemTime.Location = new System.Drawing.Point(386, 0);
+            this.LayoutControlItemTime.Location = new System.Drawing.Point(484, 0);
             this.LayoutControlItemTime.Name = "LayoutControlItemTime";
-            this.LayoutControlItemTime.Size = new System.Drawing.Size(383, 24);
+            this.LayoutControlItemTime.Size = new System.Drawing.Size(481, 24);
             this.LayoutControlItemTime.Text = "时间：";
             this.LayoutControlItemTime.TextSize = new System.Drawing.Size(36, 14);
             // 
@@ -295,7 +332,7 @@ namespace PAO.UI.WinForm.Controls
             this.LayoutControlItemMessage.Control = this.TextEditMessage;
             this.LayoutControlItemMessage.Location = new System.Drawing.Point(0, 48);
             this.LayoutControlItemMessage.Name = "LayoutControlItemMessage";
-            this.LayoutControlItemMessage.Size = new System.Drawing.Size(769, 24);
+            this.LayoutControlItemMessage.Size = new System.Drawing.Size(965, 24);
             this.LayoutControlItemMessage.Text = "消息：";
             this.LayoutControlItemMessage.TextSize = new System.Drawing.Size(36, 14);
             // 
@@ -304,7 +341,7 @@ namespace PAO.UI.WinForm.Controls
             this.LayoutControlItemType.Control = this.TextEditType;
             this.LayoutControlItemType.Location = new System.Drawing.Point(0, 24);
             this.LayoutControlItemType.Name = "LayoutControlItemType";
-            this.LayoutControlItemType.Size = new System.Drawing.Size(769, 24);
+            this.LayoutControlItemType.Size = new System.Drawing.Size(965, 24);
             this.LayoutControlItemType.Text = "类型：";
             this.LayoutControlItemType.TextSize = new System.Drawing.Size(36, 14);
             // 
@@ -315,7 +352,7 @@ namespace PAO.UI.WinForm.Controls
             this.LayoutControlGroupDetail.Location = new System.Drawing.Point(0, 72);
             this.LayoutControlGroupDetail.Name = "LayoutControlGroupDetail";
             this.LayoutControlGroupDetail.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-            this.LayoutControlGroupDetail.Size = new System.Drawing.Size(769, 506);
+            this.LayoutControlGroupDetail.Size = new System.Drawing.Size(965, 662);
             this.LayoutControlGroupDetail.Text = "详细信息";
             // 
             // LayoutControlItemDetail
@@ -323,7 +360,7 @@ namespace PAO.UI.WinForm.Controls
             this.LayoutControlItemDetail.Control = this.MemoEditDetail;
             this.LayoutControlItemDetail.Location = new System.Drawing.Point(0, 0);
             this.LayoutControlItemDetail.Name = "LayoutControlItemDetail";
-            this.LayoutControlItemDetail.Size = new System.Drawing.Size(763, 481);
+            this.LayoutControlItemDetail.Size = new System.Drawing.Size(959, 637);
             this.LayoutControlItemDetail.Text = "详细信息";
             this.LayoutControlItemDetail.TextLocation = DevExpress.Utils.Locations.Top;
             this.LayoutControlItemDetail.TextSize = new System.Drawing.Size(0, 0);
@@ -334,7 +371,7 @@ namespace PAO.UI.WinForm.Controls
             this.LayoutControlItemSource.Control = this.TextEditSource;
             this.LayoutControlItemSource.Location = new System.Drawing.Point(0, 0);
             this.LayoutControlItemSource.Name = "LayoutControlItemSource";
-            this.LayoutControlItemSource.Size = new System.Drawing.Size(386, 24);
+            this.LayoutControlItemSource.Size = new System.Drawing.Size(484, 24);
             this.LayoutControlItemSource.Text = "源：";
             this.LayoutControlItemSource.TextSize = new System.Drawing.Size(36, 14);
             // 
@@ -344,7 +381,7 @@ namespace PAO.UI.WinForm.Controls
             this.LayoutControlItemData});
             this.LayoutControlGroupData.Location = new System.Drawing.Point(0, 0);
             this.LayoutControlGroupData.Name = "LayoutControlGroupData";
-            this.LayoutControlGroupData.Size = new System.Drawing.Size(769, 578);
+            this.LayoutControlGroupData.Size = new System.Drawing.Size(965, 734);
             this.LayoutControlGroupData.Text = "扩展数据";
             // 
             // LayoutControlItemData
@@ -352,7 +389,7 @@ namespace PAO.UI.WinForm.Controls
             this.LayoutControlItemData.Control = this.GridControlData;
             this.LayoutControlItemData.Location = new System.Drawing.Point(0, 0);
             this.LayoutControlItemData.Name = "LayoutControlItemData";
-            this.LayoutControlItemData.Size = new System.Drawing.Size(769, 578);
+            this.LayoutControlItemData.Size = new System.Drawing.Size(965, 734);
             this.LayoutControlItemData.Text = "消息数据";
             this.LayoutControlItemData.TextLocation = DevExpress.Utils.Locations.Top;
             this.LayoutControlItemData.TextSize = new System.Drawing.Size(0, 0);
@@ -364,7 +401,7 @@ namespace PAO.UI.WinForm.Controls
             this.LayoutControlItemPicture});
             this.LayoutControlGroupScreenShot.Location = new System.Drawing.Point(0, 0);
             this.LayoutControlGroupScreenShot.Name = "LayoutControlGroupScreenShot";
-            this.LayoutControlGroupScreenShot.Size = new System.Drawing.Size(769, 578);
+            this.LayoutControlGroupScreenShot.Size = new System.Drawing.Size(965, 734);
             this.LayoutControlGroupScreenShot.Text = "屏幕截图";
             // 
             // LayoutControlItemPicture
@@ -372,7 +409,7 @@ namespace PAO.UI.WinForm.Controls
             this.LayoutControlItemPicture.Control = this.ImageControl;
             this.LayoutControlItemPicture.Location = new System.Drawing.Point(0, 0);
             this.LayoutControlItemPicture.Name = "LayoutControlItemPicture";
-            this.LayoutControlItemPicture.Size = new System.Drawing.Size(769, 578);
+            this.LayoutControlItemPicture.Size = new System.Drawing.Size(965, 734);
             this.LayoutControlItemPicture.Text = "屏幕截图";
             this.LayoutControlItemPicture.TextSize = new System.Drawing.Size(0, 0);
             this.LayoutControlItemPicture.TextVisible = false;
@@ -383,10 +420,13 @@ namespace PAO.UI.WinForm.Controls
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.LayoutControl);
             this.Name = "EventControl";
-            this.Size = new System.Drawing.Size(855, 602);
+            this.Size = new System.Drawing.Size(1051, 758);
             ((System.ComponentModel.ISupportInitialize)(this.LayoutControl)).EndInit();
             this.LayoutControl.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.SplitContainerControlAsset)).EndInit();
+            this.SplitContainerControlAsset.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.TreeListSnapShot)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PropertyGridControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextEditSource.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridControlData)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewData)).EndInit();
@@ -440,8 +480,11 @@ namespace PAO.UI.WinForm.Controls
         private DevExpress.XtraLayout.LayoutControlItem LayoutControlItemSource;
         private ImageControl ImageControl;
         private DevExpress.XtraLayout.LayoutControlItem LayoutControlItemPicture;
+        private DevExpress.XtraEditors.SplitContainerControl SplitContainerControlAsset;
         private DevExpress.XtraTreeList.TreeList TreeListSnapShot;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn ColumnName;
+        private DevExpress.XtraVerticalGrid.PropertyGridControl PropertyGridControl;
         private DevExpress.XtraLayout.LayoutControlItem LayoutControlItemSnapShot;
-        private DevExpress.XtraTreeList.Columns.TreeListColumn ColumnAsset;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn ColumnAddon;
     }
 }

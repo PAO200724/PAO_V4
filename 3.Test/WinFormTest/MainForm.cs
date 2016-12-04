@@ -31,7 +31,7 @@ namespace WinFormTest
 
         private void ButtonTestInformation_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             EventControl eventControl = null;
-            DevExpressPublic.Waiting(() =>
+            UIPublic.Waiting(() =>
             {
                 var eventInfo = new EventInfo(EventInfo.EventType_Information
                     , "这是测试消息"
@@ -46,47 +46,47 @@ namespace WinFormTest
         }
 
         private void ButtonTestException_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            DevExpressPublic.ShowWaitingForm();
+            UIPublic.ShowWaitingForm();
             var eventInfo = new ExceptionEventInfo(new Exception("这是测试消息")
                 , true
                 , true).AddEventData("测试", "测试");
             var eventControl = new EventControl();
             eventControl.Initialize(eventInfo);
-            DevExpressPublic.CloseWaitingForm();
+            UIPublic.CloseWaitingForm();
             UIPublic.ShowDialog(eventControl);
         }
 
         private void ButtonConfigTools_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            DevExpressPublic.ShowWaitingForm();
+            UIPublic.ShowWaitingForm();
             var objectTreeControl = new ObjectTreeEditControl();
             objectTreeControl.SelectedObject = PaoApplication.Default;
-            DevExpressPublic.CloseWaitingForm();
+            UIPublic.CloseWaitingForm();
             UIPublic.ShowDialog(objectTreeControl);
         }
 
         private void ButtonAddonSelect_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            DevExpressPublic.ShowWaitingForm();
+            UIPublic.ShowWaitingForm();
             var typeSelectControl = new TypeSelectControl();
             typeSelectControl.Initialize(p=>
             {
                 return p.IsDerivedFrom<IDataFilter>();
             });
-            DevExpressPublic.CloseWaitingForm();
+            UIPublic.CloseWaitingForm();
             UIPublic.ShowDialog(typeSelectControl);
         }
 
         private void ButtonCallRemote_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            DevExpressPublic.ShowWaitingForm();
+            UIPublic.ShowWaitingForm();
             var testService = new TcpRemoteFactory<ITestService>() {
                 ServerAddress = "localhost:7990",
                 ServiceName = "TestService"
             }.Value;
-            DevExpressPublic.CloseWaitingForm();
+            UIPublic.CloseWaitingForm();
             UIPublic.ShowInfomationDialog(testService.GetString("Hello world!"));
         }
 
         private void ButtonRemoteException_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            DevExpressPublic.ShowWaitingForm();
+            UIPublic.ShowWaitingForm();
             try {
                 var testService = new TcpRemoteFactory<ITestService>()
                 {
@@ -95,7 +95,7 @@ namespace WinFormTest
                 }.Value;
                 testService.GetString("Exception");
             } catch (Exception err) {
-                DevExpressPublic.CloseWaitingForm();
+                UIPublic.CloseWaitingForm();
                 UIPublic.ShowEventDialog(new ExceptionEventInfo(err, true, true));
             }
         }

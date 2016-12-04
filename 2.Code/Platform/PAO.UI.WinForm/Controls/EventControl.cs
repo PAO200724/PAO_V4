@@ -75,7 +75,7 @@ namespace PAO.UI.WinForm.Controls
         /// <param name="node">节点</param>
         /// <param name="obj">对象</param>
         public static void CreateTreeNode(TreeListNodes nodes, object obj) {
-            var objNode = nodes.Add(GetObjectString(obj), "");
+            var objNode = nodes.Add(GetObjectString(obj), obj);
             // 创建属性
             CreateChildNodesByObject(objNode, obj, null);
             objNode.Expanded = true;
@@ -146,7 +146,7 @@ namespace PAO.UI.WinForm.Controls
             else {
                 throw new Exception("此类型的属性不支持增加元素节点").AddExceptionData("属性类型", parentPropDesc.PropertyType);
             }
-            var elementNode = parentNode.Nodes.Add(elementString,"");
+            var elementNode = parentNode.Nodes.Add(elementString, value);
             CreateChildNodesByObject(elementNode, value, null);
             return elementNode;
         }
@@ -163,7 +163,7 @@ namespace PAO.UI.WinForm.Controls
             var nodeString = String.Format("[{0}] {1}"
                 , displayAttribute == null ? propDesc.Name : displayAttribute.DisplayName
                 , GetObjectString(propVal));
-            var propNode = parentNode.Nodes.Add(nodeString, "");
+            var propNode = parentNode.Nodes.Add(nodeString, propVal);
             CreateChildNodesByObject(propNode, propVal, propDesc);
             return propNode;
         }
@@ -188,6 +188,14 @@ namespace PAO.UI.WinForm.Controls
             else
                 objString = obj.ToString();
             return objString;
+        }
+
+        private void TreeListSnapShot_FocusedNodeChanged(object sender, DevExpress.XtraTreeList.FocusedNodeChangedEventArgs e) {
+            if(this.TreeListSnapShot.FocusedNode == null) {
+                this.PropertyGridControl.SelectedObject = null;
+            } else {
+                this.PropertyGridControl.SelectedObject = this.TreeListSnapShot.FocusedNode.GetValue(ColumnAddon);
+            }
         }
     }
 }

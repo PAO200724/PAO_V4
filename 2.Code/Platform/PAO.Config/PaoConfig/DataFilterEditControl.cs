@@ -11,6 +11,7 @@ using PAO.Config.Controls.EditControls;
 using PAO.Data.Filters;
 using PAO.Data;
 using PAO.Config.Editors;
+using DevExpress.XtraTreeList.Nodes;
 
 namespace PAO.Config.PaoConfig
 {
@@ -61,6 +62,17 @@ namespace PAO.Config.PaoConfig
             }
         }
 
+        private DataFilterInfo GetCurrentData() {
+            if (this.TreeListDataFilter.Nodes.Count == 0)
+                return null;
+            
+            var focusedNode = this.TreeListDataFilter.FocusedNode;
+            if (focusedNode == null)
+                focusedNode = this.TreeListDataFilter.Nodes[0];
+            
+            return this.TreeListDataFilter.GetDataRecordByNode(focusedNode) as DataFilterInfo;
+        }
+
         private static void InitByDataFilter(List<DataFilterInfo> filterInfoList, IDataFilter dataFilter, string parentID) {
             if (dataFilter == null)
                 return;
@@ -93,7 +105,8 @@ namespace PAO.Config.PaoConfig
 
         private IDataFilter AddDataFilter(Type filterType, int imageIndex) {
             var dataFilter = filterType.CreateInstance() as IDataFilter;
-            if (this.BindingSourceDataFilter.Count == 0) {
+            var dataFilterInfo = GetCurrentData();
+            if (dataFilterInfo == null) {
                 RootDataFilter = dataFilter;
                 FilterInfoList.Add(new DataFilterInfo()
                 {
@@ -103,7 +116,7 @@ namespace PAO.Config.PaoConfig
                 });
             }
             else {
-                var currentFilter = this.BindingSourceDataFilter.Current.As<DataFilterInfo>().DataFilter as CompositeLogicFilter;
+                var currentFilter = dataFilterInfo.DataFilter as CompositeLogicFilter;
                 FilterInfoList.Add(new DataFilterInfo()
                 {
                     ParentID = currentFilter.ID,
@@ -135,15 +148,16 @@ namespace PAO.Config.PaoConfig
             this.ButtonAnd.Enabled = true;
             this.ButtonOr.Enabled = true;
             this.ButtonSql.Enabled = true;
-            if (this.BindingSourceDataFilter.Current != null) {
-                var currentFilter = this.BindingSourceDataFilter.Current.As<DataFilterInfo>().DataFilter as IDataFilter;
+            var dataFilterInfo = GetCurrentData();
+            if (dataFilterInfo != null) {
+                var currentFilter = dataFilterInfo.DataFilter as IDataFilter;
                 if (currentFilter != null && currentFilter is SqlFilter) {
                     this.ButtonAnd.Enabled = false;
                     this.ButtonOr.Enabled = false;
                     this.ButtonSql.Enabled = false;
                 }
             }
-            this.ButtonDelete.Enabled = this.BindingSourceDataFilter.Current != null;
+            this.ButtonDelete.Enabled = this.BindingSourceDataFilter.Count > 0;
         }
 
         private void ButtonAnd_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
@@ -159,7 +173,7 @@ namespace PAO.Config.PaoConfig
         }
 
         private void ButtonDelete_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            var currentFilter = this.BindingSourceDataFilter.Current.As<DataFilterInfo>().DataFilter;
+            var currentFilter = GetCurrentData().DataFilter;
             if (currentFilter != null) {
                 DeleteFilter(currentFilter.ID);
                 ModifyData();
@@ -170,11 +184,13 @@ namespace PAO.Config.PaoConfig
         }
 
         private void TreeListDataFilter_FocusedNodeChanged(object sender, DevExpress.XtraTreeList.FocusedNodeChangedEventArgs e) {
+            this.TreeListDataFilter.FocusedNodeChanged -= TreeListDataFilter_FocusedNodeChanged;
             SetControlStatus();
+            this.TreeListDataFilter.FocusedNodeChanged += TreeListDataFilter_FocusedNodeChanged;
         }
-        
+
         private void TreeListDataFilter_GetNodeDisplayValue(object sender, DevExpress.XtraTreeList.GetNodeDisplayValueEventArgs e) {
-            var dataFilterInfo = this.TreeListDataFilter.GetDataRecordByNode(e.Node) as DataFilterInfo;
+            var dataFilterInfo = GetCurrentData();
             if (dataFilterInfo != null && dataFilterInfo.DataFilter is CompositeLogicFilter) {
                 if(e.Column != ColumnName) {
                     e.Value = null;
@@ -183,7 +199,7 @@ namespace PAO.Config.PaoConfig
         }
 
         private void TreeListDataFilter_ShowingEditor(object sender, CancelEventArgs e) {
-            var dataFilterInfo = this.TreeListDataFilter.GetDataRecordByNode(TreeListDataFilter.FocusedNode) as DataFilterInfo;
+            var dataFilterInfo = GetCurrentData();
             if (dataFilterInfo != null && dataFilterInfo.DataFilter is CompositeLogicFilter) {
                 e.Cancel = true;
             }

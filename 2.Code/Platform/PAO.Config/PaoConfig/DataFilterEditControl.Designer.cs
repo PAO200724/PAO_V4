@@ -25,9 +25,8 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DataFilterEditControl));
-            this.BarManager = new DevExpress.XtraBars.BarManager(this.components);
+            this.BarManager = new DevExpress.XtraBars.BarManager();
             this.BarTools = new DevExpress.XtraBars.Bar();
             this.ButtonAnd = new DevExpress.XtraBars.BarButtonItem();
             this.ButtonOr = new DevExpress.XtraBars.BarButtonItem();
@@ -43,8 +42,8 @@
             this.ColumnCaption = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.ColumnFilter = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.ColumnDataType = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.BindingSourceDataFilter = new System.Windows.Forms.BindingSource(this.components);
-            this.ImageCollectionDataFilter = new DevExpress.Utils.ImageCollection(this.components);
+            this.BindingSourceDataFilter = new System.Windows.Forms.BindingSource();
+            this.ImageCollectionDataFilter = new DevExpress.Utils.ImageCollection();
             ((System.ComponentModel.ISupportInitialize)(this.BarManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TreeListDataFilter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BindingSourceDataFilter)).BeginInit();
@@ -74,15 +73,16 @@
             this.BarTools.DockRow = 0;
             this.BarTools.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
             this.BarTools.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonAnd),
-            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonOr),
-            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonSql, true),
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.ButtonAnd, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.ButtonOr, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.ButtonSql, "", true, true, true, 0, null, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.ButtonDelete, "", true, true, true, 0, null, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph)});
             this.BarTools.Text = "工具条";
             // 
             // ButtonAnd
             // 
             this.ButtonAnd.Caption = "&AND";
+            this.ButtonAnd.Glyph = global::PAO.Config.Properties.Resources.arrow_merge;
             this.ButtonAnd.Id = 0;
             this.ButtonAnd.Name = "ButtonAnd";
             this.ButtonAnd.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonAnd_ItemClick);
@@ -90,6 +90,7 @@
             // ButtonOr
             // 
             this.ButtonOr.Caption = "&OR";
+            this.ButtonOr.Glyph = global::PAO.Config.Properties.Resources.arrow_branch;
             this.ButtonOr.Id = 1;
             this.ButtonOr.Name = "ButtonOr";
             this.ButtonOr.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonOr_ItemClick);
@@ -97,6 +98,7 @@
             // ButtonSql
             // 
             this.ButtonSql.Caption = "&SQL";
+            this.ButtonSql.Glyph = global::PAO.Config.Properties.Resources.text_align_justify;
             this.ButtonSql.Id = 2;
             this.ButtonSql.Name = "ButtonSql";
             this.ButtonSql.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonSql_ItemClick);
@@ -152,6 +154,7 @@
             this.TreeListDataFilter.OptionsBehavior.PopulateServiceColumns = true;
             this.TreeListDataFilter.OptionsClipboard.AllowCopy = DevExpress.Utils.DefaultBoolean.True;
             this.TreeListDataFilter.OptionsClipboard.CopyNodeHierarchy = DevExpress.Utils.DefaultBoolean.True;
+            this.TreeListDataFilter.SelectImageList = this.ImageCollectionDataFilter;
             this.TreeListDataFilter.Size = new System.Drawing.Size(792, 487);
             this.TreeListDataFilter.TabIndex = 4;
             this.TreeListDataFilter.GetNodeDisplayValue += new DevExpress.XtraTreeList.GetNodeDisplayValueEventHandler(this.TreeListDataFilter_GetNodeDisplayValue);
@@ -163,6 +166,7 @@
             // 
             this.ColumnName.Caption = "名称";
             this.ColumnName.FieldName = "Name";
+            this.ColumnName.MinWidth = 33;
             this.ColumnName.Name = "ColumnName";
             this.ColumnName.Visible = true;
             this.ColumnName.VisibleIndex = 0;
@@ -213,6 +217,9 @@
             // ImageCollectionDataFilter
             // 
             this.ImageCollectionDataFilter.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("ImageCollectionDataFilter.ImageStream")));
+            this.ImageCollectionDataFilter.Images.SetKeyName(0, "arrow_branch.png");
+            this.ImageCollectionDataFilter.Images.SetKeyName(1, "arrow_merge.png");
+            this.ImageCollectionDataFilter.Images.SetKeyName(2, "text_align_justify.png");
             // 
             // DataFilterEditControl
             // 

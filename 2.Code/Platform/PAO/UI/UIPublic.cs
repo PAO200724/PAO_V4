@@ -109,5 +109,36 @@ namespace PAO.UI
             return DefaultUserInterface.ShowDialog(childControl);
         }
         #endregion
+
+
+        #region WaitingForm
+
+        public static void CloseWaitingForm() {
+            DefaultUserInterface.CloseWaitingForm();
+        }
+
+        public static void ShowWaitingForm() {
+            CloseWaitingForm();
+            DefaultUserInterface.ShowWaitingForm();
+        }
+
+        /// <summary>
+        /// 等待
+        /// </summary>
+        /// <param name="action">动作</param>
+        /// <param name="waitingCursor">等待鼠标</param>
+        public static void Waiting(Action action, bool waitingCursor = true) {
+            ShowWaitingForm();
+            if (waitingCursor)
+                Cursor.Current = Cursors.WaitCursor;
+            try {
+                action();
+            }
+            finally {
+                CloseWaitingForm();
+                Cursor.Current = Cursors.Arrow;
+            }
+        }
+        #endregion
     }
 }
