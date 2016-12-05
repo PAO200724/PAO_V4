@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm11="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner" dslVersion="1.0.0.0" Id="93b03b80-971e-48cc-ab7d-278e3c2c4753" name="应用" linkedPackageId="60983863-d5aa-4612-8b4a-e0cad059fde0" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm11="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner" dslVersion="1.0.0.0" Id="93b03b80-971e-48cc-ab7d-278e3c2c4753" name="应用" linkedPackageId="60983863-d5aa-4612-8b4a-e0cad059fde0" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
   <packagedElements>
     <logicalClassDesignerModelHasTypes>
       <class Id="7bf87fdf-509d-4bb4-bbcf-9848b05e7618" name="PaoApplication" isAbstract="false" isLeaf="false" isActiveClass="false">
@@ -57,31 +57,37 @@
             </relationshipOwnedElementsInternal>
             <elementDefinition Id="2f61d3de-5bd8-48b9-931b-05333d7e9576" />
           </association>
-          <association Id="dee28b99-e9f3-4634-8082-c1232b2d745d" isDerived="false" sourceEndRoleName="" targetEndRoleName="ServiceList" isLeaf="false" isAbstract="false">
-            <classMoniker Id="4da5f053-a043-48da-995c-1fc67312028b" LastKnownName="Object" />
+          <association Id="0067af97-ae7c-4953-92b9-a1503101396b" isDerived="false" sourceEndRoleName="" targetEndRoleName="ExtendServers" isLeaf="false" isAbstract="false">
+            <classMoniker Id="7c83a5e1-4253-4a18-82f6-d3be8a29bf4e" LastKnownName="BaseServer" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
-                <memberEnd Id="da18a03e-fe8b-4d8a-b4fe-079fcbd1d2e1" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Shared" isComposite="false" isNavigableOwned="false">
-                  <elementDefinition Id="9b71a19d-e0dc-412a-a44b-4db4befe09e9" />
+                <memberEnd Id="0c124a0e-ff83-4fc5-bf58-129ed18253ff" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Shared" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="f7427857-4221-4d72-9868-43e266512cf0" />
                 </memberEnd>
               </associationHasOwnedEnds>
               <associationHasOwnedEnds>
-                <memberEnd Id="c18c27a6-1b7d-4057-9282-c2c9f959b528" name="ServiceList" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
-                  <lowerValueInternal>
-                    <literalString Id="3be05ef8-4a9f-4088-851c-4fc5179c9a5c" name="Lower" value="*">
-                      <elementDefinition Id="88c9f9f1-feb3-42f4-9861-92739603c029" />
-                    </literalString>
-                  </lowerValueInternal>
-                  <upperValueInternal>
-                    <literalString Id="0eb8f6ef-79f7-4cba-84cc-e792ecaef0ee" name="Upper" value="*">
-                      <elementDefinition Id="03c12f31-52a6-440c-b6e7-b2000ea18b4f" />
-                    </literalString>
-                  </upperValueInternal>
-                  <elementDefinition Id="98b5a826-a9f8-4190-b52d-55ccbeb4aa07" />
+                <memberEnd Id="444a3786-2385-44c7-8037-866d64024d41" name="ExtendServers" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="60140d1e-0865-48bc-b978-685a4aabf857" />
                 </memberEnd>
               </associationHasOwnedEnds>
             </relationshipOwnedElementsInternal>
-            <elementDefinition Id="fb16214c-a393-4e48-a0e9-76ec88295f64" />
+            <elementDefinition Id="a6874de7-4367-43bb-81cd-59275060162d" />
+          </association>
+          <association Id="ad2c261e-8c79-4860-93a6-0e7b8387a48a" isDerived="false" sourceEndRoleName="" targetEndRoleName="Devices" isLeaf="false" isAbstract="false">
+            <classMoniker Id="f90e6834-8f56-44fd-9b7c-bc8ca50a2b60" LastKnownName="BaseDevice" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="57913099-7348-434a-b756-d95b5f9db632" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Shared" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="32aa3c44-e76e-4710-ab5f-fa98749b1bd1" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="ab0d8de4-58f5-4476-ad54-5f133e9f3944" name="Devices" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="d456fcb4-385f-406e-904c-8eddaaff95a0" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="866b3953-44d1-458a-8070-424731e9738c" />
           </association>
         </targetEnds>
       </class>
@@ -107,8 +113,14 @@
       </class>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
-      <class Id="4da5f053-a043-48da-995c-1fc67312028b" name="Object" isAbstract="false" isLeaf="false" isActiveClass="false">
-        <elementDefinition Id="7136c149-ecdf-4504-92f9-b5abf2287221" />
+      <class Id="cac90844-cf88-4d43-95d9-6e4801f96439" name="MDIApplication" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="ffab1e3e-e751-4d35-b1ff-c042332b5a9f" />
+        <generalsInternal>
+          <generalization Id="09fbe964-0df5-40a3-bb6a-57f373fec3b5" isSubstitutable="false">
+            <classMoniker Id="7bf87fdf-509d-4bb4-bbcf-9848b05e7618" LastKnownName="PaoApplication" />
+            <elementDefinition Id="64fc9c34-42e7-45fb-9810-6b2e78e5f9c5" />
+          </generalization>
+        </generalsInternal>
       </class>
     </logicalClassDesignerModelHasTypes>
   </packagedElements>

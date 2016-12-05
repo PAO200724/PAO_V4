@@ -22,6 +22,13 @@
   </PropertyGroup>
   <Import Project="$(VSToolsPath)\ArchitectureTools\Microsoft.VisualStudio.TeamArchitect.ModelingProject.targets" Condition="'$(VSToolsPath)' != ''" />
   <ItemGroup>
+    <Content Include="微架构\MVC\MVC.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="微架构\MVC\MVC.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>微架构\MVC\MVC.classdiagram</DependentUpon>
+    </Content>
     <Content Include="微架构\事务\Transaction.classdiagram">
       <SubType>Content</SubType>
     </Content>
@@ -83,6 +90,7 @@
       <SubType>Content</SubType>
     </Content>
     <Folder Include="微架构" />
+    <Folder Include="微架构\MVC" />
     <Folder Include="微架构\资产\状态\" />
     <Folder Include="微架构\远程" />
     <Folder Include="微架构\事务" />

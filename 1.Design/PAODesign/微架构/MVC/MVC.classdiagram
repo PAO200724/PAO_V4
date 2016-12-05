@@ -1,0 +1,224 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm11="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner" dslVersion="1.0.0.0" Id="e106eadb-13c8-47e2-a060-76de1d76549e" name="MVC" linkedPackageId="744cf11e-f3da-4973-82f4-68ce7e9b9b9d" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
+  <profileInstances>
+    <packageHasProfileInstances Id="71b0e302-fb1f-44e2-b63a-eff153076a29">
+      <profileInstance Id="889ca168-72b5-4ddf-a1a6-823a05f32fb7" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="b2789857-a1cb-4035-a994-68238a1a0d58">
+      <profileInstance Id="a412fd95-7730-421c-a861-19719e4e31e1" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="9bdfd85c-b191-4e79-8fff-7520dec5e7f9" name="MDIMainForm" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="ee0b62ce-ea5c-4d3d-9480-9de087cf5c3e" />
+        <suppliersInternal>
+          <interfaceRealization Id="969d8048-e187-48b9-96e9-dd180c05d216">
+            <interfaceMoniker Id="eb352719-f1b5-4b1c-9afb-2056cf71cffa" LastKnownName="IMainForm" />
+            <elementDefinition Id="2eaa38f4-8962-45c0-b2df-ca92c37e4e5f" />
+          </interfaceRealization>
+          <dependency Id="e9821a52-cd5a-464a-afac-0a75aa5755e4">
+            <interfaceMoniker Id="99b4deac-bcb8-473f-b85e-5d539b834e38" LastKnownName="IDocumentSupport" />
+            <elementDefinition Id="4c6f8fe1-4639-40fb-a6cf-7c6ee8871d56" />
+          </dependency>
+          <dependency Id="d4077791-c42a-405c-87a4-d743210dad95">
+            <interfaceMoniker Id="04c63788-30e7-4b5b-9430-c692e10a86f9" LastKnownName="IDockPanelSupport" />
+            <elementDefinition Id="5f997cfb-da98-4963-b167-5d47488ace09" />
+          </dependency>
+          <dependency Id="4e75eb57-de33-4d99-aef2-99e7224b837f">
+            <interfaceMoniker Id="e61c2f5f-b664-4e76-bc2d-ec0f9ac6fad4" LastKnownName="IPropertyPageSupport" />
+            <elementDefinition Id="6c8a78c9-0a25-414d-94a3-c818015b636e" />
+          </dependency>
+          <dependency Id="6df553a7-e3b7-4176-a671-49c3bfca0705">
+            <interfaceMoniker Id="6d520c56-2e2f-46f5-9475-fd09e94c0eed" LastKnownName="IBarSupport" />
+            <elementDefinition Id="8fbed8a5-1957-4d90-8497-cd115764c8cf" />
+          </dependency>
+          <dependency Id="6b1bd6a1-3c15-4383-a9e5-e7095911fd39">
+            <interfaceMoniker Id="0b2ba7c5-fa96-44fd-837a-64b421b2a29d" LastKnownName="ICommand" />
+            <elementDefinition Id="391489f1-5cb4-4cd6-84dc-69e511b4a1a2" />
+          </dependency>
+        </suppliersInternal>
+        <targetEnds>
+          <association Id="09cabca0-95bb-4c0e-babb-af8986333b8e" isDerived="false" sourceEndRoleName="" targetEndRoleName="Controllers" isLeaf="false" isAbstract="false">
+            <classMoniker Id="a43b74bb-d168-4a34-905b-aaa2d528a29b" LastKnownName="Controller" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="c2ecd457-2537-49dd-b94f-9315ddf1509b" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Composite" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="c18df59a-dbcb-467f-acf6-b1c6b9270ed2" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="b066a613-18d1-4638-9dfc-c5f93a50840c" name="Controllers" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="true">
+                  <lowerValueInternal>
+                    <literalString Id="a18cbde4-c3f8-4412-8c68-4517e0c208f2" name="Lower" value="*">
+                      <elementDefinition Id="0437de0b-171d-48a5-bca0-f31e64e817fe" />
+                    </literalString>
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString Id="36ec6229-1960-48d9-9c0e-f825389a4f39" name="Upper" value="*">
+                      <elementDefinition Id="b7073f5a-bed4-45b1-bd14-e268a175c8e7" />
+                    </literalString>
+                  </upperValueInternal>
+                  <elementDefinition Id="fc059c28-5dd4-4c2a-ab51-5d666882efb3" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="080038fa-97d8-4c76-8f4d-62c5a6d0b8f9" />
+          </association>
+        </targetEnds>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <Interface Id="6d520c56-2e2f-46f5-9475-fd09e94c0eed" name="IBarSupport" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="be2bff2f-b659-49db-841b-bc458294de69" />
+      </Interface>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <Interface Id="99b4deac-bcb8-473f-b85e-5d539b834e38" name="IDocumentSupport" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="629d1f92-5f9b-48c6-bd72-b777891804a3" />
+      </Interface>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <Interface Id="04c63788-30e7-4b5b-9430-c692e10a86f9" name="IDockPanelSupport" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="d0aaf6a0-cc13-4ad4-925f-e9362e93bb16" />
+      </Interface>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <Interface Id="e61c2f5f-b664-4e76-bc2d-ec0f9ac6fad4" name="IPropertyPageSupport" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="3b56ab3d-51b3-4939-a78f-5940f55618b6" />
+      </Interface>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <Interface Id="eb352719-f1b5-4b1c-9afb-2056cf71cffa" name="IMainForm" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="87439a56-48de-4894-adb6-9b9f968a7158" />
+      </Interface>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="a43b74bb-d168-4a34-905b-aaa2d528a29b" name="Controller" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="f2a99867-333b-474a-8c48-86f7c267597e" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="3ba28f50-af76-46f9-866a-b3b7e2063617" name="FunctionMenuController" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="3e6ea80b-8a0f-4ede-b316-ebdddace93ac" />
+        <suppliersInternal>
+          <interfaceRealization Id="6019de54-d18e-4bf9-b204-e0baf208449b">
+            <interfaceMoniker Id="6d520c56-2e2f-46f5-9475-fd09e94c0eed" LastKnownName="IBarSupport" />
+            <elementDefinition Id="6ba0037e-92c8-46fd-a532-9b30ee9a8b24" />
+          </interfaceRealization>
+        </suppliersInternal>
+        <generalsInternal>
+          <generalization Id="425f71e5-f0d1-41c4-8233-c631a9adc1ac" isSubstitutable="false">
+            <classMoniker Id="a43b74bb-d168-4a34-905b-aaa2d528a29b" LastKnownName="Controller" />
+            <elementDefinition Id="5537bc0a-2ba4-4711-82f5-1b0b32d15c3e" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="4c6b3eb9-553f-4757-a5fb-cf47839b6618" name="TreeFunctionMenuController" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="3e5d9f3d-61b5-4d4f-812b-5dd4033d4066" />
+        <suppliersInternal>
+          <interfaceRealization Id="8b05d48f-4f13-4572-95db-33810913e435">
+            <interfaceMoniker Id="04c63788-30e7-4b5b-9430-c692e10a86f9" LastKnownName="IDockPanelSupport" />
+            <elementDefinition Id="3d61d070-02a9-4754-8dc4-259a661d53f8" />
+          </interfaceRealization>
+        </suppliersInternal>
+        <generalsInternal>
+          <generalization Id="8cb4c45c-69ca-45c0-a465-bd1d8e69b026" isSubstitutable="false">
+            <classMoniker Id="a43b74bb-d168-4a34-905b-aaa2d528a29b" LastKnownName="Controller" />
+            <elementDefinition Id="9e7419d8-9152-4a0f-a489-fa80d7f955a8" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <Interface Id="0b2ba7c5-fa96-44fd-837a-64b421b2a29d" name="ICommand" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="ee8401a5-e23e-4591-a1da-038c8a1d1232" />
+      </Interface>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="008096bb-5abd-4446-9b56-9bce408930ae" name="DocumentController" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="b33fe6ca-d269-435a-8f1d-6951e01b6b60" />
+        <suppliersInternal>
+          <interfaceRealization Id="801b02b9-5982-40e3-bd06-17b03d8cf358">
+            <interfaceMoniker Id="99b4deac-bcb8-473f-b85e-5d539b834e38" LastKnownName="IDocumentSupport" />
+            <elementDefinition Id="4a90b1d9-2e07-41d8-a371-53f9f8079f9f" />
+          </interfaceRealization>
+        </suppliersInternal>
+        <generalsInternal>
+          <generalization Id="21f29839-2855-4bf8-aed4-72bccff570f5" isSubstitutable="false">
+            <classMoniker Id="a43b74bb-d168-4a34-905b-aaa2d528a29b" LastKnownName="Controller" />
+            <elementDefinition Id="07c3a6b5-0d00-46fb-8f60-4ef76104d4da" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="19b08441-178e-4a8f-a516-13d90c9add98" name="SDIMainForm" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="2e3c7ecc-e133-4899-8c2c-d8ea9f7031e1" />
+        <suppliersInternal>
+          <dependency Id="8c48d811-86cd-46b0-9d31-0584e650b18c">
+            <interfaceMoniker Id="99b4deac-bcb8-473f-b85e-5d539b834e38" LastKnownName="IDocumentSupport" />
+            <elementDefinition Id="b034a5bd-8944-4857-bed9-a548a44977d4" />
+          </dependency>
+        </suppliersInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="2447e3f2-9dcc-427a-ba5c-e625aa66ee48" name="MDIApplication" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="ffab1e3e-e751-4d35-b1ff-c042332b5a9f" />
+        <targetEnds>
+          <association Id="98ccd312-ca59-4677-8611-cd270bf707a8" isDerived="false" sourceEndRoleName="" targetEndRoleName="MainForm" isLeaf="false" isAbstract="false">
+            <classMoniker Id="9bdfd85c-b191-4e79-8fff-7520dec5e7f9" LastKnownName="MDIMainForm" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="3fe6d6ae-d55f-4494-956d-4ce09ebf408d" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Shared" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="3de4046a-7a3a-45d6-896b-64a5cb7abb1b" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="ab30a8fc-10d5-4780-a888-a54bfff1d58b" name="MainForm" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="5ebf5022-9a74-49bd-8fd9-74030961190c" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="3c7b52e7-3c0e-46a5-9b6b-982b459988f5" />
+          </association>
+        </targetEnds>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="92859c8c-d36d-40fc-885c-68c0da7c7b9c" name="SDIApplication" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="38c9462a-2713-4aa9-b204-123408639717" />
+        <targetEnds>
+          <association Id="3e926ffb-2656-4aea-870a-e0cd4c6e1b6c" isDerived="false" sourceEndRoleName="" targetEndRoleName="MainForm" isLeaf="false" isAbstract="false">
+            <classMoniker Id="19b08441-178e-4a8f-a516-13d90c9add98" LastKnownName="SDIMainForm" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="f9b0fc5e-12ce-44a9-90bc-dadf01818d38" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Shared" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="b28c140a-0ea5-4f87-b1f5-d93f45ca626f" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="a0eabd41-375a-4871-a067-736373230527" name="MainForm" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="b0cb4e45-e094-468d-b09f-c76b9f2d1784" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="badab807-8491-4e19-aca4-01a8c3b7287c" />
+          </association>
+        </targetEnds>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+  </packagedElements>
+  <package Id="744cf11e-f3da-4973-82f4-68ce7e9b9b9d" name="PAODesign">
+    <elementDefinition Id="f7c6b53f-1c2e-4762-ad13-eb71efcb9a9d" />
+  </package>
+</logicalClassDesignerModel>

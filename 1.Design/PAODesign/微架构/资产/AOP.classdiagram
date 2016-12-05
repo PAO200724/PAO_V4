@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm11="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner" dslVersion="1.0.0.0" Id="50846e3b-3cd7-486d-b476-60212196f012" name="资产" linkedPackageId="8b278e4a-201f-4ea9-899b-38acf2d55d4b" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm11="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner" dslVersion="1.0.0.0" Id="50846e3b-3cd7-486d-b476-60212196f012" name="资产" linkedPackageId="8b278e4a-201f-4ea9-899b-38acf2d55d4b" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
   <packagedElements>
     <logicalClassDesignerModelHasTypes>
       <class Id="a74f5056-d527-4b05-afc2-c47e9f48944b" name="PaoObject" isAbstract="false" isLeaf="false" isActiveClass="false">
@@ -126,6 +126,40 @@
     <logicalClassDesignerModelHasTypes>
       <class Id="2a154cc8-fffa-40fe-a6d2-330fb254f2d5" name="PaoApplication" isAbstract="false" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="5a4bdace-d996-4ee5-a308-bd2444b86f7e" />
+        <targetEnds>
+          <association Id="3510f28a-1d71-4a88-ac8e-2fc134f69ed5" isDerived="false" sourceEndRoleName="" targetEndRoleName="ExtendServers" isLeaf="false" isAbstract="false">
+            <classMoniker Id="81155524-8108-4df8-84b9-1a7ec240fb04" LastKnownName="BaseServer" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="7fc8d8a2-2713-4d07-99bf-24bb7d7d8b08" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Shared" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="f7427857-4221-4d72-9868-43e266512cf0" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="bc573e45-1d3b-496f-883c-b178f320ece6" name="ExtendServers" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="60140d1e-0865-48bc-b978-685a4aabf857" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="a6874de7-4367-43bb-81cd-59275060162d" />
+          </association>
+          <association Id="e23dd314-39ad-4467-be8f-0242bbbe1e6c" isDerived="false" sourceEndRoleName="" targetEndRoleName="Devices" isLeaf="false" isAbstract="false">
+            <classMoniker Id="096e9bfd-62f4-4370-9c51-0e8df13b92f6" LastKnownName="BaseDevice" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="47b2aab4-1329-47a5-8bac-9fbf1657c2cb" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Shared" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="32aa3c44-e76e-4710-ab5f-fa98749b1bd1" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="b0aca222-31f0-4207-9623-30d5e670c0ab" name="Devices" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="d456fcb4-385f-406e-904c-8eddaaff95a0" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="866b3953-44d1-458a-8070-424731e9738c" />
+          </association>
+        </targetEnds>
       </class>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
@@ -146,6 +180,17 @@
           <generalization Id="1ec740f3-4f53-4f77-9847-8ad732830f9e" isSubstitutable="false">
             <classMoniker Id="6be47ae6-ab28-4fa9-9370-8833b99715b5" LastKnownName="BasePart" />
             <elementDefinition Id="ea4d8baf-f5d2-49c4-a4ae-b427eb6cf8f1" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="ccd734a8-03ed-4301-bc10-b93baeb9d5f5" name="Controller" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="f2a99867-333b-474a-8c48-86f7c267597e" />
+        <generalsInternal>
+          <generalization Id="f7a23f57-f737-451a-b678-11e44e35efd5" isSubstitutable="false">
+            <classMoniker Id="a74f5056-d527-4b05-afc2-c47e9f48944b" LastKnownName="PaoObject" />
+            <elementDefinition Id="ebf64e37-08d9-45c8-a094-4e63f1e69e7b" />
           </generalization>
         </generalsInternal>
       </class>
