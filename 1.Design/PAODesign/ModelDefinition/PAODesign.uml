@@ -1631,13 +1631,13 @@
               LastKnownName="IMainForm"
               LastKnownLocation="PAODesign.uml" />
           </interfaceRealization>
-          <dependency
-            Id="4c6f8fe1-4639-40fb-a6cf-7c6ee8871d56">
+          <interfaceRealization
+            Id="4cc75157-89e4-4553-9cd3-932b078a0082">
             <interfaceMoniker
               Id="629d1f92-5f9b-48c6-bd72-b777891804a3"
-              LastKnownName="IDocumentSupport"
+              LastKnownName="IDocumentContainer"
               LastKnownLocation="PAODesign.uml" />
-          </dependency>
+          </interfaceRealization>
           <dependency
             Id="5f997cfb-da98-4963-b167-5d47488ace09">
             <interfaceMoniker
@@ -1732,7 +1732,7 @@
     <packageHasNamedElement>
       <Interface
         Id="629d1f92-5f9b-48c6-bd72-b777891804a3"
-        name="IDocumentSupport"
+        name="IDocumentContainer"
         isAbstract="false"
         isLeaf="false" />
     </packageHasNamedElement>
@@ -1847,13 +1847,13 @@
         isLeaf="false"
         isActiveClass="false">
         <suppliersInternal>
-          <interfaceRealization
-            Id="4a90b1d9-2e07-41d8-a371-53f9f8079f9f">
+          <dependency
+            Id="dcff4abe-a5d1-437d-b1bd-d59f8230d084">
             <interfaceMoniker
               Id="629d1f92-5f9b-48c6-bd72-b777891804a3"
-              LastKnownName="IDocumentSupport"
+              LastKnownName="IDocumentContainer"
               LastKnownLocation="PAODesign.uml" />
-          </interfaceRealization>
+          </dependency>
         </suppliersInternal>
         <generalsInternal>
           <generalization
@@ -1879,7 +1879,7 @@
             Id="b034a5bd-8944-4857-bed9-a548a44977d4">
             <interfaceMoniker
               Id="629d1f92-5f9b-48c6-bd72-b777891804a3"
-              LastKnownName="IDocumentSupport"
+              LastKnownName="IDocumentContainer"
               LastKnownLocation="PAODesign.uml" />
           </dependency>
         </suppliersInternal>

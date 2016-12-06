@@ -19,13 +19,14 @@ using PAO.IO;
 using PAO.IO.Text;
 using PAO.UI.WinForm;
 using static PAO.DataSetExtendProperty;
+using PAO.UI.MVC;
 
 namespace PAO.Config.Controls.EditControls
 {
     /// <summary>
     /// 对象树控件
     /// </summary>
-    public partial class ObjectTreeEditControl : BaseEditControl {
+    public partial class ObjectTreeEditControl : BaseEditControl,IDocument {
 
         public ObjectTreeEditControl() {
             InitializeComponent();

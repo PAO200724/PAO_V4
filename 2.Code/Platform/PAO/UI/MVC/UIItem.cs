@@ -1,5 +1,4 @@
 ﻿using PAO;
-using PAO.UI.WinForm.MDI;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,7 +7,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 
-namespace PAO.UI.WinForm.MVC
+namespace PAO.UI.MVC
 {
     /// <summary>
     /// 类：Controller
@@ -21,7 +20,7 @@ namespace PAO.UI.WinForm.MVC
     [DataContract(Namespace = "")]
     [Name("控制器")]
     [Description("控制器（可以作为菜单）")]
-    public class Controller : PaoObject
+    public class UIItem : PaoObject, IUIItem
     {
         #region 插件属性
 
@@ -73,31 +72,13 @@ namespace PAO.UI.WinForm.MVC
         }
         #endregion 属性：LargeIcon
 
-        #region 属性：ChildFunctionItems
-        /// <summary>
-        /// 属性：ChildFunctionItems
-        /// 子菜单
-        /// 子菜单列表
-        /// </summary>
-        [AddonProperty]
-        [DataMember(EmitDefaultValue = false)]
-        [Name("子菜单")]
-        [Description("子菜单列表")]
-        public List<Ref<Controller>> ChildFunctionItems {
-            get;
-            set;
-        }
-        #endregion 属性：ChildMenuItems
-        
         #endregion
-        public Controller() {
-        }
-
-        public virtual void DoCommand(IMainForm mainForm) {
+        public UIItem() {
         }
 
         public override string ToString() {
             return this.ObjectToString(null, "Caption");
         }
+
     }
 }

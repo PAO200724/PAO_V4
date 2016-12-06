@@ -309,7 +309,7 @@ namespace PAO.Config
             ConfigPublic.RegisterEditorType(typeof(AddonFactory<>), "AddonID", typeof(AddonIDEditor));
             ConfigPublic.RegisterEditorType(typeof(DataConnection), "DbFactoryName", typeof(DbFactoryEditor));
             ConfigPublic.RegisterEditorType(typeof(DataCommandInfo), "Sql", typeof(MemoExEditor));
-            ConfigPublic.RegisterEditorType(typeof(TreeMenuController), "DockPanelID", typeof(GuidEditor));
+            ConfigPublic.RegisterEditorType(typeof(TreeMenuCommand), "DockPanelID", typeof(GuidEditor));
 
             ConfigPublic.RegisterEditControlType(typeof(IDataFilter), typeof(DataFilterEditControl));
             ConfigPublic.RegisterEditControlType(typeof(DataCommandInfo), typeof(DataCommandInfoEditControl));

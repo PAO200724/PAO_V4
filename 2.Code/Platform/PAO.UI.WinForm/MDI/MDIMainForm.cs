@@ -8,15 +8,16 @@ using System.Linq;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using System.Threading;
-using PAO.UI.WinForm.MVC;
 using DevExpress.XtraBars.Docking;
+using PAO.UI.MVC;
+using DevExpress.XtraBars.Docking2010.Views.Tabbed;
 
 namespace PAO.UI.WinForm.MDI
 {
     /// <summary>
     /// MDI主窗体
     /// </summary>
-    public partial class MDIMainForm : DevExpress.XtraEditors.XtraForm, IMainForm
+    public partial class MDIMainForm : DevExpress.XtraEditors.XtraForm, IMainForm, IDocumentContainer, IDockViewContainer, IUIItemContainer
     {
         public const string Message_Status_Ready = "就绪";
         public static MDIMainForm Default;
@@ -25,6 +26,20 @@ namespace PAO.UI.WinForm.MDI
             Default = this;
             InitializeComponent();
             SetStatusText(Message_Status_Ready);
+        }
+
+        #region 事件
+        private void ButtonExit_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+            Close();
+        }
+        #endregion
+
+        protected override void OnLoad(EventArgs e) {
+            if (MenuFunction.ItemLinks.Count <= 0)
+                MenuFunction.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            else
+                MenuFunction.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+            base.OnLoad(e);
         }
 
         public void SetStatusText(string status) {
@@ -42,41 +57,31 @@ namespace PAO.UI.WinForm.MDI
             UIPublic.CloseWaitingForm();
         }
 
-        public void ShowView(Control view, string caption, Image icon) { 
+        public void OpenDocument(IDocument document) {
             Waiting(() =>
             {
-                var childForm = new ChildForm();
-                childForm.Controls.Add(view);
+                var docControl = document as Control;
+                var tabbedDoc = TabbedView.AddDocument(docControl);
+                tabbedDoc.Caption = document.Caption;
+                tabbedDoc.Image = document.Icon;
+            }, "正在打开文档");
+        }
+
+        public void OpenDockView(IDockView dockView) {
+            Waiting(() =>
+            {
+                var dockPanel = this.DockManager.AddPanel(DockingStyle.Right);
+                dockPanel.ID = new Guid(dockView.ID);
+                dockPanel.Text = dockView.Caption;
+                dockPanel.Image = dockView.Icon;
+                var view = dockView as Control;
+                dockPanel.Controls[0].Controls.Add(view);
                 view.Dock = DockStyle.Fill;
-                childForm.Text = caption;
-                childForm.MdiParent = this;
-                childForm.Show();
             }, "正在打开视图");
         }
 
-        public void ShowDockPanel(Guid id, Control view, DockingStyle dockingStyle, string caption, Image icon) {
-            Waiting(() =>
-            {
-                var dockPanel = this.DockManager.AddPanel(dockingStyle);
-                dockPanel.ID = id;
-                dockPanel.Text = caption;
-                dockPanel.Image = icon;
-                dockPanel.Controls[0].Controls.Add(view);
-                view.Dock = DockStyle.Fill;
-            }, "正在打开窗口");
+        public void OpenUIItem(IUIItem uiItem) {
+            WinFormPublic.AddMenuToSubItem(this.MenuFunction, uiItem, this);
         }
-        /// <summary>
-        /// 增加菜单项
-        /// </summary>
-        /// <param name="functionItem">功能菜单</param>
-        public void AddMenuItem(Controller functionItem) {
-            WinFormPublic.AddMenuToSubItem(this.MenuFunction, functionItem, this);
-        }
-
-        #region 事件
-        private void ButtonExit_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            Close();
-        }
-        #endregion
     }
 }

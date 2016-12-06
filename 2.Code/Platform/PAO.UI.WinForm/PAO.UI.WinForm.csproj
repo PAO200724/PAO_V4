@@ -79,21 +79,16 @@
     <Compile Include="Controls\ImageControl.Designer.cs">
       <DependentUpon>ImageControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="MDI\DockPanels\TreeMenuController.cs" />
+    <Compile Include="MDI\DockPanels\MenuCommand.cs" />
+    <Compile Include="MDI\DockPanels\TreeMenuCommand.cs" />
     <Compile Include="MDI\DockPanels\TreeMenuView.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="MDI\DockPanels\TreeMenuView.Designer.cs">
       <DependentUpon>TreeMenuView.cs</DependentUpon>
     </Compile>
-    <Compile Include="MVC\Controller.cs" />
-    <Compile Include="MDI\ChildForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MDI\ChildForm.Designer.cs">
-      <DependentUpon>ChildForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MVC\IMainForm.cs" />
+    <Compile Include="MDI\IDockViewSupport.cs" />
+    <Compile Include="MDI\IPropertyPageSupport.cs" />
     <Compile Include="MDI\MDIMainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -213,6 +208,7 @@
   <ItemGroup>
     <None Include="Resources\drilldown_16x16.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -8,22 +8,22 @@ using System.Linq;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using PAO.UI.WinForm.Controls;
-using PAO.UI.WinForm.MVC;
 using DevExpress.XtraTreeList.Nodes;
+using PAO.UI.MVC;
 
 namespace PAO.UI.WinForm.MDI.DockPanels
 {
     /// <summary>
     /// 菜单视图
     /// </summary>
-    public partial class TreeMenuView : DialogControl
+    public partial class TreeMenuView : DialogControl, IDockView, IUIItemContainer
     {
         public TreeMenuView() {
             InitializeComponent();
         }
 
         IMainForm MainForm;
-        public void Initialize(IMainForm mainForm, IEnumerable<Controller> menuItems) {
+        public void Initialize(IMainForm mainForm, IEnumerable<IUIItem> menuItems) {
             MainForm = mainForm;
             if (menuItems != null) {
                 foreach(var controller in menuItems) {
@@ -32,15 +32,19 @@ namespace PAO.UI.WinForm.MDI.DockPanels
             }
         }
 
-        private void AddNode(TreeListNodes nodes, Controller controller) {
+        private void AddNode(TreeListNodes nodes, IUIItem controller) {
             var node = nodes.Add(new object[]
             {
                 controller.Caption,
                 controller
             });
-            if(controller.ChildFunctionItems.IsNotNullOrEmpty()) {
-                foreach(var childController in controller.ChildFunctionItems) {
-                    AddNode(node.Nodes, childController.Value);
+            if(controller is IMenuItem) {
+                var menuItem = controller as IMenuItem;
+                var childMenuItems = menuItem.ChildMenuItems;
+                if (childMenuItems.IsNotNullOrEmpty()) {
+                    foreach (var childController in childMenuItems) {
+                        AddNode(node.Nodes, childController);
+                    }
                 }
             }
         }
@@ -50,9 +54,9 @@ namespace PAO.UI.WinForm.MDI.DockPanels
             {
                 var focusedNode = this.TreeListMenu.FocusedNode;
                 if (focusedNode != null) {
-                    var controller = focusedNode.GetValue(ColumnMenu) as Controller;
-                    if (controller != null) {
-                        controller.DoCommand(MainForm);
+                    var command = focusedNode.GetValue(ColumnMenu) as ICommand;
+                    if (command != null) {
+                        command.DoCommand();
                     }
                 }
             }, "打开视图");
@@ -65,6 +69,11 @@ namespace PAO.UI.WinForm.MDI.DockPanels
             } else {
                 this.TreeListMenu.ExpandAll();
             }
+        }
+
+        public void OpenUIItem(IUIItem functionItem) {
+            MainForm = MVCPublic.MainForm;
+            AddNode(this.TreeListMenu.Nodes, functionItem);
         }
     }
 }

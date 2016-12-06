@@ -1,7 +1,7 @@
 ﻿using PAO;
 using PAO.App;
 using PAO.Trans;
-using PAO.UI.WinForm.MVC;
+using PAO.UI.MVC;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -43,60 +43,41 @@ namespace PAO.UI.WinForm.MDI
         }
         #endregion 属性：Caption
 
-        #region 属性：ExtendMenu
+        #region 属性：Controllers
         /// <summary>
-        /// 属性：ExtendMenuItems
-        /// 扩展菜单
-        /// 程序的扩展菜单
+        /// 属性：Controllers
+        /// 命令列表
+        /// 系统启动时自动运行的命令列表
         /// </summary>
         [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
-        [Name("扩展菜单")]
-        [Description("程序的扩展菜单")]
-        public List<Ref<Controller>> ExtendMenuItems {
+        [Name("命令列表")]
+        [Description("系统启动时自动运行的命令列表")]
+        public List<Ref<ICommand>> Commands {
             get;
             set;
         }
-        #endregion 属性：ExtendMenu
-
-        #region 属性：AutoRunControllers
-        /// <summary>
-        /// 属性：AutoRunControllers
-        /// 自动运行的控制器
-        /// 系统启动时自动运行的控制器
-        /// </summary>
-        [AddonProperty]
-        [DataMember(EmitDefaultValue = false)]
-        [Name("自动运行的控制器")]
-        [Description("系统启动时自动运行的控制器")]
-        public List<Ref<Controller>> AutoRunControllers {
-            get;
-            set;
-        }
-        #endregion 属性：AutoRunControllers        
+        #endregion 属性：Controllers        
 
         #endregion
         public MDIApplication() {
         }
 
-        private MDIMainForm MainForm;
+        MDIMainForm MainForm = null;
         public override void OnPreparing() {
+            UIPublic.DefaultUserInterface = new WinFormUI();
             MainForm = new MDIMainForm();
+            MVCPublic.MainForm = MainForm;
             MainForm.Text = Caption;
-            if (ExtendMenuItems.IsNotNullOrEmpty()) {
-                foreach(var extendMenuItem in ExtendMenuItems) {
-                    MainForm.AddMenuItem(extendMenuItem.Value);
-                }
-            }
 
-            if(AutoRunControllers.IsNotNullOrEmpty()) {
+            if(Commands.IsNotNullOrEmpty()) {
                 TransactionPublic.Run("启动自动控制器", () =>
                 {
-                    foreach(var controller in AutoRunControllers) {
+                    foreach(var controller in Commands) {
                         var ctrl = controller.Value;
-                        TransactionPublic.Run(String.Format("运行自动控制器:{0}", ctrl.Caption), () =>
+                        TransactionPublic.Run(String.Format("运行自动控制器:{0}", ctrl), () =>
                         {
-                            ctrl.DoCommand(MainForm);
+                            ctrl.DoCommand();
                         });
                     }
                 });

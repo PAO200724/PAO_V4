@@ -1,5 +1,5 @@
 ﻿using PAO;
-using PAO.UI.WinForm.MVC;
+using PAO.UI.MVC;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,27 +20,9 @@ namespace PAO.UI.WinForm.MDI.DockPanels
     [DataContract(Namespace = "")]
     [Name("树形菜单控制器")]
     [Description("树型菜单控制器")]
-    public class TreeMenuController : Controller
+    public class TreeMenuCommand : CommandMenuItem
     {
         #region 插件属性
-
-
-        #region 属性：DockPanelID
-        /// <summary>
-        /// 属性：DockPanelID
-        /// DockPanelID
-        /// DockPanelID
-        /// </summary>
-        [AddonProperty]
-        [DataMember(EmitDefaultValue = false)]
-        [Name("DockPanelID")]
-        [Description("DockPanelID")]
-        public Guid DockPanelID {
-            get;
-            set;
-        }
-        #endregion 属性：DockPanelID
-
         #region 属性：MenuItems
         /// <summary>
         /// 属性：MenuItems
@@ -51,21 +33,31 @@ namespace PAO.UI.WinForm.MDI.DockPanels
         [DataMember(EmitDefaultValue = false)]
         [Name("功能菜单")]
         [Description("功能菜单项")]
-        public List<Ref<Controller>> MenuItems {
+        public List<Ref<UIItem>> MenuItems {
             get;
             set;
         }
         #endregion 属性：MenuItems
         #endregion
-        public TreeMenuController() {
+        public TreeMenuCommand() {
         }
-
-        public override void DoCommand(IMainForm mainForm) {
-            var treeMenuView = new TreeMenuView();
-            if(MenuItems.IsNotNullOrEmpty()) {
-                treeMenuView.Initialize(mainForm, MenuItems.Select(p=>p.Value));
+        public override void DoCommand() {
+            if(MVCPublic.MainForm is IDockViewContainer) {
+                var treeView = new TreeMenuView()
+                {
+                    ID = ID,
+                    Caption = Caption,
+                    Icon = Icon,
+                    LargeIcon = LargeIcon,
+                };
+                if(MenuItems.IsNotNullOrEmpty()) {
+                    foreach(var menuItem in MenuItems) {
+                        treeView.OpenUIItem(menuItem.Value);
+                    }
+                }
+                MVCPublic.MainForm.As<IDockViewContainer>().OpenDockView(treeView);
             }
-            mainForm.ShowDockPanel(DockPanelID, treeMenuView, DevExpress.XtraBars.Docking.DockingStyle.Right, Caption, Icon);
+            base.DoCommand();
         }
     }
 }

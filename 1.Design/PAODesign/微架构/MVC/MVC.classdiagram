@@ -1,19 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm11="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner" dslVersion="1.0.0.0" Id="e106eadb-13c8-47e2-a060-76de1d76549e" name="MVC" linkedPackageId="744cf11e-f3da-4973-82f4-68ce7e9b9b9d" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
-  <profileInstances>
-    <packageHasProfileInstances Id="71b0e302-fb1f-44e2-b63a-eff153076a29">
-      <profileInstance Id="889ca168-72b5-4ddf-a1a6-823a05f32fb7" name="StandardProfileL2">
-        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
-      </profileInstance>
-      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
-    </packageHasProfileInstances>
-    <packageHasProfileInstances Id="b2789857-a1cb-4035-a994-68238a1a0d58">
-      <profileInstance Id="a412fd95-7730-421c-a861-19719e4e31e1" name="StandardProfileL3">
-        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
-      </profileInstance>
-      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
-    </packageHasProfileInstances>
-  </profileInstances>
   <packagedElements>
     <logicalClassDesignerModelHasTypes>
       <class Id="9bdfd85c-b191-4e79-8fff-7520dec5e7f9" name="MDIMainForm" isAbstract="false" isLeaf="false" isActiveClass="false">
@@ -23,10 +9,6 @@
             <interfaceMoniker Id="eb352719-f1b5-4b1c-9afb-2056cf71cffa" LastKnownName="IMainForm" />
             <elementDefinition Id="2eaa38f4-8962-45c0-b2df-ca92c37e4e5f" />
           </interfaceRealization>
-          <dependency Id="e9821a52-cd5a-464a-afac-0a75aa5755e4">
-            <interfaceMoniker Id="99b4deac-bcb8-473f-b85e-5d539b834e38" LastKnownName="IDocumentSupport" />
-            <elementDefinition Id="4c6f8fe1-4639-40fb-a6cf-7c6ee8871d56" />
-          </dependency>
           <dependency Id="d4077791-c42a-405c-87a4-d743210dad95">
             <interfaceMoniker Id="04c63788-30e7-4b5b-9430-c692e10a86f9" LastKnownName="IDockPanelSupport" />
             <elementDefinition Id="5f997cfb-da98-4963-b167-5d47488ace09" />
@@ -43,6 +25,10 @@
             <interfaceMoniker Id="0b2ba7c5-fa96-44fd-837a-64b421b2a29d" LastKnownName="ICommand" />
             <elementDefinition Id="391489f1-5cb4-4cd6-84dc-69e511b4a1a2" />
           </dependency>
+          <interfaceRealization Id="eed992d7-df94-4548-86d0-edaa2acc0978">
+            <interfaceMoniker Id="99b4deac-bcb8-473f-b85e-5d539b834e38" LastKnownName="IDocumentContainer" />
+            <elementDefinition Id="4cc75157-89e4-4553-9cd3-932b078a0082" />
+          </interfaceRealization>
         </suppliersInternal>
         <targetEnds>
           <association Id="09cabca0-95bb-4c0e-babb-af8986333b8e" isDerived="false" sourceEndRoleName="" targetEndRoleName="Controllers" isLeaf="false" isAbstract="false">
@@ -80,7 +66,7 @@
       </Interface>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
-      <Interface Id="99b4deac-bcb8-473f-b85e-5d539b834e38" name="IDocumentSupport" isAbstract="false" isLeaf="false">
+      <Interface Id="99b4deac-bcb8-473f-b85e-5d539b834e38" name="IDocumentContainer" isAbstract="false" isLeaf="false">
         <elementDefinition Id="629d1f92-5f9b-48c6-bd72-b777891804a3" />
       </Interface>
     </logicalClassDesignerModelHasTypes>
@@ -147,10 +133,10 @@
       <class Id="008096bb-5abd-4446-9b56-9bce408930ae" name="DocumentController" isAbstract="false" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="b33fe6ca-d269-435a-8f1d-6951e01b6b60" />
         <suppliersInternal>
-          <interfaceRealization Id="801b02b9-5982-40e3-bd06-17b03d8cf358">
-            <interfaceMoniker Id="99b4deac-bcb8-473f-b85e-5d539b834e38" LastKnownName="IDocumentSupport" />
-            <elementDefinition Id="4a90b1d9-2e07-41d8-a371-53f9f8079f9f" />
-          </interfaceRealization>
+          <dependency Id="a5774fe0-30c1-4595-b9dc-36c3400c6343">
+            <interfaceMoniker Id="99b4deac-bcb8-473f-b85e-5d539b834e38" LastKnownName="IDocumentContainer" />
+            <elementDefinition Id="dcff4abe-a5d1-437d-b1bd-d59f8230d084" />
+          </dependency>
         </suppliersInternal>
         <generalsInternal>
           <generalization Id="21f29839-2855-4bf8-aed4-72bccff570f5" isSubstitutable="false">
@@ -165,7 +151,7 @@
         <elementDefinition Id="2e3c7ecc-e133-4899-8c2c-d8ea9f7031e1" />
         <suppliersInternal>
           <dependency Id="8c48d811-86cd-46b0-9d31-0584e650b18c">
-            <interfaceMoniker Id="99b4deac-bcb8-473f-b85e-5d539b834e38" LastKnownName="IDocumentSupport" />
+            <interfaceMoniker Id="99b4deac-bcb8-473f-b85e-5d539b834e38" LastKnownName="IDocumentContainer" />
             <elementDefinition Id="b034a5bd-8944-4857-bed9-a548a44977d4" />
           </dependency>
         </suppliersInternal>
@@ -220,5 +206,19 @@
   </packagedElements>
   <package Id="744cf11e-f3da-4973-82f4-68ce7e9b9b9d" name="PAODesign">
     <elementDefinition Id="f7c6b53f-1c2e-4762-ad13-eb71efcb9a9d" />
+    <profileInstances>
+      <packageHasProfileInstances Id="71b0e302-fb1f-44e2-b63a-eff153076a29">
+        <profileInstance Id="889ca168-72b5-4ddf-a1a6-823a05f32fb7" name="StandardProfileL2">
+          <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+        </profileInstance>
+        <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="b2789857-a1cb-4035-a994-68238a1a0d58">
+        <profileInstance Id="a412fd95-7730-421c-a861-19719e4e31e1" name="StandardProfileL3">
+          <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+        </profileInstance>
+        <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+      </packageHasProfileInstances>
+    </profileInstances>
   </package>
 </logicalClassDesignerModel>

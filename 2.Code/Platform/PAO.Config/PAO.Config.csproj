@@ -55,7 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConfigPublic.cs" />
-    <Compile Include="Controllers\ObjectConfigController.cs" />
+    <Compile Include="Commands\ObjectConfigCommand.cs" />
     <Compile Include="Controls\EditControls\AddonExtentionEditControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

@@ -3,9 +3,9 @@ using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraEditors.Repository;
 using DevExpress.XtraSplashScreen;
+using PAO.UI.MVC;
 using PAO.UI.WinForm.Forms;
 using PAO.UI.WinForm.MDI;
-using PAO.UI.WinForm.MVC;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -83,26 +83,34 @@ namespace PAO.UI.WinForm
         /// 添加菜单到子菜单中（包含下级菜单）
         /// </summary>
         /// <param name="barSubItem">子菜单</param>
-        /// <param name="functionItem">菜单项</param>
+        /// <param name="menuItem">菜单项</param>
         /// <param name="mainForm">主窗体</param>
-        public static void AddMenuToSubItem(object barSubItem, Controller functionItem, IMainForm mainForm) {
-            BarItem barItem;
-            if (functionItem.ChildFunctionItems.IsNotNullOrEmpty()) {
-                var newSubItem = new BarSubItem();
-                foreach(var childFunctionItem in functionItem.ChildFunctionItems) {
-                    AddMenuToSubItem(newSubItem, childFunctionItem.Value, mainForm);
+        public static void AddMenuToSubItem(object barSubItem, IUIItem uiItem, IMainForm mainFom) {
+            BarItem barItem = null;
+            if(uiItem is IMenuItem) {
+                var menuItem = uiItem as IMenuItem;
+                if (menuItem.ChildMenuItems.IsNotNull()) {
+                    var newSubItem = new BarSubItem();
+                    foreach (var childFunctionItem in menuItem.ChildMenuItems) {
+                        AddMenuToSubItem(newSubItem, childFunctionItem, mainFom);
+                    }
+                    barItem = newSubItem;
                 }
-                barItem = newSubItem;
-            } else {
-                barItem = new BarButtonItem();
+                else {
+                    barItem = new BarButtonItem();
+                }
             }
-            barItem.Caption = functionItem.Caption;
-            barItem.Glyph = functionItem.Icon;
-            barItem.LargeGlyph = functionItem.LargeIcon;
+
+            barItem.Caption = uiItem.Caption;
+            barItem.Glyph = uiItem.Icon;
+            barItem.LargeGlyph = uiItem.LargeIcon;
             barItem.ItemClick += (sender, e) =>
             {
                 try {
-                    functionItem.DoCommand(mainForm);
+                    if(uiItem is ICommand) {
+                        var command = uiItem as ICommand;
+                        command.DoCommand();
+                    }
                 } catch (Exception err) {
                     UIPublic.ShowErrorDialog(err.FormatException());
                 }

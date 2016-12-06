@@ -49,6 +49,7 @@ namespace PAO.UI.WinForm
         }
 
         public void ShowWaitingForm() {
+            CloseWaitingForm();
             SplashScreenManager.ShowForm(typeof(PaoWaitForm));
         }
         /// <summary>

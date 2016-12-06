@@ -34,36 +34,36 @@
             this.MenuSkin = new DevExpress.XtraBars.SkinBarSubItem();
             this.MenuWindow = new DevExpress.XtraBars.BarSubItem();
             this.barMdiChildrenListItem1 = new DevExpress.XtraBars.BarMdiChildrenListItem();
-            this.barDockingMenuItem1 = new DevExpress.XtraBars.BarDockingMenuItem();
-            this.barWorkspaceMenuItem1 = new DevExpress.XtraBars.BarWorkspaceMenuItem();
+            this.BarDockingMenuItem = new DevExpress.XtraBars.BarDockingMenuItem();
+            this.BarWorkspaceMenuItem = new DevExpress.XtraBars.BarWorkspaceMenuItem();
             this.WorkspaceManager = new DevExpress.Utils.WorkspaceManager();
-            this.barToolbarsListItem1 = new DevExpress.XtraBars.BarToolbarsListItem();
+            this.BarToolbarsListItem = new DevExpress.XtraBars.BarToolbarsListItem();
             this.ButtonExit = new DevExpress.XtraBars.BarButtonItem();
+            this.MenuCurrentUser = new DevExpress.XtraBars.BarSubItem();
+            this.MenuFunction = new DevExpress.XtraBars.BarSubItem();
             this.BarStatus = new DevExpress.XtraBars.Bar();
             this.EditItemProgressBar = new DevExpress.XtraBars.BarEditItem();
-            this.repositoryItemProgressBar1 = new DevExpress.XtraEditors.Repository.RepositoryItemProgressBar();
+            this.RepositoryItemProgressBar = new DevExpress.XtraEditors.Repository.RepositoryItemProgressBar();
             this.EditItemWaitingBar = new DevExpress.XtraBars.BarEditItem();
-            this.repositoryItemMarqueeProgressBar1 = new DevExpress.XtraEditors.Repository.RepositoryItemMarqueeProgressBar();
+            this.RepositoryItemMarqueeProgressBar = new DevExpress.XtraEditors.Repository.RepositoryItemMarqueeProgressBar();
             this.EditItemCalculate = new DevExpress.XtraBars.BarEditItem();
-            this.repositoryItemCalcEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCalcEdit();
+            this.RepositoryItemCalcEdit = new DevExpress.XtraEditors.Repository.RepositoryItemCalcEdit();
             this.StaticItemServerTime = new DevExpress.XtraBars.BarStaticItem();
             this.StaticItemStatus = new DevExpress.XtraBars.BarStaticItem();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControl1 = new DevExpress.XtraBars.BarDockControl();
-            this.repositoryItemTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.TabbedMdiManager = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(this.components);
-            this.MenuCurrentUser = new DevExpress.XtraBars.BarSubItem();
-            this.MenuFunction = new DevExpress.XtraBars.BarSubItem();
+            this.DocumentManager = new DevExpress.XtraBars.Docking2010.DocumentManager(this.components);
+            this.TabbedView = new DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.DockManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BarManager)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemProgressBar1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMarqueeProgressBar1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCalcEdit1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TabbedMdiManager)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemProgressBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemMarqueeProgressBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemCalcEdit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DocumentManager)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TabbedView)).BeginInit();
             this.SuspendLayout();
             // 
             // DockManager
@@ -96,10 +96,10 @@
             this.ButtonExit,
             this.MenuSkin,
             this.barMdiChildrenListItem1,
-            this.barDockingMenuItem1,
+            this.BarDockingMenuItem,
             this.MenuWindow,
-            this.barWorkspaceMenuItem1,
-            this.barToolbarsListItem1,
+            this.BarWorkspaceMenuItem,
+            this.BarToolbarsListItem,
             this.EditItemCalculate,
             this.EditItemProgressBar,
             this.EditItemWaitingBar,
@@ -110,10 +110,9 @@
             this.BarManager.MainMenu = this.BarMain;
             this.BarManager.MaxItemId = 21;
             this.BarManager.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.repositoryItemTextEdit1,
-            this.repositoryItemCalcEdit1,
-            this.repositoryItemProgressBar1,
-            this.repositoryItemMarqueeProgressBar1});
+            this.RepositoryItemCalcEdit,
+            this.RepositoryItemProgressBar,
+            this.RepositoryItemMarqueeProgressBar});
             // 
             // BarMain
             // 
@@ -152,9 +151,9 @@
             this.MenuWindow.Id = 5;
             this.MenuWindow.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.barMdiChildrenListItem1),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barDockingMenuItem1, true),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barWorkspaceMenuItem1, true),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barToolbarsListItem1, true)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.BarDockingMenuItem, true),
+            new DevExpress.XtraBars.LinkPersistInfo(this.BarWorkspaceMenuItem, true),
+            new DevExpress.XtraBars.LinkPersistInfo(this.BarToolbarsListItem, true)});
             this.MenuWindow.Name = "MenuWindow";
             // 
             // barMdiChildrenListItem1
@@ -163,29 +162,29 @@
             this.barMdiChildrenListItem1.Id = 3;
             this.barMdiChildrenListItem1.Name = "barMdiChildrenListItem1";
             // 
-            // barDockingMenuItem1
+            // BarDockingMenuItem
             // 
-            this.barDockingMenuItem1.Caption = "视图(&D)";
-            this.barDockingMenuItem1.Id = 4;
-            this.barDockingMenuItem1.Name = "barDockingMenuItem1";
+            this.BarDockingMenuItem.Caption = "视图(&D)";
+            this.BarDockingMenuItem.Id = 4;
+            this.BarDockingMenuItem.Name = "BarDockingMenuItem";
             // 
-            // barWorkspaceMenuItem1
+            // BarWorkspaceMenuItem
             // 
-            this.barWorkspaceMenuItem1.Caption = "工作空间(&K)";
-            this.barWorkspaceMenuItem1.Id = 6;
-            this.barWorkspaceMenuItem1.Name = "barWorkspaceMenuItem1";
-            this.barWorkspaceMenuItem1.WorkspaceManager = this.WorkspaceManager;
+            this.BarWorkspaceMenuItem.Caption = "工作空间(&K)";
+            this.BarWorkspaceMenuItem.Id = 6;
+            this.BarWorkspaceMenuItem.Name = "BarWorkspaceMenuItem";
+            this.BarWorkspaceMenuItem.WorkspaceManager = this.WorkspaceManager;
             // 
             // WorkspaceManager
             // 
             this.WorkspaceManager.TargetControl = this;
             this.WorkspaceManager.TransitionType = pushTransition1;
             // 
-            // barToolbarsListItem1
+            // BarToolbarsListItem
             // 
-            this.barToolbarsListItem1.Caption = "工具条(&T)";
-            this.barToolbarsListItem1.Id = 7;
-            this.barToolbarsListItem1.Name = "barToolbarsListItem1";
+            this.BarToolbarsListItem.Caption = "工具条(&T)";
+            this.BarToolbarsListItem.Id = 7;
+            this.BarToolbarsListItem.Name = "BarToolbarsListItem";
             // 
             // ButtonExit
             // 
@@ -193,6 +192,19 @@
             this.ButtonExit.Id = 1;
             this.ButtonExit.Name = "ButtonExit";
             this.ButtonExit.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonExit_ItemClick);
+            // 
+            // MenuCurrentUser
+            // 
+            this.MenuCurrentUser.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
+            this.MenuCurrentUser.Caption = "当前用户";
+            this.MenuCurrentUser.Id = 18;
+            this.MenuCurrentUser.Name = "MenuCurrentUser";
+            // 
+            // MenuFunction
+            // 
+            this.MenuFunction.Caption = "扩展功能(&E)";
+            this.MenuFunction.Id = 20;
+            this.MenuFunction.Name = "MenuFunction";
             // 
             // BarStatus
             // 
@@ -216,43 +228,43 @@
             // 
             this.EditItemProgressBar.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
             this.EditItemProgressBar.Caption = "进度条";
-            this.EditItemProgressBar.Edit = this.repositoryItemProgressBar1;
+            this.EditItemProgressBar.Edit = this.RepositoryItemProgressBar;
             this.EditItemProgressBar.Id = 11;
             this.EditItemProgressBar.Name = "EditItemProgressBar";
             this.EditItemProgressBar.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
-            // repositoryItemProgressBar1
+            // RepositoryItemProgressBar
             // 
-            this.repositoryItemProgressBar1.Name = "repositoryItemProgressBar1";
+            this.RepositoryItemProgressBar.Name = "RepositoryItemProgressBar";
             // 
             // EditItemWaitingBar
             // 
             this.EditItemWaitingBar.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
             this.EditItemWaitingBar.Caption = "等待条";
-            this.EditItemWaitingBar.Edit = this.repositoryItemMarqueeProgressBar1;
+            this.EditItemWaitingBar.Edit = this.RepositoryItemMarqueeProgressBar;
             this.EditItemWaitingBar.Id = 12;
             this.EditItemWaitingBar.Name = "EditItemWaitingBar";
             this.EditItemWaitingBar.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
-            // repositoryItemMarqueeProgressBar1
+            // RepositoryItemMarqueeProgressBar
             // 
-            this.repositoryItemMarqueeProgressBar1.Name = "repositoryItemMarqueeProgressBar1";
+            this.RepositoryItemMarqueeProgressBar.Name = "RepositoryItemMarqueeProgressBar";
             // 
             // EditItemCalculate
             // 
             this.EditItemCalculate.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
             this.EditItemCalculate.Caption = "计算器";
-            this.EditItemCalculate.Edit = this.repositoryItemCalcEdit1;
+            this.EditItemCalculate.Edit = this.RepositoryItemCalcEdit;
             this.EditItemCalculate.EditWidth = 88;
             this.EditItemCalculate.Id = 10;
             this.EditItemCalculate.Name = "EditItemCalculate";
             // 
-            // repositoryItemCalcEdit1
+            // RepositoryItemCalcEdit
             // 
-            this.repositoryItemCalcEdit1.AutoHeight = false;
-            this.repositoryItemCalcEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.RepositoryItemCalcEdit.AutoHeight = false;
+            this.RepositoryItemCalcEdit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repositoryItemCalcEdit1.Name = "repositoryItemCalcEdit1";
+            this.RepositoryItemCalcEdit.Name = "RepositoryItemCalcEdit";
             // 
             // StaticItemServerTime
             // 
@@ -274,7 +286,7 @@
             this.barDockControlTop.CausesValidation = false;
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(894, 26);
+            this.barDockControlTop.Size = new System.Drawing.Size(894, 24);
             // 
             // barDockControlBottom
             // 
@@ -287,44 +299,30 @@
             // 
             this.barDockControlLeft.CausesValidation = false;
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 26);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 574);
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 24);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 576);
             // 
             // barDockControl1
             // 
             this.barDockControl1.CausesValidation = false;
             this.barDockControl1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControl1.Location = new System.Drawing.Point(894, 26);
-            this.barDockControl1.Size = new System.Drawing.Size(0, 574);
-            // 
-            // repositoryItemTextEdit1
-            // 
-            this.repositoryItemTextEdit1.AutoHeight = false;
-            this.repositoryItemTextEdit1.Name = "repositoryItemTextEdit1";
+            this.barDockControl1.Location = new System.Drawing.Point(894, 24);
+            this.barDockControl1.Size = new System.Drawing.Size(0, 576);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(894, 26);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 574);
+            this.barDockControlRight.Location = new System.Drawing.Point(894, 24);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 576);
             // 
-            // TabbedMdiManager
+            // DocumentManager
             // 
-            this.TabbedMdiManager.MdiParent = this;
-            // 
-            // MenuCurrentUser
-            // 
-            this.MenuCurrentUser.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
-            this.MenuCurrentUser.Caption = "当前用户";
-            this.MenuCurrentUser.Id = 18;
-            this.MenuCurrentUser.Name = "MenuCurrentUser";
-            // 
-            // MenuFunction
-            // 
-            this.MenuFunction.Caption = "扩展功能(&E)";
-            this.MenuFunction.Id = 20;
-            this.MenuFunction.Name = "MenuFunction";
+            this.DocumentManager.MdiParent = this;
+            this.DocumentManager.MenuManager = this.BarManager;
+            this.DocumentManager.View = this.TabbedView;
+            this.DocumentManager.ViewCollection.AddRange(new DevExpress.XtraBars.Docking2010.Views.BaseView[] {
+            this.TabbedView});
             // 
             // MDIMainForm
             // 
@@ -343,11 +341,11 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.DockManager)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BarManager)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemProgressBar1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMarqueeProgressBar1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCalcEdit1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TabbedMdiManager)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemProgressBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemMarqueeProgressBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemCalcEdit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DocumentManager)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TabbedView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -364,26 +362,26 @@
         private DevExpress.XtraBars.Bar BarMain;
         private DevExpress.XtraBars.Bar BarStatus;
         private DevExpress.XtraBars.BarDockControl barDockControl1;
-        private DevExpress.XtraTabbedMdi.XtraTabbedMdiManager TabbedMdiManager;
         private DevExpress.XtraBars.BarSubItem MenuSystem;
         private DevExpress.XtraBars.SkinBarSubItem MenuSkin;
         private DevExpress.XtraBars.BarSubItem MenuWindow;
         private DevExpress.XtraBars.BarMdiChildrenListItem barMdiChildrenListItem1;
-        private DevExpress.XtraBars.BarDockingMenuItem barDockingMenuItem1;
-        private DevExpress.XtraBars.BarWorkspaceMenuItem barWorkspaceMenuItem1;
+        private DevExpress.XtraBars.BarDockingMenuItem BarDockingMenuItem;
+        private DevExpress.XtraBars.BarWorkspaceMenuItem BarWorkspaceMenuItem;
         private DevExpress.Utils.WorkspaceManager WorkspaceManager;
-        private DevExpress.XtraBars.BarToolbarsListItem barToolbarsListItem1;
+        private DevExpress.XtraBars.BarToolbarsListItem BarToolbarsListItem;
         private DevExpress.XtraBars.BarButtonItem ButtonExit;
-        private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEdit1;
         private DevExpress.XtraBars.BarEditItem EditItemProgressBar;
-        private DevExpress.XtraEditors.Repository.RepositoryItemProgressBar repositoryItemProgressBar1;
+        private DevExpress.XtraEditors.Repository.RepositoryItemProgressBar RepositoryItemProgressBar;
         private DevExpress.XtraBars.BarEditItem EditItemWaitingBar;
-        private DevExpress.XtraEditors.Repository.RepositoryItemMarqueeProgressBar repositoryItemMarqueeProgressBar1;
+        private DevExpress.XtraEditors.Repository.RepositoryItemMarqueeProgressBar RepositoryItemMarqueeProgressBar;
         private DevExpress.XtraBars.BarEditItem EditItemCalculate;
-        private DevExpress.XtraEditors.Repository.RepositoryItemCalcEdit repositoryItemCalcEdit1;
+        private DevExpress.XtraEditors.Repository.RepositoryItemCalcEdit RepositoryItemCalcEdit;
         private DevExpress.XtraBars.BarStaticItem StaticItemServerTime;
         private DevExpress.XtraBars.BarStaticItem StaticItemStatus;
         private DevExpress.XtraBars.BarSubItem MenuCurrentUser;
         private DevExpress.XtraBars.BarSubItem MenuFunction;
+        private DevExpress.XtraBars.Docking2010.DocumentManager DocumentManager;
+        private DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView TabbedView;
     }
 }
