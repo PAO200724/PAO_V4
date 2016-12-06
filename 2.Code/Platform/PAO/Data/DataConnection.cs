@@ -168,7 +168,7 @@ namespace PAO.Data
                         dbParam.ParameterName = dataField.Name;
                         var parameter = paramDefines.Where(p => p.Name == dataField.Name).FirstOrDefault();
                         // 如果参数经过定义，则使用参数类型；否则使用传入的值类型
-                        if (dataField != null) {
+                        if (dataField != null && parameter != null) {
                             dbParam.DbType = parameter.Type;
                         }
                         else {
@@ -282,7 +282,6 @@ namespace PAO.Data
         public void QueryData(DbCommand command, int startIndex, int maxCount, DataTable dataTable) {
             command.Connection.Open();
             try {
-               
                 using (var dataReader = command.ExecuteReader(CommandBehavior.CloseConnection)) {
                     for (int i = 0; i < startIndex; i++) {
                         if (!dataReader.Read())

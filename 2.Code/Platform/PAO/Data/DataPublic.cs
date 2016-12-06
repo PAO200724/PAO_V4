@@ -145,5 +145,44 @@ namespace PAO.Data {
             }
         }
         #endregion
+
+        #region DataService扩展
+        /// <summary>
+        /// 查询所有
+        /// </summary>
+        /// <param name="commandID">命令</param>
+        /// <param name="parameters">参数</param>
+        /// <param name="dataService">数据服务</param>
+        /// <returns>数据表</returns>
+        public static DataTable QueryAll(this IDataService dataService, string commandID, params DataField[] parameters) {
+            return dataService.Query(commandID, 0, Int32.MaxValue, parameters);
+        }
+
+        /// <summary>
+        /// 填充数据表
+        /// </summary>
+        /// <param name="commandID">命令</param>
+        /// <param name="startIndex">开始索引</param>
+        /// <param name="maxCount">最大行数</param>
+        /// <param name="parameters">参数</param>
+        /// <param name="dataService">数据服务</param>
+        /// <param name="dataTable">数据表</param>
+        public static void Fill(this IDataService dataService, DataTable dataTable, string commandID, int startIndex, int maxCount, params DataField[] parameters) {
+            var table = dataService.Query(commandID, startIndex, maxCount, parameters);
+
+            dataTable.Merge(table, false, MissingSchemaAction.Ignore);
+        }
+
+        /// <summary>
+        /// 填充数据表
+        /// </summary>
+        /// <param name="commandID">命令</param>
+        /// <param name="parameters">参数</param>
+        /// <param name="dataService">数据服务</param>
+        /// <param name="dataTable">数据表</param>
+        public static void FillAll(this IDataService dataService, DataTable dataTable, string commandID, params DataField[] parameters) {
+            Fill(dataService, dataTable, commandID, 0, Int32.MaxValue, parameters);
+        }
+        #endregion
     }
 }

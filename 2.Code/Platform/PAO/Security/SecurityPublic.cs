@@ -22,6 +22,7 @@ namespace PAO.Security
         /// <summary>
         /// 当前线程用户
         /// </summary>
+        [ThreadStatic]
         public static UserToken ThreadUser;
 
         /// <summary>
@@ -42,6 +43,18 @@ namespace PAO.Security
         /// 默认Hash算法
         /// </summary>
         public static HashAlgorithm DefaultHashAlgorithm = MD5.Create();
+
+        /// <summary>
+        /// 计算Hash文本值
+        /// </summary>
+        /// <param name="text">文本</param>
+        /// <returns>二进制字符串</returns>
+        public static string ComputeHashString(String text) {
+            if (text.IsNullOrEmpty())
+                return null;
+
+            return Convert.ToBase64String(ComputeHash(text));
+        }
 
         /// <summary>
         /// 计算Hash值

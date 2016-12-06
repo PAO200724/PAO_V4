@@ -46,7 +46,13 @@ namespace PAO.UI.WinForm.MDI
 
         protected override void OnLoad(EventArgs e) {
             var mdiApplication = MDIApplication.Default.As<MDIApplication>();
+            // 显示当前用户
+            var securityService = mdiApplication.SecurityService.Value;
+            var userInfo = securityService.GetUserInfo();
+            MenuCurrentUser.Caption = userInfo.UserName;
+
             AddonPublic.ApplyAddonExtendProperties(mdiApplication);
+
             this.DockManager.SetLayoutData(mdiApplication.LayoutData);
             if (MenuFunction.ItemLinks.Count <= 0)
                 MenuFunction.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;

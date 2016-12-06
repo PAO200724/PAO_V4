@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 
@@ -147,6 +148,32 @@ namespace PAO.UI
         }
         #endregion
 
+        #region Image
+        /// <summary>
+        /// 二进制数据转换为图片
+        /// </summary>
+        /// <param name="binary">二进制数据</param>
+        /// <returns>图片</returns>
+        public static Image BinaryToImage(byte[] binary) {
+            if (binary.IsNullOrEmpty())
+                return null;
+            MemoryStream buffer = new MemoryStream(binary);
+            return Image.FromStream(buffer);
+        }
+
+        /// <summary>
+        /// 图片转换为二进制
+        /// </summary>
+        /// <param name="image">图片</param>
+        /// <returns>二进制</returns>
+        public static byte[] ImageToBinary(Image image) {
+            if (image == null)
+                return null;
+            MemoryStream buffer = new MemoryStream();
+            image.Save(buffer, image.RawFormat);
+            return buffer.ToArray();
+        }
+        #endregion
 
         #region WaitingForm
 

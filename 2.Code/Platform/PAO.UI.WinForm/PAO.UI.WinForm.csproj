@@ -96,6 +96,12 @@
       <DependentUpon>MDIMainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="MDI\MDIApplication.cs" />
+    <Compile Include="Security\LoginControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Security\LoginControl.Designer.cs">
+      <DependentUpon>LoginControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="WinFormPublic.cs" />
     <Compile Include="Forms\PaoSplashScreen.cs">
       <SubType>Form</SubType>
@@ -161,6 +167,9 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Security\LoginControl.resx">
+      <DependentUpon>LoginControl.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

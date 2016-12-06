@@ -67,22 +67,23 @@ namespace PAO.Remote.Tcp
             var reader = new BinaryReader(clientStream);
             var writer = new BinaryWriter(clientStream);
 
-            writer.Write(serviceName);
+            writer.NetWriteString(serviceName);
 
-            writer.Write(functionName);
+            writer.NetWriteString(functionName);
 
-            writer.Write(header);
+            writer.NetWriteString(header);
 
-            writer.Write(inputParameters);
+            writer.NetWriteString(inputParameters);
 
             // 获取返回参数
             string resultType = reader.ReadString();
             string result = null;
             if(resultType == RemotePublic.SuccessString) {
-                result = reader.ReadString();
-            } else {
-                string message = reader.ReadString();
-                string exceptionString = reader.ReadString();
+                result = reader.NetReadString();
+            }
+            else {
+                string message = reader.NetReadString();
+                string exceptionString = reader.NetReadString();
                 var remoteException = new Exception(message);
                 var fullServiceName = String.Format("{0}.{1}", serviceName, functionName);
                 throw new Exception("远程调用服务异常", remoteException)

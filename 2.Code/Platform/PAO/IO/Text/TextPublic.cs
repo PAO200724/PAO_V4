@@ -84,7 +84,9 @@ namespace PAO.IO.Text
         /// </summary>
         /// <param name="sourceObject">源对象</param>
         /// <returns>克隆后的对象</returns>
-        public static object ObjectClone(this object sourceObject) {
+        public static object ObjectClone(this object sourceObject) { 
+            if(sourceObject == null)
+                return null;
             MemoryStream buffer = new MemoryStream();
             WriteObjectToStream(buffer, sourceObject);
 

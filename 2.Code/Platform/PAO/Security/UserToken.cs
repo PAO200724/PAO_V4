@@ -69,6 +69,7 @@ namespace PAO.Security
             set;
         }
         #endregion 属性：ComputerID
+
         #endregion
         public UserToken() {
         }

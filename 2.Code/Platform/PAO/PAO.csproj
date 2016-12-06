@@ -124,7 +124,9 @@
     <Compile Include="Remote\BaseRemoteFactory.cs" />
     <Compile Include="Remote\WCF\WCFFactory.cs" />
     <Compile Include="Remote\WCF\WCFRemoteFactory.cs" />
+    <Compile Include="Security\ISecurity.cs" />
     <Compile Include="Security\SecurityPublic.cs" />
+    <Compile Include="Security\UserInfo.cs" />
     <Compile Include="Security\UserToken.cs" />
     <Compile Include="Server\BaseServer.cs" />
     <Compile Include="ThreadPublic.cs" />

@@ -146,6 +146,12 @@ namespace PAO.App {
         public Action PrepareAction;
 
         /// <summary>
+        /// 异常响应方法
+        /// </summary>
+        [NonSerialized]
+        public Action<Exception> ExceptionAction;
+
+        /// <summary>
         /// 全局插件列表
         /// 此列表用于检索应用中的插件，当建立插件引用时，应当在此表中增加插件
         /// </summary>
@@ -155,7 +161,7 @@ namespace PAO.App {
         public PaoApplication() {
             ServerList = new List<PAO.Ref<Server.BaseServer>>();
             EventProcessorList = new List<PAO.Ref<BaseEventProcessor>>();
-            OnException = ShowExceptionDialog;
+            ExceptionAction = ShowExceptionDialog;
         }
 
 
@@ -165,16 +171,11 @@ namespace PAO.App {
         }
 
         /// <summary>
-        /// 异常响应方法
-        /// </summary>
-        public Action<Exception> OnException;
-
-        /// <summary>
         /// 准备
         /// </summary>
         public virtual void OnPreparing() {
-            if (RunAction != null)
-                RunAction();
+            if (PrepareAction != null)
+                PrepareAction();
         }
 
         /// <summary>
@@ -183,6 +184,11 @@ namespace PAO.App {
         public virtual void OnRunning() {
             if (RunAction != null)
                 RunAction();
+        }
+
+        public virtual void OnException(Exception err) {
+            if (ExceptionAction != null)
+                ExceptionAction(err);
         }
         /// <summary>
         /// 运行
@@ -194,6 +200,14 @@ namespace PAO.App {
             {
                 TransactionPublic.Run("应用程序初始化", () =>
                 {
+                    TransactionPublic.Run("准备启动", OnPreparing);
+
+                    #region 用户界面
+                    if (UserInterface.IsNotNull()) {
+                        UIPublic.DefaultUserInterface = UserInterface.Value;
+                    }
+                    #endregion 用户界面
+
                     TransactionPublic.Run("扩展配置加载", () =>
                     {
                         if (ExtendPropertyStorage != null) {
@@ -214,22 +228,6 @@ namespace PAO.App {
                         AddonPublic.SearchRuntimeAddons(this);
                     });
 
-                    TransactionPublic.Run("准备启动", OnPreparing);
-
-                    #region 用户界面
-                    if (UserInterface.IsNotNull()) {
-                        UIPublic.DefaultUserInterface = UserInterface.Value;
-                    }
-                    #endregion 用户界面
-
-                    #region 全局插件
-                    TransactionPublic.Run("检索全局插件", () =>
-                    {
-                        AddGlobalAddons();
-                        AddonPublic.RuntimeAddonList = GlobalAddonList;
-                    });
-                    #endregion
-
                     #region 事件
                     TransactionPublic.Run("事件处理机准备", () =>
                     {
@@ -246,7 +244,7 @@ namespace PAO.App {
                     #region 服务器
                     TransactionPublic.Run("启动服务器列表", () =>
                     {
-                        if (!ServerList.IsNullOrEmpty()) {
+                        if (ServerList.IsNotNullOrEmpty()) {
                             foreach (var server in ServerList) {
                                 var serverObj = server.Value;
                                 if (serverObj == null)
@@ -272,15 +270,6 @@ namespace PAO.App {
                 });
             }, OnException);
         }
-
-        /// <summary>
-        /// 检索全局插件
-        /// </summary>
-        private void AddGlobalAddons() {
-            GlobalAddonList = new Dictionary<string, PaoObject>();
-            AddonPublic.TraverseAddon(GlobalAddonList, this);
-        }
-        
         /// <summary>
         /// 程序运行
         /// </summary>

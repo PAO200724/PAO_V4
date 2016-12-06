@@ -11,6 +11,8 @@ using System.Linq;
 using System.Windows.Forms;
 using PAO.UI.MVC;
 using PAO.Config.Commands;
+using PAO.Remote.Tcp;
+using PAO.Security;
 
 namespace PAO.Configuration
 {
@@ -39,6 +41,11 @@ namespace PAO.Configuration
                 EventProcessorList = new List<PAO.Ref<BaseEventProcessor>>()
                     .Append(DebugLogger.Default.ToRef())
                     .Append(EventLogger.Default.ToRef()),
+                SecurityService = new TcpRemoteFactory<ISecurity>()
+                {
+                    ServerAddress = "localhost:7990",
+                    ServiceName = "SecurityService"
+                },
                 ExtendPropertyStorage = new FileExtendPropertyStorage()
                 {
                     FilePath = "ExtendProperties.config"

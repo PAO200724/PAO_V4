@@ -6,6 +6,7 @@ using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization;
@@ -89,6 +90,33 @@ namespace PAO.Remote
             }
 
             return result;
+        }
+        #endregion
+
+        #region 传递数据
+        public const string NullString = "<Null>";
+        /// <summary>
+        /// 从网络读取字符串（考虑空字符串）
+        /// </summary>
+        /// <param name="reader">读取器</param>
+        /// <returns>字符串</returns>
+        public static string NetReadString(this BinaryReader reader) {
+            string result = reader.ReadString();
+            if (result == NullString)
+                return null;
+
+            return result;
+        }
+        /// <summary>
+        /// 写网络字符串（考虑空字符串）
+        /// </summary>
+        /// <param name="writer">写入器</param>
+        /// <param name="text">字符串</param>
+        public static void NetWriteString(this BinaryWriter writer, string text) {
+            if (text == null)
+                writer.Write(NullString);
+            else
+                writer.Write(text);
         }
         #endregion
     }

@@ -1,7 +1,9 @@
 ﻿using PAO;
 using PAO.App;
+using PAO.Security;
 using PAO.Trans;
 using PAO.UI.MVC;
+using PAO.UI.WinForm.Security;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -75,21 +77,50 @@ namespace PAO.UI.WinForm.MDI
         }
         #endregion 属性：LayoutData
 
+        #region 属性：SecurityService
+        /// <summary>
+        /// 属性：SecurityService
+        /// 安全服务
+        /// 提供用户登录以及获取用户信息等的服务
+        /// </summary>
+        [AddonProperty]
+        [DataMember(EmitDefaultValue = false)]
+        [Name("用户服务")]
+        [Description("提供用户登录以及获取用户信息等的服务")]
+        public Ref<ISecurity> SecurityService {
+            get;
+            set;
+        }
+        #endregion 属性：SecurityService
+
         #endregion
         public MDIApplication() {
         }
-
+        public static new MDIApplication Default {
+            get {
+                return PaoApplication.Default as MDIApplication;
+            }
+        }
         MDIMainForm MainForm = null;
         public override void OnPreparing() {
             UIPublic.DefaultUserInterface = new WinFormUI();
+        }
+
+        public override void OnRunning() {
+            var loginControl = new LoginControl();
+            loginControl.SecurtiyService = SecurityService.Value;
+            if (WinFormPublic.ShowDialog(loginControl) != DialogReturn.OK) {
+                return;
+            }
+
             MainForm = new MDIMainForm();
             MVCPublic.MainForm = MainForm;
             MainForm.Text = Caption;
 
-            if(Commands.IsNotNullOrEmpty()) {
+            if (Commands.IsNotNullOrEmpty()) {
                 TransactionPublic.Run("启动自动控制器", () =>
                 {
-                    foreach(var controller in Commands) {
+                    foreach (var controller in Commands) {
                         var ctrl = controller.Value;
                         TransactionPublic.Run(String.Format("运行自动控制器:{0}", ctrl), () =>
                         {
@@ -98,9 +129,7 @@ namespace PAO.UI.WinForm.MDI
                     }
                 });
             }
-        }
 
-        public override void OnRunning() {
             Application.Run(MainForm);
         }
     }
