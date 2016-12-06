@@ -432,6 +432,11 @@ namespace PAO {
         public static ExtendPropertyDataTable ExtendPropertyDataTable = new ExtendPropertyDataTable();
 
         /// <summary>
+        /// 扩展属性存储器
+        /// </summary>
+        public static IExtendPropertyStorage ExtendPropertyStorage;
+
+        /// <summary>
         /// 抽取插件扩展属性
         /// </summary>
         /// <param name="dataTable">扩展数据表</param>
@@ -481,7 +486,7 @@ namespace PAO {
         /// </summary>
         /// <param name="dataTable">扩展数据表</param>
         /// <param name="extendPropertyStorage">扩展属性存储器</param>
-        public static void SaveAddonExtendPropertiesFromStorage(ExtendPropertyDataTable dataTable, IExtendPropertyStorage extendPropertyStorage) {
+        public static void SaveAddonExtendPropertiesToStorage(ExtendPropertyDataTable dataTable, IExtendPropertyStorage extendPropertyStorage) {
             if (extendPropertyStorage != null) {
                 extendPropertyStorage.SaveExtendProperties(dataTable);
             }
@@ -508,16 +513,16 @@ namespace PAO {
         /// 从Storage加载扩展插件
         /// </summary>
         /// <param name="extendPropertyStorage">扩展属性存储器</param>
-        public static void LoadAddonExtendPropertiesFromStorage(IExtendPropertyStorage extendPropertyStorage) {
-            LoadAddonExtendPropertiesFromStorage(ExtendPropertyDataTable, extendPropertyStorage);
+        public static void LoadAddonExtendPropertiesFromStorage() {
+            LoadAddonExtendPropertiesFromStorage(ExtendPropertyDataTable, ExtendPropertyStorage);
         }
 
         /// <summary>
         /// 保存扩展插件到存储器
         /// </summary>
         /// <param name="extendPropertyStorage">扩展属性存储器</param>
-        public static void SaveAddonExtendPropertiesFromStorage(IExtendPropertyStorage extendPropertyStorage) {
-            SaveAddonExtendPropertiesFromStorage(ExtendPropertyDataTable, extendPropertyStorage);
+        public static void SaveAddonExtendPropertiesToStorage() {
+            SaveAddonExtendPropertiesToStorage(ExtendPropertyDataTable, ExtendPropertyStorage);
         }
         #endregion
 

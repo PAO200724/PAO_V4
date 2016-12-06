@@ -36,7 +36,7 @@ namespace PAO.IO.Text
         /// <param name="types">需要用到的对象类型</param>
         /// <returns>对象</returns>
         public object TextToObject(string text) {
-            if (text.IsNotNullOrEmpty())
+            if (text.IsNullOrEmpty())
                 return null;
             StringReader reader = new StringReader(text);
             XmlReader textReader = XmlReader.Create(reader);

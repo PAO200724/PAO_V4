@@ -59,6 +59,22 @@ namespace PAO.UI.WinForm.MDI
         }
         #endregion 属性：Controllers        
 
+        #region 属性：LayoutData
+        /// <summary>
+        /// 属性：LayoutData
+        /// 布局数据
+        /// 布局数据
+        /// </summary>
+        [AddonProperty]
+        [DataMember(EmitDefaultValue = false)]
+        [Name("布局数据")]
+        [Description("布局数据")]
+        public byte[] LayoutData {
+            get;
+            set;
+        }
+        #endregion 属性：LayoutData
+
         #endregion
         public MDIApplication() {
         }

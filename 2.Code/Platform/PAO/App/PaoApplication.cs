@@ -194,10 +194,11 @@ namespace PAO.App {
             {
                 TransactionPublic.Run("应用程序初始化", () =>
                 {
-                    TransactionPublic.Run("加载扩展配置", () =>
+                    TransactionPublic.Run("扩展配置加载", () =>
                     {
                         if (ExtendPropertyStorage != null) {
-                            AddonPublic.LoadAddonExtendPropertiesFromStorage(ExtendPropertyStorage.Value);
+                            AddonPublic.ExtendPropertyStorage = ExtendPropertyStorage.Value;
+                            AddonPublic.LoadAddonExtendPropertiesFromStorage();
                         }
                         //  遍历插件，应用插件
                         AddonPublic.TraverseAddon((addon) =>
@@ -262,6 +263,13 @@ namespace PAO.App {
                 TransactionPublic.Run("启动程序", Run);
                 #endregion 程序
 
+                TransactionPublic.Run("应用程序退出", () =>
+                {
+                    TransactionPublic.Run("扩展属性保存", ()=>
+                    {
+                        AddonPublic.SaveAddonExtendPropertiesToStorage();
+                    });
+                });
             }, OnException);
         }
 

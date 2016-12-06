@@ -20,6 +20,9 @@ namespace PAO.UI.WinForm.MDI
     public partial class MDIMainForm : DevExpress.XtraEditors.XtraForm, IMainForm, IDocumentContainer, IDockViewContainer, IUIItemContainer
     {
         public const string Message_Status_Ready = "就绪";
+        /// <summary>
+        /// 默认
+        /// </summary>
         public static MDIMainForm Default;
 
         public MDIMainForm() {
@@ -34,7 +37,17 @@ namespace PAO.UI.WinForm.MDI
         }
         #endregion
 
+        protected override void OnClosing(CancelEventArgs e) {
+            var mdiApplication = MDIApplication.Default.As<MDIApplication>();
+            mdiApplication.LayoutData = this.DockManager.GetLayoutData();
+            AddonPublic.FetchAddonExtendProperties(mdiApplication, "LayoutData");
+            base.OnClosing(e);
+        }
+
         protected override void OnLoad(EventArgs e) {
+            var mdiApplication = MDIApplication.Default.As<MDIApplication>();
+            AddonPublic.ApplyAddonExtendProperties(mdiApplication);
+            this.DockManager.SetLayoutData(mdiApplication.LayoutData);
             if (MenuFunction.ItemLinks.Count <= 0)
                 MenuFunction.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             else

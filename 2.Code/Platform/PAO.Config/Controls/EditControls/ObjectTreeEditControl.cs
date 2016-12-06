@@ -104,7 +104,7 @@ namespace PAO.Config.Controls.EditControls
 
         public override void OnClosing(DialogResult dialogResult, ref bool cancel) {
             /// 保存
-            AddonPublic.SaveAddonExtendPropertiesFromStorage(ExtendPropertyDataTable, ExtendPropertyStorage);
+            AddonPublic.SaveAddonExtendPropertiesToStorage(ExtendPropertyDataTable, ExtendPropertyStorage);
             base.OnClosing(dialogResult, ref cancel);
         }
         #endregion
@@ -416,7 +416,7 @@ namespace PAO.Config.Controls.EditControls
                 default:
                     throw new Exception("此节点不支持显示数据");
             }
-            AddonPublic.SaveAddonExtendPropertiesFromStorage(ExtendPropertyDataTable, ExtendPropertyStorage);
+            AddonPublic.SaveAddonExtendPropertiesToStorage(ExtendPropertyDataTable, ExtendPropertyStorage);
         }
 
         /// <summary>

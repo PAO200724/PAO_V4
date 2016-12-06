@@ -33,9 +33,7 @@
             this.MenuSystem = new DevExpress.XtraBars.BarSubItem();
             this.MenuSkin = new DevExpress.XtraBars.SkinBarSubItem();
             this.MenuWindow = new DevExpress.XtraBars.BarSubItem();
-            this.barMdiChildrenListItem1 = new DevExpress.XtraBars.BarMdiChildrenListItem();
             this.BarDockingMenuItem = new DevExpress.XtraBars.BarDockingMenuItem();
-            this.BarWorkspaceMenuItem = new DevExpress.XtraBars.BarWorkspaceMenuItem();
             this.WorkspaceManager = new DevExpress.Utils.WorkspaceManager();
             this.BarToolbarsListItem = new DevExpress.XtraBars.BarToolbarsListItem();
             this.ButtonExit = new DevExpress.XtraBars.BarButtonItem();
@@ -95,10 +93,8 @@
             this.MenuSystem,
             this.ButtonExit,
             this.MenuSkin,
-            this.barMdiChildrenListItem1,
             this.BarDockingMenuItem,
             this.MenuWindow,
-            this.BarWorkspaceMenuItem,
             this.BarToolbarsListItem,
             this.EditItemCalculate,
             this.EditItemProgressBar,
@@ -150,30 +146,15 @@
             this.MenuWindow.Caption = "窗口(&W)";
             this.MenuWindow.Id = 5;
             this.MenuWindow.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.barMdiChildrenListItem1),
             new DevExpress.XtraBars.LinkPersistInfo(this.BarDockingMenuItem, true),
-            new DevExpress.XtraBars.LinkPersistInfo(this.BarWorkspaceMenuItem, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.BarToolbarsListItem, true)});
             this.MenuWindow.Name = "MenuWindow";
-            // 
-            // barMdiChildrenListItem1
-            // 
-            this.barMdiChildrenListItem1.Caption = "子窗体(&C)";
-            this.barMdiChildrenListItem1.Id = 3;
-            this.barMdiChildrenListItem1.Name = "barMdiChildrenListItem1";
             // 
             // BarDockingMenuItem
             // 
             this.BarDockingMenuItem.Caption = "视图(&D)";
             this.BarDockingMenuItem.Id = 4;
             this.BarDockingMenuItem.Name = "BarDockingMenuItem";
-            // 
-            // BarWorkspaceMenuItem
-            // 
-            this.BarWorkspaceMenuItem.Caption = "工作空间(&K)";
-            this.BarWorkspaceMenuItem.Id = 6;
-            this.BarWorkspaceMenuItem.Name = "BarWorkspaceMenuItem";
-            this.BarWorkspaceMenuItem.WorkspaceManager = this.WorkspaceManager;
             // 
             // WorkspaceManager
             // 
@@ -365,9 +346,7 @@
         private DevExpress.XtraBars.BarSubItem MenuSystem;
         private DevExpress.XtraBars.SkinBarSubItem MenuSkin;
         private DevExpress.XtraBars.BarSubItem MenuWindow;
-        private DevExpress.XtraBars.BarMdiChildrenListItem barMdiChildrenListItem1;
         private DevExpress.XtraBars.BarDockingMenuItem BarDockingMenuItem;
-        private DevExpress.XtraBars.BarWorkspaceMenuItem BarWorkspaceMenuItem;
         private DevExpress.Utils.WorkspaceManager WorkspaceManager;
         private DevExpress.XtraBars.BarToolbarsListItem BarToolbarsListItem;
         private DevExpress.XtraBars.BarButtonItem ButtonExit;

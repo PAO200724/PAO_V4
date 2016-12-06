@@ -12,6 +12,9 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using DevExpress.XtraBars.Docking2010;
+using System.IO;
+using DevExpress.XtraBars.Docking;
 
 namespace PAO.UI.WinForm
 {
@@ -75,6 +78,31 @@ namespace PAO.UI.WinForm
                 var buttonEdit = sender as ButtonEdit;
                 buttonEdit.EditValue = null;
             }
+        }
+        #endregion
+
+        #region Layout
+        /// <summary>
+        /// 获取布局数据
+        /// </summary>
+        /// <param name="dockManager">停靠管理器</param>
+        /// <returns>布局数据</returns>
+        public static byte[] GetLayoutData(this DockManager dockManager) {
+            MemoryStream buffer = new MemoryStream();
+            dockManager.SaveLayoutToStream(buffer);
+            return buffer.ToArray();
+        }
+
+        /// <summary>
+        /// 设置布局数据
+        /// </summary>
+        /// <param name="dockManager">停靠管理器</param>
+        /// <param name="layoutData">布局数据</param>
+        public static void SetLayoutData(this DockManager dockManager, byte[] layoutData) {
+            if (layoutData.IsNullOrEmpty())
+                return;
+            MemoryStream buffer = new MemoryStream(layoutData);
+            dockManager.RestoreLayoutFromStream(buffer);
         }
         #endregion
 

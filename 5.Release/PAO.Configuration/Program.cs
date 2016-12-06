@@ -33,6 +33,7 @@ namespace PAO.Configuration
         private static PaoApplication CreateApplication() {
             var app = new MDIApplication()
             {
+                ID = "ConfigApplication",
                 Caption = "系统配置程序",
                 ClientID = "PAO_Config",
                 EventProcessorList = new List<PAO.Ref<BaseEventProcessor>>()
