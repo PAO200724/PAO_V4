@@ -22,7 +22,15 @@ namespace SeverTest
             Application.SetCompatibleTextRenderingDefault(false);
             // 应用程序启动时创建PaoApplication
             AppPublic.StartApplication(AppPublic.DefaultConfigFileName
-                , Settings.Default.ConfigStart ? (Func<PaoApplication>)null : CreateApplication);
+                , Settings.Default.ConfigStart ? (Func<PaoApplication>)null : CreateApplication
+                , PrepareAppliation);
+        }
+
+        private static void PrepareAppliation(PaoApplication app) {
+            app.RunAction = () =>
+            {
+                Application.Run(new MainForm());
+            };
         }
 
         private static PaoApplication CreateApplication() {

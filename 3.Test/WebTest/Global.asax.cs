@@ -15,7 +15,12 @@ namespace WebTest
         protected void Application_Start(object sender, EventArgs e) {
             // 应用程序启动时创建PaoApplication
             AppPublic.StartApplication(AppPublic.DefaultConfigFileName
-                , Settings.Default.ConfigStart ? (Func<PaoApplication>)null : AppConfig.CreateApplication);
+                , Settings.Default.ConfigStart ? (Func<PaoApplication>)null : AppConfig.CreateApplication
+                , PrepareAppliation);
+        }
+
+        private void PrepareAppliation(PaoApplication app) {
+
         }
 
         protected void Session_Start(object sender, EventArgs e) {

@@ -42,8 +42,10 @@ namespace PAO.App {
         /// </summary>
         /// <param name="configFileName">配置文件名，此文件应该放于应用程序目录</param>
         /// <param name="createApplicationFunc">应用创建函数</param>
-        public static void StartApplication(string configFileName = DefaultConfigFileName
-            , Func<PaoApplication> createApplicationFunc = null) {
+        /// <param name="applicationPrepareFunc">准备应用程序</param>
+        public static void StartApplication(string configFileName
+            , Func<PaoApplication> createApplicationFunc
+            , Action<PaoApplication> applicationPrepareFunc) {
 
             _AppDirectory = AppDomain.CurrentDomain.SetupInformation.ApplicationBase;
             string configFilePath = Path.Combine(_AppDirectory, configFileName);
@@ -81,10 +83,24 @@ namespace PAO.App {
                         // 保存配置文件
                         TextPublic.WriteObjectToFile(configFilePath, app);
                     }
+
+                    if(applicationPrepareFunc != null) {
+                        applicationPrepareFunc(app);
+                    }
                 });
             });
 
             app.Start();
+        }
+
+        /// <summary>
+        /// 启动应用程序
+        /// </summary>
+        /// <param name="configFileName">配置文件名，此文件应该放于应用程序目录</param>
+        /// <param name="applicationPrepareFunc">准备应用程序</param>
+        public static void StartApplication(string configFileName
+            , Action<PaoApplication> applicationPrepareFunc) {
+            StartApplication(configFileName, null, applicationPrepareFunc);
         }
     }
 }

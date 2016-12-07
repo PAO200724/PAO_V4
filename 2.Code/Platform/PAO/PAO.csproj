@@ -69,12 +69,13 @@
     <Compile Include="Data\DataConnection.cs" />
     <Compile Include="Data\DataField.cs" />
     <Compile Include="Data\DataPublic.cs" />
-    <Compile Include="Data\DbDataService.cs" />
+    <Compile Include="Data\DataService.cs" />
     <Compile Include="Data\Filters\AndLogicFilter.cs" />
     <Compile Include="Data\Filters\BaseDataFilter.cs" />
     <Compile Include="Data\Filters\CompositeLogicFilter.cs" />
     <Compile Include="Data\Filters\OrLogicFilter.cs" />
     <Compile Include="Data\Filters\SqlFilter.cs" />
+    <Compile Include="Data\IDataConnection.cs" />
     <Compile Include="Data\IDataFilter.cs" />
     <Compile Include="Data\IDataService.cs" />
     <Compile Include="Event\EventInfo.cs" />

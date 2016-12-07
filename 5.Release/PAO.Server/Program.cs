@@ -23,8 +23,17 @@ namespace PAO.Server
             Application.SetCompatibleTextRenderingDefault(false);
             // 应用程序启动时创建PaoApplication
             AppPublic.StartApplication(AppPublic.DefaultConfigFileName
-                , Settings.Default.ConfigStart ? (Func<PaoApplication>)null : CreateApplication);
+                , Settings.Default.ConfigStart ? (Func<PaoApplication>)null : CreateApplication
+                , PrepareAppliation);
         }
+
+        private static void PrepareAppliation(PaoApplication app) {
+            app.RunAction = () =>
+            {
+                Application.Run(new MainForm());
+            };
+        }
+
 
         private static PaoApplication CreateApplication() {
             var app = new ServerApplication()
@@ -36,16 +45,18 @@ namespace PAO.Server
                 {
                     FilePath = "ExtendProperties.config"
                 }.ToRef(),
-                DataService = new DbDataService()
+                DataService = new DataService()
                 {
                     DataConnection = new Data.DataConnection()
                     {
+                        ID = "PAO Db Connection",
                         DbFactoryName = "System.Data.SqlClient",
                         ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\PAO\PAO_V4\5.Release\PAO.Server\PAO.mdf;Integrated Security=True",
-                        CommandList = new List<DataCommandInfo>()
+                        ParamPrefix = "@",
+                    }.ToRef(),
+                    CommandList = new List<DataCommandInfo>()
                             .Append(SecurityService.DataCommand_QueryUserByID)
                             .Append(SecurityService.DataCommand_QueryUser)
-                    }
                 }.ToRef(),
                 ServerList = new List<PAO.Ref<PAO.Server.BaseServer>>()
                     .Append(new RemoteTcpServer()
@@ -54,10 +65,7 @@ namespace PAO.Server
                         ServiceList = new Dictionary<string, Ref<PaoObject>>()
                              .Append("SecurityService", new SecurityService().ToRef()),
                     }.ToRef()),
-                RunAction = () =>
-                {
-                    Application.Run(new MainForm());
-                }
+
             };
             return app;
         }

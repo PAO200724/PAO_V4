@@ -132,6 +132,7 @@ namespace PAO.App {
         #endregion 属性：ExtendPropertyStorageList
         #endregion
 
+        #region Actions
         /// <summary>
         /// 运行方法
         /// </summary>
@@ -150,6 +151,7 @@ namespace PAO.App {
         /// </summary>
         [NonSerialized]
         public Action<Exception> ExceptionAction;
+        #endregion
 
         /// <summary>
         /// 全局插件列表

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace PAO.Data {
     /// <summary>
@@ -182,6 +183,20 @@ namespace PAO.Data {
         /// <param name="dataTable">数据表</param>
         public static void FillAll(this IDataService dataService, DataTable dataTable, string commandID, params DataField[] parameters) {
             Fill(dataService, dataTable, commandID, 0, Int32.MaxValue, parameters);
+        }
+        #endregion
+
+        #region 参数
+        /// <summary>
+        /// 在Sql中寻找参数
+        /// </summary>
+        /// <param name="sql">sql语句</param>
+        /// <param name="paramPrefix">参数前缀</param>
+        /// <returns>参数名称列表</returns>
+        public static IEnumerable<string> FindParameters(string sql, string paramPrefix) {
+            Regex regex = new Regex(String.Format(@"{0}\w+", paramPrefix));
+            var matches = regex.Matches(sql);
+            return matches.Cast<Match>().Select(p=>p.ToString());
         }
         #endregion
     }

@@ -10,7 +10,7 @@ using System.ComponentModel;
 namespace PAO.Data
 {
     /// <summary>
-    /// 类:DataConnectionInfo
+    /// 类:DbConnection
     /// 数据连接
     /// 数据连接以及数据库相关操作
     /// 作者:刘丹(Daniel.liu)
@@ -19,7 +19,7 @@ namespace PAO.Data
 	[Serializable]
     [Name("数据连接信息")]
     [Description("数据连接相关的属性")]
-    public class DataConnection : PaoObject
+    public class DataConnection : PaoObject, IDataConnection
     {
         #region 插件属性
         #region 属性:DbFactoryName
@@ -54,26 +54,27 @@ namespace PAO.Data
         }
         #endregion 属性:ConnectionString
 
-        #region 属性:CommandList
+        #region 属性：ParamPrefix
         /// <summary>
-        /// 属性:CommandList
-        /// 命令列表
-        /// 数据库命令列表
+        /// 属性：ParamPrefix
+        /// 参数前缀
+        /// 参数的前缀字符
         /// </summary>
         [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
-        [Name("命令列表")]
-        [Description("数据库命令列表")]
-        public List<DataCommandInfo> CommandList {
+        [Name("参数前缀")]
+        [Description("参数的前缀字符")]
+        public string ParamPrefix {
             get;
             set;
         }
-        #endregion 属性:CommandList
+        #endregion 属性：ParamPrefix
         #endregion
         /// <summary>
         /// 构造方法
         /// </summary>
         public DataConnection() {
+            ParamPrefix = "@";
         }
 
         public override string ToString() {
@@ -122,31 +123,7 @@ namespace PAO.Data
         public DbDataAdapter CreateDataAdapter() {
             return Factory.CreateDataAdapter();
         }
-
-
-        /// <summary>
-        /// 根据命令ID获取命令
-        /// </summary>
-        /// <param name="commandID">命令ID</param>
-        /// <returns>数据命令信息</returns>
-        public DataCommandInfo GetDataCommandInfoByID(string commandID) {
-            return (from cmd in CommandList
-                where cmd.ID == commandID
-                select cmd).FirstOrDefault();
-        }
-
-        /// <summary>
-        /// 创建数据命令
-        /// </summary>
-        /// <param name="commandID">命令ID</param>
-        /// <param name="parameterList">参数列表</param>
-        /// <returns>数据命令</returns>
-        private DbCommand CreateDataCommand(string commandID, params DataField[] parameterList) {
-            var commandInfo = GetDataCommandInfoByID(commandID);
-            commandInfo.CheckNotNull("指定的命令查找不到。");
-
-            return CreateDataCommand(commandInfo, parameterList);
-        }
+        
         /// <summary>
         /// 创建数据命令
         /// </summary>
@@ -161,21 +138,38 @@ namespace PAO.Data
             command.CommandText = commandInfo.GetCommandText(parameterList);
             var paramDefines = commandInfo.GetParameters();
 
+            // 从Sql创建参数
+            var paramNames = DataPublic.FindParameters(commandInfo.Sql, ParamPrefix);
+            foreach(var paramName in paramNames) {
+                if(!command.Parameters.Contains(paramName)) {
+                    var dbParam = command.CreateParameter();
+                    dbParam.ParameterName = paramName;
+                    dbParam.DbType = DbType.String;
+                    command.Parameters.Add(dbParam);
+                }
+            }
+
+            // 从命令的参数列表中创建Sql参数
+            foreach(var predefinedParam in paramDefines) {
+                DbParameter dbParam;
+                if (!command.Parameters.Contains(predefinedParam.Name)) {
+                    dbParam = command.CreateParameter();
+                    dbParam.ParameterName = predefinedParam.Name;
+                    command.Parameters.Add(dbParam);
+                } else {
+                    dbParam = command.Parameters[predefinedParam.Name];
+                }
+                dbParam.DbType = predefinedParam.Type;
+            }
+
+            // 设置参数值
             if (!parameterList.IsNullOrEmpty()) {
                 foreach (var dataField in parameterList) {
-                    if (!dataField.Name.IsNullOrEmpty()) {
-                        var dbParam = command.CreateParameter();
-                        dbParam.ParameterName = dataField.Name;
-                        var parameter = paramDefines.Where(p => p.Name == dataField.Name).FirstOrDefault();
-                        // 如果参数经过定义，则使用参数类型；否则使用传入的值类型
-                        if (dataField != null && parameter != null) {
-                            dbParam.DbType = parameter.Type;
-                        }
-                        else {
-                            dbParam.DbType = DataPublic.GetDbTypeByTypeName(DataPublic.GetTypeNameByType(dataField.Value.GetType()));
-                        }
-                        dbParam.Value = dataField.Value;
-                        command.Parameters.Add(dbParam);
+                    if (command.Parameters.Contains(dataField.Name)) {
+                        var param = command.Parameters[dataField.Name];
+                        param.DbType = DataPublic.GetDbTypeByTypeName(DataPublic.GetTypeNameByType(dataField.Value.GetType()));
+                        param.Value = dataField.Value;
+
                     }
                 }
             }
@@ -191,7 +185,6 @@ namespace PAO.Data
         /// <returns>数据适配器</returns>
         public IDbDataAdapter CreateDataAdapter(DataCommandInfo commandInfo
                 , params DataField[] paramValues) {
-
             DbCommand command = CreateDataCommand(commandInfo, paramValues);
             DbDataAdapter adapter = CreateDataAdapter();
             adapter.SelectCommand = command;
@@ -234,9 +227,9 @@ namespace PAO.Data
         /// <summary>
         /// 获取表格式
         /// </summary>
-        /// <param name="commandID">命令ID</param>
+        /// <param name="commandInfo">命令ID</param>
         /// <returns>表格式</returns>
-        private DataTable GetSchema(DataCommandInfo commandInfo) {
+        public DataTable GetSchema(DataCommandInfo commandInfo) {
             var dataAdapter = CreateDataAdapter(commandInfo);
             try {
                 string sql = String.Format(@"SELECT * FROM ({0}) SCHEMA_TABLE WHERE 1=0", dataAdapter.SelectCommand.CommandText);
@@ -251,24 +244,13 @@ namespace PAO.Data
                 dataAdapter.SelectCommand.Connection.Close();
             }
         }
-
-        /// <summary>
-        /// 获取表格式
-        /// </summary>
-        /// <param name="commandID">命令ID</param>
-        /// <returns>表格式</returns>
-        public DataTable GetSchema(string commandID) {
-            var commandInfo = GetDataCommandInfoByID(commandID);
-            return GetSchema(commandInfo);
-        }
         
         /// <summary>
         /// 获取参数
         /// </summary>
-        /// <param name="commandID">命令ID</param>
+        /// <param name="commandInfo">命令ID</param>
         /// <returns>参数列表</returns>
-        public DataField[] GetParameters(string commandID) {
-            var commandInfo = GetDataCommandInfoByID(commandID);
+        public DataField[] GetParameters(DataCommandInfo commandInfo) {
             return commandInfo.GetParameters();
         }
 
@@ -313,11 +295,10 @@ namespace PAO.Data
         /// <summary>
         /// 通过Sql查询表
         /// </summary>
-        /// <param name="commandID">查询命令</param>
+        /// <param name="commandInfo">查询命令</param>
         /// <param name="parameterList">参数</param>
         /// <returns>数据记录集</returns>
-        public DataTable QueryTableByCommand(string commandID, int startIndex, int maxCount, params DataField[] parameterList) {
-            var commandInfo = GetDataCommandInfoByID(commandID);
+        public DataTable QueryTableByCommand(DataCommandInfo commandInfo, int startIndex, int maxCount, params DataField[] parameterList) {
             var command = CreateDataCommand(commandInfo, parameterList);
             var dataTable = GetSchema(commandInfo);
             QueryData(command, startIndex, maxCount, dataTable);
@@ -343,10 +324,9 @@ namespace PAO.Data
         /// <summary>
         /// 执行命令
         /// </summary>
-        /// <param name="commandID">命令ID</param>
+        /// <param name="commandInfo">命令ID</param>
         /// <param name="parameterList">参数列表</param>
-        public void Execute(string commandID, params DataField[] parameterList) {
-            var commandInfo = GetDataCommandInfoByID(commandID);
+        public void Execute(DataCommandInfo commandInfo, params DataField[] parameterList) {
             var command = CreateDataCommand(commandInfo, parameterList);
             command.Connection.Open();
             try {
@@ -360,10 +340,9 @@ namespace PAO.Data
         /// <summary>
         /// 执行命令
         /// </summary>
-        /// <param name="commandID">命令ID</param>
+        /// <param name="commandInfo">命令ID</param>
         /// <param name="parameterList">参数列表</param>
-        public object ExecuteScalar(string commandID, params DataField[] parameterList) {
-            var commandInfo = GetDataCommandInfoByID(commandID);
+        public object ExecuteScalar(DataCommandInfo commandInfo, params DataField[] parameterList) {
             var command = CreateDataCommand(commandInfo, parameterList);
             command.Connection.Open();
             try {
