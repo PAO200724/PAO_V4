@@ -42,14 +42,20 @@ namespace PAO.UI.WinForm.MDI.DockPanels
         public MenuCommand() {
         }
 
-        public void DoCommand() {
-            if (MVCPublic.MainForm is IUIItemContainer) {
-                var uiItemContainer = MVCPublic.MainForm as IUIItemContainer;
+        public void DoCommand(object container) {
+            if (container is IUIItemContainer) {
+                var uiItemContainer = container as IUIItemContainer;
                 if(MenuItems.IsNotNullOrEmpty()) {
                     foreach(var menuItem in MenuItems) {
                         uiItemContainer.OpenUIItem(menuItem.Value);
                     }
                 }
+            }
+        }
+
+        public IDictionary<string, string> Permissions {
+            get {
+                return null;
             }
         }
     }

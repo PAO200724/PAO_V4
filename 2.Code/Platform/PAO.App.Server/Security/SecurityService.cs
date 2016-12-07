@@ -28,27 +28,36 @@ namespace PAO.App.Server.Security
         #region 插件属性
         #endregion
 
+        #region DataCommands
         public static readonly DataCommandInfo DataCommand_QueryUserByID = new DataCommandInfo()
         {
             ID = "DataCommand_QueryUserByID",
-            Sql = "SELECT * FROM [T_User] WHERE {0}",
-            DataFilter = new SqlFilter()
+            Sql = "SELECT * FROM [T_User] WHERE [Enabled] = 1 AND [ID] = @ID",
+        };
+
+        public static readonly DataCommandInfo DataCommand_QueryUserByName = new DataCommandInfo()
+        {
+            ID = "DataCommand_QueryUserByName",
+            Sql = "SELECT * FROM [T_User] WHERE [Enabled] = 1 AND ([ID] = @UserName OR [Name] = @UserName OR LoginName = @UserName OR [Tel] = @UserName OR Email = @UserName)",
+        };
+
+        public static readonly DataCommandInfo DataCommand_QueryUsers = new DataCommandInfo()
+        {
+            ID = "DataCommand_QueryUsers",
+            Sql = "SELECT * FROM [T_User]",
+            DataFilter = new AndLogicFilter()
             {
-                Name = "@ID",
-                Sql = "ID = @ID"
+                ChildFilters = new List<IDataFilter>()
+                    .Append(new SqlFilter("Enabled=@Enabled", "@Enabled", "生效", System.Data.DbType.Boolean))
+                    .Append(new SqlFilter("LoginName LIKE '%' + @LoginName + '%'", "@LoginName", "登录名"))
+                    .Append(new SqlFilter("UserName LIKE '%' + @UserName + '%'", "@UserName", "用户名"))
+                    .Append(new SqlFilter("Tel LIKE '%' + @Tel + '%'", "@Tel", "电话"))
+                    .Append(new SqlFilter("Email LIKE '%' + @Email + '%'", "@Email", "电子邮箱"))
             }
         };
 
-        public static readonly DataCommandInfo DataCommand_QueryUser = new DataCommandInfo()
-        {
-            ID = "DataCommand_QueryUser",
-            Sql = "SELECT * FROM [T_User] WHERE {0}",
-            DataFilter = new SqlFilter()
-            {
-                Name = "@UserName",
-                Sql = "[ID] = @UserName OR [Name] = @UserName OR LoginName = @UserName OR [Tel] = @UserName OR Email = @UserName",
-            },
-        };
+        #endregion
+
         public SecurityService() {
         }
 
@@ -68,7 +77,7 @@ namespace PAO.App.Server.Security
         public string Login(string userID, string password) {
             T_UserDataTable userTable = new Server.UserDataSet.T_UserDataTable();
             var dataService = ServerApplication.Default.DataService.Value;
-            dataService.Fill(userTable, DataCommand_QueryUser.ID, 0, 1, new DataField("@UserName", userID));
+            dataService.Fill(userTable, DataCommand_QueryUserByName.ID, 0, 1, new DataField("@UserName", userID));
             if (userTable.Count == 0)
                 throw new Exception("登录失败");
             if (userTable[0].IsPasswordNull()) {

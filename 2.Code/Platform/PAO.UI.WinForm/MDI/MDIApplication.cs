@@ -1,4 +1,5 @@
-﻿using PAO;
+﻿using DevExpress.Skins;
+using PAO;
 using PAO.App;
 using PAO.Security;
 using PAO.Trans;
@@ -93,6 +94,22 @@ namespace PAO.UI.WinForm.MDI
         }
         #endregion 属性：SecurityService
 
+        #region 属性：SkinName
+        /// <summary>
+        /// 属性：SkinName
+        /// 皮肤名称
+        /// 皮肤名称
+        /// </summary>
+        [AddonProperty]
+        [DataMember(EmitDefaultValue = false)]
+        [Name("皮肤名称")]
+        [Description("皮肤名称")]
+        public string SkinName {
+            get;
+            set;
+        }
+        #endregion 属性：SkinName
+
         #endregion
         public MDIApplication() {
         }
@@ -107,6 +124,12 @@ namespace PAO.UI.WinForm.MDI
         }
 
         public override void OnRunning() {
+            if (SkinName.IsNotNullOrEmpty()) { 
+                DevExpress.LookAndFeel.UserLookAndFeel.Default.UseDefaultLookAndFeel = false;
+                DevExpress.LookAndFeel.UserLookAndFeel.Default.UseWindowsXPTheme = false;
+                DevExpress.LookAndFeel.UserLookAndFeel.Default.SkinName = SkinName;
+                DevExpress.Skins.SkinManager.EnableFormSkins();
+            }
             var loginControl = new LoginControl();
             loginControl.SecurtiyService = SecurityService.Value;
             if (WinFormPublic.ShowDialog(loginControl) != DialogReturn.OK) {
@@ -120,11 +143,11 @@ namespace PAO.UI.WinForm.MDI
             if (Commands.IsNotNullOrEmpty()) {
                 TransactionPublic.Run("启动自动控制器", () =>
                 {
-                    foreach (var controller in Commands) {
-                        var ctrl = controller.Value;
+                    foreach (var command in Commands) {
+                        var ctrl = command.Value;
                         TransactionPublic.Run(String.Format("运行自动控制器:{0}", ctrl), () =>
                         {
-                            ctrl.DoCommand();
+                            ctrl.DoCommand(MVCPublic.MainForm);
                         });
                     }
                 });

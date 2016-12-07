@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PAO.Security;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -15,8 +16,8 @@ namespace PAO.UI.MVC
     [Addon]
     [Name("功能项")]
     [Description("功能项")]
-    public interface ICommand
+    public interface ICommand : IPermissionSet
     {
-        void DoCommand();
+        void DoCommand(object container);
     }
 }

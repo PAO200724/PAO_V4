@@ -9,6 +9,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using PAO.UI.MVC;
+using PAO.IO.Text;
 
 namespace PAO.Config.Commands
 {
@@ -26,22 +27,67 @@ namespace PAO.Config.Commands
     public class ObjectConfigCommand : CommandMenuItem
     {
         #region 插件属性
+
+        #region 属性：ConfigFile
+        /// <summary>
+        /// 属性：ConfigFile
+        /// 配置文件
+        /// 配置文件路径
+        /// </summary>
+        [AddonProperty]
+        [DataMember(EmitDefaultValue = false)]
+        [Name("配置文件")]
+        [Description("配置文件路径")]
+        public string ConfigFile {
+            get;
+            set;
+        }
+        #endregion 属性：ConfigFile
+
+
+        #region 属性：ExtendPropertyConfigFile
+        /// <summary>
+        /// 属性：ExtendPropertyConfigFile
+        /// 扩展属性配置文件
+        /// 扩展属性配置文件路径
+        /// </summary>
+        [AddonProperty]
+        [DataMember(EmitDefaultValue = false)]
+        [Name("扩展属性配置文件")]
+        [Description("扩展属性配置文件路径")]
+        public string ExtendPropertyConfigFile {
+            get;
+            set;
+        }
+        #endregion 属性：ExtendPropertyConfigFile
         #endregion
         public ObjectConfigCommand() {
         }
 
-        public override void DoCommand() {
-            if(MVCPublic.MainForm is IDocumentContainer) {
-                var docContainer = MVCPublic.MainForm as IDocumentContainer;
+        const string DefaultExtendPropertyConfigFile = "ExtendProperties.config";
+        protected override void OnDoCommand(object container) {
+            if (container is IViewContainer) {
+                var docContainer = container as IViewContainer;
                 var view = new ObjectTreeEditControl();
-                view.ID = ID;
-                view.Caption = Caption;
-                view.Icon = Icon;
-                view.ExtendPropertyStorageFilePath = AppPublic.GetAbsolutePath("ExtendProperties.config");
-                view.SelectedObject = PaoApplication.Default;
-                docContainer.OpenDocument(view);
+                view.FromUIItem(this);
+
+                if(ExtendPropertyConfigFile.IsNullOrEmpty()) {
+                    view.ExtendPropertyStorageFilePath = AppPublic.GetAbsolutePath(DefaultExtendPropertyConfigFile);
+                }
+                else {
+                    view.ExtendPropertyStorageFilePath = AppPublic.GetAbsolutePath(ExtendPropertyConfigFile);
+                }
+                object addon;
+                if (ConfigFile.IsNullOrEmpty()) {
+                    addon = PaoApplication.Default;
+                }
+                else {
+                    addon = TextPublic.ReadObjectFromFile(ConfigFile);
+                }
+                view.SelectedObject = addon;
+                docContainer.OpenView(view);
             }
-            base.DoCommand();
+            base.DoCommand(container);
         }
     }
 }
