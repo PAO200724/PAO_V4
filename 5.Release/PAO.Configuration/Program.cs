@@ -13,6 +13,7 @@ using PAO.UI.MVC;
 using PAO.Config.Commands;
 using PAO.Remote.Tcp;
 using PAO.Security;
+using PAO.UI.WinForm.MDI.Views;
 
 namespace PAO.Configuration
 {
@@ -76,6 +77,10 @@ namespace PAO.Configuration
                                     {
                                         Caption = "主配置",
                                     }.ToRef())
+                            }.ToRef())
+                            .Append(new GridControlViewCommand()
+                            {
+                                Caption = "表格视图"
                             }.ToRef()),
                     }.ToRef()),
             };

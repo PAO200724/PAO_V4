@@ -56,7 +56,7 @@ namespace PAO.Server
                     }.ToRef(),
                     CommandList = new List<DataCommandInfo>()
                             .Append(SecurityService.DataCommand_QueryUserByID)
-                            .Append(SecurityService.DataCommand_QueryUser)
+                            .Append(SecurityService.DataCommand_QueryUserByName)
                 }.ToRef(),
                 ServerList = new List<PAO.Ref<PAO.Server.BaseServer>>()
                     .Append(new RemoteTcpServer()

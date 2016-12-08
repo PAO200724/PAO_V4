@@ -113,14 +113,14 @@ namespace PAO.UI.WinForm
         /// <param name="barSubItem">子菜单</param>
         /// <param name="menuItem">菜单项</param>
         /// <param name="mainForm">主窗体</param>
-        public static void AddMenuToSubItem(object barSubItem, IUIItem uiItem, IMainForm mainFom) {
+        public static void AddMenuToSubItem(object barSubItem, IUIItem uiItem, object container) {
             BarItem barItem = null;
             if(uiItem is IMenuItem) {
                 var menuItem = uiItem as IMenuItem;
                 if (menuItem.ChildMenuItems.IsNotNull()) {
                     var newSubItem = new BarSubItem();
                     foreach (var childFunctionItem in menuItem.ChildMenuItems) {
-                        AddMenuToSubItem(newSubItem, childFunctionItem, mainFom);
+                        AddMenuToSubItem(newSubItem, childFunctionItem, container);
                     }
                     barItem = newSubItem;
                 }
@@ -137,7 +137,7 @@ namespace PAO.UI.WinForm
                 try {
                     if(uiItem is ICommand) {
                         var command = uiItem as ICommand;
-                        command.DoCommand();
+                        command.DoCommand(container);
                     }
                 } catch (Exception err) {
                     UIPublic.ShowErrorDialog(err.FormatException());

@@ -66,6 +66,13 @@ namespace PAO.UI.WinForm.Controls
         /// </summary>
         public event EventHandler<DataModifyStateChangedEventArgs> DataModifyStateChanged;
 
+        public virtual void FromUIItem(IUIItem uiItem) {
+            ID = uiItem.ID;
+            Caption = uiItem.Caption;
+            Icon = uiItem.Icon;
+            LargeIcon = uiItem.LargeIcon;
+        }
+
         protected void FileDataModifyStateChangedEvent(bool dataModifed) {
             if (DataModifyStateChanged != null)
                 DataModifyStateChanged(this, new DataModifyStateChangedEventArgs() { DataModified = dataModifed });

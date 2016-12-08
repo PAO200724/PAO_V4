@@ -41,8 +41,8 @@ namespace PAO.UI.WinForm.MDI.DockPanels
         #endregion
         public TreeMenuCommand() {
         }
-        public override void DoCommand() {
-            if(MVCPublic.MainForm is IDockViewContainer) {
+        protected override void OnDoCommand(object container) {
+            if(container is IDockViewContainer) {
                 var treeView = new TreeMenuView()
                 {
                     ID = ID,
@@ -55,9 +55,8 @@ namespace PAO.UI.WinForm.MDI.DockPanels
                         treeView.OpenUIItem(menuItem.Value);
                     }
                 }
-                MVCPublic.MainForm.As<IDockViewContainer>().OpenDockView(treeView);
+                container.As<IDockViewContainer>().OpenDockView(treeView);
             }
-            base.DoCommand();
         }
     }
 }

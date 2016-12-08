@@ -17,7 +17,7 @@ namespace PAO.UI.WinForm.MDI
     /// <summary>
     /// MDI主窗体
     /// </summary>
-    public partial class MDIMainForm : DevExpress.XtraEditors.XtraForm, IMainForm, IDocumentContainer, IDockViewContainer, IUIItemContainer
+    public partial class MDIMainForm : DevExpress.XtraEditors.XtraForm, IMainForm, IViewContainer, IDockViewContainer, IUIItemContainer
     {
         public const string Message_Status_Ready = "就绪";
         /// <summary>
@@ -40,7 +40,8 @@ namespace PAO.UI.WinForm.MDI
         protected override void OnClosing(CancelEventArgs e) {
             var mdiApplication = MDIApplication.Default.As<MDIApplication>();
             mdiApplication.LayoutData = this.DockManager.GetLayoutData();
-            AddonPublic.FetchAddonExtendProperties(mdiApplication, "LayoutData");
+            mdiApplication.SkinName = DevExpress.LookAndFeel.UserLookAndFeel.Default.SkinName;
+            AddonPublic.FetchAddonExtendProperties(mdiApplication, "LayoutData", "SkinName");
             base.OnClosing(e);
         }
 
@@ -76,13 +77,13 @@ namespace PAO.UI.WinForm.MDI
             UIPublic.CloseWaitingForm();
         }
 
-        public void OpenDocument(IDocument document) {
+        public void OpenView(IView view) {
             Waiting(() =>
             {
-                var docControl = document as Control;
+                var docControl = view as Control;
                 var tabbedDoc = TabbedView.AddDocument(docControl);
-                tabbedDoc.Caption = document.Caption;
-                tabbedDoc.Image = document.Icon;
+                tabbedDoc.Caption = view.Caption;
+                tabbedDoc.Image = view.Icon;
             }, "正在打开文档");
         }
 

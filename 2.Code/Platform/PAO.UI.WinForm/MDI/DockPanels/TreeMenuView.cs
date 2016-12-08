@@ -56,7 +56,7 @@ namespace PAO.UI.WinForm.MDI.DockPanels
                 if (focusedNode != null) {
                     var command = focusedNode.GetValue(ColumnMenu) as ICommand;
                     if (command != null) {
-                        command.DoCommand();
+                        command.DoCommand(MVCPublic.MainForm);
                     }
                 }
             }, "打开视图");

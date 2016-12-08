@@ -125,6 +125,7 @@
     <Compile Include="Remote\BaseRemoteFactory.cs" />
     <Compile Include="Remote\WCF\WCFFactory.cs" />
     <Compile Include="Remote\WCF\WCFRemoteFactory.cs" />
+    <Compile Include="Security\IPermissionSet.cs" />
     <Compile Include="Security\ISecurity.cs" />
     <Compile Include="Security\SecurityPublic.cs" />
     <Compile Include="Security\UserInfo.cs" />
@@ -141,6 +142,7 @@
     <Compile Include="Trans\TransactionPublic.cs" />
     <Compile Include="Trans\TransStatus_Running.cs" />
     <Compile Include="UI\MVC\CommandMenuItem.cs" />
+    <Compile Include="UI\MVC\IDataView.cs" />
     <Compile Include="UI\MVC\MenuItem.cs" />
     <Compile Include="UI\MVC\IMenuItem.cs" />
     <Compile Include="UI\MVC\MVCPublic.cs" />
@@ -150,8 +152,8 @@
     <Compile Include="UI\DialogType.cs" />
     <Compile Include="UI\MVC\IDockView.cs" />
     <Compile Include="UI\MVC\IDockViewContainer.cs" />
-    <Compile Include="UI\MVC\IDocument.cs" />
-    <Compile Include="UI\MVC\IDocumentContainer.cs" />
+    <Compile Include="UI\MVC\IView.cs" />
+    <Compile Include="UI\MVC\IViewContainer.cs" />
     <Compile Include="UI\MVC\ICommand.cs" />
     <Compile Include="UI\MVC\IUIItemContainer.cs" />
     <Compile Include="UI\MVC\IMainForm.cs" />

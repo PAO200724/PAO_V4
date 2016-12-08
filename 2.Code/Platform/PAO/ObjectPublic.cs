@@ -202,6 +202,12 @@ namespace PAO {
         /// <param name="originalObject">原始对象</param>
         /// <returns>实例或者是代理对象的原始实例</returns>
         public static T As<T>(this object originalObject) {
+            if (originalObject == null)
+                return default(T);
+
+            if (originalObject is Ref<T>)
+                return (originalObject as Ref<T>).Value;
+
             if (originalObject is T)
                 return (T)originalObject;
 

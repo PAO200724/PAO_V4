@@ -87,8 +87,6 @@
     <Compile Include="MDI\DockPanels\TreeMenuView.Designer.cs">
       <DependentUpon>TreeMenuView.cs</DependentUpon>
     </Compile>
-    <Compile Include="MDI\IDockViewSupport.cs" />
-    <Compile Include="MDI\IPropertyPageSupport.cs" />
     <Compile Include="MDI\MDIMainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -96,6 +94,19 @@
       <DependentUpon>MDIMainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="MDI\MDIApplication.cs" />
+    <Compile Include="MDI\Views\CompositeView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MDI\Views\CompositeView.Designer.cs">
+      <DependentUpon>CompositeView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MDI\Views\GridControlView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MDI\Views\GridControlView.Designer.cs">
+      <DependentUpon>GridControlView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MDI\Views\GridControlViewCommand.cs" />
     <Compile Include="Security\LoginControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -162,6 +173,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MDI\MDIMainForm.resx">
       <DependentUpon>MDIMainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MDI\Views\CompositeView.resx">
+      <DependentUpon>CompositeView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MDI\Views\GridControlView.resx">
+      <DependentUpon>GridControlView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">

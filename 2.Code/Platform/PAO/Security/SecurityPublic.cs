@@ -89,5 +89,15 @@ namespace PAO.Security
             return DefaultHashAlgorithm.ComputeHash(stream);
         }
         #endregion 哈希(Hash)
+
+        /// <summary>
+        /// 检查权限
+        /// </summary>
+        /// <param name="commandID">命令ID</param>
+        /// <param name="permission">许可</param>
+        /// <returns>当前用户是否拥有某个权限</returns>
+        public static bool CheckPermission(string commandID, string permission) {
+            return true;
+        }
     }
 }
