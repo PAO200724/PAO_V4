@@ -39,7 +39,7 @@
             this.ButtonExport = new DevExpress.XtraBars.BarButtonItem();
             this.ButtonPrint = new DevExpress.XtraBars.BarButtonItem();
             this.EditItemCaption = new DevExpress.XtraBars.BarEditItem();
-            this.RepositoryItemTextEdit = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
+            this.RepositoryItemTextEditCaption = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.CardView = new DevExpress.XtraGrid.Views.Card.CardView();
             this.AdvBandedGridView = new DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView();
             this.gridBand1 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
@@ -51,7 +51,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.GridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BarManager)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemTextEdit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemTextEditCaption)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CardView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AdvBandedGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BandedGridView)).BeginInit();
@@ -97,7 +97,7 @@
             this.EditItemCaption});
             this.BarManager.MaxItemId = 6;
             this.BarManager.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.RepositoryItemTextEdit});
+            this.RepositoryItemTextEditCaption});
             // 
             // barDockControlTop
             // 
@@ -157,15 +157,15 @@
             // EditItemCaption
             // 
             this.EditItemCaption.Caption = "标题(&C)";
-            this.EditItemCaption.Edit = this.RepositoryItemTextEdit;
+            this.EditItemCaption.Edit = this.RepositoryItemTextEditCaption;
             this.EditItemCaption.EditWidth = 192;
             this.EditItemCaption.Id = 5;
             this.EditItemCaption.Name = "EditItemCaption";
             // 
-            // repositoryItemTextEdit1
+            // RepositoryItemTextEditCaption
             // 
-            this.RepositoryItemTextEdit.AutoHeight = false;
-            this.RepositoryItemTextEdit.Name = "repositoryItemTextEdit1";
+            this.RepositoryItemTextEditCaption.AutoHeight = false;
+            this.RepositoryItemTextEditCaption.Name = "RepositoryItemTextEditCaption";
             // 
             // CardView
             // 
@@ -235,7 +235,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.GridControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BarManager)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemTextEdit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemTextEditCaption)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CardView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.AdvBandedGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BandedGridView)).EndInit();
@@ -269,6 +269,6 @@
         private DevExpress.XtraBars.BarButtonItem ButtonExport;
         private DevExpress.XtraBars.BarButtonItem ButtonPrint;
         private DevExpress.XtraBars.BarEditItem EditItemCaption;
-        private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit RepositoryItemTextEdit;
+        private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit RepositoryItemTextEditCaption;
     }
 }

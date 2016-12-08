@@ -24,6 +24,8 @@ namespace PAO.UI.WinForm.MDI
         /// 默认
         /// </summary>
         public static MDIMainForm Default;
+       
+        public event EventHandler<ViewActionEventArgs> ViewActing;
 
         public MDIMainForm() {
             Default = this;
@@ -102,6 +104,14 @@ namespace PAO.UI.WinForm.MDI
 
         public void OpenUIItem(IUIItem uiItem) {
             WinFormPublic.AddMenuToSubItem(this.MenuFunction, uiItem, this);
+        }
+
+        public void ViewAct(object sender, string actionName, IEnumerable<object> actionParameters) {
+            if(ViewActing != null)
+                ViewActing(sender, new ViewActionEventArgs() {
+                    ActionName = actionName,
+                    ActionParameters = actionParameters
+                } );
         }
     }
 }

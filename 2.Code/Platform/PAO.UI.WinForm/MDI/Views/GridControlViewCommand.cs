@@ -3,6 +3,7 @@ using PAO.UI.MVC;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
@@ -39,6 +40,22 @@ namespace PAO.UI.WinForm.MDI.Views
             set;
         }
         #endregion 属性：LayoutData
+
+        #region 属性：DataSchema
+        /// <summary>
+        /// 属性：DataSchema
+        /// s数据格式
+        /// 数据格式
+        /// </summary>
+        [AddonProperty]
+        [DataMember(EmitDefaultValue = false)]
+        [Name("s数据格式")]
+        [Description("数据格式")]
+        public DataSet DataSchema {
+            get;
+            set;
+        }
+        #endregion 属性：DataSchema
         #endregion
         public GridControlViewCommand() {
         }

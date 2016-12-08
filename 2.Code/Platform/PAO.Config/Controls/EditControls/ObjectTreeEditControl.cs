@@ -95,6 +95,10 @@ namespace PAO.Config.Controls.EditControls
             }
         }
 
+        public IViewContainer ViewContainer {
+            get;
+            set;
+        }
         #endregion
 
         #region DialogControl

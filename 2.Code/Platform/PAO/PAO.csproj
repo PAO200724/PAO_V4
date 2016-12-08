@@ -76,8 +76,12 @@
     <Compile Include="Data\Filters\OrLogicFilter.cs" />
     <Compile Include="Data\Filters\SqlFilter.cs" />
     <Compile Include="Data\IDataConnection.cs" />
+    <Compile Include="Data\IDataContainer.cs" />
+    <Compile Include="Data\IDataFetch.cs" />
     <Compile Include="Data\IDataFilter.cs" />
     <Compile Include="Data\IDataService.cs" />
+    <Compile Include="Data\IDataView.cs" />
+    <Compile Include="Data\IParameterProvide.cs" />
     <Compile Include="Event\EventInfo.cs" />
     <Compile Include="Event\EventPublic.cs" />
     <Compile Include="Event\ExceptionEventInfo.cs" />
@@ -142,7 +146,6 @@
     <Compile Include="Trans\TransactionPublic.cs" />
     <Compile Include="Trans\TransStatus_Running.cs" />
     <Compile Include="UI\MVC\CommandMenuItem.cs" />
-    <Compile Include="UI\MVC\IDataView.cs" />
     <Compile Include="UI\MVC\MenuItem.cs" />
     <Compile Include="UI\MVC\IMenuItem.cs" />
     <Compile Include="UI\MVC\MVCPublic.cs" />
@@ -160,6 +163,7 @@
     <Compile Include="UI\MVC\IPropertyPage.cs" />
     <Compile Include="UI\MVC\IPropertyPageSupport.cs" />
     <Compile Include="UI\MVC\IUIItem.cs" />
+    <Compile Include="UI\MVC\ViewActionEventArgs.cs" />
     <Compile Include="UI\UIPublic.cs" />
   </ItemGroup>
   <ItemGroup>

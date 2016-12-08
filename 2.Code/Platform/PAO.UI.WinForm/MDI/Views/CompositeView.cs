@@ -27,6 +27,13 @@ namespace PAO.UI.WinForm.MDI.Views
             InitializeComponent();
         }
 
+        public IViewContainer ViewContainer {
+            get;
+            set;
+        }
+
+        public event EventHandler<ViewActionEventArgs> ViewActing;
+
         public void Initialize(DataSet schemaDataSet) {
             SchemaDataSet = schemaDataSet;
         }
@@ -47,6 +54,15 @@ namespace PAO.UI.WinForm.MDI.Views
             layoutControlItem.CustomizationFormText = Caption;
             layoutControlItem.TextLocation = DevExpress.Utils.Locations.Top;
             layoutControlItem.TextVisible = false;
+        }
+
+        public void ViewAct(object sender, string actionName, IEnumerable<object> actionParameters) {
+            if (ViewActing != null)
+                ViewActing(sender, new ViewActionEventArgs()
+                {
+                    ActionName = actionName,
+                    ActionParameters = actionParameters
+                });
         }
     }
 }
