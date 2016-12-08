@@ -87,7 +87,6 @@ namespace PAO.Config.Commands
                 view.SelectedObject = addon;
                 docContainer.OpenView(view);
             }
-            base.DoCommand(container);
         }
     }
 }

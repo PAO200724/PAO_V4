@@ -51,7 +51,7 @@ namespace PAO.Server
                     {
                         ID = "PAO Db Connection",
                         DbFactoryName = "System.Data.SqlClient",
-                        ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\PAO\PAO_V4\5.Release\PAO.Server\PAO.mdf;Integrated Security=True",
+                        ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\PAO.mdf;Integrated Security=True",
                         ParamPrefix = "@",
                     }.ToRef(),
                     CommandList = new List<DataCommandInfo>()

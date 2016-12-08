@@ -83,22 +83,6 @@ namespace PAO.App {
         }
         #endregion 属性:ServerList
         
-        #region 属性：UserInterface
-        /// <summary>
-        /// 属性：UserInterface
-        /// 用户界面
-        /// 用户界面
-        /// </summary>
-        [AddonProperty]
-        [DataMember(EmitDefaultValue = false)]
-        [Name("用户界面")]
-        [Description("用户界面")]
-        public Ref<IUserInterface> UserInterface {
-            get;
-            set;
-        }
-        #endregion 属性：UserInterface
-
         #region 属性：ExtendAddonList
         /// <summary>
         /// 属性：ExtendAddonList
@@ -203,12 +187,6 @@ namespace PAO.App {
                 TransactionPublic.Run("应用程序初始化", () =>
                 {
                     TransactionPublic.Run("准备启动", OnPreparing);
-
-                    #region 用户界面
-                    if (UserInterface.IsNotNull()) {
-                        UIPublic.DefaultUserInterface = UserInterface.Value;
-                    }
-                    #endregion 用户界面
 
                     TransactionPublic.Run("扩展配置加载", () =>
                     {
