@@ -1,19 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm11="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner" dslVersion="1.0.0.0" Id="0ddd4779-9162-45ee-a47b-9392f30cd446" name="数据" linkedPackageId="c645fef6-efa4-48db-b222-b48654f3a5c0" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
-  <profileInstances>
-    <packageHasProfileInstances Id="6601cee7-a999-4e40-8c2b-823266fa422d">
-      <profileInstance Id="77ed034c-2caf-4081-81dc-2da6feefd1a4" name="StandardProfileL2">
-        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
-      </profileInstance>
-      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
-    </packageHasProfileInstances>
-    <packageHasProfileInstances Id="ef7bc98e-85a3-4ed6-a796-065ebfadecc4">
-      <profileInstance Id="f8dfb9fe-54da-46b9-b9ef-a5d4270826b2" name="StandardProfileL3">
-        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
-      </profileInstance>
-      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
-    </packageHasProfileInstances>
-  </profileInstances>
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm11="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner" dslVersion="1.0.0.0" Id="0ddd4779-9162-45ee-a47b-9392f30cd446" name="数据" linkedPackageId="c645fef6-efa4-48db-b222-b48654f3a5c0" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
   <packagedElements>
     <logicalClassDesignerModelHasTypes>
       <class Id="efeefd4c-b837-400c-b323-3074479783a2" name="BaseDataFilter" isAbstract="false" isLeaf="false" isActiveClass="false">
@@ -28,6 +14,21 @@
             <elementDefinition Id="13e3a94d-adb8-42e6-9690-6791bb442b47" />
           </dependency>
         </suppliersInternal>
+        <ownedOperationsInternal>
+          <operation Id="da7cc855-2cf6-4799-8df3-2c577f3f8fba" name="GetParameters" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="7f8ffbfd-5841-474e-9c28-b672c14d5335" />
+          </operation>
+          <operation Id="a26db4a3-a0ea-40ec-b6cd-74208dbcd9b9" name="GetSql" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="f08d05de-d97e-41a8-8ff0-3d6d37178ea5" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="9e7e3d88-21a8-45fc-83e5-9e171fd12f5b" name="parameterValues" direction="In" isUnique="false">
+                  <elementDefinition Id="844784ab-7d9f-4f69-ab9c-369325e1abcb" />
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
       </class>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
@@ -139,6 +140,14 @@
             <elementDefinition Id="318262eb-8b9e-474a-8a6f-c64562473813" />
           </generalization>
         </generalsInternal>
+        <ownedAttributesInternal>
+          <property Id="5f4a6166-4d2c-4325-a52d-b39edf4b4465" name="ParameterName" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="3d270f38-7138-41fe-84ea-8c96641ad57a" />
+          </property>
+          <property Id="46f8c415-04db-40a8-9480-10efb216b7a3" name="Sql" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="d38234f7-e0ad-4bcc-a6d6-3ef5629af340" />
+          </property>
+        </ownedAttributesInternal>
       </class>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
@@ -150,6 +159,34 @@
             <elementDefinition Id="cea9c8ae-b399-4593-a160-2f69c0f50f7b" />
           </generalization>
         </generalsInternal>
+        <targetEnds>
+          <association Id="6f9dfb2a-da77-4558-b204-ca8952ac28a1" isDerived="false" sourceEndRoleName="" targetEndRoleName="ChildDataFilters" isLeaf="false" isAbstract="false">
+            <classMoniker Id="efeefd4c-b837-400c-b323-3074479783a2" LastKnownName="BaseDataFilter" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="bccab9d8-fccb-40b7-89d2-e921718e792a" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Composite" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="382d9be0-27a6-426a-8ec5-82af3b5c2a9b" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="d202bfc0-061b-4ede-b7a1-bd77199a22f5" name="ChildDataFilters" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="true">
+                  <lowerValueInternal>
+                    <literalString Id="9a78d5dd-0d84-424d-88c8-06fdc00d9a55" name="Lower" value="*">
+                      <elementDefinition Id="92a96a04-1164-493b-a3a6-63402b7e8fdf" />
+                    </literalString>
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString Id="ad09f8ca-cb19-46e2-aa32-0b558afa9c60" name="Upper" value="*">
+                      <elementDefinition Id="adfb2bda-d00f-4530-9a01-9dd0b3ae5b3b" />
+                    </literalString>
+                  </upperValueInternal>
+                  <elementDefinition Id="12e363ee-3086-45a7-bb82-a87d0ca4f209" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="70d1e8d3-abd4-4ee2-8f47-c6c3bdbc622e" />
+          </association>
+        </targetEnds>
       </class>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
@@ -177,5 +214,19 @@
   </packagedElements>
   <package Id="c645fef6-efa4-48db-b222-b48654f3a5c0" name="PAODesign">
     <elementDefinition Id="f7c6b53f-1c2e-4762-ad13-eb71efcb9a9d" />
+    <profileInstances>
+      <packageHasProfileInstances Id="6601cee7-a999-4e40-8c2b-823266fa422d">
+        <profileInstance Id="77ed034c-2caf-4081-81dc-2da6feefd1a4" name="StandardProfileL2">
+          <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+        </profileInstance>
+        <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="ef7bc98e-85a3-4ed6-a796-065ebfadecc4">
+        <profileInstance Id="f8dfb9fe-54da-46b9-b9ef-a5d4270826b2" name="StandardProfileL3">
+          <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+        </profileInstance>
+        <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+      </packageHasProfileInstances>
+    </profileInstances>
   </package>
 </logicalClassDesignerModel>

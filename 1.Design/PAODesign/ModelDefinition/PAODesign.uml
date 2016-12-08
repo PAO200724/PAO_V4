@@ -962,6 +962,34 @@
               LastKnownLocation="PAODesign.uml" />
           </dependency>
         </suppliersInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="7f8ffbfd-5841-474e-9c28-b672c14d5335"
+            name="GetParameters"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+          <operation
+            Id="f08d05de-d97e-41a8-8ff0-3d6d37178ea5"
+            name="GetSql"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="844784ab-7d9f-4f69-ab9c-369325e1abcb"
+                  name="parameterValues"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
       </class>
     </packageHasNamedElement>
     <packageHasNamedElement>
@@ -1172,6 +1200,30 @@
               LastKnownLocation="PAODesign.uml" />
           </generalization>
         </generalsInternal>
+        <ownedAttributesInternal>
+          <property
+            Id="3d270f38-7138-41fe-84ea-8c96641ad57a"
+            name="ParameterName"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+          <property
+            Id="d38234f7-e0ad-4bcc-a6d6-3ef5629af340"
+            name="Sql"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+        </ownedAttributesInternal>
       </class>
     </packageHasNamedElement>
     <packageHasNamedElement>
@@ -1191,6 +1243,59 @@
               LastKnownLocation="PAODesign.uml" />
           </generalization>
         </generalsInternal>
+        <targetEnds>
+          <association
+            Id="70d1e8d3-abd4-4ee2-8f47-c6c3bdbc622e"
+            isDerived="false"
+            sourceEndRoleName=""
+            targetEndRoleName="ChildDataFilters"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="2772cdd8-a782-4d17-b177-31539c1023fe"
+              LastKnownName="BaseDataFilter"
+              LastKnownLocation="PAODesign.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="382d9be0-27a6-426a-8ec5-82af3b5c2a9b"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="Composite"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="12e363ee-3086-45a7-bb82-a87d0ca4f209"
+                  name="ChildDataFilters"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="true">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="92a96a04-1164-493b-a3a6-63402b7e8fdf"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="adfb2bda-d00f-4530-9a01-9dd0b3ae5b3b"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
       </class>
     </packageHasNamedElement>
     <packageHasNamedElement>
