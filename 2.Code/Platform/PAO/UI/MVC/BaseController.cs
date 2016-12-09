@@ -10,22 +10,22 @@ using PAO.Security;
 namespace PAO.UI.MVC
 {
     /// <summary>
-    /// 类：CommandMenuItem
-    /// 命令菜单项
+    /// 类：BaseController
+    /// 基础控制器
     /// 可以执行命令的菜单项
     /// 作者：PAO
     /// </summary>
     [Addon]
     [Serializable]
     [DataContract(Namespace = "")]
-    [Name("命令菜单项")]
+    [Name("基础控制器")]
     [Description("可以执行命令的菜单项")]
-    public abstract class CommandMenuItem : MenuItem, ICommand
+    public abstract class BaseController : UIItem, ICommand
     {
         const string Permission_DoCommand = "DoCommand";
         #region 插件属性
         #endregion
-        public CommandMenuItem() {
+        public BaseController() {
         }
 
         public virtual void DoCommand() {

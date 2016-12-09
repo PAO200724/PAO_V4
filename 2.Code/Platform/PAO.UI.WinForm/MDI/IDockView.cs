@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using PAO.UI.MVC;
 
-namespace PAO.UI.MVC
+namespace PAO.UI.WinForm.MDI
 {
     /// <summary>
     /// 接口：IDockView
@@ -15,7 +16,7 @@ namespace PAO.UI.MVC
     [Addon]
     [Name("停靠视图接口")]
     [Description("停靠视图接口")]
-    public interface IDockView : IUIItem
+    public interface IDockView : IView
     {
 
     }

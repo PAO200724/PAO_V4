@@ -79,14 +79,16 @@
     <Compile Include="Controls\ImageControl.Designer.cs">
       <DependentUpon>ImageControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="MDI\DockPanels\MenuCommand.cs" />
-    <Compile Include="MDI\DockPanels\TreeMenuCommand.cs" />
-    <Compile Include="MDI\DockPanels\TreeMenuView.cs">
+    <Compile Include="MDI\Commands\MenuCommand.cs" />
+    <Compile Include="MDI\DockViews\TreeMenuController.cs" />
+    <Compile Include="MDI\DockViews\TreeMenuView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MDI\DockPanels\TreeMenuView.Designer.cs">
+    <Compile Include="MDI\DockViews\TreeMenuView.Designer.cs">
       <DependentUpon>TreeMenuView.cs</DependentUpon>
     </Compile>
+    <Compile Include="MDI\IDockView.cs" />
+    <Compile Include="MDI\IPropertyPage.cs" />
     <Compile Include="MDI\MDIMainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -106,7 +108,7 @@
     <Compile Include="MDI\Views\GridControlView.Designer.cs">
       <DependentUpon>GridControlView.cs</DependentUpon>
     </Compile>
-    <Compile Include="MDI\Views\GridControlViewCommand.cs" />
+    <Compile Include="MDI\Views\GridControlController.cs" />
     <Compile Include="Security\LoginControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -168,7 +170,7 @@
     <EmbeddedResource Include="Forms\PaoWaitForm.resx">
       <DependentUpon>PaoWaitForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MDI\DockPanels\TreeMenuView.resx">
+    <EmbeddedResource Include="MDI\DockViews\TreeMenuView.resx">
       <DependentUpon>TreeMenuView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MDI\MDIMainForm.resx">

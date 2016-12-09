@@ -1,26 +1,26 @@
-﻿using System;
+﻿using PAO;
+using PAO.UI.MVC;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
-using PAO;
-using PAO.UI.MVC;
 
-namespace PAO.UI.WinForm.MDI.DockPanels
+namespace PAO.UI.WinForm.MDI.DockViews
 {
     /// <summary>
-    /// 类：MenuCommand
-    /// 菜单命令
-    /// 用于向主窗体添加菜单的命令
+    /// 类：MenuController
+    /// 树形菜单控制器
+    /// 树型菜单控制器
     /// 作者：PAO
     /// </summary>
     [Addon]
     [Serializable]
     [DataContract(Namespace = "")]
-    [Name("菜单控制器")]
-    [Description("用于向主窗体添加菜单的控制器")]
-    public class MenuCommand : UIItem, ICommand
+    [Name("树形菜单控制器")]
+    [Description("树型菜单控制器")]
+    public class TreeMenuController : BaseController
     {
         #region 插件属性
         #region 属性：MenuItems
@@ -39,23 +39,22 @@ namespace PAO.UI.WinForm.MDI.DockPanels
         }
         #endregion 属性：MenuItems
         #endregion
-        public MenuCommand() {
+        public TreeMenuController() {
         }
-
-        public void DoCommand() {
-            if (UIContainer != null) {
-                if(MenuItems.IsNotNullOrEmpty()) {
-                    foreach(var menuItem in MenuItems) {
-                        UIContainer.OpenUIItem(menuItem.Value);
-                    }
+        protected override void OnDoCommand() {
+            var treeView = new TreeMenuView()
+            {
+                ID = ID,
+                Caption = Caption,
+                Icon = Icon,
+                LargeIcon = LargeIcon,
+            };
+            if (MenuItems.IsNotNullOrEmpty()) {
+                foreach (var menuItem in MenuItems) {
+                    treeView.AddMenuItem(menuItem.Value);
                 }
             }
-        }
-
-        public IDictionary<string, string> Permissions {
-            get {
-                return null;
-            }
+            MVCPublic.MainForm.OpenView(treeView);
         }
     }
 }

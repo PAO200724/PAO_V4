@@ -13,6 +13,7 @@ using System.Diagnostics;
 using PAO.Data;
 using PAO.Remote.Tcp;
 using TestLibrary;
+using PAO.IO.Text;
 
 namespace WinFormTest
 {
@@ -64,8 +65,14 @@ namespace WinFormTest
         }
 
         private static void Test() {
+            SerializeTest();
             GenericTypeTest();
             AddonTest();
+        }
+
+        private static void SerializeTest() {
+
+
         }
 
         private static void AddonTest() {

@@ -74,17 +74,6 @@ namespace PAO.UI.MVC
 
         #endregion
 
-        [NonSerialized]
-        private IUIContainer _UIContainer;
-        /// <summary>
-        /// UI容器
-        /// </summary>
-        [Browsable(false)]
-        public IUIContainer UIContainer {
-            get { return _UIContainer; }
-            set { _UIContainer = value; }
-        }
-
 
         public UIItem() {
         }

@@ -4,7 +4,7 @@ using PAO.Config;
 using PAO.Configuration.Properties;
 using PAO.Event;
 using PAO.UI.WinForm.MDI;
-using PAO.UI.WinForm.MDI.DockPanels;
+using PAO.UI.WinForm.MDI.DockViews;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +14,7 @@ using PAO.Config.Commands;
 using PAO.Remote.Tcp;
 using PAO.Security;
 using PAO.UI.WinForm.MDI.Views;
+using PAO.UI.WinForm.MDI.Commands;
 
 namespace PAO.Configuration
 {
@@ -63,12 +64,12 @@ namespace PAO.Configuration
                         MenuItems = new List<Ref<UIItem>>()
                             .Append(new AddonFactory<UIItem>() { AddonID = "Menu_Config" })
                     }.ToRef())
-                    .Append(new TreeMenuCommand()
+                    .Append(new TreeMenuController()
                     {
                         Caption = "菜单",
                         ID = "{20E5F90B-4356-4FFF-B454-5175C8F378A7}",
                         MenuItems = new List<Ref<UIItem>>()
-                            .Append(new UI.MVC.MenuItem()
+                            .Append(new UI.MVC.FolderItem()
                             {
                                 ID = "Menu_Config",
                                 Caption = "配置菜单",
@@ -78,7 +79,7 @@ namespace PAO.Configuration
                                         Caption = "主配置",
                                     }.ToRef())
                             }.ToRef())
-                            .Append(new GridControlViewCommand()
+                            .Append(new GridControlController()
                             {
                                 Caption = "表格视图"
                             }.ToRef()),

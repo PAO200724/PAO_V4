@@ -16,7 +16,7 @@ namespace PAO.UI.WinForm.MDI.Views
     /// 组合视图
     /// 作者：PAO
     /// </summary>
-    public partial class CompositeView : DialogControl, IView, IUIContainer
+    public partial class CompositeView : DialogControl, IView, IViewContainer
     {
         /// <summary>
         /// 数据格式
@@ -42,12 +42,7 @@ namespace PAO.UI.WinForm.MDI.Views
             SchemaDataSet = schemaDataSet;
         }
 
-        public void OpenUIItem(IUIItem uiItem) {
-            if (!(uiItem is IView)) {
-                throw new Exception("CompositeView只能打开视图");
-            }
-
-            IView view = uiItem as IView;
+        public void OpenView(IView view) {
             // 避免重复添加视图
             if (ViewList.Contains(view)) {
                 return;

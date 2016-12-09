@@ -12,12 +12,12 @@ using DevExpress.XtraTreeList.Nodes;
 using PAO.UI.MVC;
 using System.Threading.Tasks;
 
-namespace PAO.UI.WinForm.MDI.DockPanels
+namespace PAO.UI.WinForm.MDI.DockViews
 {
     /// <summary>
     /// 菜单视图
     /// </summary>
-    public partial class TreeMenuView : DialogControl, IDockView, IUIContainer
+    public partial class TreeMenuView : DialogControl, IView, IMenuContainer
     {
         public TreeMenuView() {
             InitializeComponent();
@@ -31,9 +31,8 @@ namespace PAO.UI.WinForm.MDI.DockPanels
                 uiItem.Caption,
                 uiItem
             });
-            uiItem.UIContainer = UIContainer;
-            if (uiItem is IMenuItem) {
-                var menuItem = uiItem as IMenuItem;
+            if (uiItem is FolderItem) {
+                var menuItem = uiItem as FolderItem;
                 var childMenuItems = menuItem.ChildMenuItems;
                 if (childMenuItems.IsNotNullOrEmpty()) {
                     foreach (var childController in childMenuItems) {
@@ -74,9 +73,9 @@ namespace PAO.UI.WinForm.MDI.DockPanels
                 });
             }
         }
-
-        public void OpenUIItem(IUIItem uiItem) {
-            AddNode(this.TreeListMenu.Nodes, uiItem);
+        
+        public void AddMenuItem(IUIItem menuItem) {
+            AddNode(this.TreeListMenu.Nodes, menuItem);
         }
     }
 }

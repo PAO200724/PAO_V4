@@ -17,7 +17,7 @@ namespace PAO.UI.WinForm.MDI
     /// <summary>
     /// MDI主窗体
     /// </summary>
-    public partial class MDIMainForm : DevExpress.XtraEditors.XtraForm, IMainForm, IUIContainer
+    public partial class MDIMainForm : DevExpress.XtraEditors.XtraForm, IMainForm
     {
         public const string Message_Status_Ready = "就绪";
         /// <summary>
@@ -56,7 +56,9 @@ namespace PAO.UI.WinForm.MDI
 
             AddonPublic.ApplyAddonExtendProperties(mdiApplication);
 
+            // 加载布局数据
             this.DockManager.SetLayoutData(mdiApplication.LayoutData);
+
             if (MenuFunction.ItemLinks.Count <= 0)
                 MenuFunction.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             else
@@ -82,44 +84,33 @@ namespace PAO.UI.WinForm.MDI
         public void OpenView(IView view) {
             Waiting(() =>
             {
-                var docControl = view as Control;
-                var tabbedDoc = TabbedView.AddDocument(docControl);
-                tabbedDoc.Caption = view.Caption;
-                tabbedDoc.Image = view.Icon;
+                if(view is IDockView) {
+                    var dockPanel = this.DockManager.AddPanel(DockingStyle.Right);
+                    dockPanel.ID = new Guid(view.ID);
+                    dockPanel.Text = view.Caption;
+                    dockPanel.Image = view.Icon;
+                    var control = view as Control;
+                    dockPanel.Controls[0].Controls.Add(control);
+                    control.Dock = DockStyle.Fill;
+                } else {
+                    var docControl = view as Control;
+                    var tabbedDoc = TabbedView.AddDocument(docControl);
+                    tabbedDoc.Caption = view.Caption;
+                    tabbedDoc.Image = view.Icon;
+                }
             }, "正在打开文档");
         }
 
-        public void OpenDockView(IDockView dockView) {
-            Waiting(() =>
-            {
-                var dockPanel = this.DockManager.AddPanel(DockingStyle.Right);
-                dockPanel.ID = new Guid(dockView.ID);
-                dockPanel.Text = dockView.Caption;
-                dockPanel.Image = dockView.Icon;
-                var view = dockView as Control;
-                dockPanel.Controls[0].Controls.Add(view);
-                view.Dock = DockStyle.Fill;
-            }, "正在打开视图");
-        }
-
-        public void OpenUIItem(IUIItem uiItem) {
-            if(uiItem is IView) {
-                OpenView(uiItem as IView);
-            } else if(uiItem is IDockView) {
-                OpenDockView(uiItem as IDockView);
-            }
-            else {
-                WinFormPublic.AddMenuToSubItem(this.MenuFunction, uiItem, this);
-            }
+        public void AddMenuItem(IUIItem menuItem) {
+            WinFormPublic.AddMenuToSubItem(this.MenuFunction, menuItem);
         }
 
         public void DoUIAction(object sender, string actionName, IEnumerable<object> actionParameters) {
             if(UIActing != null) {
-                UIActing(sender, new UIActionEventArgs()
-                {
+                UIActing(sender, new UIActionEventArgs() {
                     ActionName = actionName,
                     ActionParameters = actionParameters
-                });
+                } );
             }
         }
     }

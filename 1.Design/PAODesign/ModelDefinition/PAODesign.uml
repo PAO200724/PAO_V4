@@ -1802,7 +1802,7 @@
             Id="fba6418b-a784-4719-bb81-5a0b20ba3ae7">
             <interfaceMoniker
               Id="3cd0f844-37a1-4b50-84c2-b24a0b9d6ee9"
-              LastKnownName="IDocument"
+              LastKnownName="IView"
               LastKnownLocation="PAODesign.uml" />
           </dependency>
         </suppliersInternal>
@@ -1864,6 +1864,13 @@
         isLeaf="false"
         isActiveClass="false">
         <suppliersInternal>
+          <interfaceRealization
+            Id="1f1464cc-6910-4616-a629-4ffa259f91d9">
+            <interfaceMoniker
+              Id="be2bff2f-b659-49db-841b-bc458294de69"
+              LastKnownName="IUIItemContainer"
+              LastKnownLocation="PAODesign.uml" />
+          </interfaceRealization>
           <dependency
             Id="b034a5bd-8944-4857-bed9-a548a44977d4">
             <interfaceMoniker
@@ -2049,7 +2056,7 @@
     <packageHasNamedElement>
       <class
         Id="6d73fbe3-60ee-41be-8f41-5fc2c880f99c"
-        name="CommandMenuItem"
+        name="Controller"
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
@@ -2064,11 +2071,11 @@
         </suppliersInternal>
         <generalsInternal>
           <generalization
-            Id="5c316803-ffff-4daa-8b9c-4be70f66a066"
+            Id="8d3095b2-e53c-430d-82f6-b08af67999e6"
             isSubstitutable="false">
             <classMoniker
-              Id="ebc07550-a718-43d5-8038-9710956b8b5d"
-              LastKnownName="MenuItem"
+              Id="71623b96-05dd-498d-9e80-fb6d57d31924"
+              LastKnownName="UIItem"
               LastKnownLocation="PAODesign.uml" />
           </generalization>
         </generalsInternal>
@@ -2086,21 +2093,54 @@
         Id="63b23f83-eacc-4b48-8c78-0cc8ce07cbf8"
         name="IPropertyPage"
         isAbstract="false"
-        isLeaf="false" />
+        isLeaf="false">
+        <generalsInternal>
+          <generalization
+            Id="815702d0-a3a6-484a-ae95-b9bcbdab466c"
+            isSubstitutable="false">
+            <interfaceMoniker
+              Id="4ce4d955-86e4-4056-a7aa-c65cbc8a4ec2"
+              LastKnownName="IUIItem"
+              LastKnownLocation="PAODesign.uml" />
+          </generalization>
+        </generalsInternal>
+      </Interface>
     </packageHasNamedElement>
     <packageHasNamedElement>
       <Interface
         Id="db4359ae-075b-4567-8036-8f725433a1ec"
         name="IDockView"
         isAbstract="false"
-        isLeaf="false" />
+        isLeaf="false">
+        <generalsInternal>
+          <generalization
+            Id="4694a63b-236e-41fe-aeb5-98dab0c74698"
+            isSubstitutable="false">
+            <interfaceMoniker
+              Id="4ce4d955-86e4-4056-a7aa-c65cbc8a4ec2"
+              LastKnownName="IUIItem"
+              LastKnownLocation="PAODesign.uml" />
+          </generalization>
+        </generalsInternal>
+      </Interface>
     </packageHasNamedElement>
     <packageHasNamedElement>
       <Interface
         Id="3cd0f844-37a1-4b50-84c2-b24a0b9d6ee9"
-        name="IDocument"
+        name="IView"
         isAbstract="false"
-        isLeaf="false" />
+        isLeaf="false">
+        <generalsInternal>
+          <generalization
+            Id="038055c2-6b4a-4b01-85f3-53349161df40"
+            isSubstitutable="false">
+            <interfaceMoniker
+              Id="4ce4d955-86e4-4056-a7aa-c65cbc8a4ec2"
+              LastKnownName="IUIItem"
+              LastKnownLocation="PAODesign.uml" />
+          </generalization>
+        </generalsInternal>
+      </Interface>
     </packageHasNamedElement>
   </packagedElements>
   <primitiveType

@@ -24,7 +24,7 @@ namespace PAO.Config.Commands
     [DataContract(Namespace = "")]
     [Name("对象配置控制器")]
     [Description("配置对象的控制器")]
-    public class ObjectConfigCommand : CommandMenuItem
+    public class ObjectConfigCommand : BaseController
     {
         #region 插件属性
 
@@ -66,26 +66,24 @@ namespace PAO.Config.Commands
 
         const string DefaultExtendPropertyConfigFile = "ExtendProperties.config";
         protected override void OnDoCommand() {
-            if (UIContainer != null) {
-                var view = new ObjectTreeEditControl();
-                view.FromUIItem(this);
+            var view = new ObjectTreeEditControl();
+            view.FromUIItem(this);
 
-                if(ExtendPropertyConfigFile.IsNullOrEmpty()) {
-                    view.ExtendPropertyStorageFilePath = AppPublic.GetAbsolutePath(DefaultExtendPropertyConfigFile);
-                }
-                else {
-                    view.ExtendPropertyStorageFilePath = AppPublic.GetAbsolutePath(ExtendPropertyConfigFile);
-                }
-                object addon;
-                if (ConfigFile.IsNullOrEmpty()) {
-                    addon = PaoApplication.Default;
-                }
-                else {
-                    addon = TextPublic.ReadObjectFromFile(ConfigFile);
-                }
-                view.SelectedObject = addon;
-                UIContainer.OpenUIItem(view);
+            if (ExtendPropertyConfigFile.IsNullOrEmpty()) {
+                view.ExtendPropertyStorageFilePath = AppPublic.GetAbsolutePath(DefaultExtendPropertyConfigFile);
             }
+            else {
+                view.ExtendPropertyStorageFilePath = AppPublic.GetAbsolutePath(ExtendPropertyConfigFile);
+            }
+            object addon;
+            if (ConfigFile.IsNullOrEmpty()) {
+                addon = PaoApplication.Default;
+            }
+            else {
+                addon = TextPublic.ReadObjectFromFile(ConfigFile);
+            }
+            view.SelectedObject = addon;
+            MVCPublic.MainForm.OpenView(view);
         }
     }
 }

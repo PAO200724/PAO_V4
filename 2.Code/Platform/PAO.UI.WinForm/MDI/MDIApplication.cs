@@ -145,9 +145,6 @@ namespace PAO.UI.WinForm.MDI
                 {
                     foreach (var commandRef in Commands) {
                         var command = commandRef.Value;
-                        if(command is IUIItem) {
-                            command.As<IUIItem>().UIContainer = MVCPublic.MainForm;
-                        }
                         TransactionPublic.Run(String.Format("运行自动控制器:{0}", command), () =>
                         {
                             command.DoCommand();

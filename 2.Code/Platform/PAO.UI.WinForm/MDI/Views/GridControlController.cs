@@ -21,7 +21,7 @@ namespace PAO.UI.WinForm.MDI.Views
     [DataContract(Namespace = "")]
     [Name("表格控件视图命令")]
     [Description("用于创建表格控件视图的命令")]
-    public class GridControlViewCommand : CommandMenuItem
+    public class GridControlController : BaseController
     {
         #region 插件属性
 
@@ -57,15 +57,13 @@ namespace PAO.UI.WinForm.MDI.Views
         }
         #endregion 属性：DataSchema
         #endregion
-        public GridControlViewCommand() {
+        public GridControlController() {
         }
 
         protected override void OnDoCommand() {
-            if(UIContainer != null) {
-                var gridControlView = new GridControlView();
-                gridControlView.FromUIItem(this);
-                UIContainer.OpenUIItem(gridControlView);
-            }
+            var gridControlView = new GridControlView();
+            gridControlView.FromUIItem(this);
+            MVCPublic.MainForm.OpenView(gridControlView);
         }
     }
 }

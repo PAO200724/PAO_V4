@@ -9,9 +9,9 @@ using PAO;
 namespace PAO.UI.MVC
 {
     /// <summary>
-    /// 类：FunctionItem
-    /// 功能项
-    /// 功能项
+    /// 类：FolderItem
+    /// 目录项
+    /// 目录项
     /// 作者：PAO
     /// </summary>
     [Addon]
@@ -19,7 +19,7 @@ namespace PAO.UI.MVC
     [DataContract(Namespace = "")]
     [Name("功能项")]
     [Description("功能项")]
-    public class MenuItem : UIItem, IMenuItem
+    public class FolderItem : UIItem
     {
         #region 插件属性
 
@@ -41,7 +41,7 @@ namespace PAO.UI.MVC
         #endregion 属性：ChildMenuItems
 
         #endregion
-        public MenuItem() {
+        public FolderItem() {
         }
 
         public IEnumerable<IUIItem> ChildMenuItems {

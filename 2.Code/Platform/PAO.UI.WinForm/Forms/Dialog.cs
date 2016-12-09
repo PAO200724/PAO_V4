@@ -12,7 +12,7 @@ using PAO.UI.MVC;
 
 namespace PAO.UI.WinForm.Forms
 {
-    public partial class Dialog : DevExpress.XtraEditors.XtraForm, IUIContainer
+    public partial class Dialog : DevExpress.XtraEditors.XtraForm, IViewContainer
     {
         public Dialog() {
             InitializeComponent();
@@ -63,9 +63,9 @@ namespace PAO.UI.WinForm.Forms
             base.OnClosing(e);
         }
 
-        public void OpenUIItem(IUIItem uiItem) {
-            if(uiItem is DialogControl) {
-                var dialogControl = uiItem as DialogControl;
+        public void OpenView(IView view) {
+            if(view is DialogControl) {
+                var dialogControl = view as DialogControl;
                 ShowCancelButton = dialogControl.ShowCancelButton;
                 ShowApplyButton = dialogControl.ShowApplyButton;
                 dialogControl.DataModifyStateChanged += DialogControl_DataModifyStateChanged;

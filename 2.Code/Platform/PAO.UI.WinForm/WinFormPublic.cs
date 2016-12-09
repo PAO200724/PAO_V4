@@ -42,9 +42,9 @@ namespace PAO.UI.WinForm
             }
         }
 
-        public static DialogReturn ShowDialog<T>(T childControl) where T : Control, IUIItem{
+        public static DialogReturn ShowDialog<T>(T childControl) where T : Control, IView{
             var dialog = new Dialog();
-            dialog.OpenUIItem(childControl);
+            dialog.OpenView(childControl);
             return DialogResultToDialogReturn(dialog.ShowDialog());
         }
 
@@ -112,22 +112,20 @@ namespace PAO.UI.WinForm
         /// </summary>
         /// <param name="barSubItem">子菜单</param>
         /// <param name="menuItem">菜单项</param>
-        /// <param name="container">容器</param>
-        public static void AddMenuToSubItem(object barSubItem, IUIItem uiItem, IUIContainer container) {
+        public static void AddMenuToSubItem(object barSubItem, IUIItem uiItem) {
             BarItem barItem = null;
-            uiItem.UIContainer = container;
-            if(uiItem is IMenuItem) {
-                var menuItem = uiItem as IMenuItem;
+            if(uiItem is FolderItem) {
+                var menuItem = uiItem as FolderItem;
                 if (menuItem.ChildMenuItems.IsNotNull()) {
                     var newSubItem = new BarSubItem();
                     foreach (var childFunctionItem in menuItem.ChildMenuItems) {
-                        AddMenuToSubItem(newSubItem, childFunctionItem, container);
+                        AddMenuToSubItem(newSubItem, childFunctionItem);
                     }
                     barItem = newSubItem;
                 }
-                else {
-                    barItem = new BarButtonItem();
-                }
+            }
+            if (barItem == null){
+                barItem = new BarButtonItem();
             }
 
             barItem.Caption = uiItem.Caption;

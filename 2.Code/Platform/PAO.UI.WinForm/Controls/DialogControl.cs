@@ -15,7 +15,7 @@ namespace PAO.UI.WinForm.Controls
     /// 基础对话框控件
     /// 作者：刘丹
     /// </summary>
-    public partial class DialogControl : DevExpress.XtraEditors.XtraUserControl, IUIItem
+    public partial class DialogControl : DevExpress.XtraEditors.XtraUserControl, IView
     {
         public DialogControl() {
             InitializeComponent();
@@ -55,17 +55,7 @@ namespace PAO.UI.WinForm.Controls
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public virtual bool DataModified { get; private set; }
-
-        private IUIContainer _UIContainer;
-        /// <summary>
-        /// UI容器
-        /// </summary>
-        [Browsable(false)]
-        public IUIContainer UIContainer {
-            get { return _UIContainer; }
-            set { _UIContainer = value; }
-        }
-
+        
         /// <summary>
         /// 设置Form状态
         /// </summary>

@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using PAO.UI.MVC;
 
-namespace PAO.UI.MVC
+namespace PAO.UI.WinForm.MDI
 {
     /// <summary>
     /// 接口：IPropertyPage
@@ -15,7 +16,7 @@ namespace PAO.UI.MVC
     [Addon]
     [Name("属性页支持")]
     [Description("属性页支持")]
-    public interface IPropertyPage : IUIItem
+    public interface IPropertyPage : IView
     {
 
     }

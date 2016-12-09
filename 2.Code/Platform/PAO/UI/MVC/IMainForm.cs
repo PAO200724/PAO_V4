@@ -15,7 +15,7 @@ namespace PAO.UI.MVC
     [Addon]
     [Name("主窗体接口")]
     [Description("主窗体接口")]
-    public interface IMainForm : IUIContainer
+    public interface IMainForm : IViewContainer, IMenuContainer
     {
         /// <summary>
         /// 等待某个动作完成
