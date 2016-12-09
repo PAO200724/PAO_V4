@@ -94,11 +94,6 @@ namespace PAO.Config.Controls.EditControls
                 SetControlStatus();
             }
         }
-
-        public IViewContainer ViewContainer {
-            get;
-            set;
-        }
         #endregion
 
         #region DialogControl

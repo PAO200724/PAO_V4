@@ -16,7 +16,7 @@ namespace PAO.UI.WinForm.MDI.Views
     /// 组合视图
     /// 作者：PAO
     /// </summary>
-    public partial class CompositeView : DialogControl, IView, IViewContainer
+    public partial class CompositeView : DialogControl, IView, IUIContainer
     {
         /// <summary>
         /// 数据格式
@@ -27,18 +27,34 @@ namespace PAO.UI.WinForm.MDI.Views
             InitializeComponent();
         }
 
-        public IViewContainer ViewContainer {
-            get;
-            set;
+        private List<IView> ViewList = new List<IView>();
+
+        [Browsable(false)]
+        public IEnumerable<IView> Views {
+            get {
+                return ViewList;
+            }
         }
 
-        public event EventHandler<ViewActionEventArgs> ViewActing;
+        public event EventHandler<UIActionEventArgs> UIActing;
 
         public void Initialize(DataSet schemaDataSet) {
             SchemaDataSet = schemaDataSet;
         }
 
-        public void OpenView(IView view) {
+        public void OpenUIItem(IUIItem uiItem) {
+            if (!(uiItem is IView)) {
+                throw new Exception("CompositeView只能打开视图");
+            }
+
+            IView view = uiItem as IView;
+            // 避免重复添加视图
+            if (ViewList.Contains(view)) {
+                return;
+            }
+
+            ViewList.Add(view);
+
             var control = view as Control;
 
             var group = LayoutControlGroupRoot.AddGroup();
@@ -56,9 +72,9 @@ namespace PAO.UI.WinForm.MDI.Views
             layoutControlItem.TextVisible = false;
         }
 
-        public void ViewAct(object sender, string actionName, IEnumerable<object> actionParameters) {
-            if (ViewActing != null)
-                ViewActing(sender, new ViewActionEventArgs()
+        public void DoUIAction(object sender, string actionName, IEnumerable<object> actionParameters) {
+            if (UIActing != null)
+                UIActing(sender, new UIActionEventArgs()
                 {
                     ActionName = actionName,
                     ActionParameters = actionParameters

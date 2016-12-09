@@ -73,6 +73,19 @@ namespace PAO.UI.MVC
         #endregion 属性：LargeIcon
 
         #endregion
+
+        [NonSerialized]
+        private IUIContainer _UIContainer;
+        /// <summary>
+        /// UI容器
+        /// </summary>
+        [Browsable(false)]
+        public IUIContainer UIContainer {
+            get { return _UIContainer; }
+            set { _UIContainer = value; }
+        }
+
+
         public UIItem() {
         }
 

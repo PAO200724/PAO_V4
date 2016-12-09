@@ -65,9 +65,8 @@ namespace PAO.Config.Commands
         }
 
         const string DefaultExtendPropertyConfigFile = "ExtendProperties.config";
-        protected override void OnDoCommand(object container) {
-            if (container is IViewContainer) {
-                var docContainer = container as IViewContainer;
+        protected override void OnDoCommand() {
+            if (UIContainer != null) {
                 var view = new ObjectTreeEditControl();
                 view.FromUIItem(this);
 
@@ -85,7 +84,7 @@ namespace PAO.Config.Commands
                     addon = TextPublic.ReadObjectFromFile(ConfigFile);
                 }
                 view.SelectedObject = addon;
-                docContainer.OpenView(view);
+                UIContainer.OpenUIItem(view);
             }
         }
     }

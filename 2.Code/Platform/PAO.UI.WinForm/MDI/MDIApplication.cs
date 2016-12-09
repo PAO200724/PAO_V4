@@ -118,7 +118,7 @@ namespace PAO.UI.WinForm.MDI
                 return PaoApplication.Default as MDIApplication;
             }
         }
-        MDIMainForm MainForm = null;
+        public MDIMainForm MainForm = null;
         public override void OnPreparing() {
             UIPublic.DefaultUserInterface = new WinFormUI();
         }
@@ -143,11 +143,14 @@ namespace PAO.UI.WinForm.MDI
             if (Commands.IsNotNullOrEmpty()) {
                 TransactionPublic.Run("启动自动控制器", () =>
                 {
-                    foreach (var command in Commands) {
-                        var ctrl = command.Value;
-                        TransactionPublic.Run(String.Format("运行自动控制器:{0}", ctrl), () =>
+                    foreach (var commandRef in Commands) {
+                        var command = commandRef.Value;
+                        if(command is IUIItem) {
+                            command.As<IUIItem>().UIContainer = MVCPublic.MainForm;
+                        }
+                        TransactionPublic.Run(String.Format("运行自动控制器:{0}", command), () =>
                         {
-                            ctrl.DoCommand(MVCPublic.MainForm);
+                            command.DoCommand();
                         });
                     }
                 });

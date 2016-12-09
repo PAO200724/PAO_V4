@@ -28,12 +28,12 @@ namespace PAO.UI.MVC
         public CommandMenuItem() {
         }
 
-        public virtual void DoCommand(object container) {
+        public virtual void DoCommand() {
             SecurityPublic.CheckPermission(ID, Permission_DoCommand).CheckTrue("当前用户不拥有执行此命令的权限.");
-            OnDoCommand(container);
+            OnDoCommand();
         }
 
-        protected abstract void OnDoCommand(object container);
+        protected abstract void OnDoCommand();
 
         /// <summary>
         /// 许可

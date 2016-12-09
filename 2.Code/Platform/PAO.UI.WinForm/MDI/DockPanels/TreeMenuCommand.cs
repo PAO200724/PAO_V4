@@ -41,8 +41,8 @@ namespace PAO.UI.WinForm.MDI.DockPanels
         #endregion
         public TreeMenuCommand() {
         }
-        protected override void OnDoCommand(object container) {
-            if(container is IDockViewContainer) {
+        protected override void OnDoCommand() {
+            if(UIContainer != null) {
                 var treeView = new TreeMenuView()
                 {
                     ID = ID,
@@ -50,12 +50,13 @@ namespace PAO.UI.WinForm.MDI.DockPanels
                     Icon = Icon,
                     LargeIcon = LargeIcon,
                 };
-                if(MenuItems.IsNotNullOrEmpty()) {
+                treeView.UIContainer = UIContainer;
+                if (MenuItems.IsNotNullOrEmpty()) {
                     foreach(var menuItem in MenuItems) {
                         treeView.OpenUIItem(menuItem.Value);
                     }
                 }
-                container.As<IDockViewContainer>().OpenDockView(treeView);
+                UIContainer.OpenUIItem(treeView);
             }
         }
     }

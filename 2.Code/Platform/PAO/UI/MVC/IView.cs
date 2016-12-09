@@ -18,9 +18,6 @@ namespace PAO.UI.MVC
     [Description("文档接口")]
     public interface IView : IUIItem
     {
-        /// <summary>
-        /// 视图容器
-        /// </summary>
-        IViewContainer ViewContainer { set; }
+
     }
 }

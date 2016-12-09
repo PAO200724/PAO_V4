@@ -13,6 +13,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Windows.Forms;
+using PAO.UI.MVC;
 
 namespace PAO.UI.WinForm
 {
@@ -30,6 +31,7 @@ namespace PAO.UI.WinForm
     {
         #region 插件属性
         #endregion
+
         public WinFormUI() {
         }
 

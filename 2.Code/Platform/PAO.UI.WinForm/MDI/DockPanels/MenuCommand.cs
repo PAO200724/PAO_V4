@@ -20,7 +20,7 @@ namespace PAO.UI.WinForm.MDI.DockPanels
     [DataContract(Namespace = "")]
     [Name("菜单控制器")]
     [Description("用于向主窗体添加菜单的控制器")]
-    public class MenuCommand : PaoObject, ICommand
+    public class MenuCommand : UIItem, ICommand
     {
         #region 插件属性
         #region 属性：MenuItems
@@ -42,12 +42,11 @@ namespace PAO.UI.WinForm.MDI.DockPanels
         public MenuCommand() {
         }
 
-        public void DoCommand(object container) {
-            if (container is IUIItemContainer) {
-                var uiItemContainer = container as IUIItemContainer;
+        public void DoCommand() {
+            if (UIContainer != null) {
                 if(MenuItems.IsNotNullOrEmpty()) {
                     foreach(var menuItem in MenuItems) {
-                        uiItemContainer.OpenUIItem(menuItem.Value);
+                        UIContainer.OpenUIItem(menuItem.Value);
                     }
                 }
             }

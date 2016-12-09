@@ -15,23 +15,23 @@ namespace PAO.UI.MVC
     [Addon]
     [Name("文档容器")]
     [Description("文档容器，用于容纳并显示文档")]
-    public interface IViewContainer
-    {
+    public interface IUIContainer
+    {        
         /// <summary>
-        /// 打开文档
+        /// 打开功能项
         /// </summary>
-        /// <param name="view">视图</param>
-        void OpenView(IView view);
+        /// <param name="functionItem">界面项目</param>
+        void OpenUIItem(IUIItem uiItem);
         /// <summary>
-        /// 视图动作
+        /// 执行UI动作
         /// </summary>
         /// <param name="sender">发送者</param>
         /// <param name="actionName">动作名称</param>
         /// <param name="actionParameters">动作参数</param>
-        void ViewAct(object sender, string actionName, IEnumerable<object> actionParameters);
+        void DoUIAction(object sender, string actionName, IEnumerable<object> actionParameters);
         /// <summary>
         /// 视图动作事件
         /// </summary>
-        event EventHandler<ViewActionEventArgs> ViewActing;
+        event EventHandler<UIActionEventArgs> UIActing;
     }
 }

@@ -56,6 +56,16 @@ namespace PAO.UI.WinForm.Controls
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public virtual bool DataModified { get; private set; }
 
+        private IUIContainer _UIContainer;
+        /// <summary>
+        /// UI容器
+        /// </summary>
+        [Browsable(false)]
+        public IUIContainer UIContainer {
+            get { return _UIContainer; }
+            set { _UIContainer = value; }
+        }
+
         /// <summary>
         /// 设置Form状态
         /// </summary>

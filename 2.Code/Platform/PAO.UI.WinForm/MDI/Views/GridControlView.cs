@@ -71,10 +71,6 @@ namespace PAO.UI.WinForm.MDI.Views
             }
         }
 
-        public IViewContainer ViewContainer {
-            get; set;
-        }
-
         public void SetDataSource(DataSet dataSet) {
             DataSource = dataSet;
         }

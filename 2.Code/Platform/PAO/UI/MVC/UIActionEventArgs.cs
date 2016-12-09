@@ -8,7 +8,7 @@ namespace PAO.UI.MVC
     /// <summary>
     /// 视图动作事件参数
     /// </summary>
-    public class ViewActionEventArgs : EventArgs
+    public class UIActionEventArgs : EventArgs
     {
         /// <summary>
         /// 动作名称

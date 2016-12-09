@@ -10,36 +10,30 @@ using DevExpress.XtraEditors;
 using PAO.UI.WinForm.Controls;
 using DevExpress.XtraTreeList.Nodes;
 using PAO.UI.MVC;
+using System.Threading.Tasks;
 
 namespace PAO.UI.WinForm.MDI.DockPanels
 {
     /// <summary>
     /// 菜单视图
     /// </summary>
-    public partial class TreeMenuView : DialogControl, IDockView, IUIItemContainer
+    public partial class TreeMenuView : DialogControl, IDockView, IUIContainer
     {
         public TreeMenuView() {
             InitializeComponent();
         }
+        
+        public event EventHandler<UIActionEventArgs> UIActing;
 
-        IMainForm MainForm;
-        public void Initialize(IMainForm mainForm, IEnumerable<IUIItem> menuItems) {
-            MainForm = mainForm;
-            if (menuItems != null) {
-                foreach(var controller in menuItems) {
-                    AddNode(this.TreeListMenu.Nodes, controller);
-                }
-            }
-        }
-
-        private void AddNode(TreeListNodes nodes, IUIItem controller) {
+        private void AddNode(TreeListNodes nodes, IUIItem uiItem) {
             var node = nodes.Add(new object[]
             {
-                controller.Caption,
-                controller
+                uiItem.Caption,
+                uiItem
             });
-            if(controller is IMenuItem) {
-                var menuItem = controller as IMenuItem;
+            uiItem.UIContainer = UIContainer;
+            if (uiItem is IMenuItem) {
+                var menuItem = uiItem as IMenuItem;
                 var childMenuItems = menuItem.ChildMenuItems;
                 if (childMenuItems.IsNotNullOrEmpty()) {
                     foreach (var childController in childMenuItems) {
@@ -50,16 +44,16 @@ namespace PAO.UI.WinForm.MDI.DockPanels
         }
 
         private void TreeListMenu_DoubleClick(object sender, EventArgs e) {
-            MainForm.Waiting(() =>
+            MVCPublic.MainForm.Waiting(() =>
             {
                 var focusedNode = this.TreeListMenu.FocusedNode;
                 if (focusedNode != null) {
                     var command = focusedNode.GetValue(ColumnMenu) as ICommand;
                     if (command != null) {
-                        command.DoCommand(MVCPublic.MainForm);
+                        command.DoCommand();
                     }
                 }
-            }, "打开视图");
+            }, "打开菜单");
         }
 
         private void ButtonExpandAll_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
@@ -70,10 +64,19 @@ namespace PAO.UI.WinForm.MDI.DockPanels
                 this.TreeListMenu.ExpandAll();
             }
         }
+        
+        public void DoUIAction(object sender, string actionName, IEnumerable<object> actionParameters) {
+            if(UIActing != null) {
+                UIActing(sender, new UIActionEventArgs()
+                {
+                    ActionName = actionName,
+                    ActionParameters = actionParameters
+                });
+            }
+        }
 
-        public void OpenUIItem(IUIItem functionItem) {
-            MainForm = MVCPublic.MainForm;
-            AddNode(this.TreeListMenu.Nodes, functionItem);
+        public void OpenUIItem(IUIItem uiItem) {
+            AddNode(this.TreeListMenu.Nodes, uiItem);
         }
     }
 }

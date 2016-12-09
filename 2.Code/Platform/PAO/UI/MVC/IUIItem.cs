@@ -34,5 +34,9 @@ namespace PAO.UI.MVC
         /// 大图标
         /// </summary>
         Image LargeIcon { get; }
+        /// <summary>
+        /// 视图容器
+        /// </summary>
+        IUIContainer UIContainer { get; set; }
     }
 }

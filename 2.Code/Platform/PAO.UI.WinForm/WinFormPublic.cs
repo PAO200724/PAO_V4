@@ -42,9 +42,9 @@ namespace PAO.UI.WinForm
             }
         }
 
-        public static DialogReturn ShowDialog(Control childControl) {
+        public static DialogReturn ShowDialog<T>(T childControl) where T : Control, IUIItem{
             var dialog = new Dialog();
-            dialog.ChildControl = childControl;
+            dialog.OpenUIItem(childControl);
             return DialogResultToDialogReturn(dialog.ShowDialog());
         }
 
@@ -112,9 +112,10 @@ namespace PAO.UI.WinForm
         /// </summary>
         /// <param name="barSubItem">子菜单</param>
         /// <param name="menuItem">菜单项</param>
-        /// <param name="mainForm">主窗体</param>
-        public static void AddMenuToSubItem(object barSubItem, IUIItem uiItem, object container) {
+        /// <param name="container">容器</param>
+        public static void AddMenuToSubItem(object barSubItem, IUIItem uiItem, IUIContainer container) {
             BarItem barItem = null;
+            uiItem.UIContainer = container;
             if(uiItem is IMenuItem) {
                 var menuItem = uiItem as IMenuItem;
                 if (menuItem.ChildMenuItems.IsNotNull()) {
@@ -137,7 +138,7 @@ namespace PAO.UI.WinForm
                 try {
                     if(uiItem is ICommand) {
                         var command = uiItem as ICommand;
-                        command.DoCommand(container);
+                        command.DoCommand();
                     }
                 } catch (Exception err) {
                     UIPublic.ShowErrorDialog(err.FormatException());

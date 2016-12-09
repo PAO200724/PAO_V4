@@ -18,6 +18,6 @@ namespace PAO.UI.MVC
     [Description("功能项")]
     public interface ICommand : IPermissionSet
     {
-        void DoCommand(object container);
+        void DoCommand();
     }
 }

@@ -60,12 +60,11 @@ namespace PAO.UI.WinForm.MDI.Views
         public GridControlViewCommand() {
         }
 
-        protected override void OnDoCommand(object container) {
-            var viewContainer = container as IViewContainer;
-            if(viewContainer != null) {
+        protected override void OnDoCommand() {
+            if(UIContainer != null) {
                 var gridControlView = new GridControlView();
                 gridControlView.FromUIItem(this);
-                viewContainer.OpenView(gridControlView);
+                UIContainer.OpenUIItem(gridControlView);
             }
         }
     }

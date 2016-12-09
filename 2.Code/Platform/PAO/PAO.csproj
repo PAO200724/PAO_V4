@@ -154,16 +154,13 @@
     <Compile Include="UI\IUserInterface.cs" />
     <Compile Include="UI\DialogType.cs" />
     <Compile Include="UI\MVC\IDockView.cs" />
-    <Compile Include="UI\MVC\IDockViewContainer.cs" />
     <Compile Include="UI\MVC\IView.cs" />
-    <Compile Include="UI\MVC\IViewContainer.cs" />
+    <Compile Include="UI\MVC\IUIContainer.cs" />
     <Compile Include="UI\MVC\ICommand.cs" />
-    <Compile Include="UI\MVC\IUIItemContainer.cs" />
     <Compile Include="UI\MVC\IMainForm.cs" />
     <Compile Include="UI\MVC\IPropertyPage.cs" />
-    <Compile Include="UI\MVC\IPropertyPageSupport.cs" />
     <Compile Include="UI\MVC\IUIItem.cs" />
-    <Compile Include="UI\MVC\ViewActionEventArgs.cs" />
+    <Compile Include="UI\MVC\UIActionEventArgs.cs" />
     <Compile Include="UI\UIPublic.cs" />
   </ItemGroup>
   <ItemGroup>

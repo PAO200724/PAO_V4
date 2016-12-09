@@ -17,7 +17,7 @@ namespace PAO.UI.WinForm.MDI
     /// <summary>
     /// MDI主窗体
     /// </summary>
-    public partial class MDIMainForm : DevExpress.XtraEditors.XtraForm, IMainForm, IViewContainer, IDockViewContainer, IUIItemContainer
+    public partial class MDIMainForm : DevExpress.XtraEditors.XtraForm, IMainForm, IUIContainer
     {
         public const string Message_Status_Ready = "就绪";
         /// <summary>
@@ -25,7 +25,7 @@ namespace PAO.UI.WinForm.MDI
         /// </summary>
         public static MDIMainForm Default;
        
-        public event EventHandler<ViewActionEventArgs> ViewActing;
+        public event EventHandler<UIActionEventArgs> UIActing;
 
         public MDIMainForm() {
             Default = this;
@@ -103,15 +103,24 @@ namespace PAO.UI.WinForm.MDI
         }
 
         public void OpenUIItem(IUIItem uiItem) {
-            WinFormPublic.AddMenuToSubItem(this.MenuFunction, uiItem, this);
+            if(uiItem is IView) {
+                OpenView(uiItem as IView);
+            } else if(uiItem is IDockView) {
+                OpenDockView(uiItem as IDockView);
+            }
+            else {
+                WinFormPublic.AddMenuToSubItem(this.MenuFunction, uiItem, this);
+            }
         }
 
-        public void ViewAct(object sender, string actionName, IEnumerable<object> actionParameters) {
-            if(ViewActing != null)
-                ViewActing(sender, new ViewActionEventArgs() {
+        public void DoUIAction(object sender, string actionName, IEnumerable<object> actionParameters) {
+            if(UIActing != null) {
+                UIActing(sender, new UIActionEventArgs()
+                {
                     ActionName = actionName,
                     ActionParameters = actionParameters
-                } );
+                });
+            }
         }
     }
 }
