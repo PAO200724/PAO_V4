@@ -66,5 +66,11 @@ namespace PAO.UI.WinForm.Security
         private void HyperlinkLabelControlForgetPassword_HyperlinkClick(object sender, DevExpress.Utils.HyperlinkClickEventArgs e) {
 
         }
+
+        public override void SetFormState(Form form) {
+            form.MaximizeBox = false;
+            form.MinimizeBox = false;
+            base.SetFormState(form);
+        }
     }
 }

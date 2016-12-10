@@ -41,6 +41,10 @@ namespace PAO
         public AddonFactory() {
         }
 
+        public AddonFactory(string addonID) {
+            AddonID = addonID;
+        }
+
         public override string ToString() {
             // 将对象转换为字符串
             return ObjectPublic.ObjectToString(this, null, "AddonID");

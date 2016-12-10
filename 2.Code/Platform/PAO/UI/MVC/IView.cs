@@ -18,6 +18,21 @@ namespace PAO.UI.MVC
     [Description("所有视图都应该实现的接口")]
     public interface IView : IUIItem
     {
-
+        /// <summary>
+        /// 关闭视图
+        /// </summary>
+        void CloseView();
+        /// <summary>
+        /// 关闭事件
+        /// </summary>
+        event EventHandler Closing;
+        /// <summary>
+        /// 视图容器
+        /// </summary>
+        IViewContainer ViewContainer { get; set; }
+        /// <summary>
+        /// UI动作分发器
+        /// </summary>
+        UIActionDispatcher UIActionDispatcher { get; set; }
     }
 }

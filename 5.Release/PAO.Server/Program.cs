@@ -45,29 +45,36 @@ namespace PAO.Server
                 {
                     FilePath = "ExtendProperties.config"
                 }.ToRef(),
-                DataService = new DataService()
-                {
-                    DataConnection = new Data.DataConnection()
-                    {
-                        ID = "PAO Db Connection",
-                        DbFactoryName = "System.Data.SqlClient",
-                        ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\PAO.mdf;Integrated Security=True",
-                        ParamPrefix = "@",
-                    }.ToRef(),
-                    CommandList = new List<DataCommandInfo>()
-                            .Append(SecurityService.DataCommand_QueryUserByID)
-                            .Append(SecurityService.DataCommand_QueryUserByName)
-                }.ToRef(),
+                DataService = CreateDataService().ToRef(),
                 ServerList = new List<PAO.Ref<PAO.Server.BaseServer>>()
                     .Append(new RemoteTcpServer()
                     {
                         Port = 7990,
                         ServiceList = new Dictionary<string, Ref<PaoObject>>()
-                             .Append("SecurityService", new SecurityService().ToRef()),
+                             .Append("SecurityService", new SecurityService().ToRef())
+                             .Append("DataService", new AddonFactory<PaoObject>("DataService")),
                     }.ToRef()),
 
             };
             return app;
+        }
+
+        private static DataService CreateDataService() {
+            return new DataService()
+            {
+                ID = "DataService",
+                DataConnection = new Data.DataConnection()
+                {
+                    ID = "PAO Db Connection",
+                    DbFactoryName = "System.Data.SqlClient",
+                    ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\PAO.mdf;Integrated Security=True",
+                    ParamPrefix = "@",
+                }.ToRef(),
+                CommandList = new List<DataCommandInfo>()
+                            .Append(SecurityService.DataCommand_QueryUserByID)
+                            .Append(SecurityService.DataCommand_QueryUserByName)
+                            .Append(SecurityService.DataCommand_QueryUsers)
+            };
         }
     }
 }

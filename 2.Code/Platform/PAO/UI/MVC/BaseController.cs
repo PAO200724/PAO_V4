@@ -33,7 +33,7 @@ namespace PAO.UI.MVC
         /// 创建并打开视图
         /// </summary>
         /// <param name="viewContainer">视图容器</param>
-        public virtual void CreateAndOpenView(IViewContainer viewContainer) {
+        public virtual IView CreateAndOpenView(IViewContainer viewContainer) {
             SecurityPublic.CheckPermission(ID, Permission_DoCommand).CheckTrue("当前用户不拥有执行此命令的权限.");
 
             View = OnCreateView();
@@ -44,8 +44,10 @@ namespace PAO.UI.MVC
             View.Caption = Caption;
             View.Icon = Icon;
             View.LargeIcon = LargeIcon;
+            View.ViewContainer = viewContainer;
 
             viewContainer.OpenView(View);
+            return View;
         }
 
         protected abstract IView OnCreateView();

@@ -26,15 +26,15 @@
         /// </summary>
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
-            DevExpress.Utils.Animation.PushTransition pushTransition1 = new DevExpress.Utils.Animation.PushTransition();
             this.DockManager = new DevExpress.XtraBars.Docking.DockManager(this.components);
             this.BarManager = new DevExpress.XtraBars.BarManager(this.components);
             this.BarMain = new DevExpress.XtraBars.Bar();
             this.MenuSystem = new DevExpress.XtraBars.BarSubItem();
             this.MenuSkin = new DevExpress.XtraBars.SkinBarSubItem();
             this.MenuWindow = new DevExpress.XtraBars.BarSubItem();
+            this.ButtonRecoverLayout = new DevExpress.XtraBars.BarButtonItem();
             this.BarDockingMenuItem = new DevExpress.XtraBars.BarDockingMenuItem();
-            this.WorkspaceManager = new DevExpress.Utils.WorkspaceManager();
+            this.MenuToolBar = new DevExpress.XtraBars.BarSubItem();
             this.BarToolbarsListItem = new DevExpress.XtraBars.BarToolbarsListItem();
             this.ButtonExit = new DevExpress.XtraBars.BarButtonItem();
             this.MenuCurrentUser = new DevExpress.XtraBars.BarSubItem();
@@ -102,9 +102,11 @@
             this.StaticItemServerTime,
             this.StaticItemStatus,
             this.MenuCurrentUser,
-            this.MenuFunction});
+            this.MenuFunction,
+            this.MenuToolBar,
+            this.ButtonRecoverLayout});
             this.BarManager.MainMenu = this.BarMain;
-            this.BarManager.MaxItemId = 21;
+            this.BarManager.MaxItemId = 23;
             this.BarManager.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.RepositoryItemCalcEdit,
             this.RepositoryItemProgressBar,
@@ -132,6 +134,7 @@
             this.MenuSystem.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.MenuSkin),
             new DevExpress.XtraBars.LinkPersistInfo(this.MenuWindow),
+            new DevExpress.XtraBars.LinkPersistInfo(this.MenuToolBar),
             new DevExpress.XtraBars.LinkPersistInfo(this.ButtonExit, true)});
             this.MenuSystem.Name = "MenuSystem";
             // 
@@ -146,9 +149,16 @@
             this.MenuWindow.Caption = "窗口(&W)";
             this.MenuWindow.Id = 5;
             this.MenuWindow.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.BarDockingMenuItem, true),
-            new DevExpress.XtraBars.LinkPersistInfo(this.BarToolbarsListItem, true)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonRecoverLayout, true),
+            new DevExpress.XtraBars.LinkPersistInfo(this.BarDockingMenuItem, true)});
             this.MenuWindow.Name = "MenuWindow";
+            // 
+            // ButtonRecoverLayout
+            // 
+            this.ButtonRecoverLayout.Caption = "恢复布局(&R)";
+            this.ButtonRecoverLayout.Id = 22;
+            this.ButtonRecoverLayout.Name = "ButtonRecoverLayout";
+            this.ButtonRecoverLayout.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonRecoverLayout_ItemClick);
             // 
             // BarDockingMenuItem
             // 
@@ -156,10 +166,13 @@
             this.BarDockingMenuItem.Id = 4;
             this.BarDockingMenuItem.Name = "BarDockingMenuItem";
             // 
-            // WorkspaceManager
+            // MenuToolBar
             // 
-            this.WorkspaceManager.TargetControl = this;
-            this.WorkspaceManager.TransitionType = pushTransition1;
+            this.MenuToolBar.Caption = "工具条(&T)";
+            this.MenuToolBar.Id = 21;
+            this.MenuToolBar.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.BarToolbarsListItem)});
+            this.MenuToolBar.Name = "MenuToolBar";
             // 
             // BarToolbarsListItem
             // 
@@ -305,6 +318,10 @@
             this.DocumentManager.ViewCollection.AddRange(new DevExpress.XtraBars.Docking2010.Views.BaseView[] {
             this.TabbedView});
             // 
+            // TabbedView
+            // 
+            this.TabbedView.DocumentClosing += new DevExpress.XtraBars.Docking2010.Views.DocumentCancelEventHandler(this.TabbedView_DocumentClosing);
+            // 
             // MDIMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -347,7 +364,6 @@
         private DevExpress.XtraBars.SkinBarSubItem MenuSkin;
         private DevExpress.XtraBars.BarSubItem MenuWindow;
         private DevExpress.XtraBars.BarDockingMenuItem BarDockingMenuItem;
-        private DevExpress.Utils.WorkspaceManager WorkspaceManager;
         private DevExpress.XtraBars.BarToolbarsListItem BarToolbarsListItem;
         private DevExpress.XtraBars.BarButtonItem ButtonExit;
         private DevExpress.XtraBars.BarEditItem EditItemProgressBar;
@@ -362,5 +378,7 @@
         private DevExpress.XtraBars.BarSubItem MenuFunction;
         private DevExpress.XtraBars.Docking2010.DocumentManager DocumentManager;
         private DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView TabbedView;
+        private DevExpress.XtraBars.BarSubItem MenuToolBar;
+        private DevExpress.XtraBars.BarButtonItem ButtonRecoverLayout;
     }
 }

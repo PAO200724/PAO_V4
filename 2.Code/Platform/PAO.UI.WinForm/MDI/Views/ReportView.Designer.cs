@@ -30,19 +30,22 @@
             this.LayoutControl = new DevExpress.XtraLayout.LayoutControl();
             this.LayoutControlGroupRoot = new DevExpress.XtraLayout.LayoutControlGroup();
             this.BarManager = new DevExpress.XtraBars.BarManager(this.components);
+            this.PopupMenuLayoutControl = new DevExpress.XtraBars.PopupMenu(this.components);
+            this.ButtonRecoverLayout = new DevExpress.XtraBars.BarButtonItem();
             this.BarTools = new DevExpress.XtraBars.Bar();
+            this.ButtonExport = new DevExpress.XtraBars.BarButtonItem();
+            this.ButtonPrint = new DevExpress.XtraBars.BarButtonItem();
+            this.MenuConfig = new DevExpress.XtraBars.BarSubItem();
+            this.ButtonProperties = new DevExpress.XtraBars.BarButtonItem();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.ButtonProperties = new DevExpress.XtraBars.BarButtonItem();
-            this.ButtonExport = new DevExpress.XtraBars.BarButtonItem();
-            this.ButtonPrint = new DevExpress.XtraBars.BarButtonItem();
             this.RepositoryItemTextEditCaption = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
-            this.barSubItem1 = new DevExpress.XtraBars.BarSubItem();
             ((System.ComponentModel.ISupportInitialize)(this.LayoutControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.LayoutControlGroupRoot)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BarManager)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PopupMenuLayoutControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemTextEditCaption)).BeginInit();
             this.SuspendLayout();
             // 
@@ -50,11 +53,14 @@
             // 
             this.LayoutControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LayoutControl.Location = new System.Drawing.Point(0, 31);
+            this.LayoutControl.MenuManager = this.BarManager;
             this.LayoutControl.Name = "LayoutControl";
+            this.LayoutControl.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(685, 219, 250, 350);
             this.LayoutControl.Root = this.LayoutControlGroupRoot;
-            this.LayoutControl.Size = new System.Drawing.Size(585, 412);
+            this.LayoutControl.Size = new System.Drawing.Size(536, 439);
             this.LayoutControl.TabIndex = 0;
             this.LayoutControl.Text = "layoutControl1";
+            this.LayoutControl.ItemAdded += new System.EventHandler(this.LayoutControl_ItemAdded);
             // 
             // LayoutControlGroupRoot
             // 
@@ -62,7 +68,8 @@
             this.LayoutControlGroupRoot.GroupBordersVisible = false;
             this.LayoutControlGroupRoot.Location = new System.Drawing.Point(0, 0);
             this.LayoutControlGroupRoot.Name = "Root";
-            this.LayoutControlGroupRoot.Size = new System.Drawing.Size(585, 412);
+            this.LayoutControlGroupRoot.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
+            this.LayoutControlGroupRoot.Size = new System.Drawing.Size(536, 439);
             this.LayoutControlGroupRoot.Text = "根";
             this.LayoutControlGroupRoot.TextVisible = false;
             // 
@@ -79,10 +86,25 @@
             this.ButtonProperties,
             this.ButtonExport,
             this.ButtonPrint,
-            this.barSubItem1});
-            this.BarManager.MaxItemId = 8;
+            this.MenuConfig,
+            this.ButtonRecoverLayout});
+            this.BarManager.MaxItemId = 9;
             this.BarManager.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.RepositoryItemTextEditCaption});
+            // 
+            // PopupMenuLayoutControl
+            // 
+            this.PopupMenuLayoutControl.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonRecoverLayout)});
+            this.PopupMenuLayoutControl.Manager = this.BarManager;
+            this.PopupMenuLayoutControl.Name = "PopupMenuLayoutControl";
+            // 
+            // ButtonRecoverLayout
+            // 
+            this.ButtonRecoverLayout.Caption = "恢复默认布局(R)";
+            this.ButtonRecoverLayout.Id = 8;
+            this.ButtonRecoverLayout.Name = "ButtonRecoverLayout";
+            this.ButtonRecoverLayout.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonRecoverLayout_ItemClick);
             // 
             // BarTools
             // 
@@ -93,44 +115,9 @@
             this.BarTools.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.ButtonExport, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.ButtonPrint, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barSubItem1)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.MenuConfig)});
             this.BarTools.OptionsBar.DisableClose = true;
             this.BarTools.Text = "工具条";
-            // 
-            // barDockControlTop
-            // 
-            this.barDockControlTop.CausesValidation = false;
-            this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(585, 31);
-            // 
-            // barDockControlBottom
-            // 
-            this.barDockControlBottom.CausesValidation = false;
-            this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 443);
-            this.barDockControlBottom.Size = new System.Drawing.Size(585, 0);
-            // 
-            // barDockControlLeft
-            // 
-            this.barDockControlLeft.CausesValidation = false;
-            this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 31);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 412);
-            // 
-            // barDockControlRight
-            // 
-            this.barDockControlRight.CausesValidation = false;
-            this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(585, 31);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 412);
-            // 
-            // ButtonProperties
-            // 
-            this.ButtonProperties.Caption = "属性(&P)...";
-            this.ButtonProperties.Glyph = ((System.Drawing.Image)(resources.GetObject("ButtonProperties.Glyph")));
-            this.ButtonProperties.Id = 1;
-            this.ButtonProperties.Name = "ButtonProperties";
             // 
             // ButtonExport
             // 
@@ -146,18 +133,54 @@
             this.ButtonPrint.Id = 4;
             this.ButtonPrint.Name = "ButtonPrint";
             // 
+            // MenuConfig
+            // 
+            this.MenuConfig.Caption = "配置(&C)";
+            this.MenuConfig.Id = 7;
+            this.MenuConfig.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonRecoverLayout),
+            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonProperties)});
+            this.MenuConfig.Name = "MenuConfig";
+            // 
+            // ButtonProperties
+            // 
+            this.ButtonProperties.Caption = "属性(&P)...";
+            this.ButtonProperties.Glyph = ((System.Drawing.Image)(resources.GetObject("ButtonProperties.Glyph")));
+            this.ButtonProperties.Id = 1;
+            this.ButtonProperties.Name = "ButtonProperties";
+            // 
+            // barDockControlTop
+            // 
+            this.barDockControlTop.CausesValidation = false;
+            this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
+            this.barDockControlTop.Size = new System.Drawing.Size(536, 31);
+            // 
+            // barDockControlBottom
+            // 
+            this.barDockControlBottom.CausesValidation = false;
+            this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 470);
+            this.barDockControlBottom.Size = new System.Drawing.Size(536, 0);
+            // 
+            // barDockControlLeft
+            // 
+            this.barDockControlLeft.CausesValidation = false;
+            this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 31);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 439);
+            // 
+            // barDockControlRight
+            // 
+            this.barDockControlRight.CausesValidation = false;
+            this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
+            this.barDockControlRight.Location = new System.Drawing.Point(536, 31);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 439);
+            // 
             // RepositoryItemTextEditCaption
             // 
             this.RepositoryItemTextEditCaption.AutoHeight = false;
             this.RepositoryItemTextEditCaption.Name = "RepositoryItemTextEditCaption";
-            // 
-            // barSubItem1
-            // 
-            this.barSubItem1.Caption = "配置(&C)";
-            this.barSubItem1.Id = 7;
-            this.barSubItem1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonProperties)});
-            this.barSubItem1.Name = "barSubItem1";
             // 
             // ReportView
             // 
@@ -172,6 +195,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.LayoutControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.LayoutControlGroupRoot)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BarManager)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PopupMenuLayoutControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemTextEditCaption)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -192,6 +216,8 @@
         private DevExpress.XtraBars.BarButtonItem ButtonPrint;
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit RepositoryItemTextEditCaption;
         private DevExpress.XtraBars.Bar BarTools;
-        private DevExpress.XtraBars.BarSubItem barSubItem1;
+        private DevExpress.XtraBars.BarSubItem MenuConfig;
+        private DevExpress.XtraBars.BarButtonItem ButtonRecoverLayout;
+        private DevExpress.XtraBars.PopupMenu PopupMenuLayoutControl;
     }
 }

@@ -15,6 +15,20 @@ using System.Windows.Forms;
 using DevExpress.XtraBars.Docking2010;
 using System.IO;
 using DevExpress.XtraBars.Docking;
+using DevExpress.XtraLayout;
+using DevExpress.XtraGrid;
+using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraGrid.Views.Base;
+using DevExpress.XtraGrid.Views.Layout;
+using DevExpress.Utils;
+using DevExpress.XtraTreeList;
+using DevExpress.XtraVerticalGrid;
+using DevExpress.XtraPivotGrid;
+using DevExpress.XtraReports.UI;
+using DevExpress.XtraCharts;
+using DevExpress.XtraMap;
+using DevExpress.XtraScheduler;
+using DevExpress.XtraSpreadsheet;
 
 namespace PAO.UI.WinForm
 {
@@ -85,11 +99,34 @@ namespace PAO.UI.WinForm
         /// <summary>
         /// 获取布局数据
         /// </summary>
+        /// <param name="control">控件</param>
+        /// <returns>布局数据</returns>
+        public static byte[] GetLayoutData(this DockManager control) {
+            MemoryStream buffer = new MemoryStream();
+            control.SaveLayoutToStream(buffer);
+            return buffer.ToArray();
+        }
+
+        /// <summary>
+        /// 设置布局数据
+        /// </summary>
+        /// <param name="control">控件</param>
+        /// <param name="layoutData">布局数据</param>
+        public static void SetLayoutData(this DockManager control, byte[] layoutData) {
+            if (layoutData.IsNullOrEmpty())
+                return;
+            MemoryStream buffer = new MemoryStream(layoutData);
+            control.RestoreLayoutFromStream(buffer);
+        }
+
+        /// <summary>
+        /// 获取布局数据
+        /// </summary>
         /// <param name="dockManager">停靠管理器</param>
         /// <returns>布局数据</returns>
-        public static byte[] GetLayoutData(this DockManager dockManager) {
+        public static byte[] GetLayoutData(this LayoutControl control) {
             MemoryStream buffer = new MemoryStream();
-            dockManager.SaveLayoutToStream(buffer);
+            control.SaveLayoutToStream(buffer);
             return buffer.ToArray();
         }
 
@@ -98,11 +135,171 @@ namespace PAO.UI.WinForm
         /// </summary>
         /// <param name="dockManager">停靠管理器</param>
         /// <param name="layoutData">布局数据</param>
-        public static void SetLayoutData(this DockManager dockManager, byte[] layoutData) {
+        public static void SetLayoutData(this LayoutControl control, byte[] layoutData) {
             if (layoutData.IsNullOrEmpty())
                 return;
             MemoryStream buffer = new MemoryStream(layoutData);
-            dockManager.RestoreLayoutFromStream(buffer);
+            control.RestoreLayoutFromStream(buffer);
+        }
+
+        /// <summary>
+        /// 获取布局数据
+        /// </summary>
+        /// <param name="dockManager">停靠管理器</param>
+        /// <returns>布局数据</returns>
+        public static byte[] GetLayoutData(this BaseView control) {
+            MemoryStream buffer = new MemoryStream();
+            control.SaveLayoutToStream(buffer, OptionsLayoutBase.FullLayout);
+            return buffer.ToArray();
+        }
+
+        /// <summary>
+        /// 设置布局数据
+        /// </summary>
+        /// <param name="dockManager">停靠管理器</param>
+        /// <param name="layoutData">布局数据</param>
+        public static void SetLayoutData(this BaseView control, byte[] layoutData) {
+            if (layoutData.IsNullOrEmpty())
+                return;
+            MemoryStream buffer = new MemoryStream(layoutData);
+            control.RestoreLayoutFromStream(buffer, OptionsLayoutBase.FullLayout);
+        }
+
+        /// <summary>
+        /// 获取布局数据
+        /// </summary>
+        /// <param name="dockManager">停靠管理器</param>
+        /// <returns>布局数据</returns>
+        public static byte[] GetLayoutData(this TreeList control) {
+            MemoryStream buffer = new MemoryStream();
+            control.SaveLayoutToStream(buffer, OptionsLayoutBase.FullLayout);
+            return buffer.ToArray();
+        }
+
+        /// <summary>
+        /// 设置布局数据
+        /// </summary>
+        /// <param name="dockManager">停靠管理器</param>
+        /// <param name="layoutData">布局数据</param>
+        public static void SetLayoutData(this TreeList control, byte[] layoutData) {
+            if (layoutData.IsNullOrEmpty())
+                return;
+            MemoryStream buffer = new MemoryStream(layoutData);
+            control.RestoreLayoutFromStream(buffer);
+        }
+
+        /// <summary>
+        /// 获取布局数据
+        /// </summary>
+        /// <param name="dockManager">停靠管理器</param>
+        /// <returns>布局数据</returns>
+        public static byte[] GetLayoutData(this VGridControl control) {
+            MemoryStream buffer = new MemoryStream();
+            control.SaveLayoutToStream(buffer, OptionsLayoutBase.FullLayout);
+            return buffer.ToArray();
+        }
+
+        /// <summary>
+        /// 设置布局数据
+        /// </summary>
+        /// <param name="dockManager">停靠管理器</param>
+        /// <param name="layoutData">布局数据</param>
+        public static void SetLayoutData(this VGridControl control, byte[] layoutData) {
+            if (layoutData.IsNullOrEmpty())
+                return;
+            MemoryStream buffer = new MemoryStream(layoutData);
+            control.RestoreLayoutFromStream(buffer);
+        }
+
+        /// <summary>
+        /// 获取布局数据
+        /// </summary>
+        /// <param name="dockManager">停靠管理器</param>
+        /// <returns>布局数据</returns>
+        public static byte[] GetLayoutData(this PivotGridControl control) {
+            MemoryStream buffer = new MemoryStream();
+            control.SaveLayoutToStream(buffer, OptionsLayoutBase.FullLayout);
+            return buffer.ToArray();
+        }
+
+        /// <summary>
+        /// 设置布局数据
+        /// </summary>
+        /// <param name="dockManager">停靠管理器</param>
+        /// <param name="layoutData">布局数据</param>
+        public static void SetLayoutData(this PivotGridControl control, byte[] layoutData) {
+            if (layoutData.IsNullOrEmpty())
+                return;
+            MemoryStream buffer = new MemoryStream(layoutData);
+            control.RestoreLayoutFromStream(buffer);
+        }
+        
+        /// <summary>
+        /// 获取布局数据
+        /// </summary>
+        /// <param name="dockManager">停靠管理器</param>
+        /// <returns>布局数据</returns>
+        public static byte[] GetLayoutData(this SchedulerControl control) {
+            MemoryStream buffer = new MemoryStream();
+            control.SaveLayoutToStream(buffer);
+            return buffer.ToArray();
+        }
+
+        /// <summary>
+        /// 设置布局数据
+        /// </summary>
+        /// <param name="dockManager">停靠管理器</param>
+        /// <param name="layoutData">布局数据</param>
+        public static void SetLayoutData(this SchedulerControl control, byte[] layoutData) {
+            if (layoutData.IsNullOrEmpty())
+                return;
+            MemoryStream buffer = new MemoryStream(layoutData);
+            control.RestoreLayoutFromStream(buffer);
+        }
+        /// <summary>
+        /// 获取布局数据
+        /// </summary>
+        /// <param name="dockManager">停靠管理器</param>
+        /// <returns>布局数据</returns>
+        public static byte[] GetLayoutData(this XtraReport control) {
+            MemoryStream buffer = new MemoryStream();
+            control.SaveLayout(buffer);
+            return buffer.ToArray();
+        }
+
+        /// <summary>
+        /// 设置布局数据
+        /// </summary>
+        /// <param name="dockManager">停靠管理器</param>
+        /// <param name="layoutData">布局数据</param>
+        public static void SetLayoutData(this XtraReport control, byte[] layoutData) {
+            if (layoutData.IsNullOrEmpty())
+                return;
+            MemoryStream buffer = new MemoryStream(layoutData);
+            control.LoadLayout(buffer);
+        }
+
+        /// <summary>
+        /// 获取布局数据
+        /// </summary>
+        /// <param name="dockManager">停靠管理器</param>
+        /// <returns>布局数据</returns>
+        public static byte[] GetLayoutData(this ChartControl control) {
+            MemoryStream buffer = new MemoryStream();
+            control.SaveToStream(buffer);
+            return buffer.ToArray();
+        }
+
+        /// <summary>
+        /// 设置布局数据
+        /// </summary>
+        /// <param name="dockManager">停靠管理器</param>
+        /// <param name="layoutData">布局数据</param>
+        public static void SetLayoutData(this ChartControl control, byte[] layoutData) {
+            if (layoutData.IsNullOrEmpty())
+                return;
+            MemoryStream buffer = new MemoryStream(layoutData);
+            control.LoadFromStream(buffer);
         }
         #endregion
 

@@ -27,11 +27,11 @@
         private void InitializeComponent() {
             this.SuspendLayout();
             // 
-            // BaseDialogControl
+            // DialogControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Name = "BaseDialogControl";
+            this.Name = "DialogControl";
             this.Size = new System.Drawing.Size(585, 443);
             this.ResumeLayout(false);
 

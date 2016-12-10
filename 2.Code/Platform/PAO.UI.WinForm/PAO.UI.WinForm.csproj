@@ -30,16 +30,26 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DevExpress.Charts.v15.2.Core, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Data.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Images.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.PivotGrid.v15.2.Core, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Printing.v15.2.Core, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Sparkline.v15.2.Core, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Utils.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraBars.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraCharts.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraCharts.v15.2.UI, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraCharts.v15.2.Wizard, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraEditors.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraGrid.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraLayout.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraMap.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraPivotGrid.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraPrinting.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraReports.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraScheduler.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraSpreadsheet.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraTreeList.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraVerticalGrid.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="System" />
@@ -60,11 +70,11 @@
     <Compile Include="Controls\BaseEditControl.Designer.cs">
       <DependentUpon>BaseEditControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\BaseView.cs">
+    <Compile Include="Controls\ViewControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\BaseView.Designer.cs">
-      <DependentUpon>BaseView.cs</DependentUpon>
+    <Compile Include="Controls\ViewControl.Designer.cs">
+      <DependentUpon>ViewControl.cs</DependentUpon>
     </Compile>
     <Compile Include="DataModifyStateChangedEventArgs.cs" />
     <Compile Include="Controls\DialogControl.cs">
@@ -84,6 +94,21 @@
     </Compile>
     <Compile Include="Controls\ImageControl.Designer.cs">
       <DependentUpon>ImageControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MDI\Displayers\BaseDataDisplayer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MDI\Displayers\BaseDataDisplayer.Designer.cs">
+      <DependentUpon>BaseDataDisplayer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MDI\Displayers\BaseDataDisplayerController.cs" />
+    <Compile Include="MDI\Displayers\GridViewType.cs" />
+    <Compile Include="MDI\DockViews\ParameterInputController.cs" />
+    <Compile Include="MDI\DockViews\ParameterInputView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MDI\DockViews\ParameterInputView.Designer.cs">
+      <DependentUpon>ParameterInputView.cs</DependentUpon>
     </Compile>
     <Compile Include="MDI\DockViews\TreeMenuController.cs" />
     <Compile Include="MDI\DockViews\TreeMenuView.cs">
@@ -107,12 +132,12 @@
     <Compile Include="MDI\Views\ReportView.Designer.cs">
       <DependentUpon>ReportView.cs</DependentUpon>
     </Compile>
-    <Compile Include="MDI\Views\ReportViewController.cs" />
-    <Compile Include="MDI\Displayers\GridControlView.cs">
+    <Compile Include="MDI\Views\ReportController.cs" />
+    <Compile Include="MDI\Displayers\GridControlDataDisplayer.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MDI\Displayers\GridControlView.Designer.cs">
-      <DependentUpon>GridControlView.cs</DependentUpon>
+    <Compile Include="MDI\Displayers\GridControlDataDisplayer.Designer.cs">
+      <DependentUpon>GridControlDataDisplayer.cs</DependentUpon>
     </Compile>
     <Compile Include="MDI\Displayers\GridControlController.cs" />
     <Compile Include="Security\LoginControl.cs">
@@ -158,8 +183,8 @@
     <EmbeddedResource Include="Controls\BaseEditControl.resx">
       <DependentUpon>BaseEditControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\BaseView.resx">
-      <DependentUpon>BaseView.cs</DependentUpon>
+    <EmbeddedResource Include="Controls\ViewControl.resx">
+      <DependentUpon>ViewControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\DialogControl.resx">
       <DependentUpon>DialogControl.cs</DependentUpon>
@@ -179,6 +204,9 @@
     <EmbeddedResource Include="Forms\PaoWaitForm.resx">
       <DependentUpon>PaoWaitForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MDI\DockViews\ParameterInputView.resx">
+      <DependentUpon>ParameterInputView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MDI\DockViews\TreeMenuView.resx">
       <DependentUpon>TreeMenuView.cs</DependentUpon>
     </EmbeddedResource>
@@ -188,8 +216,8 @@
     <EmbeddedResource Include="MDI\Views\ReportView.resx">
       <DependentUpon>ReportView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MDI\Displayers\GridControlView.resx">
-      <DependentUpon>GridControlView.cs</DependentUpon>
+    <EmbeddedResource Include="MDI\Displayers\GridControlDataDisplayer.resx">
+      <DependentUpon>GridControlDataDisplayer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">

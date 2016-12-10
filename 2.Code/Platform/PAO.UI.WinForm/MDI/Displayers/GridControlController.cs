@@ -1,4 +1,6 @@
 ﻿using PAO;
+using PAO.App;
+using PAO.Data;
 using PAO.UI.MVC;
 using System;
 using System.Collections.Generic;
@@ -21,7 +23,7 @@ namespace PAO.UI.WinForm.MDI.Displayers
     [DataContract(Namespace = "")]
     [Name("表格控件视图命令")]
     [Description("用于创建表格控件视图的命令")]
-    public class GridControlController : BaseController
+    public class GridControlController : BaseDataDisplayerController
     {
         #region 插件属性
 
@@ -41,28 +43,59 @@ namespace PAO.UI.WinForm.MDI.Displayers
         }
         #endregion 属性：LayoutData
 
-        #region 属性：DataSchema
+        #region 属性：DataMember
         /// <summary>
-        /// 属性：DataSchema
-        /// s数据格式
-        /// 数据格式
+        /// 属性：DataMember
+        /// 数据成员
+        /// 数据表对应的数据成员
         /// </summary>
         [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
-        [Name("s数据格式")]
-        [Description("数据格式")]
-        public DataSet DataSchema {
+        [Name("数据成员")]
+        [Description("数据表对应的数据成员")]
+        public string DataMember {
             get;
             set;
         }
-        #endregion 属性：DataSchema
+        #endregion 属性：DataMember
+
+        #region 属性：GridViewType
+        /// <summary>
+        /// 属性：GridViewType
+        /// 视图类型
+        /// 表格视图的类型
+        /// </summary>
+        [AddonProperty]
+        [DefaultValue(GridViewType.GridView)]
+        [DataMember(EmitDefaultValue = false)]
+        [Name("视图类型")]
+        [Description("表格视图的类型")]
+        public GridViewType GridViewType {
+            get;
+            set;
+        }
+        #endregion 属性：GridViewType
+
         #endregion
         public GridControlController() {
+            GridViewType = GridViewType.GridView;
         }
 
         protected override IView OnCreateView() {
-            var gridControlView = new GridControlView();
+            var gridControlView = new GridControlDataDisplayer();
+            gridControlView.DataMember = DataMember;
+
+            AddonPublic.ApplyAddonExtendProperties(this);
+            gridControlView.GridViewType = GridViewType;
+            gridControlView.LayoutData = LayoutData;
+            gridControlView.Closing += (s, e) =>
+            {
+                GridViewType = gridControlView.GridViewType;
+                LayoutData = gridControlView.LayoutData;
+                AddonPublic.FetchAddonExtendProperties(this, "GridViewType", "LayoutData");
+            };
             return gridControlView;
         }
+        
     }
 }

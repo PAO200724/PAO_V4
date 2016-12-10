@@ -11,6 +11,8 @@ using System.Threading;
 using DevExpress.XtraBars.Docking;
 using PAO.UI.MVC;
 using DevExpress.XtraBars.Docking2010.Views.Tabbed;
+using DevExpress.XtraBars.Docking2010;
+using DevExpress.XtraScheduler;
 
 namespace PAO.UI.WinForm.MDI
 {
@@ -34,6 +36,7 @@ namespace PAO.UI.WinForm.MDI
 
         public MDIMainForm() {
             Default = this;
+            this.DialogResult = DialogResult.Cancel;
             InitializeComponent();
             _UIActionDispatcher = new UIActionDispatcher(this);
             SetStatusText(Message_Status_Ready);
@@ -46,6 +49,21 @@ namespace PAO.UI.WinForm.MDI
         #endregion
 
         protected override void OnClosing(CancelEventArgs e) {
+            this.DialogResult = DialogResult.OK;
+
+            if(DockViews.IsNotNullOrEmpty()) {
+                foreach(var dockView in DockViews) {
+                    dockView.CloseView();
+                }
+            }
+
+            foreach(Document doc in this.TabbedView.Documents) {
+                var view = doc.Control as IView;
+                if (view != null) {
+                    view.CloseView();
+                }
+            }
+
             var mdiApplication = MDIApplication.Default.As<MDIApplication>();
             mdiApplication.LayoutData = this.DockManager.GetLayoutData();
             mdiApplication.SkinName = DevExpress.LookAndFeel.UserLookAndFeel.Default.SkinName;
@@ -87,6 +105,7 @@ namespace PAO.UI.WinForm.MDI
             UIPublic.CloseWaitingForm();
         }
 
+        List<IDockView> DockViews = new List<IDockView>();
         public void OpenView(IView view) {
             Waiting(() =>
             {
@@ -95,9 +114,27 @@ namespace PAO.UI.WinForm.MDI
                     dockPanel.ID = new Guid(view.ID);
                     dockPanel.Text = view.Caption;
                     dockPanel.Image = view.Icon;
+                    dockPanel.Options.AllowFloating = false;
+                    var headerButton = new CustomHeaderButton("...", ButtonStyle.PushButton);
+                    dockPanel.Options.ShowCloseButton = false;
+                    dockPanel.ClosingPanel += (sender, e) =>
+                    {
+                        if(DialogResult != DialogResult.OK) {
+                            e.Cancel = true;
+                        }
+                    };
+                    dockPanel.CustomHeaderButtons.Add(headerButton);
+                    dockPanel.CustomButtonClick += (sender, e) =>
+                    {
+
+                    };
                     var control = view as Control;
                     dockPanel.Controls[0].Controls.Add(control);
                     control.Dock = DockStyle.Fill;
+
+                    var dockView = view as IDockView;
+                    if(!DockViews.Contains(dockView))
+                        DockViews.Add(dockView);
                 } else {
                     var docControl = view as Control;
                     var tabbedDoc = TabbedView.AddDocument(docControl);
@@ -109,6 +146,25 @@ namespace PAO.UI.WinForm.MDI
 
         public void AddMenuItem(IUIItem menuItem) {
             WinFormPublic.AddMenuToSubItem(this.MenuFunction, menuItem, this);
+        }
+
+        private void ButtonRecoverLayout_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+            var panelList = this.DockManager.Panels.ToList();
+            foreach (var dockPanel in panelList) {
+                dockPanel.Controls[0].Controls.Clear();
+                this.DockManager.RemovePanel(dockPanel);
+            }
+
+            foreach(var view in DockViews) {
+                OpenView(view);
+            }
+        }
+
+        private void TabbedView_DocumentClosing(object sender, DevExpress.XtraBars.Docking2010.Views.DocumentCancelEventArgs e) {
+            var view = e.Document.Control as IView;
+            if(view != null) {
+                view.CloseView();
+            }
         }
     }
 }

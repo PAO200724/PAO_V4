@@ -14,6 +14,7 @@ using PAO.Config.Commands;
 using PAO.Remote.Tcp;
 using PAO.Security;
 using PAO.UI.WinForm.MDI.Views;
+using PAO.UI.WinForm.MDI.Displayers;
 
 namespace PAO.Configuration
 {
@@ -74,9 +75,31 @@ namespace PAO.Configuration
                                         Caption = "主配置",
                                     }.ToRef())
                             }.ToRef())
-                            .Append(new ReportViewController()
+                            .Append(new ReportController()
                             {
-                                Caption = "智能报表"
+                                ID = "Smart_Report",
+                                Caption = "智能报表",
+                                Controllers = new List<Ref<BaseController>>()
+                                    .Append(new ParameterInputController()
+                                    {
+                                        ID = "{AF8496DB-8675-4549-8F90-2E0871EA77EC}",
+                                        Caption = "参数",
+                                    }.ToRef())
+                                    .Append(new GridControlController()
+                                    {
+                                        ID = "GridControl",
+                                        Caption = "表格控件1",
+                                    }.ToRef())
+                                    .Append(new GridControlController()
+                                    {
+                                        ID = "GridControl2",
+                                        Caption = "表格控件2",
+                                    }.ToRef())
+                                    .Append(new GridControlController()
+                                    {
+                                        ID = "GridControl3",
+                                        Caption = "表格控件3",
+                                    }.ToRef()),
                             }.ToRef()),
                     }.ToRef()),
             };

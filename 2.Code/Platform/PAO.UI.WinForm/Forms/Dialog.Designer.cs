@@ -36,7 +36,7 @@
             // ButtonApply
             // 
             this.ButtonApply.Image = global::PAO.UI.WinForm.Properties.Resources.drilldown_16x16;
-            this.ButtonApply.Location = new System.Drawing.Point(483, 8);
+            this.ButtonApply.Location = new System.Drawing.Point(483, 3);
             this.ButtonApply.Name = "ButtonApply";
             this.ButtonApply.Size = new System.Drawing.Size(80, 35);
             this.ButtonApply.TabIndex = 3;
@@ -48,7 +48,7 @@
             this.ButtonCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.ButtonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.ButtonCancel.Image = global::PAO.UI.WinForm.Properties.Resources.cancel_16x16;
-            this.ButtonCancel.Location = new System.Drawing.Point(397, 8);
+            this.ButtonCancel.Location = new System.Drawing.Point(397, 3);
             this.ButtonCancel.Name = "ButtonCancel";
             this.ButtonCancel.Size = new System.Drawing.Size(80, 35);
             this.ButtonCancel.TabIndex = 2;
@@ -59,7 +59,7 @@
             this.ButtonOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.ButtonOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.ButtonOK.Image = global::PAO.UI.WinForm.Properties.Resources.apply_16x16;
-            this.ButtonOK.Location = new System.Drawing.Point(311, 8);
+            this.ButtonOK.Location = new System.Drawing.Point(311, 3);
             this.ButtonOK.Name = "ButtonOK";
             this.ButtonOK.Size = new System.Drawing.Size(80, 35);
             this.ButtonOK.TabIndex = 1;
@@ -72,10 +72,10 @@
             this.PanelButtons.Controls.Add(this.ButtonOK);
             this.PanelButtons.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.PanelButtons.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.PanelButtons.Location = new System.Drawing.Point(5, 544);
+            this.PanelButtons.Location = new System.Drawing.Point(5, 547);
+            this.PanelButtons.Margin = new System.Windows.Forms.Padding(0);
             this.PanelButtons.Name = "PanelButtons";
-            this.PanelButtons.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
-            this.PanelButtons.Size = new System.Drawing.Size(566, 46);
+            this.PanelButtons.Size = new System.Drawing.Size(566, 43);
             this.PanelButtons.TabIndex = 5;
             // 
             // PanelClient
@@ -84,7 +84,7 @@
             this.PanelClient.Location = new System.Drawing.Point(5, 5);
             this.PanelClient.Margin = new System.Windows.Forms.Padding(0);
             this.PanelClient.Name = "PanelClient";
-            this.PanelClient.Size = new System.Drawing.Size(566, 539);
+            this.PanelClient.Size = new System.Drawing.Size(566, 542);
             this.PanelClient.TabIndex = 6;
             // 
             // Dialog

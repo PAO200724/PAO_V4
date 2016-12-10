@@ -27,6 +27,10 @@ namespace PAO.IO
         /// <summary>
         /// 网页
         /// </summary>
+        public const string MHT = "单一文件网页(*.mht)|*.mht";
+        /// <summary>
+        /// 网页
+        /// </summary>
         public const string HTML = "网页(*.html)|*.html";
         /// <summary>
         /// RTF文件

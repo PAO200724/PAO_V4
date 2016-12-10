@@ -22,9 +22,5 @@ namespace PAO.UI.MVC
         /// </summary>
         /// <param name="view">视图</param>
         void OpenView(IView view);
-        /// <summary>
-        /// UI动作分发器
-        /// </summary>
-        UIActionDispatcher UIActionDispatcher { get; }
     }
 }
