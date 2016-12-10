@@ -60,6 +60,12 @@
     <Compile Include="Controls\BaseEditControl.Designer.cs">
       <DependentUpon>BaseEditControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\BaseView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\BaseView.Designer.cs">
+      <DependentUpon>BaseView.cs</DependentUpon>
+    </Compile>
     <Compile Include="DataModifyStateChangedEventArgs.cs" />
     <Compile Include="Controls\DialogControl.cs">
       <SubType>UserControl</SubType>
@@ -79,7 +85,6 @@
     <Compile Include="Controls\ImageControl.Designer.cs">
       <DependentUpon>ImageControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="MDI\Commands\MenuCommand.cs" />
     <Compile Include="MDI\DockViews\TreeMenuController.cs" />
     <Compile Include="MDI\DockViews\TreeMenuView.cs">
       <SubType>UserControl</SubType>
@@ -96,19 +101,20 @@
       <DependentUpon>MDIMainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="MDI\MDIApplication.cs" />
-    <Compile Include="MDI\Views\CompositeView.cs">
+    <Compile Include="MDI\Views\ReportView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MDI\Views\CompositeView.Designer.cs">
-      <DependentUpon>CompositeView.cs</DependentUpon>
+    <Compile Include="MDI\Views\ReportView.Designer.cs">
+      <DependentUpon>ReportView.cs</DependentUpon>
     </Compile>
-    <Compile Include="MDI\Views\GridControlView.cs">
+    <Compile Include="MDI\Views\ReportViewController.cs" />
+    <Compile Include="MDI\Displayers\GridControlView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MDI\Views\GridControlView.Designer.cs">
+    <Compile Include="MDI\Displayers\GridControlView.Designer.cs">
       <DependentUpon>GridControlView.cs</DependentUpon>
     </Compile>
-    <Compile Include="MDI\Views\GridControlController.cs" />
+    <Compile Include="MDI\Displayers\GridControlController.cs" />
     <Compile Include="Security\LoginControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -152,6 +158,9 @@
     <EmbeddedResource Include="Controls\BaseEditControl.resx">
       <DependentUpon>BaseEditControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\BaseView.resx">
+      <DependentUpon>BaseView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\DialogControl.resx">
       <DependentUpon>DialogControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -176,10 +185,10 @@
     <EmbeddedResource Include="MDI\MDIMainForm.resx">
       <DependentUpon>MDIMainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MDI\Views\CompositeView.resx">
-      <DependentUpon>CompositeView.cs</DependentUpon>
+    <EmbeddedResource Include="MDI\Views\ReportView.resx">
+      <DependentUpon>ReportView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MDI\Views\GridControlView.resx">
+    <EmbeddedResource Include="MDI\Displayers\GridControlView.resx">
       <DependentUpon>GridControlView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />

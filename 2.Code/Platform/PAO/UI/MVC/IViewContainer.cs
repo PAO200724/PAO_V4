@@ -23,15 +23,8 @@ namespace PAO.UI.MVC
         /// <param name="view">视图</param>
         void OpenView(IView view);
         /// <summary>
-        /// 执行UI动作
+        /// UI动作分发器
         /// </summary>
-        /// <param name="sender">发送者</param>
-        /// <param name="actionName">动作名称</param>
-        /// <param name="actionParameters">动作参数</param>
-        void DoUIAction(object sender, string actionName, IEnumerable<object> actionParameters);
-        /// <summary>
-        /// 视图动作事件
-        /// </summary>
-        event EventHandler<UIActionEventArgs> UIActing;
+        UIActionDispatcher UIActionDispatcher { get; }
     }
 }

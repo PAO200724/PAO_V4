@@ -17,14 +17,12 @@ namespace PAO.UI.WinForm.MDI.DockViews
     /// <summary>
     /// 菜单视图
     /// </summary>
-    public partial class TreeMenuView : DialogControl, IView, IMenuContainer
+    public partial class TreeMenuView : DialogControl, IDockView, IMenuContainer
     {
         public TreeMenuView() {
             InitializeComponent();
         }
         
-        public event EventHandler<UIActionEventArgs> UIActing;
-
         private void AddNode(TreeListNodes nodes, IUIItem uiItem) {
             var node = nodes.Add(new object[]
             {
@@ -47,9 +45,9 @@ namespace PAO.UI.WinForm.MDI.DockViews
             {
                 var focusedNode = this.TreeListMenu.FocusedNode;
                 if (focusedNode != null) {
-                    var command = focusedNode.GetValue(ColumnMenu) as ICommand;
-                    if (command != null) {
-                        command.DoCommand();
+                    var controller = focusedNode.GetValue(ColumnMenu) as BaseController;
+                    if (controller != null) {
+                        controller.CreateAndOpenView(MVCPublic.MainForm);
                     }
                 }
             }, "打开菜单");
@@ -63,17 +61,7 @@ namespace PAO.UI.WinForm.MDI.DockViews
                 this.TreeListMenu.ExpandAll();
             }
         }
-        
-        public void DoUIAction(object sender, string actionName, IEnumerable<object> actionParameters) {
-            if(UIActing != null) {
-                UIActing(sender, new UIActionEventArgs()
-                {
-                    ActionName = actionName,
-                    ActionParameters = actionParameters
-                });
-            }
-        }
-        
+                
         public void AddMenuItem(IUIItem menuItem) {
             AddNode(this.TreeListMenu.Nodes, menuItem);
         }

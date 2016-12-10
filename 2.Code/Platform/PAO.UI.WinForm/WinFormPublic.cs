@@ -111,15 +111,16 @@ namespace PAO.UI.WinForm
         /// 添加菜单到子菜单中（包含下级菜单）
         /// </summary>
         /// <param name="barSubItem">子菜单</param>
-        /// <param name="menuItem">菜单项</param>
-        public static void AddMenuToSubItem(object barSubItem, IUIItem uiItem) {
+        /// <param name="uiItem">菜单项</param>
+        /// <param name="container">视图容器</param>
+        public static void AddMenuToSubItem(object barSubItem, IUIItem uiItem, IViewContainer container) {
             BarItem barItem = null;
             if(uiItem is FolderItem) {
                 var menuItem = uiItem as FolderItem;
                 if (menuItem.ChildMenuItems.IsNotNull()) {
                     var newSubItem = new BarSubItem();
                     foreach (var childFunctionItem in menuItem.ChildMenuItems) {
-                        AddMenuToSubItem(newSubItem, childFunctionItem);
+                        AddMenuToSubItem(newSubItem, childFunctionItem, container);
                     }
                     barItem = newSubItem;
                 }
@@ -134,9 +135,9 @@ namespace PAO.UI.WinForm
             barItem.ItemClick += (sender, e) =>
             {
                 try {
-                    if(uiItem is ICommand) {
-                        var command = uiItem as ICommand;
-                        command.DoCommand();
+                    if(uiItem is BaseController) {
+                        var controller = uiItem as BaseController;
+                        controller.CreateAndOpenView(container);
                     }
                 } catch (Exception err) {
                     UIPublic.ShowErrorDialog(err.FormatException());

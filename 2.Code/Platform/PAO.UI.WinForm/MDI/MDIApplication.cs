@@ -49,18 +49,18 @@ namespace PAO.UI.WinForm.MDI
         #region 属性：Controllers
         /// <summary>
         /// 属性：Controllers
-        /// 命令列表
-        /// 系统启动时自动运行的命令列表
+        /// 控制器列表
+        /// 系统中的视图控制器列表
         /// </summary>
         [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
-        [Name("命令列表")]
-        [Description("系统启动时自动运行的命令列表")]
-        public List<Ref<ICommand>> Commands {
+        [Name("控制器列表")]
+        [Description("系统中的视图控制器列表")]
+        public List<Ref<BaseController>> Controllers {
             get;
             set;
         }
-        #endregion 属性：Controllers        
+        #endregion 属性：Controllers
 
         #region 属性：LayoutData
         /// <summary>
@@ -110,6 +110,22 @@ namespace PAO.UI.WinForm.MDI
         }
         #endregion 属性：SkinName
 
+        #region 属性：MenuItems
+        /// <summary>
+        /// 属性：MenuItems
+        /// 功能菜单
+        /// 功能菜单项
+        /// </summary>
+        [AddonProperty]
+        [DataMember(EmitDefaultValue = false)]
+        [Name("功能菜单")]
+        [Description("功能菜单项")]
+        public List<Ref<UIItem>> MenuItems {
+            get;
+            set;
+        }
+        #endregion 属性：MenuItems
+
         #endregion
         public MDIApplication() {
         }
@@ -140,14 +156,21 @@ namespace PAO.UI.WinForm.MDI
             MVCPublic.MainForm = MainForm;
             MainForm.Text = Caption;
 
-            if (Commands.IsNotNullOrEmpty()) {
-                TransactionPublic.Run("启动自动控制器", () =>
+            // 添加菜单项
+            if (MenuItems.IsNotNullOrEmpty()) {
+                foreach (var menuItem in MenuItems) {
+                    MainForm.AddMenuItem(menuItem.Value);
+                }
+            }
+
+            if(Controllers.IsNotNullOrEmpty()) {
+                TransactionPublic.Run("启动视图控制器", () =>
                 {
-                    foreach (var commandRef in Commands) {
-                        var command = commandRef.Value;
-                        TransactionPublic.Run(String.Format("运行自动控制器:{0}", command), () =>
+                    foreach (var controllerRef in Controllers) {
+                        var controller = controllerRef.Value;
+                        TransactionPublic.Run(String.Format("打开控制器:{0}", controller), () =>
                         {
-                            command.DoCommand();
+                            controller.CreateAndOpenView(MainForm);
                         });
                     }
                 });

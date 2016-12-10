@@ -14,7 +14,6 @@ using PAO.Config.Commands;
 using PAO.Remote.Tcp;
 using PAO.Security;
 using PAO.UI.WinForm.MDI.Views;
-using PAO.UI.WinForm.MDI.Commands;
 
 namespace PAO.Configuration
 {
@@ -57,13 +56,9 @@ namespace PAO.Configuration
                 {
                     FilePath = "ExtendProperties.config"
                 }.ToRef(),
-
-                Commands = new List<Ref<ICommand>>()
-                    .Append(new MenuCommand()
-                    {
-                        MenuItems = new List<Ref<UIItem>>()
-                            .Append(new AddonFactory<UIItem>() { AddonID = "Menu_Config" })
-                    }.ToRef())
+                MenuItems = new List<Ref<UIItem>>()
+                            .Append(new AddonFactory<UIItem>() { AddonID = "Menu_Config" }),
+                Controllers = new List<Ref<BaseController>>()
                     .Append(new TreeMenuController()
                     {
                         Caption = "菜单",
@@ -79,9 +74,9 @@ namespace PAO.Configuration
                                         Caption = "主配置",
                                     }.ToRef())
                             }.ToRef())
-                            .Append(new GridControlController()
+                            .Append(new ReportViewController()
                             {
-                                Caption = "表格视图"
+                                Caption = "智能报表"
                             }.ToRef()),
                     }.ToRef()),
             };

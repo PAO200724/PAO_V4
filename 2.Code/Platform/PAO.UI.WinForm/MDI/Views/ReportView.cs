@@ -13,18 +13,19 @@ using PAO.UI.MVC;
 namespace PAO.UI.WinForm.MDI.Views
 {
     /// <summary>
-    /// 组合视图
+    /// 报表视图
     /// 作者：PAO
     /// </summary>
-    public partial class CompositeView : DialogControl, IView, IViewContainer
+    public partial class ReportView : DialogControl, IView, IViewContainer
     {
         /// <summary>
         /// 数据格式
         /// </summary>
         private DataSet SchemaDataSet;
 
-        public CompositeView() {
+        public ReportView() {
             InitializeComponent();
+            _UIActionDispatcher = new UIActionDispatcher(this);
         }
 
         private List<IView> ViewList = new List<IView>();
@@ -36,7 +37,12 @@ namespace PAO.UI.WinForm.MDI.Views
             }
         }
 
-        public event EventHandler<UIActionEventArgs> UIActing;
+        private UIActionDispatcher _UIActionDispatcher;
+        public UIActionDispatcher UIActionDispatcher {
+            get {
+                return _UIActionDispatcher;
+            }
+        }
 
         public void Initialize(DataSet schemaDataSet) {
             SchemaDataSet = schemaDataSet;
@@ -65,15 +71,6 @@ namespace PAO.UI.WinForm.MDI.Views
             layoutControlItem.CustomizationFormText = Caption;
             layoutControlItem.TextLocation = DevExpress.Utils.Locations.Top;
             layoutControlItem.TextVisible = false;
-        }
-
-        public void DoUIAction(object sender, string actionName, IEnumerable<object> actionParameters) {
-            if (UIActing != null)
-                UIActing(sender, new UIActionEventArgs()
-                {
-                    ActionName = actionName,
-                    ActionParameters = actionParameters
-                });
         }
     }
 }

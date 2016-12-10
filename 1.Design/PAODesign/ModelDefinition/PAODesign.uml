@@ -1761,35 +1761,122 @@
             Id="ceff76c3-83f0-4d67-acb9-9311d7b3e695">
             <interfaceMoniker
               Id="be2bff2f-b659-49db-841b-bc458294de69"
-              LastKnownName="IUIItemContainer"
+              LastKnownName="IViewContainer"
               LastKnownLocation="PAODesign.uml" />
           </interfaceRealization>
-          <dependency
-            Id="f242d278-2afc-431b-8dcb-9fdcc2169db3">
-            <interfaceMoniker
-              Id="ee8401a5-e23e-4591-a1da-038c8a1d1232"
-              LastKnownName="ICommand"
-              LastKnownLocation="PAODesign.uml" />
-          </dependency>
         </suppliersInternal>
+        <targetEnds>
+          <association
+            Id="484d4b12-029e-4ee7-a082-60cea526f039"
+            isDerived="false"
+            sourceEndRoleName=""
+            targetEndRoleName="Controllers"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="6d73fbe3-60ee-41be-8f41-5fc2c880f99c"
+              LastKnownName="BaseController"
+              LastKnownLocation="PAODesign.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="c23c5b25-891f-4c13-aaf5-22124dd8cf74"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="Composite"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="62d14d3d-11a4-45c2-b098-0099b042ff19"
+                  name="Controllers"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="true">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="24bc556a-7f2e-46a5-9915-fffc40c0fa77"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="f1bfe57b-caf7-4d6e-a559-e62a54765d1d"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="a2105368-6902-4e03-ade3-db112d1fa4c7"
+            isDerived="false"
+            sourceEndRoleName=""
+            targetEndRoleName="MenuItems"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="71623b96-05dd-498d-9e80-fb6d57d31924"
+              LastKnownName="UIItem"
+              LastKnownLocation="PAODesign.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="ac4fc982-c930-4899-bb5a-6f8245799df7"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="Composite"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="70eaa761-3f38-4d5f-8154-82e96a9ef3d5"
+                  name="MenuItems"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="true">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="f8fb9e81-9e09-4259-bc8d-a4442b34be8d"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="fe719fdd-c54e-43a3-ae82-a6fd06e30e82"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
       </class>
     </packageHasNamedElement>
     <packageHasNamedElement>
       <Interface
         Id="be2bff2f-b659-49db-841b-bc458294de69"
-        name="IUIItemContainer"
+        name="IViewContainer"
         isAbstract="false"
-        isLeaf="false">
-        <suppliersInternal>
-          <dependency
-            Id="2316a880-a303-4487-8192-80e644af1560">
-            <interfaceMoniker
-              Id="4ce4d955-86e4-4056-a7aa-c65cbc8a4ec2"
-              LastKnownName="IUIItem"
-              LastKnownLocation="PAODesign.uml" />
-          </dependency>
-        </suppliersInternal>
-      </Interface>
+        isLeaf="false" />
     </packageHasNamedElement>
     <packageHasNamedElement>
       <Interface
@@ -1848,38 +1935,6 @@
         name="IMainForm"
         isAbstract="false"
         isLeaf="false" />
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <Interface
-        Id="ee8401a5-e23e-4591-a1da-038c8a1d1232"
-        name="ICommand"
-        isAbstract="false"
-        isLeaf="false" />
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <class
-        Id="2e3c7ecc-e133-4899-8c2c-d8ea9f7031e1"
-        name="SDIMainForm"
-        isAbstract="false"
-        isLeaf="false"
-        isActiveClass="false">
-        <suppliersInternal>
-          <interfaceRealization
-            Id="1f1464cc-6910-4616-a629-4ffa259f91d9">
-            <interfaceMoniker
-              Id="be2bff2f-b659-49db-841b-bc458294de69"
-              LastKnownName="IUIItemContainer"
-              LastKnownLocation="PAODesign.uml" />
-          </interfaceRealization>
-          <dependency
-            Id="b034a5bd-8944-4857-bed9-a548a44977d4">
-            <interfaceMoniker
-              Id="629d1f92-5f9b-48c6-bd72-b777891804a3"
-              LastKnownName="IDocumentContainer"
-              LastKnownLocation="PAODesign.uml" />
-          </dependency>
-        </suppliersInternal>
-      </class>
     </packageHasNamedElement>
     <packageHasNamedElement>
       <class
@@ -1946,48 +2001,7 @@
         name="SDIApplication"
         isAbstract="false"
         isLeaf="false"
-        isActiveClass="false">
-        <targetEnds>
-          <association
-            Id="badab807-8491-4e19-aca4-01a8c3b7287c"
-            isDerived="false"
-            sourceEndRoleName=""
-            targetEndRoleName="MainForm"
-            isLeaf="false"
-            isAbstract="false">
-            <classMoniker
-              Id="2e3c7ecc-e133-4899-8c2c-d8ea9f7031e1"
-              LastKnownName="SDIMainForm"
-              LastKnownLocation="PAODesign.uml" />
-            <relationshipOwnedElementsInternal>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="b28c140a-0ea5-4f87-b1f5-d93f45ca626f"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="Shared"
-                  isComposite="false"
-                  isNavigableOwned="false" />
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="b0cb4e45-e094-468d-b09f-c76b9f2d1784"
-                  name="MainForm"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false" />
-              </associationHasOwnedEnds>
-            </relationshipOwnedElementsInternal>
-          </association>
-        </targetEnds>
-      </class>
+        isActiveClass="false" />
     </packageHasNamedElement>
     <packageHasNamedElement>
       <class
@@ -2010,19 +2024,10 @@
     <packageHasNamedElement>
       <class
         Id="ebc07550-a718-43d5-8038-9710956b8b5d"
-        name="MenuItem"
+        name="FolderItem"
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
-        <suppliersInternal>
-          <interfaceRealization
-            Id="c32a3659-d21a-4957-b674-bf85bd3a7444">
-            <interfaceMoniker
-              Id="fc7bcaca-b7b1-4d9f-99fe-25c73f8f5474"
-              LastKnownName="IMenuItem"
-              LastKnownLocation="PAODesign.uml" />
-          </interfaceRealization>
-        </suppliersInternal>
         <generalsInternal>
           <generalization
             Id="f0560c77-4e79-4a57-a77b-8f7b0264c1c7"
@@ -2036,38 +2041,20 @@
       </class>
     </packageHasNamedElement>
     <packageHasNamedElement>
-      <Interface
-        Id="fc7bcaca-b7b1-4d9f-99fe-25c73f8f5474"
-        name="IMenuItem"
-        isAbstract="false"
-        isLeaf="false">
-        <generalsInternal>
-          <generalization
-            Id="3191f141-ea23-4df0-806c-2654b517fc23"
-            isSubstitutable="false">
-            <interfaceMoniker
-              Id="4ce4d955-86e4-4056-a7aa-c65cbc8a4ec2"
-              LastKnownName="IUIItem"
-              LastKnownLocation="PAODesign.uml" />
-          </generalization>
-        </generalsInternal>
-      </Interface>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
       <class
         Id="6d73fbe3-60ee-41be-8f41-5fc2c880f99c"
-        name="Controller"
+        name="BaseController"
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
         <suppliersInternal>
-          <interfaceRealization
-            Id="3bdb83f3-a03a-4e8a-8056-8337fcc37fdb">
+          <dependency
+            Id="152e0b8c-1b95-436d-8c50-4e59c2f3d28f">
             <interfaceMoniker
-              Id="ee8401a5-e23e-4591-a1da-038c8a1d1232"
-              LastKnownName="ICommand"
+              Id="3cd0f844-37a1-4b50-84c2-b24a0b9d6ee9"
+              LastKnownName="IView"
               LastKnownLocation="PAODesign.uml" />
-          </interfaceRealization>
+          </dependency>
         </suppliersInternal>
         <generalsInternal>
           <generalization
@@ -2096,11 +2083,11 @@
         isLeaf="false">
         <generalsInternal>
           <generalization
-            Id="815702d0-a3a6-484a-ae95-b9bcbdab466c"
+            Id="41e99089-ea5a-4e82-9fd1-ef81930e6849"
             isSubstitutable="false">
             <interfaceMoniker
-              Id="4ce4d955-86e4-4056-a7aa-c65cbc8a4ec2"
-              LastKnownName="IUIItem"
+              Id="3cd0f844-37a1-4b50-84c2-b24a0b9d6ee9"
+              LastKnownName="IView"
               LastKnownLocation="PAODesign.uml" />
           </generalization>
         </generalsInternal>
@@ -2114,11 +2101,11 @@
         isLeaf="false">
         <generalsInternal>
           <generalization
-            Id="4694a63b-236e-41fe-aeb5-98dab0c74698"
+            Id="22fd96f9-e5bf-412a-8689-a51368408a9d"
             isSubstitutable="false">
             <interfaceMoniker
-              Id="4ce4d955-86e4-4056-a7aa-c65cbc8a4ec2"
-              LastKnownName="IUIItem"
+              Id="3cd0f844-37a1-4b50-84c2-b24a0b9d6ee9"
+              LastKnownName="IView"
               LastKnownLocation="PAODesign.uml" />
           </generalization>
         </generalsInternal>

@@ -21,18 +21,18 @@ namespace PAO.UI.MVC
         /// <summary>
         /// 文档唯一标识
         /// </summary>
-        string ID { get; }
+        string ID { get; set; }
         /// <summary>
         /// 标题
         /// </summary>
-        string Caption { get; }
+        string Caption { get; set; }
         /// <summary>
         /// 图标
         /// </summary>
-        Image Icon { get; }
+        Image Icon { get; set; }
         /// <summary>
         /// 大图标
         /// </summary>
-        Image LargeIcon { get; }
+        Image LargeIcon { get; set; }
     }
 }

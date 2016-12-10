@@ -16,6 +16,7 @@ namespace PAO.UI.WinForm.Forms
     {
         public Dialog() {
             InitializeComponent();
+            _UIActionDispatcher = new UIActionDispatcher(this);
         }
 
         public bool ShowCancelButton {
@@ -38,9 +39,14 @@ namespace PAO.UI.WinForm.Forms
             }
         }
 
-        private Control ChildControl;
+        private UIActionDispatcher _UIActionDispatcher;
+        public UIActionDispatcher UIActionDispatcher {
+            get {
+                return _UIActionDispatcher;
+            }
+        }
 
-        public event EventHandler<UIActionEventArgs> UIActing;
+        private Control ChildControl;
 
         private void DialogControl_DataModifyStateChanged(object sender, DataModifyStateChangedEventArgs e) {
             ButtonApply.Enabled = e.DataModified;
@@ -86,15 +92,6 @@ namespace PAO.UI.WinForm.Forms
                 throw new Exception("Dialog只支持打开DialogControl");
             }
         }
-
-        public void DoUIAction(object sender, string actionName, IEnumerable<object> actionParameters) {
-            if (UIActing != null) {
-                UIActing(sender, new UIActionEventArgs()
-                {
-                    ActionName = actionName,
-                    ActionParameters = actionParameters
-                });
-            }
-        }
+        
     }
 }

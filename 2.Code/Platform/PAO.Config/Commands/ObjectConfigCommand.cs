@@ -65,10 +65,9 @@ namespace PAO.Config.Commands
         }
 
         const string DefaultExtendPropertyConfigFile = "ExtendProperties.config";
-        protected override void OnDoCommand() {
-            var view = new ObjectTreeEditControl();
-            view.FromUIItem(this);
 
+        protected override IView OnCreateView() {
+            var view = new ObjectTreeEditControl();
             if (ExtendPropertyConfigFile.IsNullOrEmpty()) {
                 view.ExtendPropertyStorageFilePath = AppPublic.GetAbsolutePath(DefaultExtendPropertyConfigFile);
             }
@@ -83,7 +82,7 @@ namespace PAO.Config.Commands
                 addon = TextPublic.ReadObjectFromFile(ConfigFile);
             }
             view.SelectedObject = addon;
-            MVCPublic.MainForm.OpenView(view);
+            return view;
         }
     }
 }

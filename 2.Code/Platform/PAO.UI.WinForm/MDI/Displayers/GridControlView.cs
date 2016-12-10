@@ -12,7 +12,7 @@ using PAO.UI.MVC;
 using PAO.Data;
 using DevExpress.XtraGrid;
 
-namespace PAO.UI.WinForm.MDI.Views
+namespace PAO.UI.WinForm.MDI.Displayers
 {
     /// <summary>
     /// 表格控件视图

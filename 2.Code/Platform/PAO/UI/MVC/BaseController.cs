@@ -20,7 +20,7 @@ namespace PAO.UI.MVC
     [DataContract(Namespace = "")]
     [Name("基础控制器")]
     [Description("可以执行命令的菜单项")]
-    public abstract class BaseController : UIItem, ICommand
+    public abstract class BaseController : UIItem
     {
         const string Permission_DoCommand = "DoCommand";
         #region 插件属性
@@ -28,13 +28,28 @@ namespace PAO.UI.MVC
         public BaseController() {
         }
 
-        public virtual void DoCommand() {
+        protected IView View;
+        /// <summary>
+        /// 创建并打开视图
+        /// </summary>
+        /// <param name="viewContainer">视图容器</param>
+        public virtual void CreateAndOpenView(IViewContainer viewContainer) {
             SecurityPublic.CheckPermission(ID, Permission_DoCommand).CheckTrue("当前用户不拥有执行此命令的权限.");
-            OnDoCommand();
+
+            View = OnCreateView();
+            if (View == null)
+                throw new Exception("视图创建失败.");
+
+            View.ID = ID;
+            View.Caption = Caption;
+            View.Icon = Icon;
+            View.LargeIcon = LargeIcon;
+
+            viewContainer.OpenView(View);
         }
 
-        protected abstract void OnDoCommand();
-
+        protected abstract IView OnCreateView();
+        
         /// <summary>
         /// 许可
         /// </summary>

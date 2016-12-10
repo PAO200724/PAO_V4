@@ -39,6 +39,7 @@
     <Reference Include="System.IdentityModel" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
@@ -146,6 +147,7 @@
     <Compile Include="Trans\TransactionPublic.cs" />
     <Compile Include="Trans\TransStatus_Running.cs" />
     <Compile Include="UI\MVC\BaseController.cs" />
+    <Compile Include="UI\MVC\UIActionDispatcher.cs" />
     <Compile Include="UI\MVC\FolderItem.cs" />
     <Compile Include="UI\MVC\IMenuContainer.cs" />
     <Compile Include="UI\MVC\MVCPublic.cs" />
@@ -155,7 +157,6 @@
     <Compile Include="UI\DialogType.cs" />
     <Compile Include="UI\MVC\IView.cs" />
     <Compile Include="UI\MVC\IViewContainer.cs" />
-    <Compile Include="UI\MVC\ICommand.cs" />
     <Compile Include="UI\MVC\IMainForm.cs" />
     <Compile Include="UI\MVC\IUIItem.cs" />
     <Compile Include="UI\MVC\UIActionEventArgs.cs" />

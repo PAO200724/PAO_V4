@@ -8,7 +8,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 
-namespace PAO.UI.WinForm.MDI.Views
+namespace PAO.UI.WinForm.MDI.Displayers
 {
     /// <summary>
     /// 类：GridControlViewCommand
@@ -60,10 +60,9 @@ namespace PAO.UI.WinForm.MDI.Views
         public GridControlController() {
         }
 
-        protected override void OnDoCommand() {
+        protected override IView OnCreateView() {
             var gridControlView = new GridControlView();
-            gridControlView.FromUIItem(this);
-            MVCPublic.MainForm.OpenView(gridControlView);
+            return gridControlView;
         }
     }
 }

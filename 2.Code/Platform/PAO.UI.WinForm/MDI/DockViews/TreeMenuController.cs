@@ -41,20 +41,16 @@ namespace PAO.UI.WinForm.MDI.DockViews
         #endregion
         public TreeMenuController() {
         }
-        protected override void OnDoCommand() {
-            var treeView = new TreeMenuView()
-            {
-                ID = ID,
-                Caption = Caption,
-                Icon = Icon,
-                LargeIcon = LargeIcon,
-            };
+
+        protected override IView OnCreateView() {
+            var treeView = new TreeMenuView();
             if (MenuItems.IsNotNullOrEmpty()) {
                 foreach (var menuItem in MenuItems) {
                     treeView.AddMenuItem(menuItem.Value);
                 }
             }
-            MVCPublic.MainForm.OpenView(treeView);
+            return treeView;
         }
+
     }
 }

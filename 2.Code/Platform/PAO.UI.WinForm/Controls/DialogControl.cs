@@ -15,7 +15,7 @@ namespace PAO.UI.WinForm.Controls
     /// 基础对话框控件
     /// 作者：刘丹
     /// </summary>
-    public partial class DialogControl : DevExpress.XtraEditors.XtraUserControl, IView
+    public partial class DialogControl : BaseView
     {
         public DialogControl() {
             InitializeComponent();
@@ -23,23 +23,6 @@ namespace PAO.UI.WinForm.Controls
             ShowCancelButton = true;
             DataModified = false;
         }
-
-        /// <summary>
-        /// 唯一标识
-        /// </summary>
-        public string ID { get; set; }
-        /// <summary>
-        /// 标题
-        /// </summary>
-        public string Caption { get; set; }
-        /// <summary>
-        /// 图标
-        /// </summary>
-        public Image Icon { get; set; }
-        /// <summary>
-        /// 大图标
-        /// </summary>
-        public Image LargeIcon { get; set; }
 
         /// <summary>
         /// 显示应用按钮
@@ -66,12 +49,6 @@ namespace PAO.UI.WinForm.Controls
         /// </summary>
         public event EventHandler<DataModifyStateChangedEventArgs> DataModifyStateChanged;
 
-        public virtual void FromUIItem(IUIItem uiItem) {
-            ID = uiItem.ID;
-            Caption = uiItem.Caption;
-            Icon = uiItem.Icon;
-            LargeIcon = uiItem.LargeIcon;
-        }
 
         protected void FileDataModifyStateChangedEvent(bool dataModifed) {
             if (DataModifyStateChanged != null)

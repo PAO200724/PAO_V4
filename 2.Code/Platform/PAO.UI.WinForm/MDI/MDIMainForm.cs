@@ -24,12 +24,18 @@ namespace PAO.UI.WinForm.MDI
         /// 默认
         /// </summary>
         public static MDIMainForm Default;
-       
-        public event EventHandler<UIActionEventArgs> UIActing;
+
+        private UIActionDispatcher _UIActionDispatcher;
+        public UIActionDispatcher UIActionDispatcher {
+            get {
+                return _UIActionDispatcher;
+            }
+        }
 
         public MDIMainForm() {
             Default = this;
             InitializeComponent();
+            _UIActionDispatcher = new UIActionDispatcher(this);
             SetStatusText(Message_Status_Ready);
         }
 
@@ -102,16 +108,7 @@ namespace PAO.UI.WinForm.MDI
         }
 
         public void AddMenuItem(IUIItem menuItem) {
-            WinFormPublic.AddMenuToSubItem(this.MenuFunction, menuItem);
-        }
-
-        public void DoUIAction(object sender, string actionName, IEnumerable<object> actionParameters) {
-            if(UIActing != null) {
-                UIActing(sender, new UIActionEventArgs() {
-                    ActionName = actionName,
-                    ActionParameters = actionParameters
-                } );
-            }
+            WinFormPublic.AddMenuToSubItem(this.MenuFunction, menuItem, this);
         }
     }
 }
