@@ -26,8 +26,6 @@
         /// </summary>
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
-            DevExpress.XtraGrid.GridLevelNode gridLevelNode2 = new DevExpress.XtraGrid.GridLevelNode();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
             DevExpress.Utils.ToolTipTitleItem toolTipTitleItem1 = new DevExpress.Utils.ToolTipTitleItem();
@@ -37,17 +35,9 @@
             DevExpress.Utils.ToolTipTitleItem toolTipTitleItem2 = new DevExpress.Utils.ToolTipTitleItem();
             DevExpress.Utils.ToolTipItem toolTipItem2 = new DevExpress.Utils.ToolTipItem();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReportView));
-            this.GridViewParameter = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.ColumnParameterCaption = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.ColumnParameterValue = new DevExpress.XtraGrid.Columns.GridColumn();
             this.GridControlData = new DevExpress.XtraGrid.GridControl();
             this.BindingSourceTable = new System.Windows.Forms.BindingSource(this.components);
-            this.GridViewColumn = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.ColumColumnName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.GridViewTable = new DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView();
-            this.GridBandIcon = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.ColumnTableItem = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.EditItemIcon = new DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit();
             this.GridBindTable = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.ColumnTableName = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.ColumnTableLoadingProcess = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
@@ -66,82 +56,47 @@
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.DockManager = new DevExpress.XtraBars.Docking.DockManager(this.components);
-            this.DockPanelTables = new DevExpress.XtraBars.Docking.DockPanel();
-            this.DockPanelData_Container = new DevExpress.XtraBars.Docking.ControlContainer();
-            this.barDockControl3 = new DevExpress.XtraBars.BarDockControl();
-            this.barDockControl4 = new DevExpress.XtraBars.BarDockControl();
-            this.barDockControl2 = new DevExpress.XtraBars.BarDockControl();
-            this.barDockControl1 = new DevExpress.XtraBars.BarDockControl();
-            this.RepositoryItemTextEditCaption = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.BarManagerData = new DevExpress.XtraBars.BarManager(this.components);
             this.BarData = new DevExpress.XtraBars.Bar();
             this.ButtonQuerty = new DevExpress.XtraBars.BarButtonItem();
+            this.barDockControl1 = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControl2 = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControl3 = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControl4 = new DevExpress.XtraBars.BarDockControl();
+            this.DockPanelData_Container = new DevExpress.XtraBars.Docking.ControlContainer();
+            this.PanelContainerLeft = new DevExpress.XtraBars.Docking.DockPanel();
+            this.DockPanelTables = new DevExpress.XtraBars.Docking.DockPanel();
+            this.DockPanelParameters = new DevExpress.XtraBars.Docking.DockPanel();
+            this.DockPanelParameter_Container = new DevExpress.XtraBars.Docking.ControlContainer();
+            this.VGridControlParameters = new DevExpress.XtraVerticalGrid.VGridControl();
+            this.RepositoryItemTextEditCaption = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
+            this.EditItemIcon = new DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit();
             this.LayoutControl = new DevExpress.XtraLayout.LayoutControl();
             this.LayoutControlGroupRoot = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.DockPanelParameters = new DevExpress.XtraBars.Docking.DockPanel();
-            this.dockPanel1_Container = new DevExpress.XtraBars.Docking.ControlContainer();
-            this.panelContainer1 = new DevExpress.XtraBars.Docking.DockPanel();
-            this.VGridControlParameters = new DevExpress.XtraVerticalGrid.VGridControl();
-            ((System.ComponentModel.ISupportInitialize)(this.GridViewParameter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridControlData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BindingSourceTable)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.GridViewColumn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewTable)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.EditItemIcon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.EditItemLoadingProcess)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.EditItemDataAction)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BarManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DockManager)).BeginInit();
-            this.DockPanelTables.SuspendLayout();
-            this.DockPanelData_Container.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemTextEditCaption)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BarManagerData)).BeginInit();
+            this.DockPanelData_Container.SuspendLayout();
+            this.PanelContainerLeft.SuspendLayout();
+            this.DockPanelTables.SuspendLayout();
+            this.DockPanelParameters.SuspendLayout();
+            this.DockPanelParameter_Container.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.VGridControlParameters)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemTextEditCaption)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.EditItemIcon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.LayoutControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.LayoutControlGroupRoot)).BeginInit();
-            this.DockPanelParameters.SuspendLayout();
-            this.dockPanel1_Container.SuspendLayout();
-            this.panelContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.VGridControlParameters)).BeginInit();
             this.SuspendLayout();
-            // 
-            // GridViewParameter
-            // 
-            this.GridViewParameter.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.ColumnParameterCaption,
-            this.ColumnParameterValue});
-            this.GridViewParameter.GridControl = this.GridControlData;
-            this.GridViewParameter.Name = "GridViewParameter";
-            this.GridViewParameter.OptionsView.ShowColumnHeaders = false;
-            this.GridViewParameter.OptionsView.ShowGroupPanel = false;
-            this.GridViewParameter.OptionsView.ShowIndicator = false;
-            // 
-            // ColumnParameterCaption
-            // 
-            this.ColumnParameterCaption.Caption = "标题";
-            this.ColumnParameterCaption.FieldName = "Caption";
-            this.ColumnParameterCaption.Name = "ColumnParameterCaption";
-            this.ColumnParameterCaption.Visible = true;
-            this.ColumnParameterCaption.VisibleIndex = 0;
-            // 
-            // ColumnParameterValue
-            // 
-            this.ColumnParameterValue.Caption = "值";
-            this.ColumnParameterValue.FieldName = "Value";
-            this.ColumnParameterValue.Name = "ColumnParameterValue";
-            this.ColumnParameterValue.Visible = true;
-            this.ColumnParameterValue.VisibleIndex = 1;
             // 
             // GridControlData
             // 
             this.GridControlData.DataSource = this.BindingSourceTable;
             this.GridControlData.Dock = System.Windows.Forms.DockStyle.Fill;
-            gridLevelNode1.LevelTemplate = this.GridViewParameter;
-            gridLevelNode1.RelationName = "DataParameters";
-            gridLevelNode2.LevelTemplate = this.GridViewColumn;
-            gridLevelNode2.RelationName = "DataColumns";
-            this.GridControlData.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
-            gridLevelNode1,
-            gridLevelNode2});
             this.GridControlData.Location = new System.Drawing.Point(0, 31);
             this.GridControlData.MainView = this.GridViewTable;
             this.GridControlData.MenuManager = this.BarManager;
@@ -153,76 +108,33 @@
             this.GridControlData.Size = new System.Drawing.Size(226, 142);
             this.GridControlData.TabIndex = 0;
             this.GridControlData.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.GridViewColumn,
-            this.GridViewTable,
-            this.GridViewParameter});
+            this.GridViewTable});
             // 
             // BindingSourceTable
             // 
-            this.BindingSourceTable.DataSource = typeof(PAO.Report.Views.ReportDataTableInfo);
-            // 
-            // GridViewColumn
-            // 
-            this.GridViewColumn.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.ColumColumnName});
-            this.GridViewColumn.GridControl = this.GridControlData;
-            this.GridViewColumn.Name = "GridViewColumn";
-            this.GridViewColumn.OptionsView.ShowColumnHeaders = false;
-            this.GridViewColumn.OptionsView.ShowGroupPanel = false;
-            this.GridViewColumn.OptionsView.ShowIndicator = false;
-            // 
-            // ColumColumnName
-            // 
-            this.ColumColumnName.Caption = "列名";
-            this.ColumColumnName.FieldName = "Caption";
-            this.ColumColumnName.Name = "ColumColumnName";
-            this.ColumColumnName.Visible = true;
-            this.ColumColumnName.VisibleIndex = 0;
+            this.BindingSourceTable.DataSource = typeof(PAO.Report.ReportDataTable);
             // 
             // GridViewTable
             // 
             this.GridViewTable.Bands.AddRange(new DevExpress.XtraGrid.Views.BandedGrid.GridBand[] {
-            this.GridBandIcon,
             this.GridBindTable});
             this.GridViewTable.Columns.AddRange(new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn[] {
             this.ColumnTableName,
             this.ColumnTableLoadingProcess,
-            this.ColumnTableDataCount,
-            this.ColumnTableItem});
+            this.ColumnTableDataCount});
             this.GridViewTable.GridControl = this.GridControlData;
             this.GridViewTable.Name = "GridViewTable";
             this.GridViewTable.OptionsBehavior.ReadOnly = true;
             this.GridViewTable.OptionsDetail.AllowZoomDetail = false;
+            this.GridViewTable.OptionsDetail.ShowDetailTabs = false;
+            this.GridViewTable.OptionsDetail.SmartDetailExpand = false;
             this.GridViewTable.OptionsDetail.SmartDetailHeight = true;
             this.GridViewTable.OptionsView.ColumnAutoWidth = true;
             this.GridViewTable.OptionsView.ShowBands = false;
             this.GridViewTable.OptionsView.ShowColumnHeaders = false;
+            this.GridViewTable.OptionsView.ShowDetailButtons = false;
             this.GridViewTable.OptionsView.ShowGroupPanel = false;
             this.GridViewTable.OptionsView.ShowIndicator = false;
-            // 
-            // GridBandIcon
-            // 
-            this.GridBandIcon.Caption = "图标";
-            this.GridBandIcon.Columns.Add(this.ColumnTableItem);
-            this.GridBandIcon.Name = "GridBandIcon";
-            this.GridBandIcon.OptionsBand.FixedWidth = true;
-            this.GridBandIcon.VisibleIndex = 0;
-            this.GridBandIcon.Width = 61;
-            // 
-            // ColumnTableItem
-            // 
-            this.ColumnTableItem.AutoFillDown = true;
-            this.ColumnTableItem.Caption = "图标";
-            this.ColumnTableItem.ColumnEdit = this.EditItemIcon;
-            this.ColumnTableItem.FieldName = "Icon";
-            this.ColumnTableItem.Name = "ColumnTableItem";
-            this.ColumnTableItem.Visible = true;
-            this.ColumnTableItem.Width = 61;
-            // 
-            // EditItemIcon
-            // 
-            this.EditItemIcon.Name = "EditItemIcon";
-            this.EditItemIcon.NullText = " ";
             // 
             // GridBindTable
             // 
@@ -231,8 +143,8 @@
             this.GridBindTable.Columns.Add(this.ColumnTableLoadingProcess);
             this.GridBindTable.Columns.Add(this.ColumnTableDataCount);
             this.GridBindTable.Name = "GridBindTable";
-            this.GridBindTable.VisibleIndex = 1;
-            this.GridBindTable.Width = 645;
+            this.GridBindTable.VisibleIndex = 0;
+            this.GridBindTable.Width = 1402;
             // 
             // ColumnTableName
             // 
@@ -241,7 +153,7 @@
             this.ColumnTableName.Name = "ColumnTableName";
             this.ColumnTableName.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways;
             this.ColumnTableName.Visible = true;
-            this.ColumnTableName.Width = 645;
+            this.ColumnTableName.Width = 1402;
             // 
             // ColumnTableLoadingProcess
             // 
@@ -251,7 +163,7 @@
             this.ColumnTableLoadingProcess.Name = "ColumnTableLoadingProcess";
             this.ColumnTableLoadingProcess.RowIndex = 1;
             this.ColumnTableLoadingProcess.Visible = true;
-            this.ColumnTableLoadingProcess.Width = 525;
+            this.ColumnTableLoadingProcess.Width = 1282;
             // 
             // EditItemLoadingProcess
             // 
@@ -399,9 +311,9 @@
             // DockManager
             // 
             this.DockManager.Form = this;
-            this.DockManager.MenuManager = this.BarManagerData;
+            this.DockManager.MenuManager = this.BarManager;
             this.DockManager.RootPanels.AddRange(new DevExpress.XtraBars.Docking.DockPanel[] {
-            this.panelContainer1});
+            this.PanelContainerLeft});
             this.DockManager.TopZIndexControls.AddRange(new string[] {
             "DevExpress.XtraBars.BarDockControl",
             "DevExpress.XtraBars.StandaloneBarDockControl",
@@ -412,65 +324,6 @@
             "DevExpress.XtraBars.Ribbon.RibbonControl",
             "DevExpress.XtraBars.Navigation.OfficeNavigationBar",
             "DevExpress.XtraBars.Navigation.TileNavPane"});
-            // 
-            // DockPanelTables
-            // 
-            this.DockPanelTables.Controls.Add(this.DockPanelData_Container);
-            this.DockPanelTables.Dock = DevExpress.XtraBars.Docking.DockingStyle.Fill;
-            this.DockPanelTables.ID = new System.Guid("44fd46ae-53ca-48e7-a539-953c949c76fb");
-            this.DockPanelTables.Location = new System.Drawing.Point(0, 0);
-            this.DockPanelTables.Name = "DockPanelTables";
-            this.DockPanelTables.Options.AllowDockAsTabbedDocument = false;
-            this.DockPanelTables.Options.AllowFloating = false;
-            this.DockPanelTables.Options.ShowCloseButton = false;
-            this.DockPanelTables.OriginalSize = new System.Drawing.Size(200, 200);
-            this.DockPanelTables.Size = new System.Drawing.Size(234, 200);
-            this.DockPanelTables.Text = "数据";
-            // 
-            // DockPanelData_Container
-            // 
-            this.DockPanelData_Container.Controls.Add(this.GridControlData);
-            this.DockPanelData_Container.Controls.Add(this.barDockControl3);
-            this.DockPanelData_Container.Controls.Add(this.barDockControl4);
-            this.DockPanelData_Container.Controls.Add(this.barDockControl2);
-            this.DockPanelData_Container.Controls.Add(this.barDockControl1);
-            this.DockPanelData_Container.Location = new System.Drawing.Point(4, 23);
-            this.DockPanelData_Container.Name = "DockPanelData_Container";
-            this.DockPanelData_Container.Size = new System.Drawing.Size(226, 173);
-            this.DockPanelData_Container.TabIndex = 0;
-            // 
-            // barDockControl3
-            // 
-            this.barDockControl3.CausesValidation = false;
-            this.barDockControl3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControl3.Location = new System.Drawing.Point(0, 31);
-            this.barDockControl3.Size = new System.Drawing.Size(0, 142);
-            // 
-            // barDockControl4
-            // 
-            this.barDockControl4.CausesValidation = false;
-            this.barDockControl4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControl4.Location = new System.Drawing.Point(226, 31);
-            this.barDockControl4.Size = new System.Drawing.Size(0, 142);
-            // 
-            // barDockControl2
-            // 
-            this.barDockControl2.CausesValidation = false;
-            this.barDockControl2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControl2.Location = new System.Drawing.Point(0, 173);
-            this.barDockControl2.Size = new System.Drawing.Size(226, 0);
-            // 
-            // barDockControl1
-            // 
-            this.barDockControl1.CausesValidation = false;
-            this.barDockControl1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.barDockControl1.Location = new System.Drawing.Point(0, 0);
-            this.barDockControl1.Size = new System.Drawing.Size(226, 31);
-            // 
-            // RepositoryItemTextEditCaption
-            // 
-            this.RepositoryItemTextEditCaption.AutoHeight = false;
-            this.RepositoryItemTextEditCaption.Name = "RepositoryItemTextEditCaption";
             // 
             // BarManagerData
             // 
@@ -503,6 +356,111 @@
             this.ButtonQuerty.Id = 0;
             this.ButtonQuerty.Name = "ButtonQuerty";
             // 
+            // barDockControl1
+            // 
+            this.barDockControl1.CausesValidation = false;
+            this.barDockControl1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.barDockControl1.Location = new System.Drawing.Point(0, 0);
+            this.barDockControl1.Size = new System.Drawing.Size(226, 31);
+            // 
+            // barDockControl2
+            // 
+            this.barDockControl2.CausesValidation = false;
+            this.barDockControl2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.barDockControl2.Location = new System.Drawing.Point(0, 173);
+            this.barDockControl2.Size = new System.Drawing.Size(226, 0);
+            // 
+            // barDockControl3
+            // 
+            this.barDockControl3.CausesValidation = false;
+            this.barDockControl3.Dock = System.Windows.Forms.DockStyle.Left;
+            this.barDockControl3.Location = new System.Drawing.Point(0, 31);
+            this.barDockControl3.Size = new System.Drawing.Size(0, 142);
+            // 
+            // barDockControl4
+            // 
+            this.barDockControl4.CausesValidation = false;
+            this.barDockControl4.Dock = System.Windows.Forms.DockStyle.Right;
+            this.barDockControl4.Location = new System.Drawing.Point(226, 31);
+            this.barDockControl4.Size = new System.Drawing.Size(0, 142);
+            // 
+            // DockPanelData_Container
+            // 
+            this.DockPanelData_Container.Controls.Add(this.GridControlData);
+            this.DockPanelData_Container.Controls.Add(this.barDockControl3);
+            this.DockPanelData_Container.Controls.Add(this.barDockControl4);
+            this.DockPanelData_Container.Controls.Add(this.barDockControl2);
+            this.DockPanelData_Container.Controls.Add(this.barDockControl1);
+            this.DockPanelData_Container.Location = new System.Drawing.Point(4, 23);
+            this.DockPanelData_Container.Name = "DockPanelData_Container";
+            this.DockPanelData_Container.Size = new System.Drawing.Size(226, 173);
+            this.DockPanelData_Container.TabIndex = 0;
+            // 
+            // PanelContainerLeft
+            // 
+            this.PanelContainerLeft.Controls.Add(this.DockPanelTables);
+            this.PanelContainerLeft.Controls.Add(this.DockPanelParameters);
+            this.PanelContainerLeft.Dock = DevExpress.XtraBars.Docking.DockingStyle.Left;
+            this.PanelContainerLeft.ID = new System.Guid("1320a631-2bdf-4f76-ae69-31e33bbb9c83");
+            this.PanelContainerLeft.Location = new System.Drawing.Point(0, 31);
+            this.PanelContainerLeft.Name = "PanelContainerLeft";
+            this.PanelContainerLeft.OriginalSize = new System.Drawing.Size(234, 200);
+            this.PanelContainerLeft.Size = new System.Drawing.Size(234, 439);
+            this.PanelContainerLeft.Text = "panelContainer1";
+            // 
+            // DockPanelTables
+            // 
+            this.DockPanelTables.Controls.Add(this.DockPanelData_Container);
+            this.DockPanelTables.Dock = DevExpress.XtraBars.Docking.DockingStyle.Fill;
+            this.DockPanelTables.ID = new System.Guid("44fd46ae-53ca-48e7-a539-953c949c76fb");
+            this.DockPanelTables.Location = new System.Drawing.Point(0, 0);
+            this.DockPanelTables.Name = "DockPanelTables";
+            this.DockPanelTables.Options.AllowDockAsTabbedDocument = false;
+            this.DockPanelTables.Options.AllowFloating = false;
+            this.DockPanelTables.Options.ShowCloseButton = false;
+            this.DockPanelTables.OriginalSize = new System.Drawing.Size(200, 200);
+            this.DockPanelTables.Size = new System.Drawing.Size(234, 200);
+            this.DockPanelTables.Text = "数据";
+            // 
+            // DockPanelParameters
+            // 
+            this.DockPanelParameters.Controls.Add(this.DockPanelParameter_Container);
+            this.DockPanelParameters.Dock = DevExpress.XtraBars.Docking.DockingStyle.Fill;
+            this.DockPanelParameters.ID = new System.Guid("ab3584d5-acc5-4fc2-8785-b22ac016b05d");
+            this.DockPanelParameters.Location = new System.Drawing.Point(0, 200);
+            this.DockPanelParameters.Name = "DockPanelParameters";
+            this.DockPanelParameters.Options.AllowFloating = false;
+            this.DockPanelParameters.Options.ShowCloseButton = false;
+            this.DockPanelParameters.OriginalSize = new System.Drawing.Size(200, 200);
+            this.DockPanelParameters.Size = new System.Drawing.Size(234, 239);
+            this.DockPanelParameters.Text = "参数";
+            // 
+            // DockPanelParameter_Container
+            // 
+            this.DockPanelParameter_Container.Controls.Add(this.VGridControlParameters);
+            this.DockPanelParameter_Container.Location = new System.Drawing.Point(4, 23);
+            this.DockPanelParameter_Container.Name = "DockPanelParameter_Container";
+            this.DockPanelParameter_Container.Size = new System.Drawing.Size(226, 212);
+            this.DockPanelParameter_Container.TabIndex = 0;
+            // 
+            // VGridControlParameters
+            // 
+            this.VGridControlParameters.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.VGridControlParameters.Location = new System.Drawing.Point(0, 0);
+            this.VGridControlParameters.Name = "VGridControlParameters";
+            this.VGridControlParameters.Size = new System.Drawing.Size(226, 212);
+            this.VGridControlParameters.TabIndex = 0;
+            // 
+            // RepositoryItemTextEditCaption
+            // 
+            this.RepositoryItemTextEditCaption.AutoHeight = false;
+            this.RepositoryItemTextEditCaption.Name = "RepositoryItemTextEditCaption";
+            // 
+            // EditItemIcon
+            // 
+            this.EditItemIcon.Name = "EditItemIcon";
+            this.EditItemIcon.NullText = " ";
+            // 
             // LayoutControl
             // 
             this.LayoutControl.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -527,79 +485,36 @@
             this.LayoutControlGroupRoot.Text = "根";
             this.LayoutControlGroupRoot.TextVisible = false;
             // 
-            // DockPanelParameters
-            // 
-            this.DockPanelParameters.Controls.Add(this.dockPanel1_Container);
-            this.DockPanelParameters.Dock = DevExpress.XtraBars.Docking.DockingStyle.Fill;
-            this.DockPanelParameters.ID = new System.Guid("ab3584d5-acc5-4fc2-8785-b22ac016b05d");
-            this.DockPanelParameters.Location = new System.Drawing.Point(0, 200);
-            this.DockPanelParameters.Name = "DockPanelParameters";
-            this.DockPanelParameters.Options.AllowFloating = false;
-            this.DockPanelParameters.Options.ShowCloseButton = false;
-            this.DockPanelParameters.OriginalSize = new System.Drawing.Size(200, 200);
-            this.DockPanelParameters.Size = new System.Drawing.Size(234, 239);
-            this.DockPanelParameters.Text = "参数";
-            // 
-            // dockPanel1_Container
-            // 
-            this.dockPanel1_Container.Controls.Add(this.VGridControlParameters);
-            this.dockPanel1_Container.Location = new System.Drawing.Point(4, 23);
-            this.dockPanel1_Container.Name = "dockPanel1_Container";
-            this.dockPanel1_Container.Size = new System.Drawing.Size(226, 212);
-            this.dockPanel1_Container.TabIndex = 0;
-            // 
-            // panelContainer1
-            // 
-            this.panelContainer1.Controls.Add(this.DockPanelTables);
-            this.panelContainer1.Controls.Add(this.DockPanelParameters);
-            this.panelContainer1.Dock = DevExpress.XtraBars.Docking.DockingStyle.Left;
-            this.panelContainer1.ID = new System.Guid("1320a631-2bdf-4f76-ae69-31e33bbb9c83");
-            this.panelContainer1.Location = new System.Drawing.Point(0, 31);
-            this.panelContainer1.Name = "panelContainer1";
-            this.panelContainer1.OriginalSize = new System.Drawing.Size(234, 200);
-            this.panelContainer1.Size = new System.Drawing.Size(234, 439);
-            this.panelContainer1.Text = "panelContainer1";
-            // 
-            // VGridControlParameters
-            // 
-            this.VGridControlParameters.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.VGridControlParameters.Location = new System.Drawing.Point(0, 0);
-            this.VGridControlParameters.Name = "VGridControlParameters";
-            this.VGridControlParameters.Size = new System.Drawing.Size(226, 212);
-            this.VGridControlParameters.TabIndex = 0;
-            // 
             // ReportView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.LayoutControl);
-            this.Controls.Add(this.panelContainer1);
+            this.Controls.Add(this.PanelContainerLeft);
             this.Controls.Add(this.barDockControlLeft);
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
             this.Name = "ReportView";
-            ((System.ComponentModel.ISupportInitialize)(this.GridViewParameter)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridControlData)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BindingSourceTable)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.GridViewColumn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewTable)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.EditItemIcon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.EditItemLoadingProcess)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.EditItemDataAction)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BarManager)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DockManager)).EndInit();
-            this.DockPanelTables.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.BarManagerData)).EndInit();
             this.DockPanelData_Container.ResumeLayout(false);
             this.DockPanelData_Container.PerformLayout();
+            this.PanelContainerLeft.ResumeLayout(false);
+            this.DockPanelTables.ResumeLayout(false);
+            this.DockPanelParameters.ResumeLayout(false);
+            this.DockPanelParameter_Container.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.VGridControlParameters)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemTextEditCaption)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.BarManagerData)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.EditItemIcon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.LayoutControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.LayoutControlGroupRoot)).EndInit();
-            this.DockPanelParameters.ResumeLayout(false);
-            this.dockPanel1_Container.ResumeLayout(false);
-            this.panelContainer1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.VGridControlParameters)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -638,19 +553,12 @@
         private DevExpress.XtraBars.BarManager BarManagerData;
         private DevExpress.XtraBars.Bar BarData;
         private DevExpress.XtraBars.BarButtonItem ButtonQuerty;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn ColumnTableItem;
         private DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit EditItemIcon;
         private System.Windows.Forms.BindingSource BindingSourceTable;
-        private DevExpress.XtraGrid.Views.Grid.GridView GridViewParameter;
-        private DevExpress.XtraGrid.Columns.GridColumn ColumnParameterCaption;
-        private DevExpress.XtraGrid.Columns.GridColumn ColumnParameterValue;
-        private DevExpress.XtraGrid.Views.Grid.GridView GridViewColumn;
-        private DevExpress.XtraGrid.Columns.GridColumn ColumColumnName;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand GridBandIcon;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand GridBindTable;
-        private DevExpress.XtraBars.Docking.DockPanel panelContainer1;
+        private DevExpress.XtraBars.Docking.DockPanel PanelContainerLeft;
         private DevExpress.XtraBars.Docking.DockPanel DockPanelParameters;
-        private DevExpress.XtraBars.Docking.ControlContainer dockPanel1_Container;
+        private DevExpress.XtraBars.Docking.ControlContainer DockPanelParameter_Container;
         private DevExpress.XtraVerticalGrid.VGridControl VGridControlParameters;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand GridBindTable;
     }
 }

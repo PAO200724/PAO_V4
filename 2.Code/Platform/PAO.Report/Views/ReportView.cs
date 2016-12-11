@@ -28,41 +28,16 @@ namespace PAO.Report.Views
         /// </summary>
         DataSet DataSet = new DataSet();
         /// <summary>
-        /// 表定义
-        /// </summary>
-        List<ReportDataTable> Tables = new List<ReportDataTable>();
-        /// <summary>
         /// 视图列表
         /// </summary>
         private List<IView> ViewList = new List<IView>();
-        /// <summary>
-        /// 视图
-        /// </summary>
-        [Browsable(false)]
-        public IEnumerable<IView> Views {
-            get {
-                return ViewList;
-            }
-        }
 
         public ReportView() {
             InitializeComponent();
             UIActionDispatcher = new UIActionDispatcher(this);
-            this.BindingSourceTable.DataSource = Tables;
-
-            Tables.Add(new ReportDataTableInfo()
-            {
-                TableName = "User",
-                Icon = Properties.Resources.chartyaxissettings_32x32
-            });
-
-            Tables.Add(new ReportDataTableInfo()
-            {
-                TableName = "Role",
-                Icon = Properties.Resources.chartyaxissettings_32x32
-            });
         }
-                
+
+        #region 接口IViewContainer
         public void OpenView(IView view) {
             // 避免重复添加视图
             if (ViewList.Contains(view)) {
@@ -102,7 +77,9 @@ namespace PAO.Report.Views
             LayoutControl.Refresh();
             LayoutControl.SetDefaultLayout();
         }
+        #endregion
 
+        #region ViewControl
         protected override void OnSetController(BaseController value) {
             var controller = value as ReportController;
             if (controller.Controllers.IsNotNullOrEmpty()) {
@@ -111,20 +88,25 @@ namespace PAO.Report.Views
                     view.UIActionDispatcher = UIActionDispatcher;
                 }
             }
+            this.BindingSourceTable.DataSource = controller.Tables;
+
             AddonPublic.ApplyAddonExtendProperties(controller);
             this.LayoutControl.SetLayoutData(controller.LayoutData);
+            this.DockManager.SetLayoutData(controller.DockPanelLayoutData);
         }
 
         protected override void OnClosing() {
-            if (Views.IsNotNullOrEmpty()) {
-                foreach (var view in Views) {
+            if (ViewList.IsNotNullOrEmpty()) {
+                foreach (var view in ViewList) {
                     view.CloseView();
                 }
             }
             var controller = Controller as ReportController;
             controller.LayoutData = this.LayoutControl.GetLayoutData();
-            AddonPublic.FetchAddonExtendProperties(controller, "LayoutData");
+            controller.DockPanelLayoutData = this.DockManager.GetLayoutData();
+            AddonPublic.FetchAddonExtendProperties(controller, "LayoutData", "DockPanelLayoutData");
         }
+        #endregion
 
         #region 事件
         private void ButtonRecoverLayout_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {

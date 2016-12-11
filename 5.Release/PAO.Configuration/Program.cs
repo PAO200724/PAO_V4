@@ -16,6 +16,8 @@ using PAO.Security;
 using PAO.Report.Displayers;
 using PAO.Report;
 using PAO.Report.Views;
+using PAO.Report.Fetchers;
+using PAO.Data;
 
 namespace PAO.Configuration
 {
@@ -81,6 +83,57 @@ namespace PAO.Configuration
                             {
                                 ID = "Smart_Report",
                                 Caption = "智能报表",
+                                Tables = new List<ReportDataTable>()
+                                    .Append(new ReportDataTable()
+                                    {
+                                        TableName = "User",
+                                        DataFetcher = new DataServiceFetcher()
+                                        {
+                                            DataService = new TcpRemoteFactory<IDataService>()
+                                            {
+                                                ServerAddress = "localhost:7990",
+                                                ServiceName = "DataService",
+                                            }
+                                        }.ToRef(),
+                                        QueryParameters = new List<ReportDataField>()
+                                            .Append(new ReportDataField()
+                                            {
+                                                Name = "ID",
+                                                Caption = "ID",
+                                                Type = System.Data.DbType.String
+                                            })
+                                            .Append(new ReportDataField()
+                                            {
+                                                Name = "LoginName",
+                                                Caption = "登录名",
+                                                Type = System.Data.DbType.String
+                                            })
+                                            .Append(new ReportDataField()
+                                            {
+                                                Name = "Name",
+                                                Caption = "姓名",
+                                                Type = System.Data.DbType.String
+                                            }),
+                                        DataColumns = new List<ReportDataColumn>()
+                                            .Append(new ReportDataColumn()
+                                            {
+                                                Name = "ID",
+                                                Caption = "ID",
+                                                Type = System.Data.DbType.String
+                                            })
+                                            .Append(new ReportDataColumn()
+                                            {
+                                                Name = "LoginName",
+                                                Caption = "登录名",
+                                                Type = System.Data.DbType.String
+                                            })
+                                            .Append(new ReportDataColumn()
+                                            {
+                                                Name = "Name",
+                                                Caption = "姓名",
+                                                Type = System.Data.DbType.String
+                                            })
+                                    }),
                                 Controllers = new List<Ref<BaseController>>()
                                     .Append(new GridControlController()
                                     {

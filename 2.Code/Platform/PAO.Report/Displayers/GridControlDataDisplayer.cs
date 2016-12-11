@@ -110,16 +110,6 @@ namespace PAO.Report.Displayers
             }
         }
 
-        public byte[] LayoutData {
-            get {
-                return MainView.GetLayoutData();
-            }
-
-            set {
-                MainView.SetLayoutData(value);
-            }
-        }
-
         public void SetDataSource(DataSet dataSet) {
             DataSource = dataSet;
         }
@@ -130,13 +120,14 @@ namespace PAO.Report.Displayers
 
             AddonPublic.ApplyAddonExtendProperties(controller);
             GridViewType = GridViewType;
-            LayoutData = LayoutData;
+            MainView.SetLayoutData(controller.LayoutData);
         }
 
         protected override void OnClosing() {
+            var controller = Controller as GridControlController;
             GridViewType = GridViewType;
-            LayoutData = LayoutData;
-            AddonPublic.FetchAddonExtendProperties(Controller, "GridViewType", "LayoutData");
+            controller.LayoutData = MainView.GetLayoutData();
+            AddonPublic.FetchAddonExtendProperties(controller, "GridViewType", "LayoutData");
         }
 
         protected override string[] ExportFileFilters {

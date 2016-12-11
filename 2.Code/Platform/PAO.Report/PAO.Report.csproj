@@ -115,7 +115,6 @@
     <Compile Include="ReportSurface.cs" />
     <Compile Include="Views\ReportController.cs" />
     <Compile Include="ReportDataTable.cs" />
-    <Compile Include="Views\ReportDataTableInfo.cs" />
     <Compile Include="Views\ReportView.cs">
       <SubType>UserControl</SubType>
     </Compile>

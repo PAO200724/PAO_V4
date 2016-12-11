@@ -60,12 +60,12 @@ namespace PAO.Report
         #region 属性：DataColumns
         /// <summary>
         /// 属性：DataColumns
-        /// 数据列定义
+        /// 数据字段
         /// 数据列定义
         /// </summary>
         [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
-        [Name("数据列定义")]
+        [Name("数据字段")]
         [Description("数据列定义")]
         public List<ReportDataColumn> DataColumns {
             get;
