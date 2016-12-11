@@ -1,4 +1,4 @@
-﻿namespace PAO.UI.WinForm.MDI.Inputs
+﻿namespace PAO.Report.Inputs
 {
     partial class ParameterInputView
     {

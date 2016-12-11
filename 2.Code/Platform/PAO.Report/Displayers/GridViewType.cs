@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace PAO.UI.WinForm.MDI.Displayers
+namespace PAO.Report.Displayers
 {
     /// <summary>
     /// 类：GridViewType

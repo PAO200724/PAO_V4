@@ -13,8 +13,9 @@ using PAO.UI.MVC;
 using DevExpress.XtraBars.Docking;
 using DevExpress.XtraBars.Docking2010;
 using PAO.Data;
+using PAO.UI.WinForm;
 
-namespace PAO.UI.WinForm.MDI.Views
+namespace PAO.Report
 {
     /// <summary>
     /// 报表视图

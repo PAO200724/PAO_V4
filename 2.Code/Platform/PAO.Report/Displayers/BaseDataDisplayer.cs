@@ -10,8 +10,10 @@ using DevExpress.XtraEditors;
 using PAO.UI.WinForm.Controls;
 using PAO.Data;
 using System.IO;
+using PAO.UI.WinForm;
+using PAO.UI;
 
-namespace PAO.UI.WinForm.MDI.Displayers
+namespace PAO.Report.Displayers
 {
     /// <summary>
     /// 数据显示器基类

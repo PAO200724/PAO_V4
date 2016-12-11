@@ -8,13 +8,15 @@ using System.Linq;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using PAO.UI.WinForm.Controls;
+using PAO.UI.WinForm.MDI;
+using PAO.UI.MVC;
 
-namespace PAO.UI.WinForm.MDI.Inputs
+namespace PAO.Report.Inputs
 {
     /// <summary>
     /// 参数输入视图
     /// </summary>
-    public partial class ParameterInputView : ViewControl, IDockView
+    public partial class ParameterInputView : ViewControl, IView
     {
         public ParameterInputView() {
             InitializeComponent();

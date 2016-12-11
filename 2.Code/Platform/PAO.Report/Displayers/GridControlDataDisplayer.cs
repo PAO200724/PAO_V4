@@ -11,10 +11,11 @@ using PAO.UI.WinForm.Controls;
 using PAO.UI.MVC;
 using PAO.Data;
 using DevExpress.XtraGrid;
-using GridView = DevExpress.XtraGrid.Views.Base;
+using DevExpress.XtraGrid.Views.Base;
 using PAO.IO;
+using PAO.UI.WinForm;
 
-namespace PAO.UI.WinForm.MDI.Displayers
+namespace PAO.Report.Displayers
 {
     /// <summary>
     /// 表格控件视图
@@ -52,7 +53,7 @@ namespace PAO.UI.WinForm.MDI.Displayers
             }
         }
 
-        private GridView.BaseView MainView {
+        private BaseView MainView {
             get {
                 return this.GridControl.MainView;
             }

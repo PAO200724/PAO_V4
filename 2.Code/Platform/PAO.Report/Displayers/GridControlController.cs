@@ -10,7 +10,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 
-namespace PAO.UI.WinForm.MDI.Displayers
+namespace PAO.Report.Displayers
 {
     /// <summary>
     /// 类：GridControlViewCommand

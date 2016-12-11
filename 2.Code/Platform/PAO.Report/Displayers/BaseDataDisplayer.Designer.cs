@@ -1,4 +1,4 @@
-﻿namespace PAO.UI.WinForm.MDI.Displayers
+﻿namespace PAO.Report.Displayers
 {
     partial class BaseDataDisplayer
     {

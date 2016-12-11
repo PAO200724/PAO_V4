@@ -13,9 +13,9 @@ using PAO.UI.MVC;
 using PAO.Config.Commands;
 using PAO.Remote.Tcp;
 using PAO.Security;
-using PAO.UI.WinForm.MDI.Views;
-using PAO.UI.WinForm.MDI.Displayers;
-using PAO.UI.WinForm.MDI.Inputs;
+using PAO.Report.Displayers;
+using PAO.Report;
+using PAO.Report.Inputs;
 
 namespace PAO.Configuration
 {

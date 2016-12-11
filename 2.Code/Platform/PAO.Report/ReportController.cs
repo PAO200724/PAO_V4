@@ -10,7 +10,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 
-namespace PAO.UI.WinForm.MDI.Views
+namespace PAO.Report
 {
     /// <summary>
     /// 类：ReportController

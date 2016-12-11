@@ -7,7 +7,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 
-namespace PAO.UI.WinForm.MDI.Inputs
+namespace PAO.Report.Inputs
 {
     /// <summary>
     /// 类：ParameterInputController

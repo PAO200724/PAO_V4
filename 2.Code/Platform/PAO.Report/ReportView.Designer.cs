@@ -1,4 +1,4 @@
-﻿namespace PAO.UI.WinForm.MDI.Views
+﻿namespace PAO.Report
 {
     partial class ReportView
     {
@@ -101,9 +101,9 @@
             // ButtonQueryNow
             // 
             this.ButtonQueryNow.Caption = "查询(&Q)";
-            this.ButtonQueryNow.Glyph = global::PAO.UI.WinForm.Properties.Resources.zoom_16x16;
+            this.ButtonQueryNow.Glyph = Properties.Resources.zoom_16x16;
             this.ButtonQueryNow.Id = 9;
-            this.ButtonQueryNow.LargeGlyph = global::PAO.UI.WinForm.Properties.Resources.zoom_32x32;
+            this.ButtonQueryNow.LargeGlyph = Properties.Resources.zoom_32x32;
             this.ButtonQueryNow.Name = "ButtonQueryNow";
             // 
             // ButtonExport

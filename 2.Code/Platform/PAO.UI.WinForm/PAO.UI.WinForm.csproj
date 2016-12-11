@@ -95,21 +95,6 @@
     <Compile Include="Controls\ImageControl.Designer.cs">
       <DependentUpon>ImageControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="MDI\Displayers\BaseDataDisplayer.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="MDI\Displayers\BaseDataDisplayer.Designer.cs">
-      <DependentUpon>BaseDataDisplayer.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MDI\Displayers\BaseDataDisplayerController.cs" />
-    <Compile Include="MDI\Displayers\GridViewType.cs" />
-    <Compile Include="MDI\Inputs\ParameterInputController.cs" />
-    <Compile Include="MDI\Inputs\ParameterInputView.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="MDI\Inputs\ParameterInputView.Designer.cs">
-      <DependentUpon>ParameterInputView.cs</DependentUpon>
-    </Compile>
     <Compile Include="MDI\DockViews\TreeMenuController.cs" />
     <Compile Include="MDI\DockViews\TreeMenuView.cs">
       <SubType>UserControl</SubType>
@@ -126,20 +111,6 @@
       <DependentUpon>MDIMainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="MDI\MDIApplication.cs" />
-    <Compile Include="MDI\Views\ReportView.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="MDI\Views\ReportView.Designer.cs">
-      <DependentUpon>ReportView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MDI\Views\ReportController.cs" />
-    <Compile Include="MDI\Displayers\GridControlDataDisplayer.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="MDI\Displayers\GridControlDataDisplayer.Designer.cs">
-      <DependentUpon>GridControlDataDisplayer.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MDI\Displayers\GridControlController.cs" />
     <Compile Include="Security\LoginControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -204,20 +175,11 @@
     <EmbeddedResource Include="Forms\PaoWaitForm.resx">
       <DependentUpon>PaoWaitForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MDI\Inputs\ParameterInputView.resx">
-      <DependentUpon>ParameterInputView.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="MDI\DockViews\TreeMenuView.resx">
       <DependentUpon>TreeMenuView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MDI\MDIMainForm.resx">
       <DependentUpon>MDIMainForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MDI\Views\ReportView.resx">
-      <DependentUpon>ReportView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MDI\Displayers\GridControlDataDisplayer.resx">
-      <DependentUpon>GridControlDataDisplayer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -279,6 +241,7 @@
   <ItemGroup>
     <None Include="Resources\zoom_32x32.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
