@@ -81,21 +81,10 @@ namespace PAO.Report.Displayers
             GridViewType = GridViewType.GridView;
         }
 
-        protected override IView OnCreateView() {
-            var gridControlView = new GridControlDataDisplayer();
-            gridControlView.DataMember = DataMember;
-
-            AddonPublic.ApplyAddonExtendProperties(this);
-            gridControlView.GridViewType = GridViewType;
-            gridControlView.LayoutData = LayoutData;
-            gridControlView.Closing += (s, e) =>
-            {
-                GridViewType = gridControlView.GridViewType;
-                LayoutData = gridControlView.LayoutData;
-                AddonPublic.FetchAddonExtendProperties(this, "GridViewType", "LayoutData");
-            };
-            return gridControlView;
-        }
-        
+        protected override Type ViewType {
+            get {
+                return typeof(GridControlDataDisplayer);
+            }
+        }       
     }
 }

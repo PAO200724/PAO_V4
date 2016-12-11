@@ -58,7 +58,28 @@ namespace PAO.Report.Displayers
                 return this.GridControl.MainView;
             }
         }
-        
+
+        public IEnumerable<DataField> ParameterValues {
+            get {
+                if (this.GridView.FocusedRowHandle != GridControl.InvalidRowHandle) {
+                    var dataRow = GridView.GetDataRow(this.GridView.FocusedRowHandle);
+                    var dataFields = new List<DataField>();
+                    foreach (DataColumn dataColumn in dataRow.Table.Columns) {
+                        if (!dataRow.IsNull(dataColumn)) {
+                            dataFields.Add(new DataField()
+                            {
+                                Name = dataColumn.ColumnName,
+                                Value = dataRow[dataColumn]
+                            });
+                        }
+                    }
+                    return dataFields;
+                }
+
+                return null;
+            }
+        }
+
         private GridViewType _GridViewType;
 
         public GridViewType GridViewType {
@@ -89,30 +110,33 @@ namespace PAO.Report.Displayers
             }
         }
 
-
-        public IEnumerable<DataField> ParameterValues {
+        public byte[] LayoutData {
             get {
-                if(this.GridView.FocusedRowHandle != GridControl.InvalidRowHandle) {
-                    var dataRow = GridView.GetDataRow(this.GridView.FocusedRowHandle);
-                    var dataFields = new List<DataField>();
-                    foreach (DataColumn dataColumn in dataRow.Table.Columns) {
-                        if(!dataRow.IsNull(dataColumn)) {
-                            dataFields.Add(new DataField()
-                            {
-                                Name = dataColumn.ColumnName,
-                                Value = dataRow[dataColumn]
-                            });
-                        }
-                    }
-                    return dataFields;
-                }
+                return MainView.GetLayoutData();
+            }
 
-                return null;
+            set {
+                MainView.SetLayoutData(value);
             }
         }
 
         public void SetDataSource(DataSet dataSet) {
             DataSource = dataSet;
+        }
+
+        protected override void OnSetController(BaseController value) {
+            var controller = value as GridControlController;
+            DataMember = DataMember;
+
+            AddonPublic.ApplyAddonExtendProperties(controller);
+            GridViewType = GridViewType;
+            LayoutData = LayoutData;
+        }
+
+        protected override void OnClosing() {
+            GridViewType = GridViewType;
+            LayoutData = LayoutData;
+            AddonPublic.FetchAddonExtendProperties(Controller, "GridViewType", "LayoutData");
         }
 
         protected override string[] ExportFileFilters {
@@ -153,16 +177,6 @@ namespace PAO.Report.Displayers
                 case "TXT":
                     this.MainView.ExportToText(fileName);
                     break;
-            }
-        }
-
-        public byte[] LayoutData {
-            get {
-                return MainView.GetLayoutData();
-            }
-
-            set {
-                MainView.SetLayoutData(value);
             }
         }
 

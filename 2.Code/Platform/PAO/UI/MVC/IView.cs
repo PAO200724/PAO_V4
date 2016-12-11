@@ -19,6 +19,10 @@ namespace PAO.UI.MVC
     public interface IView : IUIItem
     {
         /// <summary>
+        /// 控制器
+        /// </summary>
+        BaseController Controller { get; set; }
+        /// <summary>
         /// 关闭视图
         /// </summary>
         void CloseView();

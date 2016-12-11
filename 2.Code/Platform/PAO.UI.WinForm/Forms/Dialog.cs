@@ -12,7 +12,11 @@ using PAO.UI.MVC;
 
 namespace PAO.UI.WinForm.Forms
 {
-    public partial class Dialog : DevExpress.XtraEditors.XtraForm, IViewContainer
+    /// <summary>
+    /// 对话框
+    /// 作者：PAO
+    /// </summary>
+    public partial class Dialog : DevExpress.XtraEditors.XtraForm
     {
         public Dialog() {
             InitializeComponent();
@@ -69,28 +73,23 @@ namespace PAO.UI.WinForm.Forms
             base.OnClosing(e);
         }
 
-        public void OpenView(IView view) {
-            if(view is DialogControl) {
-                var dialogControl = view as DialogControl;
-                ShowCancelButton = dialogControl.ShowCancelButton;
-                ShowApplyButton = dialogControl.ShowApplyButton;
-                dialogControl.DataModifyStateChanged += DialogControl_DataModifyStateChanged;
-                dialogControl.SetFormState(this);
+        public void OpenControl(DialogControl dialogControl) {
+            ShowCancelButton = dialogControl.ShowCancelButton;
+            ShowApplyButton = dialogControl.ShowApplyButton;
+            dialogControl.DataModifyStateChanged += DialogControl_DataModifyStateChanged;
+            dialogControl.SetFormState(this);
 
-                PanelClient.SuspendLayout();
-                PanelClient.Controls.Clear();
-                ChildControl = dialogControl;
-                if (ChildControl != null) {
-                    this.Width += ChildControl.Width - PanelClient.ClientRectangle.Width;
-                    this.Height += ChildControl.Height - PanelClient.ClientRectangle.Height;
-                    PanelClient.Controls.Add(dialogControl);
-                    Text = ChildControl.Text;
-                    ChildControl.Dock = DockStyle.Fill;
-                }
-                PanelClient.ResumeLayout();
-            } else {
-                throw new Exception("Dialog只支持打开DialogControl");
+            PanelClient.SuspendLayout();
+            PanelClient.Controls.Clear();
+            ChildControl = dialogControl;
+            if (ChildControl != null) {
+                this.Width += ChildControl.Width - PanelClient.ClientRectangle.Width;
+                this.Height += ChildControl.Height - PanelClient.ClientRectangle.Height;
+                PanelClient.Controls.Add(dialogControl);
+                Text = ChildControl.Text;
+                ChildControl.Dock = DockStyle.Fill;
             }
+            PanelClient.ResumeLayout();
         }
         
     }

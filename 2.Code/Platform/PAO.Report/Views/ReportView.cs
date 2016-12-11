@@ -62,16 +62,7 @@ namespace PAO.Report.Views
                 Icon = Properties.Resources.chartyaxissettings_32x32
             });
         }
-
                 
-        protected override void OnClosing() {
-            if(Views.IsNotNullOrEmpty()) {
-                foreach(var view in Views) {
-                    view.CloseView();
-                }
-            }
-        }
-
         public void OpenView(IView view) {
             // 避免重复添加视图
             if (ViewList.Contains(view)) {
@@ -112,14 +103,27 @@ namespace PAO.Report.Views
             LayoutControl.SetDefaultLayout();
         }
 
-        public byte[] LayoutData {
-            get {
-                return LayoutControl.GetLayoutData();
+        protected override void OnSetController(BaseController value) {
+            var controller = value as ReportController;
+            if (controller.Controllers.IsNotNullOrEmpty()) {
+                foreach (var childController in controller.Controllers) {
+                    var view = childController.Value.CreateAndOpenView(this);
+                    view.UIActionDispatcher = UIActionDispatcher;
+                }
             }
+            AddonPublic.ApplyAddonExtendProperties(controller);
+            this.LayoutControl.SetLayoutData(controller.LayoutData);
+        }
 
-            set {
-                LayoutControl.SetLayoutData(value);
+        protected override void OnClosing() {
+            if (Views.IsNotNullOrEmpty()) {
+                foreach (var view in Views) {
+                    view.CloseView();
+                }
             }
+            var controller = Controller as ReportController;
+            controller.LayoutData = this.LayoutControl.GetLayoutData();
+            AddonPublic.FetchAddonExtendProperties(controller, "LayoutData");
         }
 
         #region 事件

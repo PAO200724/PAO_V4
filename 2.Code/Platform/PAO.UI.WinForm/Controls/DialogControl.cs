@@ -15,7 +15,7 @@ namespace PAO.UI.WinForm.Controls
     /// 基础对话框控件
     /// 作者：刘丹
     /// </summary>
-    public partial class DialogControl : ViewControl
+    public partial class DialogControl : XtraUserControl
     {
         public DialogControl() {
             InitializeComponent();

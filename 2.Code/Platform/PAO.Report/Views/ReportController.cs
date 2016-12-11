@@ -94,23 +94,10 @@ namespace PAO.Report.Views
 
         public ReportController() {
         }
-
-        protected override IView OnCreateView() {
-            var reportView = new ReportView();
-            reportView.Closing += (s, e) =>
-            {
-                LayoutData = reportView.LayoutData;
-                AddonPublic.FetchAddonExtendProperties(this, "LayoutData");
-            };
-            if (Controllers.IsNotNullOrEmpty()) {
-                foreach(var controller in Controllers) {
-                    var view = controller.Value.CreateAndOpenView(reportView);
-                    view.UIActionDispatcher = reportView.UIActionDispatcher;
-                }
+        protected override Type ViewType {
+            get {
+                return typeof(ReportView);
             }
-            AddonPublic.ApplyAddonExtendProperties(this);
-            reportView.LayoutData = LayoutData;
-            return reportView;
         }
     }
 }

@@ -11,7 +11,7 @@ using System.Text;
 using PAO.UI.MVC;
 using PAO.IO.Text;
 
-namespace PAO.Config.Commands
+namespace PAO.Config.Views
 {
     /// <summary>
     /// 类：ObjectConfigController
@@ -24,10 +24,9 @@ namespace PAO.Config.Commands
     [DataContract(Namespace = "")]
     [Name("对象配置控制器")]
     [Description("配置对象的控制器")]
-    public class ObjectConfigCommand : BaseController
+    public class ObjectConfigController : BaseController
     {
         #region 插件属性
-
         #region 属性：ConfigFile
         /// <summary>
         /// 属性：ConfigFile
@@ -43,7 +42,6 @@ namespace PAO.Config.Commands
             set;
         }
         #endregion 属性：ConfigFile
-
 
         #region 属性：ExtendPropertyConfigFile
         /// <summary>
@@ -61,28 +59,14 @@ namespace PAO.Config.Commands
         }
         #endregion 属性：ExtendPropertyConfigFile
         #endregion
-        public ObjectConfigCommand() {
+        public ObjectConfigController() {
         }
 
-        const string DefaultExtendPropertyConfigFile = "ExtendProperties.config";
-
-        protected override IView OnCreateView() {
-            var view = new ObjectTreeEditControl();
-            if (ExtendPropertyConfigFile.IsNullOrEmpty()) {
-                view.ExtendPropertyStorageFilePath = AppPublic.GetAbsolutePath(DefaultExtendPropertyConfigFile);
+        internal const string DefaultExtendPropertyConfigFile = "ExtendProperties.config";
+        protected override Type ViewType {
+            get {
+                return typeof(ObjectConfigView);
             }
-            else {
-                view.ExtendPropertyStorageFilePath = AppPublic.GetAbsolutePath(ExtendPropertyConfigFile);
-            }
-            object addon;
-            if (ConfigFile.IsNullOrEmpty()) {
-                addon = PaoApplication.Default;
-            }
-            else {
-                addon = TextPublic.ReadObjectFromFile(ConfigFile);
-            }
-            view.SelectedObject = addon;
-            return view;
         }
     }
 }

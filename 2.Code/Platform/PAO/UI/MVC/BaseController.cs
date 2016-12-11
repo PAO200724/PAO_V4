@@ -11,15 +11,15 @@ namespace PAO.UI.MVC
 {
     /// <summary>
     /// 类：BaseController
-    /// 基础控制器
-    /// 可以执行命令的菜单项
+    /// 控制器
+    /// 视图控制器
     /// 作者：PAO
     /// </summary>
     [Addon]
     [Serializable]
     [DataContract(Namespace = "")]
-    [Name("基础控制器")]
-    [Description("可以执行命令的菜单项")]
+    [Name("控制器")]
+    [Description("视图控制器")]
     public abstract class BaseController : UIItem
     {
         const string Permission_DoCommand = "DoCommand";
@@ -28,7 +28,6 @@ namespace PAO.UI.MVC
         public BaseController() {
         }
 
-        protected IView View;
         /// <summary>
         /// 创建并打开视图
         /// </summary>
@@ -36,7 +35,7 @@ namespace PAO.UI.MVC
         public virtual IView CreateAndOpenView(IViewContainer viewContainer) {
             SecurityPublic.CheckPermission(ID, Permission_DoCommand).CheckTrue("当前用户不拥有执行此命令的权限.");
 
-            View = OnCreateView();
+            var View = ViewType.CreateInstance() as IView;
             if (View == null)
                 throw new Exception("视图创建失败.");
 
@@ -45,12 +44,15 @@ namespace PAO.UI.MVC
             View.Icon = Icon;
             View.LargeIcon = LargeIcon;
             View.ViewContainer = viewContainer;
+            View.Controller = this;
 
             viewContainer.OpenView(View);
             return View;
         }
 
-        protected abstract IView OnCreateView();
+        protected abstract Type ViewType {
+            get; 
+        }
         
         /// <summary>
         /// 许可

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using PAO.UI.MVC;
-using PAO.Config.Commands;
+using PAO.Config.Views;
 using PAO.Remote.Tcp;
 using PAO.Security;
 using PAO.Report.Displayers;
@@ -72,7 +72,7 @@ namespace PAO.Configuration
                                 ID = "Menu_Config",
                                 Caption = "配置菜单",
                                 ChildItems = new List<Ref<IUIItem>>()
-                                    .Append(new ObjectConfigCommand()
+                                    .Append(new ObjectConfigController()
                                     {
                                         Caption = "主配置",
                                     }.ToRef())

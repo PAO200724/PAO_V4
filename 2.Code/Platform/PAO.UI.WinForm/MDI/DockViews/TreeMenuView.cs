@@ -17,12 +17,21 @@ namespace PAO.UI.WinForm.MDI.DockViews
     /// <summary>
     /// 菜单视图
     /// </summary>
-    public partial class TreeMenuView : DialogControl, IDockView, IMenuContainer
+    public partial class TreeMenuView : ViewControl, IDockView, IMenuContainer
     {
         public TreeMenuView() {
             InitializeComponent();
         }
-        
+
+        protected override void OnSetController(BaseController value) {
+            var controller = value as TreeMenuController;
+            if (controller.MenuItems.IsNotNullOrEmpty()) {
+                foreach (var menuItem in controller.MenuItems) {
+                    AddMenuItem(menuItem.Value);
+                }
+            }
+        }
+
         private void AddNode(TreeListNodes nodes, IUIItem uiItem) {
             var node = nodes.Add(new object[]
             {

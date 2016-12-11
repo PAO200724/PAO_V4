@@ -59,6 +59,29 @@ namespace PAO.UI.WinForm.Controls
             OnClosing();
         }
 
+        /// <summary>
+        /// 控制器
+        /// </summary>
+        private BaseController _Controller;
+
+        public virtual BaseController Controller {
+            get {
+                OnGetController(_Controller);
+                return _Controller;
+            }
+            set {
+                _Controller = value;
+                OnSetController(_Controller);
+            }
+        }
+
+        protected virtual void OnSetController(BaseController value) {
+
+        }
+
+        protected virtual void OnGetController(BaseController value) {
+
+        }
         protected virtual void OnClosing() { }
 
         /// <summary>

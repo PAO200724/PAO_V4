@@ -29,6 +29,7 @@ using DevExpress.XtraCharts;
 using DevExpress.XtraMap;
 using DevExpress.XtraScheduler;
 using DevExpress.XtraSpreadsheet;
+using PAO.UI.WinForm.Controls;
 
 namespace PAO.UI.WinForm
 {
@@ -56,9 +57,9 @@ namespace PAO.UI.WinForm
             }
         }
 
-        public static DialogReturn ShowDialog<T>(T childControl) where T : Control, IView{
+        public static DialogReturn ShowDialog(DialogControl childControl) {
             var dialog = new Dialog();
-            dialog.OpenView(childControl);
+            dialog.OpenControl(childControl);
             return DialogResultToDialogReturn(dialog.ShowDialog());
         }
 
