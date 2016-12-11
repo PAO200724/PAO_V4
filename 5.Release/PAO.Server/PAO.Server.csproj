@@ -107,10 +107,6 @@
       <Project>{49bd4858-22c7-431e-a0ac-638a182fd35e}</Project>
       <Name>PAO.UI.WinForm</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\2.Code\Platform\PAO.UI.WPF\PAO.UI.WPF.csproj">
-      <Project>{ad7be02b-cdd6-4482-9ed1-62bc59b7023e}</Project>
-      <Name>PAO.UI.WPF</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\2.Code\Platform\PAO\PAO.csproj">
       <Project>{13199ee0-1738-4e3a-a970-3771eb9d4d0e}</Project>
       <Name>PAO</Name>
