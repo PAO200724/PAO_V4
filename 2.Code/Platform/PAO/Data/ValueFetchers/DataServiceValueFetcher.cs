@@ -1,30 +1,27 @@
 ﻿using PAO;
-using PAO.Data;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
-using System.Data;
 
-namespace PAO.Report.Fetchers
+namespace PAO.Data.ValueFetchers
 {
     /// <summary>
-    /// 类：DataServiceFetcher
-    /// 数据服务获取器
-    /// 从数据服务获取数据的数据获取器
+    /// 类：DataServiceValueFetcher
+    /// 数据服务值获取器
+    /// 通过数据服务获取值的获取器
     /// 作者：PAO
     /// </summary>
     [Addon]
     [Serializable]
     [DataContract(Namespace = "")]
-    [Name("数据服务获取器")]
-    [Description("从数据服务获取数据的数据获取器")]
-    public class DataServiceFetcher : PaoObject, IDataFetch
+    [Name("数据服务值获取器")]
+    [Description("通过数据服务获取值的获取器")]
+    public class DataServiceValueFetcher<T> : PaoObject, IValueFetch
     {
         #region 插件属性
-
         #region 属性：DataService
         /// <summary>
         /// 属性：DataService
@@ -41,22 +38,6 @@ namespace PAO.Report.Fetchers
         }
         #endregion 属性：DataService
 
-        #region 属性：TableName
-        /// <summary>
-        /// 属性：TableName
-        /// 表名
-        /// 数据表名
-        /// </summary>
-        [AddonProperty]
-        [DataMember(EmitDefaultValue = false)]
-        [Name("表名")]
-        [Description("数据表名")]
-        public string TableName {
-            get;
-            set;
-        }
-        #endregion 属性：TableName
-
         #region 属性：CommandID
         /// <summary>
         /// 属性：CommandID
@@ -72,18 +53,17 @@ namespace PAO.Report.Fetchers
             set;
         }
         #endregion 属性：CommandID
+
         #endregion
-        public DataServiceFetcher() {
+        public DataServiceValueFetcher() {
         }
 
-        public DataTable FetchData(int startIndex, int count, params DataField[] parameterValues) {
+        public object FetchValue() {
             var dataService = DataService.Value;
-            return dataService.Query(CommandID, startIndex, count, parameterValues);
-        }
-
-        public DataTable GetDataSchema() {
-            var dataService = DataService.Value;
-            return dataService.GetSchema(CommandID);
+            object result = dataService.ExecuteScalar(CommandID);
+            if (result == null)
+                return default(T);
+            return (T)result;
         }
     }
 }

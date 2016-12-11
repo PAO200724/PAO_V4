@@ -16,8 +16,8 @@ using PAO.Security;
 using PAO.Report.Displayers;
 using PAO.Report;
 using PAO.Report.Views;
-using PAO.Report.Fetchers;
 using PAO.Data;
+using PAO.Data.DataFetchers;
 
 namespace PAO.Configuration
 {

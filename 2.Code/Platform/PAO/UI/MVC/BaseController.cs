@@ -24,6 +24,23 @@ namespace PAO.UI.MVC
     {
         const string Permission_DoCommand = "DoCommand";
         #region 插件属性
+
+        #region 属性：Surface
+        /// <summary>
+        /// 属性：Surface
+        /// 外观
+        /// 视图的外观样式
+        /// </summary>
+        [AddonProperty]
+        [DataMember(EmitDefaultValue = false)]
+        [Name("外观")]
+        [Description("视图的外观样式")]
+        public Surface Surface {
+            get;
+            set;
+        }
+        #endregion 属性：Surface
+
         #endregion
         public BaseController() {
         }

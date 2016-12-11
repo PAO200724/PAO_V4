@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using System.ServiceModel;
@@ -13,6 +14,8 @@ namespace PAO.Data {
     /// </summary>
     [Addon]
     [ServiceContract]
+    [Name("数据服务接口")]
+    [Description("数据服务接口")]
     public interface IDataService {
         /// <summary>
         /// 获取数据表格式

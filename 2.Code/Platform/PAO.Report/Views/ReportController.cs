@@ -108,6 +108,7 @@ namespace PAO.Report.Views
             set;
         }
         #endregion 属性：DockPanelLayoutData
+
         #endregion
 
         public ReportController() {

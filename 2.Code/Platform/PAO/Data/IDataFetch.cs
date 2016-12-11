@@ -20,10 +20,6 @@ namespace PAO.Data
     public interface IDataFetch
     {
         /// <summary>
-        /// 表名
-        /// </summary>
-        string TableName { get; }
-        /// <summary>
         /// 获取数据格式
         /// </summary>
         /// <returns>数据格式</returns>

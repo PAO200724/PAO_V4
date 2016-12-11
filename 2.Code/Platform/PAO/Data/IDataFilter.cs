@@ -13,6 +13,8 @@ namespace PAO.Data
     /// 作者:刘丹(Daniel.liu)
     /// </summary>
     [Addon]
+    [Name("数据过滤器")]
+    [Description("过滤数据的对象")]
     public interface IDataFilter
     {
         /// <summary>

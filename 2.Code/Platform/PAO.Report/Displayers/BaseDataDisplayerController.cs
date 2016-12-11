@@ -24,23 +24,7 @@ namespace PAO.Report.Displayers
     public abstract class BaseDataDisplayerController : BaseController
     {
         #region 插件属性
-
-        #region 属性：Surface
-        /// <summary>
-        /// 属性：Surface
-        /// 外观
-        /// 外观
-        /// </summary>
-        [AddonProperty]
-        [DataMember(EmitDefaultValue = false)]
-        [Name("外观")]
-        [Description("外观")]
-        public Surface Surface {
-            get;
-            set;
-        }
-        #endregion 属性：Surface
-
+        
         #endregion
         public BaseDataDisplayerController() {
         }

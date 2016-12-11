@@ -71,6 +71,11 @@ namespace PAO.UI.WinForm.Controls
             }
             set {
                 _Controller = value;
+                if(_Controller != null && _Controller.Surface != null) {
+                    this.BackColor = _Controller.Surface.BackColor;
+                    this.ForeColor = _Controller.Surface.ForeColor;
+                    this.Font = _Controller.Surface.Font;
+                }
                 OnSetController(_Controller);
             }
         }
