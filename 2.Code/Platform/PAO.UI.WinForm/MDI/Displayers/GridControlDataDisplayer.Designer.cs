@@ -26,19 +26,19 @@
         /// </summary>
         private void InitializeComponent() {
             this.GridControl = new DevExpress.XtraGrid.GridControl();
+            this.BandedGridView = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridView();
+            this.GridBand = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.GridView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.CardView = new DevExpress.XtraGrid.Views.Card.CardView();
             this.AdvBandedGridView = new DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView();
             this.GridBandMain = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.BandedGridView = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridView();
-            this.GridBand = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.LayoutView = new DevExpress.XtraGrid.Views.Layout.LayoutView();
             this.TileView = new DevExpress.XtraGrid.Views.Tile.TileView();
             ((System.ComponentModel.ISupportInitialize)(this.GridControl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BandedGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CardView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AdvBandedGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.BandedGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.LayoutView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TileView)).BeginInit();
             this.SuspendLayout();
@@ -47,17 +47,29 @@
             // 
             this.GridControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GridControl.Location = new System.Drawing.Point(0, 0);
-            this.GridControl.MainView = this.BandedGridView;
+            this.GridControl.MainView = this.GridView;
             this.GridControl.Name = "GridControl";
             this.GridControl.Size = new System.Drawing.Size(517, 491);
             this.GridControl.TabIndex = 0;
             this.GridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.BandedGridView,
             this.GridView,
             this.CardView,
             this.AdvBandedGridView,
-            this.BandedGridView,
             this.LayoutView,
             this.TileView});
+            // 
+            // BandedGridView
+            // 
+            this.BandedGridView.Bands.AddRange(new DevExpress.XtraGrid.Views.BandedGrid.GridBand[] {
+            this.GridBand});
+            this.BandedGridView.GridControl = this.GridControl;
+            this.BandedGridView.Name = "BandedGridView";
+            // 
+            // GridBand
+            // 
+            this.GridBand.Name = "GridBand";
+            this.GridBand.VisibleIndex = 0;
             // 
             // GridView
             // 
@@ -82,18 +94,6 @@
             this.GridBandMain.Name = "GridBandMain";
             this.GridBandMain.VisibleIndex = 0;
             // 
-            // BandedGridView
-            // 
-            this.BandedGridView.Bands.AddRange(new DevExpress.XtraGrid.Views.BandedGrid.GridBand[] {
-            this.GridBand});
-            this.BandedGridView.GridControl = this.GridControl;
-            this.BandedGridView.Name = "BandedGridView";
-            // 
-            // GridBand
-            // 
-            this.GridBand.Name = "GridBand";
-            this.GridBand.VisibleIndex = 0;
-            // 
             // LayoutView
             // 
             this.LayoutView.GridControl = this.GridControl;
@@ -113,10 +113,10 @@
             this.Name = "GridControlDataDisplayer";
             this.Size = new System.Drawing.Size(517, 491);
             ((System.ComponentModel.ISupportInitialize)(this.GridControl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BandedGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CardView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.AdvBandedGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.BandedGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.LayoutView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TileView)).EndInit();
             this.ResumeLayout(false);

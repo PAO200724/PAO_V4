@@ -1,4 +1,4 @@
-﻿namespace PAO.UI.WinForm.MDI.DockViews
+﻿namespace PAO.UI.WinForm.MDI.Inputs
 {
     partial class ParameterInputView
     {

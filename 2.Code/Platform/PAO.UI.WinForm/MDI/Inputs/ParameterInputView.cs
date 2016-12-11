@@ -9,7 +9,7 @@ using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using PAO.UI.WinForm.Controls;
 
-namespace PAO.UI.WinForm.MDI.DockViews
+namespace PAO.UI.WinForm.MDI.Inputs
 {
     /// <summary>
     /// 参数输入视图

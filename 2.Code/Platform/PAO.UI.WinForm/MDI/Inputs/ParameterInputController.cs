@@ -7,7 +7,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 
-namespace PAO.UI.WinForm.MDI.DockViews
+namespace PAO.UI.WinForm.MDI.Inputs
 {
     /// <summary>
     /// 类：ParameterInputController

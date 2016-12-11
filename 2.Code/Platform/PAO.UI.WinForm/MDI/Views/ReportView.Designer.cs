@@ -28,25 +28,25 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReportView));
             this.LayoutControl = new DevExpress.XtraLayout.LayoutControl();
-            this.LayoutControlGroupRoot = new DevExpress.XtraLayout.LayoutControlGroup();
             this.BarManager = new DevExpress.XtraBars.BarManager(this.components);
-            this.PopupMenuLayoutControl = new DevExpress.XtraBars.PopupMenu(this.components);
-            this.ButtonRecoverLayout = new DevExpress.XtraBars.BarButtonItem();
             this.BarTools = new DevExpress.XtraBars.Bar();
+            this.ButtonQueryNow = new DevExpress.XtraBars.BarButtonItem();
             this.ButtonExport = new DevExpress.XtraBars.BarButtonItem();
             this.ButtonPrint = new DevExpress.XtraBars.BarButtonItem();
             this.MenuConfig = new DevExpress.XtraBars.BarSubItem();
+            this.ButtonRecoverLayout = new DevExpress.XtraBars.BarButtonItem();
             this.ButtonProperties = new DevExpress.XtraBars.BarButtonItem();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.RepositoryItemTextEditCaption = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
+            this.LayoutControlGroupRoot = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.MenuData = new DevExpress.XtraBars.BarSubItem();
             ((System.ComponentModel.ISupportInitialize)(this.LayoutControl)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.LayoutControlGroupRoot)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BarManager)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PopupMenuLayoutControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemTextEditCaption)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.LayoutControlGroupRoot)).BeginInit();
             this.SuspendLayout();
             // 
             // LayoutControl
@@ -59,19 +59,8 @@
             this.LayoutControl.Root = this.LayoutControlGroupRoot;
             this.LayoutControl.Size = new System.Drawing.Size(536, 439);
             this.LayoutControl.TabIndex = 0;
-            this.LayoutControl.Text = "layoutControl1";
+            this.LayoutControl.Text = "布局控件";
             this.LayoutControl.ItemAdded += new System.EventHandler(this.LayoutControl_ItemAdded);
-            // 
-            // LayoutControlGroupRoot
-            // 
-            this.LayoutControlGroupRoot.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
-            this.LayoutControlGroupRoot.GroupBordersVisible = false;
-            this.LayoutControlGroupRoot.Location = new System.Drawing.Point(0, 0);
-            this.LayoutControlGroupRoot.Name = "Root";
-            this.LayoutControlGroupRoot.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-            this.LayoutControlGroupRoot.Size = new System.Drawing.Size(536, 439);
-            this.LayoutControlGroupRoot.Text = "根";
-            this.LayoutControlGroupRoot.TextVisible = false;
             // 
             // BarManager
             // 
@@ -87,24 +76,12 @@
             this.ButtonExport,
             this.ButtonPrint,
             this.MenuConfig,
-            this.ButtonRecoverLayout});
-            this.BarManager.MaxItemId = 9;
+            this.ButtonRecoverLayout,
+            this.ButtonQueryNow,
+            this.MenuData});
+            this.BarManager.MaxItemId = 11;
             this.BarManager.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.RepositoryItemTextEditCaption});
-            // 
-            // PopupMenuLayoutControl
-            // 
-            this.PopupMenuLayoutControl.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonRecoverLayout)});
-            this.PopupMenuLayoutControl.Manager = this.BarManager;
-            this.PopupMenuLayoutControl.Name = "PopupMenuLayoutControl";
-            // 
-            // ButtonRecoverLayout
-            // 
-            this.ButtonRecoverLayout.Caption = "恢复默认布局(R)";
-            this.ButtonRecoverLayout.Id = 8;
-            this.ButtonRecoverLayout.Name = "ButtonRecoverLayout";
-            this.ButtonRecoverLayout.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonRecoverLayout_ItemClick);
             // 
             // BarTools
             // 
@@ -113,11 +90,21 @@
             this.BarTools.DockRow = 0;
             this.BarTools.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
             this.BarTools.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.ButtonExport, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.ButtonQueryNow, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
+            new DevExpress.XtraBars.LinkPersistInfo(this.MenuData),
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.ButtonExport, "", true, true, true, 0, null, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.ButtonPrint, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(this.MenuConfig)});
             this.BarTools.OptionsBar.DisableClose = true;
             this.BarTools.Text = "工具条";
+            // 
+            // ButtonQueryNow
+            // 
+            this.ButtonQueryNow.Caption = "查询(&Q)";
+            this.ButtonQueryNow.Glyph = global::PAO.UI.WinForm.Properties.Resources.zoom_16x16;
+            this.ButtonQueryNow.Id = 9;
+            this.ButtonQueryNow.LargeGlyph = global::PAO.UI.WinForm.Properties.Resources.zoom_32x32;
+            this.ButtonQueryNow.Name = "ButtonQueryNow";
             // 
             // ButtonExport
             // 
@@ -139,8 +126,15 @@
             this.MenuConfig.Id = 7;
             this.MenuConfig.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.ButtonRecoverLayout),
-            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonProperties)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonProperties, true)});
             this.MenuConfig.Name = "MenuConfig";
+            // 
+            // ButtonRecoverLayout
+            // 
+            this.ButtonRecoverLayout.Caption = "恢复默认布局(R)";
+            this.ButtonRecoverLayout.Id = 8;
+            this.ButtonRecoverLayout.Name = "ButtonRecoverLayout";
+            this.ButtonRecoverLayout.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonRecoverLayout_ItemClick);
             // 
             // ButtonProperties
             // 
@@ -182,6 +176,23 @@
             this.RepositoryItemTextEditCaption.AutoHeight = false;
             this.RepositoryItemTextEditCaption.Name = "RepositoryItemTextEditCaption";
             // 
+            // LayoutControlGroupRoot
+            // 
+            this.LayoutControlGroupRoot.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
+            this.LayoutControlGroupRoot.GroupBordersVisible = false;
+            this.LayoutControlGroupRoot.Location = new System.Drawing.Point(0, 0);
+            this.LayoutControlGroupRoot.Name = "Root";
+            this.LayoutControlGroupRoot.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
+            this.LayoutControlGroupRoot.Size = new System.Drawing.Size(536, 439);
+            this.LayoutControlGroupRoot.Text = "根";
+            this.LayoutControlGroupRoot.TextVisible = false;
+            // 
+            // MenuData
+            // 
+            this.MenuData.Caption = "数据(&D)";
+            this.MenuData.Id = 10;
+            this.MenuData.Name = "MenuData";
+            // 
             // ReportView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -193,10 +204,9 @@
             this.Controls.Add(this.barDockControlTop);
             this.Name = "ReportView";
             ((System.ComponentModel.ISupportInitialize)(this.LayoutControl)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.LayoutControlGroupRoot)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BarManager)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PopupMenuLayoutControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemTextEditCaption)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.LayoutControlGroupRoot)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -218,6 +228,7 @@
         private DevExpress.XtraBars.Bar BarTools;
         private DevExpress.XtraBars.BarSubItem MenuConfig;
         private DevExpress.XtraBars.BarButtonItem ButtonRecoverLayout;
-        private DevExpress.XtraBars.PopupMenu PopupMenuLayoutControl;
+        private DevExpress.XtraBars.BarButtonItem ButtonQueryNow;
+        private DevExpress.XtraBars.BarSubItem MenuData;
     }
 }

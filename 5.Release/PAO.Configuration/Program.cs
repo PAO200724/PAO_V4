@@ -15,6 +15,7 @@ using PAO.Remote.Tcp;
 using PAO.Security;
 using PAO.UI.WinForm.MDI.Views;
 using PAO.UI.WinForm.MDI.Displayers;
+using PAO.UI.WinForm.MDI.Inputs;
 
 namespace PAO.Configuration
 {

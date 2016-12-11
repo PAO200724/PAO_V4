@@ -103,11 +103,11 @@
     </Compile>
     <Compile Include="MDI\Displayers\BaseDataDisplayerController.cs" />
     <Compile Include="MDI\Displayers\GridViewType.cs" />
-    <Compile Include="MDI\DockViews\ParameterInputController.cs" />
-    <Compile Include="MDI\DockViews\ParameterInputView.cs">
+    <Compile Include="MDI\Inputs\ParameterInputController.cs" />
+    <Compile Include="MDI\Inputs\ParameterInputView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MDI\DockViews\ParameterInputView.Designer.cs">
+    <Compile Include="MDI\Inputs\ParameterInputView.Designer.cs">
       <DependentUpon>ParameterInputView.cs</DependentUpon>
     </Compile>
     <Compile Include="MDI\DockViews\TreeMenuController.cs" />
@@ -204,7 +204,7 @@
     <EmbeddedResource Include="Forms\PaoWaitForm.resx">
       <DependentUpon>PaoWaitForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MDI\DockViews\ParameterInputView.resx">
+    <EmbeddedResource Include="MDI\Inputs\ParameterInputView.resx">
       <DependentUpon>ParameterInputView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MDI\DockViews\TreeMenuView.resx">
@@ -273,7 +273,12 @@
   <ItemGroup>
     <None Include="Resources\drilldown_16x16.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\zoom_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zoom_32x32.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
