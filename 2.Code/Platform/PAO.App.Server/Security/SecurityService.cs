@@ -48,11 +48,11 @@ namespace PAO.App.Server.Security
             DataFilter = new AndLogicFilter()
             {
                 ChildFilters = new List<IDataFilter>()
-                    .Append(new SqlFilter("Enabled=@Enabled", "@Enabled", "生效", System.Data.DbType.Boolean))
-                    .Append(new SqlFilter("LoginName LIKE '%' + @LoginName + '%'", "@LoginName", "登录名"))
-                    .Append(new SqlFilter("UserName LIKE '%' + @UserName + '%'", "@UserName", "用户名"))
-                    .Append(new SqlFilter("Tel LIKE '%' + @Tel + '%'", "@Tel", "电话"))
-                    .Append(new SqlFilter("Email LIKE '%' + @Email + '%'", "@Email", "电子邮箱"))
+                    .Append(new SqlFilter("Enabled=@Enabled", "@Enabled", System.Data.DbType.Boolean))
+                    .Append(new SqlFilter("LoginName LIKE '%' + @LoginName + '%'", "@LoginName"))
+                    .Append(new SqlFilter("UserName LIKE '%' + @UserName + '%'", "@UserName"))
+                    .Append(new SqlFilter("Tel LIKE '%' + @Tel + '%'", "@Tel"))
+                    .Append(new SqlFilter("Email LIKE '%' + @Email + '%'", "@Email"))
             }
         };
 

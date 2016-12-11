@@ -35,7 +35,7 @@ namespace PAO.Data {
         public static DbType GetDbTypeByTypeName(string typeName) {
             switch (typeName) {
                 case INT:
-                    return DbType.Int64;
+                    return DbType.Int32;
                 case FLOAT:
                     return DbType.Double;
                 case NUMBER:
@@ -43,7 +43,7 @@ namespace PAO.Data {
                 case STRING:
                     return DbType.String;
                 case DATE:
-                    return DbType.Date;
+                    return DbType.DateTime2;
                 case BOOL:
                     return DbType.Boolean;
                 case BINARY:
@@ -143,6 +143,119 @@ namespace PAO.Data {
             }
             else {
                 return OBJECT;
+            }
+        }
+
+        /// <summary>
+        /// 本地Type转换为DbType
+        /// </summary>
+        /// <param name="type">本地Type</param>
+        /// <returns>DbType</returns>
+        public static DbType GetDbTypeByNativeType(Type type) {
+            if (type == typeof(Int32)) {
+                return DbType.Int32;
+            }
+            else if (type == typeof(Int16)) {
+                return DbType.Int16;
+            }
+            else if (type == typeof(Int64)) {
+                return DbType.Int64;
+            }
+            else if (type == typeof(UInt16)) {
+                return DbType.UInt16;
+            }
+            else if (type == typeof(UInt32)) {
+                return DbType.UInt32;
+            }
+            else if (type == typeof(UInt64)) {
+                return DbType.UInt64;
+            }
+            else if (type == typeof(byte)) {
+                return DbType.Byte;
+            }
+            else if (type == typeof(sbyte)) {
+                return DbType.SByte;
+            }
+            else if (type == typeof(Guid)) {
+                return DbType.Guid;
+            }
+            else if (type == typeof(float)) {
+                return DbType.Single;
+            }
+            else if (type == typeof(double)) {
+                return DbType.Double;
+            }
+            else if (type == typeof(decimal)) {
+                return DbType.Decimal;
+            }
+            else if (type == typeof(DateTime)) {
+                return DbType.Date;
+            }
+            else if (type == typeof(bool)) {
+                return DbType.Boolean;
+            }
+            else if (type == typeof(byte[])) {
+                return DbType.Binary;
+            }
+            else if (type == typeof(string)) {
+                return DbType.String;
+            }
+            else {
+                return DbType.Object;
+            }
+        }
+
+        /// <summary>
+        /// DbType转换为本地Type
+        /// </summary>
+        /// <param name="dbType">DbType</param>
+        /// <returns>本地Type</returns>
+        public static Type GetNativeTypeByDbType(DbType dbType) {
+            switch (dbType) {
+                case DbType.AnsiString:
+                case DbType.AnsiStringFixedLength:
+                case DbType.String:
+                case DbType.StringFixedLength:
+                case DbType.Xml:
+                    return typeof(string);
+                case DbType.Guid:
+                    return typeof(Guid);
+                case DbType.Binary:
+                    return typeof(byte[]);
+                case DbType.Boolean:
+                    return typeof(bool);
+                case DbType.SByte:
+                    return typeof(sbyte);
+                case DbType.Int16:
+                    return typeof(Int16);
+                case DbType.Int32:
+                    return typeof(Int32);
+                case DbType.Int64:
+                    return typeof(Int64);
+                case DbType.Byte:
+                    return typeof(byte);
+                case DbType.UInt16:
+                    return typeof(UInt16);
+                case DbType.UInt32:
+                    return typeof(UInt32);
+                case DbType.UInt64:
+                    return typeof(UInt64);
+                case DbType.Decimal:
+                case DbType.VarNumeric:
+                case DbType.Currency:
+                    return typeof(decimal);
+                case DbType.Date:
+                case DbType.DateTime:
+                case DbType.DateTime2:
+                case DbType.Time:
+                case DbType.DateTimeOffset:
+                    return typeof(DateTime);
+                case DbType.Double:
+                    return typeof(double);
+                case DbType.Single:
+                    return typeof(float);
+                default:
+                    return typeof(object);
             }
         }
         #endregion

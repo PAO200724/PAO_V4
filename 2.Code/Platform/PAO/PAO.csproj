@@ -160,6 +160,7 @@
     <Compile Include="UI\MVC\IMainForm.cs" />
     <Compile Include="UI\MVC\IUIItem.cs" />
     <Compile Include="UI\MVC\UIActionEventArgs.cs" />
+    <Compile Include="UI\Surface.cs" />
     <Compile Include="UI\UIPublic.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -30,8 +30,9 @@ namespace WinFormTest
             Application.SetCompatibleTextRenderingDefault(false);
             Test();
             // 应用程序启动时创建PaoApplication
-            AppPublic.StartApplication(AppPublic.DefaultConfigFileName
-                , Settings.Default.ConfigStart ? (Func<PaoApplication>)null : CreateApplication
+            AppPublic.StartApplication(Settings.Default.ConfigStart
+                , AppPublic.DefaultConfigFileName
+                , CreateApplication
                 , PrepareAppliation);
         }
 

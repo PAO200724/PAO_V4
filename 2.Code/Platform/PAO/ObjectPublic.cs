@@ -489,5 +489,51 @@ namespace PAO {
             return new ObjectRef<T>(obj);
         }
         #endregion
+        
+        #region 克隆
+        /// <summary>
+        /// 从某个目标克隆（浅表复制）
+        /// </summary>
+        /// <param name="destObject">目标对象</param>
+        /// <param name="srcObject">源对象</param>
+        public static void CloneFrom(this object destObject, object srcObject) {
+            if (destObject == null || srcObject == null)
+                return;
+
+            Type destType = destObject.GetType();
+            Type srcType = srcObject.GetType();
+            var destProperties = destType.GetProperties(BindingFlags.Public | BindingFlags.SetProperty | BindingFlags.Instance);
+            foreach(var destProp in destProperties) {
+                var srcProp = srcType.GetProperty(destProp.Name, BindingFlags.Public | BindingFlags.GetProperty | BindingFlags.Instance);
+                if (srcProp != null) {
+                    destProp.SetValue(destObject, srcProp.GetValue(srcObject, null), null);
+                }
+            }
+
+            var destFields = destType.GetFields(BindingFlags.Public | BindingFlags.SetField | BindingFlags.Instance);
+            foreach (var destField in destFields) {
+                var srcField = srcType.GetField(destField.Name, BindingFlags.Public | BindingFlags.GetField| BindingFlags.Instance);
+                if (srcField != null) {
+                    destField.SetValue(destObject, srcField.GetValue(srcObject));
+                }
+            }
+        }
+
+        /// <summary>
+        /// 克隆一个新对象
+        /// </summary>
+        /// <param name="srcObject">源对象</param>
+        /// <returns>新对象</returns>
+        public static object CloneObject(this object srcObject) {
+            if (srcObject == null)
+                return null;
+
+            Type srcType = srcObject.GetType();
+            object newObject = srcType.CreateInstance();
+
+            newObject.CloneFrom(srcObject);
+            return newObject;
+        }
+        #endregion
     }
 }

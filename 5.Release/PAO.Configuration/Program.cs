@@ -15,7 +15,7 @@ using PAO.Remote.Tcp;
 using PAO.Security;
 using PAO.Report.Displayers;
 using PAO.Report;
-using PAO.Report.Inputs;
+using PAO.Report.Views;
 
 namespace PAO.Configuration
 {
@@ -30,8 +30,9 @@ namespace PAO.Configuration
             Application.SetCompatibleTextRenderingDefault(false);
             DevExpress.UserSkins.BonusSkins.Register();
             // 应用程序启动时创建PaoApplication
-            AppPublic.StartApplication(AppPublic.DefaultConfigFileName
-                , Settings.Default.ConfigStart ? (Func<PaoApplication>)null : CreateApplication
+            AppPublic.StartApplication(Settings.Default.ConfigStart
+                , AppPublic.DefaultConfigFileName
+                , CreateApplication
                 , PrepareAppliation);
         }
 
@@ -81,11 +82,6 @@ namespace PAO.Configuration
                                 ID = "Smart_Report",
                                 Caption = "智能报表",
                                 Controllers = new List<Ref<BaseController>>()
-                                    .Append(new ParameterInputController()
-                                    {
-                                        ID = "{AF8496DB-8675-4549-8F90-2E0871EA77EC}",
-                                        Caption = "参数",
-                                    }.ToRef())
                                     .Append(new GridControlController()
                                     {
                                         ID = "GridControl",

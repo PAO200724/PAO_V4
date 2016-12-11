@@ -53,22 +53,6 @@ namespace PAO.Data
         }
         #endregion 属性:Name
 
-        #region 属性:Caption
-        /// <summary>
-        /// 属性:Caption
-        /// 标题
-        /// 字段标题
-        /// </summary>
-        [AddonProperty]
-        [DataMember(EmitDefaultValue = false)]
-        [Name("标题")]
-        [Description("字段标题")]
-        public string Caption {
-            get;
-            set;
-        }
-        #endregion 属性:Caption
-
         #region 属性:Value
         /// <summary>
         /// 属性:Value

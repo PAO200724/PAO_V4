@@ -1,11 +1,12 @@
 ﻿using DevExpress.XtraEditors.Repository;
 using DevExpress.XtraTreeList.Nodes;
 using PAO.Config.Controls;
+using PAO.Config.Controls.EditControls;
 using PAO.Config.Editors;
-using PAO.Config.PaoConfig;
 using PAO.Data;
 using PAO.UI;
 using PAO.UI.WinForm;
+using PAO.UI.WinForm.Editors;
 using PAO.UI.WinForm.MDI.DockViews;
 using System;
 using System.Collections;

@@ -15,7 +15,7 @@ namespace PAO.App {
     /// 作者:PAO
     /// </summary>
     public static class AppPublic {
-        public const string DefaultConfigFileName = "pao.config";
+        public const string DefaultConfigFileName = "PAO.config";
 
         /// <summary>
         /// 应用程序目录
@@ -40,12 +40,16 @@ namespace PAO.App {
         /// <summary>
         /// 启动应用程序
         /// </summary>
+        /// <param name="loadFromConfig">从配置加载</param>
         /// <param name="configFileName">配置文件名，此文件应该放于应用程序目录</param>
         /// <param name="createApplicationFunc">应用创建函数</param>
         /// <param name="applicationPrepareFunc">准备应用程序</param>
-        public static void StartApplication(string configFileName
+        /// <param name="overwriteConfigFile">覆盖配置文件</param>
+        public static void StartApplication(bool loadFromConfig
+            , string configFileName
             , Func<PaoApplication> createApplicationFunc
-            , Action<PaoApplication> applicationPrepareFunc) {
+            , Action<PaoApplication> applicationPrepareFunc
+            , bool overwriteConfigFile = false) {
 
             _AppDirectory = AppDomain.CurrentDomain.SetupInformation.ApplicationBase;
             string configFilePath = Path.Combine(_AppDirectory, configFileName);
@@ -74,14 +78,19 @@ namespace PAO.App {
 
                 TransactionPublic.Run("加载配置", () =>
                 {
-                    if (createApplicationFunc == null) {
+                    if(createApplicationFunc == null)
+                        throw new Exception("创建配置的方法不能为空");
+
+                    if (loadFromConfig && !File.Exists(configFilePath)) {
                         app = TextPublic.ReadObjectFromFile(configFilePath).As<PaoApplication>();
                     }
-                    else {
+                    else { 
                         // 用应用创建函数启动应用
                         app = createApplicationFunc();
-                        // 保存配置文件
-                        TextPublic.WriteObjectToFile(configFilePath, app);
+                        if(overwriteConfigFile || !File.Exists(configFilePath)) {
+                            // 保存配置文件
+                            TextPublic.WriteObjectToFile(configFilePath, app);
+                        }
                     }
 
                     if(applicationPrepareFunc != null) {
@@ -91,16 +100,6 @@ namespace PAO.App {
             });
 
             app.Start();
-        }
-
-        /// <summary>
-        /// 启动应用程序
-        /// </summary>
-        /// <param name="configFileName">配置文件名，此文件应该放于应用程序目录</param>
-        /// <param name="applicationPrepareFunc">准备应用程序</param>
-        public static void StartApplication(string configFileName
-            , Action<PaoApplication> applicationPrepareFunc) {
-            StartApplication(configFileName, null, applicationPrepareFunc);
-        }
+        }       
     }
 }

@@ -75,37 +75,21 @@
     <Compile Include="Controls\EditControls\ListEditControl.Designer.cs">
       <DependentUpon>ListEditControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Editors\CheckComboBoxEditor.cs" />
-    <Compile Include="Editors\ColorEditor.cs" />
-    <Compile Include="Editors\EnumEditor.cs" />
-    <Compile Include="PaoConfig\DataCommandInfoEditControl.cs">
+    <Compile Include="Editors\ObjectEditor.cs" />
+    <Compile Include="Controls\EditControls\DataCommandInfoEditControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PaoConfig\DataCommandInfoEditControl.Designer.cs">
+    <Compile Include="Controls\EditControls\DataCommandInfoEditControl.Designer.cs">
       <DependentUpon>DataCommandInfoEditControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="PaoConfig\DataFilterEditControl.cs">
+    <Compile Include="Controls\EditControls\DataFilterEditControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PaoConfig\DataFilterEditControl.Designer.cs">
+    <Compile Include="Controls\EditControls\DataFilterEditControl.Designer.cs">
       <DependentUpon>DataFilterEditControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="PaoConfig\DataFilterInfo.cs" />
-    <Compile Include="PaoConfig\DbFactoryEditor.cs" />
-    <Compile Include="Editors\GuidEditor.cs" />
-    <Compile Include="Editors\PictureEditor.cs" />
-    <Compile Include="Editors\MemoEditor.cs" />
-    <Compile Include="Editors\ToggleSwitchEditor.cs" />
-    <Compile Include="Editors\ImageEditor.cs" />
-    <Compile Include="Editors\ColorPickEditor.cs" />
-    <Compile Include="Editors\FontEditor.cs" />
-    <Compile Include="Editors\SpinEditor.cs" />
-    <Compile Include="Editors\CalcEditor.cs" />
-    <Compile Include="Editors\TimeEditor.cs" />
-    <Compile Include="Editors\DateEditor.cs" />
-    <Compile Include="Editors\CheckEditor.cs" />
-    <Compile Include="Editors\MemoExEditor.cs" />
-    <Compile Include="Editors\TextEditor.cs" />
+    <Compile Include="Controls\EditControls\DataFilterInfo.cs" />
+    <Compile Include="Editors\DbFactoryEditor.cs" />
     <Compile Include="ListElement.cs" />
     <Compile Include="Controls\EditControls\ObjectEditControl.cs">
       <SubType>UserControl</SubType>
@@ -125,8 +109,6 @@
     <Compile Include="Controls\TypeSelectControl.Designer.cs">
       <DependentUpon>TypeSelectControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Editors\BaseEditor.cs" />
-    <Compile Include="Editors\ObjectEditor.cs" />
     <Compile Include="ObjectTreeNodeType.cs" />
     <Compile Include="Controls\EditControls\ObjectTreeEditControl.cs">
       <SubType>UserControl</SubType>
@@ -140,7 +122,7 @@
     <Compile Include="Controls\AddonSelectControl.Designer.cs">
       <DependentUpon>AddonSelectControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="PaoConfig\AddonIDEditor.cs" />
+    <Compile Include="Editors\AddonIDEditor.cs" />
     <Compile Include="Controls\AddonInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -184,10 +166,10 @@
     <EmbeddedResource Include="Controls\AddonSelectControl.resx">
       <DependentUpon>AddonSelectControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PaoConfig\DataCommandInfoEditControl.resx">
+    <EmbeddedResource Include="Controls\EditControls\DataCommandInfoEditControl.resx">
       <DependentUpon>DataCommandInfoEditControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PaoConfig\DataFilterEditControl.resx">
+    <EmbeddedResource Include="Controls\EditControls\DataFilterEditControl.resx">
       <DependentUpon>DataFilterEditControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />

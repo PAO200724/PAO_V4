@@ -20,10 +20,21 @@ namespace PAO.Data
     public interface IDataFetch
     {
         /// <summary>
+        /// 表名
+        /// </summary>
+        string TableName { get; }
+        /// <summary>
+        /// 获取数据格式
+        /// </summary>
+        /// <returns>数据格式</returns>
+        DataTable GetDataSchema();
+        /// <summary>
         /// 获取数据
         /// </summary>
+        /// <param name="startIndex">其实索引</param>
+        /// <param name="count">数量</param>
         /// <param name="parameterValues">参数值</param>
-        /// <returns>数据集</returns>
-        DataSet FetchData(params DataField[] parameterValues);
+        /// <returns>数据表</returns>
+        DataTable FetchData(int startIndex, int count, params DataField[] parameterValues);
     }
 }

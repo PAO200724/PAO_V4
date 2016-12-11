@@ -44,11 +44,10 @@ namespace PAO.Data.Filters
         public SqlFilter() {
         }
 
-        public SqlFilter( string sql, string paramterName, string caption, DbType parameterType= DbType.String) {
+        public SqlFilter( string sql, string paramterName, DbType parameterType= DbType.String) {
             Name = paramterName;
             Type = parameterType;
             Sql = sql;
-            Caption = caption;
         }
 
         public virtual string GetFilterString(DataField[] paramValues) {

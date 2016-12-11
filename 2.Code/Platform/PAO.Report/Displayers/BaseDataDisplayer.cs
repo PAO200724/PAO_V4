@@ -33,6 +33,22 @@ namespace PAO.Report.Displayers
             }
         }
 
+        private Surface _Surface;
+
+        /// <summary>
+        /// 外观
+        /// </summary>
+        public virtual Surface Surface {
+            get { return _Surface; }
+            set { _Surface = value;
+                if(value != null) {
+                    BackColor = _Surface.BackColor;
+                    ForeColor = _Surface.ForeColor;
+                    Font = _Surface.Font;
+                }
+            }
+        }
+
         /// <summary>
         /// 获取布局数据
         /// </summary>

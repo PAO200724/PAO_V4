@@ -117,12 +117,8 @@ namespace PAO.UI.WinForm.MDI
                     dockPanel.Options.AllowFloating = false;
                     var headerButton = new CustomHeaderButton("...", ButtonStyle.PushButton);
                     dockPanel.Options.ShowCloseButton = false;
-                    dockPanel.ClosingPanel += (sender, e) =>
-                    {
-                        if(DialogResult != DialogResult.OK) {
-                            e.Cancel = true;
-                        }
-                    };
+                    dockPanel.Options.AllowDockAsTabbedDocument = false;
+                    dockPanel.Options.AllowFloating = false;
                     dockPanel.CustomHeaderButtons.Add(headerButton);
                     dockPanel.CustomButtonClick += (sender, e) =>
                     {
