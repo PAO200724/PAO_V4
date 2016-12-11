@@ -84,8 +84,8 @@
     <Compile Include="Data\IDataFilter.cs" />
     <Compile Include="Data\IDataService.cs" />
     <Compile Include="Data\IDataView.cs" />
-    <Compile Include="Data\IParameterProvide.cs" />
     <Compile Include="Data\IValueFetch.cs" />
+    <Compile Include="Data\ValueFetchers\AddonValueFetcher.cs" />
     <Compile Include="Data\ValueFetchers\ConstValueFetcher.cs" />
     <Compile Include="Data\ValueFetchers\DataServiceValueFetcher.cs" />
     <Compile Include="Data\ValueFetchers\StaticValueFetcher.cs" />

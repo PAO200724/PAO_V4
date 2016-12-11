@@ -21,7 +21,7 @@ namespace PAO.Report.Displayers
     /// 表格控件视图
     /// 作者：PAO
     /// </summary>
-    public partial class GridControlDataDisplayer : BaseDataDisplayer, IDataView, IParameterProvide
+    public partial class GridControlDataDisplayer : BaseDataDisplayer, IDataView
     {
         public GridControlDataDisplayer() {
             InitializeComponent();
@@ -58,28 +58,7 @@ namespace PAO.Report.Displayers
                 return this.GridControl.MainView;
             }
         }
-
-        public IEnumerable<DataField> ParameterValues {
-            get {
-                if (this.GridView.FocusedRowHandle != GridControl.InvalidRowHandle) {
-                    var dataRow = GridView.GetDataRow(this.GridView.FocusedRowHandle);
-                    var dataFields = new List<DataField>();
-                    foreach (DataColumn dataColumn in dataRow.Table.Columns) {
-                        if (!dataRow.IsNull(dataColumn)) {
-                            dataFields.Add(new DataField()
-                            {
-                                Name = dataColumn.ColumnName,
-                                Value = dataRow[dataColumn]
-                            });
-                        }
-                    }
-                    return dataFields;
-                }
-
-                return null;
-            }
-        }
-
+        
         private GridViewType _GridViewType;
 
         public GridViewType GridViewType {

@@ -26,7 +26,7 @@ namespace PAO.Report.Views
         /// <summary>
         /// 数据集
         /// </summary>
-        DataSet DataSet = new DataSet();
+        internal DataSet DataSource = new DataSet();
         /// <summary>
         /// 视图列表
         /// </summary>
@@ -48,7 +48,7 @@ namespace PAO.Report.Views
 
             if(view is IDataView) {
                 var dataView = view as IDataView;
-                dataView.SetDataSource(DataSet);
+                dataView.SetDataSource(DataSource);
             }
 
             var control = view as Control;
