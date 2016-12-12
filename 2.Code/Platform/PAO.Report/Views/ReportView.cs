@@ -14,6 +14,7 @@ using DevExpress.XtraBars.Docking;
 using DevExpress.XtraBars.Docking2010;
 using PAO.Data;
 using PAO.UI.WinForm;
+using PAO.UI;
 
 namespace PAO.Report.Views
 {
@@ -32,11 +33,21 @@ namespace PAO.Report.Views
         /// </summary>
         private List<IView> ViewList = new List<IView>();
 
+        /// <summary>
+        /// UI动作分派器
+        /// </summary>
+        [Browsable(false)]
+        public UIActionDispatcher UIActionDispatcher { get; private set; }
+
         public ReportView() {
             InitializeComponent();
             UIActionDispatcher = new UIActionDispatcher(this);
         }
 
+        private void RebuildTableColumns() {
+
+        }
+        
         #region 接口IViewContainer
         public void OpenView(IView view) {
             // 避免重复添加视图
@@ -82,12 +93,7 @@ namespace PAO.Report.Views
         #region ViewControl
         protected override void OnSetController(BaseController value) {
             var controller = value as ReportController;
-            if (controller.Controllers.IsNotNullOrEmpty()) {
-                foreach (var childController in controller.Controllers) {
-                    var view = childController.Value.CreateAndOpenView(this);
-                    view.UIActionDispatcher = UIActionDispatcher;
-                }
-            }
+
             this.BindingSourceTable.DataSource = controller.Tables;
 
             AddonPublic.ApplyAddonExtendProperties(controller);
@@ -123,9 +129,19 @@ namespace PAO.Report.Views
                 tabbedControlGroup.Padding = new DevExpress.XtraLayout.Utils.Padding(0);
             }
         }
+        
+        private void ButtonClearDataFields_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+            if (UIPublic.ShowYesNoDialog("您确定要清空所有表的列并重建吗？") == DialogReturn.Yes) {
 
-        private void ButtonAddTable_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            
+            }
+        }
+
+        private void ButtonRebuildDataFields_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+            RebuildTableColumns();
+        }
+
+        private void ButtonQuery_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+
         }
         #endregion
     }

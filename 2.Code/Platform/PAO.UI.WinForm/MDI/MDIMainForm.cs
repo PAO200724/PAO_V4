@@ -13,6 +13,10 @@ using PAO.UI.MVC;
 using DevExpress.XtraBars.Docking2010.Views.Tabbed;
 using DevExpress.XtraBars.Docking2010;
 using DevExpress.XtraScheduler;
+using PAO.App;
+using PAO.UI.WinForm.Security;
+using PAO.Security;
+using DevExpress.XtraSplashScreen;
 
 namespace PAO.UI.WinForm.MDI
 {
@@ -27,18 +31,16 @@ namespace PAO.UI.WinForm.MDI
         /// </summary>
         public static MDIMainForm Default;
 
-        private UIActionDispatcher _UIActionDispatcher;
+        [Browsable(false)]
         public UIActionDispatcher UIActionDispatcher {
-            get {
-                return _UIActionDispatcher;
-            }
+            get; private set;
         }
 
         public MDIMainForm() {
             Default = this;
             this.DialogResult = DialogResult.Cancel;
             InitializeComponent();
-            _UIActionDispatcher = new UIActionDispatcher(this);
+            UIActionDispatcher = new UIActionDispatcher(this);
             SetStatusText(Message_Status_Ready);
         }
 
@@ -143,7 +145,7 @@ namespace PAO.UI.WinForm.MDI
         public void AddMenuItem(IUIItem menuItem) {
             WinFormPublic.AddMenuToSubItem(this.MenuFunction, menuItem, this);
         }
-
+        
         private void ButtonRecoverLayout_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             var panelList = this.DockManager.Panels.ToList();
             foreach (var dockPanel in panelList) {
@@ -160,6 +162,28 @@ namespace PAO.UI.WinForm.MDI
             var view = e.Document.Control as IView;
             if(view != null) {
                 view.CloseView();
+            }
+        }
+
+        private void TimerDateTime_Tick(object sender, EventArgs e) {
+            try {
+                if (MDIApplication.Default.DateTimeService != null) {
+                    var dateTimeService = MDIApplication.Default.DateTimeService.Value;
+                    string dateTimeString = dateTimeService.GetCurrentDateTime().ToString("服务器时间：yyyy-MM-dd HH:mm:ss");
+                    this.StaticItemServerTime.Caption = dateTimeString;
+                }
+            } catch {
+                this.StaticItemServerTime.Caption = "服务器连接失败";
+            }
+        }
+
+        private void ButtonLogout_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+            this.Hide();
+            if (MDIApplication.Default.Login()) {
+                this.Show();
+            }
+            else { 
+                this.Close();
             }
         }
     }

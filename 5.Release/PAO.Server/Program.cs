@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using PAO.Time;
 
 namespace PAO.Server
 {
@@ -53,6 +54,7 @@ namespace PAO.Server
                         Port = 7990,
                         ServiceList = new Dictionary<string, Ref<PaoObject>>()
                              .Append("SecurityService", new SecurityService().ToRef())
+                             .Append("DateTimeService", new DateTimeService().ToRef())
                              .Append("DataService", new AddonFactory<PaoObject>("DataService")),
                     }.ToRef()),
 

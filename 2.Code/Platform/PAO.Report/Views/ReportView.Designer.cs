@@ -25,18 +25,17 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            this.components = new System.ComponentModel.Container();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem1 = new DevExpress.Utils.ToolTipTitleItem();
-            DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SuperToolTip superToolTip2 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem2 = new DevExpress.Utils.ToolTipTitleItem();
-            DevExpress.Utils.ToolTipItem toolTipItem2 = new DevExpress.Utils.ToolTipItem();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SuperToolTip superToolTip5 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem5 = new DevExpress.Utils.ToolTipTitleItem();
+            DevExpress.Utils.ToolTipItem toolTipItem5 = new DevExpress.Utils.ToolTipItem();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SuperToolTip superToolTip6 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem6 = new DevExpress.Utils.ToolTipTitleItem();
+            DevExpress.Utils.ToolTipItem toolTipItem6 = new DevExpress.Utils.ToolTipItem();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReportView));
             this.GridControlData = new DevExpress.XtraGrid.GridControl();
-            this.BindingSourceTable = new System.Windows.Forms.BindingSource(this.components);
+            this.BindingSourceTable = new System.Windows.Forms.BindingSource();
             this.GridViewTable = new DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView();
             this.GridBindTable = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.ColumnTableName = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
@@ -44,8 +43,12 @@
             this.EditItemLoadingProcess = new DevExpress.XtraEditors.Repository.RepositoryItemMarqueeProgressBar();
             this.ColumnTableDataCount = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.EditItemDataAction = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
-            this.BarManager = new DevExpress.XtraBars.BarManager(this.components);
+            this.BarManager = new DevExpress.XtraBars.BarManager();
             this.BarTools = new DevExpress.XtraBars.Bar();
+            this.ButtonQuery = new DevExpress.XtraBars.BarButtonItem();
+            this.MenuData = new DevExpress.XtraBars.BarSubItem();
+            this.ButtonRebuildDataFields = new DevExpress.XtraBars.BarButtonItem();
+            this.ButtonClearDataFields = new DevExpress.XtraBars.BarButtonItem();
             this.ButtonExport = new DevExpress.XtraBars.BarButtonItem();
             this.ButtonPrint = new DevExpress.XtraBars.BarButtonItem();
             this.MenuConfig = new DevExpress.XtraBars.BarSubItem();
@@ -55,17 +58,10 @@
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.DockManager = new DevExpress.XtraBars.Docking.DockManager(this.components);
-            this.BarManagerData = new DevExpress.XtraBars.BarManager(this.components);
-            this.BarData = new DevExpress.XtraBars.Bar();
-            this.ButtonQuerty = new DevExpress.XtraBars.BarButtonItem();
-            this.barDockControl1 = new DevExpress.XtraBars.BarDockControl();
-            this.barDockControl2 = new DevExpress.XtraBars.BarDockControl();
-            this.barDockControl3 = new DevExpress.XtraBars.BarDockControl();
-            this.barDockControl4 = new DevExpress.XtraBars.BarDockControl();
-            this.DockPanelData_Container = new DevExpress.XtraBars.Docking.ControlContainer();
+            this.DockManager = new DevExpress.XtraBars.Docking.DockManager();
             this.PanelContainerLeft = new DevExpress.XtraBars.Docking.DockPanel();
             this.DockPanelTables = new DevExpress.XtraBars.Docking.DockPanel();
+            this.DockPanelData_Container = new DevExpress.XtraBars.Docking.ControlContainer();
             this.DockPanelParameters = new DevExpress.XtraBars.Docking.DockPanel();
             this.DockPanelParameter_Container = new DevExpress.XtraBars.Docking.ControlContainer();
             this.VGridControlParameters = new DevExpress.XtraVerticalGrid.VGridControl();
@@ -80,10 +76,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.EditItemDataAction)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BarManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DockManager)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.BarManagerData)).BeginInit();
-            this.DockPanelData_Container.SuspendLayout();
             this.PanelContainerLeft.SuspendLayout();
             this.DockPanelTables.SuspendLayout();
+            this.DockPanelData_Container.SuspendLayout();
             this.DockPanelParameters.SuspendLayout();
             this.DockPanelParameter_Container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.VGridControlParameters)).BeginInit();
@@ -97,7 +92,7 @@
             // 
             this.GridControlData.DataSource = this.BindingSourceTable;
             this.GridControlData.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.GridControlData.Location = new System.Drawing.Point(0, 31);
+            this.GridControlData.Location = new System.Drawing.Point(0, 0);
             this.GridControlData.MainView = this.GridViewTable;
             this.GridControlData.MenuManager = this.BarManager;
             this.GridControlData.Name = "GridControlData";
@@ -105,7 +100,7 @@
             this.EditItemLoadingProcess,
             this.EditItemDataAction,
             this.EditItemIcon});
-            this.GridControlData.Size = new System.Drawing.Size(226, 142);
+            this.GridControlData.Size = new System.Drawing.Size(226, 199);
             this.GridControlData.TabIndex = 0;
             this.GridControlData.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.GridViewTable});
@@ -185,25 +180,25 @@
             // EditItemDataAction
             // 
             this.EditItemDataAction.AutoHeight = false;
-            toolTipTitleItem1.Appearance.Image = global::PAO.Report.Properties.Resources.doublenext_16x16;
-            toolTipTitleItem1.Appearance.Options.UseImage = true;
-            toolTipTitleItem1.Image = global::PAO.Report.Properties.Resources.doublenext_16x16;
-            toolTipTitleItem1.Text = "获取下一批数据";
-            toolTipItem1.LeftIndent = 6;
-            toolTipItem1.Text = "继续查询，获取下一批数据，此方法速度较快";
-            superToolTip1.Items.Add(toolTipTitleItem1);
-            superToolTip1.Items.Add(toolTipItem1);
-            toolTipTitleItem2.Appearance.Image = global::PAO.Report.Properties.Resources.last_16x16;
-            toolTipTitleItem2.Appearance.Options.UseImage = true;
-            toolTipTitleItem2.Image = global::PAO.Report.Properties.Resources.last_16x16;
-            toolTipTitleItem2.Text = "获取所有数据";
-            toolTipItem2.LeftIndent = 6;
-            toolTipItem2.Text = "查询到最后一条数据为止，此方法较慢";
-            superToolTip2.Items.Add(toolTipTitleItem2);
-            superToolTip2.Items.Add(toolTipItem2);
+            toolTipTitleItem5.Appearance.Image = global::PAO.Report.Properties.Resources.doublenext_16x16;
+            toolTipTitleItem5.Appearance.Options.UseImage = true;
+            toolTipTitleItem5.Image = global::PAO.Report.Properties.Resources.doublenext_16x16;
+            toolTipTitleItem5.Text = "获取下一批数据";
+            toolTipItem5.LeftIndent = 6;
+            toolTipItem5.Text = "继续查询，获取下一批数据，此方法速度较快";
+            superToolTip5.Items.Add(toolTipTitleItem5);
+            superToolTip5.Items.Add(toolTipItem5);
+            toolTipTitleItem6.Appearance.Image = global::PAO.Report.Properties.Resources.last_16x16;
+            toolTipTitleItem6.Appearance.Options.UseImage = true;
+            toolTipTitleItem6.Image = global::PAO.Report.Properties.Resources.last_16x16;
+            toolTipTitleItem6.Text = "获取所有数据";
+            toolTipItem6.LeftIndent = 6;
+            toolTipItem6.Text = "查询到最后一条数据为止，此方法较慢";
+            superToolTip6.Items.Add(toolTipTitleItem6);
+            superToolTip6.Items.Add(toolTipItem6);
             this.EditItemDataAction.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, global::PAO.Report.Properties.Resources.next_16x16, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, superToolTip1, true),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, global::PAO.Report.Properties.Resources.last_16x16, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, superToolTip2, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, global::PAO.Report.Properties.Resources.next_16x16, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, "", null, superToolTip5, true),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, global::PAO.Report.Properties.Resources.last_16x16, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject6, "", null, superToolTip6, true)});
             this.EditItemDataAction.Name = "EditItemDataAction";
             // 
             // BarManager
@@ -221,8 +216,12 @@
             this.ButtonExport,
             this.ButtonPrint,
             this.MenuConfig,
-            this.ButtonRecoverLayout});
-            this.BarManager.MaxItemId = 12;
+            this.ButtonRecoverLayout,
+            this.ButtonQuery,
+            this.MenuData,
+            this.ButtonRebuildDataFields,
+            this.ButtonClearDataFields});
+            this.BarManager.MaxItemId = 16;
             this.BarManager.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.RepositoryItemTextEditCaption});
             // 
@@ -233,11 +232,47 @@
             this.BarTools.DockRow = 0;
             this.BarTools.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
             this.BarTools.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.ButtonExport, "", true, true, true, 0, null, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.ButtonPrint, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.ButtonQuery, "", true, true, true, 0, null, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.MenuData, "", true, true, true, 0, null, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.MenuConfig, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph)});
             this.BarTools.OptionsBar.DisableClose = true;
             this.BarTools.Text = "工具条";
+            // 
+            // ButtonQuery
+            // 
+            this.ButtonQuery.Caption = "查询(Q)";
+            this.ButtonQuery.Glyph = global::PAO.Report.Properties.Resources.zoom_16x16;
+            this.ButtonQuery.Id = 12;
+            this.ButtonQuery.LargeGlyph = global::PAO.Report.Properties.Resources.zoom_32x32;
+            this.ButtonQuery.Name = "ButtonQuery";
+            this.ButtonQuery.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonQuery_ItemClick);
+            // 
+            // MenuData
+            // 
+            this.MenuData.Caption = "数据(&D)";
+            this.MenuData.Glyph = global::PAO.Report.Properties.Resources.database_16x16;
+            this.MenuData.Id = 13;
+            this.MenuData.LargeGlyph = global::PAO.Report.Properties.Resources.database_32x32;
+            this.MenuData.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.ButtonExport, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.ButtonPrint, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
+            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonRebuildDataFields, true),
+            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonClearDataFields)});
+            this.MenuData.Name = "MenuData";
+            // 
+            // ButtonRebuildDataFields
+            // 
+            this.ButtonRebuildDataFields.Caption = "重建表字段(&R)";
+            this.ButtonRebuildDataFields.Id = 14;
+            this.ButtonRebuildDataFields.Name = "ButtonRebuildDataFields";
+            this.ButtonRebuildDataFields.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonRebuildDataFields_ItemClick);
+            // 
+            // ButtonClearDataFields
+            // 
+            this.ButtonClearDataFields.Caption = "清空并重建表字段(&C)";
+            this.ButtonClearDataFields.Id = 15;
+            this.ButtonClearDataFields.Name = "ButtonClearDataFields";
+            this.ButtonClearDataFields.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonClearDataFields_ItemClick);
             // 
             // ButtonExport
             // 
@@ -285,28 +320,28 @@
             this.barDockControlTop.CausesValidation = false;
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(536, 31);
+            this.barDockControlTop.Size = new System.Drawing.Size(880, 31);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 470);
-            this.barDockControlBottom.Size = new System.Drawing.Size(536, 0);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 527);
+            this.barDockControlBottom.Size = new System.Drawing.Size(880, 0);
             // 
             // barDockControlLeft
             // 
             this.barDockControlLeft.CausesValidation = false;
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 31);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 439);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 496);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(536, 31);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 439);
+            this.barDockControlRight.Location = new System.Drawing.Point(880, 31);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 496);
             // 
             // DockManager
             // 
@@ -325,77 +360,6 @@
             "DevExpress.XtraBars.Navigation.OfficeNavigationBar",
             "DevExpress.XtraBars.Navigation.TileNavPane"});
             // 
-            // BarManagerData
-            // 
-            this.BarManagerData.Bars.AddRange(new DevExpress.XtraBars.Bar[] {
-            this.BarData});
-            this.BarManagerData.DockControls.Add(this.barDockControl1);
-            this.BarManagerData.DockControls.Add(this.barDockControl2);
-            this.BarManagerData.DockControls.Add(this.barDockControl3);
-            this.BarManagerData.DockControls.Add(this.barDockControl4);
-            this.BarManagerData.DockManager = this.DockManager;
-            this.BarManagerData.Form = this.DockPanelData_Container;
-            this.BarManagerData.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
-            this.ButtonQuerty});
-            this.BarManagerData.MaxItemId = 7;
-            // 
-            // BarData
-            // 
-            this.BarData.BarName = "数据工具条";
-            this.BarData.DockCol = 0;
-            this.BarData.DockRow = 0;
-            this.BarData.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
-            this.BarData.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.ButtonQuerty, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph)});
-            this.BarData.Text = "数据工具条";
-            // 
-            // ButtonQuerty
-            // 
-            this.ButtonQuerty.Caption = "查询(&Q)";
-            this.ButtonQuerty.Glyph = global::PAO.Report.Properties.Resources.zoom_16x16;
-            this.ButtonQuerty.Id = 0;
-            this.ButtonQuerty.Name = "ButtonQuerty";
-            // 
-            // barDockControl1
-            // 
-            this.barDockControl1.CausesValidation = false;
-            this.barDockControl1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.barDockControl1.Location = new System.Drawing.Point(0, 0);
-            this.barDockControl1.Size = new System.Drawing.Size(226, 31);
-            // 
-            // barDockControl2
-            // 
-            this.barDockControl2.CausesValidation = false;
-            this.barDockControl2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControl2.Location = new System.Drawing.Point(0, 173);
-            this.barDockControl2.Size = new System.Drawing.Size(226, 0);
-            // 
-            // barDockControl3
-            // 
-            this.barDockControl3.CausesValidation = false;
-            this.barDockControl3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControl3.Location = new System.Drawing.Point(0, 31);
-            this.barDockControl3.Size = new System.Drawing.Size(0, 142);
-            // 
-            // barDockControl4
-            // 
-            this.barDockControl4.CausesValidation = false;
-            this.barDockControl4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControl4.Location = new System.Drawing.Point(226, 31);
-            this.barDockControl4.Size = new System.Drawing.Size(0, 142);
-            // 
-            // DockPanelData_Container
-            // 
-            this.DockPanelData_Container.Controls.Add(this.GridControlData);
-            this.DockPanelData_Container.Controls.Add(this.barDockControl3);
-            this.DockPanelData_Container.Controls.Add(this.barDockControl4);
-            this.DockPanelData_Container.Controls.Add(this.barDockControl2);
-            this.DockPanelData_Container.Controls.Add(this.barDockControl1);
-            this.DockPanelData_Container.Location = new System.Drawing.Point(4, 23);
-            this.DockPanelData_Container.Name = "DockPanelData_Container";
-            this.DockPanelData_Container.Size = new System.Drawing.Size(226, 173);
-            this.DockPanelData_Container.TabIndex = 0;
-            // 
             // PanelContainerLeft
             // 
             this.PanelContainerLeft.Controls.Add(this.DockPanelTables);
@@ -405,7 +369,7 @@
             this.PanelContainerLeft.Location = new System.Drawing.Point(0, 31);
             this.PanelContainerLeft.Name = "PanelContainerLeft";
             this.PanelContainerLeft.OriginalSize = new System.Drawing.Size(234, 200);
-            this.PanelContainerLeft.Size = new System.Drawing.Size(234, 439);
+            this.PanelContainerLeft.Size = new System.Drawing.Size(234, 496);
             this.PanelContainerLeft.Text = "panelContainer1";
             // 
             // DockPanelTables
@@ -418,21 +382,29 @@
             this.DockPanelTables.Options.AllowDockAsTabbedDocument = false;
             this.DockPanelTables.Options.AllowFloating = false;
             this.DockPanelTables.Options.ShowCloseButton = false;
-            this.DockPanelTables.OriginalSize = new System.Drawing.Size(200, 200);
-            this.DockPanelTables.Size = new System.Drawing.Size(234, 200);
+            this.DockPanelTables.OriginalSize = new System.Drawing.Size(234, 200);
+            this.DockPanelTables.Size = new System.Drawing.Size(234, 226);
             this.DockPanelTables.Text = "数据";
+            // 
+            // DockPanelData_Container
+            // 
+            this.DockPanelData_Container.Controls.Add(this.GridControlData);
+            this.DockPanelData_Container.Location = new System.Drawing.Point(4, 23);
+            this.DockPanelData_Container.Name = "DockPanelData_Container";
+            this.DockPanelData_Container.Size = new System.Drawing.Size(226, 199);
+            this.DockPanelData_Container.TabIndex = 0;
             // 
             // DockPanelParameters
             // 
             this.DockPanelParameters.Controls.Add(this.DockPanelParameter_Container);
             this.DockPanelParameters.Dock = DevExpress.XtraBars.Docking.DockingStyle.Fill;
             this.DockPanelParameters.ID = new System.Guid("ab3584d5-acc5-4fc2-8785-b22ac016b05d");
-            this.DockPanelParameters.Location = new System.Drawing.Point(0, 200);
+            this.DockPanelParameters.Location = new System.Drawing.Point(0, 226);
             this.DockPanelParameters.Name = "DockPanelParameters";
             this.DockPanelParameters.Options.AllowFloating = false;
             this.DockPanelParameters.Options.ShowCloseButton = false;
-            this.DockPanelParameters.OriginalSize = new System.Drawing.Size(200, 200);
-            this.DockPanelParameters.Size = new System.Drawing.Size(234, 239);
+            this.DockPanelParameters.OriginalSize = new System.Drawing.Size(234, 239);
+            this.DockPanelParameters.Size = new System.Drawing.Size(234, 270);
             this.DockPanelParameters.Text = "参数";
             // 
             // DockPanelParameter_Container
@@ -440,7 +412,7 @@
             this.DockPanelParameter_Container.Controls.Add(this.VGridControlParameters);
             this.DockPanelParameter_Container.Location = new System.Drawing.Point(4, 23);
             this.DockPanelParameter_Container.Name = "DockPanelParameter_Container";
-            this.DockPanelParameter_Container.Size = new System.Drawing.Size(226, 212);
+            this.DockPanelParameter_Container.Size = new System.Drawing.Size(226, 243);
             this.DockPanelParameter_Container.TabIndex = 0;
             // 
             // VGridControlParameters
@@ -448,7 +420,7 @@
             this.VGridControlParameters.Dock = System.Windows.Forms.DockStyle.Fill;
             this.VGridControlParameters.Location = new System.Drawing.Point(0, 0);
             this.VGridControlParameters.Name = "VGridControlParameters";
-            this.VGridControlParameters.Size = new System.Drawing.Size(226, 212);
+            this.VGridControlParameters.Size = new System.Drawing.Size(226, 243);
             this.VGridControlParameters.TabIndex = 0;
             // 
             // RepositoryItemTextEditCaption
@@ -469,7 +441,7 @@
             this.LayoutControl.Name = "LayoutControl";
             this.LayoutControl.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(685, 219, 250, 350);
             this.LayoutControl.Root = this.LayoutControlGroupRoot;
-            this.LayoutControl.Size = new System.Drawing.Size(302, 439);
+            this.LayoutControl.Size = new System.Drawing.Size(646, 496);
             this.LayoutControl.TabIndex = 0;
             this.LayoutControl.Text = "布局控件";
             this.LayoutControl.ItemAdded += new System.EventHandler(this.LayoutControl_ItemAdded);
@@ -496,6 +468,7 @@
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
             this.Name = "ReportView";
+            this.Size = new System.Drawing.Size(880, 527);
             ((System.ComponentModel.ISupportInitialize)(this.GridControlData)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BindingSourceTable)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewTable)).EndInit();
@@ -503,11 +476,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.EditItemDataAction)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BarManager)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DockManager)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.BarManagerData)).EndInit();
-            this.DockPanelData_Container.ResumeLayout(false);
-            this.DockPanelData_Container.PerformLayout();
             this.PanelContainerLeft.ResumeLayout(false);
             this.DockPanelTables.ResumeLayout(false);
+            this.DockPanelData_Container.ResumeLayout(false);
             this.DockPanelParameters.ResumeLayout(false);
             this.DockPanelParameter_Container.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.VGridControlParameters)).EndInit();
@@ -546,13 +517,6 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemMarqueeProgressBar EditItemLoadingProcess;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn ColumnTableDataCount;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit EditItemDataAction;
-        private DevExpress.XtraBars.BarDockControl barDockControl3;
-        private DevExpress.XtraBars.BarDockControl barDockControl4;
-        private DevExpress.XtraBars.BarDockControl barDockControl2;
-        private DevExpress.XtraBars.BarDockControl barDockControl1;
-        private DevExpress.XtraBars.BarManager BarManagerData;
-        private DevExpress.XtraBars.Bar BarData;
-        private DevExpress.XtraBars.BarButtonItem ButtonQuerty;
         private DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit EditItemIcon;
         private System.Windows.Forms.BindingSource BindingSourceTable;
         private DevExpress.XtraBars.Docking.DockPanel PanelContainerLeft;
@@ -560,5 +524,9 @@
         private DevExpress.XtraBars.Docking.ControlContainer DockPanelParameter_Container;
         private DevExpress.XtraVerticalGrid.VGridControl VGridControlParameters;
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand GridBindTable;
+        private DevExpress.XtraBars.BarButtonItem ButtonQuery;
+        private DevExpress.XtraBars.BarSubItem MenuData;
+        private DevExpress.XtraBars.BarButtonItem ButtonRebuildDataFields;
+        private DevExpress.XtraBars.BarButtonItem ButtonClearDataFields;
     }
 }

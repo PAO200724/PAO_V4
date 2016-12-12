@@ -12,6 +12,8 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Windows.Forms;
+using PAO.Time;
+using DevExpress.XtraSplashScreen;
 
 namespace PAO.UI.WinForm.MDI
 {
@@ -126,6 +128,22 @@ namespace PAO.UI.WinForm.MDI
         }
         #endregion 属性：MenuItems
 
+        #region 属性：DateTimeService
+        /// <summary>
+        /// 属性：DateTimeService
+        /// 日期时间服务
+        /// 日期时间服务
+        /// </summary>
+        [AddonProperty]
+        [DataMember(EmitDefaultValue = false)]
+        [Name("日期时间服务")]
+        [Description("日期时间服务")]
+        public Ref<IDateTime> DateTimeService {
+            get;
+            set;
+        }
+        #endregion 属性：DateTimeService
+
         #endregion
         public MDIApplication() {
         }
@@ -139,6 +157,19 @@ namespace PAO.UI.WinForm.MDI
             UIPublic.DefaultUserInterface = new WinFormUI();
         }
 
+        public bool Login() {
+            SecurityPublic.ApplicationUser = null;
+            SecurityPublic.ThreadUser = null;
+
+            var loginControl = new LoginControl();
+            loginControl.SecurtiyService = SecurityService.Value;
+            if (WinFormPublic.ShowDialog(loginControl) == DialogReturn.OK) {
+                return true;
+            }
+
+            return false;
+        }
+        
         public override void OnRunning() {
             if (SkinName.IsNotNullOrEmpty()) { 
                 DevExpress.LookAndFeel.UserLookAndFeel.Default.UseDefaultLookAndFeel = false;
@@ -146,11 +177,9 @@ namespace PAO.UI.WinForm.MDI
                 DevExpress.LookAndFeel.UserLookAndFeel.Default.SkinName = SkinName;
                 DevExpress.Skins.SkinManager.EnableFormSkins();
             }
-            var loginControl = new LoginControl();
-            loginControl.SecurtiyService = SecurityService.Value;
-            if (WinFormPublic.ShowDialog(loginControl) != DialogReturn.OK) {
+
+            if (!Login())
                 return;
-            }
 
             MainForm = new MDIMainForm();
             MVCPublic.MainForm = MainForm;

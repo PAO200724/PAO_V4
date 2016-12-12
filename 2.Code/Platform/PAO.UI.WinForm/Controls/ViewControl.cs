@@ -42,10 +42,6 @@ namespace PAO.UI.WinForm.Controls
         /// </summary>
         public IViewContainer ViewContainer { get; set; }
         /// <summary>
-        /// UI动作分发器
-        /// </summary>
-        public UIActionDispatcher UIActionDispatcher { get; set; }
-        /// <summary>
         /// 关闭
         /// </summary>
         public event EventHandler Closing;
@@ -96,8 +92,8 @@ namespace PAO.UI.WinForm.Controls
         /// <param name="parameters">动作参数</param>
         /// <param name="asyncRun">异步运行</param>
         public void DispatchAction(string actionName, IEnumerable<object> parameters, bool asyncRun = false) {
-            if(UIActionDispatcher != null) {
-                UIActionDispatcher.DoUIAction(this, actionName, parameters, asyncRun);
+            if(ViewContainer != null && ViewContainer.UIActionDispatcher != null) {
+                ViewContainer.UIActionDispatcher.DoUIAction(this, actionName, parameters, asyncRun);
             }
         }
     }

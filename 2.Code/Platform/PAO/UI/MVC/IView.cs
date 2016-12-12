@@ -34,9 +34,5 @@ namespace PAO.UI.MVC
         /// 视图容器
         /// </summary>
         IViewContainer ViewContainer { get; set; }
-        /// <summary>
-        /// UI动作分发器
-        /// </summary>
-        UIActionDispatcher UIActionDispatcher { get; set; }
     }
 }

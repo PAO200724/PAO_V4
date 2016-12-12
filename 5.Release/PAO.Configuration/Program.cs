@@ -18,6 +18,7 @@ using PAO.Report;
 using PAO.Report.Views;
 using PAO.Data;
 using PAO.Data.DataFetchers;
+using PAO.Time;
 
 namespace PAO.Configuration
 {
@@ -49,6 +50,11 @@ namespace PAO.Configuration
                 ID = "ConfigApplication",
                 Caption = "系统配置程序",
                 ClientID = "PAO_Config",
+                DateTimeService = new TcpRemoteFactory<IDateTime>()
+                {
+                    ServerAddress = "localhost:7990",
+                    ServiceName = "DateTimeService"
+                },
                 EventProcessorList = new List<PAO.Ref<BaseEventProcessor>>()
                     .Append(DebugLogger.Default.ToRef())
                     .Append(EventLogger.Default.ToRef()),

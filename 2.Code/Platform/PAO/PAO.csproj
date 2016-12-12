@@ -143,6 +143,8 @@
     <Compile Include="Security\UserToken.cs" />
     <Compile Include="Server\BaseServer.cs" />
     <Compile Include="ThreadPublic.cs" />
+    <Compile Include="Time\DateTimeService.cs" />
+    <Compile Include="Time\IDateTime.cs" />
     <Compile Include="Trans\PaoTransaction.cs" />
     <Compile Include="Trans\TransactionEventInfo.cs" />
     <Compile Include="Trans\TransStatus_Committed.cs" />

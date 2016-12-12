@@ -26,6 +26,7 @@
         /// </summary>
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
+            DevExpress.XtraSplashScreen.SplashScreenManager SplashScreenManager = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::PAO.UI.WinForm.Forms.PaoSplashScreen), true, true);
             this.DockManager = new DevExpress.XtraBars.Docking.DockManager(this.components);
             this.BarManager = new DevExpress.XtraBars.BarManager(this.components);
             this.BarMain = new DevExpress.XtraBars.Bar();
@@ -38,6 +39,7 @@
             this.BarToolbarsListItem = new DevExpress.XtraBars.BarToolbarsListItem();
             this.ButtonExit = new DevExpress.XtraBars.BarButtonItem();
             this.MenuCurrentUser = new DevExpress.XtraBars.BarSubItem();
+            this.ButtonLogout = new DevExpress.XtraBars.BarButtonItem();
             this.MenuFunction = new DevExpress.XtraBars.BarSubItem();
             this.BarStatus = new DevExpress.XtraBars.Bar();
             this.EditItemProgressBar = new DevExpress.XtraBars.BarEditItem();
@@ -55,6 +57,7 @@
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.DocumentManager = new DevExpress.XtraBars.Docking2010.DocumentManager(this.components);
             this.TabbedView = new DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView(this.components);
+            this.TimerDateTime = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.DockManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BarManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemProgressBar)).BeginInit();
@@ -104,9 +107,10 @@
             this.MenuCurrentUser,
             this.MenuFunction,
             this.MenuToolBar,
-            this.ButtonRecoverLayout});
+            this.ButtonRecoverLayout,
+            this.ButtonLogout});
             this.BarManager.MainMenu = this.BarMain;
-            this.BarManager.MaxItemId = 23;
+            this.BarManager.MaxItemId = 24;
             this.BarManager.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.RepositoryItemCalcEdit,
             this.RepositoryItemProgressBar,
@@ -119,9 +123,9 @@
             this.BarMain.DockRow = 0;
             this.BarMain.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
             this.BarMain.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.MenuSystem),
-            new DevExpress.XtraBars.LinkPersistInfo(this.MenuCurrentUser),
-            new DevExpress.XtraBars.LinkPersistInfo(this.MenuFunction)});
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.MenuSystem, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.MenuCurrentUser, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.MenuFunction, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph)});
             this.BarMain.OptionsBar.DisableClose = true;
             this.BarMain.OptionsBar.MultiLine = true;
             this.BarMain.OptionsBar.UseWholeRow = true;
@@ -130,7 +134,9 @@
             // MenuSystem
             // 
             this.MenuSystem.Caption = "系统(&S)";
+            this.MenuSystem.Glyph = global::PAO.UI.WinForm.Properties.Resources.operatingsystem_16x16;
             this.MenuSystem.Id = 0;
+            this.MenuSystem.LargeGlyph = global::PAO.UI.WinForm.Properties.Resources.operatingsystem_32x32;
             this.MenuSystem.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.MenuSkin),
             new DevExpress.XtraBars.LinkPersistInfo(this.MenuWindow),
@@ -141,13 +147,17 @@
             // MenuSkin
             // 
             this.MenuSkin.Caption = "皮肤(&S)";
+            this.MenuSkin.Glyph = global::PAO.UI.WinForm.Properties.Resources.colors_16x16;
             this.MenuSkin.Id = 2;
+            this.MenuSkin.LargeGlyph = global::PAO.UI.WinForm.Properties.Resources.colors_32x32;
             this.MenuSkin.Name = "MenuSkin";
             // 
             // MenuWindow
             // 
             this.MenuWindow.Caption = "窗口(&W)";
+            this.MenuWindow.Glyph = global::PAO.UI.WinForm.Properties.Resources.windows_16x16;
             this.MenuWindow.Id = 5;
+            this.MenuWindow.LargeGlyph = global::PAO.UI.WinForm.Properties.Resources.windows_32x32;
             this.MenuWindow.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.ButtonRecoverLayout, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.BarDockingMenuItem, true)});
@@ -156,7 +166,9 @@
             // ButtonRecoverLayout
             // 
             this.ButtonRecoverLayout.Caption = "恢复布局(&R)";
+            this.ButtonRecoverLayout.Glyph = global::PAO.UI.WinForm.Properties.Resources.reset_16x16;
             this.ButtonRecoverLayout.Id = 22;
+            this.ButtonRecoverLayout.LargeGlyph = global::PAO.UI.WinForm.Properties.Resources.reset_32x32;
             this.ButtonRecoverLayout.Name = "ButtonRecoverLayout";
             this.ButtonRecoverLayout.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonRecoverLayout_ItemClick);
             // 
@@ -169,7 +181,9 @@
             // MenuToolBar
             // 
             this.MenuToolBar.Caption = "工具条(&T)";
+            this.MenuToolBar.Glyph = global::PAO.UI.WinForm.Properties.Resources.ide_16x16;
             this.MenuToolBar.Id = 21;
+            this.MenuToolBar.LargeGlyph = global::PAO.UI.WinForm.Properties.Resources.ide_32x32;
             this.MenuToolBar.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.BarToolbarsListItem)});
             this.MenuToolBar.Name = "MenuToolBar";
@@ -183,7 +197,9 @@
             // ButtonExit
             // 
             this.ButtonExit.Caption = "退出(&X)";
+            this.ButtonExit.Glyph = global::PAO.UI.WinForm.Properties.Resources.close_16x16;
             this.ButtonExit.Id = 1;
+            this.ButtonExit.LargeGlyph = global::PAO.UI.WinForm.Properties.Resources.close_32x32;
             this.ButtonExit.Name = "ButtonExit";
             this.ButtonExit.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonExit_ItemClick);
             // 
@@ -191,13 +207,28 @@
             // 
             this.MenuCurrentUser.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
             this.MenuCurrentUser.Caption = "当前用户";
+            this.MenuCurrentUser.Glyph = global::PAO.UI.WinForm.Properties.Resources.customer_16x16;
             this.MenuCurrentUser.Id = 18;
+            this.MenuCurrentUser.LargeGlyph = global::PAO.UI.WinForm.Properties.Resources.customer_32x32;
+            this.MenuCurrentUser.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonLogout)});
             this.MenuCurrentUser.Name = "MenuCurrentUser";
+            // 
+            // ButtonLogout
+            // 
+            this.ButtonLogout.Caption = "注销(&L)";
+            this.ButtonLogout.Glyph = global::PAO.UI.WinForm.Properties.Resources.undo_16x16;
+            this.ButtonLogout.Id = 23;
+            this.ButtonLogout.LargeGlyph = global::PAO.UI.WinForm.Properties.Resources.undo_32x32;
+            this.ButtonLogout.Name = "ButtonLogout";
+            this.ButtonLogout.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonLogout_ItemClick);
             // 
             // MenuFunction
             // 
             this.MenuFunction.Caption = "扩展功能(&E)";
+            this.MenuFunction.Glyph = global::PAO.UI.WinForm.Properties.Resources.morefunctions_16x16;
             this.MenuFunction.Id = 20;
+            this.MenuFunction.LargeGlyph = global::PAO.UI.WinForm.Properties.Resources.morefunctions_32x32;
             this.MenuFunction.Name = "MenuFunction";
             // 
             // BarStatus
@@ -249,12 +280,14 @@
             this.EditItemCalculate.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
             this.EditItemCalculate.Caption = "计算器";
             this.EditItemCalculate.Edit = this.RepositoryItemCalcEdit;
-            this.EditItemCalculate.EditWidth = 88;
+            this.EditItemCalculate.EditWidth = 121;
             this.EditItemCalculate.Id = 10;
             this.EditItemCalculate.Name = "EditItemCalculate";
             // 
             // RepositoryItemCalcEdit
             // 
+            this.RepositoryItemCalcEdit.Appearance.Options.UseTextOptions = true;
+            this.RepositoryItemCalcEdit.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
             this.RepositoryItemCalcEdit.AutoHeight = false;
             this.RepositoryItemCalcEdit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -322,6 +355,16 @@
             // 
             this.TabbedView.DocumentClosing += new DevExpress.XtraBars.Docking2010.Views.DocumentCancelEventHandler(this.TabbedView_DocumentClosing);
             // 
+            // TimerDateTime
+            // 
+            this.TimerDateTime.Enabled = true;
+            this.TimerDateTime.Interval = 1000;
+            this.TimerDateTime.Tick += new System.EventHandler(this.TimerDateTime_Tick);
+            // 
+            // SplashScreenManager
+            // 
+            SplashScreenManager.ClosingDelay = 500;
+            // 
             // MDIMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -380,5 +423,7 @@
         private DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView TabbedView;
         private DevExpress.XtraBars.BarSubItem MenuToolBar;
         private DevExpress.XtraBars.BarButtonItem ButtonRecoverLayout;
+        private System.Windows.Forms.Timer TimerDateTime;
+        private DevExpress.XtraBars.BarButtonItem ButtonLogout;
     }
 }
