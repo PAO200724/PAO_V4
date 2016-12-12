@@ -8,6 +8,7 @@ using System.Linq;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using PAO.UI.WinForm;
+using PAO.Config.Editors;
 
 namespace PAO.Config.Controls.EditControls
 {
@@ -55,7 +56,10 @@ namespace PAO.Config.Controls.EditControls
 
         private void PropertyGridControl_CustomRecordCellEdit(object sender, DevExpress.XtraVerticalGrid.Events.GetCustomRowCellEditEventArgs e) {
             var propDesc = PropertyGridControl.GetPropertyDescriptor(e.Row);
-            e.RepositoryItem = ConfigPublic.CreateDefaultEditor(propDesc);
+            var edit = WinFormPublic.GetDefaultEditor(propDesc);
+            if (edit == null)
+                edit = new ObjectEditor();
+            e.RepositoryItem = edit.CreateEditor();
         }
 
         private void ButtonExport_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {

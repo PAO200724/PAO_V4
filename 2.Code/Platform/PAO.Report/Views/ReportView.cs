@@ -15,6 +15,10 @@ using DevExpress.XtraBars.Docking2010;
 using PAO.Data;
 using PAO.UI.WinForm;
 using PAO.UI;
+using DevExpress.XtraVerticalGrid.Rows;
+using PAO.Report.ValueFetchers;
+using PAO.UI.WinForm.Editors;
+using DevExpress.XtraEditors.Repository;
 
 namespace PAO.Report.Views
 {
@@ -43,9 +47,29 @@ namespace PAO.Report.Views
             InitializeComponent();
             UIActionDispatcher = new UIActionDispatcher(this);
         }
-
+        
         private void RebuildTableColumns() {
 
+        }
+
+        private void InitValueFetcher() {
+            var controller = Controller as ReportController;
+            foreach (var reportTable in controller.Tables) {
+
+                foreach (var parameter in reportTable.QueryParameters) {
+                    if (parameter.ValueFetcher != null && parameter.ValueFetcher.Value is IReportElement) {
+                        parameter.ValueFetcher.Value.As<IReportElement>().ReportView = this;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 重建参数视图
+        /// </summary>
+        private void RecreateTableView() {
+            var controller = Controller as ReportController;
+            this.ReportTableListControl.ReportDataTables = controller.Tables;
         }
         
         #region 接口IViewContainer
@@ -93,12 +117,21 @@ namespace PAO.Report.Views
         #region ViewControl
         protected override void OnSetController(BaseController value) {
             var controller = value as ReportController;
+            InitValueFetcher();
 
+            // 打开子视图控制器
             this.BindingSourceTable.DataSource = controller.Tables;
+            foreach(var childControllerRef in controller.Controllers) {
+                var childController = childControllerRef.Value;
+                childController.CreateAndOpenView(this);
+            }
 
+            // 重建参数视图
+            RecreateTableView();
+
+            // 读取布局
             AddonPublic.ApplyAddonExtendProperties(controller);
             this.LayoutControl.SetLayoutData(controller.LayoutData);
-            this.DockManager.SetLayoutData(controller.DockPanelLayoutData);
         }
 
         protected override void OnClosing() {
@@ -109,7 +142,6 @@ namespace PAO.Report.Views
             }
             var controller = Controller as ReportController;
             controller.LayoutData = this.LayoutControl.GetLayoutData();
-            controller.DockPanelLayoutData = this.DockManager.GetLayoutData();
             AddonPublic.FetchAddonExtendProperties(controller, "LayoutData", "DockPanelLayoutData");
         }
         #endregion
@@ -141,7 +173,10 @@ namespace PAO.Report.Views
         }
 
         private void ButtonQuery_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+            var controller = Controller as ReportController;
+            foreach (var reportTable in controller.Tables) {
 
+            }
         }
         #endregion
     }

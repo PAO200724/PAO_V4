@@ -1,4 +1,8 @@
-﻿using PAO.Data;
+﻿using DevExpress.XtraEditors.Repository;
+using DevExpress.XtraVerticalGrid;
+using DevExpress.XtraVerticalGrid.Rows;
+using PAO.Data;
+using PAO.UI.WinForm;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -63,5 +67,42 @@ namespace PAO.Report
                 }
             }
         }
+
+        #region ParameterInput
+        public static void CreateParameterInputRows(VGridControl parameterGridControl, IEnumerable<ReportDataTable> reportDataTables) {
+            parameterGridControl.Rows.Clear();
+            foreach (var reportTable in reportDataTables) {
+                var categoryRow = new CategoryRow(reportTable.Caption);
+
+                foreach (var parameter in reportTable.QueryParameters) {
+                    if (parameter.UserInput) {
+                        var editorRow = new EditorRow(parameter.Caption);
+                        editorRow.Properties.Caption = parameter.Caption;
+                        editorRow.Properties.FieldName = parameter.Name;
+                        RepositoryItem editor = null;
+                        if (parameter.Editor != null) {
+                            editor = parameter.Editor.CreateEditor();
+                        }
+                        else {
+                            Type valueType = DataPublic.GetNativeTypeByDbType(parameter.Type);
+                            var edit = WinFormPublic.GetDefaultEditorByType(valueType);
+                            editor = edit.CreateEditor();
+                        }
+                        editorRow.Properties.RowEdit = editor;
+
+                        if (parameter.ValueFetcher != null) {
+                            editorRow.Properties.Value = parameter.ValueFetcher.Value.FetchValue();
+                        }
+                        categoryRow.ChildRows.Add(editorRow);
+                    }
+
+                }
+                if (categoryRow.ChildRows.IsNotNullOrEmpty()) {
+                    parameterGridControl.Rows.Add(categoryRow);
+                }
+            }
+        }
+        #endregion
+
     }
 }

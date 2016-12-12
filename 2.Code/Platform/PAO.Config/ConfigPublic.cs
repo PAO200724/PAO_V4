@@ -131,189 +131,19 @@ namespace PAO.Config
         }
         #endregion
 
-        #region 类型的EditorCotrols
-        /// <summary>
-        /// 编辑器类型映射
-        /// </summary>
-        public static readonly Dictionary<Type, Type> EditControlTypeMapping = new Dictionary<Type, Type>();
-
-        /// <summary>
-        /// 注册编辑器
-        /// </summary>
-        /// <param name="objType">对象类型</param>
-        /// <param name="editControlType">编辑器类型</param>
-        public static void RegisterEditControlType(Type objType, Type editControlType) {
-            if (objType.IsGenericType) {
-                objType = objType.GetGenericTypeDefinition();
-            }
-
-            if (EditControlTypeMapping.ContainsKey(objType)) {
-                EditControlTypeMapping[objType] = editControlType;
-            } else {
-                EditControlTypeMapping.Add(objType, editControlType);
-            }
-        }
-
-        /// <summary>
-        /// 从类型映射中查找编辑器类型
-        /// </summary>
-        /// <param name="type">类型</param>
-        /// <returns>编辑器类型</returns>
-        private static Type GetEditControlFromTypeMapping(Type type) {
-            if (type.IsGenericType) {
-                type = type.GetGenericTypeDefinition();
-            }
-
-            foreach (var kv in EditControlTypeMapping) {
-                if (type == kv.Key) {
-                    return kv.Value;
-                }
-            }
-
-            if(type.BaseType != null) {
-                var foundType = GetEditControlFromTypeMapping(type.BaseType);
-                if (foundType != null)
-                    return foundType;
-            }
-
-            foreach (var kv in EditControlTypeMapping) {
-                if (type.IsDerivedFrom(kv.Key)) {
-                    return kv.Value;
-                }
-            }
-
-            return null;
-        }
-
-        /// <summary>
-        /// 获取某个类型的编辑器类型
-        /// </summary>
-        /// <param name="type">类型</param>
-        /// <returns>编辑器类型</returns>
-        public static Type GetTypeEditControlType(Type type) {
-            var controlType = GetEditControlFromTypeMapping(type);
-            if (controlType != null)
-                return controlType;
-
-            var addonAttr = type.GetAttribute<AddonAttribute>(true);
-            if (addonAttr != null && addonAttr.EditorType != null)
-                return addonAttr.EditorType;
-
-            return null;
-        }
-        #endregion
-
-        #region 属性的Editors
-        /// <summary>
-        /// 属性编辑器类型映射
-        /// </summary>
-        public static readonly Dictionary<PropertyDescriptor, Type> EditorTypeMapping = new Dictionary<PropertyDescriptor, Type>();
-
-        /// <summary>
-        /// 注册编辑器
-        /// </summary>
-        /// <param name="objType">对象类型</param>
-        /// <param name="editorType">编辑器类型</param>
-        public static void RegisterEditorType(Type objType, string propertyName, Type editorType) {
-            var properties = TypeDescriptor.GetProperties(objType);
-            var propDesc = properties[propertyName];
-            if(propDesc != null) {
-                if (EditorTypeMapping.ContainsKey(propDesc)) {
-                    EditorTypeMapping[propDesc] = editorType;
-                }
-                else {
-                    EditorTypeMapping.Add(propDesc, editorType);
-                }
-            }
-        }
-        
-        /// <summary>
-        /// 获取某个属性的编辑器类型
-        /// </summary>
-        /// <param name="propertyDescriptor">属性</param>
-        /// <returns>编辑器类型</returns>
-        public static Type GetPropertyEditorType(PropertyDescriptor propertyDescriptor) {
-            if(EditorTypeMapping.ContainsKey(propertyDescriptor)) {
-                return EditorTypeMapping[propertyDescriptor];
-            }
-
-            return null;
-        }
-        
-        /// <summary>
-        /// 创建默认编辑器
-        /// </summary>
-        /// <param name="propertyDescriptor">属性</param>
-        /// <returns>编辑器</returns>
-        public static RepositoryItem CreateDefaultEditor(PropertyDescriptor propertyDescriptor) {
-            var editorType = GetPropertyEditorType(propertyDescriptor);
-            if(editorType != null) {
-                var editor = editorType.CreateInstance() as BaseEditor;
-                editor.PropertyDescriptor = propertyDescriptor;
-                return editor.CreateEditor();
-            }
-
-            return CreateDefaultEditorByPropertyType(propertyDescriptor);
-        }
-
-        /// <summary>
-        /// 创建默认编辑器
-        /// </summary>
-        /// <param name="type">类型</param>
-        /// <returns>编辑器</returns>
-        public static RepositoryItem CreateDefaultEditorByPropertyType(PropertyDescriptor propertyDescriptor) {
-            BaseEditor editor;
-            var type = propertyDescriptor.PropertyType;
-            if (type == typeof(string)) {
-                editor = new TextEditor();
-            } else if(type.IsEnum) {
-                editor = new EnumEditor();
-            }
-            else if (type == typeof(Color)) {
-                editor = new ColorPickEditor();
-            }
-            else if (type == typeof(Font)) {
-                editor = new FontEditor();
-            }
-            else if (type == typeof(DateTime)) {
-                editor = new DateEditor();
-            }
-            else if (type == typeof(bool)) {
-                editor = new ToggleSwitchEditor();
-            }
-            else if (type == typeof(Image)) {
-                editor = new ImageEditor();
-            }
-            else if (type == typeof(Color)) {
-                editor = new ColorEditor();
-            }
-            else if (type == typeof(Color)) {
-                editor = new ColorEditor();
-            }
-            else if (type == typeof(Color)) {
-                editor = new ColorEditor();
-            }
-            else {
-                editor = new ObjectEditor();
-            }
-            editor.PropertyDescriptor = propertyDescriptor;
-            return editor.CreateEditor();
-        }
-        #endregion
-
         #region PAO项目内的Editor注册
         /// <summary>
         /// 注册编辑器
         /// </summary>
         public static void RegisterEditors() {
-            ConfigPublic.RegisterEditorType(typeof(PaoObject), "ID", typeof(GuidEditor));
-            ConfigPublic.RegisterEditorType(typeof(AddonFactory<>), "AddonID", typeof(AddonIDEditor));
-            ConfigPublic.RegisterEditorType(typeof(DataConnection), "DbFactoryName", typeof(DbFactoryEditor));
-            ConfigPublic.RegisterEditorType(typeof(DataCommandInfo), "Sql", typeof(MemoExEditor));
-            ConfigPublic.RegisterEditorType(typeof(TreeMenuController), "DockPanelID", typeof(GuidEditor));
+            WinFormPublic.RegisterEditorType(typeof(PaoObject), "ID", typeof(GuidEditor));
+            WinFormPublic.RegisterEditorType(typeof(AddonFactory<>), "AddonID", typeof(AddonIDEditor));
+            WinFormPublic.RegisterEditorType(typeof(DataConnection), "DbFactoryName", typeof(DbFactoryEditor));
+            WinFormPublic.RegisterEditorType(typeof(DataCommandInfo), "Sql", typeof(MemoExEditor));
+            WinFormPublic.RegisterEditorType(typeof(TreeMenuController), "DockPanelID", typeof(GuidEditor));
 
-            ConfigPublic.RegisterEditControlType(typeof(IDataFilter), typeof(DataFilterEditControl));
-            ConfigPublic.RegisterEditControlType(typeof(DataCommandInfo), typeof(DataCommandInfoEditControl));
+            WinFormPublic.RegisterEditControlType(typeof(IDataFilter), typeof(DataFilterEditControl));
+            WinFormPublic.RegisterEditControlType(typeof(DataCommandInfo), typeof(DataCommandInfoEditControl));
         }
         #endregion
     }

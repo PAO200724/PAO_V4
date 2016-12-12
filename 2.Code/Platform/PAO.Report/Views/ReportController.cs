@@ -91,7 +91,7 @@ namespace PAO.Report.Views
             set;
         }
         #endregion 属性：LayoutData
-
+        
         #region 属性：DockPanelLayoutData
         /// <summary>
         /// 属性：DockPanelLayoutData

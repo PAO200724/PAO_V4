@@ -93,6 +93,7 @@ namespace PAO.Configuration
                                     .Append(new ReportDataTable()
                                     {
                                         TableName = "User",
+                                        Caption = "用户",
                                         DataFetcher = new DataServiceFetcher()
                                         {
                                             DataService = new TcpRemoteFactory<IDataService>()
@@ -101,24 +102,34 @@ namespace PAO.Configuration
                                                 ServiceName = "DataService",
                                             }
                                         }.ToRef(),
-                                        QueryParameters = new List<ReportDataField>()
-                                            .Append(new ReportDataField()
+                                        QueryParameters = new List<ReportQueryParameter>()
+                                            .Append(new ReportQueryParameter()
                                             {
                                                 Name = "ID",
                                                 Caption = "ID",
-                                                Type = System.Data.DbType.String
+                                                Type = System.Data.DbType.String,
+                                                UserInput = true
                                             })
-                                            .Append(new ReportDataField()
+                                            .Append(new ReportQueryParameter()
                                             {
                                                 Name = "LoginName",
                                                 Caption = "登录名",
-                                                Type = System.Data.DbType.String
+                                                Type = System.Data.DbType.String,
+                                                UserInput = true
                                             })
-                                            .Append(new ReportDataField()
+                                            .Append(new ReportQueryParameter()
                                             {
                                                 Name = "Name",
                                                 Caption = "姓名",
-                                                Type = System.Data.DbType.String
+                                                Type = System.Data.DbType.String,
+                                                UserInput = true
+                                            })
+                                            .Append(new ReportQueryParameter()
+                                            {
+                                                Name = "CreateTime",
+                                                Caption = "创建时间",
+                                                Type = System.Data.DbType.DateTime,
+                                                UserInput = true
                                             }),
                                         DataColumns = new List<ReportDataColumn>()
                                             .Append(new ReportDataColumn()
@@ -145,16 +156,7 @@ namespace PAO.Configuration
                                     {
                                         ID = "GridControl",
                                         Caption = "表格控件1",
-                                    }.ToRef())
-                                    .Append(new GridControlController()
-                                    {
-                                        ID = "GridControl2",
-                                        Caption = "表格控件2",
-                                    }.ToRef())
-                                    .Append(new GridControlController()
-                                    {
-                                        ID = "GridControl3",
-                                        Caption = "表格控件3",
+                                        DataMember = "User",
                                     }.ToRef()),
                             }.ToRef()),
                     }.ToRef()),

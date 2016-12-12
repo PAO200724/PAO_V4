@@ -98,7 +98,13 @@ namespace PAO.Report.ValueFetchers
         /// 报表视图
         /// </summary>
         [NonSerialized]
-        internal ReportView ReportView;
+        private ReportView _ReportView;
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public ReportView ReportView {
+            get { return _ReportView; }
+            set { _ReportView = value; }
+        }
 
         public ReportDataValueFetcher() {
             Filter = "TRUE";
