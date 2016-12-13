@@ -26,33 +26,7 @@ namespace PAO.Report.Displayers
         public GridControlDataDisplayer() {
             InitializeComponent();
         }
-
-        public string DataMember {
-            get {
-                return this.GridControl.DataMember;
-            }
-
-            set {
-                this.GridControl.DataMember = value;
-            }
-        }
-
-        public object DataSource {
-            get {
-                return this.GridControl.DataSource;
-            }
-
-            set {
-                this.GridControl.DataSource = value;
-            }
-        }
-
-        public string ParameterTableName {
-            get {
-                return DataMember;
-            }
-        }
-
+        
         private BaseView MainView {
             get {
                 return this.GridControl.MainView;
@@ -90,12 +64,15 @@ namespace PAO.Report.Displayers
         }
 
         public void SetDataSource(DataSet dataSet) {
-            DataSource = dataSet;
+            var controller = Controller as GridControlController;
+
+            this.GridControl.DataSource = dataSet;
+            if(dataSet.Tables.Contains(controller.DataMember))
+                this.GridControl.DataMember = controller.DataMember;
         }
 
         protected override void OnSetController(BaseController value) {
             var controller = value as GridControlController;
-            DataMember = DataMember;
 
             AddonPublic.ApplyAddonExtendProperties(controller);
             GridViewType = GridViewType;

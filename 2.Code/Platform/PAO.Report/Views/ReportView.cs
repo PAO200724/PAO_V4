@@ -19,6 +19,8 @@ using DevExpress.XtraVerticalGrid.Rows;
 using PAO.Report.ValueFetchers;
 using PAO.UI.WinForm.Editors;
 using DevExpress.XtraEditors.Repository;
+using PAO.Report.Controls;
+using DevExpress.XtraBars.Navigation;
 
 namespace PAO.Report.Views
 {
@@ -36,6 +38,10 @@ namespace PAO.Report.Views
         /// 视图列表
         /// </summary>
         private List<IView> ViewList = new List<IView>();
+        /// <summary>
+        /// 表格控件列表
+        /// </summary>
+        private Dictionary<string, ReportTableControl> TableControls = new Dictionary<string, ReportTableControl>();
 
         /// <summary>
         /// UI动作分派器
@@ -52,10 +58,13 @@ namespace PAO.Report.Views
 
         }
 
+        #region 私有方法
+        /// <summary>
+        /// 初始化值获取器
+        /// </summary>
         private void InitValueFetcher() {
             var controller = Controller as ReportController;
             foreach (var reportTable in controller.Tables) {
-
                 foreach (var parameter in reportTable.QueryParameters) {
                     if (parameter.ValueFetcher != null && parameter.ValueFetcher.Value is IReportElement) {
                         parameter.ValueFetcher.Value.As<IReportElement>().ReportView = this;
@@ -65,13 +74,102 @@ namespace PAO.Report.Views
         }
 
         /// <summary>
+        /// 查询表
+        /// </summary>
+        /// <param name="reportTable"></param>
+        private void QueryTable(ReportDataTable reportTable) {
+            var tableControl = this.TableControls[reportTable.TableName];
+            tableControl.StartQuery();
+            if (reportTable.DataFetcher != null) {
+                var dataFetcher = reportTable.DataFetcher.Value;
+                var backgroundWorker = new BackgroundWorker();
+                DataTable dataTable = null;
+                int currentCount = 0;
+                if (DataSource.Tables.Contains(reportTable.TableName)) {
+                    var currentDataTable = DataSource.Tables[reportTable.TableName];
+                    currentCount = currentDataTable.Rows.Count;
+                }
+                backgroundWorker.DoWork += (s, e) =>
+                {
+                    dataTable = dataFetcher.FetchData(currentCount, 100, null);
+                    dataTable.TableName = reportTable.TableName;
+                };
+                backgroundWorker.RunWorkerCompleted += (s, e) =>
+                {
+                    if(dataTable != null) {
+                        DataSource.Merge(dataTable);
+                    }
+                    if (DataSource.Tables.Contains(reportTable.TableName)) {
+                        tableControl.RowCount = DataSource.Tables[reportTable.TableName].Rows.Count;
+                    } else {
+                        tableControl.RowCount = 0;
+                    }
+                    tableControl.EndQuery();
+                    SetDataSource();
+                };
+                backgroundWorker.RunWorkerAsync();
+            }
+        }
+
+        /// <summary>
+        /// 准备数据格式
+        /// </summary>
+        private void PrepareDataSchema() {
+            var controller = Controller as ReportController;
+            foreach (var reportTable in controller.Tables) {
+                if(reportTable.DataFetcher != null) {
+                    // 获取数据格式
+                    var dataSchema = reportTable.DataFetcher.Value.GetDataSchema();
+                    dataSchema = ReportPublic.RebuildReportTable(reportTable, dataSchema);
+                    DataSource.Merge(dataSchema);
+                    SetDataSource();
+                }
+            }
+        }
+
+        private void SetDataSource() {
+            foreach(var view in ViewList) {
+                if(view is IDataView) {
+                    view.As<IDataView>().SetDataSource(DataSource);
+                }
+            }
+        }
+
+        /// <summary>
         /// 重建参数视图
         /// </summary>
         private void RecreateTableView() {
             var controller = Controller as ReportController;
-            this.ReportTableListControl.ReportDataTables = controller.Tables;
+            TableControls = new Dictionary<string, Report.Controls.ReportTableControl>();
+            foreach (var reportDataTable in controller.Tables) {
+                var reportTableControl = new ReportTableControl();
+                reportTableControl.ReportDataTable = reportDataTable;
+                reportTableControl.Dock = DockStyle.Top;
+                reportTableControl.AutoSize = true;
+                reportTableControl.RowCount = 0;
+
+                reportTableControl.QueryAll += ReportTableControl_QueryAll;
+                reportTableControl.QueryMore += ReportTableControl_QueryMore;
+                var elementParameterView = new AccordionControlElement();
+                elementParameterView.Name = reportDataTable.ID;
+                elementParameterView.Style = ElementStyle.Item;
+                elementParameterView.Expanded = true;
+                elementParameterView.Text = String.Format("{0}({1})", reportDataTable.Caption, reportDataTable.TableName);
+                var container = new AccordionContentContainer();
+                container.Controls.Add(reportTableControl);
+                container.Height = reportTableControl.Height;
+                elementParameterView.ContentContainer = container;
+
+                this.AccordionControl.Elements.Add(elementParameterView);
+                this.AccordionControl.Refresh();
+                reportTableControl.SizeChanged += (sender, e) => {
+                    container.Height = reportTableControl.Height;
+                };
+                TableControls.Add(reportDataTable.TableName, reportTableControl);
+            }
         }
-        
+        #endregion
+
         #region 接口IViewContainer
         public void OpenView(IView view) {
             // 避免重复添加视图
@@ -80,12 +178,7 @@ namespace PAO.Report.Views
             }
 
             ViewList.Add(view);
-
-            if(view is IDataView) {
-                var dataView = view as IDataView;
-                dataView.SetDataSource(DataSource);
-            }
-
+            
             var control = view as Control;
             control.Name = view.ID;
 
@@ -128,6 +221,9 @@ namespace PAO.Report.Views
 
             // 重建参数视图
             RecreateTableView();
+
+            // 准备数据格式
+            PrepareDataSchema();
 
             // 读取布局
             AddonPublic.ApplyAddonExtendProperties(controller);
@@ -172,10 +268,20 @@ namespace PAO.Report.Views
             RebuildTableColumns();
         }
 
+        private void ReportTableControl_QueryMore(object sender, EventArgs e) {
+            var tableControl = sender as ReportTableControl;
+            QueryTable(tableControl.ReportDataTable);
+        }
+
+        private void ReportTableControl_QueryAll(object sender, EventArgs e) {
+            var tableControl = sender as ReportTableControl;
+            QueryTable(tableControl.ReportDataTable);
+        }
+
         private void ButtonQuery_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             var controller = Controller as ReportController;
             foreach (var reportTable in controller.Tables) {
-
+                QueryTable(reportTable);
             }
         }
         #endregion

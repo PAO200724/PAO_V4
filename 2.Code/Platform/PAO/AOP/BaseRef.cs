@@ -29,6 +29,12 @@ namespace PAO {
             get;
         }
 
+        object Ref.Value {
+            get {
+                return Value;
+            }
+        }
+
         /// <summary>
         /// 重建引用
         /// </summary>

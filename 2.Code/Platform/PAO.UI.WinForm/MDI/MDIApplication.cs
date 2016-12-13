@@ -14,6 +14,7 @@ using System.Text;
 using System.Windows.Forms;
 using PAO.Time;
 using DevExpress.XtraSplashScreen;
+using PAO.Event;
 
 namespace PAO.UI.WinForm.MDI
 {
@@ -169,8 +170,9 @@ namespace PAO.UI.WinForm.MDI
 
             return false;
         }
-        
+
         public override void OnRunning() {
+            Application.ThreadException += Application_ThreadException;
             if (SkinName.IsNotNullOrEmpty()) { 
                 DevExpress.LookAndFeel.UserLookAndFeel.Default.UseDefaultLookAndFeel = false;
                 DevExpress.LookAndFeel.UserLookAndFeel.Default.UseWindowsXPTheme = false;
@@ -185,6 +187,10 @@ namespace PAO.UI.WinForm.MDI
             MVCPublic.MainForm = MainForm;
             MainForm.Initialize(this);
             Application.Run(MainForm);
+        }
+
+        private void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e) {
+            UIPublic.ShowEventDialog(new ExceptionEventInfo(e.Exception, true, true));
         }
     }
 }

@@ -46,15 +46,16 @@
             this.DockManager = new DevExpress.XtraBars.Docking.DockManager(this.components);
             this.DockPanelTables = new DevExpress.XtraBars.Docking.DockPanel();
             this.DockPanelData_Container = new DevExpress.XtraBars.Docking.ControlContainer();
+            this.AccordionControl = new DevExpress.XtraBars.Navigation.AccordionControl();
             this.RepositoryItemTextEditCaption = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.LayoutControl = new DevExpress.XtraLayout.LayoutControl();
             this.LayoutControlGroupRoot = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.ReportTableListControl = new PAO.Report.Controls.ReportTableListControl();
             ((System.ComponentModel.ISupportInitialize)(this.BindingSourceTable)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BarManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DockManager)).BeginInit();
             this.DockPanelTables.SuspendLayout();
             this.DockPanelData_Container.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.AccordionControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemTextEditCaption)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.LayoutControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.LayoutControlGroupRoot)).BeginInit();
@@ -239,11 +240,20 @@
             // 
             // DockPanelData_Container
             // 
-            this.DockPanelData_Container.Controls.Add(this.ReportTableListControl);
+            this.DockPanelData_Container.Controls.Add(this.AccordionControl);
             this.DockPanelData_Container.Location = new System.Drawing.Point(4, 23);
             this.DockPanelData_Container.Name = "DockPanelData_Container";
             this.DockPanelData_Container.Size = new System.Drawing.Size(226, 469);
             this.DockPanelData_Container.TabIndex = 0;
+            // 
+            // AccordionControl
+            // 
+            this.AccordionControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.AccordionControl.Location = new System.Drawing.Point(0, 0);
+            this.AccordionControl.Name = "AccordionControl";
+            this.AccordionControl.Size = new System.Drawing.Size(226, 469);
+            this.AccordionControl.TabIndex = 0;
+            this.AccordionControl.Text = "accordionControl1";
             // 
             // RepositoryItemTextEditCaption
             // 
@@ -274,14 +284,6 @@
             this.LayoutControlGroupRoot.Text = "根";
             this.LayoutControlGroupRoot.TextVisible = false;
             // 
-            // ReportTableListControl
-            // 
-            this.ReportTableListControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ReportTableListControl.Location = new System.Drawing.Point(0, 0);
-            this.ReportTableListControl.Name = "ReportTableListControl";
-            this.ReportTableListControl.Size = new System.Drawing.Size(226, 469);
-            this.ReportTableListControl.TabIndex = 0;
-            // 
             // ReportView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -299,6 +301,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.DockManager)).EndInit();
             this.DockPanelTables.ResumeLayout(false);
             this.DockPanelData_Container.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.AccordionControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemTextEditCaption)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.LayoutControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.LayoutControlGroupRoot)).EndInit();
@@ -331,6 +334,6 @@
         private DevExpress.XtraBars.BarSubItem MenuData;
         private DevExpress.XtraBars.BarButtonItem ButtonRebuildDataFields;
         private DevExpress.XtraBars.BarButtonItem ButtonClearDataFields;
-        private Controls.ReportTableListControl ReportTableListControl;
+        private DevExpress.XtraBars.Navigation.AccordionControl AccordionControl;
     }
 }

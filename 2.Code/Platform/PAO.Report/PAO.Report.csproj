@@ -92,12 +92,6 @@
     <Compile Include="Controls\ReportTableControl.Designer.cs">
       <DependentUpon>ReportTableControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\ReportTableListControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\ReportTableListControl.Designer.cs">
-      <DependentUpon>ReportTableListControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="Displayers\BaseDataDisplayer.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -139,9 +133,6 @@
   <ItemGroup>
     <EmbeddedResource Include="Controls\ReportTableControl.resx">
       <DependentUpon>ReportTableControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\ReportTableListControl.resx">
-      <DependentUpon>ReportTableListControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Displayers\GridControlDataDisplayer.resx">
       <DependentUpon>GridControlDataDisplayer.cs</DependentUpon>

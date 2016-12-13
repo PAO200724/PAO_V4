@@ -26,17 +26,17 @@
         /// </summary>
         private void InitializeComponent() {
             this.GridControl = new DevExpress.XtraGrid.GridControl();
+            this.GridView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.BandedGridView = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridView();
             this.GridBand = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.GridView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.CardView = new DevExpress.XtraGrid.Views.Card.CardView();
             this.AdvBandedGridView = new DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView();
             this.GridBandMain = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.LayoutView = new DevExpress.XtraGrid.Views.Layout.LayoutView();
             this.TileView = new DevExpress.XtraGrid.Views.Tile.TileView();
             ((System.ComponentModel.ISupportInitialize)(this.GridControl)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.BandedGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BandedGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CardView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AdvBandedGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.LayoutView)).BeginInit();
@@ -52,12 +52,20 @@
             this.GridControl.Size = new System.Drawing.Size(517, 491);
             this.GridControl.TabIndex = 0;
             this.GridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.BandedGridView,
             this.GridView,
+            this.BandedGridView,
             this.CardView,
             this.AdvBandedGridView,
             this.LayoutView,
             this.TileView});
+            // 
+            // GridView
+            // 
+            this.GridView.GridControl = this.GridControl;
+            this.GridView.Name = "GridView";
+            this.GridView.OptionsBehavior.ReadOnly = true;
+            this.GridView.OptionsView.ShowAutoFilterRow = true;
+            this.GridView.OptionsView.ShowGroupPanel = false;
             // 
             // BandedGridView
             // 
@@ -70,11 +78,6 @@
             // 
             this.GridBand.Name = "GridBand";
             this.GridBand.VisibleIndex = 0;
-            // 
-            // GridView
-            // 
-            this.GridView.GridControl = this.GridControl;
-            this.GridView.Name = "GridView";
             // 
             // CardView
             // 
@@ -113,8 +116,8 @@
             this.Name = "GridControlDataDisplayer";
             this.Size = new System.Drawing.Size(517, 491);
             ((System.ComponentModel.ISupportInitialize)(this.GridControl)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.BandedGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BandedGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CardView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.AdvBandedGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.LayoutView)).EndInit();

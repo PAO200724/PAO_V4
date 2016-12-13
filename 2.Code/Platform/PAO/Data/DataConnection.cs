@@ -144,36 +144,26 @@ namespace PAO.Data
                 if(!command.Parameters.Contains(paramName)) {
                     var dbParam = command.CreateParameter();
                     dbParam.ParameterName = paramName;
-                    dbParam.DbType = DbType.String;
-                    command.Parameters.Add(dbParam);
-                }
-            }
-
-            // 从命令的参数列表中创建Sql参数
-            foreach(var predefinedParam in paramDefines) {
-                DbParameter dbParam;
-                if (!command.Parameters.Contains(predefinedParam.Name)) {
-                    dbParam = command.CreateParameter();
-                    dbParam.ParameterName = predefinedParam.Name;
-                    command.Parameters.Add(dbParam);
-                } else {
-                    dbParam = command.Parameters[predefinedParam.Name];
-                }
-                dbParam.DbType = predefinedParam.Type;
-            }
-
-            // 设置参数值
-            if (!parameterList.IsNullOrEmpty()) {
-                foreach (var dataField in parameterList) {
-                    if (command.Parameters.Contains(dataField.Name)) {
-                        var param = command.Parameters[dataField.Name];
-                        param.DbType = DataPublic.GetDbTypeByTypeName(DataPublic.GetTypeNameByType(dataField.Value.GetType()));
-                        param.Value = dataField.Value;
-
+                    // 设置类型
+                    var paramDefined = paramDefines.Where(p => p.Name == paramName).FirstOrDefault();
+                    if (paramDefined!=null) {
+                        dbParam.DbType = paramDefined.Type;
+                    } else {
+                        dbParam.DbType = DbType.String;
                     }
+                    // 设置值
+                    parameterList = parameterList ?? new DataField[0];
+                    DataField paramField = null;
+                    if (parameterList != null) {
+                        paramField = parameterList.Where(p => p.Name == paramName).FirstOrDefault();
+                    }
+                    if(paramField != null) {
+                        dbParam.Value = paramField.Value;
+                    }
+                    command.Parameters.Add(dbParam);
                 }
             }
-
+            
             return command;
         }
         /// <summary>

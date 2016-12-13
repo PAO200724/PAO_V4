@@ -33,11 +33,17 @@ namespace PAO {
         /// </summary>
         /// <param name="addonID">插件ID</param>
         /// <returns>插件ID</returns>
-        public static PaoObject GetRuntimeAddonByID(string addonID) {
+        public static object GetRuntimeAddonByID(string addonID) {
             if (RuntimeAddonList == null)
                 return null;
-            if (RuntimeAddonList.ContainsKey(addonID))
-                return RuntimeAddonList[addonID];
+            if (RuntimeAddonList.ContainsKey(addonID)) {
+                var addon = RuntimeAddonList[addonID];
+                if(addon is Ref) {
+                    return addon.As<Ref>().Value;
+                }
+
+                return addon;
+            }
             return null;
         }
 

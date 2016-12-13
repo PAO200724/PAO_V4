@@ -67,6 +67,13 @@ namespace PAO.Configuration
                 {
                     FilePath = "ExtendProperties.config"
                 }.ToRef(),
+                ExtendAddonList = new List<PaoObject>()
+                    .Append(new TcpRemoteFactory<IDataService>()
+                    {
+                        ID = "CommonDataService",
+                        ServerAddress = "localhost:7990",
+                        ServiceName = "DataService",
+                    }),
                 MenuItems = new List<Ref<UIItem>>()
                             .Append(new AddonFactory<UIItem>() { AddonID = "Menu_Config" }),
                 Controllers = new List<Ref<BaseController>>()
@@ -96,11 +103,8 @@ namespace PAO.Configuration
                                         Caption = "用户",
                                         DataFetcher = new DataServiceFetcher()
                                         {
-                                            DataService = new TcpRemoteFactory<IDataService>()
-                                            {
-                                                ServerAddress = "localhost:7990",
-                                                ServiceName = "DataService",
-                                            }
+                                            DataService = new AddonFactory<IDataService>("CommonDataService"),
+                                            CommandID = "DataCommand_QueryUsers",
                                         }.ToRef(),
                                         QueryParameters = new List<ReportQueryParameter>()
                                             .Append(new ReportQueryParameter()

@@ -18,6 +18,7 @@ namespace PAO.Report
     /// </summary>
     public static class ReportPublic
     {
+        #region ReportDataTable
         /// <summary>
         /// 将数据列转换为报表列
         /// </summary>
@@ -44,7 +45,7 @@ namespace PAO.Report
             foreach (DataColumn dataColumn in dataTable.Columns) {
                 var reportColumn = new ReportDataColumn();
                 DataColumnToReportColumn(dataColumn, reportColumn);
-                if(pkColumn.Contains(dataColumn)) {
+                if (pkColumn.Contains(dataColumn)) {
                     reportColumn.IsKey = true;
                 }
                 reportColumns.Add(reportColumn);
@@ -58,15 +59,54 @@ namespace PAO.Report
         /// <param name="destColumns">目标列</param>
         /// <param name="srcColumns">源列</param>
         public static void RebuildReportColumn(List<ReportDataColumn> destColumns, IEnumerable<ReportDataColumn> srcColumns) {
-            foreach(var srcColumn in srcColumns) {
+            foreach (var srcColumn in srcColumns) {
                 var destColumn = destColumns.Where(p => p.Name == srcColumn.Name).FirstOrDefault();
                 if (destColumn != null) {
                     destColumn.Type = srcColumn.Type;
-                } else {
+                }
+                else {
                     destColumns.Add(srcColumn);
                 }
             }
         }
+
+        /// <summary>
+        /// 重建报表列（从源列中复制类型，其余保持不变）
+        /// </summary>
+        /// <param name="destColumns">目标列</param>
+        /// <param name="srcColumns">源列</param>
+        public static void RebuildReportColumns(List<ReportDataColumn> destColumns, DataTable dataTables) {
+            RebuildReportColumn(destColumns, GetReportDataColumns(dataTables));
+        }
+        /// <summary>
+        /// 创建报表的表
+        /// </summary>
+        /// <param name="srcColumns">源列表</param>
+        /// <returns>报表的数据表</returns>
+        public static DataTable CreateReportTable(IEnumerable<ReportDataColumn> srcColumns) {
+            var dataTable = new DataTable();
+            foreach(var reportColumn in srcColumns) {
+                var dataColumn = new DataColumn(reportColumn.Name, DataPublic.GetNativeTypeByDbType(reportColumn.Type));
+                dataColumn.Caption = reportColumn.Caption;
+                dataTable.Columns.Add(dataColumn);
+            }
+            return dataTable;
+        }
+
+        /// <summary>
+        /// 重建报表
+        /// </summary>
+        /// <param name="reportTable">报表</param>
+        /// <param name="schemaTable">格式表</param>
+        /// <return>跟报表合并后的格式表</return>
+        public static DataTable RebuildReportTable(ReportDataTable reportTable, DataTable dataSchema) {
+            var dataColumns = ReportPublic.GetReportDataColumns(dataSchema);
+            ReportPublic.RebuildReportColumn(reportTable.DataColumns, dataColumns);
+            dataSchema = ReportPublic.CreateReportTable(reportTable.DataColumns);
+            dataSchema.TableName = reportTable.TableName;
+            return dataSchema;
+        }
+        #endregion
 
         #region ParameterInput
         public static void CreateParameterInputRows(VGridControl parameterGridControl, IEnumerable<ReportDataTable> reportDataTables) {
