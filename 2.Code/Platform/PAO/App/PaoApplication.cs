@@ -198,7 +198,7 @@ namespace PAO.App {
                         AddonPublic.TraverseAddon((addon) =>
                         {
                             if(addon is PaoObject) {
-                                AddonPublic.ApplyAddonExtendProperties(addon as PaoObject);
+                                AddonPublic.LoadAddonExtendProperties(addon as PaoObject);
                             }
                             return false;
                         }, PaoApplication.Default);

@@ -76,7 +76,7 @@ namespace PAO.Report.Displayers
         protected override void OnSetController(BaseController value) {
             var controller = value as GridControlController;
 
-            AddonPublic.ApplyAddonExtendProperties(controller);
+            AddonPublic.LoadAddonExtendProperties(controller);
             GridViewType = GridViewType;
             MainView.SetLayoutData(controller.LayoutData);
         }
@@ -85,7 +85,7 @@ namespace PAO.Report.Displayers
             var controller = Controller as GridControlController;
             GridViewType = GridViewType;
             controller.LayoutData = MainView.GetLayoutData();
-            AddonPublic.FetchAddonExtendProperties(controller, "GridViewType", "LayoutData");
+            AddonPublic.SaveAddonExtendProperties(controller, "GridViewType", "LayoutData");
         }
 
         protected override string[] ExportFileFilters {

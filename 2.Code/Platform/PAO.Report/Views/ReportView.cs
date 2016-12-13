@@ -21,6 +21,8 @@ using PAO.UI.WinForm.Editors;
 using DevExpress.XtraEditors.Repository;
 using PAO.Report.Controls;
 using DevExpress.XtraBars.Navigation;
+using PAO.Config.Controls.EditControls;
+using PAO.IO.Text;
 
 namespace PAO.Report.Views
 {
@@ -86,6 +88,27 @@ namespace PAO.Report.Views
             }
             QueryTable(reportTable);
         }
+
+        /// <summary>
+        /// 重置自动查询
+        /// </summary>
+        /// <param name="reportTable">报表</param>
+        private void ResetAutoQuery() {
+            var controller = Controller as ReportController;
+            foreach (var reportTable in controller.Tables) {
+                var queryBehavior = reportTable.QueryBehavior;
+                if (queryBehavior == null)
+                    queryBehavior = controller.QueryBehavior;
+
+                var tableControl = this.TableControls[reportTable.TableName];
+                if (queryBehavior != null) {
+                    tableControl.AutoQuery(queryBehavior.AutoQueryInterval);
+                } else {
+                    tableControl.AutoQuery(-1);
+                }
+            }
+        }
+
         /// <summary>
         /// 查询表，查询前不清空数据
         /// </summary>
@@ -96,7 +119,6 @@ namespace PAO.Report.Views
             tableControl.StartQuery();
             if (reportTable.DataFetcher != null) {
                 var dataFetcher = reportTable.DataFetcher.Value;
-                var backgroundWorker = new BackgroundWorker();
                 DataTable queryTable = null;
 
                 int currentCount = 0;
@@ -113,18 +135,21 @@ namespace PAO.Report.Views
                     queryBehavior = controller.QueryBehavior;
                 }
                 // 获取每次查询的最大量
-                int maxCount = Int32.MaxValue;
+                int maxCount = 0;
                 if (queryBehavior != null)
                     maxCount = queryBehavior.QueryCountPerTime;
+                if (maxCount <= 0)
+                    maxCount = Int32.MaxValue;
 
-                backgroundWorker.DoWork += (s, e) =>
+                Action query = () =>
                 {
                     queryTable = dataFetcher.FetchData(currentCount, maxCount, tableControl.ParameterValues);
                     queryTable.TableName = reportTable.TableName;
                 };
-                backgroundWorker.RunWorkerCompleted += (s, e) =>
+
+                Action queryComplete = () =>
                 {
-                    if(queryTable != null) {
+                    if (queryTable != null) {
                         if (queryTable.Rows.Count < maxCount) {
                             tableControl.QueryCompleted = true;
                         }
@@ -137,7 +162,25 @@ namespace PAO.Report.Views
                     tableControl.EndQuery();
                     SetDataSource();
                 };
-                backgroundWorker.RunWorkerAsync();
+
+                if(queryBehavior != null && !queryBehavior.AsyncQuery) {
+                    // 同步查询
+                    query();
+
+                    queryComplete();
+                } else {
+                    // 异步查询
+                    var backgroundWorker = new BackgroundWorker();
+                    backgroundWorker.DoWork += (s, e) =>
+                    {
+                        query();
+                    };
+                    backgroundWorker.RunWorkerCompleted += (s, e) =>
+                    {
+                        queryComplete();
+                    };
+                    backgroundWorker.RunWorkerAsync();
+                }
             }
         }
 
@@ -191,6 +234,9 @@ namespace PAO.Report.Views
                 reportTableControl.QueryAll += ReportTableControl_QueryAll;
                 reportTableControl.QueryMore += ReportTableControl_QueryMore;
                 reportTableControl.Requery += ReportTableControl_Requery;
+                reportTableControl.SetupQueryBehavior += ReportTableControl_SetupQueryBehavior;
+                reportTableControl.ClearQueryBehavior += ReportTableControl_ClearQueryBehavior;
+
                 var elementParameterView = new AccordionControlElement();
                 elementParameterView.Name = reportDataTable.ID;
                 elementParameterView.Style = ElementStyle.Item;
@@ -209,7 +255,6 @@ namespace PAO.Report.Views
                 TableControls.Add(reportDataTable.TableName, reportTableControl);
             }
         }
-
         #endregion
 
         #region 接口IViewContainer
@@ -267,9 +312,15 @@ namespace PAO.Report.Views
             // 准备数据格式
             PrepareDataSchema();
 
-            // 读取布局
-            AddonPublic.ApplyAddonExtendProperties(controller);
+            // 重置自动查询
+            ResetAutoQuery();
+
+            // 读取报表和数据的客户端设置
+            AddonPublic.LoadAddonExtendProperties(controller);
             this.LayoutControl.SetLayoutData(controller.LayoutData);
+            foreach (var reportTable in controller.Tables) {
+                AddonPublic.LoadAddonExtendProperties(reportTable);
+            }
         }
 
         protected override void OnClosing() {
@@ -279,8 +330,12 @@ namespace PAO.Report.Views
                 }
             }
             var controller = Controller as ReportController;
+            // 保存报表和数据的客户端设置
             controller.LayoutData = this.LayoutControl.GetLayoutData();
-            AddonPublic.FetchAddonExtendProperties(controller, "LayoutData", "DockPanelLayoutData");
+            AddonPublic.SaveAddonExtendProperties(controller, "LayoutData", "QueryBehavior");
+            foreach(var reportTable in controller.Tables) {
+                AddonPublic.SaveAddonExtendProperties(reportTable, "QueryBehavior");
+            }
         }
         #endregion
 
@@ -302,7 +357,11 @@ namespace PAO.Report.Views
         
         private void ButtonClearDataFields_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             if (UIPublic.ShowYesNoDialog("您确定要清空所有表的列并重建吗？") == DialogReturn.Yes) {
-
+                var controller = Controller as ReportController;
+                foreach (var reportTable in controller.Tables) {
+                    reportTable.DataColumns = null;
+                    RebuildTableColumns();
+                }
             }
         }
 
@@ -325,10 +384,50 @@ namespace PAO.Report.Views
             RequeryTable(tableControl.ReportDataTable);
         }
 
+        private void ReportTableControl_SetupQueryBehavior(object sender, EventArgs e) {
+            var tableControl = sender as ReportTableControl;
+            var objectEditControl = new ObjectEditControl();
+            var queryBehavior = TextPublic.ObjectClone(tableControl.ReportDataTable.QueryBehavior);
+            if (queryBehavior == null)
+                queryBehavior = new ReportQueryBehavior();
+            objectEditControl.SelectedObject = queryBehavior;
+            if(WinFormPublic.ShowDialog(objectEditControl) == DialogReturn.OK) {
+                tableControl.ReportDataTable.QueryBehavior = objectEditControl.SelectedObject as ReportQueryBehavior;
+            }
+            ResetAutoQuery();
+        }
+
+
+        private void ReportTableControl_ClearQueryBehavior(object sender, EventArgs e) {
+            var tableControl = sender as ReportTableControl;
+            tableControl.ReportDataTable.QueryBehavior = null;
+            ResetAutoQuery();
+        }
+
+
         private void ButtonQuery_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             RequeryAllTable();
         }
 
+        private void ButtonSetupQueryBehavior_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+            var controller = Controller as ReportController;
+            var objectEditControl = new ObjectEditControl();
+            var queryBehavior = TextPublic.ObjectClone(controller.QueryBehavior);
+            if (queryBehavior == null)
+                queryBehavior = new ReportQueryBehavior();
+            objectEditControl.SelectedObject = queryBehavior;
+            if (WinFormPublic.ShowDialog(objectEditControl) == DialogReturn.OK) {
+                controller.QueryBehavior = objectEditControl.SelectedObject as ReportQueryBehavior;
+            }
+            ResetAutoQuery();
+        }
+
+        private void ButtonClearQueryBehavior_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+            var controller = Controller as ReportController;
+            controller.QueryBehavior = null;
+            ResetAutoQuery();
+        }
         #endregion
+
     }
 }

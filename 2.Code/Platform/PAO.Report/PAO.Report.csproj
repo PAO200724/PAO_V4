@@ -147,6 +147,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\PAO.Config\PAO.Config.csproj">
+      <Project>{a0f88184-cb49-4c7d-a56b-ae323fdb67ba}</Project>
+      <Name>PAO.Config</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PAO.UI.WinForm\PAO.UI.WinForm.csproj">
       <Project>{49bd4858-22c7-431e-a0ac-638a182fd35e}</Project>
       <Name>PAO.UI.WinForm</Name>

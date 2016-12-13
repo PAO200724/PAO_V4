@@ -412,7 +412,7 @@ namespace PAO {
                 else {
                     FieldInfo fieldInfo = type.GetField(propertyName, BindingFlags.Public | BindingFlags.GetField | BindingFlags.SetField);
                     if (fieldInfo == null)
-                        throw new Exception("在对象中找不到指定的属性").AddExceptionData("类型", type).AddExceptionData("属性", propertyName);
+                        return;
 
                     if (properties.Length == 1) {
                         // 如果是最后一个"."，则设置属性
@@ -448,7 +448,7 @@ namespace PAO {
         /// <param name="dataTable">扩展数据表</param>
         /// <param name="addon">插件</param>
         /// <param name="properties">需要纳入扩展的属性</param>
-        public static void FetchAddonExtendProperties(ExtendPropertyDataTable dataTable, PaoObject addon, params string[] properties) {
+        public static void SaveAddonExtendProperties(ExtendPropertyDataTable dataTable, PaoObject addon, params string[] properties) {
             // 移除原来的插件属性
             var addonRows = dataTable.AsEnumerable<ExtendPropertyRow>().Where(p=>p.AddonID == addon.ID).ToList();
             foreach(var addonRow in addonRows) {
@@ -469,7 +469,7 @@ namespace PAO {
         /// </summary>
         /// <param name="dataTable">扩展数据表</param>
         /// <param name="addon">插件</param>
-        public static void ApplyAddonExtendProperties(ExtendPropertyDataTable dataTable, PaoObject addon) {
+        public static void LoadAddonExtendProperties(ExtendPropertyDataTable dataTable, PaoObject addon) {
             var addonRows = dataTable.AsEnumerable<ExtendPropertyRow>().Where(p => p.AddonID == addon.ID).ToList();
             foreach (var addonRow in addonRows) {
                 addon.SetPropertyValueByPath(addonRow.PropertyName, TextPublic.TextToObject(addonRow.PropertyValue));
@@ -503,16 +503,16 @@ namespace PAO {
         /// </summary>
         /// <param name="addon">插件</param>
         /// <param name="properties">需要纳入扩展的属性</param>
-        public static void FetchAddonExtendProperties(PaoObject addon, params string[] properties) {
-            FetchAddonExtendProperties(ExtendPropertyDataTable, addon, properties);
+        public static void SaveAddonExtendProperties(PaoObject addon, params string[] properties) {
+            SaveAddonExtendProperties(ExtendPropertyDataTable, addon, properties);
         }
 
         /// <summary>
         /// 应用插件扩展属性
         /// </summary>
         /// <param name="addon">插件</param>
-        public static void ApplyAddonExtendProperties(PaoObject addon) {
-            ApplyAddonExtendProperties(ExtendPropertyDataTable, addon);
+        public static void LoadAddonExtendProperties(PaoObject addon) {
+            LoadAddonExtendProperties(ExtendPropertyDataTable, addon);
         }
 
         /// <summary>

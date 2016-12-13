@@ -13,6 +13,32 @@ namespace PAO.Server
     {
         public MainForm() {
             InitializeComponent();
+            DialogResult = DialogResult.Cancel;
+        }
+        
+        protected override void OnSizeChanged(EventArgs e) {
+            if (this.WindowState == FormWindowState.Minimized) {
+                this.Hide();
+            }
+            base.OnSizeChanged(e);
+        }
+
+        protected override void OnClosing(CancelEventArgs e) {
+            if(DialogResult != DialogResult.OK) {
+                e.Cancel = true;
+                this.Hide();
+            }
+            base.OnClosing(e);
+        }
+
+        private void NotifyIcon_DoubleClick(object sender, EventArgs e) {
+            this.WindowState = FormWindowState.Normal;
+            this.Show();
+        }
+
+        private void ButtonExit_Click(object sender, EventArgs e) {
+            DialogResult = DialogResult.OK;
+            Close();
         }
     }
 }

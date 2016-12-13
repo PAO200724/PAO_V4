@@ -50,6 +50,8 @@
             this.RepositoryItemTextEditCaption = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.LayoutControl = new DevExpress.XtraLayout.LayoutControl();
             this.LayoutControlGroupRoot = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.ButtonSetupQueryBehavior = new DevExpress.XtraBars.BarButtonItem();
+            this.ButtonClearQueryBehavior = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.BindingSourceTable)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BarManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DockManager)).BeginInit();
@@ -84,8 +86,10 @@
             this.ButtonQuery,
             this.MenuData,
             this.ButtonRebuildDataFields,
-            this.ButtonClearDataFields});
-            this.BarManager.MaxItemId = 16;
+            this.ButtonClearDataFields,
+            this.ButtonSetupQueryBehavior,
+            this.ButtonClearQueryBehavior});
+            this.BarManager.MaxItemId = 18;
             this.BarManager.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.RepositoryItemTextEditCaption});
             // 
@@ -121,7 +125,9 @@
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.ButtonExport, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.ButtonPrint, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(this.ButtonRebuildDataFields, true),
-            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonClearDataFields)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonClearDataFields),
+            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonSetupQueryBehavior, true),
+            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonClearQueryBehavior)});
             this.MenuData.Name = "MenuData";
             // 
             // ButtonExport
@@ -284,6 +290,20 @@
             this.LayoutControlGroupRoot.Text = "根";
             this.LayoutControlGroupRoot.TextVisible = false;
             // 
+            // ButtonSetupQueryBehavior
+            // 
+            this.ButtonSetupQueryBehavior.Caption = "设置查询行为(&S)...";
+            this.ButtonSetupQueryBehavior.Id = 16;
+            this.ButtonSetupQueryBehavior.Name = "ButtonSetupQueryBehavior";
+            this.ButtonSetupQueryBehavior.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonSetupQueryBehavior_ItemClick);
+            // 
+            // ButtonClearQueryBehavior
+            // 
+            this.ButtonClearQueryBehavior.Caption = "清除查询行为(&L)";
+            this.ButtonClearQueryBehavior.Id = 17;
+            this.ButtonClearQueryBehavior.Name = "ButtonClearQueryBehavior";
+            this.ButtonClearQueryBehavior.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonClearQueryBehavior_ItemClick);
+            // 
             // ReportView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -335,5 +355,7 @@
         private DevExpress.XtraBars.BarButtonItem ButtonRebuildDataFields;
         private DevExpress.XtraBars.BarButtonItem ButtonClearDataFields;
         private DevExpress.XtraBars.Navigation.AccordionControl AccordionControl;
+        private DevExpress.XtraBars.BarButtonItem ButtonSetupQueryBehavior;
+        private DevExpress.XtraBars.BarButtonItem ButtonClearQueryBehavior;
     }
 }

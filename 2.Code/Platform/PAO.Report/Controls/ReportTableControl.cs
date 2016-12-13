@@ -38,6 +38,14 @@ namespace PAO.Report.Controls
         /// 重新查询事件
         /// </summary>
         public event EventHandler Requery;
+        /// <summary>
+        /// 重新查询事件
+        /// </summary>
+        public event EventHandler SetupQueryBehavior;
+        /// <summary>
+        /// 重新查询事件
+        /// </summary>
+        public event EventHandler ClearQueryBehavior;
 
         private Dictionary<string, BaseEdit> ParameterControls;
 
@@ -91,6 +99,15 @@ namespace PAO.Report.Controls
             this.BarProgress.Visible = false;
             this.EditItemProgress.Stopped = true;
             this.Refresh();
+        }
+
+        public void AutoQuery(int timeBreak) {
+            if(timeBreak <= 0) {
+                this.TimerAutoQuery.Enabled = false;
+            } else {
+                this.TimerAutoQuery.Enabled = true;
+                this.TimerAutoQuery.Interval = timeBreak;
+            }
         }
 
         public int RowCount {
@@ -183,6 +200,21 @@ namespace PAO.Report.Controls
         private void ButtonRequery_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             if (Requery != null)
                 Requery(this, new EventArgs());
+        }
+
+        private void TimerAutoQuery_Tick(object sender, EventArgs e) {
+            if (Requery != null)
+                Requery(this, new EventArgs());
+        }
+
+        private void ButtonQueryBehavior_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+            if (SetupQueryBehavior != null)
+                SetupQueryBehavior(this, new EventArgs());
+        }
+        
+        private void ButtonClearQueryBehavior_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+            if (ClearQueryBehavior != null)
+                ClearQueryBehavior(this, new EventArgs());
         }
     }
 }

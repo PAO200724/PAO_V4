@@ -92,23 +92,6 @@ namespace PAO.Report.Views
         }
         #endregion 属性：LayoutData
         
-        #region 属性：DockPanelLayoutData
-        /// <summary>
-        /// 属性：DockPanelLayoutData
-        /// 停靠窗体布局数据
-        /// 停靠窗体的布局数据
-        /// </summary>
-        [AddonProperty]
-        [DataMember(EmitDefaultValue = false)]
-        [Name("停靠窗体布局数据")]
-        [Description("停靠窗体的布局数据")]
-        [Browsable(false)]
-        public byte[] DockPanelLayoutData {
-            get;
-            set;
-        }
-        #endregion 属性：DockPanelLayoutData
-
         #endregion
 
         public ReportController() {

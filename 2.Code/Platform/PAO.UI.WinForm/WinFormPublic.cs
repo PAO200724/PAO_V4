@@ -444,14 +444,11 @@ namespace PAO.UI.WinForm
             else if (type == typeof(Image)) {
                 editor = new ImageEditor();
             }
-            else if (type == typeof(Color)) {
-                editor = new ColorEditor();
+            else if (type.IsNumberType()) {
+                editor = new TextEditor();
             }
-            else if (type == typeof(Color)) {
-                editor = new ColorEditor();
-            }
-            else if (type == typeof(Color)) {
-                editor = new ColorEditor();
+            else if (type == typeof(Guid)) {
+                editor = new GuidEditor();
             }
             else {
                 return null;

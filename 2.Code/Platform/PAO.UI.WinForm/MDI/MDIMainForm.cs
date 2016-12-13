@@ -82,7 +82,7 @@ namespace PAO.UI.WinForm.MDI
             else
                 MenuFunction.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
 
-            AddonPublic.ApplyAddonExtendProperties(_MDIApplication);
+            AddonPublic.LoadAddonExtendProperties(_MDIApplication);
 
             // 加载布局数据
             this.DockManager.SetLayoutData(_MDIApplication.LayoutData);
@@ -112,7 +112,7 @@ namespace PAO.UI.WinForm.MDI
 
             _MDIApplication.LayoutData = this.DockManager.GetLayoutData();
             _MDIApplication.SkinName = DevExpress.LookAndFeel.UserLookAndFeel.Default.SkinName;
-            AddonPublic.FetchAddonExtendProperties(_MDIApplication, "LayoutData", "SkinName");
+            AddonPublic.SaveAddonExtendProperties(_MDIApplication, "LayoutData", "SkinName");
             base.OnClosing(e);
         }
         

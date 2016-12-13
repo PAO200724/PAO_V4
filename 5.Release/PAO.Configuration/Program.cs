@@ -96,6 +96,10 @@ namespace PAO.Configuration
                             {
                                 ID = "Smart_Report",
                                 Caption = "智能报表",
+                                QueryBehavior = new ReportQueryBehavior()
+                                {
+                                    AutoQueryInterval = 3000,
+                                },
                                 Tables = new List<ReportDataTable>()
                                     .Append(new ReportDataTable()
                                     {
