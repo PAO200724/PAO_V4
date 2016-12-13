@@ -61,7 +61,7 @@ namespace PAO.Report.Views
         #region 私有方法
         /// <summary>
         /// 初始化值获取器
-        /// </summary>
+        /// </summary>   
         private void InitValueFetcher() {
             var controller = Controller as ReportController;
             foreach (var reportTable in controller.Tables) {
@@ -74,40 +74,80 @@ namespace PAO.Report.Views
         }
 
         /// <summary>
-        /// 查询表
+        /// 重新查询表，查询前清空数据
+        /// </summary>
+        /// <param name="reportTable"></param>
+        private void RequeryTable(ReportDataTable reportTable) {
+            var reportControl = TableControls[reportTable.TableName];
+            reportControl.QueryCompleted = false;
+            reportControl.RowCount = 0;
+            if (DataSource.Tables.Contains(reportTable.TableName)) {
+                DataSource.Tables[reportTable.TableName].Clear();
+            }
+            QueryTable(reportTable);
+        }
+        /// <summary>
+        /// 查询表，查询前不清空数据
         /// </summary>
         /// <param name="reportTable"></param>
         private void QueryTable(ReportDataTable reportTable) {
+            var controller = Controller as ReportController;
             var tableControl = this.TableControls[reportTable.TableName];
             tableControl.StartQuery();
             if (reportTable.DataFetcher != null) {
                 var dataFetcher = reportTable.DataFetcher.Value;
                 var backgroundWorker = new BackgroundWorker();
-                DataTable dataTable = null;
+                DataTable queryTable = null;
+
                 int currentCount = 0;
+                DataTable currentDataTable = null;
+
+                // 获取当前行
                 if (DataSource.Tables.Contains(reportTable.TableName)) {
-                    var currentDataTable = DataSource.Tables[reportTable.TableName];
+                    currentDataTable = DataSource.Tables[reportTable.TableName];
                     currentCount = currentDataTable.Rows.Count;
                 }
+                // 获取查询行为
+                ReportQueryBehavior queryBehavior = reportTable.QueryBehavior;
+                if (queryBehavior == null) {
+                    queryBehavior = controller.QueryBehavior;
+                }
+                // 获取每次查询的最大量
+                int maxCount = Int32.MaxValue;
+                if (queryBehavior != null)
+                    maxCount = queryBehavior.QueryCountPerTime;
+
                 backgroundWorker.DoWork += (s, e) =>
                 {
-                    dataTable = dataFetcher.FetchData(currentCount, 100, null);
-                    dataTable.TableName = reportTable.TableName;
+                    queryTable = dataFetcher.FetchData(currentCount, maxCount, tableControl.ParameterValues);
+                    queryTable.TableName = reportTable.TableName;
                 };
                 backgroundWorker.RunWorkerCompleted += (s, e) =>
                 {
-                    if(dataTable != null) {
-                        DataSource.Merge(dataTable);
-                    }
-                    if (DataSource.Tables.Contains(reportTable.TableName)) {
+                    if(queryTable != null) {
+                        if (queryTable.Rows.Count < maxCount) {
+                            tableControl.QueryCompleted = true;
+                        }
+                        else {
+                            tableControl.QueryCompleted = false;
+                        }
+                        DataSource.Merge(queryTable);
                         tableControl.RowCount = DataSource.Tables[reportTable.TableName].Rows.Count;
-                    } else {
-                        tableControl.RowCount = 0;
                     }
                     tableControl.EndQuery();
                     SetDataSource();
                 };
                 backgroundWorker.RunWorkerAsync();
+            }
+        }
+
+        /// <summary>
+        /// 查询所有表格
+        /// </summary>
+        private void RequeryAllTable() {
+            var controller = Controller as ReportController;
+            foreach (var reportTable in controller.Tables) {
+                RequeryTable(reportTable);
             }
         }
 
@@ -150,6 +190,7 @@ namespace PAO.Report.Views
 
                 reportTableControl.QueryAll += ReportTableControl_QueryAll;
                 reportTableControl.QueryMore += ReportTableControl_QueryMore;
+                reportTableControl.Requery += ReportTableControl_Requery;
                 var elementParameterView = new AccordionControlElement();
                 elementParameterView.Name = reportDataTable.ID;
                 elementParameterView.Style = ElementStyle.Item;
@@ -168,6 +209,7 @@ namespace PAO.Report.Views
                 TableControls.Add(reportDataTable.TableName, reportTableControl);
             }
         }
+
         #endregion
 
         #region 接口IViewContainer
@@ -278,12 +320,15 @@ namespace PAO.Report.Views
             QueryTable(tableControl.ReportDataTable);
         }
 
-        private void ButtonQuery_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            var controller = Controller as ReportController;
-            foreach (var reportTable in controller.Tables) {
-                QueryTable(reportTable);
-            }
+        private void ReportTableControl_Requery(object sender, EventArgs e) {
+            var tableControl = sender as ReportTableControl;
+            RequeryTable(tableControl.ReportDataTable);
         }
+
+        private void ButtonQuery_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+            RequeryAllTable();
+        }
+
         #endregion
     }
 }

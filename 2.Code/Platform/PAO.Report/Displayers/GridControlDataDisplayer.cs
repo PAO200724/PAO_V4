@@ -67,8 +67,10 @@ namespace PAO.Report.Displayers
             var controller = Controller as GridControlController;
 
             this.GridControl.DataSource = dataSet;
-            if(dataSet.Tables.Contains(controller.DataMember))
+            if(dataSet.Tables.Contains(controller.DataMember)) {
                 this.GridControl.DataMember = controller.DataMember;
+            }
+            this.GridControl.RefreshDataSource();
         }
 
         protected override void OnSetController(BaseController value) {

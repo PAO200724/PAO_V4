@@ -51,7 +51,10 @@ namespace PAO.Data.Filters
         }
 
         public virtual string GetFilterString(DataField[] paramValues) {
-            if (IsNull(paramValues))
+            if (paramValues == null)
+                return null;
+
+            if (!paramValues.Any(p => (p.Name == Name && p.Value != null)))
                 return null;
 
             return Sql;
@@ -62,13 +65,7 @@ namespace PAO.Data.Filters
         }
 
         #region IDataFilter 成员
-
-        public bool IsNull(DataField[] paramValues) {
-            return paramValues == null 
-                || !paramValues.Any(p=>p.Name == Name)
-                || paramValues.Where(p=>p.Name==Name).First().IsNullOrEmpty();
-        }
-
+        
         #endregion
 
         /// <summary>

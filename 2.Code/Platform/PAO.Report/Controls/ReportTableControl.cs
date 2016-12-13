@@ -23,10 +23,23 @@ namespace PAO.Report.Controls
     {
         public ReportTableControl() {
             InitializeComponent();
+            QueryCompleted = false;
         }
 
+        /// <summary>
+        /// 查询更多事件
+        /// </summary>
         public event EventHandler QueryMore;
+        /// <summary>
+        /// 查询所有事件
+        /// </summary>
         public event EventHandler QueryAll;
+        /// <summary>
+        /// 重新查询事件
+        /// </summary>
+        public event EventHandler Requery;
+
+        private Dictionary<string, BaseEdit> ParameterControls;
 
         private ReportDataTable _ReportDataTable;
         [Browsable(false)]
@@ -41,6 +54,22 @@ namespace PAO.Report.Controls
                     return;
                 
                 RecreateParameterInputControls();
+            }
+        }
+
+        private bool _QueryCompleted;
+        /// <summary>
+        /// 查询完成
+        /// </summary>
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public bool QueryCompleted { get {
+                return _QueryCompleted;
+            }
+            set {
+                _QueryCompleted = value;
+                this.ButtonAll.Enabled = !_QueryCompleted;
+                this.ButtonMore.Enabled = !_QueryCompleted;
             }
         }
 
@@ -76,11 +105,33 @@ namespace PAO.Report.Controls
             }
         }
 
+        public DataField[] ParameterValues {
+            get {
+                if (ParameterControls == null)
+                    return null;
+
+                var fieldList = new List<DataField>();
+                foreach(var kv in ParameterControls) {
+                    if(kv.Value.EditValue != null) {
+                        var parameter = new DataField()
+                        {
+                            Name = kv.Key,
+                            Value = kv.Value.EditValue
+                        };
+                        fieldList.Add(parameter);
+                    }
+                }
+
+                return fieldList.ToArray();
+            }
+        }
+
         /// <summary>
         /// 创建参数输入控件
         /// </summary>
         private void RecreateParameterInputControls() {
             LayoutControlGroupRoot.Items.Clear();
+            ParameterControls = new Dictionary<string, BaseEdit>();
             foreach (var parameter in _ReportDataTable.QueryParameters) {
                 if (parameter.UserInput) {
                     // 创建编辑控件
@@ -103,7 +154,7 @@ namespace PAO.Report.Controls
                     else {
                         editor.EditValue = null;
                     }
-
+                    ParameterControls.Add(parameter.Name, editor);
                     // 创建LayoutItem
                     var layoutControlItem = LayoutControlGroupRoot.AddItem();
                     layoutControlItem.Name = parameter.ID;
@@ -127,6 +178,11 @@ namespace PAO.Report.Controls
         private void ButtonAll_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             if (QueryAll != null)
                 QueryAll(this, new EventArgs());
+        }
+
+        private void ButtonRequery_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+            if (Requery != null)
+                Requery(this, new EventArgs());
         }
     }
 }

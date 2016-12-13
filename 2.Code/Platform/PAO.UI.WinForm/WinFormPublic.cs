@@ -410,7 +410,9 @@ namespace PAO.UI.WinForm
 
             var type = propertyDescriptor.PropertyType;
             editor = GetDefaultEditorByType(propertyDescriptor.PropertyType);
-            editor.PropertyDescriptor = propertyDescriptor;
+            if(editor != null) {
+                editor.PropertyDescriptor = propertyDescriptor;
+            }
             return editor;
         }
 

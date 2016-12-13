@@ -69,7 +69,7 @@ namespace PAO.Report.Views
         [DataMember(EmitDefaultValue = false)]
         [Name("查询行为")]
         [Description("整个报表查询行为的定义")]
-        public Ref<ReportQueryBehavior> QueryBehavior {
+        public ReportQueryBehavior QueryBehavior {
             get;
             set;
         }

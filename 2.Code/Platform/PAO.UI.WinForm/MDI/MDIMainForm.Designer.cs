@@ -26,6 +26,7 @@
         /// </summary>
         private void InitializeComponent() {
             DevExpress.XtraSplashScreen.SplashScreenManager SplashScreenManager = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::PAO.UI.WinForm.Forms.PaoSplashScreen), true, true);
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MDIMainForm));
             this.DockManager = new DevExpress.XtraBars.Docking.DockManager();
             this.BarManager = new DevExpress.XtraBars.BarManager();
             this.BarMain = new DevExpress.XtraBars.Bar();
@@ -57,6 +58,8 @@
             this.DocumentManager = new DevExpress.XtraBars.Docking2010.DocumentManager();
             this.TabbedView = new DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView();
             this.TimerDateTime = new System.Windows.Forms.Timer();
+            this.MenuConfig = new DevExpress.XtraBars.BarSubItem();
+            this.ButtonSaveConfig = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.DockManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BarManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemProgressBar)).BeginInit();
@@ -111,9 +114,11 @@
             this.MenuFunction,
             this.MenuToolBar,
             this.ButtonRecoverLayout,
-            this.ButtonLogout});
+            this.ButtonLogout,
+            this.MenuConfig,
+            this.ButtonSaveConfig});
             this.BarManager.MainMenu = this.BarMain;
-            this.BarManager.MaxItemId = 24;
+            this.BarManager.MaxItemId = 26;
             this.BarManager.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.RepositoryItemCalcEdit,
             this.RepositoryItemProgressBar,
@@ -144,6 +149,7 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.MenuSkin),
             new DevExpress.XtraBars.LinkPersistInfo(this.MenuWindow),
             new DevExpress.XtraBars.LinkPersistInfo(this.MenuToolBar),
+            new DevExpress.XtraBars.LinkPersistInfo(this.MenuConfig),
             new DevExpress.XtraBars.LinkPersistInfo(this.ButtonExit, true)});
             this.MenuSystem.Name = "MenuSystem";
             // 
@@ -364,6 +370,25 @@
             this.TimerDateTime.Interval = 1000;
             this.TimerDateTime.Tick += new System.EventHandler(this.TimerDateTime_Tick);
             // 
+            // MenuConfig
+            // 
+            this.MenuConfig.Caption = "配置(&C)";
+            this.MenuConfig.Glyph = ((System.Drawing.Image)(resources.GetObject("MenuConfig.Glyph")));
+            this.MenuConfig.Id = 24;
+            this.MenuConfig.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("MenuConfig.LargeGlyph")));
+            this.MenuConfig.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonSaveConfig)});
+            this.MenuConfig.Name = "MenuConfig";
+            // 
+            // ButtonSaveConfig
+            // 
+            this.ButtonSaveConfig.Caption = "保存当前配置(&S)";
+            this.ButtonSaveConfig.Glyph = ((System.Drawing.Image)(resources.GetObject("ButtonSaveConfig.Glyph")));
+            this.ButtonSaveConfig.Id = 25;
+            this.ButtonSaveConfig.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("ButtonSaveConfig.LargeGlyph")));
+            this.ButtonSaveConfig.Name = "ButtonSaveConfig";
+            this.ButtonSaveConfig.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonSaveConfig_ItemClick);
+            // 
             // MDIMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -424,5 +449,7 @@
         private DevExpress.XtraBars.BarButtonItem ButtonRecoverLayout;
         private System.Windows.Forms.Timer TimerDateTime;
         private DevExpress.XtraBars.BarButtonItem ButtonLogout;
+        private DevExpress.XtraBars.BarSubItem MenuConfig;
+        private DevExpress.XtraBars.BarButtonItem ButtonSaveConfig;
     }
 }

@@ -57,8 +57,10 @@ namespace PAO.Config.Controls.EditControls
         private void PropertyGridControl_CustomRecordCellEdit(object sender, DevExpress.XtraVerticalGrid.Events.GetCustomRowCellEditEventArgs e) {
             var propDesc = PropertyGridControl.GetPropertyDescriptor(e.Row);
             var edit = WinFormPublic.GetDefaultEditor(propDesc);
-            if (edit == null)
+            if (edit == null) {
                 edit = new ObjectEditor();
+                edit.PropertyDescriptor = propDesc;
+            }
             e.RepositoryItem = edit.CreateEditor();
         }
 

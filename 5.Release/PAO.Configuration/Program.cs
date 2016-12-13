@@ -109,28 +109,28 @@ namespace PAO.Configuration
                                         QueryParameters = new List<ReportQueryParameter>()
                                             .Append(new ReportQueryParameter()
                                             {
-                                                Name = "ID",
+                                                Name = "@ID",
                                                 Caption = "ID",
                                                 Type = System.Data.DbType.String,
                                                 UserInput = true
                                             })
                                             .Append(new ReportQueryParameter()
                                             {
-                                                Name = "LoginName",
+                                                Name = "@LoginName",
                                                 Caption = "登录名",
                                                 Type = System.Data.DbType.String,
                                                 UserInput = true
                                             })
                                             .Append(new ReportQueryParameter()
                                             {
-                                                Name = "Name",
+                                                Name = "@UserName",
                                                 Caption = "姓名",
                                                 Type = System.Data.DbType.String,
                                                 UserInput = true
                                             })
                                             .Append(new ReportQueryParameter()
                                             {
-                                                Name = "CreateTime",
+                                                Name = "@CreateTime",
                                                 Caption = "创建时间",
                                                 Type = System.Data.DbType.DateTime,
                                                 UserInput = true

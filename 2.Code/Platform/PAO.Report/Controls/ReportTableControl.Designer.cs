@@ -26,12 +26,16 @@
         /// </summary>
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
-            DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem1 = new DevExpress.Utils.ToolTipTitleItem();
-            DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
             DevExpress.Utils.SuperToolTip superToolTip2 = new DevExpress.Utils.SuperToolTip();
             DevExpress.Utils.ToolTipTitleItem toolTipTitleItem2 = new DevExpress.Utils.ToolTipTitleItem();
             DevExpress.Utils.ToolTipItem toolTipItem2 = new DevExpress.Utils.ToolTipItem();
+            DevExpress.Utils.SuperToolTip superToolTip3 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem3 = new DevExpress.Utils.ToolTipTitleItem();
+            DevExpress.Utils.ToolTipItem toolTipItem3 = new DevExpress.Utils.ToolTipItem();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReportTableControl));
+            DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem1 = new DevExpress.Utils.ToolTipTitleItem();
+            DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
             this.LayoutControl = new DevExpress.XtraLayout.LayoutControl();
             this.LayoutControlGroupRoot = new DevExpress.XtraLayout.LayoutControlGroup();
             this.BarManager = new DevExpress.XtraBars.BarManager(this.components);
@@ -47,6 +51,7 @@
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            this.ButtonRequery = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.LayoutControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.LayoutControlGroupRoot)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BarManager)).BeginInit();
@@ -93,8 +98,9 @@
             this.BarItemCount,
             this.ButtonMore,
             this.ButtonAll,
-            this.BarItemQueryProgress});
-            this.BarManager.MaxItemId = 4;
+            this.BarItemQueryProgress,
+            this.ButtonRequery});
+            this.BarManager.MaxItemId = 5;
             this.BarManager.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.TextEditCount,
             this.EditItemProgress});
@@ -107,6 +113,7 @@
             this.BarTools.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
             this.BarTools.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.BarItemCount, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
+            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonRequery),
             new DevExpress.XtraBars.LinkPersistInfo(this.ButtonMore),
             new DevExpress.XtraBars.LinkPersistInfo(this.ButtonAll)});
             this.BarTools.OptionsBar.AllowQuickCustomization = false;
@@ -136,12 +143,12 @@
             this.ButtonMore.Glyph = global::PAO.Report.Properties.Resources.doublenext_16x16;
             this.ButtonMore.Id = 1;
             this.ButtonMore.Name = "ButtonMore";
-            toolTipTitleItem1.Text = "更多";
-            toolTipItem1.LeftIndent = 6;
-            toolTipItem1.Text = "查询更多的数据，耗时较短";
-            superToolTip1.Items.Add(toolTipTitleItem1);
-            superToolTip1.Items.Add(toolTipItem1);
-            this.ButtonMore.SuperTip = superToolTip1;
+            toolTipTitleItem2.Text = "更多";
+            toolTipItem2.LeftIndent = 6;
+            toolTipItem2.Text = "查询更多的数据，耗时较短";
+            superToolTip2.Items.Add(toolTipTitleItem2);
+            superToolTip2.Items.Add(toolTipItem2);
+            this.ButtonMore.SuperTip = superToolTip2;
             this.ButtonMore.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonMore_ItemClick);
             // 
             // ButtonAll
@@ -150,12 +157,12 @@
             this.ButtonAll.Glyph = global::PAO.Report.Properties.Resources.last_16x16;
             this.ButtonAll.Id = 2;
             this.ButtonAll.Name = "ButtonAll";
-            toolTipTitleItem2.Text = "所有";
-            toolTipItem2.LeftIndent = 6;
-            toolTipItem2.Text = "查询所有的数据，耗时较长";
-            superToolTip2.Items.Add(toolTipTitleItem2);
-            superToolTip2.Items.Add(toolTipItem2);
-            this.ButtonAll.SuperTip = superToolTip2;
+            toolTipTitleItem3.Text = "所有";
+            toolTipItem3.LeftIndent = 6;
+            toolTipItem3.Text = "查询所有的数据，耗时较长";
+            superToolTip3.Items.Add(toolTipTitleItem3);
+            superToolTip3.Items.Add(toolTipItem3);
+            this.ButtonAll.SuperTip = superToolTip3;
             this.ButtonAll.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonAll_ItemClick);
             // 
             // BarProgress
@@ -214,6 +221,20 @@
             this.barDockControlRight.Location = new System.Drawing.Point(290, 60);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 97);
             // 
+            // ButtonRequery
+            // 
+            this.ButtonRequery.Caption = "重新查询(&R)";
+            this.ButtonRequery.Glyph = ((System.Drawing.Image)(resources.GetObject("ButtonRequery.Glyph")));
+            this.ButtonRequery.Id = 4;
+            this.ButtonRequery.Name = "ButtonRequery";
+            toolTipTitleItem1.Text = "重新查询";
+            toolTipItem1.LeftIndent = 6;
+            toolTipItem1.Text = "清空数据后重新查询";
+            superToolTip1.Items.Add(toolTipTitleItem1);
+            superToolTip1.Items.Add(toolTipItem1);
+            this.ButtonRequery.SuperTip = superToolTip1;
+            this.ButtonRequery.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonRequery_ItemClick);
+            // 
             // ReportTableControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -252,5 +273,6 @@
         private DevExpress.XtraBars.BarEditItem BarItemQueryProgress;
         private DevExpress.XtraEditors.Repository.RepositoryItemMarqueeProgressBar EditItemProgress;
         private DevExpress.XtraBars.Bar BarProgress;
+        private DevExpress.XtraBars.BarButtonItem ButtonRequery;
     }
 }

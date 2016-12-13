@@ -18,6 +18,8 @@ using PAO.UI.WinForm.Security;
 using PAO.Security;
 using DevExpress.XtraSplashScreen;
 using PAO.Trans;
+using PAO.IO;
+using PAO.IO.Text;
 
 namespace PAO.UI.WinForm.MDI
 {
@@ -206,6 +208,16 @@ namespace PAO.UI.WinForm.MDI
             }
             else { 
                 this.Close();
+            }
+        }
+
+        private void ButtonSaveConfig_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+            string fileName = AppPublic.GetAbsolutePath(AppPublic.DefaultConfigFileName);
+            if(UIPublic.ShowSaveFileDialog("保存配置", ref fileName, 
+                FileExtentions.CONFIG,
+                FileExtentions.XML,
+                FileExtentions.All) == DialogReturn.OK) {
+                TextPublic.WriteObjectToFile(fileName, PaoApplication.Default);
             }
         }
     }

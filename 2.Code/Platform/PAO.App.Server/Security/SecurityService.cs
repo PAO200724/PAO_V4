@@ -44,7 +44,7 @@ namespace PAO.App.Server.Security
         public static readonly DataCommandInfo DataCommand_QueryUsers = new DataCommandInfo()
         {
             ID = "DataCommand_QueryUsers",
-            Sql = "SELECT * FROM [T_User]",
+            Sql = "SELECT * FROM [T_User] WHERE {0}",
             DataFilter = new AndLogicFilter()
             {
                 ChildFilters = new List<IDataFilter>()

@@ -139,7 +139,7 @@ namespace PAO.Data
             var paramDefines = commandInfo.GetParameters();
 
             // 从Sql创建参数
-            var paramNames = DataPublic.FindParameters(commandInfo.Sql, ParamPrefix);
+            var paramNames = DataPublic.FindParameters(command.CommandText, ParamPrefix);
             foreach(var paramName in paramNames) {
                 if(!command.Parameters.Contains(paramName)) {
                     var dbParam = command.CreateParameter();
@@ -289,8 +289,8 @@ namespace PAO.Data
         /// <param name="parameterList">参数</param>
         /// <returns>数据记录集</returns>
         public DataTable QueryTableByCommand(DataCommandInfo commandInfo, int startIndex, int maxCount, params DataField[] parameterList) {
-            var command = CreateDataCommand(commandInfo, parameterList);
             var dataTable = GetSchema(commandInfo);
+            var command = CreateDataCommand(commandInfo, parameterList);
             QueryData(command, startIndex, maxCount, dataTable);
             return dataTable;
         }
