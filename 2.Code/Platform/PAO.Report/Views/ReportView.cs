@@ -15,6 +15,10 @@ using DevExpress.XtraBars.Docking2010;
 using PAO.Data;
 using PAO.UI.WinForm;
 using PAO.UI;
+using DevExpress.XtraVerticalGrid.Rows;
+using PAO.Report.ValueFetchers;
+using PAO.UI.WinForm.Editors;
+using DevExpress.XtraEditors.Repository;
 
 namespace PAO.Report.Views
 {
@@ -28,10 +32,6 @@ namespace PAO.Report.Views
         /// 数据集
         /// </summary>
         internal DataSet DataSource = new DataSet();
-        /// <summary>
-        /// 数据集
-        /// </summary>
-        internal DataSet DataSchema = new DataSet();
         /// <summary>
         /// 视图列表
         /// </summary>
@@ -47,32 +47,31 @@ namespace PAO.Report.Views
             InitializeComponent();
             UIActionDispatcher = new UIActionDispatcher(this);
         }
-
+        
         private void RebuildTableColumns() {
+
+        }
+
+        private void InitValueFetcher() {
             var controller = Controller as ReportController;
-            if(controller.Tables.IsNotNullOrEmpty()) {
-                foreach(var reportTable in controller.Tables) {
-                    // 从DataFetcher获取格式
-                    if(reportTable.DataFetcher != null) {
-                        var dataFetcher = reportTable.DataFetcher.Value;
-                        var tableSchema = dataFetcher.GetDataSchema();
+            foreach (var reportTable in controller.Tables) {
 
-                        // 重建ReportTable中的数据列
-                        var reportColumns = ReportPublic.GetReportDataColumns(tableSchema);
-                        if(reportTable.DataColumns == null) {
-                            reportTable.DataColumns = new List<ReportDataColumn>();
-                        }
-                        ReportPublic.RebuildReportColumn(reportTable.DataColumns, reportColumns);
-
-                        tableSchema.TableName = reportTable.TableName;
-
-                        DataSchema.Merge(DataSchema);
-                        DataSource.Merge(tableSchema);
+                foreach (var parameter in reportTable.QueryParameters) {
+                    if (parameter.ValueFetcher != null && parameter.ValueFetcher.Value is IReportElement) {
+                        parameter.ValueFetcher.Value.As<IReportElement>().ReportView = this;
                     }
                 }
             }
         }
 
+        /// <summary>
+        /// 重建参数视图
+        /// </summary>
+        private void RecreateTableView() {
+            var controller = Controller as ReportController;
+            this.ReportTableListControl.ReportDataTables = controller.Tables;
+        }
+        
         #region 接口IViewContainer
         public void OpenView(IView view) {
             // 避免重复添加视图
@@ -118,15 +117,21 @@ namespace PAO.Report.Views
         #region ViewControl
         protected override void OnSetController(BaseController value) {
             var controller = value as ReportController;
+            InitValueFetcher();
+
+            // 打开子视图控制器
+            this.BindingSourceTable.DataSource = controller.Tables;
             foreach(var childControllerRef in controller.Controllers) {
                 var childController = childControllerRef.Value;
                 childController.CreateAndOpenView(this);
             }
-            this.BindingSourceTable.DataSource = controller.Tables;
 
+            // 重建参数视图
+            RecreateTableView();
+
+            // 读取布局
             AddonPublic.ApplyAddonExtendProperties(controller);
             this.LayoutControl.SetLayoutData(controller.LayoutData);
-            this.DockManager.SetLayoutData(controller.DockPanelLayoutData);
         }
 
         protected override void OnClosing() {
@@ -137,7 +142,6 @@ namespace PAO.Report.Views
             }
             var controller = Controller as ReportController;
             controller.LayoutData = this.LayoutControl.GetLayoutData();
-            controller.DockPanelLayoutData = this.DockManager.GetLayoutData();
             AddonPublic.FetchAddonExtendProperties(controller, "LayoutData", "DockPanelLayoutData");
         }
         #endregion
@@ -169,7 +173,10 @@ namespace PAO.Report.Views
         }
 
         private void ButtonQuery_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+            var controller = Controller as ReportController;
+            foreach (var reportTable in controller.Tables) {
 
+            }
         }
         #endregion
     }

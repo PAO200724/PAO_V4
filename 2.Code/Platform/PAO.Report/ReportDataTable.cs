@@ -99,7 +99,7 @@ namespace PAO.Report
         [DataMember(EmitDefaultValue = false)]
         [Name("查询参数")]
         [Description("查询用的参数")]
-        public List<ReportDataField> QueryParameters {
+        public List<ReportQueryParameter> QueryParameters {
             get;
             set;
         }

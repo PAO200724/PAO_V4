@@ -24,6 +24,23 @@ namespace PAO.Report
     {
         #region 插件属性
 
+        #region 属性：UserInput
+        /// <summary>
+        /// 属性：UserInput
+        /// 用户输入
+        /// 是否由用户输入
+        /// </summary>
+        [AddonProperty]
+        [DefaultValue(true)]
+        [DataMember(EmitDefaultValue = false)]
+        [Name("用户输入")]
+        [Description("是否由用户输入")]
+        public bool UserInput {
+            get;
+            set;
+        }
+        #endregion 属性：UserInput
+
         #region 属性：ValueFetcher
         /// <summary>
         /// 属性：ValueFetcher
@@ -42,6 +59,7 @@ namespace PAO.Report
 
         #endregion
         public ReportQueryParameter() {
+            UserInput = true;
         }
     }
 }

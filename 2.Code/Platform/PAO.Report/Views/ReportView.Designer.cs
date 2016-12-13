@@ -26,25 +26,8 @@
         /// </summary>
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem1 = new DevExpress.Utils.ToolTipTitleItem();
-            DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SuperToolTip superToolTip2 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem2 = new DevExpress.Utils.ToolTipTitleItem();
-            DevExpress.Utils.ToolTipItem toolTipItem2 = new DevExpress.Utils.ToolTipItem();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReportView));
-            this.GridControlData = new DevExpress.XtraGrid.GridControl();
             this.BindingSourceTable = new System.Windows.Forms.BindingSource(this.components);
-            this.GridViewTable = new DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView();
-            this.GridBindTable = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.ColumnTableCaption = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.ColumnTableName = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.ColumnTableLoadingProcess = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.EditItemLoadingProcess = new DevExpress.XtraEditors.Repository.RepositoryItemMarqueeProgressBar();
-            this.ColumnTableDataCount = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.EditItemDataAction = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.BarManager = new DevExpress.XtraBars.BarManager(this.components);
             this.BarTools = new DevExpress.XtraBars.Bar();
             this.ButtonQuery = new DevExpress.XtraBars.BarButtonItem();
@@ -61,157 +44,25 @@
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.DockManager = new DevExpress.XtraBars.Docking.DockManager(this.components);
-            this.PanelContainerLeft = new DevExpress.XtraBars.Docking.DockPanel();
             this.DockPanelTables = new DevExpress.XtraBars.Docking.DockPanel();
             this.DockPanelData_Container = new DevExpress.XtraBars.Docking.ControlContainer();
-            this.DockPanelParameters = new DevExpress.XtraBars.Docking.DockPanel();
-            this.DockPanelParameter_Container = new DevExpress.XtraBars.Docking.ControlContainer();
-            this.VGridControlParameters = new DevExpress.XtraVerticalGrid.VGridControl();
             this.RepositoryItemTextEditCaption = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
-            this.EditItemIcon = new DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit();
             this.LayoutControl = new DevExpress.XtraLayout.LayoutControl();
             this.LayoutControlGroupRoot = new DevExpress.XtraLayout.LayoutControlGroup();
-            ((System.ComponentModel.ISupportInitialize)(this.GridControlData)).BeginInit();
+            this.ReportTableListControl = new PAO.Report.Controls.ReportTableListControl();
             ((System.ComponentModel.ISupportInitialize)(this.BindingSourceTable)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.GridViewTable)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.EditItemLoadingProcess)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.EditItemDataAction)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BarManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DockManager)).BeginInit();
-            this.PanelContainerLeft.SuspendLayout();
             this.DockPanelTables.SuspendLayout();
             this.DockPanelData_Container.SuspendLayout();
-            this.DockPanelParameters.SuspendLayout();
-            this.DockPanelParameter_Container.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.VGridControlParameters)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemTextEditCaption)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.EditItemIcon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.LayoutControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.LayoutControlGroupRoot)).BeginInit();
             this.SuspendLayout();
             // 
-            // GridControlData
-            // 
-            this.GridControlData.DataSource = this.BindingSourceTable;
-            this.GridControlData.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.GridControlData.Location = new System.Drawing.Point(0, 0);
-            this.GridControlData.MainView = this.GridViewTable;
-            this.GridControlData.MenuManager = this.BarManager;
-            this.GridControlData.Name = "GridControlData";
-            this.GridControlData.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.EditItemLoadingProcess,
-            this.EditItemDataAction,
-            this.EditItemIcon});
-            this.GridControlData.Size = new System.Drawing.Size(226, 199);
-            this.GridControlData.TabIndex = 0;
-            this.GridControlData.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.GridViewTable});
-            // 
             // BindingSourceTable
             // 
             this.BindingSourceTable.DataSource = typeof(PAO.Report.ReportDataTable);
-            // 
-            // GridViewTable
-            // 
-            this.GridViewTable.Bands.AddRange(new DevExpress.XtraGrid.Views.BandedGrid.GridBand[] {
-            this.GridBindTable});
-            this.GridViewTable.Columns.AddRange(new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn[] {
-            this.ColumnTableCaption,
-            this.ColumnTableName,
-            this.ColumnTableLoadingProcess,
-            this.ColumnTableDataCount});
-            this.GridViewTable.GridControl = this.GridControlData;
-            this.GridViewTable.Name = "GridViewTable";
-            this.GridViewTable.OptionsBehavior.ReadOnly = true;
-            this.GridViewTable.OptionsDetail.AllowZoomDetail = false;
-            this.GridViewTable.OptionsDetail.ShowDetailTabs = false;
-            this.GridViewTable.OptionsDetail.SmartDetailExpand = false;
-            this.GridViewTable.OptionsDetail.SmartDetailHeight = true;
-            this.GridViewTable.OptionsView.ColumnAutoWidth = true;
-            this.GridViewTable.OptionsView.ShowBands = false;
-            this.GridViewTable.OptionsView.ShowColumnHeaders = false;
-            this.GridViewTable.OptionsView.ShowDetailButtons = false;
-            this.GridViewTable.OptionsView.ShowGroupPanel = false;
-            this.GridViewTable.OptionsView.ShowIndicator = false;
-            // 
-            // GridBindTable
-            // 
-            this.GridBindTable.Caption = "表";
-            this.GridBindTable.Columns.Add(this.ColumnTableCaption);
-            this.GridBindTable.Columns.Add(this.ColumnTableName);
-            this.GridBindTable.Columns.Add(this.ColumnTableLoadingProcess);
-            this.GridBindTable.Columns.Add(this.ColumnTableDataCount);
-            this.GridBindTable.Name = "GridBindTable";
-            this.GridBindTable.VisibleIndex = 0;
-            this.GridBindTable.Width = 1477;
-            // 
-            // ColumnTableCaption
-            // 
-            this.ColumnTableCaption.Caption = "标题";
-            this.ColumnTableCaption.FieldName = "Caption";
-            this.ColumnTableCaption.Name = "ColumnTableCaption";
-            this.ColumnTableCaption.Visible = true;
-            this.ColumnTableCaption.Width = 729;
-            // 
-            // ColumnTableName
-            // 
-            this.ColumnTableName.Caption = "表名";
-            this.ColumnTableName.FieldName = "TableName";
-            this.ColumnTableName.Name = "ColumnTableName";
-            this.ColumnTableName.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways;
-            this.ColumnTableName.Visible = true;
-            this.ColumnTableName.Width = 748;
-            // 
-            // ColumnTableLoadingProcess
-            // 
-            this.ColumnTableLoadingProcess.Caption = "加载进度";
-            this.ColumnTableLoadingProcess.ColumnEdit = this.EditItemLoadingProcess;
-            this.ColumnTableLoadingProcess.FieldName = "LoadingProcess";
-            this.ColumnTableLoadingProcess.Name = "ColumnTableLoadingProcess";
-            this.ColumnTableLoadingProcess.RowIndex = 1;
-            this.ColumnTableLoadingProcess.Visible = true;
-            this.ColumnTableLoadingProcess.Width = 1357;
-            // 
-            // EditItemLoadingProcess
-            // 
-            this.EditItemLoadingProcess.Name = "EditItemLoadingProcess";
-            this.EditItemLoadingProcess.Stopped = true;
-            // 
-            // ColumnTableDataCount
-            // 
-            this.ColumnTableDataCount.Caption = "数据行数";
-            this.ColumnTableDataCount.ColumnEdit = this.EditItemDataAction;
-            this.ColumnTableDataCount.FieldName = "DataCount";
-            this.ColumnTableDataCount.Name = "ColumnTableDataCount";
-            this.ColumnTableDataCount.OptionsColumn.FixedWidth = true;
-            this.ColumnTableDataCount.RowIndex = 1;
-            this.ColumnTableDataCount.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways;
-            this.ColumnTableDataCount.Visible = true;
-            this.ColumnTableDataCount.Width = 120;
-            // 
-            // EditItemDataAction
-            // 
-            this.EditItemDataAction.AutoHeight = false;
-            toolTipTitleItem1.Appearance.Image = global::PAO.Report.Properties.Resources.doublenext_16x16;
-            toolTipTitleItem1.Appearance.Options.UseImage = true;
-            toolTipTitleItem1.Image = global::PAO.Report.Properties.Resources.doublenext_16x16;
-            toolTipTitleItem1.Text = "获取下一批数据";
-            toolTipItem1.LeftIndent = 6;
-            toolTipItem1.Text = "继续查询，获取下一批数据，此方法速度较快";
-            superToolTip1.Items.Add(toolTipTitleItem1);
-            superToolTip1.Items.Add(toolTipItem1);
-            toolTipTitleItem2.Appearance.Image = global::PAO.Report.Properties.Resources.last_16x16;
-            toolTipTitleItem2.Appearance.Options.UseImage = true;
-            toolTipTitleItem2.Image = global::PAO.Report.Properties.Resources.last_16x16;
-            toolTipTitleItem2.Text = "获取所有数据";
-            toolTipItem2.LeftIndent = 6;
-            toolTipItem2.Text = "查询到最后一条数据为止，此方法较慢";
-            superToolTip2.Items.Add(toolTipTitleItem2);
-            superToolTip2.Items.Add(toolTipItem2);
-            this.EditItemDataAction.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, global::PAO.Report.Properties.Resources.next_16x16, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, superToolTip1, true),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, global::PAO.Report.Properties.Resources.last_16x16, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, superToolTip2, true)});
-            this.EditItemDataAction.Name = "EditItemDataAction";
             // 
             // BarManager
             // 
@@ -360,7 +211,7 @@
             this.DockManager.Form = this;
             this.DockManager.MenuManager = this.BarManager;
             this.DockManager.RootPanels.AddRange(new DevExpress.XtraBars.Docking.DockPanel[] {
-            this.PanelContainerLeft});
+            this.DockPanelTables});
             this.DockManager.TopZIndexControls.AddRange(new string[] {
             "DevExpress.XtraBars.BarDockControl",
             "DevExpress.XtraBars.StandaloneBarDockControl",
@@ -372,78 +223,32 @@
             "DevExpress.XtraBars.Navigation.OfficeNavigationBar",
             "DevExpress.XtraBars.Navigation.TileNavPane"});
             // 
-            // PanelContainerLeft
-            // 
-            this.PanelContainerLeft.Controls.Add(this.DockPanelTables);
-            this.PanelContainerLeft.Controls.Add(this.DockPanelParameters);
-            this.PanelContainerLeft.Dock = DevExpress.XtraBars.Docking.DockingStyle.Left;
-            this.PanelContainerLeft.ID = new System.Guid("1320a631-2bdf-4f76-ae69-31e33bbb9c83");
-            this.PanelContainerLeft.Location = new System.Drawing.Point(0, 31);
-            this.PanelContainerLeft.Name = "PanelContainerLeft";
-            this.PanelContainerLeft.OriginalSize = new System.Drawing.Size(234, 200);
-            this.PanelContainerLeft.Size = new System.Drawing.Size(234, 496);
-            this.PanelContainerLeft.Text = "panelContainer1";
-            // 
             // DockPanelTables
             // 
             this.DockPanelTables.Controls.Add(this.DockPanelData_Container);
-            this.DockPanelTables.Dock = DevExpress.XtraBars.Docking.DockingStyle.Fill;
+            this.DockPanelTables.Dock = DevExpress.XtraBars.Docking.DockingStyle.Left;
             this.DockPanelTables.ID = new System.Guid("44fd46ae-53ca-48e7-a539-953c949c76fb");
-            this.DockPanelTables.Location = new System.Drawing.Point(0, 0);
+            this.DockPanelTables.Location = new System.Drawing.Point(0, 31);
             this.DockPanelTables.Name = "DockPanelTables";
             this.DockPanelTables.Options.AllowDockAsTabbedDocument = false;
             this.DockPanelTables.Options.AllowFloating = false;
             this.DockPanelTables.Options.ShowCloseButton = false;
             this.DockPanelTables.OriginalSize = new System.Drawing.Size(234, 200);
-            this.DockPanelTables.Size = new System.Drawing.Size(234, 226);
+            this.DockPanelTables.Size = new System.Drawing.Size(234, 496);
             this.DockPanelTables.Text = "数据";
             // 
             // DockPanelData_Container
             // 
-            this.DockPanelData_Container.Controls.Add(this.GridControlData);
+            this.DockPanelData_Container.Controls.Add(this.ReportTableListControl);
             this.DockPanelData_Container.Location = new System.Drawing.Point(4, 23);
             this.DockPanelData_Container.Name = "DockPanelData_Container";
-            this.DockPanelData_Container.Size = new System.Drawing.Size(226, 199);
+            this.DockPanelData_Container.Size = new System.Drawing.Size(226, 469);
             this.DockPanelData_Container.TabIndex = 0;
-            // 
-            // DockPanelParameters
-            // 
-            this.DockPanelParameters.Controls.Add(this.DockPanelParameter_Container);
-            this.DockPanelParameters.Dock = DevExpress.XtraBars.Docking.DockingStyle.Fill;
-            this.DockPanelParameters.ID = new System.Guid("ab3584d5-acc5-4fc2-8785-b22ac016b05d");
-            this.DockPanelParameters.Location = new System.Drawing.Point(0, 226);
-            this.DockPanelParameters.Name = "DockPanelParameters";
-            this.DockPanelParameters.Options.AllowFloating = false;
-            this.DockPanelParameters.Options.ShowCloseButton = false;
-            this.DockPanelParameters.OriginalSize = new System.Drawing.Size(234, 239);
-            this.DockPanelParameters.Size = new System.Drawing.Size(234, 270);
-            this.DockPanelParameters.Text = "参数";
-            // 
-            // DockPanelParameter_Container
-            // 
-            this.DockPanelParameter_Container.Controls.Add(this.VGridControlParameters);
-            this.DockPanelParameter_Container.Location = new System.Drawing.Point(4, 23);
-            this.DockPanelParameter_Container.Name = "DockPanelParameter_Container";
-            this.DockPanelParameter_Container.Size = new System.Drawing.Size(226, 243);
-            this.DockPanelParameter_Container.TabIndex = 0;
-            // 
-            // VGridControlParameters
-            // 
-            this.VGridControlParameters.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.VGridControlParameters.Location = new System.Drawing.Point(0, 0);
-            this.VGridControlParameters.Name = "VGridControlParameters";
-            this.VGridControlParameters.Size = new System.Drawing.Size(226, 243);
-            this.VGridControlParameters.TabIndex = 0;
             // 
             // RepositoryItemTextEditCaption
             // 
             this.RepositoryItemTextEditCaption.AutoHeight = false;
             this.RepositoryItemTextEditCaption.Name = "RepositoryItemTextEditCaption";
-            // 
-            // EditItemIcon
-            // 
-            this.EditItemIcon.Name = "EditItemIcon";
-            this.EditItemIcon.NullText = " ";
             // 
             // LayoutControl
             // 
@@ -469,33 +274,32 @@
             this.LayoutControlGroupRoot.Text = "根";
             this.LayoutControlGroupRoot.TextVisible = false;
             // 
+            // ReportTableListControl
+            // 
+            this.ReportTableListControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ReportTableListControl.Location = new System.Drawing.Point(0, 0);
+            this.ReportTableListControl.Name = "ReportTableListControl";
+            this.ReportTableListControl.Size = new System.Drawing.Size(226, 469);
+            this.ReportTableListControl.TabIndex = 0;
+            // 
             // ReportView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.LayoutControl);
-            this.Controls.Add(this.PanelContainerLeft);
+            this.Controls.Add(this.DockPanelTables);
             this.Controls.Add(this.barDockControlLeft);
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
             this.Name = "ReportView";
             this.Size = new System.Drawing.Size(880, 527);
-            ((System.ComponentModel.ISupportInitialize)(this.GridControlData)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BindingSourceTable)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.GridViewTable)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.EditItemLoadingProcess)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.EditItemDataAction)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BarManager)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DockManager)).EndInit();
-            this.PanelContainerLeft.ResumeLayout(false);
             this.DockPanelTables.ResumeLayout(false);
             this.DockPanelData_Container.ResumeLayout(false);
-            this.DockPanelParameters.ResumeLayout(false);
-            this.DockPanelParameter_Container.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.VGridControlParameters)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemTextEditCaption)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.EditItemIcon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.LayoutControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.LayoutControlGroupRoot)).EndInit();
             this.ResumeLayout(false);
@@ -522,24 +326,11 @@
         private DevExpress.XtraBars.Docking.DockManager DockManager;
         private DevExpress.XtraBars.Docking.DockPanel DockPanelTables;
         private DevExpress.XtraBars.Docking.ControlContainer DockPanelData_Container;
-        private DevExpress.XtraGrid.GridControl GridControlData;
-        private DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView GridViewTable;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn ColumnTableName;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn ColumnTableLoadingProcess;
-        private DevExpress.XtraEditors.Repository.RepositoryItemMarqueeProgressBar EditItemLoadingProcess;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn ColumnTableDataCount;
-        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit EditItemDataAction;
-        private DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit EditItemIcon;
         private System.Windows.Forms.BindingSource BindingSourceTable;
-        private DevExpress.XtraBars.Docking.DockPanel PanelContainerLeft;
-        private DevExpress.XtraBars.Docking.DockPanel DockPanelParameters;
-        private DevExpress.XtraBars.Docking.ControlContainer DockPanelParameter_Container;
-        private DevExpress.XtraVerticalGrid.VGridControl VGridControlParameters;
         private DevExpress.XtraBars.BarButtonItem ButtonQuery;
         private DevExpress.XtraBars.BarSubItem MenuData;
         private DevExpress.XtraBars.BarButtonItem ButtonRebuildDataFields;
         private DevExpress.XtraBars.BarButtonItem ButtonClearDataFields;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand GridBindTable;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn ColumnTableCaption;
+        private Controls.ReportTableListControl ReportTableListControl;
     }
 }
