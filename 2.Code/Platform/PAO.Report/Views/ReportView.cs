@@ -29,6 +29,10 @@ namespace PAO.Report.Views
         /// </summary>
         internal DataSet DataSource = new DataSet();
         /// <summary>
+        /// 数据集
+        /// </summary>
+        internal DataSet DataSchema = new DataSet();
+        /// <summary>
         /// 视图列表
         /// </summary>
         private List<IView> ViewList = new List<IView>();
@@ -45,9 +49,30 @@ namespace PAO.Report.Views
         }
 
         private void RebuildTableColumns() {
+            var controller = Controller as ReportController;
+            if(controller.Tables.IsNotNullOrEmpty()) {
+                foreach(var reportTable in controller.Tables) {
+                    // 从DataFetcher获取格式
+                    if(reportTable.DataFetcher != null) {
+                        var dataFetcher = reportTable.DataFetcher.Value;
+                        var tableSchema = dataFetcher.GetDataSchema();
 
+                        // 重建ReportTable中的数据列
+                        var reportColumns = ReportPublic.GetReportDataColumns(tableSchema);
+                        if(reportTable.DataColumns == null) {
+                            reportTable.DataColumns = new List<ReportDataColumn>();
+                        }
+                        ReportPublic.RebuildReportColumn(reportTable.DataColumns, reportColumns);
+
+                        tableSchema.TableName = reportTable.TableName;
+
+                        DataSchema.Merge(DataSchema);
+                        DataSource.Merge(tableSchema);
+                    }
+                }
+            }
         }
-        
+
         #region 接口IViewContainer
         public void OpenView(IView view) {
             // 避免重复添加视图
@@ -93,7 +118,10 @@ namespace PAO.Report.Views
         #region ViewControl
         protected override void OnSetController(BaseController value) {
             var controller = value as ReportController;
-
+            foreach(var childControllerRef in controller.Controllers) {
+                var childController = childControllerRef.Value;
+                childController.CreateAndOpenView(this);
+            }
             this.BindingSourceTable.DataSource = controller.Tables;
 
             AddonPublic.ApplyAddonExtendProperties(controller);

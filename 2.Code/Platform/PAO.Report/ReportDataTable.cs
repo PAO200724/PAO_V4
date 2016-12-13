@@ -41,6 +41,22 @@ namespace PAO.Report
         }
         #endregion 属性：TableName
 
+        #region 属性：Caption
+        /// <summary>
+        /// 属性：Caption
+        /// 标题
+        /// 报表标题
+        /// </summary>
+        [AddonProperty]
+        [DataMember(EmitDefaultValue = false)]
+        [Name("标题")]
+        [Description("报表标题")]
+        public string Caption {
+            get;
+            set;
+        }
+        #endregion 属性：Caption
+
         #region 属性：QueryBehavior
         /// <summary>
         /// 属性：QueryBehavior

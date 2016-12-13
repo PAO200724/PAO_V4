@@ -25,10 +25,9 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            this.components = new System.ComponentModel.Container();
             DevExpress.XtraSplashScreen.SplashScreenManager SplashScreenManager = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::PAO.UI.WinForm.Forms.PaoSplashScreen), true, true);
-            this.DockManager = new DevExpress.XtraBars.Docking.DockManager(this.components);
-            this.BarManager = new DevExpress.XtraBars.BarManager(this.components);
+            this.DockManager = new DevExpress.XtraBars.Docking.DockManager();
+            this.BarManager = new DevExpress.XtraBars.BarManager();
             this.BarMain = new DevExpress.XtraBars.Bar();
             this.MenuSystem = new DevExpress.XtraBars.BarSubItem();
             this.MenuSkin = new DevExpress.XtraBars.SkinBarSubItem();
@@ -55,9 +54,9 @@
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControl1 = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.DocumentManager = new DevExpress.XtraBars.Docking2010.DocumentManager(this.components);
-            this.TabbedView = new DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView(this.components);
-            this.TimerDateTime = new System.Windows.Forms.Timer(this.components);
+            this.DocumentManager = new DevExpress.XtraBars.Docking2010.DocumentManager();
+            this.TabbedView = new DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView();
+            this.TimerDateTime = new System.Windows.Forms.Timer();
             ((System.ComponentModel.ISupportInitialize)(this.DockManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BarManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemProgressBar)).BeginInit();
@@ -66,6 +65,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.DocumentManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TabbedView)).BeginInit();
             this.SuspendLayout();
+            // 
+            // SplashScreenManager
+            // 
+            SplashScreenManager.ClosingDelay = 500;
             // 
             // DockManager
             // 
@@ -360,10 +363,6 @@
             this.TimerDateTime.Enabled = true;
             this.TimerDateTime.Interval = 1000;
             this.TimerDateTime.Tick += new System.EventHandler(this.TimerDateTime_Tick);
-            // 
-            // SplashScreenManager
-            // 
-            SplashScreenManager.ClosingDelay = 500;
             // 
             // MDIMainForm
             // 

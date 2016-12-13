@@ -93,6 +93,7 @@ namespace PAO.Configuration
                                     .Append(new ReportDataTable()
                                     {
                                         TableName = "User",
+                                        Caption = "用户",
                                         DataFetcher = new DataServiceFetcher()
                                         {
                                             DataService = new TcpRemoteFactory<IDataService>()

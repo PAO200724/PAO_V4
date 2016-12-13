@@ -25,32 +25,34 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SuperToolTip superToolTip5 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem5 = new DevExpress.Utils.ToolTipTitleItem();
-            DevExpress.Utils.ToolTipItem toolTipItem5 = new DevExpress.Utils.ToolTipItem();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SuperToolTip superToolTip6 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem6 = new DevExpress.Utils.ToolTipTitleItem();
-            DevExpress.Utils.ToolTipItem toolTipItem6 = new DevExpress.Utils.ToolTipItem();
+            this.components = new System.ComponentModel.Container();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem1 = new DevExpress.Utils.ToolTipTitleItem();
+            DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SuperToolTip superToolTip2 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem2 = new DevExpress.Utils.ToolTipTitleItem();
+            DevExpress.Utils.ToolTipItem toolTipItem2 = new DevExpress.Utils.ToolTipItem();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReportView));
             this.GridControlData = new DevExpress.XtraGrid.GridControl();
-            this.BindingSourceTable = new System.Windows.Forms.BindingSource();
+            this.BindingSourceTable = new System.Windows.Forms.BindingSource(this.components);
             this.GridViewTable = new DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView();
             this.GridBindTable = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
+            this.ColumnTableCaption = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.ColumnTableName = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.ColumnTableLoadingProcess = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.EditItemLoadingProcess = new DevExpress.XtraEditors.Repository.RepositoryItemMarqueeProgressBar();
             this.ColumnTableDataCount = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.EditItemDataAction = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
-            this.BarManager = new DevExpress.XtraBars.BarManager();
+            this.BarManager = new DevExpress.XtraBars.BarManager(this.components);
             this.BarTools = new DevExpress.XtraBars.Bar();
             this.ButtonQuery = new DevExpress.XtraBars.BarButtonItem();
             this.MenuData = new DevExpress.XtraBars.BarSubItem();
-            this.ButtonRebuildDataFields = new DevExpress.XtraBars.BarButtonItem();
-            this.ButtonClearDataFields = new DevExpress.XtraBars.BarButtonItem();
             this.ButtonExport = new DevExpress.XtraBars.BarButtonItem();
             this.ButtonPrint = new DevExpress.XtraBars.BarButtonItem();
+            this.ButtonRebuildDataFields = new DevExpress.XtraBars.BarButtonItem();
+            this.ButtonClearDataFields = new DevExpress.XtraBars.BarButtonItem();
             this.MenuConfig = new DevExpress.XtraBars.BarSubItem();
             this.ButtonRecoverLayout = new DevExpress.XtraBars.BarButtonItem();
             this.ButtonProperties = new DevExpress.XtraBars.BarButtonItem();
@@ -58,7 +60,7 @@
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.DockManager = new DevExpress.XtraBars.Docking.DockManager();
+            this.DockManager = new DevExpress.XtraBars.Docking.DockManager(this.components);
             this.PanelContainerLeft = new DevExpress.XtraBars.Docking.DockPanel();
             this.DockPanelTables = new DevExpress.XtraBars.Docking.DockPanel();
             this.DockPanelData_Container = new DevExpress.XtraBars.Docking.ControlContainer();
@@ -114,6 +116,7 @@
             this.GridViewTable.Bands.AddRange(new DevExpress.XtraGrid.Views.BandedGrid.GridBand[] {
             this.GridBindTable});
             this.GridViewTable.Columns.AddRange(new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn[] {
+            this.ColumnTableCaption,
             this.ColumnTableName,
             this.ColumnTableLoadingProcess,
             this.ColumnTableDataCount});
@@ -134,12 +137,21 @@
             // GridBindTable
             // 
             this.GridBindTable.Caption = "表";
+            this.GridBindTable.Columns.Add(this.ColumnTableCaption);
             this.GridBindTable.Columns.Add(this.ColumnTableName);
             this.GridBindTable.Columns.Add(this.ColumnTableLoadingProcess);
             this.GridBindTable.Columns.Add(this.ColumnTableDataCount);
             this.GridBindTable.Name = "GridBindTable";
             this.GridBindTable.VisibleIndex = 0;
-            this.GridBindTable.Width = 1402;
+            this.GridBindTable.Width = 1477;
+            // 
+            // ColumnTableCaption
+            // 
+            this.ColumnTableCaption.Caption = "标题";
+            this.ColumnTableCaption.FieldName = "Caption";
+            this.ColumnTableCaption.Name = "ColumnTableCaption";
+            this.ColumnTableCaption.Visible = true;
+            this.ColumnTableCaption.Width = 729;
             // 
             // ColumnTableName
             // 
@@ -148,7 +160,7 @@
             this.ColumnTableName.Name = "ColumnTableName";
             this.ColumnTableName.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways;
             this.ColumnTableName.Visible = true;
-            this.ColumnTableName.Width = 1402;
+            this.ColumnTableName.Width = 748;
             // 
             // ColumnTableLoadingProcess
             // 
@@ -158,7 +170,7 @@
             this.ColumnTableLoadingProcess.Name = "ColumnTableLoadingProcess";
             this.ColumnTableLoadingProcess.RowIndex = 1;
             this.ColumnTableLoadingProcess.Visible = true;
-            this.ColumnTableLoadingProcess.Width = 1282;
+            this.ColumnTableLoadingProcess.Width = 1357;
             // 
             // EditItemLoadingProcess
             // 
@@ -180,25 +192,25 @@
             // EditItemDataAction
             // 
             this.EditItemDataAction.AutoHeight = false;
-            toolTipTitleItem5.Appearance.Image = global::PAO.Report.Properties.Resources.doublenext_16x16;
-            toolTipTitleItem5.Appearance.Options.UseImage = true;
-            toolTipTitleItem5.Image = global::PAO.Report.Properties.Resources.doublenext_16x16;
-            toolTipTitleItem5.Text = "获取下一批数据";
-            toolTipItem5.LeftIndent = 6;
-            toolTipItem5.Text = "继续查询，获取下一批数据，此方法速度较快";
-            superToolTip5.Items.Add(toolTipTitleItem5);
-            superToolTip5.Items.Add(toolTipItem5);
-            toolTipTitleItem6.Appearance.Image = global::PAO.Report.Properties.Resources.last_16x16;
-            toolTipTitleItem6.Appearance.Options.UseImage = true;
-            toolTipTitleItem6.Image = global::PAO.Report.Properties.Resources.last_16x16;
-            toolTipTitleItem6.Text = "获取所有数据";
-            toolTipItem6.LeftIndent = 6;
-            toolTipItem6.Text = "查询到最后一条数据为止，此方法较慢";
-            superToolTip6.Items.Add(toolTipTitleItem6);
-            superToolTip6.Items.Add(toolTipItem6);
+            toolTipTitleItem1.Appearance.Image = global::PAO.Report.Properties.Resources.doublenext_16x16;
+            toolTipTitleItem1.Appearance.Options.UseImage = true;
+            toolTipTitleItem1.Image = global::PAO.Report.Properties.Resources.doublenext_16x16;
+            toolTipTitleItem1.Text = "获取下一批数据";
+            toolTipItem1.LeftIndent = 6;
+            toolTipItem1.Text = "继续查询，获取下一批数据，此方法速度较快";
+            superToolTip1.Items.Add(toolTipTitleItem1);
+            superToolTip1.Items.Add(toolTipItem1);
+            toolTipTitleItem2.Appearance.Image = global::PAO.Report.Properties.Resources.last_16x16;
+            toolTipTitleItem2.Appearance.Options.UseImage = true;
+            toolTipTitleItem2.Image = global::PAO.Report.Properties.Resources.last_16x16;
+            toolTipTitleItem2.Text = "获取所有数据";
+            toolTipItem2.LeftIndent = 6;
+            toolTipItem2.Text = "查询到最后一条数据为止，此方法较慢";
+            superToolTip2.Items.Add(toolTipTitleItem2);
+            superToolTip2.Items.Add(toolTipItem2);
             this.EditItemDataAction.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, global::PAO.Report.Properties.Resources.next_16x16, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, "", null, superToolTip5, true),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, global::PAO.Report.Properties.Resources.last_16x16, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject6, "", null, superToolTip6, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, global::PAO.Report.Properties.Resources.next_16x16, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, superToolTip1, true),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, global::PAO.Report.Properties.Resources.last_16x16, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, superToolTip2, true)});
             this.EditItemDataAction.Name = "EditItemDataAction";
             // 
             // BarManager
@@ -260,20 +272,6 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.ButtonClearDataFields)});
             this.MenuData.Name = "MenuData";
             // 
-            // ButtonRebuildDataFields
-            // 
-            this.ButtonRebuildDataFields.Caption = "重建表字段(&R)";
-            this.ButtonRebuildDataFields.Id = 14;
-            this.ButtonRebuildDataFields.Name = "ButtonRebuildDataFields";
-            this.ButtonRebuildDataFields.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonRebuildDataFields_ItemClick);
-            // 
-            // ButtonClearDataFields
-            // 
-            this.ButtonClearDataFields.Caption = "清空并重建表字段(&C)";
-            this.ButtonClearDataFields.Id = 15;
-            this.ButtonClearDataFields.Name = "ButtonClearDataFields";
-            this.ButtonClearDataFields.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonClearDataFields_ItemClick);
-            // 
             // ButtonExport
             // 
             this.ButtonExport.Caption = "导出(&E)";
@@ -289,6 +287,20 @@
             this.ButtonPrint.Id = 4;
             this.ButtonPrint.LargeGlyph = global::PAO.Report.Properties.Resources.printer_32x32;
             this.ButtonPrint.Name = "ButtonPrint";
+            // 
+            // ButtonRebuildDataFields
+            // 
+            this.ButtonRebuildDataFields.Caption = "重建表字段(&R)";
+            this.ButtonRebuildDataFields.Id = 14;
+            this.ButtonRebuildDataFields.Name = "ButtonRebuildDataFields";
+            this.ButtonRebuildDataFields.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonRebuildDataFields_ItemClick);
+            // 
+            // ButtonClearDataFields
+            // 
+            this.ButtonClearDataFields.Caption = "清空并重建表字段(&C)";
+            this.ButtonClearDataFields.Id = 15;
+            this.ButtonClearDataFields.Name = "ButtonClearDataFields";
+            this.ButtonClearDataFields.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonClearDataFields_ItemClick);
             // 
             // MenuConfig
             // 
@@ -453,7 +465,7 @@
             this.LayoutControlGroupRoot.Location = new System.Drawing.Point(0, 0);
             this.LayoutControlGroupRoot.Name = "Root";
             this.LayoutControlGroupRoot.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-            this.LayoutControlGroupRoot.Size = new System.Drawing.Size(302, 439);
+            this.LayoutControlGroupRoot.Size = new System.Drawing.Size(646, 496);
             this.LayoutControlGroupRoot.Text = "根";
             this.LayoutControlGroupRoot.TextVisible = false;
             // 
@@ -523,10 +535,11 @@
         private DevExpress.XtraBars.Docking.DockPanel DockPanelParameters;
         private DevExpress.XtraBars.Docking.ControlContainer DockPanelParameter_Container;
         private DevExpress.XtraVerticalGrid.VGridControl VGridControlParameters;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand GridBindTable;
         private DevExpress.XtraBars.BarButtonItem ButtonQuery;
         private DevExpress.XtraBars.BarSubItem MenuData;
         private DevExpress.XtraBars.BarButtonItem ButtonRebuildDataFields;
         private DevExpress.XtraBars.BarButtonItem ButtonClearDataFields;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand GridBindTable;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn ColumnTableCaption;
     }
 }

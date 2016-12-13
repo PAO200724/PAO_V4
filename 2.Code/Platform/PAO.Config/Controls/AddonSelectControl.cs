@@ -53,12 +53,7 @@ namespace PAO.Controls
                     this.BindingSourceAddon.DataSource = addonList;
             }
         }
-
-        protected override void OnLoad(EventArgs e) {
-
-            base.OnLoad(e);
-        }
-
+        
         public override object SelectedObject {
             get {
                 if (this.BindingSourceAddon.Position < 0)

@@ -183,28 +183,7 @@ namespace PAO.UI.WinForm.MDI
 
             MainForm = new MDIMainForm();
             MVCPublic.MainForm = MainForm;
-            MainForm.Text = Caption;
-
-            // 添加菜单项
-            if (MenuItems.IsNotNullOrEmpty()) {
-                foreach (var menuItem in MenuItems) {
-                    MainForm.AddMenuItem(menuItem.Value);
-                }
-            }
-
-            if(Controllers.IsNotNullOrEmpty()) {
-                TransactionPublic.Run("启动视图控制器", () =>
-                {
-                    foreach (var controllerRef in Controllers) {
-                        var controller = controllerRef.Value;
-                        TransactionPublic.Run(String.Format("打开控制器:{0}", controller), () =>
-                        {
-                            controller.CreateAndOpenView(MainForm);
-                        });
-                    }
-                });
-            }
-
+            MainForm.Initialize(this);
             Application.Run(MainForm);
         }
     }

@@ -17,6 +17,7 @@ using PAO.App;
 using PAO.UI.WinForm.Security;
 using PAO.Security;
 using DevExpress.XtraSplashScreen;
+using PAO.Trans;
 
 namespace PAO.UI.WinForm.MDI
 {
@@ -40,8 +41,49 @@ namespace PAO.UI.WinForm.MDI
             Default = this;
             this.DialogResult = DialogResult.Cancel;
             InitializeComponent();
+
             UIActionDispatcher = new UIActionDispatcher(this);
             SetStatusText(Message_Status_Ready);
+        }
+
+        private MDIApplication _MDIApplication;
+        public void Initialize(MDIApplication application) {
+            _MDIApplication = application;
+
+            Text = _MDIApplication.Caption;
+
+
+            // 添加菜单项
+            if (_MDIApplication.MenuItems.IsNotNullOrEmpty()) {
+                foreach (var menuItem in _MDIApplication.MenuItems) {
+                    _MDIApplication.MainForm.AddMenuItem(menuItem.Value);
+                }
+            }
+
+            if (_MDIApplication.Controllers.IsNotNullOrEmpty()) {
+                foreach (var controllerRef in _MDIApplication.Controllers) {
+                    var controller = controllerRef.Value;
+                    TransactionPublic.Run(String.Format("打开控制器:{0}", controller), () =>
+                    {
+                        controller.CreateAndOpenView(this);
+                    });
+                }
+            }
+
+            // 显示当前用户
+            var securityService = _MDIApplication.SecurityService.Value;
+            var userInfo = securityService.GetUserInfo();
+            MenuCurrentUser.Caption = userInfo.UserName;
+
+            if (MenuFunction.ItemLinks.Count <= 0)
+                MenuFunction.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            else
+                MenuFunction.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+
+            AddonPublic.ApplyAddonExtendProperties(_MDIApplication);
+
+            // 加载布局数据
+            this.DockManager.SetLayoutData(_MDIApplication.LayoutData);
         }
 
         #region 事件
@@ -66,32 +108,12 @@ namespace PAO.UI.WinForm.MDI
                 }
             }
 
-            var mdiApplication = MDIApplication.Default.As<MDIApplication>();
-            mdiApplication.LayoutData = this.DockManager.GetLayoutData();
-            mdiApplication.SkinName = DevExpress.LookAndFeel.UserLookAndFeel.Default.SkinName;
-            AddonPublic.FetchAddonExtendProperties(mdiApplication, "LayoutData", "SkinName");
+            _MDIApplication.LayoutData = this.DockManager.GetLayoutData();
+            _MDIApplication.SkinName = DevExpress.LookAndFeel.UserLookAndFeel.Default.SkinName;
+            AddonPublic.FetchAddonExtendProperties(_MDIApplication, "LayoutData", "SkinName");
             base.OnClosing(e);
         }
-
-        protected override void OnLoad(EventArgs e) {
-            var mdiApplication = MDIApplication.Default.As<MDIApplication>();
-            // 显示当前用户
-            var securityService = mdiApplication.SecurityService.Value;
-            var userInfo = securityService.GetUserInfo();
-            MenuCurrentUser.Caption = userInfo.UserName;
-
-            AddonPublic.ApplyAddonExtendProperties(mdiApplication);
-
-            // 加载布局数据
-            this.DockManager.SetLayoutData(mdiApplication.LayoutData);
-
-            if (MenuFunction.ItemLinks.Count <= 0)
-                MenuFunction.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-            else
-                MenuFunction.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
-            base.OnLoad(e);
-        }
-
+        
         public void SetStatusText(string status) {
             this.StaticItemStatus.Caption = status;
         }
@@ -167,8 +189,8 @@ namespace PAO.UI.WinForm.MDI
 
         private void TimerDateTime_Tick(object sender, EventArgs e) {
             try {
-                if (MDIApplication.Default.DateTimeService != null) {
-                    var dateTimeService = MDIApplication.Default.DateTimeService.Value;
+                if (_MDIApplication.DateTimeService != null) {
+                    var dateTimeService = _MDIApplication.DateTimeService.Value;
                     string dateTimeString = dateTimeService.GetCurrentDateTime().ToString("服务器时间：yyyy-MM-dd HH:mm:ss");
                     this.StaticItemServerTime.Caption = dateTimeString;
                 }
@@ -179,7 +201,7 @@ namespace PAO.UI.WinForm.MDI
 
         private void ButtonLogout_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             this.Hide();
-            if (MDIApplication.Default.Login()) {
+            if (_MDIApplication.Login()) {
                 this.Show();
             }
             else { 

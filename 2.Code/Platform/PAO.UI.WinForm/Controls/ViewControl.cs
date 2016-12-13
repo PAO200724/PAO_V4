@@ -73,6 +73,7 @@ namespace PAO.UI.WinForm.Controls
                     this.Font = _Controller.Surface.Font;
                 }
                 OnSetController(_Controller);
+                SetControlStatus();
             }
         }
 
@@ -81,6 +82,10 @@ namespace PAO.UI.WinForm.Controls
         }
 
         protected virtual void OnGetController(BaseController value) {
+
+        }
+
+        protected virtual void SetControlStatus() {
 
         }
         protected virtual void OnClosing() { }

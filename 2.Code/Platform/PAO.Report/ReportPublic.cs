@@ -51,7 +51,7 @@ namespace PAO.Report
         /// <summary>
         /// 重建报表列（从源列中复制类型，其余保持不变）
         /// </summary>
-        /// <param name="destColumns">目标咧</param>
+        /// <param name="destColumns">目标列</param>
         /// <param name="srcColumns">源列</param>
         public static void RebuildReportColumn(List<ReportDataColumn> destColumns, IEnumerable<ReportDataColumn> srcColumns) {
             foreach(var srcColumn in srcColumns) {
