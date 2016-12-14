@@ -19,6 +19,7 @@ using PAO.Report.Views;
 using PAO.Data;
 using PAO.Data.DataFetchers;
 using PAO.Time;
+using PAO.Config.DockViews;
 
 namespace PAO.Configuration
 {
@@ -96,10 +97,6 @@ namespace PAO.Configuration
                             {
                                 ID = "Smart_Report",
                                 Caption = "智能报表",
-                                QueryBehavior = new ReportQueryBehavior()
-                                {
-                                    AutoQueryInterval = 3000,
-                                },
                                 Tables = new List<ReportDataTable>()
                                     .Append(new ReportDataTable()
                                     {
@@ -162,12 +159,25 @@ namespace PAO.Configuration
                                 Controllers = new List<Ref<BaseController>>()
                                     .Append(new GridControlController()
                                     {
-                                        ID = "GridControl",
+                                        ID = "GridControl1",
                                         Caption = "表格控件1",
                                         DataMember = "User",
+                                    }.ToRef())
+                                    .Append(new GridControlController()
+                                    {
+                                        ID = "GridControl2",
+                                        Caption = "表格控件2",
+                                        DataMember = "User",
+                                        GridViewType = GridViewType.AdvancedBandedView
                                     }.ToRef()),
                             }.ToRef()),
+                    }.ToRef())
+                    .Append(new PropertyController()
+                    {
+                        Caption = "属性",
+                        ID = "{6FAE2D9B-051A-42F2-B102-8993E3A584A7}",
                     }.ToRef()),
+
             };
             return app;
         }

@@ -14,6 +14,10 @@ using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Base;
 using PAO.IO;
 using PAO.UI.WinForm;
+using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraGrid.Views.Grid.ViewInfo;
+using DevExpress.XtraGrid.Views.BandedGrid.ViewInfo;
+using PAO.Config.DockViews;
 
 namespace PAO.Report.Displayers
 {
@@ -34,7 +38,9 @@ namespace PAO.Report.Displayers
         }
         
         private GridViewType _GridViewType;
-
+        /// <summary>
+        /// 视图类型
+        /// </summary>
         public GridViewType GridViewType {
             get { return _GridViewType; }
             set { _GridViewType = value;
@@ -66,10 +72,10 @@ namespace PAO.Report.Displayers
         public void SetDataSource(DataSet dataSet) {
             var controller = Controller as GridControlController;
 
-            this.GridControl.DataSource = dataSet;
             if(dataSet.Tables.Contains(controller.DataMember)) {
                 this.GridControl.DataMember = controller.DataMember;
             }
+            this.GridControl.DataSource = dataSet;
             this.GridControl.RefreshDataSource();
         }
 
@@ -77,7 +83,7 @@ namespace PAO.Report.Displayers
             var controller = value as GridControlController;
 
             AddonPublic.LoadAddonExtendProperties(controller);
-            GridViewType = GridViewType;
+            GridViewType = controller.GridViewType;
             MainView.SetLayoutData(controller.LayoutData);
         }
 
@@ -85,7 +91,7 @@ namespace PAO.Report.Displayers
             var controller = Controller as GridControlController;
             GridViewType = GridViewType;
             controller.LayoutData = MainView.GetLayoutData();
-            AddonPublic.SaveAddonExtendProperties(controller, "GridViewType", "LayoutData");
+            AddonPublic.SaveAddonExtendProperties(controller, "LayoutData");
         }
 
         protected override string[] ExportFileFilters {
@@ -129,5 +135,20 @@ namespace PAO.Report.Displayers
             }
         }
 
+        private void GridView_MouseDown(object sender, MouseEventArgs e) {
+            if(e.Button == MouseButtons.Left) {
+                var hitTest = GridView.CalcHitInfo(e.X, e.Y);
+                object selectedObject = null;
+                if(hitTest.InColumn) {
+                    selectedObject = hitTest.Column;
+                } else {
+                    selectedObject = GridView;
+                }
+
+                if(selectedObject != null) {
+                    PropertyView.SetSelectedObject(selectedObject);
+                }
+            }
+        }
     }
 }

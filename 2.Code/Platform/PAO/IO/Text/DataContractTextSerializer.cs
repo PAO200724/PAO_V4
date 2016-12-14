@@ -38,6 +38,9 @@ namespace PAO.IO.Text
         public object TextToObject(string text) {
             if (text.IsNullOrEmpty())
                 return null;
+
+            if (text == "null")
+                return null;
             StringReader reader = new StringReader(text);
             XmlReader textReader = XmlReader.Create(reader);
             object result = Serializer.ReadObject(textReader);

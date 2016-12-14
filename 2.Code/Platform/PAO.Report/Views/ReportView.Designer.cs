@@ -36,6 +36,8 @@
             this.ButtonPrint = new DevExpress.XtraBars.BarButtonItem();
             this.ButtonRebuildDataFields = new DevExpress.XtraBars.BarButtonItem();
             this.ButtonClearDataFields = new DevExpress.XtraBars.BarButtonItem();
+            this.ButtonSetupQueryBehavior = new DevExpress.XtraBars.BarButtonItem();
+            this.ButtonClearQueryBehavior = new DevExpress.XtraBars.BarButtonItem();
             this.MenuConfig = new DevExpress.XtraBars.BarSubItem();
             this.ButtonRecoverLayout = new DevExpress.XtraBars.BarButtonItem();
             this.ButtonProperties = new DevExpress.XtraBars.BarButtonItem();
@@ -50,8 +52,6 @@
             this.RepositoryItemTextEditCaption = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.LayoutControl = new DevExpress.XtraLayout.LayoutControl();
             this.LayoutControlGroupRoot = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.ButtonSetupQueryBehavior = new DevExpress.XtraBars.BarButtonItem();
-            this.ButtonClearQueryBehavior = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.BindingSourceTable)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BarManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DockManager)).BeginInit();
@@ -160,6 +160,20 @@
             this.ButtonClearDataFields.Name = "ButtonClearDataFields";
             this.ButtonClearDataFields.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonClearDataFields_ItemClick);
             // 
+            // ButtonSetupQueryBehavior
+            // 
+            this.ButtonSetupQueryBehavior.Caption = "设置查询行为(&S)...";
+            this.ButtonSetupQueryBehavior.Id = 16;
+            this.ButtonSetupQueryBehavior.Name = "ButtonSetupQueryBehavior";
+            this.ButtonSetupQueryBehavior.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonSetupQueryBehavior_ItemClick);
+            // 
+            // ButtonClearQueryBehavior
+            // 
+            this.ButtonClearQueryBehavior.Caption = "清除查询行为(&L)";
+            this.ButtonClearQueryBehavior.Id = 17;
+            this.ButtonClearQueryBehavior.Name = "ButtonClearQueryBehavior";
+            this.ButtonClearQueryBehavior.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonClearQueryBehavior_ItemClick);
+            // 
             // MenuConfig
             // 
             this.MenuConfig.Caption = "配置(&C)";
@@ -180,10 +194,11 @@
             // 
             // ButtonProperties
             // 
-            this.ButtonProperties.Caption = "属性(&P)...";
+            this.ButtonProperties.Caption = "属性(&P)";
             this.ButtonProperties.Glyph = ((System.Drawing.Image)(resources.GetObject("ButtonProperties.Glyph")));
             this.ButtonProperties.Id = 1;
             this.ButtonProperties.Name = "ButtonProperties";
+            this.ButtonProperties.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonProperties_ItemClick);
             // 
             // barDockControlTop
             // 
@@ -289,20 +304,6 @@
             this.LayoutControlGroupRoot.Size = new System.Drawing.Size(646, 496);
             this.LayoutControlGroupRoot.Text = "根";
             this.LayoutControlGroupRoot.TextVisible = false;
-            // 
-            // ButtonSetupQueryBehavior
-            // 
-            this.ButtonSetupQueryBehavior.Caption = "设置查询行为(&S)...";
-            this.ButtonSetupQueryBehavior.Id = 16;
-            this.ButtonSetupQueryBehavior.Name = "ButtonSetupQueryBehavior";
-            this.ButtonSetupQueryBehavior.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonSetupQueryBehavior_ItemClick);
-            // 
-            // ButtonClearQueryBehavior
-            // 
-            this.ButtonClearQueryBehavior.Caption = "清除查询行为(&L)";
-            this.ButtonClearQueryBehavior.Id = 17;
-            this.ButtonClearQueryBehavior.Name = "ButtonClearQueryBehavior";
-            this.ButtonClearQueryBehavior.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonClearQueryBehavior_ItemClick);
             // 
             // ReportView
             // 

@@ -74,6 +74,7 @@ namespace PAO.UI.MVC
         /// <summary>
         /// 许可
         /// </summary>
+        [Browsable(false)]
         public virtual IDictionary<string, string> Permissions {
             get {
                 return new Dictionary<string, string>()

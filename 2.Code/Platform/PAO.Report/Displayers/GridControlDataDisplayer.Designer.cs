@@ -64,8 +64,11 @@
             this.GridView.GridControl = this.GridControl;
             this.GridView.Name = "GridView";
             this.GridView.OptionsBehavior.ReadOnly = true;
+            this.GridView.OptionsMenu.ShowAddNewSummaryItem = DevExpress.Utils.DefaultBoolean.True;
+            this.GridView.OptionsMenu.ShowGroupSummaryEditorItem = true;
             this.GridView.OptionsView.ShowAutoFilterRow = true;
             this.GridView.OptionsView.ShowGroupPanel = false;
+            this.GridView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.GridView_MouseDown);
             // 
             // BandedGridView
             // 

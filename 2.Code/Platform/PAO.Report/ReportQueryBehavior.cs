@@ -64,7 +64,7 @@ namespace PAO.Report
         /// 每次查询的查询数量，如果小于或等于0，表示一次查询到最后一条记录
         /// </summary>
         [AddonProperty]
-        [DefaultValue(0)]
+        [DefaultValue(100)]
         [DataMember(EmitDefaultValue = false)]
         [Name("每次查询数量")]
         [Description("每次查询的查询数量，如果小于或等于0，表示一次查询到最后一条记录")]
@@ -73,11 +73,12 @@ namespace PAO.Report
             set;
         }
         #endregion 属性：QueryCountPerTime
+
         #endregion
         public ReportQueryBehavior() {
             AsyncQuery = true;
             AutoQueryInterval = 0;
-            QueryCountPerTime = 0;
+            QueryCountPerTime = 100;
         }
     }
 }

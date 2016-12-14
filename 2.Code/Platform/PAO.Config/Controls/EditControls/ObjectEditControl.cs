@@ -37,6 +37,11 @@ namespace PAO.Config.Controls.EditControls
                 base.SelectedObject = value;
                 this.PropertyGridControl.SelectedObject = value;
                 this.PropertyGridControl.Refresh();
+                if(value == null) {
+                    StaticItemObject.Caption = "[未选择任何对象]";
+                } else {
+                    StaticItemObject.Caption = value.ToString();
+                }
                 SetControlStatus();
             }
         }

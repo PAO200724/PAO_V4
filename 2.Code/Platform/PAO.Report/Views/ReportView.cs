@@ -23,6 +23,8 @@ using PAO.Report.Controls;
 using DevExpress.XtraBars.Navigation;
 using PAO.Config.Controls.EditControls;
 using PAO.IO.Text;
+using PAO.Config;
+using PAO.Config.DockViews;
 
 namespace PAO.Report.Views
 {
@@ -427,7 +429,10 @@ namespace PAO.Report.Views
             controller.QueryBehavior = null;
             ResetAutoQuery();
         }
-        #endregion
 
+        private void ButtonProperties_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+            PropertyView.SetSelectedObject(Controller);
+        }
+        #endregion
     }
 }
