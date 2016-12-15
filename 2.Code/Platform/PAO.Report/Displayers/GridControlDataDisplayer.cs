@@ -19,6 +19,10 @@ using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 using DevExpress.XtraGrid.Views.BandedGrid.ViewInfo;
 using PAO.Config.DockViews;
 using DevExpress.XtraBars;
+using DevExpress.XtraGrid.Views.Layout;
+using DevExpress.XtraGrid.Views.Card;
+using DevExpress.XtraGrid.Views.Tile;
+using DevExpress.XtraGrid.Views.BandedGrid;
 
 namespace PAO.Report.Displayers
 {
@@ -48,25 +52,38 @@ namespace PAO.Report.Displayers
                 switch (_GridViewType) {
                     case GridViewType.GridView:
                         this.GridControl.MainView = this.GridView;
-                        break;
-                    case GridViewType.LayoutView:
-                        this.GridControl.MainView = this.LayoutView;
+                        this.ButtonViewType.ItemIndex = 0;
+                        this.MenuExtendView.Visibility = BarItemVisibility.Never;
                         break;
                     case GridViewType.BandedView:
                         this.GridControl.MainView = this.BandedGridView;
+                        this.ButtonViewType.ItemIndex = 1;
+                        this.MenuExtendView.Visibility = BarItemVisibility.Always;
                         break;
                     case GridViewType.AdvancedBandedView:
                         this.GridControl.MainView = this.AdvBandedGridView;
+                        this.ButtonViewType.ItemIndex = 2;
+                        this.MenuExtendView.Visibility = BarItemVisibility.Always;
+                        break;
+                    case GridViewType.LayoutView:
+                        this.GridControl.MainView = this.LayoutView;
+                        this.ButtonViewType.ItemIndex = 3;
+                        this.MenuExtendView.Visibility = BarItemVisibility.Never;
                         break;
                     case GridViewType.CardView:
                         this.GridControl.MainView = this.CardView;
+                        this.ButtonViewType.ItemIndex = 4;
+                        this.MenuExtendView.Visibility = BarItemVisibility.Never;
                         break;
                     case GridViewType.TileView:
                         this.GridControl.MainView = this.TileView;
+                        this.ButtonViewType.ItemIndex = 5;
+                        this.MenuExtendView.Visibility = BarItemVisibility.Never;
                         break;
                     default:
                         throw new Exception("不支持的表格类型");
                 }
+                RecoverLayout();
             }
         }
 
@@ -92,6 +109,14 @@ namespace PAO.Report.Displayers
                     BarTools
                 };
             }
+        }
+
+        private void RecoverLayout() {
+            if (MainView is ColumnView) {
+                var view = MainView as ColumnView;
+                view.Columns.Clear();
+            }
+            MainView.PopulateColumns();
         }
 
         public void SetDataSource(DataSet dataSet) {
@@ -147,26 +172,70 @@ namespace PAO.Report.Displayers
 
         private void GridView_MouseDown(object sender, MouseEventArgs e) {
             if(e.Button == MouseButtons.Left) {
-                var hitTest = GridView.CalcHitInfo(e.X, e.Y);
+                var hitTest = MainView.CalcHitInfo(e.X, e.Y);
                 object selectedObject = null;
-                if(hitTest.InColumn) {
-                    selectedObject = hitTest.Column;
-                } else {
-                    selectedObject = GridView;
+                if (hitTest is GridHitInfo) {
+                    var gridHitTest = hitTest as GridHitInfo;
+                    if (gridHitTest.InColumn) {
+                        selectedObject = gridHitTest.Column;
+                    }
                 }
 
-                if(selectedObject != null) {
+                if (selectedObject== null && hitTest is BandedGridHitInfo) {
+                    var bandedGridHitTest = hitTest as BandedGridHitInfo;
+                    if(bandedGridHitTest.InBandPanel) {
+                        selectedObject = bandedGridHitTest.Band;
+                    }
+                }
+
+                if (selectedObject == null) {
+                    selectedObject = MainView;
+                }
+
+                if (selectedObject != null) {
                     PropertyView.SetSelectedObject(selectedObject);
                 }
             }
         }
 
         private void GridControl_Leave(object sender, EventArgs e) {
-            PropertyView.SetSelectedObject(null);
         }
 
         private void ButtonRecoverLayout_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            ButtonRecoverLayout.Visibility = BarItemVisibility.Never;
+            RecoverLayout();
+        }
+        
+        private void ButtonViewType_ListItemClick(object sender, ListItemClickEventArgs e) {
+            switch (e.Index) {
+                case 0:
+                    GridViewType = GridViewType.GridView;
+                    break;
+                case 1:
+                    GridViewType = GridViewType.BandedView;
+                    break;
+                case 2:
+                    GridViewType = GridViewType.AdvancedBandedView;
+                    break;
+                case 3:
+                    GridViewType = GridViewType.LayoutView;
+                    break;
+                case 4:
+                    GridViewType = GridViewType.CardView;
+                    break;
+                case 5:
+                    GridViewType = GridViewType.TileView;
+                    break;
+            }
+        }
+
+        private void ButtonAddonBand_ItemClick(object sender, ItemClickEventArgs e) {
+            if(MainView is BandedGridView) {
+                var view = MainView as BandedGridView;
+                var newBand = view.Bands.Add();
+            }
+        }
+
+        private void ButtonRemoveBand_ItemClick(object sender, ItemClickEventArgs e) {
         }
     }
 }

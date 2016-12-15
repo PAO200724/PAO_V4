@@ -38,6 +38,11 @@
             this.BarManager = new DevExpress.XtraBars.BarManager(this.components);
             this.BarTools = new DevExpress.XtraBars.Bar();
             this.MenuGridView = new DevExpress.XtraBars.BarSubItem();
+            this.MenuViewType = new DevExpress.XtraBars.BarSubItem();
+            this.ButtonViewType = new DevExpress.XtraBars.BarListItem();
+            this.MenuExtendView = new DevExpress.XtraBars.BarSubItem();
+            this.ButtonAddonBand = new DevExpress.XtraBars.BarButtonItem();
+            this.ButtonRemoveBand = new DevExpress.XtraBars.BarButtonItem();
             this.ButtonExport = new DevExpress.XtraBars.BarButtonItem();
             this.ButtonPrint = new DevExpress.XtraBars.BarButtonItem();
             this.ButtonRecoverLayout = new DevExpress.XtraBars.BarButtonItem();
@@ -89,6 +94,7 @@
             this.GridBand});
             this.BandedGridView.GridControl = this.GridControl;
             this.BandedGridView.Name = "BandedGridView";
+            this.BandedGridView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.GridView_MouseDown);
             // 
             // GridBand
             // 
@@ -100,6 +106,7 @@
             this.CardView.FocusedCardTopFieldIndex = 0;
             this.CardView.GridControl = this.GridControl;
             this.CardView.Name = "CardView";
+            this.CardView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.GridView_MouseDown);
             // 
             // AdvBandedGridView
             // 
@@ -107,6 +114,7 @@
             this.GridBandMain});
             this.AdvBandedGridView.GridControl = this.GridControl;
             this.AdvBandedGridView.Name = "AdvBandedGridView";
+            this.AdvBandedGridView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.GridView_MouseDown);
             // 
             // GridBandMain
             // 
@@ -118,11 +126,13 @@
             this.LayoutView.GridControl = this.GridControl;
             this.LayoutView.Name = "LayoutView";
             this.LayoutView.TemplateCard = null;
+            this.LayoutView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.GridView_MouseDown);
             // 
             // TileView
             // 
             this.TileView.GridControl = this.GridControl;
             this.TileView.Name = "TileView";
+            this.TileView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.GridView_MouseDown);
             // 
             // BarManager
             // 
@@ -137,8 +147,13 @@
             this.MenuGridView,
             this.ButtonExport,
             this.ButtonPrint,
-            this.ButtonRecoverLayout});
-            this.BarManager.MaxItemId = 4;
+            this.ButtonRecoverLayout,
+            this.ButtonViewType,
+            this.MenuViewType,
+            this.MenuExtendView,
+            this.ButtonAddonBand,
+            this.ButtonRemoveBand});
+            this.BarManager.MaxItemId = 13;
             // 
             // BarTools
             // 
@@ -156,27 +171,79 @@
             this.MenuGridView.Caption = "表格(&G)";
             this.MenuGridView.Id = 0;
             this.MenuGridView.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonExport),
+            new DevExpress.XtraBars.LinkPersistInfo(this.MenuViewType, true),
+            new DevExpress.XtraBars.LinkPersistInfo(this.MenuExtendView),
+            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonExport, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.ButtonPrint),
-            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonRecoverLayout)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonRecoverLayout, true)});
             this.MenuGridView.Name = "MenuGridView";
+            // 
+            // MenuViewType
+            // 
+            this.MenuViewType.Caption = "表格类型(&T)";
+            this.MenuViewType.Id = 9;
+            this.MenuViewType.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonViewType)});
+            this.MenuViewType.Name = "MenuViewType";
+            // 
+            // ButtonViewType
+            // 
+            this.ButtonViewType.Caption = "表格类型(&T)";
+            this.ButtonViewType.Id = 8;
+            this.ButtonViewType.Name = "ButtonViewType";
+            this.ButtonViewType.ShowChecks = true;
+            this.ButtonViewType.Strings.AddRange(new object[] {
+            "二维表格视图",
+            "分带表格视图",
+            "复杂表格视图",
+            "布局视图",
+            "卡片视图",
+            "瓷片视图"});
+            this.ButtonViewType.ListItemClick += new DevExpress.XtraBars.ListItemClickEventHandler(this.ButtonViewType_ListItemClick);
+            // 
+            // MenuExtendView
+            // 
+            this.MenuExtendView.Caption = "扩展视图(&E)";
+            this.MenuExtendView.Id = 10;
+            this.MenuExtendView.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonAddonBand),
+            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonRemoveBand)});
+            this.MenuExtendView.Name = "MenuExtendView";
+            // 
+            // ButtonAddonBand
+            // 
+            this.ButtonAddonBand.Caption = "添加带(&A)";
+            this.ButtonAddonBand.Id = 11;
+            this.ButtonAddonBand.Name = "ButtonAddonBand";
+            this.ButtonAddonBand.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonAddonBand_ItemClick);
+            // 
+            // ButtonRemoveBand
+            // 
+            this.ButtonRemoveBand.Caption = "删除带(&R)";
+            this.ButtonRemoveBand.Id = 12;
+            this.ButtonRemoveBand.Name = "ButtonRemoveBand";
+            this.ButtonRemoveBand.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonRemoveBand_ItemClick);
             // 
             // ButtonExport
             // 
             this.ButtonExport.Caption = "导出(&E)...";
+            this.ButtonExport.Glyph = global::PAO.Report.Properties.Resources.export_16x16;
             this.ButtonExport.Id = 1;
             this.ButtonExport.Name = "ButtonExport";
             // 
             // ButtonPrint
             // 
             this.ButtonPrint.Caption = "打印(&P)...";
+            this.ButtonPrint.Glyph = global::PAO.Report.Properties.Resources.printer_16x16;
             this.ButtonPrint.Id = 2;
             this.ButtonPrint.Name = "ButtonPrint";
             // 
             // ButtonRecoverLayout
             // 
             this.ButtonRecoverLayout.Caption = "恢复默认布局(&R)";
+            this.ButtonRecoverLayout.Glyph = global::PAO.Report.Properties.Resources.reset2_16x16;
             this.ButtonRecoverLayout.Id = 3;
+            this.ButtonRecoverLayout.LargeGlyph = global::PAO.Report.Properties.Resources.reset2_32x32;
             this.ButtonRecoverLayout.Name = "ButtonRecoverLayout";
             this.ButtonRecoverLayout.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonRecoverLayout_ItemClick);
             // 
@@ -253,5 +320,10 @@
         private DevExpress.XtraBars.BarButtonItem ButtonExport;
         private DevExpress.XtraBars.BarButtonItem ButtonPrint;
         private DevExpress.XtraBars.BarButtonItem ButtonRecoverLayout;
+        private DevExpress.XtraBars.BarListItem ButtonViewType;
+        private DevExpress.XtraBars.BarSubItem MenuViewType;
+        private DevExpress.XtraBars.BarSubItem MenuExtendView;
+        private DevExpress.XtraBars.BarButtonItem ButtonAddonBand;
+        private DevExpress.XtraBars.BarButtonItem ButtonRemoveBand;
     }
 }
