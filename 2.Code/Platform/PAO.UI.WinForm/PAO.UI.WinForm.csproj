@@ -130,6 +130,9 @@
       <DependentUpon>MDIMainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="MDI\MDIApplication.cs" />
+    <Compile Include="Property\ConfigPropertyDescriptor.cs" />
+    <Compile Include="Property\PropertyConfigInfo.cs" />
+    <Compile Include="Property\TypeConfigInfo.cs" />
     <Compile Include="Security\LoginControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

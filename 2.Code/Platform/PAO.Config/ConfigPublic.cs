@@ -17,6 +17,8 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using static PAO.DataSetExtendProperty;
+using DevExpress.XtraGrid.Views.Grid;
+using PAO.UI.WinForm.Property;
 
 namespace PAO.Config
 {
@@ -131,20 +133,47 @@ namespace PAO.Config
         }
         #endregion
 
-        #region PAO项目内的Editor注册
+        #region 默认的Editor注册
         /// <summary>
         /// 注册编辑器
         /// </summary>
         public static void RegisterEditors() {
-            WinFormPublic.RegisterEditorType(typeof(PaoObject), "ID", typeof(GuidEditor));
-            WinFormPublic.RegisterEditorType(typeof(AddonFactory<>), "AddonID", typeof(AddonIDEditor));
-            WinFormPublic.RegisterEditorType(typeof(DataConnection), "DbFactoryName", typeof(DbFactoryEditor));
-            WinFormPublic.RegisterEditorType(typeof(DataCommandInfo), "Sql", typeof(MemoExEditor));
-            WinFormPublic.RegisterEditorType(typeof(TreeMenuController), "DockPanelID", typeof(GuidEditor));
+            WinFormPublic.RegisterTypeConfig(typeof(PaoObject)
+                , new TypeConfigInfo()
+                    .AddProperty("ID", new GuidEditor())
+                );
 
-            WinFormPublic.RegisterEditControlType(typeof(IDataFilter), typeof(DataFilterEditControl));
-            WinFormPublic.RegisterEditControlType(typeof(DataCommandInfo), typeof(DataCommandInfoEditControl));
+            WinFormPublic.RegisterTypeConfig(typeof(AddonFactory<>)
+                , new TypeConfigInfo()
+                    .AddProperty("AddonID", new AddonIDEditor())
+                );
+
+            WinFormPublic.RegisterTypeConfig(typeof(DataConnection)
+                , new TypeConfigInfo()
+                    .AddProperty("DbFactoryName", new DbFactoryEditor())
+            );
+
+            WinFormPublic.RegisterTypeConfig(typeof(DataCommandInfo)
+                , new TypeConfigInfo()
+                    {
+                        EditControlType = typeof(DataCommandInfoEditControl)
+                    }
+                    .AddProperty("Sql", new MemoExEditor())
+            );
+
+            WinFormPublic.RegisterTypeConfig(typeof(IDataFilter)
+                , new TypeConfigInfo()
+                    {
+                        EditControlType = typeof(DataFilterEditControl)
+                    }
+            );
+
+            WinFormPublic.RegisterTypeConfig(typeof(GridView)
+                , new TypeConfigInfo()
+                    .AddProperty("BorderStyle", "边框风格", "边框风格")
+            );
         }
         #endregion
+
     }
 }

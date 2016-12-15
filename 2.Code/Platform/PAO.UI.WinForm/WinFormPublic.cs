@@ -32,6 +32,7 @@ using DevExpress.XtraSpreadsheet;
 using PAO.UI.WinForm.Controls;
 using System.ComponentModel;
 using PAO.UI.WinForm.Editors;
+using PAO.UI.WinForm.Property;
 
 namespace PAO.UI.WinForm
 {
@@ -358,39 +359,16 @@ namespace PAO.UI.WinForm
         #endregion
 
         #region 属性的Editors
-        /// <summary>
-        /// 属性编辑器类型映射
-        /// </summary>
-        public static readonly Dictionary<PropertyDescriptor, Type> EditorTypeMapping = new Dictionary<PropertyDescriptor, Type>();
-
-        /// <summary>
-        /// 注册编辑器
-        /// </summary>
-        /// <param name="objType">对象类型</param>
-        /// <param name="editorType">编辑器类型</param>
-        public static void RegisterEditorType(Type objType, string propertyName, Type editorType) {
-            var properties = TypeDescriptor.GetProperties(objType);
-            var propDesc = properties[propertyName];
-            if (propDesc != null) {
-                if (EditorTypeMapping.ContainsKey(propDesc)) {
-                    EditorTypeMapping[propDesc] = editorType;
-                }
-                else {
-                    EditorTypeMapping.Add(propDesc, editorType);
-                }
-            }
-        }
 
         /// <summary>
         /// 获取某个属性的编辑器类型
         /// </summary>
         /// <param name="propertyDescriptor">属性</param>
         /// <returns>编辑器类型</returns>
-        public static Type GetPropertyEditorType(PropertyDescriptor propertyDescriptor) {
-            if (EditorTypeMapping.ContainsKey(propertyDescriptor)) {
-                return EditorTypeMapping[propertyDescriptor];
-            }
-
+        public static BaseEditor GetPropertyEditor(PropertyDescriptor propertyDescriptor) {
+            var propConfigInfo = GetPropertyConfigInfo(propertyDescriptor.ComponentType, propertyDescriptor.Name);
+            if (propConfigInfo != null)
+                return propConfigInfo.Editor;
             return null;
         }
 
@@ -400,17 +378,14 @@ namespace PAO.UI.WinForm
         /// <param name="propertyDescriptor">属性</param>
         /// <returns>编辑器</returns>
         public static BaseEditor GetDefaultEditor(PropertyDescriptor propertyDescriptor) {
-            var editorType = GetPropertyEditorType(propertyDescriptor);
-            BaseEditor editor;
-            if (editorType != null) {
-                editor = editorType.CreateInstance() as BaseEditor;
-                editor.PropertyDescriptor = propertyDescriptor;
-                return editor;
+            BaseEditor editor = GetPropertyEditor(propertyDescriptor);
+
+            if(editor == null) {
+                var type = propertyDescriptor.PropertyType;
+                editor = GetDefaultEditorByType(propertyDescriptor.PropertyType);
             }
 
-            var type = propertyDescriptor.PropertyType;
-            editor = GetDefaultEditorByType(propertyDescriptor.PropertyType);
-            if(editor != null) {
+            if (editor != null) {
                 editor.PropertyDescriptor = propertyDescriptor;
             }
             return editor;
@@ -460,68 +435,14 @@ namespace PAO.UI.WinForm
 
         #region 类型的EditorCotrols
         /// <summary>
-        /// 编辑器类型映射
-        /// </summary>
-        public static readonly Dictionary<Type, Type> EditControlTypeMapping = new Dictionary<Type, Type>();
-
-        /// <summary>
-        /// 注册编辑器
-        /// </summary>
-        /// <param name="objType">对象类型</param>
-        /// <param name="editControlType">编辑器类型</param>
-        public static void RegisterEditControlType(Type objType, Type editControlType) {
-            if (objType.IsGenericType) {
-                objType = objType.GetGenericTypeDefinition();
-            }
-
-            if (EditControlTypeMapping.ContainsKey(objType)) {
-                EditControlTypeMapping[objType] = editControlType;
-            }
-            else {
-                EditControlTypeMapping.Add(objType, editControlType);
-            }
-        }
-
-        /// <summary>
-        /// 从类型映射中查找编辑器类型
-        /// </summary>
-        /// <param name="type">类型</param>
-        /// <returns>编辑器类型</returns>
-        private static Type GetEditControlFromTypeMapping(Type type) {
-            if (type.IsGenericType) {
-                type = type.GetGenericTypeDefinition();
-            }
-
-            foreach (var kv in EditControlTypeMapping) {
-                if (type == kv.Key) {
-                    return kv.Value;
-                }
-            }
-
-            if (type.BaseType != null) {
-                var foundType = GetEditControlFromTypeMapping(type.BaseType);
-                if (foundType != null)
-                    return foundType;
-            }
-
-            foreach (var kv in EditControlTypeMapping) {
-                if (type.IsDerivedFrom(kv.Key)) {
-                    return kv.Value;
-                }
-            }
-
-            return null;
-        }
-
-        /// <summary>
         /// 获取某个类型的编辑器类型
         /// </summary>
         /// <param name="type">类型</param>
         /// <returns>编辑器类型</returns>
         public static Type GetTypeEditControlType(Type type) {
-            var controlType = GetEditControlFromTypeMapping(type);
-            if (controlType != null)
-                return controlType;
+            var typeConfigInfo = GetTypeConfigInfo(type);
+            if (typeConfigInfo != null && typeConfigInfo.EditControlType != null)
+                return typeConfigInfo.EditControlType;
 
             var addonAttr = type.GetAttribute<AddonAttribute>(true);
             if (addonAttr != null && addonAttr.EditorType != null)
@@ -530,5 +451,66 @@ namespace PAO.UI.WinForm
             return null;
         }
         #endregion
-    }
+
+        #region 属性配置
+        private static Dictionary<Type, TypeConfigInfo> TypeConfigInfoList = new Dictionary<Type, TypeConfigInfo>();
+
+        /// <summary>
+        /// 添加类型配置
+        /// </summary>
+        /// <param name="type">类型</param>
+        /// <param name="typeConfigInfo">类型配置信息</param>
+        public static void RegisterTypeConfig(Type type, TypeConfigInfo typeConfigInfo) {
+            if (type.IsGenericType)
+                type = type.GetGenericTypeDefinition();
+            if (TypeConfigInfoList.ContainsKey(type)) {
+                TypeConfigInfoList[type] = typeConfigInfo;
+            }
+            else {
+                TypeConfigInfoList.Add(type, typeConfigInfo);
+            }
+        }
+
+        /// <summary>
+        /// 获取类型配置信息
+        /// </summary>
+        /// <param name="type">类型</param>
+        /// <returns>类型配置信息</returns>
+        public static TypeConfigInfo GetTypeConfigInfo(Type type) {
+            if (type.IsGenericType)
+                type = type.GetGenericTypeDefinition();
+
+            if (TypeConfigInfoList.ContainsKey(type)) {
+                return TypeConfigInfoList[type];
+            }
+
+            if (type.BaseType != null) {
+                return GetTypeConfigInfo(type.BaseType);
+            }
+
+            var keyType = TypeConfigInfoList.Keys.Where(p => type.IsDerivedFrom(p)).FirstOrDefault();
+            if (keyType != null) {
+                return TypeConfigInfoList[keyType];
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// 获取属性配置信息
+        /// </summary>
+        /// <param name="type">类型</param>
+        /// <param name="propertyName">属性名称</param>
+        /// <returns>属性配置信息</returns>
+        public static PropertyConfigInfo GetPropertyConfigInfo(Type type, string propertyName) {
+
+            var typeConfigInfo = GetTypeConfigInfo(type);
+            if (typeConfigInfo != null) {
+                var propertyConfigInfo = typeConfigInfo.GetPropertyConfigInfo(propertyName);
+                return propertyConfigInfo;
+            }
+            return null;
+        }
+        #endregion
+}
 }

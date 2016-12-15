@@ -9,6 +9,9 @@ using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using PAO.UI.WinForm;
 using PAO.Config.Editors;
+using PAO.IO.Text;
+using PAO.UI.WinForm.Editors;
+using PAO.UI.WinForm.Property;
 
 namespace PAO.Config.Controls.EditControls
 {
@@ -60,13 +63,29 @@ namespace PAO.Config.Controls.EditControls
          }
 
         private void PropertyGridControl_CustomRecordCellEdit(object sender, DevExpress.XtraVerticalGrid.Events.GetCustomRowCellEditEventArgs e) {
+            BaseEditor edit = null;
             var propDesc = PropertyGridControl.GetPropertyDescriptor(e.Row);
-            var edit = WinFormPublic.GetDefaultEditor(propDesc);
-            if (edit == null) {
-                edit = new ObjectEditor();
-                edit.PropertyDescriptor = propDesc;
+            if(propDesc is ConfigPropertyDescriptor) {
+                var configProp = propDesc as ConfigPropertyDescriptor;
+                if(configProp.Editor != null) {
+                    edit = TextPublic.ObjectClone(configProp.Editor) as BaseEditor;
+                }
             }
-            e.RepositoryItem = edit.CreateEditor();
+
+            if(edit == null) {
+                edit = WinFormPublic.GetDefaultEditor(propDesc);
+            }
+
+            if (edit == null) {
+                if(propDesc.PropertyType.IsDerivedFrom(typeof(PaoObject))) {
+                    edit = new ObjectEditor();
+                }
+            }
+
+            if (edit != null) {
+                edit.PropertyDescriptor = propDesc;
+                e.RepositoryItem = edit.CreateEditor();
+            }
         }
 
         private void ButtonExport_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
@@ -79,6 +98,30 @@ namespace PAO.Config.Controls.EditControls
 
         private void ObjectEditControl_Leave(object sender, EventArgs e) {
             this.PropertyGridControl.CloseEditor();
+        }
+
+        private void PropertyGridControl_CustomPropertyDescriptors(object sender, DevExpress.XtraVerticalGrid.Events.CustomPropertyDescriptorsEventArgs e) {
+            var propertyDescriptors = new List<PropertyDescriptor>();
+            var objectType = e.Context.Instance.GetType();
+            var typeConfigInfo = WinFormPublic.GetTypeConfigInfo(objectType);
+            if (typeConfigInfo == null)
+                return;
+
+            foreach (PropertyDescriptor propertyDesc in e.Properties) {
+                var propertyConfigInfo = typeConfigInfo.GetPropertyConfigInfo(propertyDesc.Name);
+                if(propertyConfigInfo != null) {
+                    if (propertyConfigInfo.Browsable) {
+                        var newProp = new ConfigPropertyDescriptor(propertyDesc, propertyConfigInfo);
+
+                        propertyDescriptors.Add(newProp);
+                    }
+                }
+                else {
+                    propertyDescriptors.Add(propertyDesc);
+                }
+            }
+
+            e.Properties = new PropertyDescriptorCollection(propertyDescriptors.ToArray());
         }
     }
 }
