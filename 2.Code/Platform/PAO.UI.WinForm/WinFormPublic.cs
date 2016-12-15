@@ -502,8 +502,7 @@ namespace PAO.UI.WinForm
         /// <param name="type">类型</param>
         /// <param name="propertyName">属性名称</param>
         /// <returns>属性配置信息</returns>
-        public static PropertyConfigInfo GetPropertyConfigInfo(Type type, string propertyName) {
-            var typeConfigInfo = GetTypeConfigInfo(type);
+        public static PropertyConfigInfo GetPropertyConfigInfo(Type type, TypeConfigInfo typeConfigInfo, string propertyName) {
             if (typeConfigInfo != null) {
                 // 如果能找到配置属性，则返回
                 var propertyConfigInfo = typeConfigInfo.GetPropertyConfigInfo(propertyName);
@@ -518,6 +517,16 @@ namespace PAO.UI.WinForm
                 }
             }
             return null;
+        }
+        /// <summary>
+        /// 获取属性配置信息
+        /// </summary>
+        /// <param name="type">类型</param>
+        /// <param name="propertyName">属性名称</param>
+        /// <returns>属性配置信息</returns>
+        public static PropertyConfigInfo GetPropertyConfigInfo(Type type, string propertyName) {
+            var typeConfigInfo = GetTypeConfigInfo(type);
+            return GetPropertyConfigInfo(type, typeConfigInfo, propertyName);
         }
         #endregion
 }

@@ -113,7 +113,7 @@ namespace PAO.UI.WinForm.Property
         /// </summary>
         /// <param name="property">属性</param>
         /// <returns>配置信息</returns>
-        public PropertyConfigInfo GetPropertyConfigInfo(string property) {
+        internal PropertyConfigInfo GetPropertyConfigInfo(string property) {
             if (PropertyConfigInfoList.ContainsKey(property)) {
                 return PropertyConfigInfoList[property];
             }

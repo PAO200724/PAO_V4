@@ -27,6 +27,7 @@ namespace PAO.Config.Controls.EditControls
         public ObjectEditControl() {
             InitializeComponent();
             SetControlStatus();
+            SelectedObject = null;
         }
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
@@ -101,6 +102,9 @@ namespace PAO.Config.Controls.EditControls
         }
 
         private void PropertyGridControl_CustomPropertyDescriptors(object sender, DevExpress.XtraVerticalGrid.Events.CustomPropertyDescriptorsEventArgs e) {
+            if (e.Properties.IsNullOrEmpty())
+                return;
+
             var propertyDescriptors = new List<PropertyDescriptor>();
             var objectType = e.Context.Instance.GetType();
             var typeConfigInfo = WinFormPublic.GetTypeConfigInfo(objectType);
@@ -108,7 +112,7 @@ namespace PAO.Config.Controls.EditControls
                 return;
 
             foreach (PropertyDescriptor propertyDesc in e.Properties) {
-                var propertyConfigInfo = typeConfigInfo.GetPropertyConfigInfo(propertyDesc.Name);
+                var propertyConfigInfo = WinFormPublic.GetPropertyConfigInfo(objectType, typeConfigInfo, propertyDesc.Name);
                 if(propertyConfigInfo != null) {
                     if (propertyConfigInfo.Browsable) {
                         var newProp = new ConfigPropertyDescriptor(propertyDesc, propertyConfigInfo);

@@ -150,5 +150,9 @@ namespace PAO.Report.Displayers
                 }
             }
         }
+
+        private void GridControl_Leave(object sender, EventArgs e) {
+            PropertyView.SetSelectedObject(null);
+        }
     }
 }

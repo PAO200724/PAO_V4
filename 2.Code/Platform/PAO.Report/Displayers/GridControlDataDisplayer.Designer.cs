@@ -58,6 +58,7 @@
             this.AdvBandedGridView,
             this.LayoutView,
             this.TileView});
+            this.GridControl.Leave += new System.EventHandler(this.GridControl_Leave);
             // 
             // GridView
             // 
