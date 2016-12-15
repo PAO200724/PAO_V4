@@ -97,7 +97,7 @@ namespace PAO.Trans
                 return null;
             base.ToString();
             if (Transaction.Status is TransStatus_Running || Transaction.Status is TransStatus_Rollbacked) {
-                return String.Format("[{0} {1} {2:yyyy-MM-dd HH:mm:ss.fffff} 名称:{3} ID: {4}{5}]"
+                return String.Format("[{0} {1} {2:yyyy-MM-dd HH:mm:ss.fffff} 名称:{3} ID:{4}{5}]"
                     , Source
                     , Type
                     , Transaction.StartTime
@@ -106,7 +106,7 @@ namespace PAO.Trans
                     , Transaction.ParentID.IsNotNullOrEmpty() ? String.Format(" 父ID:{0}", Transaction.ParentID) : null);
             }
             else if (Transaction.Status is TransStatus_Committed || Transaction.Status is TransStatus_Failed) {
-                return String.Format("[{0} {1} {2:yyyy-MM-dd HH:mm:ss.fffff} 名称:{3} ID: {4}{5} 耗时:{6}]"
+                return String.Format("[{0} {1} {2:yyyy-MM-dd HH:mm:ss.fffff} 名称:{3} ID:{4}{5} 耗时:{6}]"
                     , Source
                     , Type
                     , Transaction.StartTime
@@ -116,7 +116,7 @@ namespace PAO.Trans
                     , Transaction.Status.As<Status_Completed>().SpendTime);
             }
             else if (Transaction.Status is TransStatus_Excepted || Transaction.Status is TransStatus_RollbackExcepted) {
-                return String.Format("[{0} {1} {2:yyyy-MM-dd HH:mm:ss.fffff} 名称:{3} ID: {4}{5}]\r\n{6}"
+                return String.Format("[{0} {1} {2:yyyy-MM-dd HH:mm:ss.fffff} 名称:{3} ID:{4}{5}]\r\n{6}"
                     , Source
                     , Type
                     , Transaction.StartTime

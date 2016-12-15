@@ -59,7 +59,7 @@ namespace PAO.Remote.Tcp
                
             var tcpClient = new TcpClient();
             tcpClient.Connect(hostName, port);
-            EventPublic.Information("地址{0}连接服务：{1}成功"
+            EventPublic.Information("[{0}]连接[{1}]成功"
                 , tcpClient.Client.LocalEndPoint
                 , tcpClient.Client.RemoteEndPoint);
 

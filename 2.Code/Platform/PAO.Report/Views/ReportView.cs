@@ -56,6 +56,7 @@ namespace PAO.Report.Views
         public ReportView() {
             InitializeComponent();
             UIActionDispatcher = new UIActionDispatcher(this);
+            this.BarExtend.Visible = false;
         }
         
         private void RebuildTableColumns() {
@@ -270,6 +271,28 @@ namespace PAO.Report.Views
             
             var control = view as Control;
             control.Name = view.ID;
+            if(control is IBarSupport) {
+                var barSupport = control as IBarSupport;
+                control.Enter += (s, e) =>
+                {
+                    var bars = barSupport.ExtendBars;
+                    if(bars.IsNotNullOrEmpty()) {
+                        foreach(var bar in bars) {
+                            this.BarExtend.Merge(bar);
+                        }
+                    }
+                    if(this.BarExtend.ItemLinks.Count > 0) {
+                        this.BarExtend.Visible = true;
+                    } else {
+                        this.BarExtend.Visible = false;
+                    }
+                };
+                control.Leave += (s, e) =>
+                {
+                    this.BarExtend.UnMerge();
+                    this.BarExtend.Visible = false;
+                };
+            }
 
             var groupItem = LayoutControlGroupRoot.AddGroup();
             groupItem.Name = view.ID;

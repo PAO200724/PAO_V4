@@ -114,7 +114,7 @@ namespace PAO.Remote.Tcp
 
         private void AcceptSocket(TcpListener listener) {
             var tcpClient = listener.AcceptTcpClient();
-            EventPublic.Information("{0}接收到来自地址：{1}的请求"
+            EventPublic.Information("[{0}]收到[{1}]的请求"
                 , tcpClient.Client.LocalEndPoint
                 , tcpClient.Client.RemoteEndPoint);
             

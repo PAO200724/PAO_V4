@@ -18,6 +18,7 @@ using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 using DevExpress.XtraGrid.Views.BandedGrid.ViewInfo;
 using PAO.Config.DockViews;
+using DevExpress.XtraBars;
 
 namespace PAO.Report.Displayers
 {
@@ -25,7 +26,7 @@ namespace PAO.Report.Displayers
     /// 表格控件视图
     /// 作者：PAO
     /// </summary>
-    public partial class GridControlDataDisplayer : BaseDataDisplayer, IDataView
+    public partial class GridControlDataDisplayer : BaseDataDisplayer, IDataView, IBarSupport
     {
         public GridControlDataDisplayer() {
             InitializeComponent();
@@ -69,6 +70,30 @@ namespace PAO.Report.Displayers
             }
         }
 
+        protected override string[] ExportFileFilters {
+            get {
+                return new string[]
+                {
+                    FileExtentions.CSV,
+                    FileExtentions.XLS,
+                    FileExtentions.XLSX,
+                    FileExtentions.HTML,
+                    FileExtentions.MHT,
+                    FileExtentions.PDF,
+                    FileExtentions.TXT,
+                };
+            }
+        }
+
+        public IEnumerable<Bar> ExtendBars {
+            get {
+                return new Bar[]
+                {
+                    BarTools
+                };
+            }
+        }
+
         public void SetDataSource(DataSet dataSet) {
             var controller = Controller as GridControlController;
 
@@ -93,22 +118,7 @@ namespace PAO.Report.Displayers
             controller.LayoutData = MainView.GetLayoutData();
             AddonPublic.SaveAddonExtendProperties(controller, "LayoutData");
         }
-
-        protected override string[] ExportFileFilters {
-            get {
-                return new string[]
-                {
-                    FileExtentions.CSV,
-                    FileExtentions.XLS,
-                    FileExtentions.XLSX,
-                    FileExtentions.HTML,
-                    FileExtentions.MHT,
-                    FileExtentions.PDF,
-                    FileExtentions.TXT,
-                };
-            }
-        }
-
+        
         protected override void OnExport(string fileName, string ext) {
             switch(ext.ToUpper()) {
                 case "CSV":
@@ -153,6 +163,10 @@ namespace PAO.Report.Displayers
 
         private void GridControl_Leave(object sender, EventArgs e) {
             PropertyView.SetSelectedObject(null);
+        }
+
+        private void ButtonRecoverLayout_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+            ButtonRecoverLayout.Visibility = BarItemVisibility.Never;
         }
     }
 }

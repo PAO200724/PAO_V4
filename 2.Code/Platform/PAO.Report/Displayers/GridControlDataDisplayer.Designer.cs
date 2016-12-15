@@ -25,6 +25,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            this.components = new System.ComponentModel.Container();
             this.GridControl = new DevExpress.XtraGrid.GridControl();
             this.GridView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.BandedGridView = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridView();
@@ -34,6 +35,16 @@
             this.GridBandMain = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.LayoutView = new DevExpress.XtraGrid.Views.Layout.LayoutView();
             this.TileView = new DevExpress.XtraGrid.Views.Tile.TileView();
+            this.BarManager = new DevExpress.XtraBars.BarManager(this.components);
+            this.BarTools = new DevExpress.XtraBars.Bar();
+            this.MenuGridView = new DevExpress.XtraBars.BarSubItem();
+            this.ButtonExport = new DevExpress.XtraBars.BarButtonItem();
+            this.ButtonPrint = new DevExpress.XtraBars.BarButtonItem();
+            this.ButtonRecoverLayout = new DevExpress.XtraBars.BarButtonItem();
+            this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             ((System.ComponentModel.ISupportInitialize)(this.GridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BandedGridView)).BeginInit();
@@ -41,15 +52,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.AdvBandedGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.LayoutView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TileView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BarManager)).BeginInit();
             this.SuspendLayout();
             // 
             // GridControl
             // 
             this.GridControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.GridControl.Location = new System.Drawing.Point(0, 0);
+            this.GridControl.Location = new System.Drawing.Point(0, 28);
             this.GridControl.MainView = this.GridView;
             this.GridControl.Name = "GridControl";
-            this.GridControl.Size = new System.Drawing.Size(517, 491);
+            this.GridControl.Size = new System.Drawing.Size(517, 463);
             this.GridControl.TabIndex = 0;
             this.GridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.GridView,
@@ -112,11 +124,99 @@
             this.TileView.GridControl = this.GridControl;
             this.TileView.Name = "TileView";
             // 
+            // BarManager
+            // 
+            this.BarManager.Bars.AddRange(new DevExpress.XtraBars.Bar[] {
+            this.BarTools});
+            this.BarManager.DockControls.Add(this.barDockControlTop);
+            this.BarManager.DockControls.Add(this.barDockControlBottom);
+            this.BarManager.DockControls.Add(this.barDockControlLeft);
+            this.BarManager.DockControls.Add(this.barDockControlRight);
+            this.BarManager.Form = this;
+            this.BarManager.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
+            this.MenuGridView,
+            this.ButtonExport,
+            this.ButtonPrint,
+            this.ButtonRecoverLayout});
+            this.BarManager.MaxItemId = 4;
+            // 
+            // BarTools
+            // 
+            this.BarTools.BarName = "工具条";
+            this.BarTools.DockCol = 0;
+            this.BarTools.DockRow = 0;
+            this.BarTools.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
+            this.BarTools.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.MenuGridView)});
+            this.BarTools.Text = "工具条";
+            this.BarTools.Visible = false;
+            // 
+            // MenuGridView
+            // 
+            this.MenuGridView.Caption = "表格(&G)";
+            this.MenuGridView.Id = 0;
+            this.MenuGridView.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonExport),
+            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonPrint),
+            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonRecoverLayout)});
+            this.MenuGridView.Name = "MenuGridView";
+            // 
+            // ButtonExport
+            // 
+            this.ButtonExport.Caption = "导出(&E)...";
+            this.ButtonExport.Id = 1;
+            this.ButtonExport.Name = "ButtonExport";
+            // 
+            // ButtonPrint
+            // 
+            this.ButtonPrint.Caption = "打印(&P)...";
+            this.ButtonPrint.Id = 2;
+            this.ButtonPrint.Name = "ButtonPrint";
+            // 
+            // ButtonRecoverLayout
+            // 
+            this.ButtonRecoverLayout.Caption = "恢复默认布局(&R)";
+            this.ButtonRecoverLayout.Id = 3;
+            this.ButtonRecoverLayout.Name = "ButtonRecoverLayout";
+            this.ButtonRecoverLayout.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonRecoverLayout_ItemClick);
+            // 
+            // barDockControlTop
+            // 
+            this.barDockControlTop.CausesValidation = false;
+            this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
+            this.barDockControlTop.Size = new System.Drawing.Size(517, 28);
+            // 
+            // barDockControlBottom
+            // 
+            this.barDockControlBottom.CausesValidation = false;
+            this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 491);
+            this.barDockControlBottom.Size = new System.Drawing.Size(517, 0);
+            // 
+            // barDockControlLeft
+            // 
+            this.barDockControlLeft.CausesValidation = false;
+            this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 28);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 463);
+            // 
+            // barDockControlRight
+            // 
+            this.barDockControlRight.CausesValidation = false;
+            this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
+            this.barDockControlRight.Location = new System.Drawing.Point(517, 28);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 463);
+            // 
             // GridControlDataDisplayer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.GridControl);
+            this.Controls.Add(this.barDockControlLeft);
+            this.Controls.Add(this.barDockControlRight);
+            this.Controls.Add(this.barDockControlBottom);
+            this.Controls.Add(this.barDockControlTop);
             this.Name = "GridControlDataDisplayer";
             this.Size = new System.Drawing.Size(517, 491);
             ((System.ComponentModel.ISupportInitialize)(this.GridControl)).EndInit();
@@ -126,7 +226,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.AdvBandedGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.LayoutView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TileView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BarManager)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -141,5 +243,15 @@
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand GridBand;
         private DevExpress.XtraGrid.Views.Layout.LayoutView LayoutView;
         private DevExpress.XtraGrid.Views.Tile.TileView TileView;
+        private DevExpress.XtraBars.BarManager BarManager;
+        private DevExpress.XtraBars.Bar BarTools;
+        private DevExpress.XtraBars.BarDockControl barDockControlTop;
+        private DevExpress.XtraBars.BarDockControl barDockControlBottom;
+        private DevExpress.XtraBars.BarDockControl barDockControlLeft;
+        private DevExpress.XtraBars.BarDockControl barDockControlRight;
+        private DevExpress.XtraBars.BarSubItem MenuGridView;
+        private DevExpress.XtraBars.BarButtonItem ButtonExport;
+        private DevExpress.XtraBars.BarButtonItem ButtonPrint;
+        private DevExpress.XtraBars.BarButtonItem ButtonRecoverLayout;
     }
 }
