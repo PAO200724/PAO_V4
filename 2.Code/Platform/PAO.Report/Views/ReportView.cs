@@ -454,7 +454,7 @@ namespace PAO.Report.Views
         }
 
         private void ButtonProperties_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            PropertyView.SetSelectedObject(Controller);
+            WinFormPublic.ShowInPropertyView(Controller);
         }
         #endregion
     }

@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using PAO.UI.WinForm.Controls;
 using PAO.UI.WinForm.MDI;
+using PAO.UI.WinForm;
 
 namespace PAO.Config.DockViews
 {
@@ -16,24 +17,25 @@ namespace PAO.Config.DockViews
     /// 属性页视图
     /// 作者：PAO
     /// </summary>
-    public partial class PropertyView : ViewControl, IDockView
+    public partial class PropertyView : ViewControl, IDockView, IPropertyView
     {
         /// <summary>
         /// 默认视图
         /// </summary>
-        private static PropertyView Default = null;
         public PropertyView() {
             InitializeComponent();
-            Default = this;
+            WinFormPublic.DefaultPropertyView = this;
         }
 
-        /// <summary>
-        /// 显示配置窗体
-        /// </summary>
-        /// <param name="selectedObject">选择对象</param>
-        public static void SetSelectedObject(object selectedObject) {
-            if(Default != null && !Default.IsDisposed)
-                Default.ObjectEditControl.SelectedObject = selectedObject;
+        public object SelectedObject {
+            get {
+                return ObjectEditControl.SelectedObject;
+            }
+
+            set {
+                ObjectEditControl.SelectedObject = value;
+            }
         }
+        
     }
 }

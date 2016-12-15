@@ -27,22 +27,17 @@
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
             this.GridControl = new DevExpress.XtraGrid.GridControl();
+            this.GridView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.BandedGridView = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridView();
             this.GridBand = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.GridView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.CardView = new DevExpress.XtraGrid.Views.Card.CardView();
             this.AdvBandedGridView = new DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView();
             this.GridBandMain = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.LayoutView = new DevExpress.XtraGrid.Views.Layout.LayoutView();
-            this.TileView = new DevExpress.XtraGrid.Views.Tile.TileView();
             this.BarManager = new DevExpress.XtraBars.BarManager(this.components);
             this.BarTools = new DevExpress.XtraBars.Bar();
-            this.MenuGridView = new DevExpress.XtraBars.BarSubItem();
             this.MenuViewType = new DevExpress.XtraBars.BarSubItem();
             this.ButtonViewType = new DevExpress.XtraBars.BarListItem();
-            this.MenuExtendView = new DevExpress.XtraBars.BarSubItem();
-            this.ButtonAddonBand = new DevExpress.XtraBars.BarButtonItem();
-            this.ButtonRemoveBand = new DevExpress.XtraBars.BarButtonItem();
             this.ButtonExport = new DevExpress.XtraBars.BarButtonItem();
             this.ButtonPrint = new DevExpress.XtraBars.BarButtonItem();
             this.ButtonRecoverLayout = new DevExpress.XtraBars.BarButtonItem();
@@ -51,12 +46,11 @@
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             ((System.ComponentModel.ISupportInitialize)(this.GridControl)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.BandedGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BandedGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CardView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AdvBandedGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.LayoutView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TileView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BarManager)).BeginInit();
             this.SuspendLayout();
             // 
@@ -69,28 +63,11 @@
             this.GridControl.Size = new System.Drawing.Size(517, 460);
             this.GridControl.TabIndex = 0;
             this.GridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.BandedGridView,
             this.GridView,
+            this.BandedGridView,
             this.CardView,
             this.AdvBandedGridView,
-            this.LayoutView,
-            this.TileView});
-            this.GridControl.Leave += new System.EventHandler(this.GridControl_Leave);
-            // 
-            // BandedGridView
-            // 
-            this.BandedGridView.Bands.AddRange(new DevExpress.XtraGrid.Views.BandedGrid.GridBand[] {
-            this.GridBand});
-            this.BandedGridView.GridControl = this.GridControl;
-            this.BandedGridView.Name = "BandedGridView";
-            this.BandedGridView.OptionsView.ColumnAutoWidth = false;
-            this.BandedGridView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.GridView_MouseDown);
-            // 
-            // GridBand
-            // 
-            this.GridBand.Name = "GridBand";
-            this.GridBand.VisibleIndex = 0;
-            this.GridBand.Width = 75;
+            this.LayoutView});
             // 
             // GridView
             // 
@@ -104,11 +81,30 @@
             this.GridView.OptionsView.ShowGroupPanel = false;
             this.GridView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.GridView_MouseDown);
             // 
+            // BandedGridView
+            // 
+            this.BandedGridView.Bands.AddRange(new DevExpress.XtraGrid.Views.BandedGrid.GridBand[] {
+            this.GridBand});
+            this.BandedGridView.GridControl = this.GridControl;
+            this.BandedGridView.Name = "BandedGridView";
+            this.BandedGridView.OptionsBehavior.ReadOnly = true;
+            this.BandedGridView.OptionsMenu.ShowConditionalFormattingItem = true;
+            this.BandedGridView.OptionsMenu.ShowGroupSummaryEditorItem = true;
+            this.BandedGridView.OptionsView.ColumnAutoWidth = false;
+            this.BandedGridView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.GridView_MouseDown);
+            // 
+            // GridBand
+            // 
+            this.GridBand.Name = "GridBand";
+            this.GridBand.VisibleIndex = 0;
+            this.GridBand.Width = 75;
+            // 
             // CardView
             // 
             this.CardView.FocusedCardTopFieldIndex = 0;
             this.CardView.GridControl = this.GridControl;
             this.CardView.Name = "CardView";
+            this.CardView.OptionsBehavior.ReadOnly = true;
             this.CardView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.GridView_MouseDown);
             // 
             // AdvBandedGridView
@@ -117,6 +113,7 @@
             this.GridBandMain});
             this.AdvBandedGridView.GridControl = this.GridControl;
             this.AdvBandedGridView.Name = "AdvBandedGridView";
+            this.AdvBandedGridView.OptionsBehavior.ReadOnly = true;
             this.AdvBandedGridView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.GridView_MouseDown);
             // 
             // GridBandMain
@@ -128,14 +125,9 @@
             // 
             this.LayoutView.GridControl = this.GridControl;
             this.LayoutView.Name = "LayoutView";
+            this.LayoutView.OptionsBehavior.ReadOnly = true;
             this.LayoutView.TemplateCard = null;
             this.LayoutView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.GridView_MouseDown);
-            // 
-            // TileView
-            // 
-            this.TileView.GridControl = this.GridControl;
-            this.TileView.Name = "TileView";
-            this.TileView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.GridView_MouseDown);
             // 
             // BarManager
             // 
@@ -147,15 +139,11 @@
             this.BarManager.DockControls.Add(this.barDockControlRight);
             this.BarManager.Form = this;
             this.BarManager.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
-            this.MenuGridView,
             this.ButtonExport,
             this.ButtonPrint,
             this.ButtonRecoverLayout,
             this.ButtonViewType,
-            this.MenuViewType,
-            this.MenuExtendView,
-            this.ButtonAddonBand,
-            this.ButtonRemoveBand});
+            this.MenuViewType});
             this.BarManager.MaxItemId = 13;
             // 
             // BarTools
@@ -165,21 +153,12 @@
             this.BarTools.DockRow = 0;
             this.BarTools.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
             this.BarTools.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.MenuGridView)});
-            this.BarTools.Text = "工具条";
-            this.BarTools.Visible = false;
-            // 
-            // MenuGridView
-            // 
-            this.MenuGridView.Caption = "表格(&G)";
-            this.MenuGridView.Id = 0;
-            this.MenuGridView.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.MenuViewType, true),
-            new DevExpress.XtraBars.LinkPersistInfo(this.MenuExtendView),
+            new DevExpress.XtraBars.LinkPersistInfo(this.MenuViewType),
             new DevExpress.XtraBars.LinkPersistInfo(this.ButtonExport, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.ButtonPrint),
             new DevExpress.XtraBars.LinkPersistInfo(this.ButtonRecoverLayout, true)});
-            this.MenuGridView.Name = "MenuGridView";
+            this.BarTools.Text = "工具条";
+            this.BarTools.Visible = false;
             // 
             // MenuViewType
             // 
@@ -200,32 +179,8 @@
             "分带表格视图",
             "复杂表格视图",
             "布局视图",
-            "卡片视图",
-            "瓷片视图"});
+            "卡片视图"});
             this.ButtonViewType.ListItemClick += new DevExpress.XtraBars.ListItemClickEventHandler(this.ButtonViewType_ListItemClick);
-            // 
-            // MenuExtendView
-            // 
-            this.MenuExtendView.Caption = "扩展视图(&E)";
-            this.MenuExtendView.Id = 10;
-            this.MenuExtendView.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonAddonBand),
-            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonRemoveBand)});
-            this.MenuExtendView.Name = "MenuExtendView";
-            // 
-            // ButtonAddonBand
-            // 
-            this.ButtonAddonBand.Caption = "添加带(&A)";
-            this.ButtonAddonBand.Id = 11;
-            this.ButtonAddonBand.Name = "ButtonAddonBand";
-            this.ButtonAddonBand.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonAddonBand_ItemClick);
-            // 
-            // ButtonRemoveBand
-            // 
-            this.ButtonRemoveBand.Caption = "删除带(&R)";
-            this.ButtonRemoveBand.Id = 12;
-            this.ButtonRemoveBand.Name = "ButtonRemoveBand";
-            this.ButtonRemoveBand.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonRemoveBand_ItemClick);
             // 
             // ButtonExport
             // 
@@ -233,6 +188,7 @@
             this.ButtonExport.Glyph = global::PAO.Report.Properties.Resources.export_16x16;
             this.ButtonExport.Id = 1;
             this.ButtonExport.Name = "ButtonExport";
+            this.ButtonExport.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonExport_ItemClick);
             // 
             // ButtonPrint
             // 
@@ -240,6 +196,7 @@
             this.ButtonPrint.Glyph = global::PAO.Report.Properties.Resources.printer_16x16;
             this.ButtonPrint.Id = 2;
             this.ButtonPrint.Name = "ButtonPrint";
+            this.ButtonPrint.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonPrint_ItemClick);
             // 
             // ButtonRecoverLayout
             // 
@@ -290,12 +247,11 @@
             this.Name = "GridControlDataDisplayer";
             this.Size = new System.Drawing.Size(517, 491);
             ((System.ComponentModel.ISupportInitialize)(this.GridControl)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.BandedGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BandedGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CardView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.AdvBandedGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.LayoutView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TileView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BarManager)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -311,22 +267,17 @@
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand GridBandMain;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridView BandedGridView;
         private DevExpress.XtraGrid.Views.Layout.LayoutView LayoutView;
-        private DevExpress.XtraGrid.Views.Tile.TileView TileView;
         private DevExpress.XtraBars.BarManager BarManager;
         private DevExpress.XtraBars.Bar BarTools;
         private DevExpress.XtraBars.BarDockControl barDockControlTop;
         private DevExpress.XtraBars.BarDockControl barDockControlBottom;
         private DevExpress.XtraBars.BarDockControl barDockControlLeft;
         private DevExpress.XtraBars.BarDockControl barDockControlRight;
-        private DevExpress.XtraBars.BarSubItem MenuGridView;
         private DevExpress.XtraBars.BarButtonItem ButtonExport;
         private DevExpress.XtraBars.BarButtonItem ButtonPrint;
         private DevExpress.XtraBars.BarButtonItem ButtonRecoverLayout;
         private DevExpress.XtraBars.BarListItem ButtonViewType;
         private DevExpress.XtraBars.BarSubItem MenuViewType;
-        private DevExpress.XtraBars.BarSubItem MenuExtendView;
-        private DevExpress.XtraBars.BarButtonItem ButtonAddonBand;
-        private DevExpress.XtraBars.BarButtonItem ButtonRemoveBand;
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand GridBand;
     }
 }

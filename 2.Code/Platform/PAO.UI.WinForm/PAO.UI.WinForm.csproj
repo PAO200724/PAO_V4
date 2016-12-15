@@ -114,6 +114,7 @@
     <Compile Include="Editors\TextEditor.cs" />
     <Compile Include="Editors\TimeEditor.cs" />
     <Compile Include="Editors\ToggleSwitchEditor.cs" />
+    <Compile Include="IPropertyView.cs" />
     <Compile Include="MDI\DockViews\TreeMenuController.cs" />
     <Compile Include="MDI\DockViews\TreeMenuView.cs">
       <SubType>UserControl</SubType>

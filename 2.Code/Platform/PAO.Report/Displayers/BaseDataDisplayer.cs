@@ -34,22 +34,6 @@ namespace PAO.Report.Displayers
         }
         
         /// <summary>
-        /// 获取布局数据
-        /// </summary>
-        /// <returns>布局数据</returns>
-        public virtual byte[] GetLayoutData() {
-            return null;
-        }
-
-        /// <summary>
-        /// 设置布局数据
-        /// </summary>
-        /// <param name="layoutData">布局数据</param>
-        public virtual void SetLayoutData(byte[] layoutData) {
-
-        }
-
-        /// <summary>
         /// 导出文件的扩展名
         /// </summary>
         protected virtual string[] ExportFileFilters { get {
@@ -65,8 +49,7 @@ namespace PAO.Report.Displayers
                 throw new Exception("未定义可导出的扩展名");
             string fileName = "";
             if(UIPublic.ShowSaveFileDialog("导出", ref fileName, ExportFileFilters) == DialogReturn.OK) {
-                string ext = Path.GetExtension(fileName);
-                OnExport(fileName, ext);
+                OnExport(fileName);
             }
         }
 
@@ -74,8 +57,7 @@ namespace PAO.Report.Displayers
         /// 导出事件
         /// </summary>
         /// <param name="fileName">文件名</param>
-        /// <param name="ext">文件扩展名</param>
-        protected virtual void OnExport(string fileName, string ext) {
+        protected virtual void OnExport(string fileName) {
 
         }
     }

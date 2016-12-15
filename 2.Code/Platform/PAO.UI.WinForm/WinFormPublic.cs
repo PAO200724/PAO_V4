@@ -43,7 +43,7 @@ namespace PAO.UI.WinForm
     /// </summary>
     public static class WinFormPublic
     {
-        #region Public
+        #region Dialog
 
         public static DialogReturn DialogResultToDialogReturn(DialogResult result) {
             switch (result) {
@@ -520,5 +520,19 @@ namespace PAO.UI.WinForm
             return null;
         }
         #endregion
-}
+
+        #region PropertyView
+        public static IPropertyView DefaultPropertyView;
+
+        /// <summary>
+        /// 在属性视图中显示
+        /// </summary>
+        /// <param name="selectedObject">对象</param>
+        public static void ShowInPropertyView(object selectedObject) {
+            if(DefaultPropertyView != null) {
+                DefaultPropertyView.SelectedObject = selectedObject;
+            }
+        }
+        #endregion
+    }
 }

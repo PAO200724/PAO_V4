@@ -37,6 +37,8 @@
             this.BarDockingMenuItem = new DevExpress.XtraBars.BarDockingMenuItem();
             this.MenuToolBar = new DevExpress.XtraBars.BarSubItem();
             this.BarToolbarsListItem = new DevExpress.XtraBars.BarToolbarsListItem();
+            this.MenuConfig = new DevExpress.XtraBars.BarSubItem();
+            this.ButtonSaveConfig = new DevExpress.XtraBars.BarButtonItem();
             this.ButtonExit = new DevExpress.XtraBars.BarButtonItem();
             this.MenuCurrentUser = new DevExpress.XtraBars.BarSubItem();
             this.ButtonLogout = new DevExpress.XtraBars.BarButtonItem();
@@ -58,8 +60,6 @@
             this.DocumentManager = new DevExpress.XtraBars.Docking2010.DocumentManager();
             this.TabbedView = new DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView();
             this.TimerDateTime = new System.Windows.Forms.Timer();
-            this.MenuConfig = new DevExpress.XtraBars.BarSubItem();
-            this.ButtonSaveConfig = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.DockManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BarManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemProgressBar)).BeginInit();
@@ -90,6 +90,8 @@
             // 
             // BarManager
             // 
+            this.BarManager.AllowCustomization = false;
+            this.BarManager.AllowQuickCustomization = false;
             this.BarManager.Bars.AddRange(new DevExpress.XtraBars.Bar[] {
             this.BarMain,
             this.BarStatus});
@@ -202,6 +204,25 @@
             this.BarToolbarsListItem.Caption = "工具条(&T)";
             this.BarToolbarsListItem.Id = 7;
             this.BarToolbarsListItem.Name = "BarToolbarsListItem";
+            // 
+            // MenuConfig
+            // 
+            this.MenuConfig.Caption = "配置(&C)";
+            this.MenuConfig.Glyph = ((System.Drawing.Image)(resources.GetObject("MenuConfig.Glyph")));
+            this.MenuConfig.Id = 24;
+            this.MenuConfig.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("MenuConfig.LargeGlyph")));
+            this.MenuConfig.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonSaveConfig)});
+            this.MenuConfig.Name = "MenuConfig";
+            // 
+            // ButtonSaveConfig
+            // 
+            this.ButtonSaveConfig.Caption = "保存当前配置(&S)";
+            this.ButtonSaveConfig.Glyph = ((System.Drawing.Image)(resources.GetObject("ButtonSaveConfig.Glyph")));
+            this.ButtonSaveConfig.Id = 25;
+            this.ButtonSaveConfig.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("ButtonSaveConfig.LargeGlyph")));
+            this.ButtonSaveConfig.Name = "ButtonSaveConfig";
+            this.ButtonSaveConfig.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonSaveConfig_ItemClick);
             // 
             // ButtonExit
             // 
@@ -359,6 +380,7 @@
             this.DocumentManager.View = this.TabbedView;
             this.DocumentManager.ViewCollection.AddRange(new DevExpress.XtraBars.Docking2010.Views.BaseView[] {
             this.TabbedView});
+            this.DocumentManager.DocumentActivate += new DevExpress.XtraBars.Docking2010.Views.DocumentEventHandler(this.DocumentManager_DocumentActivate);
             // 
             // TabbedView
             // 
@@ -369,25 +391,6 @@
             this.TimerDateTime.Enabled = true;
             this.TimerDateTime.Interval = 1000;
             this.TimerDateTime.Tick += new System.EventHandler(this.TimerDateTime_Tick);
-            // 
-            // MenuConfig
-            // 
-            this.MenuConfig.Caption = "配置(&C)";
-            this.MenuConfig.Glyph = ((System.Drawing.Image)(resources.GetObject("MenuConfig.Glyph")));
-            this.MenuConfig.Id = 24;
-            this.MenuConfig.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("MenuConfig.LargeGlyph")));
-            this.MenuConfig.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonSaveConfig)});
-            this.MenuConfig.Name = "MenuConfig";
-            // 
-            // ButtonSaveConfig
-            // 
-            this.ButtonSaveConfig.Caption = "保存当前配置(&S)";
-            this.ButtonSaveConfig.Glyph = ((System.Drawing.Image)(resources.GetObject("ButtonSaveConfig.Glyph")));
-            this.ButtonSaveConfig.Id = 25;
-            this.ButtonSaveConfig.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("ButtonSaveConfig.LargeGlyph")));
-            this.ButtonSaveConfig.Name = "ButtonSaveConfig";
-            this.ButtonSaveConfig.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonSaveConfig_ItemClick);
             // 
             // MDIMainForm
             // 

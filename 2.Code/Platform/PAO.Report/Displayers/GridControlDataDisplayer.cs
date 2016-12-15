@@ -23,6 +23,8 @@ using DevExpress.XtraGrid.Views.Layout;
 using DevExpress.XtraGrid.Views.Card;
 using DevExpress.XtraGrid.Views.Tile;
 using DevExpress.XtraGrid.Views.BandedGrid;
+using PAO.UI;
+using System.IO;
 
 namespace PAO.Report.Displayers
 {
@@ -53,32 +55,22 @@ namespace PAO.Report.Displayers
                     case GridViewType.GridView:
                         this.GridControl.MainView = this.GridView;
                         this.ButtonViewType.ItemIndex = 0;
-                        this.MenuExtendView.Visibility = BarItemVisibility.Never;
                         break;
                     case GridViewType.BandedView:
                         this.GridControl.MainView = this.BandedGridView;
                         this.ButtonViewType.ItemIndex = 1;
-                        this.MenuExtendView.Visibility = BarItemVisibility.Always;
                         break;
                     case GridViewType.AdvancedBandedView:
                         this.GridControl.MainView = this.AdvBandedGridView;
                         this.ButtonViewType.ItemIndex = 2;
-                        this.MenuExtendView.Visibility = BarItemVisibility.Always;
                         break;
                     case GridViewType.LayoutView:
                         this.GridControl.MainView = this.LayoutView;
                         this.ButtonViewType.ItemIndex = 3;
-                        this.MenuExtendView.Visibility = BarItemVisibility.Never;
                         break;
                     case GridViewType.CardView:
                         this.GridControl.MainView = this.CardView;
                         this.ButtonViewType.ItemIndex = 4;
-                        this.MenuExtendView.Visibility = BarItemVisibility.Never;
-                        break;
-                    case GridViewType.TileView:
-                        this.GridControl.MainView = this.TileView;
-                        this.ButtonViewType.ItemIndex = 5;
-                        this.MenuExtendView.Visibility = BarItemVisibility.Never;
                         break;
                     default:
                         throw new Exception("不支持的表格类型");
@@ -139,12 +131,16 @@ namespace PAO.Report.Displayers
 
         protected override void OnClosing() {
             var controller = Controller as GridControlController;
-            GridViewType = GridViewType;
+            controller.GridViewType = GridViewType;
             controller.LayoutData = MainView.GetLayoutData();
-            AddonPublic.SaveAddonExtendProperties(controller, "LayoutData");
+            AddonPublic.SaveAddonExtendProperties(controller, "GridViewType", "LayoutData");
         }
         
-        protected override void OnExport(string fileName, string ext) {
+        protected override void OnExport(string fileName) {
+            if (fileName == null)
+                return;
+
+            string ext = Path.GetExtension(fileName);
             switch(ext.ToUpper()) {
                 case "CSV":
                     this.MainView.ExportToCsv(fileName);
@@ -193,12 +189,9 @@ namespace PAO.Report.Displayers
                 }
 
                 if (selectedObject != null) {
-                    PropertyView.SetSelectedObject(selectedObject);
+                    WinFormPublic.ShowInPropertyView(selectedObject);
                 }
             }
-        }
-
-        private void GridControl_Leave(object sender, EventArgs e) {
         }
 
         private void ButtonRecoverLayout_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
@@ -222,20 +215,18 @@ namespace PAO.Report.Displayers
                 case 4:
                     GridViewType = GridViewType.CardView;
                     break;
-                case 5:
-                    GridViewType = GridViewType.TileView;
-                    break;
+            }
+        }
+        
+        private void ButtonExport_ItemClick(object sender, ItemClickEventArgs e) {
+            string fileName = null;
+            if(UIPublic.ShowSaveFileDialog("导出",ref fileName, ExportFileFilters) == DialogReturn.OK) {
+                Export();
             }
         }
 
-        private void ButtonAddonBand_ItemClick(object sender, ItemClickEventArgs e) {
-            if(MainView is BandedGridView) {
-                var view = MainView as BandedGridView;
-                var newBand = view.Bands.Add();
-            }
-        }
-
-        private void ButtonRemoveBand_ItemClick(object sender, ItemClickEventArgs e) {
+        private void ButtonPrint_ItemClick(object sender, ItemClickEventArgs e) {
+            MainView.ShowPrintPreview();
         }
     }
 }

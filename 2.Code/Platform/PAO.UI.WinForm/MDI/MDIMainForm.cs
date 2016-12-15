@@ -245,5 +245,9 @@ namespace PAO.UI.WinForm.MDI
                 TextPublic.WriteObjectToFile(fileName, PaoApplication.Default);
             }
         }
+
+        private void DocumentManager_DocumentActivate(object sender, DevExpress.XtraBars.Docking2010.Views.DocumentEventArgs e) {
+            WinFormPublic.ShowInPropertyView(null);
+        }
     }
 }

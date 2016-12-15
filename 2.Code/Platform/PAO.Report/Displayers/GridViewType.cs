@@ -16,7 +16,6 @@ namespace PAO.Report.Displayers
         LayoutView,
         BandedView,
         AdvancedBandedView,
-        CardView,
-        TileView
+        CardView
     }
 }

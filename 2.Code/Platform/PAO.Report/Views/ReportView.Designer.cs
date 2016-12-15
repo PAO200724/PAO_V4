@@ -41,6 +41,7 @@
             this.MenuConfig = new DevExpress.XtraBars.BarSubItem();
             this.ButtonRecoverLayout = new DevExpress.XtraBars.BarButtonItem();
             this.ButtonProperties = new DevExpress.XtraBars.BarButtonItem();
+            this.BarExtend = new DevExpress.XtraBars.Bar();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
@@ -52,7 +53,6 @@
             this.RepositoryItemTextEditCaption = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.LayoutControl = new DevExpress.XtraLayout.LayoutControl();
             this.LayoutControlGroupRoot = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.BarExtend = new DevExpress.XtraBars.Bar();
             ((System.ComponentModel.ISupportInitialize)(this.BindingSourceTable)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BarManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DockManager)).BeginInit();
@@ -70,7 +70,9 @@
             // 
             // BarManager
             // 
+            this.BarManager.AllowCustomization = false;
             this.BarManager.AllowMoveBarOnToolbar = false;
+            this.BarManager.AllowQuickCustomization = false;
             this.BarManager.Bars.AddRange(new DevExpress.XtraBars.Bar[] {
             this.BarTools,
             this.BarExtend});
@@ -106,7 +108,9 @@
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.ButtonQuery, "", true, true, true, 0, null, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.MenuData, "", true, true, true, 0, null, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.MenuConfig, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph)});
+            this.BarTools.OptionsBar.AllowQuickCustomization = false;
             this.BarTools.OptionsBar.DisableClose = true;
+            this.BarTools.OptionsBar.DrawBorder = false;
             this.BarTools.Text = "工具条";
             // 
             // ButtonQuery
@@ -203,12 +207,23 @@
             this.ButtonProperties.Name = "ButtonProperties";
             this.ButtonProperties.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonProperties_ItemClick);
             // 
+            // BarExtend
+            // 
+            this.BarExtend.BarName = "扩展工具条";
+            this.BarExtend.DockCol = 1;
+            this.BarExtend.DockRow = 0;
+            this.BarExtend.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
+            this.BarExtend.OptionsBar.AllowQuickCustomization = false;
+            this.BarExtend.OptionsBar.DisableClose = true;
+            this.BarExtend.OptionsBar.DrawBorder = false;
+            this.BarExtend.Text = "扩展工具条";
+            // 
             // barDockControlTop
             // 
             this.barDockControlTop.CausesValidation = false;
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(880, 28);
+            this.barDockControlTop.Size = new System.Drawing.Size(880, 31);
             // 
             // barDockControlBottom
             // 
@@ -221,15 +236,15 @@
             // 
             this.barDockControlLeft.CausesValidation = false;
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 28);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 499);
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 31);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 496);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(880, 28);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 499);
+            this.barDockControlRight.Location = new System.Drawing.Point(880, 31);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 496);
             // 
             // DockManager
             // 
@@ -253,19 +268,19 @@
             this.DockPanelTables.Controls.Add(this.DockPanelData_Container);
             this.DockPanelTables.Dock = DevExpress.XtraBars.Docking.DockingStyle.Left;
             this.DockPanelTables.ID = new System.Guid("44fd46ae-53ca-48e7-a539-953c949c76fb");
-            this.DockPanelTables.Location = new System.Drawing.Point(0, 28);
+            this.DockPanelTables.Location = new System.Drawing.Point(0, 31);
             this.DockPanelTables.Name = "DockPanelTables";
             this.DockPanelTables.Options.AllowDockAsTabbedDocument = false;
             this.DockPanelTables.Options.AllowFloating = false;
             this.DockPanelTables.Options.ShowCloseButton = false;
             this.DockPanelTables.OriginalSize = new System.Drawing.Size(234, 200);
-            this.DockPanelTables.Size = new System.Drawing.Size(234, 499);
+            this.DockPanelTables.Size = new System.Drawing.Size(234, 496);
             this.DockPanelTables.Text = "数据";
             // 
             // DockPanelData_Container
             // 
             this.DockPanelData_Container.Controls.Add(this.AccordionControl);
-            this.DockPanelData_Container.Location = new System.Drawing.Point(4, 26);
+            this.DockPanelData_Container.Location = new System.Drawing.Point(4, 23);
             this.DockPanelData_Container.Name = "DockPanelData_Container";
             this.DockPanelData_Container.Size = new System.Drawing.Size(226, 469);
             this.DockPanelData_Container.TabIndex = 0;
@@ -287,12 +302,12 @@
             // LayoutControl
             // 
             this.LayoutControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LayoutControl.Location = new System.Drawing.Point(234, 28);
+            this.LayoutControl.Location = new System.Drawing.Point(234, 31);
             this.LayoutControl.MenuManager = this.BarManager;
             this.LayoutControl.Name = "LayoutControl";
             this.LayoutControl.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(685, 219, 250, 350);
             this.LayoutControl.Root = this.LayoutControlGroupRoot;
-            this.LayoutControl.Size = new System.Drawing.Size(646, 499);
+            this.LayoutControl.Size = new System.Drawing.Size(646, 496);
             this.LayoutControl.TabIndex = 0;
             this.LayoutControl.Text = "布局控件";
             this.LayoutControl.ItemAdded += new System.EventHandler(this.LayoutControl_ItemAdded);
@@ -304,17 +319,9 @@
             this.LayoutControlGroupRoot.Location = new System.Drawing.Point(0, 0);
             this.LayoutControlGroupRoot.Name = "Root";
             this.LayoutControlGroupRoot.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-            this.LayoutControlGroupRoot.Size = new System.Drawing.Size(646, 499);
+            this.LayoutControlGroupRoot.Size = new System.Drawing.Size(646, 496);
             this.LayoutControlGroupRoot.Text = "根";
             this.LayoutControlGroupRoot.TextVisible = false;
-            // 
-            // BarExtend
-            // 
-            this.BarExtend.BarName = "扩展工具条";
-            this.BarExtend.DockCol = 1;
-            this.BarExtend.DockRow = 0;
-            this.BarExtend.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
-            this.BarExtend.Text = "扩展工具条";
             // 
             // ReportView
             // 
