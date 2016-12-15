@@ -145,8 +145,26 @@ namespace PAO.UI.WinForm.MDI
         }
         #endregion 属性：DateTimeService
 
+        #region 属性：TimeSyncInterval
+        /// <summary>
+        /// 属性：TimeSyncInterval
+        /// 时间同步间隔
+        /// 每次同步时间的间隔，单位：分钟
+        /// </summary>
+        [AddonProperty]
+        [DefaultValue(5)]
+        [DataMember(EmitDefaultValue = false)]
+        [Name("时间同步间隔")]
+        [Description("每次同步时间的间隔，单位：分钟")]
+        public uint TimeSyncInterval {
+            get;
+            set;
+        }
+        #endregion 属性：TimeSyncInterval
+
         #endregion
         public MDIApplication() {
+            TimeSyncInterval = 5;
         }
         public static new MDIApplication Default {
             get {

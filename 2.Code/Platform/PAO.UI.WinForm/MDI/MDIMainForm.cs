@@ -20,6 +20,7 @@ using DevExpress.XtraSplashScreen;
 using PAO.Trans;
 using PAO.IO;
 using PAO.IO.Text;
+using PAO.Event;
 
 namespace PAO.UI.WinForm.MDI
 {
@@ -33,6 +34,19 @@ namespace PAO.UI.WinForm.MDI
         /// 默认
         /// </summary>
         public static MDIMainForm Default;
+
+        /// <summary>
+        /// 服务器和客户端时间差
+        /// </summary>
+        private TimeSpan ServerTimeSpan;
+        /// <summary>
+        /// 最后一次获取服务器的时间的时间
+        /// </summary>
+        private DateTime LastServerTime = DateTime.MinValue;
+        /// <summary>
+        /// 最后一次时间服务异常
+        /// </summary>
+        private Exception LastServerTimeException = null;
 
         [Browsable(false)]
         public UIActionDispatcher UIActionDispatcher {
@@ -190,13 +204,29 @@ namespace PAO.UI.WinForm.MDI
         }
 
         private void TimerDateTime_Tick(object sender, EventArgs e) {
-            try {
-                if (_MDIApplication.DateTimeService != null) {
-                    var dateTimeService = _MDIApplication.DateTimeService.Value;
-                    string dateTimeString = dateTimeService.GetCurrentDateTime().ToString("服务器时间：yyyy-MM-dd HH:mm:ss");
-                    this.StaticItemServerTime.Caption = dateTimeString;
+            var timeSyncInterval = Math.Max(_MDIApplication.TimeSyncInterval, 1);
+            if ((DateTime.Now - LastServerTime).TotalMinutes >= timeSyncInterval) {
+                LastServerTime = DateTime.Now;
+                try {
+                    if (_MDIApplication.DateTimeService != null) {
+                        var dateTimeService = _MDIApplication.DateTimeService.Value;
+                        var serverTime = dateTimeService.GetCurrentDateTime();
+                        ServerTimeSpan = serverTime - DateTime.Now;
+                    }
+                    LastServerTimeException = null;
                 }
-            } catch {
+                catch(Exception err) {
+                    LastServerTimeException = err;
+                    EventPublic.Error(LastServerTimeException.FormatException());
+                }
+            }
+
+            if(LastServerTimeException == null) {
+                var calcServerTime = DateTime.Now + ServerTimeSpan;
+                string dateTimeString = calcServerTime.ToString("服务器时间：yyyy-MM-dd HH:mm:ss");
+                this.StaticItemServerTime.Caption = dateTimeString;
+            }
+            else {
                 this.StaticItemServerTime.Caption = "服务器连接失败";
             }
         }
