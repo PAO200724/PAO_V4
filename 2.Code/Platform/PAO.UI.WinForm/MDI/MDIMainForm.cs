@@ -47,6 +47,10 @@ namespace PAO.UI.WinForm.MDI
         /// 最后一次时间服务异常
         /// </summary>
         private Exception LastServerTimeException = null;
+        /// <summary>
+        /// 默认布局数据
+        /// </summary>
+        private byte[] DefaultLayoutData;
 
         [Browsable(false)]
         public UIActionDispatcher UIActionDispatcher {
@@ -67,7 +71,6 @@ namespace PAO.UI.WinForm.MDI
             _MDIApplication = application;
 
             Text = _MDIApplication.Caption;
-
 
             // 添加菜单项
             if (_MDIApplication.MenuItems.IsNotNullOrEmpty()) {
@@ -96,6 +99,7 @@ namespace PAO.UI.WinForm.MDI
             else
                 MenuFunction.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
 
+            DefaultLayoutData = this.DockManager.GetLayoutData();
             AddonPublic.LoadAddonExtendProperties(_MDIApplication);
 
             // 加载布局数据
@@ -154,15 +158,12 @@ namespace PAO.UI.WinForm.MDI
                     dockPanel.ID = new Guid(view.ID);
                     dockPanel.Text = view.Caption;
                     dockPanel.Image = view.Icon;
-                    dockPanel.Options.AllowFloating = false;
-                    var headerButton = new CustomHeaderButton("...", ButtonStyle.PushButton);
                     dockPanel.Options.ShowCloseButton = false;
                     dockPanel.Options.AllowDockAsTabbedDocument = false;
-                    dockPanel.Options.AllowFloating = false;
-                    dockPanel.CustomHeaderButtons.Add(headerButton);
-                    dockPanel.CustomButtonClick += (sender, e) =>
+                    dockPanel.ClosingPanel += (sender, e) =>
                     {
-
+                        if (DialogResult != DialogResult.OK)
+                            e.Cancel = true;
                     };
                     var control = view as Control;
                     dockPanel.Controls[0].Controls.Add(control);
@@ -185,14 +186,8 @@ namespace PAO.UI.WinForm.MDI
         }
         
         private void ButtonRecoverLayout_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            var panelList = this.DockManager.Panels.ToList();
-            foreach (var dockPanel in panelList) {
-                dockPanel.Controls[0].Controls.Clear();
-                this.DockManager.RemovePanel(dockPanel);
-            }
-
-            foreach(var view in DockViews) {
-                OpenView(view);
+            if(UIPublic.ShowYesNoDialog("您确定要清除当前的布局并恢复默认布局吗？") == DialogReturn.Yes) {
+                this.DockManager.SetLayoutData(DefaultLayoutData);
             }
         }
 

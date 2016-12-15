@@ -55,14 +55,33 @@ namespace PAO.UI.WinForm.Property
             set;
         }
         #endregion 属性：EditControlType
+
+        #region 属性：ShowDefinedPropertyOnly
+        /// <summary>
+        /// 属性：ShowDefinedPropertyOnly
+        /// 只显示定义了的属性
+        /// 只显示定义了的属性，未定义的属性不显示
+        /// </summary>
+        [AddonProperty]
+        [DefaultValue(false)]
+        [DataMember(EmitDefaultValue = false)]
+        [Name("只显示定义了的属性")]
+        [Description("只显示定义了的属性，未定义的属性不显示")]
+        public bool ShowDefinedPropertyOnly {
+            get;
+            set;
+        }
+        #endregion 属性：ShowDefinedPropertyOnly
         #endregion
         public TypeConfigInfo() {
             PropertyConfigInfoList = new Dictionary<string, Property.PropertyConfigInfo>();
+            ShowDefinedPropertyOnly = false;
         }
 
-        public static TypeConfigInfo Create(Type editorType = null) {
+        public static TypeConfigInfo Create(Type editorType = null, bool showDefinedPropertyOnly = false) {
             return new TypeConfigInfo()
             {
+                ShowDefinedPropertyOnly = showDefinedPropertyOnly,
                 EditControlType = editorType
             };
         }

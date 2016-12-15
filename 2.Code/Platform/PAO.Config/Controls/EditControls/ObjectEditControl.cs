@@ -66,6 +66,9 @@ namespace PAO.Config.Controls.EditControls
         private void PropertyGridControl_CustomRecordCellEdit(object sender, DevExpress.XtraVerticalGrid.Events.GetCustomRowCellEditEventArgs e) {
             BaseEditor edit = null;
             var propDesc = PropertyGridControl.GetPropertyDescriptor(e.Row);
+            if (propDesc == null)
+                return;
+
             if(propDesc is ConfigPropertyDescriptor) {
                 var configProp = propDesc as ConfigPropertyDescriptor;
                 if(configProp.Editor != null) {
@@ -106,13 +109,11 @@ namespace PAO.Config.Controls.EditControls
                 return;
 
             var propertyDescriptors = new List<PropertyDescriptor>();
-            var objectType = e.Context.Instance.GetType();
-            var typeConfigInfo = WinFormPublic.GetTypeConfigInfo(objectType);
-            if (typeConfigInfo == null)
-                return;
+
 
             foreach (PropertyDescriptor propertyDesc in e.Properties) {
-                var propertyConfigInfo = WinFormPublic.GetPropertyConfigInfo(objectType, typeConfigInfo, propertyDesc.Name);
+                var typeConfigInfo = WinFormPublic.GetTypeConfigInfo(propertyDesc.ComponentType);
+                var propertyConfigInfo = WinFormPublic.GetPropertyConfigInfo(propertyDesc.ComponentType, propertyDesc.Name);
                 if(propertyConfigInfo != null) {
                     if (propertyConfigInfo.Browsable) {
                         var newProp = new ConfigPropertyDescriptor(propertyDesc, propertyConfigInfo);
@@ -121,7 +122,9 @@ namespace PAO.Config.Controls.EditControls
                     }
                 }
                 else {
-                    propertyDescriptors.Add(propertyDesc);
+                    if(typeConfigInfo == null || !typeConfigInfo.ShowDefinedPropertyOnly) {
+                        propertyDescriptors.Add(propertyDesc);
+                    }
                 }
             }
 
