@@ -93,11 +93,11 @@ namespace PAO.UI.WinForm.Property
             Browsable = true;
         }
 
-        public PropertyConfigInfo(string displayName,string description = null, BaseEditor editor = null) {
+        public PropertyConfigInfo(string displayName,string description = null, BaseEditor editor = null, bool browsable = true) {
             DisplayName = displayName;
             Description = description;
             Editor = editor;
-            Browsable = true;
+            Browsable = browsable;
         }
     }
 }

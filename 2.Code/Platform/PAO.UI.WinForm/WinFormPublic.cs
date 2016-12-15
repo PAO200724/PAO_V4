@@ -503,11 +503,19 @@ namespace PAO.UI.WinForm
         /// <param name="propertyName">属性名称</param>
         /// <returns>属性配置信息</returns>
         public static PropertyConfigInfo GetPropertyConfigInfo(Type type, string propertyName) {
-
             var typeConfigInfo = GetTypeConfigInfo(type);
             if (typeConfigInfo != null) {
+                // 如果能找到配置属性，则返回
                 var propertyConfigInfo = typeConfigInfo.GetPropertyConfigInfo(propertyName);
-                return propertyConfigInfo;
+                if (propertyConfigInfo != null)
+                    return propertyConfigInfo;
+                // 否则，查找基类中的配置属性
+                if (type.BaseType != null) {
+                    propertyConfigInfo = GetPropertyConfigInfo(type.BaseType, propertyName);
+                    if (propertyConfigInfo != null) {
+                        return propertyConfigInfo;
+                    }
+                }
             }
             return null;
         }

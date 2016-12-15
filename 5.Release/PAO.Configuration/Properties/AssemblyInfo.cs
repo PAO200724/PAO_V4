@@ -5,8 +5,8 @@ using System.Runtime.InteropServices;
 // 有关程序集的一般信息由以下
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("PAO服务")]
-[assembly: AssemblyDescription("为PAO提供服务的应用程序")]
+[assembly: AssemblyTitle("PAO配置系统")]
+[assembly: AssemblyDescription("PAOD的配置系统")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("PAO")]
 [assembly: AssemblyProduct("Programming of Aspect Oriented")]

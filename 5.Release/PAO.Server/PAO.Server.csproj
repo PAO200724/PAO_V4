@@ -11,6 +11,8 @@
     <AssemblyName>PAO.Server</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -23,10 +25,8 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -94,32 +94,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\2.Code\Platform\PAO.App.Server\PAO.App.Server.csproj">
-      <Project>{d0d990c1-0692-4eae-ab54-5e890b931fc5}</Project>
-      <Name>PAO.App.Server</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\2.Code\Platform\PAO.App\PAO.App.csproj">
-      <Project>{64fdc3f2-2c3e-4925-bbd4-e0afa5cd6161}</Project>
-      <Name>PAO.App</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\2.Code\Platform\PAO.Config\PAO.Config.csproj">
-      <Project>{a0f88184-cb49-4c7d-a56b-ae323fdb67ba}</Project>
-      <Name>PAO.Config</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\2.Code\Platform\PAO.Report\PAO.Report.csproj">
-      <Project>{b566efe7-8823-429e-8c37-756e2527065e}</Project>
-      <Name>PAO.Report</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\2.Code\Platform\PAO.UI.WinForm\PAO.UI.WinForm.csproj">
-      <Project>{49bd4858-22c7-431e-a0ac-638a182fd35e}</Project>
-      <Name>PAO.UI.WinForm</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\2.Code\Platform\PAO\PAO.csproj">
-      <Project>{13199ee0-1738-4e3a-a970-3771eb9d4d0e}</Project>
-      <Name>PAO</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="PAO.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -144,6 +118,32 @@
       <ProductName>Windows Installer 4.5</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\2.Code\Platform\PAO.App.Server\PAO.App.Server.csproj">
+      <Project>{d0d990c1-0692-4eae-ab54-5e890b931fc5}</Project>
+      <Name>PAO.App.Server</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\2.Code\Platform\PAO.App\PAO.App.csproj">
+      <Project>{64fdc3f2-2c3e-4925-bbd4-e0afa5cd6161}</Project>
+      <Name>PAO.App</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\2.Code\Platform\PAO.Config\PAO.Config.csproj">
+      <Project>{a0f88184-cb49-4c7d-a56b-ae323fdb67ba}</Project>
+      <Name>PAO.Config</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\2.Code\Platform\PAO.Report\PAO.Report.csproj">
+      <Project>{b566efe7-8823-429e-8c37-756e2527065e}</Project>
+      <Name>PAO.Report</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\2.Code\Platform\PAO.UI.WinForm\PAO.UI.WinForm.csproj">
+      <Project>{49bd4858-22c7-431e-a0ac-638a182fd35e}</Project>
+      <Name>PAO.UI.WinForm</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\2.Code\Platform\PAO\PAO.csproj">
+      <Project>{13199ee0-1738-4e3a-a970-3771eb9d4d0e}</Project>
+      <Name>PAO</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

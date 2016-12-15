@@ -60,6 +60,13 @@ namespace PAO.UI.WinForm.Property
             PropertyConfigInfoList = new Dictionary<string, Property.PropertyConfigInfo>();
         }
 
+        public static TypeConfigInfo Create(Type editorType = null) {
+            return new TypeConfigInfo()
+            {
+                EditControlType = editorType
+            };
+        }
+
         /// <summary>
         /// 添加属性
         /// </summary>
@@ -67,18 +74,29 @@ namespace PAO.UI.WinForm.Property
         /// <param name="displayName">显示名称</param>
         /// <param name="description">描述</param>
         /// <param name="editor">编辑器</param>
+        /// <param name="browsable">可浏览</param>
         /// <returns>this</returns>
-        public TypeConfigInfo AddProperty(string property, string displayName = null, string description = null, BaseEditor editor = null) {
+        public TypeConfigInfo AddProperty(string property, string displayName = null, string description = null, BaseEditor editor = null, bool browsable = true) {
             if (PropertyConfigInfoList == null)
                 PropertyConfigInfoList = new Dictionary<string, Property.PropertyConfigInfo>();
 
-            var propertyConfigInfo = new PropertyConfigInfo(displayName, description, editor);
+            var propertyConfigInfo = new PropertyConfigInfo(displayName, description, editor, browsable);
             if(PropertyConfigInfoList.ContainsKey(property)) {
                 PropertyConfigInfoList[property] = propertyConfigInfo;
             } else {
                 PropertyConfigInfoList.Add(property, propertyConfigInfo);
             }
             return this;
+        }
+
+        /// <summary>
+        /// 添加属性
+        /// </summary>
+        /// <param name="property">属性</param>
+        /// <param name="editor">编辑器</param>
+        /// <returns>this</returns>
+        public TypeConfigInfo AddProperty(string property, bool browsable) {
+            return AddProperty(property, null, null, null, browsable);
         }
         /// <summary>
         /// 添加属性
