@@ -1,6 +1,7 @@
 ﻿using PAO;
 using PAO.App;
 using PAO.Data;
+using PAO.Report.Displayers;
 using PAO.Report.Properties;
 using PAO.UI.MVC;
 using System;
@@ -29,21 +30,21 @@ namespace PAO.Report.Views
     {
         #region 插件属性
 
-        #region 属性：Controllers
+        #region 属性：Displayers
         /// <summary>
-        /// 属性：Controllers
-        /// 控制器列表
-        /// 可以是参数获取器或者是数据显示器等
+        /// 属性：数据显示器
+        /// 数据显示器
+        /// 数据显示器列表
         /// </summary>
         [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
-        [Name("子控制器")]
-        [Description("可以是参数获取器或者是数据显示器等")]
-        public List<Ref<BaseController>> Controllers {
+        [Name("数据显示器")]
+        [Description("数据显示器列表")]
+        public List<Ref<BaseDataDisplayerController>> Displayers {
             get;
             set;
         }
-        #endregion 属性：Controllers
+        #endregion 属性：Displayers
 
         #region 属性：Tables
         /// <summary>

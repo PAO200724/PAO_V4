@@ -331,7 +331,7 @@ namespace PAO.Report.Views
 
             // 打开子视图控制器
             this.BindingSourceTable.DataSource = controller.Tables;
-            foreach(var childControllerRef in controller.Controllers) {
+            foreach(var childControllerRef in controller.Displayers) {
                 var childController = childControllerRef.Value;
                 childController.CreateAndOpenView(this);
             }

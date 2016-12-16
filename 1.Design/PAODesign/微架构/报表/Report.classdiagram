@@ -1,0 +1,411 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm11="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner" dslVersion="1.0.0.0" Id="15231870-83cd-47bf-a1b6-393ddaea255d" name="Report" linkedPackageId="762f3baf-80b1-40b3-b2bb-30743c82a633" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
+  <packagedElements>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="a034f6fd-a57f-49fc-88c3-23c0bb0005c6" name="Report" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="a3f3b354-e6b0-46d1-be1e-49e446ce2dd9" />
+        <targetEnds>
+          <association Id="ddac44e1-9325-482b-9b37-344e94d855db" isDerived="false" sourceEndRoleName="" targetEndRoleName="Tables" isLeaf="false" isAbstract="false">
+            <classMoniker Id="7dc0de0b-922b-4d94-a9e4-92a37a1228ba" LastKnownName="ReportDataTable" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="a05321d4-1f30-4c59-9ed9-a4aa0997c255" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Composite" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="a65a7857-8299-43bf-9a0e-819af5bfae51" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="02baf0ad-a0a1-41a2-a076-c8a7567d2273" name="Tables" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="true">
+                  <lowerValueInternal>
+                    <literalString Id="37df7617-b2f7-4b0e-802d-f73fde73b1d5" name="Lower" value="*">
+                      <elementDefinition Id="82626d13-bc90-41d1-867d-5d7a69dbc228" />
+                    </literalString>
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString Id="f9b3cd47-5580-4152-93f4-ac1ca55237c6" name="Upper" value="*">
+                      <elementDefinition Id="2f06190e-f29b-4386-8759-b4a664a6d190" />
+                    </literalString>
+                  </upperValueInternal>
+                  <elementDefinition Id="170b6e5b-6943-42ce-8e6f-20fcffba3163" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="fb3a8d85-7a52-4dbe-a4c5-7bec8f8e274f" />
+          </association>
+          <association Id="0a750ca3-3d5e-4d75-8a91-ed85069aa794" isDerived="false" sourceEndRoleName="" targetEndRoleName="DataDisplayers" isLeaf="false" isAbstract="false">
+            <classMoniker Id="dbb908cc-7dff-4752-9575-8a4561eaf94e" LastKnownName="BaseDataDisplayerController" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="7c33a7bb-d14b-4cb1-af71-06cd864126f7" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Shared" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="37a8924c-a455-432d-93ac-426b37a46f2c" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="393a7278-f08f-4049-86ac-6dbef0b5c06e" name="DataDisplayers" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <lowerValueInternal>
+                    <literalString Id="d3fb9cbd-068a-472e-b527-a08752825ae9" name="Lower" value="*">
+                      <elementDefinition Id="fdb53459-7abd-44a9-ba68-705c36b245f9" />
+                    </literalString>
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString Id="36d74cb2-ffcd-4dcd-a77b-90283a2bc67d" name="Upper" value="*">
+                      <elementDefinition Id="debb9c1f-6f3e-483f-9e67-7a9ed9fe610c" />
+                    </literalString>
+                  </upperValueInternal>
+                  <elementDefinition Id="8ba1f71d-cfab-42b1-93c9-f56272f8a0ce" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="ee664725-21f0-471d-a6b7-e5303c055d60" />
+          </association>
+          <association Id="a64561b4-41ac-4f67-83d9-301679b4c313" isDerived="false" sourceEndRoleName="" targetEndRoleName="QueryBehavior" isLeaf="false" isAbstract="false">
+            <classMoniker Id="d5840745-9d14-4ebe-b313-2b22cf007f25" LastKnownName="QueryBehavior" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="01270ed0-2686-4d80-a759-91a1988bb3ef" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Composite" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="88fe3876-2c2c-4e36-9f9f-5709de02b16c" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="ef41ec5d-f820-41d4-8529-cab731e48f75" name="QueryBehavior" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="true">
+                  <elementDefinition Id="09fe46ba-c364-4f2d-9dc3-cc80b5c1d8b5" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="1d3b8c08-ea25-404d-8af4-115c347f5f4d" />
+          </association>
+        </targetEnds>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="7dc0de0b-922b-4d94-a9e4-92a37a1228ba" name="ReportDataTable" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="b62b5a7d-3c63-4ab1-a617-14975e4a82fb" />
+        <targetEnds>
+          <association Id="bbc475dd-7d62-4df1-99ea-a06d1f7694ac" isDerived="false" sourceEndRoleName="" targetEndRoleName="QueryBehavior" isLeaf="false" isAbstract="false">
+            <classMoniker Id="d5840745-9d14-4ebe-b313-2b22cf007f25" LastKnownName="QueryBehavior" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="fe548ae4-1671-4335-83b9-4c6c1ed828f9" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Composite" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="adc5fb29-f57d-4f54-ae45-273dd0f1337a" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="fc4c8b23-bfdf-4834-9fb2-8179edad1717" name="QueryBehavior" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="true">
+                  <elementDefinition Id="722a8b61-ac8f-416f-9dd3-2c5163cbe028" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="174a0a7c-97ff-49b3-ae79-0a0e77de12ff" />
+          </association>
+          <association Id="3fb53688-8d07-4eaa-8c59-3f2db4b565d4" isDerived="false" sourceEndRoleName="" targetEndRoleName="DataColumns" isLeaf="false" isAbstract="false">
+            <classMoniker Id="3aac398a-6b53-42e6-b7a8-abec95ef1d05" LastKnownName="ReportDataColumn" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="e3df393b-d2e9-4d39-b229-7e76352e44cb" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Composite" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="6df6bce6-1c7b-4e36-a810-2dfbab9c6ee3" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="ad27c79c-af37-44b1-8692-af740cc0d878" name="DataColumns" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="true">
+                  <lowerValueInternal>
+                    <literalString Id="680591e2-944b-40ea-bf46-9df21cfea787" name="Lower" value="*">
+                      <elementDefinition Id="1d260c65-cadd-4be8-a648-915d7e43a685" />
+                    </literalString>
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString Id="da9281c5-f3fa-494f-994c-50c78a482287" name="Upper" value="*">
+                      <elementDefinition Id="deb280b0-0cef-4f89-8762-e2456f47ee2a" />
+                    </literalString>
+                  </upperValueInternal>
+                  <elementDefinition Id="9b452e3c-18fc-476d-aa0a-d3d562ccd149" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="584f9f40-6543-4b4e-8408-3e297d5d2fb9" />
+          </association>
+          <association Id="04d7dea2-10cb-4d3a-801d-ad89f282bee8" isDerived="false" sourceEndRoleName="" targetEndRoleName="DataFetcher" isLeaf="false" isAbstract="false">
+            <classMoniker Id="c1f43667-c8ed-4400-88d4-e12918bd201d" LastKnownName="DataFetcher" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="2af8dde3-a0a2-4257-a44d-6fb4d1d70938" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Shared" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="e0c63271-71b0-42dd-b0e3-ff2832888a34" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="35161db0-0bea-44f7-9823-548a4750d4d8" name="DataFetcher" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="de15347d-2b3b-45d0-a4c6-b45449d907d2" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="d8ca2b4e-1942-49a8-add8-72bde3167066" />
+          </association>
+          <association Id="99c723b8-f083-4c2e-be27-49d83eafc191" isDerived="false" sourceEndRoleName="" targetEndRoleName="QueryParameters" isLeaf="false" isAbstract="false">
+            <classMoniker Id="526411ec-bf44-44ff-b040-3c3e0fa776ee" LastKnownName="ReportQueryParameter" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="8312b4f4-47be-4d4a-ae8a-d14637dfd480" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Composite" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="3cfdaa3e-0fef-4124-b889-c761dbe15a9c" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="ee7ae8c0-12d5-43f8-a59e-9d9b2b2a204c" name="QueryParameters" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="true">
+                  <lowerValueInternal>
+                    <literalString Id="c8fa2e1b-38f9-4b7b-a0e2-553bf2fbf2f8" name="Lower" value="*">
+                      <elementDefinition Id="a2489646-1ba8-4fa8-a5df-04e746919c8f" />
+                    </literalString>
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString Id="b09b2aee-0a99-4db4-b350-c7c0607d640d" name="Upper" value="*">
+                      <elementDefinition Id="d17f2327-b679-4050-8b7c-41d8af9e1af2" />
+                    </literalString>
+                  </upperValueInternal>
+                  <elementDefinition Id="6b37a3be-c823-44ef-9847-24c9d1eb13a5" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="beadea8b-cb51-491b-bfda-49659f6b4f0d" />
+          </association>
+        </targetEnds>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="dbb908cc-7dff-4752-9575-8a4561eaf94e" name="BaseDataDisplayerController" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="6d73fbe3-60ee-41be-8f41-5fc2c880f99c" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="d5840745-9d14-4ebe-b313-2b22cf007f25" name="QueryBehavior" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="24ba47ce-d356-4a0d-8e62-6ab303bd9e75" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="3aac398a-6b53-42e6-b7a8-abec95ef1d05" name="ReportDataColumn" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="0881a061-9045-47f6-81a6-3c92881f724d" />
+        <generalsInternal>
+          <generalization Id="363de26f-e0d5-4bda-9750-3994e74fb636" isSubstitutable="false">
+            <classMoniker Id="448d7b6c-a0b7-4c25-b7dc-7f378e032251" LastKnownName="ReportDataField" />
+            <elementDefinition Id="7f35ec8e-5f13-4acf-9e26-e0c93723f5b4" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="c1f43667-c8ed-4400-88d4-e12918bd201d" name="DataFetcher" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="f114f859-b123-416d-9dd3-d8e0e0846373" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="e77868a4-8ce4-425a-ae71-537fed5dd75b" name="DataServiceFetcher" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="c8bf257d-7f57-4ef2-bbf1-2356dd1e19ab" />
+        <generalsInternal>
+          <generalization Id="77539396-7be4-4540-bcf4-01d67029b91e" isSubstitutable="false">
+            <classMoniker Id="c1f43667-c8ed-4400-88d4-e12918bd201d" LastKnownName="DataFetcher" />
+            <elementDefinition Id="97c065de-70cb-41c5-af65-5bd486cf07f5" />
+          </generalization>
+        </generalsInternal>
+        <targetEnds>
+          <association Id="50937337-b0b9-4ffa-9520-244b0f564723" isDerived="false" sourceEndRoleName="" targetEndRoleName="IDataService" isLeaf="false" isAbstract="false">
+            <interfaceMoniker Id="85bce912-0ea8-4a6c-96c0-d054f8ce6f78" LastKnownName="IDataService" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="718d7a28-e621-4af9-88b4-1ad1b8ea023e" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Shared" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="20d67fa7-5e24-4fe9-bbcb-b0ce1cfffe67" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="c621d654-c268-4f66-a11a-d9ead7f2f6ae" name="IDataService" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="8fced93c-89a7-43a9-bf87-47b3b31354ab" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="cbc63581-d37a-4f9e-8afc-cffd974be406" />
+          </association>
+        </targetEnds>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <Interface Id="85bce912-0ea8-4a6c-96c0-d054f8ce6f78" name="IDataService" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="cf2e1411-2dd1-4e8c-9ecf-fa2233d42a4a" />
+      </Interface>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="526411ec-bf44-44ff-b040-3c3e0fa776ee" name="ReportQueryParameter" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="07f473ab-f52b-45fc-b201-7828fad9a9e5" />
+        <generalsInternal>
+          <generalization Id="3b997a70-bb8f-44f4-ae05-0a20a8daff54" isSubstitutable="false">
+            <classMoniker Id="448d7b6c-a0b7-4c25-b7dc-7f378e032251" LastKnownName="ReportDataField" />
+            <elementDefinition Id="6f561f0a-2486-4b65-ae16-a9cdc35c52ee" />
+          </generalization>
+        </generalsInternal>
+        <targetEnds>
+          <association Id="b8b09729-6b1a-4d9d-b933-b094f15bf3ec" isDerived="false" sourceEndRoleName="" targetEndRoleName="ValueFetcher" isLeaf="false" isAbstract="false">
+            <interfaceMoniker Id="69b2e6bf-5bd4-4d39-b4c6-76c42f676190" LastKnownName="IValueFetch" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="8367df6a-d7ca-4668-b9e0-5420aa3787ba" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Composite" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="d420abfb-f9f3-456b-a241-3c5e6c26f318" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="2096b511-cf3b-4beb-adb0-bf6ff40c26ad" name="ValueFetcher" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="true">
+                  <lowerValueInternal>
+                    <literalString Id="6325946f-16f9-41dc-bceb-d974b80e6f6e" name="Lower" value="*">
+                      <elementDefinition Id="c619b714-4306-47df-83c4-084f2992d2d2" />
+                    </literalString>
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString Id="93245cf9-f8f9-4148-a904-53fa3e3273c3" name="Upper" value="*">
+                      <elementDefinition Id="8555b0bc-5e66-41e3-816b-50aa16cd66b5" />
+                    </literalString>
+                  </upperValueInternal>
+                  <elementDefinition Id="554dc4fb-af64-40f5-8996-1b2ed325eb65" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="ed2f7c33-ad78-4da5-9dc4-3cf1634a87b2" />
+          </association>
+        </targetEnds>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="448d7b6c-a0b7-4c25-b7dc-7f378e032251" name="ReportDataField" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="23c0bc74-8a83-4098-b6fa-750f30e8ac86" />
+        <generalsInternal>
+          <generalization Id="6c4c1783-225e-4106-87c7-3fb0a5fc778b" isSubstitutable="false">
+            <classMoniker Id="e7d56a22-5077-4c7d-b4ea-8eee793f7fe7" LastKnownName="DataField" />
+            <elementDefinition Id="424e9a22-42f1-4ea2-a664-243c92bf50cd" />
+          </generalization>
+        </generalsInternal>
+        <ownedAttributesInternal>
+          <property Id="f35e8256-f890-4304-a6d0-fa2cba6addf5" name="Caption" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="6b00124c-ad55-4bda-8686-f325ebb92f88" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="7ef85d22-591c-4a11-91df-4b3e19de75b1" LastKnownName="string" />
+            </type_NamedElement>
+          </property>
+          <property Id="95b21ff2-576d-412c-b4f4-d7099caecbec" name="Editor" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="2afb1358-c2bc-4a73-8023-fe457a8687a1" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="099cda0c-3e73-4e1b-aa88-034cbe2715ac" LastKnownName="BaseEditor" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="e7d56a22-5077-4c7d-b4ea-8eee793f7fe7" name="DataField" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="cd69f52c-a32e-4986-bc14-de8e3d411012" />
+        <ownedAttributesInternal>
+          <property Id="ba0dfee3-e3c7-4da5-b7fb-20c21fd30d0a" name="Type" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="0ab614d9-3a8b-4f65-b0db-beb04092e5e0" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="4f6d59b1-c822-4d69-aaee-aa0d95821b3a" LastKnownName="DbType" />
+            </type_NamedElement>
+          </property>
+          <property Id="6d172d88-9605-417b-8586-26422cdef2d4" name="Name" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="605b4a75-be47-4ddf-bb1d-33deffe74dad" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="04632ac4-2422-4799-8b65-98d7ce34e689" LastKnownName="string" />
+            </type_NamedElement>
+          </property>
+          <property Id="36ef3372-a093-4a9c-8b22-65e7783221cc" name="Value" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="67d36ac6-0261-439b-93ff-891185012456" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="5499e5de-439c-4b26-be2c-a637ddaab7f5" LastKnownName="object" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <packageHasNamedElement>
+      <referencedType Id="099cda0c-3e73-4e1b-aa88-034cbe2715ac" name="BaseEditor" isAbstract="false" isLeaf="false" cachedFullName="BaseEditor">
+        <elementDefinition Id="d6fd3d1e-9665-453a-a56d-1a465797fb9c" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="7ef85d22-591c-4a11-91df-4b3e19de75b1" name="string" isAbstract="false" isLeaf="false" cachedFullName="string">
+        <elementDefinition Id="51fb5b4c-c357-417e-a8e6-5824636441a5" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="4f6d59b1-c822-4d69-aaee-aa0d95821b3a" name="DbType" isAbstract="false" isLeaf="false" cachedFullName="DbType">
+        <elementDefinition Id="46b6fc58-4ef0-47f7-bc75-0aeadc4016c6" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="04632ac4-2422-4799-8b65-98d7ce34e689" name="string" isAbstract="false" isLeaf="false" cachedFullName="string">
+        <elementDefinition Id="51fb5b4c-c357-417e-a8e6-5824636441a5" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="5499e5de-439c-4b26-be2c-a637ddaab7f5" name="object" isAbstract="false" isLeaf="false" cachedFullName="object">
+        <elementDefinition Id="fc79fc63-1001-44c1-a98f-8b95c4c93037" />
+      </referencedType>
+    </packageHasNamedElement>
+    <logicalClassDesignerModelHasTypes>
+      <Interface Id="69b2e6bf-5bd4-4d39-b4c6-76c42f676190" name="IValueFetch" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="316e5c56-ece2-41e0-83eb-eb207f7c8c2b" />
+      </Interface>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="4113f82c-c124-4ed2-b155-bd3cbaef46b0" name="AddonValueFetcher" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="742a74b7-0ab0-4e7b-97ff-8242e2566e0c" />
+        <suppliersInternal>
+          <interfaceRealization Id="cf5ef517-5dff-4a54-9731-e010cd38e84b">
+            <interfaceMoniker Id="69b2e6bf-5bd4-4d39-b4c6-76c42f676190" LastKnownName="IValueFetch" />
+            <elementDefinition Id="66859be1-0ecb-40f5-876b-e9b50e134e0c" />
+          </interfaceRealization>
+        </suppliersInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="ef77b131-f7b2-425f-964e-8d24dc0a5dab" name="ConstValueFetcher" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="d7abe4cf-554a-4272-834f-b849f2bf9a5e" />
+        <suppliersInternal>
+          <interfaceRealization Id="c025ee51-cb97-473f-b117-33f1cce8429d">
+            <interfaceMoniker Id="69b2e6bf-5bd4-4d39-b4c6-76c42f676190" LastKnownName="IValueFetch" />
+            <elementDefinition Id="9c7fc428-7d08-46eb-880a-d945e0a89050" />
+          </interfaceRealization>
+        </suppliersInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="b8a1427d-de48-4087-89de-457d87425c16" name="DataServiceValueFetcher" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="b01ce1e4-71ac-4bcb-a0c8-f782cff3bde4" />
+        <suppliersInternal>
+          <interfaceRealization Id="29de78cd-c379-47f8-b988-07c431416299">
+            <interfaceMoniker Id="69b2e6bf-5bd4-4d39-b4c6-76c42f676190" LastKnownName="IValueFetch" />
+            <elementDefinition Id="ca47a862-7e6a-4fc3-8d46-5775d947cb58" />
+          </interfaceRealization>
+        </suppliersInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="116e7a6a-0c23-46bc-9c27-0fb478103c7a" name="StaticValueFetcher" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="f4199f15-d299-46be-b862-adef4ae1b384" />
+        <suppliersInternal>
+          <interfaceRealization Id="6fddd5c1-c70a-4bcd-bbc9-fe78ca4c2a32">
+            <interfaceMoniker Id="69b2e6bf-5bd4-4d39-b4c6-76c42f676190" LastKnownName="IValueFetch" />
+            <elementDefinition Id="b7d094ae-cd90-45cf-abc0-7c3ded4a0d14" />
+          </interfaceRealization>
+        </suppliersInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+  </packagedElements>
+  <package Id="762f3baf-80b1-40b3-b2bb-30743c82a633" name="PAODesign">
+    <elementDefinition Id="f7c6b53f-1c2e-4762-ad13-eb71efcb9a9d" />
+    <profileInstances>
+      <packageHasProfileInstances Id="15edb094-3c61-4452-b79c-99424b8d8eb6">
+        <profileInstance Id="04d09fe5-e8d1-46a7-a25b-10d9d68a107a" name="StandardProfileL2">
+          <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+        </profileInstance>
+        <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="0c365009-44ae-4f9e-a33b-d591d65399bc">
+        <profileInstance Id="57065b89-ccbb-4893-90b3-51f734354178" name="StandardProfileL3">
+          <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+        </profileInstance>
+        <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+      </packageHasProfileInstances>
+    </profileInstances>
+  </package>
+</logicalClassDesignerModel>

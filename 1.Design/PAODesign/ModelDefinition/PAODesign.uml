@@ -70,13 +70,6 @@
               LastKnownLocation="PAODesign.uml" />
           </dependency>
           <dependency
-            Id="eee5f900-269a-4938-8dba-e94a3d038b4d">
-            <providedInterfaceMoniker
-              Id="7612c67a-0400-44f7-a7c5-1dbb699f4b84"
-              LastKnownName="Port4"
-              LastKnownLocation="PAODesign.uml" />
-          </dependency>
-          <dependency
             Id="42fcd846-9528-453b-a5d8-b8b822c479ae">
             <providedInterfaceMoniker
               Id="5b54810c-5242-4dd4-b38a-9cc2879b0565"
@@ -162,25 +155,6 @@
               <interfaceMoniker
                 Id="db1c852a-268f-4285-b582-b75151ed1c3f"
                 LastKnownName="IReverseAccessService"
-                LastKnownLocation="PAODesign.uml" />
-            </type_NamedElement>
-          </providedInterface>
-          <providedInterface
-            Id="7612c67a-0400-44f7-a7c5-1dbb699f4b84"
-            name="Port4"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false"
-            isService="false"
-            isBehavior="false">
-            <type_NamedElement>
-              <interfaceMoniker
-                Id="13c9e578-ad37-4924-9e12-bb8aa46f3f38"
-                LastKnownName="IDataService"
                 LastKnownLocation="PAODesign.uml" />
             </type_NamedElement>
           </providedInterface>
@@ -357,13 +331,6 @@
       <Interface
         Id="db1c852a-268f-4285-b582-b75151ed1c3f"
         name="IReverseAccessService"
-        isAbstract="false"
-        isLeaf="false" />
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <Interface
-        Id="13c9e578-ad37-4924-9e12-bb8aa46f3f38"
-        name="IDataService"
         isAbstract="false"
         isLeaf="false" />
     </packageHasNamedElement>
@@ -952,7 +919,7 @@
             <interfaceMoniker
               Id="a48de583-0c2d-45b7-909b-02eba28ddace"
               LastKnownName="IDataFilter"
-              LastKnownLocation="PAODesign.uml" />
+              LastKnownLocation="Package1_0034.uml" />
           </interfaceRealization>
           <dependency
             Id="13e3a94d-adb8-42e6-9690-6791bb442b47">
@@ -998,7 +965,63 @@
         name="DataField"
         isAbstract="false"
         isLeaf="false"
-        isActiveClass="false" />
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <property
+            Id="0ab614d9-3a8b-4f65-b0db-beb04092e5e0"
+            name="Type"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="46b6fc58-4ef0-47f7-bc75-0aeadc4016c6"
+                LastKnownName="DbType"
+                LastKnownLocation="PAODesign.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="605b4a75-be47-4ddf-bb1d-33deffe74dad"
+            name="Name"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="51fb5b4c-c357-417e-a8e6-5824636441a5"
+                LastKnownName="string"
+                LastKnownLocation="PAODesign.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="67d36ac6-0261-439b-93ff-891185012456"
+            name="Value"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="fc79fc63-1001-44c1-a98f-8b95c4c93037"
+                LastKnownName="object"
+                LastKnownLocation="PAODesign.uml" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
+      </class>
     </packageHasNamedElement>
     <packageHasNamedElement>
       <class
@@ -1068,62 +1091,7 @@
         name="DataCommandInfo"
         isAbstract="false"
         isLeaf="false"
-        isActiveClass="false">
-        <targetEnds>
-          <association
-            Id="ad5b3d33-0d7c-44a6-b329-5c65e4a6c38a"
-            isDerived="false"
-            sourceEndRoleName=""
-            targetEndRoleName="DataFilter"
-            isLeaf="false"
-            isAbstract="false">
-            <interfaceMoniker
-              Id="a48de583-0c2d-45b7-909b-02eba28ddace"
-              LastKnownName="IDataFilter"
-              LastKnownLocation="PAODesign.uml" />
-            <relationshipOwnedElementsInternal>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="d78fc9a7-c79c-4ef8-b59a-b98d97c93217"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="Composite"
-                  isComposite="false"
-                  isNavigableOwned="false" />
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="c4febbc4-6bc5-4526-b73b-d8d5e7014eb3"
-                  name="DataFilter"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="true" />
-              </associationHasOwnedEnds>
-            </relationshipOwnedElementsInternal>
-          </association>
-        </targetEnds>
-      </class>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <Interface
-        Id="a48de583-0c2d-45b7-909b-02eba28ddace"
-        name="IDataFilter"
-        isAbstract="false"
-        isLeaf="false" />
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <Interface
-        Id="cf2e1411-2dd1-4e8c-9ecf-fa2233d42a4a"
-        name="IDataService"
-        isAbstract="false"
-        isLeaf="false" />
+        isActiveClass="false" />
     </packageHasNamedElement>
     <packageHasNamedElement>
       <class
@@ -1138,7 +1106,7 @@
             <interfaceMoniker
               Id="cf2e1411-2dd1-4e8c-9ecf-fa2233d42a4a"
               LastKnownName="IDataService"
-              LastKnownLocation="PAODesign.uml" />
+              LastKnownLocation="Package1_0034.uml" />
           </interfaceRealization>
         </suppliersInternal>
         <targetEnds>
@@ -1775,7 +1743,7 @@
             isAbstract="false">
             <classMoniker
               Id="6d73fbe3-60ee-41be-8f41-5fc2c880f99c"
-              LastKnownName="BaseController"
+              LastKnownName="BaseDataDisplayerController"
               LastKnownLocation="PAODesign.uml" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
@@ -2043,7 +2011,7 @@
     <packageHasNamedElement>
       <class
         Id="6d73fbe3-60ee-41be-8f41-5fc2c880f99c"
-        name="BaseController"
+        name="BaseDataDisplayerController"
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
@@ -2128,6 +2096,661 @@
           </generalization>
         </generalsInternal>
       </Interface>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="a3f3b354-e6b0-46d1-be1e-49e446ce2dd9"
+        name="Report"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <targetEnds>
+          <association
+            Id="fb3a8d85-7a52-4dbe-a4c5-7bec8f8e274f"
+            isDerived="false"
+            sourceEndRoleName=""
+            targetEndRoleName="Tables"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="b62b5a7d-3c63-4ab1-a617-14975e4a82fb"
+              LastKnownName="ReportDataTable"
+              LastKnownLocation="PAODesign.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="a65a7857-8299-43bf-9a0e-819af5bfae51"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="Composite"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="170b6e5b-6943-42ce-8e6f-20fcffba3163"
+                  name="Tables"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="true">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="82626d13-bc90-41d1-867d-5d7a69dbc228"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="2f06190e-f29b-4386-8759-b4a664a6d190"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="ee664725-21f0-471d-a6b7-e5303c055d60"
+            isDerived="false"
+            sourceEndRoleName=""
+            targetEndRoleName="DataDisplayers"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="6d73fbe3-60ee-41be-8f41-5fc2c880f99c"
+              LastKnownName="BaseDataDisplayerController"
+              LastKnownLocation="PAODesign.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="37a8924c-a455-432d-93ac-426b37a46f2c"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="Shared"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="8ba1f71d-cfab-42b1-93c9-f56272f8a0ce"
+                  name="DataDisplayers"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="fdb53459-7abd-44a9-ba68-705c36b245f9"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="debb9c1f-6f3e-483f-9e67-7a9ed9fe610c"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="1d3b8c08-ea25-404d-8af4-115c347f5f4d"
+            isDerived="false"
+            sourceEndRoleName=""
+            targetEndRoleName="QueryBehavior"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="24ba47ce-d356-4a0d-8e62-6ab303bd9e75"
+              LastKnownName="QueryBehavior"
+              LastKnownLocation="PAODesign.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="88fe3876-2c2c-4e36-9f9f-5709de02b16c"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="Composite"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="09fe46ba-c364-4f2d-9dc3-cc80b5c1d8b5"
+                  name="QueryBehavior"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="true" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="b62b5a7d-3c63-4ab1-a617-14975e4a82fb"
+        name="ReportDataTable"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <targetEnds>
+          <association
+            Id="174a0a7c-97ff-49b3-ae79-0a0e77de12ff"
+            isDerived="false"
+            sourceEndRoleName=""
+            targetEndRoleName="QueryBehavior"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="24ba47ce-d356-4a0d-8e62-6ab303bd9e75"
+              LastKnownName="QueryBehavior"
+              LastKnownLocation="PAODesign.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="adc5fb29-f57d-4f54-ae45-273dd0f1337a"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="Composite"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="722a8b61-ac8f-416f-9dd3-2c5163cbe028"
+                  name="QueryBehavior"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="true" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="584f9f40-6543-4b4e-8408-3e297d5d2fb9"
+            isDerived="false"
+            sourceEndRoleName=""
+            targetEndRoleName="DataColumns"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="0881a061-9045-47f6-81a6-3c92881f724d"
+              LastKnownName="ReportDataColumn"
+              LastKnownLocation="PAODesign.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="6df6bce6-1c7b-4e36-a810-2dfbab9c6ee3"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="Composite"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="9b452e3c-18fc-476d-aa0a-d3d562ccd149"
+                  name="DataColumns"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="true">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="1d260c65-cadd-4be8-a648-915d7e43a685"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="deb280b0-0cef-4f89-8762-e2456f47ee2a"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="d8ca2b4e-1942-49a8-add8-72bde3167066"
+            isDerived="false"
+            sourceEndRoleName=""
+            targetEndRoleName="DataFetcher"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="f114f859-b123-416d-9dd3-d8e0e0846373"
+              LastKnownName="DataFetcher"
+              LastKnownLocation="PAODesign.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="e0c63271-71b0-42dd-b0e3-ff2832888a34"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="Shared"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="de15347d-2b3b-45d0-a4c6-b45449d907d2"
+                  name="DataFetcher"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="beadea8b-cb51-491b-bfda-49659f6b4f0d"
+            isDerived="false"
+            sourceEndRoleName=""
+            targetEndRoleName="QueryParameters"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="07f473ab-f52b-45fc-b201-7828fad9a9e5"
+              LastKnownName="ReportQueryParameter"
+              LastKnownLocation="PAODesign.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="3cfdaa3e-0fef-4124-b889-c761dbe15a9c"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="Composite"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="6b37a3be-c823-44ef-9847-24c9d1eb13a5"
+                  name="QueryParameters"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="true">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="a2489646-1ba8-4fa8-a5df-04e746919c8f"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="d17f2327-b679-4050-8b7c-41d8af9e1af2"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="24ba47ce-d356-4a0d-8e62-6ab303bd9e75"
+        name="QueryBehavior"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="0881a061-9045-47f6-81a6-3c92881f724d"
+        name="ReportDataColumn"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="7f35ec8e-5f13-4acf-9e26-e0c93723f5b4"
+            isSubstitutable="false">
+            <classMoniker
+              Id="23c0bc74-8a83-4098-b6fa-750f30e8ac86"
+              LastKnownName="ReportDataField"
+              LastKnownLocation="PAODesign.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="f114f859-b123-416d-9dd3-d8e0e0846373"
+        name="DataFetcher"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="c8bf257d-7f57-4ef2-bbf1-2356dd1e19ab"
+        name="DataServiceFetcher"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="97c065de-70cb-41c5-af65-5bd486cf07f5"
+            isSubstitutable="false">
+            <classMoniker
+              Id="f114f859-b123-416d-9dd3-d8e0e0846373"
+              LastKnownName="DataFetcher"
+              LastKnownLocation="PAODesign.uml" />
+          </generalization>
+        </generalsInternal>
+        <targetEnds>
+          <association
+            Id="cbc63581-d37a-4f9e-8afc-cffd974be406"
+            isDerived="false"
+            sourceEndRoleName=""
+            targetEndRoleName="IDataService"
+            isLeaf="false"
+            isAbstract="false">
+            <interfaceMoniker
+              Id="cf2e1411-2dd1-4e8c-9ecf-fa2233d42a4a"
+              LastKnownName="IDataService"
+              LastKnownLocation="Package1_0034.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="20d67fa7-5e24-4fe9-bbcb-b0ce1cfffe67"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="Shared"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="8fced93c-89a7-43a9-bf87-47b3b31354ab"
+                  name="IDataService"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="07f473ab-f52b-45fc-b201-7828fad9a9e5"
+        name="ReportQueryParameter"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="6f561f0a-2486-4b65-ae16-a9cdc35c52ee"
+            isSubstitutable="false">
+            <classMoniker
+              Id="23c0bc74-8a83-4098-b6fa-750f30e8ac86"
+              LastKnownName="ReportDataField"
+              LastKnownLocation="PAODesign.uml" />
+          </generalization>
+        </generalsInternal>
+        <targetEnds>
+          <association
+            Id="ed2f7c33-ad78-4da5-9dc4-3cf1634a87b2"
+            isDerived="false"
+            sourceEndRoleName=""
+            targetEndRoleName="ValueFetcher"
+            isLeaf="false"
+            isAbstract="false">
+            <interfaceMoniker
+              Id="316e5c56-ece2-41e0-83eb-eb207f7c8c2b"
+              LastKnownName="IValueFetch"
+              LastKnownLocation="PAODesign.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="d420abfb-f9f3-456b-a241-3c5e6c26f318"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="Composite"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="554dc4fb-af64-40f5-8996-1b2ed325eb65"
+                  name="ValueFetcher"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="true">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="c619b714-4306-47df-83c4-084f2992d2d2"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="8555b0bc-5e66-41e3-816b-50aa16cd66b5"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="23c0bc74-8a83-4098-b6fa-750f30e8ac86"
+        name="ReportDataField"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="424e9a22-42f1-4ea2-a664-243c92bf50cd"
+            isSubstitutable="false">
+            <classMoniker
+              Id="cd69f52c-a32e-4986-bc14-de8e3d411012"
+              LastKnownName="DataField"
+              LastKnownLocation="PAODesign.uml" />
+          </generalization>
+        </generalsInternal>
+        <ownedAttributesInternal>
+          <property
+            Id="6b00124c-ad55-4bda-8686-f325ebb92f88"
+            name="Caption"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="51fb5b4c-c357-417e-a8e6-5824636441a5"
+                LastKnownName="string"
+                LastKnownLocation="PAODesign.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="2afb1358-c2bc-4a73-8023-fe457a8687a1"
+            name="Editor"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="d6fd3d1e-9665-453a-a56d-1a465797fb9c"
+                LastKnownName="BaseEditor"
+                LastKnownLocation="PAODesign.uml" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="d6fd3d1e-9665-453a-a56d-1a465797fb9c"
+        name="BaseEditor" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="51fb5b4c-c357-417e-a8e6-5824636441a5"
+        name="string" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="46b6fc58-4ef0-47f7-bc75-0aeadc4016c6"
+        name="DbType" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="fc79fc63-1001-44c1-a98f-8b95c4c93037"
+        name="object" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="c09b43ab-ac3a-4ddd-a9cb-0dbc7184649f"
+        name="IValueFetch" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="316e5c56-ece2-41e0-83eb-eb207f7c8c2b"
+        name="IValueFetch"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="d7abe4cf-554a-4272-834f-b849f2bf9a5e"
+        name="ConstValueFetcher"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <suppliersInternal>
+          <interfaceRealization
+            Id="9c7fc428-7d08-46eb-880a-d945e0a89050">
+            <interfaceMoniker
+              Id="316e5c56-ece2-41e0-83eb-eb207f7c8c2b"
+              LastKnownName="IValueFetch"
+              LastKnownLocation="PAODesign.uml" />
+          </interfaceRealization>
+        </suppliersInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="b01ce1e4-71ac-4bcb-a0c8-f782cff3bde4"
+        name="DataServiceValueFetcher"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <suppliersInternal>
+          <interfaceRealization
+            Id="ca47a862-7e6a-4fc3-8d46-5775d947cb58">
+            <interfaceMoniker
+              Id="316e5c56-ece2-41e0-83eb-eb207f7c8c2b"
+              LastKnownName="IValueFetch"
+              LastKnownLocation="PAODesign.uml" />
+          </interfaceRealization>
+        </suppliersInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="f4199f15-d299-46be-b862-adef4ae1b384"
+        name="StaticValueFetcher"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <suppliersInternal>
+          <interfaceRealization
+            Id="b7d094ae-cd90-45cf-abc0-7c3ded4a0d14">
+            <interfaceMoniker
+              Id="316e5c56-ece2-41e0-83eb-eb207f7c8c2b"
+              LastKnownName="IValueFetch"
+              LastKnownLocation="PAODesign.uml" />
+          </interfaceRealization>
+        </suppliersInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="01882cd9-2eb3-4d78-bf43-4352a00e2c07"
+        LastKnownName="PAO"
+        LastKnownLocation="Package_0034.uml" />
     </packageHasNamedElement>
   </packagedElements>
   <primitiveType

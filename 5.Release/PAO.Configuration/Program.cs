@@ -156,7 +156,7 @@ namespace PAO.Configuration
                                                 Type = System.Data.DbType.String
                                             })
                                     }),
-                                Controllers = new List<Ref<BaseController>>()
+                                Displayers = new List<Ref<BaseDataDisplayerController>>()
                                     .Append(new GridControlController()
                                     {
                                         ID = "GridControl1",
