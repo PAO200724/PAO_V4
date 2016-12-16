@@ -6,6 +6,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Data;
 using System.ComponentModel;
+using PAO.Properties;
 
 namespace PAO.Data
 {
@@ -16,7 +17,8 @@ namespace PAO.Data
     /// 作者:刘丹(Daniel.liu)
     /// </summary>
     [DataContract(Namespace = "")]
-	[Serializable]
+    [Icon(typeof(Resources), "database_connect")]
+    [Serializable]
     [Name("数据连接信息")]
     [Description("数据连接相关的属性")]
     public class DataConnection : PaoObject, IDataConnection

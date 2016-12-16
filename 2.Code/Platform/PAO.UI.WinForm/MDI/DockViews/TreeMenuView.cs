@@ -23,6 +23,22 @@ namespace PAO.UI.WinForm.MDI.DockViews
             InitializeComponent();
         }
 
+        /// <summary>
+        /// 类型图标索引
+        /// </summary>
+        private Dictionary<string, int> TypeIconIndexList = new Dictionary<string, int>();
+        /// <summary>
+        /// 对象类型
+        /// </summary>
+        /// <param name="objectType">对象类型</param>
+        /// <returns>图片索引</returns>
+        private int GetImageIndex(Image icon) {
+            if (icon == null)
+                return -1;
+            ImageCollection.Images.Add(icon.Clone() as Image);
+            return ImageCollection.Images.Count - 1;
+        }
+
         protected override void OnSetController(BaseController value) {
             var controller = value as TreeMenuController;
             if (controller.MenuItems.IsNotNullOrEmpty()) {
@@ -38,6 +54,8 @@ namespace PAO.UI.WinForm.MDI.DockViews
                 uiItem.Caption,
                 uiItem
             });
+            node.ImageIndex = GetImageIndex(uiItem.Icon);
+            node.SelectImageIndex = node.ImageIndex;
             if (uiItem is FolderItem) {
                 var menuItem = uiItem as FolderItem;
                 var childMenuItems = menuItem.ChildMenuItems;

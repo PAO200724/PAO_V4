@@ -4,6 +4,7 @@ using PAO.Part;
 using PAO.Part.Disabled;
 using PAO.Part.Enabled;
 using PAO.Part.Enabled.Running;
+using PAO.Properties;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,6 +23,7 @@ namespace PAO.Server
     /// 作者:PAO
     /// </summary>
     [Serializable]
+    [Icon(typeof(Resources), "server")]
     [DataContract(Namespace = "")]
     [Name("基础服务器")]
     [Description("服务器基类，服务器是在后台背景线程运行的程序")]

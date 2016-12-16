@@ -193,6 +193,16 @@ namespace PAO.UI.WinForm.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap edit {
+            get {
+                object obj = ResourceManager.GetObject("edit", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap ide_16x16 {
             get {
                 object obj = ResourceManager.GetObject("ide_16x16", resourceCulture);
@@ -206,6 +216,16 @@ namespace PAO.UI.WinForm.Properties {
         internal static System.Drawing.Bitmap ide_32x32 {
             get {
                 object obj = ResourceManager.GetObject("ide_32x32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap mdiapplication {
+            get {
+                object obj = ResourceManager.GetObject("mdiapplication", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

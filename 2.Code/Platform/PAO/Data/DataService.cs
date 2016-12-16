@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PAO.Properties;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -14,6 +15,7 @@ namespace PAO.Data {
     /// 作者：PAO
     /// </summary>
     [Serializable]
+    [Icon(typeof(Resources), "data_service")]
     [DataContract(Namespace = "")]
     [Name("数据服务")]
     [Description("数据服务")]

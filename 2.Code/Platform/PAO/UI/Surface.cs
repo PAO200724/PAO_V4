@@ -1,4 +1,5 @@
 ﻿using PAO;
+using PAO.Properties;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,6 +17,7 @@ namespace PAO.UI
     /// 作者：PAO
     /// </summary>
     [Addon]
+    [Icon(typeof(Resources), "picture")]
     [Serializable]
     [DataContract(Namespace = "")]
     [Name("外表")]

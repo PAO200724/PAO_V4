@@ -10,6 +10,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using PAO.UI.MVC;
 using PAO.IO.Text;
+using PAO.Config.Properties;
 
 namespace PAO.Config.Views
 {
@@ -20,6 +21,7 @@ namespace PAO.Config.Views
     /// 作者：PAO
     /// </summary>
     [Addon]
+    [Icon(typeof(Resources), "cog")]
     [Serializable]
     [DataContract(Namespace = "")]
     [Name("对象配置控制器")]

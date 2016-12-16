@@ -114,36 +114,53 @@ namespace PAO.Config.Controls.EditControls
         /// </summary>
         public static int ImageIndex_Selected = 0;
         /// <summary>
-        /// 对象图标索引号
-        /// </summary>
-        public static int ImageIndex_Object = 1;
-        /// <summary>
-        /// 属性图标索引号
-        /// </summary>
-        public static int ImageIndex_ObjectProperty = 2;
-        /// <summary>
         /// 列表图标索引号
         /// </summary>
-        public static int ImageIndex_ListProperty = 3;
+        public static int ImageIndex_ListProperty = 1;
         /// <summary>
         /// 字典图标索引号
         /// </summary>
-        public static int ImageIndex_DictionaryProperty = 4;
+        public static int ImageIndex_DictionaryProperty = 2;
         /// <summary>
-        /// 列表图标索引号
+        /// 空对象
         /// </summary>
-        public static int ImageIndex_ListElement = 5;
+        public static int ImageIndex_Null = 3;
         /// <summary>
-        /// 字典图标索引号
+        /// 类型图标索引
         /// </summary>
-        public static int ImageIndex_DictionaryElement = 6;
+        private Dictionary<string, int> TypeIconIndexList = new Dictionary<string, int>();
+        /// <summary>
+        /// 对象类型
+        /// </summary>
+        /// <param name="objectType">对象类型</param>
+        /// <returns>图片索引</returns>
+        private int GetImageIndex(Type objectType) {
+            var iconAttr = objectType.GetAttribute<IconAttribute>(true);
+            if (iconAttr == null)
+                return -1;
+
+            var icon = iconAttr.GetIcon();
+            if (icon == null)
+                return -1;
+
+            string iconResString = String.Format("{0}.{1}", iconAttr.ResourceType.FullName, iconAttr.Icon);
+            if(TypeIconIndexList.ContainsKey(iconResString)) {
+                return TypeIconIndexList[iconResString];
+            }
+            else {
+                ImageCollectionTree.AddImage(icon.Clone() as Image);
+                int imageIndex = ImageCollectionTree.Images.Count-1;
+                TypeIconIndexList.Add(iconResString, imageIndex);
+                return imageIndex;
+            }
+        }
 
         /// <summary>
         /// 创建树节点
         /// </summary>
         /// <param name="node">节点</param>
         /// <param name="obj">对象</param>
-        public static void CreateTreeNode(TreeListNodes nodes, object obj) {
+        public void CreateTreeNode(TreeListNodes nodes, object obj) {
             var objNode = nodes.Add("对象"
                 , GetObjectString(obj)
                 , GetObjectTypeString(obj)
@@ -153,7 +170,8 @@ namespace PAO.Config.Controls.EditControls
                 , ObjectTreeNodeType.Object
                 , null);
             // 创建属性
-            objNode.ImageIndex = ImageIndex_Object;
+            objNode.ImageIndex = GetImageIndex(obj.GetType());
+            objNode.SelectImageIndex = objNode.ImageIndex;
             CreateChildNodesByObject(objNode, obj, null);
             objNode.Expanded = true;
         }
@@ -163,7 +181,7 @@ namespace PAO.Config.Controls.EditControls
         /// </summary>
         /// <param name="node">节点</param>
         /// <param name="obj">对象</param>
-        private static void CreateChildNodesByObject(TreeListNode node, object obj, PropertyDescriptor parentPropDesc) {
+        private void CreateChildNodesByObject(TreeListNode node, object obj, PropertyDescriptor parentPropDesc) {
             if (obj == null)
                 return;
             var objType = obj.GetType();
@@ -209,25 +227,28 @@ namespace PAO.Config.Controls.EditControls
         /// <param name="obj">对象</param>
         /// <param name="key">键</param>
         /// <param name="value">值</param>
-        private static TreeListNode CreateElementNode(TreeListNode parentNode
+        private TreeListNode CreateElementNode(TreeListNode parentNode
             , PropertyDescriptor parentPropDesc
             , object obj
             , object key, object value) {
             string elementString;
             ObjectTreeNodeType nodeType;
-            int imageIndex;
+            int imageIndex = -1;
             if (parentPropDesc.PropertyType.IsAddonListType()) {
                 elementString = String.Format("[索引：{0}]", key);
                 nodeType = ObjectTreeNodeType.ListElement;
-                imageIndex = ImageIndex_ListElement;
             }
             else if(parentPropDesc.PropertyType.IsAddonDictionaryType()) {
                 elementString = String.Format("[键：{0}]", key);
                 nodeType = ObjectTreeNodeType.DictionaryElement;
-                imageIndex = ImageIndex_DictionaryElement;
             }
             else {
                 throw new Exception("此类型的属性不支持增加元素节点").AddExceptionData("属性类型", parentPropDesc.PropertyType);
+            }
+            if (value != null) {
+                imageIndex = GetImageIndex(value.GetType());
+            } else {
+                imageIndex = ImageIndex_Null;
             }
             var elementNode = parentNode.Nodes.Add(elementString
                 , GetObjectString(value)
@@ -238,6 +259,8 @@ namespace PAO.Config.Controls.EditControls
                 , nodeType
                 , key);
             elementNode.ImageIndex = imageIndex;
+            elementNode.SelectImageIndex = elementNode.ImageIndex;
+
             CreateChildNodesByObject(elementNode, value, null);
             return elementNode;
         }
@@ -248,11 +271,11 @@ namespace PAO.Config.Controls.EditControls
         /// <param name="parentNode">上级节点</param>
         /// <param name="obj">对象</param>
         /// <param name="propDesc">属性描述</param>
-        private static TreeListNode CreateTreeNodesByProperty(TreeListNode parentNode, object obj, PropertyDescriptor propDesc) {
+        private TreeListNode CreateTreeNodesByProperty(TreeListNode parentNode, object obj, PropertyDescriptor propDesc) {
             var propVal = propDesc.GetValue(obj);
             var displayAttribute = propDesc.Attributes.GetAttribute<DisplayNameAttribute>();
             ObjectTreeNodeType nodeType;
-            int imageIndex;
+            int imageIndex = -1;
             if(propDesc.PropertyType.IsAddonDictionaryType()) {
                 nodeType = ObjectTreeNodeType.DictionaryProperty;
                 imageIndex = ImageIndex_DictionaryProperty;
@@ -262,7 +285,11 @@ namespace PAO.Config.Controls.EditControls
             }
             else {
                 nodeType = ObjectTreeNodeType.ObjectProperty;
-                imageIndex = ImageIndex_ObjectProperty;
+                if(propVal != null) {
+                    imageIndex = GetImageIndex(propVal.GetType());
+                } else {
+                    imageIndex = ImageIndex_Null;
+                }
             }
             var propNode = parentNode.Nodes.Add(displayAttribute == null ? propDesc.Name : displayAttribute.DisplayName
                 , GetObjectString(propVal)
@@ -273,6 +300,8 @@ namespace PAO.Config.Controls.EditControls
                 , nodeType
                 , null);
             propNode.ImageIndex = imageIndex;
+            propNode.SelectImageIndex = propNode.ImageIndex;
+
             CreateChildNodesByObject(propNode, propVal, propDesc);
             return propNode;
         }

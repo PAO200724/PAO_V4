@@ -1,5 +1,6 @@
 ﻿using PAO;
 using PAO.App;
+using PAO.Properties;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,6 +17,7 @@ namespace PAO
     /// 作者：PAO
     /// </summary>
     [Serializable]
+    [Icon(typeof(Resources), "addon_factory")]
     [DataContract(Namespace = "")]
     [Name("插件工厂")]
     [Description("是在默认应用中的GlobalAddonList查找插件的工厂")]

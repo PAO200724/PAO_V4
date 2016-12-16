@@ -1,9 +1,11 @@
 ﻿using PAO;
+using PAO.Properties;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
+using System.Resources;
 using System.Runtime.Serialization;
 using System.Text;
 
@@ -16,6 +18,7 @@ namespace PAO.UI.MVC
     /// 作者：PAO
     /// </summary>
     [Addon]
+    [Icon(typeof(Resources), "form")]
     [Serializable]
     [DataContract(Namespace = "")]
     [Name("控制器")]
@@ -40,21 +43,21 @@ namespace PAO.UI.MVC
         }
         #endregion 属性：Caption
 
-        #region 属性：Icon
+        #region 属性：IconImage
         /// <summary>
-        /// 属性：Icon
-        /// 图标
-        /// 菜单图标
+        /// 属性：IconImage
+        /// 图标图像
+        /// 图标的图像
         /// </summary>
         [AddonProperty]
-        [DataMember(EmitDefaultValue = false)]
-        [Name("图标")]
-        [Description("菜单图标")]
-        public Image Icon {
+        [DataMember(Name="Icon", EmitDefaultValue = false)]
+        [Name("图标图像")]
+        [Description("图标的图像")]
+        public Image IconImage {
             get;
             set;
         }
-        #endregion 属性：Icon
+        #endregion 属性：IconImage
 
         #region 属性：LargeIcon
         /// <summary>
@@ -74,6 +77,24 @@ namespace PAO.UI.MVC
 
         #endregion
 
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public Image Icon {
+            get {
+                if (IconImage != null)
+                    return IconImage;
+                // 获取视图的图标
+                Type type = this.GetType();
+                var iconAttr = type.GetAttribute<IconAttribute>(true);
+                if (iconAttr != null) {
+                    return iconAttr.GetIcon();
+                }
+                return null;
+            }
+            set {
+                IconImage = value;
+            }
+        }
 
         public UIItem() {
         }

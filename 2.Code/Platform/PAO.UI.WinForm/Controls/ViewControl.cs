@@ -8,6 +8,8 @@ using System.Linq;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using PAO.UI.MVC;
+using System.Resources;
+using PAO.UI.WinForm.Properties;
 
 namespace PAO.UI.WinForm.Controls
 {
@@ -15,6 +17,7 @@ namespace PAO.UI.WinForm.Controls
     /// 视图基类
     /// 作者：PAO
     /// </summary>
+    [Icon(typeof(Resources), "view")]
     public partial class ViewControl : DevExpress.XtraEditors.XtraUserControl, IView
     {
         public ViewControl() {
@@ -32,7 +35,23 @@ namespace PAO.UI.WinForm.Controls
         /// <summary>
         /// 图标
         /// </summary>
-        public Image Icon { get; set; }
+        private Image _Icon;
+
+        public Image Icon {
+            get {
+                if(_Icon != null)
+                    return _Icon;
+                // 获取视图的图标
+                Type type = this.GetType();
+                var iconAttr = type.GetAttribute<IconAttribute>(true);
+                if (iconAttr != null) {
+                    return iconAttr.GetIcon();
+                }
+                return null;
+            }
+            set { _Icon = value; }
+        }
+
         /// <summary>
         /// 大图标
         /// </summary>

@@ -318,6 +318,12 @@
   <ItemGroup>
     <None Include="Resources\undo_32x32.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\application_cascade.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\page_white_edit.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

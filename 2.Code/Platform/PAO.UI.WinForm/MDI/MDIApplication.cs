@@ -15,6 +15,7 @@ using System.Windows.Forms;
 using PAO.Time;
 using DevExpress.XtraSplashScreen;
 using PAO.Event;
+using PAO.UI.WinForm.Properties;
 
 namespace PAO.UI.WinForm.MDI
 {
@@ -25,6 +26,7 @@ namespace PAO.UI.WinForm.MDI
     /// 作者：PAO
     /// </summary>
     [Addon]
+    [Icon(typeof(Resources), "mdiapplication")]
     [Serializable]
     [DataContract(Namespace = "")]
     [Name("MDI应用主程序")]

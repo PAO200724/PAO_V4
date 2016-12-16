@@ -1,4 +1,5 @@
 ﻿using PAO;
+using PAO.Properties;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,6 +16,7 @@ namespace PAO.Event
     /// 作者：PAO
     /// </summary>
     [Serializable]
+    [Icon(typeof(Resources), "event_info")]
     [DataContract(Namespace = "")]
     [Name("事件处理器")]
     [Description("基础事件处理器")]

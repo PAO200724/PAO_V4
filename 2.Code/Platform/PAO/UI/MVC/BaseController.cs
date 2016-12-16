@@ -6,6 +6,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using PAO;
 using PAO.Security;
+using PAO.Properties;
 
 namespace PAO.UI.MVC
 {
@@ -16,6 +17,7 @@ namespace PAO.UI.MVC
     /// 作者：PAO
     /// </summary>
     [Addon]
+    [Icon(typeof(Resources), "controller")]
     [Serializable]
     [DataContract(Namespace = "")]
     [Name("控制器")]

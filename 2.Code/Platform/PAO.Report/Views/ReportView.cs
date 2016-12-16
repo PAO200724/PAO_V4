@@ -25,6 +25,7 @@ using PAO.Config.Controls.EditControls;
 using PAO.IO.Text;
 using PAO.Config;
 using PAO.Config.DockViews;
+using PAO.Report.Properties;
 
 namespace PAO.Report.Views
 {
@@ -32,6 +33,7 @@ namespace PAO.Report.Views
     /// 报表视图
     /// 作者：PAO
     /// </summary>
+    [Icon(typeof(Resources), "report")]
     public partial class ReportView : ViewControl, IViewContainer
     {
         /// <summary>
@@ -279,9 +281,12 @@ namespace PAO.Report.Views
                     if(bars.IsNotNullOrEmpty()) {
                         foreach(var bar in bars) {
                             this.BarExtend.Merge(bar);
+                            this.BarItemSelectedObject.Caption = view.Caption;
+                            this.BarItemSelectedObject.Glyph = view.Icon;
+                            this.BarItemSelectedObject.LargeGlyph = view.LargeIcon;
                         }
                     }
-                    if(this.BarExtend.ItemLinks.Count > 0) {
+                    if(this.BarExtend.ItemLinks.Count > 1) {
                         this.BarExtend.Visible = true;
                     } else {
                         this.BarExtend.Visible = false;

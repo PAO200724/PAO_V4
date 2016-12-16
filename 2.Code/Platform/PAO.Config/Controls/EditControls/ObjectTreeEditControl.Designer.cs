@@ -25,13 +25,15 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ObjectTreeEditControl));
-            this.ImageCollectionTree = new DevExpress.Utils.ImageCollection(this.components);
-            this.BarManagerObjectTree = new DevExpress.XtraBars.BarManager(this.components);
+            this.ImageCollectionTree = new DevExpress.Utils.ImageCollection();
+            this.BarManagerObjectTree = new DevExpress.XtraBars.BarManager();
             this.BarMainTools = new DevExpress.XtraBars.Bar();
             this.ButtonExport = new DevExpress.XtraBars.BarButtonItem();
             this.ButtonImport = new DevExpress.XtraBars.BarButtonItem();
+            this.MenuItemExtend = new DevExpress.XtraBars.BarSubItem();
+            this.ButtonImportExtend = new DevExpress.XtraBars.BarButtonItem();
+            this.ButtonExportExtend = new DevExpress.XtraBars.BarButtonItem();
             this.ButtonCreate = new DevExpress.XtraBars.BarButtonItem();
             this.ButtonAdd = new DevExpress.XtraBars.BarButtonItem();
             this.ButtonDelete = new DevExpress.XtraBars.BarButtonItem();
@@ -64,9 +66,6 @@
             this.TabPageDictionary = new DevExpress.XtraTab.XtraTabPage();
             this.DictionaryEditControl = new PAO.Config.Controls.EditControls.DictionaryEditControl();
             this.AddonExtentionEditControl = new PAO.Config.Controls.EditControls.AddonExtentionEditControl();
-            this.ButtonImportExtend = new DevExpress.XtraBars.BarButtonItem();
-            this.ButtonExportExtend = new DevExpress.XtraBars.BarButtonItem();
-            this.MenuItemExtend = new DevExpress.XtraBars.BarSubItem();
             ((System.ComponentModel.ISupportInitialize)(this.ImageCollectionTree)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BarManagerObjectTree)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainerControlMain)).BeginInit();
@@ -87,18 +86,12 @@
             // 
             this.ImageCollectionTree.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("ImageCollectionTree.ImageStream")));
             this.ImageCollectionTree.Images.SetKeyName(0, "arrow_right.png");
-            this.ImageCollectionTree.InsertGalleryImage("product_16x16.png", "images/support/product_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/support/product_16x16.png"), 1);
-            this.ImageCollectionTree.Images.SetKeyName(1, "product_16x16.png");
-            this.ImageCollectionTree.InsertGalleryImage("insertrows_16x16.png", "images/spreadsheet/insertrows_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/spreadsheet/insertrows_16x16.png"), 2);
-            this.ImageCollectionTree.Images.SetKeyName(2, "insertrows_16x16.png");
-            this.ImageCollectionTree.InsertGalleryImage("listnumbers_16x16.png", "images/format/listnumbers_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/format/listnumbers_16x16.png"), 3);
-            this.ImageCollectionTree.Images.SetKeyName(3, "listnumbers_16x16.png");
-            this.ImageCollectionTree.InsertGalleryImage("listbullets_16x16.png", "images/format/listbullets_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/format/listbullets_16x16.png"), 4);
-            this.ImageCollectionTree.Images.SetKeyName(4, "listbullets_16x16.png");
-            this.ImageCollectionTree.InsertGalleryImage("alignhorizontalcenter_16x16.png", "images/alignment/alignhorizontalcenter_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/alignment/alignhorizontalcenter_16x16.png"), 5);
-            this.ImageCollectionTree.Images.SetKeyName(5, "alignhorizontalcenter_16x16.png");
-            this.ImageCollectionTree.InsertGalleryImage("alignverticalright_16x16.png", "images/alignment/alignverticalright_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/alignment/alignverticalright_16x16.png"), 6);
-            this.ImageCollectionTree.Images.SetKeyName(6, "alignverticalright_16x16.png");
+            this.ImageCollectionTree.InsertGalleryImage("listnumbers_16x16.png", "images/format/listnumbers_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/format/listnumbers_16x16.png"), 1);
+            this.ImageCollectionTree.Images.SetKeyName(1, "listnumbers_16x16.png");
+            this.ImageCollectionTree.InsertGalleryImage("listbullets_16x16.png", "images/format/listbullets_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/format/listbullets_16x16.png"), 2);
+            this.ImageCollectionTree.Images.SetKeyName(2, "listbullets_16x16.png");
+            this.ImageCollectionTree.InsertGalleryImage("deletelist_16x16.png", "images/actions/deletelist_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/actions/deletelist_16x16.png"), 3);
+            this.ImageCollectionTree.Images.SetKeyName(3, "deletelist_16x16.png");
             // 
             // BarManagerObjectTree
             // 
@@ -160,6 +153,29 @@
             this.ButtonImport.LargeGlyph = global::PAO.Config.Properties.Resources.loadfrom_32x32;
             this.ButtonImport.Name = "ButtonImport";
             this.ButtonImport.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonImport_ItemClick);
+            // 
+            // MenuItemExtend
+            // 
+            this.MenuItemExtend.Caption = "扩展配置(&T)";
+            this.MenuItemExtend.Id = 13;
+            this.MenuItemExtend.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonImportExtend),
+            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonExportExtend)});
+            this.MenuItemExtend.Name = "MenuItemExtend";
+            // 
+            // ButtonImportExtend
+            // 
+            this.ButtonImportExtend.Caption = "导入扩展配置";
+            this.ButtonImportExtend.Id = 11;
+            this.ButtonImportExtend.Name = "ButtonImportExtend";
+            this.ButtonImportExtend.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonImportExtend_ItemClick);
+            // 
+            // ButtonExportExtend
+            // 
+            this.ButtonExportExtend.Caption = "导出扩展配置";
+            this.ButtonExportExtend.Id = 12;
+            this.ButtonExportExtend.Name = "ButtonExportExtend";
+            this.ButtonExportExtend.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonExportExtend_ItemClick);
             // 
             // ButtonCreate
             // 
@@ -505,29 +521,6 @@
             this.AddonExtentionEditControl.Size = new System.Drawing.Size(405, 184);
             this.AddonExtentionEditControl.TabIndex = 0;
             this.AddonExtentionEditControl.DataModifyStateChanged += new System.EventHandler<PAO.UI.WinForm.DataModifyStateChangedEventArgs>(this.AddonExtentionEditControl_DataModifyStateChanged);
-            // 
-            // ButtonImportExtend
-            // 
-            this.ButtonImportExtend.Caption = "导入扩展配置";
-            this.ButtonImportExtend.Id = 11;
-            this.ButtonImportExtend.Name = "ButtonImportExtend";
-            this.ButtonImportExtend.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonImportExtend_ItemClick);
-            // 
-            // ButtonExportExtend
-            // 
-            this.ButtonExportExtend.Caption = "导出扩展配置";
-            this.ButtonExportExtend.Id = 12;
-            this.ButtonExportExtend.Name = "ButtonExportExtend";
-            this.ButtonExportExtend.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonExportExtend_ItemClick);
-            // 
-            // MenuItemExtend
-            // 
-            this.MenuItemExtend.Caption = "扩展配置(&T)";
-            this.MenuItemExtend.Id = 13;
-            this.MenuItemExtend.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonImportExtend),
-            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonExportExtend)});
-            this.MenuItemExtend.Name = "MenuItemExtend";
             // 
             // ObjectTreeEditControl
             // 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PAO.Properties;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.Serialization;
@@ -12,6 +13,7 @@ namespace PAO {
     /// 作者:PAO
     /// </summary>
     [Serializable]
+    [Icon(typeof(Resources), "addon")]
     [Addon]
     [DataContract(Namespace = "")]
     [Name("基础对象")]

@@ -2,6 +2,7 @@
 using PAO.App;
 using PAO.IO;
 using PAO.IO.Text;
+using PAO.UI;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -50,7 +51,7 @@ namespace PAO
             var path = AppPublic.GetAbsolutePath(FilePath);
             if(File.Exists(path)) {
                 var newTable = TextPublic.ReadObjectFromFile(path) as DataSetExtendProperty.ExtendPropertyDataTable;
-                if(newTable != null)
+                if (newTable != null)
                     dataTable.Merge(newTable);
             }
         }

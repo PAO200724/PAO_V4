@@ -42,6 +42,7 @@
             this.ButtonRecoverLayout = new DevExpress.XtraBars.BarButtonItem();
             this.ButtonProperties = new DevExpress.XtraBars.BarButtonItem();
             this.BarExtend = new DevExpress.XtraBars.Bar();
+            this.BarItemSelectedObject = new DevExpress.XtraBars.BarStaticItem();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
@@ -93,8 +94,9 @@
             this.ButtonRebuildDataFields,
             this.ButtonClearDataFields,
             this.ButtonSetupQueryBehavior,
-            this.ButtonClearQueryBehavior});
-            this.BarManager.MaxItemId = 18;
+            this.ButtonClearQueryBehavior,
+            this.BarItemSelectedObject});
+            this.BarManager.MaxItemId = 19;
             this.BarManager.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.RepositoryItemTextEditCaption});
             // 
@@ -110,7 +112,6 @@
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.MenuConfig, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph)});
             this.BarTools.OptionsBar.AllowQuickCustomization = false;
             this.BarTools.OptionsBar.DisableClose = true;
-            this.BarTools.OptionsBar.DrawBorder = false;
             this.BarTools.Text = "工具条";
             // 
             // ButtonQuery
@@ -213,10 +214,18 @@
             this.BarExtend.DockCol = 1;
             this.BarExtend.DockRow = 0;
             this.BarExtend.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
+            this.BarExtend.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.BarItemSelectedObject, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph)});
             this.BarExtend.OptionsBar.AllowQuickCustomization = false;
             this.BarExtend.OptionsBar.DisableClose = true;
-            this.BarExtend.OptionsBar.DrawBorder = false;
             this.BarExtend.Text = "扩展工具条";
+            // 
+            // BarItemSelectedObject
+            // 
+            this.BarItemSelectedObject.Caption = "对象名称";
+            this.BarItemSelectedObject.Id = 18;
+            this.BarItemSelectedObject.Name = "BarItemSelectedObject";
+            this.BarItemSelectedObject.TextAlignment = System.Drawing.StringAlignment.Near;
             // 
             // barDockControlTop
             // 
@@ -377,5 +386,6 @@
         private DevExpress.XtraBars.BarButtonItem ButtonSetupQueryBehavior;
         private DevExpress.XtraBars.BarButtonItem ButtonClearQueryBehavior;
         private DevExpress.XtraBars.Bar BarExtend;
+        private DevExpress.XtraBars.BarStaticItem BarItemSelectedObject;
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PAO.Properties;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -13,6 +14,7 @@ namespace PAO {
     /// 作者:PAO
     /// </summary>
     [Serializable]
+    [Icon(typeof(Resources), "factory")]
     [DataContract(Namespace = "")]
     [Name("工厂类")]
     [Description("用工厂方式创建引用的类")]

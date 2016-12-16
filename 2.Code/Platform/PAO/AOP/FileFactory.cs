@@ -6,6 +6,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using PAO.IO;
 using PAO.IO.Text;
+using PAO.Properties;
 
 namespace PAO {
     /// <summary>
@@ -15,6 +16,7 @@ namespace PAO {
     /// 作者:PAO
     /// </summary>
     [Serializable]
+    [Icon(typeof(Resources), "file_factory")]
     [DataContract(Namespace = "")]
     [Name("文件工厂")]
     [Description("从配置文件创建对象的工厂")]

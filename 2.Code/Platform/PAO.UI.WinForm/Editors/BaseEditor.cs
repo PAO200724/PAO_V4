@@ -1,5 +1,6 @@
 ﻿using DevExpress.XtraEditors.Repository;
 using PAO;
+using PAO.UI.WinForm.Properties;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,6 +17,7 @@ namespace PAO.UI.WinForm.Editors
     /// 作者：PAO
     /// </summary>
     [Addon]
+    [Icon(typeof(Resources), "edit")]
     [Serializable]
     [DataContract(Namespace = "")]
     [Name("编辑器")]

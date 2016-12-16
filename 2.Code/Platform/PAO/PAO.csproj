@@ -119,6 +119,11 @@
     <Compile Include="Part\Disabled\Status_Excepted.cs" />
     <Compile Include="Part\Status_Enabled.cs" />
     <Compile Include="Part\Status_Disabled.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="ReflectionPublic.cs" />
     <Compile Include="IO\SafeFileStream.cs" />
     <Compile Include="IO\Text\DataContractTextSerializer.cs" />
@@ -184,6 +189,72 @@
     <None Include="AOP\DataSetExtendProperty.xss">
       <DependentUpon>DataSetExtendProperty.xsd</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plugin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\link.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plugin_add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plugin_link.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\page_link.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\server_connect.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\application.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lightbulb.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\script.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\database_connect.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\table_row_delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\drink.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\wrench.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\server_database.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\server.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\application_form.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\controller.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\application_side_tree.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\picture.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

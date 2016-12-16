@@ -284,6 +284,15 @@
   <ItemGroup>
     <None Include="Resources\reset2_32x32.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\application_view_columns.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\report.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\table.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -5,6 +5,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.ComponentModel;
 using System.Data;
+using PAO.Properties;
 
 namespace PAO.Data
 {
@@ -15,6 +16,7 @@ namespace PAO.Data
     /// 作者:刘丹(Daniel.liu)
     /// </remarks>
     [Serializable]
+    [Icon(typeof(Resources), "field")]
     [DataContract(Namespace = "")]
     [Name("数据字段")]
     [Description("用于保存数据列或参数的对象")]

@@ -25,6 +25,7 @@ using DevExpress.XtraGrid.Views.Tile;
 using DevExpress.XtraGrid.Views.BandedGrid;
 using PAO.UI;
 using System.IO;
+using PAO.Report.Properties;
 
 namespace PAO.Report.Displayers
 {
@@ -32,6 +33,7 @@ namespace PAO.Report.Displayers
     /// 表格控件视图
     /// 作者：PAO
     /// </summary>
+    [Icon(typeof(Resources), "table")]
     public partial class GridControlDataDisplayer : BaseDataDisplayer, IDataView, IBarSupport
     {
         public GridControlDataDisplayer() {
@@ -56,21 +58,17 @@ namespace PAO.Report.Displayers
                         this.GridControl.MainView = this.GridView;
                         this.ButtonViewType.ItemIndex = 0;
                         break;
-                    case GridViewType.BandedView:
-                        this.GridControl.MainView = this.BandedGridView;
-                        this.ButtonViewType.ItemIndex = 1;
-                        break;
                     case GridViewType.AdvancedBandedView:
                         this.GridControl.MainView = this.AdvBandedGridView;
-                        this.ButtonViewType.ItemIndex = 2;
+                        this.ButtonViewType.ItemIndex = 1;
                         break;
                     case GridViewType.LayoutView:
                         this.GridControl.MainView = this.LayoutView;
-                        this.ButtonViewType.ItemIndex = 3;
+                        this.ButtonViewType.ItemIndex = 2;
                         break;
                     case GridViewType.CardView:
                         this.GridControl.MainView = this.CardView;
-                        this.ButtonViewType.ItemIndex = 4;
+                        this.ButtonViewType.ItemIndex = 3;
                         break;
                     default:
                         throw new Exception("不支持的表格类型");
@@ -204,15 +202,12 @@ namespace PAO.Report.Displayers
                     GridViewType = GridViewType.GridView;
                     break;
                 case 1:
-                    GridViewType = GridViewType.BandedView;
-                    break;
-                case 2:
                     GridViewType = GridViewType.AdvancedBandedView;
                     break;
-                case 3:
+                case 2:
                     GridViewType = GridViewType.LayoutView;
                     break;
-                case 4:
+                case 3:
                     GridViewType = GridViewType.CardView;
                     break;
             }

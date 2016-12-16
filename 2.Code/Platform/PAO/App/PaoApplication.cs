@@ -1,5 +1,6 @@
 ﻿using PAO.Event;
 using PAO.IO.Text;
+using PAO.Properties;
 using PAO.Remote;
 using PAO.Server;
 using PAO.Trans;
@@ -23,6 +24,7 @@ namespace PAO.App {
     /// 作者:PAO
     /// </summary>
     [Serializable]
+    [Icon(typeof(Resources), "application")]
     [DataContract(Namespace = "")]
     [Name("Pao应用")]
     [Description("包含了Pao框架启动所需的基本功能")]

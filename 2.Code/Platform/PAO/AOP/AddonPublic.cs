@@ -472,7 +472,14 @@ namespace PAO {
         public static void LoadAddonExtendProperties(ExtendPropertyDataTable dataTable, PaoObject addon) {
             var addonRows = dataTable.AsEnumerable<ExtendPropertyRow>().Where(p => p.AddonID == addon.ID).ToList();
             foreach (var addonRow in addonRows) {
-                addon.SetPropertyValueByPath(addonRow.PropertyName, TextPublic.TextToObject(addonRow.PropertyValue));
+                try {
+                    addon.SetPropertyValueByPath(addonRow.PropertyName, TextPublic.TextToObject(addonRow.PropertyValue));
+                }
+                catch {
+                    if (UIPublic.ShowYesNoDialog(String.Format("读取属性：{0}.{1}的本地配置时发生异常，您是否要继续，如果继续，本地配置将会被覆盖.", addon.GetType(), addonRow.PropertyName)) != DialogReturn.Yes) {
+                        throw;
+                    }
+                }
             }
         }
 

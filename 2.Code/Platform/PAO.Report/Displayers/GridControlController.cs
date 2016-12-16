@@ -1,6 +1,7 @@
 ﻿using PAO;
 using PAO.App;
 using PAO.Data;
+using PAO.Report.Properties;
 using PAO.UI.MVC;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,7 @@ namespace PAO.Report.Displayers
     /// 作者：PAO
     /// </summary>
     [Addon]
+    [Icon(typeof(Resources), "table")]
     [Serializable]
     [DataContract(Namespace = "")]
     [Name("表格控件视图命令")]

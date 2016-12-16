@@ -14,7 +14,6 @@ namespace PAO.Report.Displayers
     {
         GridView,
         LayoutView,
-        BandedView,
         AdvancedBandedView,
         CardView
     }

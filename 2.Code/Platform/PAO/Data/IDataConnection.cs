@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using PAO.Properties;
+using System.ComponentModel;
 using System.Data;
 using System.Data.Common;
 

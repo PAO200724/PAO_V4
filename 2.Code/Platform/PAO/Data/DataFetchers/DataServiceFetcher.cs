@@ -7,6 +7,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Data;
+using PAO.Properties;
 
 namespace PAO.Data.DataFetchers
 {
@@ -17,6 +18,7 @@ namespace PAO.Data.DataFetchers
     /// 作者：PAO
     /// </summary>
     [Addon]
+    [Icon(typeof(Resources), "fetcher")]
     [Serializable]
     [DataContract(Namespace = "")]
     [Name("数据服务获取器")]

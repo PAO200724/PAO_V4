@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PAO.Properties;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -15,7 +16,8 @@ namespace PAO.Data.Filters
     /// 数据过滤器基类，过滤器是用于生成Sql中的Where子句的，有过滤器的Sql语句写成: SELECT * FROM [TABLE_NAME] WHERE {0}
     /// </remarks>
     [DataContract(Namespace="")]
-	[Serializable]
+    [Icon(typeof(Resources), "filter")]
+    [Serializable]
     [Name("基础数据过滤器")]
     [Description("数据过滤器基类，过滤器是用于生成Sql中的Where子句的，有过滤器的Sql语句写成: SELECT * FROM [TABLE_NAME] WHERE {0}")]
     public abstract class BaseDataFilter : PaoObject, IDataFilter

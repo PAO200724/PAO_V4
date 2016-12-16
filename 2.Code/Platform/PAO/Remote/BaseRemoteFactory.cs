@@ -1,5 +1,6 @@
 ﻿using PAO;
 using PAO.IO.Text;
+using PAO.Properties;
 using PAO.Remote.WCF;
 using PAO.Trans;
 using System;
@@ -18,6 +19,7 @@ namespace PAO.Remote
     /// 作者：PAO
     /// </summary>
     [Serializable]
+    [Icon(typeof(Resources), "remote_factory")]
     [DataContract(Namespace = "")]
     [Name("远程工厂")]
     [Description("通过远程服务创建实例的工厂")]
