@@ -148,6 +148,12 @@
     <Compile Include="ValueFetchers\ReportDataValueFetcher.cs" />
     <Compile Include="Views\ReportController.cs" />
     <Compile Include="ReportDataTable.cs" />
+    <Compile Include="Views\ReportEditControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\ReportEditControl.Designer.cs">
+      <DependentUpon>ReportEditControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\ReportView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -166,6 +172,9 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ReportEditControl.resx">
+      <DependentUpon>ReportEditControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\ReportView.resx">
       <DependentUpon>ReportView.cs</DependentUpon>
