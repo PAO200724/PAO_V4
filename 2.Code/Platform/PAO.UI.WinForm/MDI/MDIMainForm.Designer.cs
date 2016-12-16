@@ -35,8 +35,6 @@
             this.MenuWindow = new DevExpress.XtraBars.BarSubItem();
             this.ButtonRecoverLayout = new DevExpress.XtraBars.BarButtonItem();
             this.BarDockingMenuItem = new DevExpress.XtraBars.BarDockingMenuItem();
-            this.MenuToolBar = new DevExpress.XtraBars.BarSubItem();
-            this.BarToolbarsListItem = new DevExpress.XtraBars.BarToolbarsListItem();
             this.MenuConfig = new DevExpress.XtraBars.BarSubItem();
             this.ButtonSaveConfig = new DevExpress.XtraBars.BarButtonItem();
             this.ButtonExit = new DevExpress.XtraBars.BarButtonItem();
@@ -106,7 +104,6 @@
             this.MenuSkin,
             this.BarDockingMenuItem,
             this.MenuWindow,
-            this.BarToolbarsListItem,
             this.EditItemCalculate,
             this.EditItemProgressBar,
             this.EditItemWaitingBar,
@@ -114,7 +111,6 @@
             this.StaticItemStatus,
             this.MenuCurrentUser,
             this.MenuFunction,
-            this.MenuToolBar,
             this.ButtonRecoverLayout,
             this.ButtonLogout,
             this.MenuConfig,
@@ -150,7 +146,6 @@
             this.MenuSystem.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.MenuSkin),
             new DevExpress.XtraBars.LinkPersistInfo(this.MenuWindow),
-            new DevExpress.XtraBars.LinkPersistInfo(this.MenuToolBar),
             new DevExpress.XtraBars.LinkPersistInfo(this.MenuConfig),
             new DevExpress.XtraBars.LinkPersistInfo(this.ButtonExit, true)});
             this.MenuSystem.Name = "MenuSystem";
@@ -188,22 +183,6 @@
             this.BarDockingMenuItem.Caption = "视图(&D)";
             this.BarDockingMenuItem.Id = 4;
             this.BarDockingMenuItem.Name = "BarDockingMenuItem";
-            // 
-            // MenuToolBar
-            // 
-            this.MenuToolBar.Caption = "工具条(&T)";
-            this.MenuToolBar.Glyph = global::PAO.UI.WinForm.Properties.Resources.ide_16x16;
-            this.MenuToolBar.Id = 21;
-            this.MenuToolBar.LargeGlyph = global::PAO.UI.WinForm.Properties.Resources.ide_32x32;
-            this.MenuToolBar.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.BarToolbarsListItem)});
-            this.MenuToolBar.Name = "MenuToolBar";
-            // 
-            // BarToolbarsListItem
-            // 
-            this.BarToolbarsListItem.Caption = "工具条(&T)";
-            this.BarToolbarsListItem.Id = 7;
-            this.BarToolbarsListItem.Name = "BarToolbarsListItem";
             // 
             // MenuConfig
             // 
@@ -275,6 +254,7 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.StaticItemServerTime),
             new DevExpress.XtraBars.LinkPersistInfo(this.StaticItemStatus)});
             this.BarStatus.OptionsBar.AllowQuickCustomization = false;
+            this.BarStatus.OptionsBar.DisableClose = true;
             this.BarStatus.OptionsBar.DrawDragBorder = false;
             this.BarStatus.OptionsBar.UseWholeRow = true;
             this.BarStatus.Text = "状态条";
@@ -435,7 +415,6 @@
         private DevExpress.XtraBars.SkinBarSubItem MenuSkin;
         private DevExpress.XtraBars.BarSubItem MenuWindow;
         private DevExpress.XtraBars.BarDockingMenuItem BarDockingMenuItem;
-        private DevExpress.XtraBars.BarToolbarsListItem BarToolbarsListItem;
         private DevExpress.XtraBars.BarButtonItem ButtonExit;
         private DevExpress.XtraBars.BarEditItem EditItemProgressBar;
         private DevExpress.XtraEditors.Repository.RepositoryItemProgressBar RepositoryItemProgressBar;
@@ -449,7 +428,6 @@
         private DevExpress.XtraBars.BarSubItem MenuFunction;
         private DevExpress.XtraBars.Docking2010.DocumentManager DocumentManager;
         private DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView TabbedView;
-        private DevExpress.XtraBars.BarSubItem MenuToolBar;
         private DevExpress.XtraBars.BarButtonItem ButtonRecoverLayout;
         private System.Windows.Forms.Timer TimerDateTime;
         private DevExpress.XtraBars.BarButtonItem ButtonLogout;

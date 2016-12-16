@@ -20,6 +20,7 @@ using PAO.Data;
 using PAO.Data.DataFetchers;
 using PAO.Time;
 using PAO.Config.DockViews;
+using PAO.UI.WinForm;
 
 namespace PAO.Configuration
 {
@@ -41,7 +42,6 @@ namespace PAO.Configuration
         }
 
         private static void PrepareAppliation(PaoApplication app) {
-
         }
 
 
@@ -171,11 +171,6 @@ namespace PAO.Configuration
                                         GridViewType = GridViewType.AdvancedBandedView
                                     }.ToRef()),
                             }.ToRef()),
-                    }.ToRef())
-                    .Append(new PropertyController()
-                    {
-                        Caption = "属性",
-                        ID = "{6FAE2D9B-051A-42F2-B102-8993E3A584A7}",
                     }.ToRef()),
 
             };

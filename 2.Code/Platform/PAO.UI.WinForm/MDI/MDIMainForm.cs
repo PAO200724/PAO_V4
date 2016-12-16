@@ -106,12 +106,6 @@ namespace PAO.UI.WinForm.MDI
             this.DockManager.SetLayoutData(_MDIApplication.LayoutData);
         }
 
-        #region 事件
-        private void ButtonExit_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            Close();
-        }
-        #endregion
-
         protected override void OnClosing(CancelEventArgs e) {
             this.DialogResult = DialogResult.OK;
 
@@ -184,16 +178,21 @@ namespace PAO.UI.WinForm.MDI
         public void AddMenuItem(IUIItem menuItem) {
             WinFormPublic.AddMenuToSubItem(this.MenuFunction, menuItem, this);
         }
-        
+
+        #region 事件
+        private void ButtonExit_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+            Close();
+        }
+
         private void ButtonRecoverLayout_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            if(UIPublic.ShowYesNoDialog("您确定要清除当前的布局并恢复默认布局吗？") == DialogReturn.Yes) {
+            if (UIPublic.ShowYesNoDialog("您确定要清除当前的布局并恢复默认布局吗？") == DialogReturn.Yes) {
                 this.DockManager.SetLayoutData(DefaultLayoutData);
             }
         }
 
         private void TabbedView_DocumentClosing(object sender, DevExpress.XtraBars.Docking2010.Views.DocumentCancelEventArgs e) {
             var view = e.Document.Control as IView;
-            if(view != null) {
+            if (view != null) {
                 view.CloseView();
             }
         }
@@ -210,13 +209,13 @@ namespace PAO.UI.WinForm.MDI
                     }
                     LastServerTimeException = null;
                 }
-                catch(Exception err) {
+                catch (Exception err) {
                     LastServerTimeException = err;
                     EventPublic.Error(LastServerTimeException.FormatException());
                 }
             }
 
-            if(LastServerTimeException == null) {
+            if (LastServerTimeException == null) {
                 var calcServerTime = DateTime.Now + ServerTimeSpan;
                 string dateTimeString = calcServerTime.ToString("服务器时间：yyyy-MM-dd HH:mm:ss");
                 this.StaticItemServerTime.Caption = dateTimeString;
@@ -231,14 +230,14 @@ namespace PAO.UI.WinForm.MDI
             if (_MDIApplication.Login()) {
                 this.Show();
             }
-            else { 
+            else {
                 this.Close();
             }
         }
 
         private void ButtonSaveConfig_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             string fileName = AppPublic.GetAbsolutePath(AppPublic.DefaultConfigFileName);
-            if(UIPublic.ShowSaveFileDialog("保存配置", ref fileName, 
+            if (UIPublic.ShowSaveFileDialog("保存配置", ref fileName,
                 FileExtentions.CONFIG,
                 FileExtentions.XML,
                 FileExtentions.All) == DialogReturn.OK) {
@@ -249,5 +248,7 @@ namespace PAO.UI.WinForm.MDI
         private void DocumentManager_DocumentActivate(object sender, DevExpress.XtraBars.Docking2010.Views.DocumentEventArgs e) {
             WinFormPublic.ShowInPropertyView(null);
         }
+        #endregion
+
     }
 }

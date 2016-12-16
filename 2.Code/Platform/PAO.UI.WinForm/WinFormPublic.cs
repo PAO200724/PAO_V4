@@ -533,6 +533,7 @@ namespace PAO.UI.WinForm
                 DefaultPropertyView.SelectedObject = selectedObject;
             }
         }
+        
         #endregion
     }
 }

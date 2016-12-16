@@ -7,6 +7,7 @@ using System.Text;
 using System.Linq;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
+using PAO.UI.WinForm;
 
 namespace PAO.Config
 {
@@ -16,15 +17,13 @@ namespace PAO.Config
     /// </summary>
     public partial class ConfigForm : XtraForm
     {
-        private static ConfigForm Default;
-
         public ConfigForm() {
             InitializeComponent();
         }
 
         public void Show(object obj) {
             this.ObjectEditControl.SelectedObject = obj;
-            this.Show();
+            this.ShowDialog();
         }
 
         public object SelectedObject {
@@ -41,17 +40,11 @@ namespace PAO.Config
         /// 显示配置窗体
         /// </summary>
         /// <param name="selectedObject">选择对象</param>
-        public static void ShowConfigForm(object selectedObject) {
-            if (Default == null || Default.IsDisposed)
-                Default = new Config.ConfigForm();
-            Default.Show(selectedObject);
-        }
+        public static ConfigForm ShowConfigForm(object selectedObject) {
 
-        /// <summary>
-        /// 隐藏配置窗体
-        /// </summary>
-        public static void HideConfigForm() {
-            Default.Hide();
+            var configForm = new Config.ConfigForm();
+            configForm.Show(selectedObject);
+            return configForm;
         }
     }
 }

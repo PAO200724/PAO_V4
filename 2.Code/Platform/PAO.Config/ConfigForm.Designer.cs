@@ -49,6 +49,7 @@
             this.Name = "ConfigForm";
             this.ShowIcon = false;
             this.Text = "配置";
+            this.TopMost = true;
             this.ResumeLayout(false);
 
         }

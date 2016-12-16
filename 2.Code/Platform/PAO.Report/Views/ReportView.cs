@@ -459,7 +459,7 @@ namespace PAO.Report.Views
         }
 
         private void ButtonProperties_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            WinFormPublic.ShowInPropertyView(Controller);
+            ConfigForm.ShowConfigForm(Controller);
         }
         #endregion
     }

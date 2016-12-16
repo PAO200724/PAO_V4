@@ -43,6 +43,7 @@
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            this.ButtonProperty = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.GridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CardView)).BeginInit();
@@ -75,7 +76,6 @@
             this.GridView.OptionsView.ColumnAutoWidth = false;
             this.GridView.OptionsView.ShowAutoFilterRow = true;
             this.GridView.OptionsView.ShowGroupPanel = false;
-            this.GridView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.GridView_MouseDown);
             // 
             // CardView
             // 
@@ -83,7 +83,6 @@
             this.CardView.GridControl = this.GridControl;
             this.CardView.Name = "CardView";
             this.CardView.OptionsBehavior.ReadOnly = true;
-            this.CardView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.GridView_MouseDown);
             // 
             // AdvBandedGridView
             // 
@@ -92,7 +91,6 @@
             this.AdvBandedGridView.GridControl = this.GridControl;
             this.AdvBandedGridView.Name = "AdvBandedGridView";
             this.AdvBandedGridView.OptionsBehavior.ReadOnly = true;
-            this.AdvBandedGridView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.GridView_MouseDown);
             // 
             // GridBandMain
             // 
@@ -105,7 +103,6 @@
             this.LayoutView.Name = "LayoutView";
             this.LayoutView.OptionsBehavior.ReadOnly = true;
             this.LayoutView.TemplateCard = null;
-            this.LayoutView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.GridView_MouseDown);
             // 
             // BarManager
             // 
@@ -121,8 +118,9 @@
             this.ButtonPrint,
             this.ButtonRecoverLayout,
             this.ButtonViewType,
-            this.MenuViewType});
-            this.BarManager.MaxItemId = 13;
+            this.MenuViewType,
+            this.ButtonProperty});
+            this.BarManager.MaxItemId = 14;
             // 
             // BarTools
             // 
@@ -134,7 +132,8 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.MenuViewType),
             new DevExpress.XtraBars.LinkPersistInfo(this.ButtonExport, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.ButtonPrint),
-            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonRecoverLayout, true)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonRecoverLayout, true),
+            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonProperty, true)});
             this.BarTools.Text = "工具条";
             this.BarTools.Visible = false;
             // 
@@ -212,6 +211,14 @@
             this.barDockControlRight.Location = new System.Drawing.Point(517, 31);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 460);
             // 
+            // ButtonProperty
+            // 
+            this.ButtonProperty.Caption = "属性(&P)";
+            this.ButtonProperty.Glyph = global::PAO.Report.Properties.Resources.properties_16x16;
+            this.ButtonProperty.Id = 13;
+            this.ButtonProperty.Name = "ButtonProperty";
+            this.ButtonProperty.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonProperty_ItemClick);
+            // 
             // GridControlDataDisplayer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -253,5 +260,6 @@
         private DevExpress.XtraBars.BarButtonItem ButtonRecoverLayout;
         private DevExpress.XtraBars.BarListItem ButtonViewType;
         private DevExpress.XtraBars.BarSubItem MenuViewType;
+        private DevExpress.XtraBars.BarButtonItem ButtonProperty;
     }
 }
