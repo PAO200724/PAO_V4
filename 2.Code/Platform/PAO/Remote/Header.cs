@@ -23,7 +23,6 @@ namespace PAO.Remote
     public class Header : Object
     {
         #region 插件属性
-
         #region 属性：Transaction
         /// <summary>
         /// 属性：Transaction

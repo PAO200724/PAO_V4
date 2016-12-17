@@ -1,6 +1,6 @@
 ﻿using PAO;
 using PAO.Event;
-using PAO.IO.Text;
+using PAO.IO;
 using PAO.Part.Enabled;
 using System;
 using System.Collections.Generic;
@@ -70,7 +70,7 @@ namespace PAO.Trans
         public TransactionEventInfo(PaoTransaction trans
             , bool screenshot = false
             , bool snapshot = false) : base(null, trans.ToString(), screenshot, snapshot) {
-            Transaction = (PaoTransaction)TextPublic.ObjectClone(trans);
+            Transaction = (PaoTransaction)IOPublic.ObjectClone(trans);
             if(trans.Status is TransStatus_Running) {
                 Type = EventType_TransactionRunning;
             } else if (trans.Status is TransStatus_Committed) {

@@ -919,7 +919,7 @@
             <interfaceMoniker
               Id="a48de583-0c2d-45b7-909b-02eba28ddace"
               LastKnownName="IDataFilter"
-              LastKnownLocation="Package1_0034.uml" />
+              LastKnownLocation="PAO.Data.uml" />
           </interfaceRealization>
           <dependency
             Id="13e3a94d-adb8-42e6-9690-6791bb442b47">
@@ -1106,7 +1106,7 @@
             <interfaceMoniker
               Id="cf2e1411-2dd1-4e8c-9ecf-fa2233d42a4a"
               LastKnownName="IDataService"
-              LastKnownLocation="Package1_0034.uml" />
+              LastKnownLocation="PAO.Data.uml" />
           </interfaceRealization>
         </suppliersInternal>
         <targetEnds>
@@ -2500,7 +2500,7 @@
             <interfaceMoniker
               Id="cf2e1411-2dd1-4e8c-9ecf-fa2233d42a4a"
               LastKnownName="IDataService"
-              LastKnownLocation="Package1_0034.uml" />
+              LastKnownLocation="PAO.Data.uml" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
                 <memberEnd
@@ -2750,7 +2750,7 @@
       <packageMoniker
         Id="01882cd9-2eb3-4d78-bf43-4352a00e2c07"
         LastKnownName="PAO"
-        LastKnownLocation="Package_0034.uml" />
+        LastKnownLocation="PAO.uml" />
     </packageHasNamedElement>
   </packagedElements>
   <primitiveType

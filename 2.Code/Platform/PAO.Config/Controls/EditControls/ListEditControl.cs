@@ -12,7 +12,6 @@ using System.Collections;
 using PAO.Config.Editors;
 using PAO.UI;
 using PAO.IO;
-using PAO.IO.Text;
 using System.IO;
 using PAO.UI.WinForm;
 

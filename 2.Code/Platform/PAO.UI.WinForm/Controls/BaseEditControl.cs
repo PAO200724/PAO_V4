@@ -10,7 +10,6 @@ using DevExpress.XtraEditors;
 using PAO.UI.WinForm.Controls;
 using PAO.UI;
 using PAO.IO;
-using PAO.IO.Text;
 using System.IO;
 
 namespace PAO.UI.WinForm

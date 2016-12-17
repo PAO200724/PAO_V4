@@ -1,5 +1,4 @@
 ﻿using PAO;
-using PAO.IO.Text;
 using PAO.Properties;
 using PAO.Remote.WCF;
 using PAO.Trans;
@@ -70,7 +69,7 @@ namespace PAO.Remote
             TransactionPublic.Run("远程调用", () =>
             {
                 var remoteService = CreateRemoteService();
-                var proxy = new RemoteProxy(typeof(T), remoteService, RemotePublic.DefaultSerializer, ServiceName);
+                var proxy = new RemoteProxy(typeof(T), remoteService, ServiceName);
                 result = (T)proxy.GetTransparentProxy();
             });
             return result;

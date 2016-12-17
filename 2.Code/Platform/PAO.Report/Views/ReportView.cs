@@ -22,7 +22,7 @@ using DevExpress.XtraEditors.Repository;
 using PAO.Report.Controls;
 using DevExpress.XtraBars.Navigation;
 using PAO.Config.Controls.EditControls;
-using PAO.IO.Text;
+using PAO.IO;
 using PAO.Config;
 using PAO.Config.DockViews;
 using PAO.Report.Properties;
@@ -417,7 +417,7 @@ namespace PAO.Report.Views
         private void ReportTableControl_SetupQueryBehavior(object sender, EventArgs e) {
             var tableControl = sender as ReportTableControl;
             var objectEditControl = new ObjectEditControl();
-            var queryBehavior = TextPublic.ObjectClone(tableControl.ReportDataTable.QueryBehavior);
+            var queryBehavior = IOPublic.ObjectClone(tableControl.ReportDataTable.QueryBehavior);
             if (queryBehavior == null)
                 queryBehavior = new ReportQueryBehavior();
             objectEditControl.SelectedObject = queryBehavior;
@@ -442,7 +442,7 @@ namespace PAO.Report.Views
         private void ButtonSetupQueryBehavior_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             var controller = Controller as ReportController;
             var objectEditControl = new ObjectEditControl();
-            var queryBehavior = TextPublic.ObjectClone(controller.QueryBehavior);
+            var queryBehavior = IOPublic.ObjectClone(controller.QueryBehavior);
             if (queryBehavior == null)
                 queryBehavior = new ReportQueryBehavior();
             objectEditControl.SelectedObject = queryBehavior;

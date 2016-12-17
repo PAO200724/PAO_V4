@@ -8,7 +8,7 @@ using System.Text;
 using DevExpress.XtraEditors.Repository;
 using PAO.Config.Controls;
 using PAO.UI;
-using PAO.IO.Text;
+using PAO.IO;
 using DevExpress.XtraEditors;
 using PAO.Config.Controls.EditControls;
 using System.Collections;
@@ -86,7 +86,7 @@ namespace PAO.Config.Editors
                     editControl = new ObjectEditControl();
 
                 if (edit.EditValue.IsNotNull()) {
-                    editControl.SelectedObject = TextPublic.ObjectClone(editValue);
+                    editControl.SelectedObject = IOPublic.ObjectClone(editValue);
                     if (WinFormPublic.ShowDialog(editControl) == DialogReturn.OK) {
                         edit.EditValue = editControl.SelectedObject;
                     }

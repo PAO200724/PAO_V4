@@ -8,7 +8,6 @@ using System.Text;
 using System.Data;
 using PAO.App;
 using PAO.IO;
-using PAO.IO.Text;
 using System.IO;
 
 namespace PAO.Data.DataFetchers
@@ -64,7 +63,7 @@ namespace PAO.Data.DataFetchers
             if (!File.Exists(filePath))
                 return;
 
-            _DataTable = TextPublic.ReadObjectFromFile(filePath) as DataTable;
+            _DataTable = IOPublic.ReadObjectFromFile(filePath) as DataTable;
         }
 
         public DataTable FetchData(int startIndex, int count, params DataField[] parameterValues) {

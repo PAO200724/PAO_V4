@@ -8,7 +8,7 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 
-namespace PAO.IO.Binary
+namespace PAO.IO.Serializers
 {
     /// <summary>
     /// 类：BinarySerializer
@@ -20,31 +20,24 @@ namespace PAO.IO.Binary
     [DataContract(Namespace = "")]
     [Name("二进制序列化器")]
     [Description("利用BinaryFormatter进行序列化的二进制序列化器")]
-    public class BinarySerializer : PaoObject, IBinarySerialize
+    public class BinarySerializer : PaoObject, ISerialize<byte[]>
     {
         private static readonly BinaryFormatter Serializer = new BinaryFormatter();
         #region 插件属性
         #endregion
         public BinarySerializer() {
         }
-
-        public object BinaryToObject(byte[] binary) {
-            if (binary.IsNullOrEmpty())
-                return null;
-
-            var formatter = new BinaryFormatter();
-            var buffer = new MemoryStream(binary);
-            return formatter.Deserialize(buffer);
-        }
-
+        
         public byte[] ObjectToBinary(object obj) {
             if (obj.IsNull())
                 return null;
 
             var formatter = new BinaryFormatter();
-            var buffer = new MemoryStream();
-            formatter.Serialize(buffer, obj);
-            return buffer.ToArray();
+            using (var buffer = new MemoryStream()) {
+                formatter.Serialize(buffer, obj);
+                var binary = buffer.ToArray();
+                return binary;
+            }
         }
 
         public object ReadObjectFromStream(Stream stream) {
@@ -53,6 +46,30 @@ namespace PAO.IO.Binary
 
         public void WriteObjectToStream(Stream stream, object obj) {
             Serializer.Serialize(stream, obj);
+        }
+
+
+        public object Deserialize(byte[] serializedObject) {
+            if (serializedObject.IsNullOrEmpty())
+                return null;
+
+            var formatter = new BinaryFormatter();
+            using (var buffer = new MemoryStream(serializedObject)) {
+                var obj = formatter.Deserialize(buffer);
+                return obj;
+            }
+        }
+
+        public byte[] Serialize(object origionObject) {
+            if (origionObject.IsNull())
+                return null;
+
+            var formatter = new BinaryFormatter();
+            using (var buffer = new MemoryStream()) {
+                formatter.Serialize(buffer, origionObject);
+                var binary = buffer.ToArray();
+                return binary;
+            }
         }
     }
 }

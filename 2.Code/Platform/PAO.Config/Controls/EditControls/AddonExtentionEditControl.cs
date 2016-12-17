@@ -8,7 +8,7 @@ using System.Linq;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using static PAO.DataSetExtendProperty;
-using PAO.IO.Text;
+using PAO.IO;
 using PAO.UI.WinForm;
 
 namespace PAO.Config.Controls.EditControls
@@ -88,7 +88,7 @@ namespace PAO.Config.Controls.EditControls
                         var propInfo = AddonPropertyList.Where(p => p.Property.Name == extendPropertyRow.PropertyName).FirstOrDefault();
                         if (propInfo != null) {
                             propInfo.Checked = true;
-                            propInfo.PropertyValue = TextPublic.TextToObject(extendPropertyRow.PropertyValue);
+                            propInfo.PropertyValue = IOPublic.Deserialize<string>(extendPropertyRow.PropertyValue);
                         }
                     }
                 }
@@ -115,7 +115,7 @@ namespace PAO.Config.Controls.EditControls
                     foreach (var propInfo in AddonPropertyList.Where(p => p.Checked)) {
                         var newRow = _ExtendPropertyDataTable.AddExtendPropertyRow(OriginAddon.ID
                             , propInfo.Property.Name
-                            , TextPublic.ObjectToText(propInfo.PropertyValue??propInfo.OriginValue));
+                            , IOPublic.Serialize<string>(propInfo.PropertyValue??propInfo.OriginValue));
                     }
                 }
                 _ExtendPropertyDataTable.AcceptChanges();

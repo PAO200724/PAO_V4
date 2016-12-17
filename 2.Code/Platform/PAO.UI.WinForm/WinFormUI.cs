@@ -39,7 +39,6 @@ namespace PAO.UI.WinForm
             SplashScreenManager.CloseForm(false);
         }
 
-   
         public void ShowEventDialog(EventInfo eventInfo) {
             var eventControl = new EventControl();
             eventControl.Initialize(eventInfo);

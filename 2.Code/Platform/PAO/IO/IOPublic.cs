@@ -1,4 +1,5 @@
-﻿using PAO.IO.Text;
+﻿using PAO.Event;
+using PAO.IO.Serializers;
 using PAO.UI;
 using System;
 using System.Collections.Generic;
@@ -20,7 +21,7 @@ namespace PAO.IO
         /// </summary>
         public static Encoding DefaultEncoding = Encoding.UTF8;
 
-
+        #region Export/Import
         /// <summary>
         /// 导出当前对象
         /// </summary>
@@ -33,7 +34,7 @@ namespace PAO.IO
                 if (fileName.IsNullOrEmpty())
                     UIPublic.ShowErrorDialog("输入了错误的文件名");
                 else {
-                    TextPublic.WriteObjectToFile(fileName, obj);
+                    IOPublic.WriteObjectToFile(fileName, obj);
                 }
             }
         }
@@ -50,7 +51,7 @@ namespace PAO.IO
                 if (!File.Exists(fileName))
                     UIPublic.ShowErrorDialog("选择的文件不存在");
                 else {
-                    var obj = TextPublic.ReadObjectFromFile(fileName);
+                    var obj = IOPublic.ReadObjectFromFile(fileName);
                     try {
                         action(obj);
                     }
@@ -60,5 +61,94 @@ namespace PAO.IO
                 }
             }
         }
+        #endregion
+
+        #region 序列化(Serialize)
+        public static ISerialize DefaultSerializer = new XmlSerializer();
+
+        /// <summary>
+        /// 将文本转换为对象
+        /// </summary>
+        /// <param name="text">文本字符串</param>
+        /// <param name="types">需要用到的对象类型</param>
+        /// <returns>对象</returns>
+        public static object Deserialize<T>(T text) {
+            if (!(DefaultSerializer is ISerialize<T>))
+                throw new Exception("默认的序列化器不支持此类型的反序列化").AddExceptionData("Type",typeof(T));
+            return DefaultSerializer.As<ISerialize<T>>().Deserialize(text);
+        }
+
+        /// <summary>
+        /// 将对象转换为文本
+        /// </summary>
+        /// <param name="obj">对象</param>
+        /// <param name="types">需要用到的对象类型</param>
+        /// <returns>文本字符串</returns>
+        public static T Serialize<T>(object obj) {
+            if (!(DefaultSerializer is ISerialize<T>))
+                throw new Exception("默认的序列化器不支持此类型的序列化").AddExceptionData("Type", typeof(T));
+            return DefaultSerializer.As<ISerialize<T>>().Serialize(obj);
+        }
+
+        /// <summary>
+        /// 将对象以Xml的方式写入流
+        /// </summary>
+        /// <param name="stream">Xml字符流</param>
+        /// <param name="obj">对象</param>
+        /// <param name="types">需要用到的对象类型</param>
+        public static void WriteObjectToStream(Stream stream, object obj) {
+            DefaultSerializer.WriteObjectToStream(stream, obj);
+        }
+
+        /// <summary>
+        /// 保存对象到文件
+        /// </summary>
+        /// <param name="fileName">文件名</param>
+        /// <param name="obj">对象</param>
+        public static void WriteObjectToFile(string fileName, object obj) {
+            using (SafeFileStream fileStream = new SafeFileStream(fileName, FileMode.Create, FileAccess.Write)) {
+                WriteObjectToStream(fileStream, obj);
+            }
+        }
+        /// <summary>
+        /// 从Xml流中读取对象
+        /// </summary>
+        /// <param name="stream">Xml字符流</param>
+        /// <param name="types">需要用到的对象类型</param>
+        /// <returns>对象</returns>
+        public static object ReadObjectFromStream(Stream stream) {
+            return DefaultSerializer.ReadObjectFromStream(stream);
+        }
+
+        /// <summary>
+        /// 从文件读取对象
+        /// </summary>
+        /// <param name="fileName">文件名</param>
+        /// <return>对象</return>
+        public static object ReadObjectFromFile(string fileName) {
+            if (!File.Exists(fileName))
+                return null;
+
+            using (SafeFileStream fileStream = new SafeFileStream(fileName, FileMode.Open, FileAccess.Read)) {
+                object obj = ReadObjectFromStream(fileStream);
+                return obj;
+            }
+        }
+        /// <summary>
+        /// 通过Xml克隆对象
+        /// </summary>
+        /// <param name="sourceObject">源对象</param>
+        /// <returns>克隆后的对象</returns>
+        public static object ObjectClone(this object sourceObject) {
+            if (sourceObject == null)
+                return null;
+            MemoryStream buffer = new MemoryStream();
+            WriteObjectToStream(buffer, sourceObject);
+
+            buffer.Seek(0, SeekOrigin.Begin);
+
+            return ReadObjectFromStream(buffer);
+        }
+        #endregion
     }
 }

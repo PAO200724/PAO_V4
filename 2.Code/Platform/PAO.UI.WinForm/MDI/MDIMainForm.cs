@@ -19,7 +19,6 @@ using PAO.Security;
 using DevExpress.XtraSplashScreen;
 using PAO.Trans;
 using PAO.IO;
-using PAO.IO.Text;
 using PAO.Event;
 
 namespace PAO.UI.WinForm.MDI
@@ -241,7 +240,7 @@ namespace PAO.UI.WinForm.MDI
                 FileExtentions.CONFIG,
                 FileExtentions.XML,
                 FileExtentions.All) == DialogReturn.OK) {
-                TextPublic.WriteObjectToFile(fileName, PaoApplication.Default);
+                IOPublic.WriteObjectToFile(fileName, PaoApplication.Default);
             }
         }
 

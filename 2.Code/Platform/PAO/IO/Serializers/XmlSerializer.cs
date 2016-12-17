@@ -9,13 +9,13 @@ using System.Xml;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace PAO.IO.Text
+namespace PAO.IO.Serializers
 {
     /// <summary>
-    /// WCF数据协议对象序列化器
+    /// Xml对象序列化器
     /// 作者:刘丹(Daniel.liu)
     /// </summary>
-    public class DataContractTextSerializer : ITextSerialize
+    public class XmlSerializer : ISerialize<string>, ISerialize<byte[]>
     {
         private readonly static DataContractResolver DefaultResolver = new TextDataContractResolver();
         private readonly static DataContractSerializer Serializer = new DataContractSerializer(typeof(Object)
@@ -26,7 +26,7 @@ namespace PAO.IO.Text
                 , null
                 , DefaultResolver);
 
-        public DataContractTextSerializer() {
+        public XmlSerializer() {
         }
 
         /// <summary>
@@ -85,6 +85,50 @@ namespace PAO.IO.Text
         /// <returns>对象</returns>
         public object ReadObjectFromStream(Stream stream) {
             return Serializer.ReadObject(stream);
+        }
+        
+        object ISerialize<string>.Deserialize(string serializedObject) {
+            if (serializedObject.IsNullOrEmpty())
+                return null;
+
+            if (serializedObject == "null")
+                return null;
+            StringReader reader = new StringReader(serializedObject);
+            XmlReader textReader = XmlReader.Create(reader);
+            object result = Serializer.ReadObject(textReader);
+            reader.Close();
+            return result;
+        }
+
+        object ISerialize<byte[]>.Deserialize(byte[] serializedObject) {
+            if (serializedObject.IsNullOrEmpty())
+                return null;
+
+            using (MemoryStream buffer = new MemoryStream(serializedObject)) {
+                object result = Serializer.ReadObject(buffer);
+                return result;
+            }
+        }
+
+        string ISerialize<string>.Serialize(object origionObject) {
+            if (origionObject.IsNull())
+                return null;
+
+            StringWriter writer = new StringWriter();
+            XmlTextWriter textWriter = new XmlTextWriter(writer);
+            Serializer.WriteObject(textWriter, origionObject);
+            writer.Close();
+            return writer.GetStringBuilder().ToString();
+        }
+
+        byte[] ISerialize<byte[]>.Serialize(object origionObject) {
+            if (origionObject == null)
+                return null;
+
+            using (MemoryStream buffer = new MemoryStream()) {
+                Serializer.WriteObject(buffer, origionObject);
+                return buffer.ToArray();
+            }
         }
     }
 }

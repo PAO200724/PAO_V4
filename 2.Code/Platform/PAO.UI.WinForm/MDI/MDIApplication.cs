@@ -210,7 +210,7 @@ namespace PAO.UI.WinForm.MDI
         }
 
         private void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e) {
-            UIPublic.ShowEventDialog(new ExceptionEventInfo(e.Exception, true, true));
+            UIPublic.ShowExceptionDialog(e.Exception);
         }
     }
 }

@@ -124,25 +124,25 @@ namespace PAO.Remote.Tcp
             var writer = new BinaryWriter(clientStream);
 
             // 读取服务名称
-            var serviceName = reader.NetReadString();
+            var serviceName = reader.NetReadBinary();
             // 方法名称
-            var functionName = reader.NetReadString();
+            var functionName = reader.NetReadBinary();
             // 读取协议头
-            var header = reader.NetReadString();
+            var header = reader.NetReadBinary();
             // 输入参数
-            var inputParameters = reader.NetReadString();
+            var inputParameters = reader.NetReadBinary();
 
             // 调用服务
             EventPublic.Information("开始调用服务：{0}.{1}", serviceName, functionName);
             try {
-                string result = RemotePublic.CallService(ServiceList, serviceName, functionName, header, inputParameters);
-                writer.NetWriteString(RemotePublic.SuccessString);
-                writer.NetWriteString(result);
+                var result = RemotePublic.CallService(ServiceList, serviceName, functionName, header, inputParameters);
+                writer.NetWriteObject(RemotePublic.SuccessString);
+                writer.NetWriteBinary(result);
             } catch (Exception err) {
                 // 发出异常
-                writer.NetWriteString(RemotePublic.FailedString);
-                writer.NetWriteString(err.Message);
-                writer.NetWriteString(err.FormatException());
+                writer.NetWriteObject(RemotePublic.FailedString);
+                writer.NetWriteObject(err.Message);
+                writer.NetWriteObject(err.FormatException());
             }
 
 

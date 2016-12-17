@@ -1,5 +1,4 @@
 ﻿using PAO;
-using PAO.IO.Text;
 using PAO.Remote.WCF;
 using PAO.Trans;
 using System;

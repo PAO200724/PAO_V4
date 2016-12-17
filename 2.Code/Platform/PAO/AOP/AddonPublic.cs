@@ -1,7 +1,6 @@
 ﻿using PAO.App;
 using PAO.Event;
 using PAO.IO;
-using PAO.IO.Text;
 using PAO.UI;
 using System;
 using System.Collections;
@@ -458,7 +457,7 @@ namespace PAO {
             if (properties.IsNotNullOrEmpty()) {
                 foreach (var property in properties) {
                     var value = addon.GetPropertyValueByPath(property);
-                    var newRow = dataTable.AddExtendPropertyRow(addon.ID, property, TextPublic.ObjectToText(value));
+                    var newRow = dataTable.AddExtendPropertyRow(addon.ID, property, IOPublic.Serialize<string>(value));
                 }
             }
             dataTable.AcceptChanges();
@@ -473,7 +472,7 @@ namespace PAO {
             var addonRows = dataTable.AsEnumerable<ExtendPropertyRow>().Where(p => p.AddonID == addon.ID).ToList();
             foreach (var addonRow in addonRows) {
                 try {
-                    addon.SetPropertyValueByPath(addonRow.PropertyName, TextPublic.TextToObject(addonRow.PropertyValue));
+                    addon.SetPropertyValueByPath(addonRow.PropertyName, IOPublic.Deserialize<string>(addonRow.PropertyValue));
                 }
                 catch {
                     if (UIPublic.ShowYesNoDialog(String.Format("读取属性：{0}.{1}的本地配置时发生异常，您是否要继续，如果继续，本地配置将会被覆盖.", addon.GetType(), addonRow.PropertyName)) != DialogReturn.Yes) {

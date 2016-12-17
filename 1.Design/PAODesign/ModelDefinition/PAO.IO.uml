@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm10="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner" xmlns:dm11="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="cb68566e-ac7f-4fdb-88f4-7cd0d0f95371"
+  name="IO" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <packagedElements>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="6da49b75-3050-4983-b3e6-645e1933076f"
+        LastKnownName="Serializers"
+        LastKnownLocation="PAO.IO.Text.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="80a226c0-b1ed-41de-b90d-c03a276ce721"
+        name="IOPublic"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <suppliersInternal>
+          <dependency
+            Id="10cc6125-a0d4-4953-8ab6-ce9e2fd888ba">
+            <interfaceMoniker
+              Id="e9634454-0d0c-45dc-9c16-7939d0fb82ae"
+              LastKnownName="ISerialize"
+              LastKnownLocation="PAO.IO.uml" />
+          </dependency>
+          <dependency
+            Id="01e5c759-d4d4-4db3-985e-56484bcf9973">
+            <classMoniker
+              Id="f8e4839d-8b2c-452e-9930-460a2b6f25ec"
+              LastKnownName="SafeFileStream"
+              LastKnownLocation="PAO.IO.uml" />
+          </dependency>
+        </suppliersInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="f8e4839d-8b2c-452e-9930-460a2b6f25ec"
+        name="SafeFileStream"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="e9634454-0d0c-45dc-9c16-7939d0fb82ae"
+        name="ISerialize"
+        isAbstract="false"
+        isLeaf="false">
+        <ownedOperations>
+          <operation
+            Id="62c6678d-be55-4662-b614-b367f329845b"
+            name="WriteObjectToStream"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="true"
+            concurrency="Sequential"
+            isQuery="false" />
+          <operation
+            Id="51422554-5c49-41d5-98b3-78fb8292925f"
+            name="ReadObjectFromStream"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="true"
+            concurrency="Sequential"
+            isQuery="false" />
+        </ownedOperations>
+      </Interface>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="2d247cf1-4778-43c0-82fe-5f7740fba872"
+        name="ISerialize&lt;string&gt;"
+        isAbstract="false"
+        isLeaf="false">
+        <generalsInternal>
+          <generalization
+            Id="ce2a3958-33b2-4419-9664-783940af80b5"
+            isSubstitutable="false">
+            <interfaceMoniker
+              Id="e9634454-0d0c-45dc-9c16-7939d0fb82ae"
+              LastKnownName="ISerialize"
+              LastKnownLocation="PAO.IO.uml" />
+          </generalization>
+        </generalsInternal>
+      </Interface>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="51168d31-607a-4af4-964f-eab2b8b7d31f"
+        name="ISerialize&lt;byte[]&gt;"
+        isAbstract="false"
+        isLeaf="false">
+        <generalsInternal>
+          <generalization
+            Id="432251f2-12a4-4e45-ae9c-fc2149f2c2ee"
+            isSubstitutable="false">
+            <interfaceMoniker
+              Id="e9634454-0d0c-45dc-9c16-7939d0fb82ae"
+              LastKnownName="ISerialize"
+              LastKnownLocation="PAO.IO.uml" />
+          </generalization>
+        </generalsInternal>
+      </Interface>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

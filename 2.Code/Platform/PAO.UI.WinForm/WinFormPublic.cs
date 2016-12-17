@@ -33,6 +33,7 @@ using PAO.UI.WinForm.Controls;
 using System.ComponentModel;
 using PAO.UI.WinForm.Editors;
 using PAO.UI.WinForm.Property;
+using PAO.Event;
 
 namespace PAO.UI.WinForm
 {
@@ -533,7 +534,8 @@ namespace PAO.UI.WinForm
                 DefaultPropertyView.SelectedObject = selectedObject;
             }
         }
-        
+
         #endregion
+
     }
 }

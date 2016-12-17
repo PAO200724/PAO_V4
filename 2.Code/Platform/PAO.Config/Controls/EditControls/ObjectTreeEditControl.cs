@@ -16,7 +16,6 @@ using PAO.UI;
 using PAO;
 using DevExpress.XtraSplashScreen;
 using PAO.IO;
-using PAO.IO.Text;
 using PAO.UI.WinForm;
 using static PAO.DataSetExtendProperty;
 using PAO.UI.MVC;

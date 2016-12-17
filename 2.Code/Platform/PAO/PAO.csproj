@@ -93,9 +93,7 @@
     <Compile Include="Event\EventPublic.cs" />
     <Compile Include="Event\ExceptionEventInfo.cs" />
     <Compile Include="Event\BaseEventProcessor.cs" />
-    <Compile Include="IO\Binary\BinaryPublic.cs" />
-    <Compile Include="IO\Binary\BinarySerializer.cs" />
-    <Compile Include="IO\Binary\XmlBinarySerializer.cs" />
+    <Compile Include="IO\Serializers\BinarySerializer.cs" />
     <Compile Include="IO\FileExtentions.cs" />
     <Compile Include="IO\IOPublic.cs" />
     <Compile Include="IO\ISerialize.cs" />
@@ -105,10 +103,8 @@
     <Compile Include="AOP\PaoObject.cs" />
     <Compile Include="AOP\Ref.cs" />
     <Compile Include="ObjectPublic.cs" />
-    <Compile Include="IO\Text\ITextSerialize.cs" />
-    <Compile Include="IO\Text\TextPublic.cs" />
     <Compile Include="NothingType.cs" />
-    <Compile Include="IO\Text\TextDataContractResolver.cs" />
+    <Compile Include="IO\TextDataContractResolver.cs" />
     <Compile Include="Part\BasePart.cs" />
     <Compile Include="Part\Enabled\Status_Completed.cs" />
     <Compile Include="Part\Enabled\Status_Running.cs" />
@@ -126,11 +122,10 @@
     </Compile>
     <Compile Include="ReflectionPublic.cs" />
     <Compile Include="IO\SafeFileStream.cs" />
-    <Compile Include="IO\Text\DataContractTextSerializer.cs" />
+    <Compile Include="IO\Serializers\XmlSerializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Remote\Header.cs" />
     <Compile Include="Remote\IRemote.cs" />
-    <Compile Include="IO\Binary\IBinarySerialize.cs" />
     <Compile Include="Remote\WCF\WCFRemoteApplication.cs" />
     <Compile Include="Remote\RemoteProxy.cs" />
     <Compile Include="Remote\RemotePublic.cs" />

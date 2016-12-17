@@ -1,7 +1,6 @@
 ﻿using PAO;
 using PAO.App;
 using PAO.IO;
-using PAO.IO.Text;
 using PAO.UI;
 using System;
 using System.Collections.Generic;
@@ -50,7 +49,7 @@ namespace PAO
         public void LoadExtendProperties(DataSetExtendProperty.ExtendPropertyDataTable dataTable) {
             var path = AppPublic.GetAbsolutePath(FilePath);
             if(File.Exists(path)) {
-                var newTable = TextPublic.ReadObjectFromFile(path) as DataSetExtendProperty.ExtendPropertyDataTable;
+                var newTable = IOPublic.ReadObjectFromFile(path) as DataSetExtendProperty.ExtendPropertyDataTable;
                 if (newTable != null)
                     dataTable.Merge(newTable);
             }
@@ -62,7 +61,7 @@ namespace PAO
             if (!Directory.Exists(dir))
                 Directory.CreateDirectory(dir);
 
-            TextPublic.WriteObjectToFile(path, dataTable);
+            IOPublic.WriteObjectToFile(path, dataTable);
         }
     }
 }

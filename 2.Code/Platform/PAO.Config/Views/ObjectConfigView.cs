@@ -10,7 +10,7 @@ using DevExpress.XtraEditors;
 using PAO.UI.WinForm.Controls;
 using PAO.UI.MVC;
 using PAO.App;
-using PAO.IO.Text;
+using PAO.IO;
 
 namespace PAO.Config.Views
 {
@@ -37,7 +37,7 @@ namespace PAO.Config.Views
                 addon = PaoApplication.Default;
             }
             else {
-                addon = TextPublic.ReadObjectFromFile(controller.ConfigFile);
+                addon = IOPublic.ReadObjectFromFile(controller.ConfigFile);
             }
             ObjectTreeEditControl.SelectedObject = addon;
         }

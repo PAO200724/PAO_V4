@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Xml;
 
-namespace PAO.IO.Text
+namespace PAO.IO
 {
     /// <summary>
     /// 类:PaoDataContractResolver

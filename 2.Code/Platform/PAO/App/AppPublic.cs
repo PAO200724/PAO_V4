@@ -1,6 +1,5 @@
 ﻿using PAO.Event;
 using PAO.IO;
-using PAO.IO.Text;
 using PAO.Trans;
 using System;
 using System.Collections.Generic;
@@ -82,14 +81,14 @@ namespace PAO.App {
                         throw new Exception("创建配置的方法不能为空");
 
                     if (loadFromConfig && !File.Exists(configFilePath)) {
-                        app = TextPublic.ReadObjectFromFile(configFilePath).As<PaoApplication>();
+                        app = IOPublic.ReadObjectFromFile(configFilePath).As<PaoApplication>();
                     }
                     else { 
                         // 用应用创建函数启动应用
                         app = createApplicationFunc();
                         if(overwriteConfigFile || !File.Exists(configFilePath)) {
                             // 保存配置文件
-                            TextPublic.WriteObjectToFile(configFilePath, app);
+                            IOPublic.WriteObjectToFile(configFilePath, app);
                         }
                     }
 

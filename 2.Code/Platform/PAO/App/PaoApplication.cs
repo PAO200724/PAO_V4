@@ -1,5 +1,4 @@
 ﻿using PAO.Event;
-using PAO.IO.Text;
 using PAO.Properties;
 using PAO.Remote;
 using PAO.Server;

@@ -16,5 +16,11 @@
         LastKnownName="UI"
         LastKnownLocation="PAO.UI.uml" />
     </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="cb68566e-ac7f-4fdb-88f4-7cd0d0f95371"
+        LastKnownName="IO"
+        LastKnownLocation="PAO.IO.uml" />
+    </packageHasNamedElement>
   </packagedElements>
 </package>

@@ -13,7 +13,7 @@ using System.Diagnostics;
 using PAO.Data;
 using PAO.Remote.Tcp;
 using TestLibrary;
-using PAO.IO.Text;
+using PAO.IO;
 
 namespace WinFormTest
 {

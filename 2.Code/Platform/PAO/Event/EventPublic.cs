@@ -1,5 +1,4 @@
 ﻿using PAO.App;
-using PAO.IO.Text;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -26,6 +25,16 @@ namespace PAO.Event
                 eventInfo.Data = new Dictionary<string, object>();
             eventInfo.Data.Add(key, value);
             return eventInfo;
+        }
+
+        /// <summary>
+        /// 创建异常
+        /// </summary>
+        /// <param name="format">格式</param>
+        /// <param name="args">参数</param>
+        /// <returns>异常</returns>
+        public static Exception CreateException(string format, params object[] args) {
+            return new Exception(string.Format(format, args));
         }
 
         #region 事件处理机

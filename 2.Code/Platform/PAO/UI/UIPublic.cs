@@ -23,6 +23,14 @@ namespace PAO.UI
         /// <summary>
         /// 显示异常对话框
         /// </summary>
+        /// <param name="err">异常</param>
+        public static void ShowExceptionDialog(Exception err) {
+            ShowEventDialog(new ExceptionEventInfo(err, true, true));
+        }
+
+        /// <summary>
+        /// 显示异常对话框
+        /// </summary>
         /// <param name="eventInfo">事件信息</param>
         public static void ShowEventDialog(EventInfo eventInfo) {
             if (DefaultUserInterface == null) {

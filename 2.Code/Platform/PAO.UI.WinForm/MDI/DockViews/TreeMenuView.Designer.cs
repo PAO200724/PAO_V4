@@ -25,21 +25,22 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TreeMenuView));
             this.TreeListMenu = new DevExpress.XtraTreeList.TreeList();
             this.ColumnCaption = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.ColumnMenu = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.BarManager = new DevExpress.XtraBars.BarManager();
+            this.ImageCollection = new DevExpress.Utils.ImageCollection(this.components);
+            this.BarManager = new DevExpress.XtraBars.BarManager(this.components);
             this.BarTools = new DevExpress.XtraBars.Bar();
             this.ButtonExpandAll = new DevExpress.XtraBars.BarButtonItem();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.ImageCollection = new DevExpress.Utils.ImageCollection();
             ((System.ComponentModel.ISupportInitialize)(this.TreeListMenu)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.BarManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImageCollection)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BarManager)).BeginInit();
             this.SuspendLayout();
             // 
             // TreeListMenu
@@ -52,6 +53,7 @@
             this.TreeListMenu.Name = "TreeListMenu";
             this.TreeListMenu.OptionsBehavior.Editable = false;
             this.TreeListMenu.OptionsBehavior.EnableFiltering = true;
+            this.TreeListMenu.OptionsBehavior.ExpandNodesOnFiltering = true;
             this.TreeListMenu.OptionsClipboard.AllowCopy = DevExpress.Utils.DefaultBoolean.True;
             this.TreeListMenu.OptionsClipboard.CopyNodeHierarchy = DevExpress.Utils.DefaultBoolean.True;
             this.TreeListMenu.OptionsFilter.FilterMode = DevExpress.XtraTreeList.FilterMode.Smart;
@@ -68,6 +70,7 @@
             // 
             this.ColumnCaption.Caption = "标题";
             this.ColumnCaption.FieldName = "Caption";
+            this.ColumnCaption.MinWidth = 33;
             this.ColumnCaption.Name = "ColumnCaption";
             this.ColumnCaption.Visible = true;
             this.ColumnCaption.VisibleIndex = 0;
@@ -77,6 +80,10 @@
             this.ColumnMenu.Caption = "菜单";
             this.ColumnMenu.FieldName = "Menu";
             this.ColumnMenu.Name = "ColumnMenu";
+            // 
+            // ImageCollection
+            // 
+            this.ImageCollection.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("ImageCollection.ImageStream")));
             // 
             // BarManager
             // 
@@ -98,13 +105,15 @@
             this.BarTools.DockRow = 0;
             this.BarTools.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
             this.BarTools.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonExpandAll)});
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.ButtonExpandAll, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph)});
             this.BarTools.Text = "工具条";
             // 
             // ButtonExpandAll
             // 
-            this.ButtonExpandAll.Caption = "全部展开(&E)";
+            this.ButtonExpandAll.Caption = "展开(&E)";
+            this.ButtonExpandAll.Glyph = ((System.Drawing.Image)(resources.GetObject("ButtonExpandAll.Glyph")));
             this.ButtonExpandAll.Id = 0;
+            this.ButtonExpandAll.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("ButtonExpandAll.LargeGlyph")));
             this.ButtonExpandAll.Name = "ButtonExpandAll";
             this.ButtonExpandAll.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonExpandAll_ItemClick);
             // 
@@ -136,10 +145,6 @@
             this.barDockControlRight.Location = new System.Drawing.Point(314, 31);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 481);
             // 
-            // ImageCollection
-            // 
-            this.ImageCollection.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("ImageCollection.ImageStream")));
-            // 
             // TreeMenuView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -152,8 +157,8 @@
             this.Name = "TreeMenuView";
             this.Size = new System.Drawing.Size(314, 512);
             ((System.ComponentModel.ISupportInitialize)(this.TreeListMenu)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.BarManager)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImageCollection)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BarManager)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -1,5 +1,4 @@
 ﻿using PAO;
-using PAO.IO.Text;
 using PAO.Security;
 using PAO.Trans;
 using System;
@@ -34,7 +33,7 @@ namespace PAO.Remote.WCF
         public WCFRemoteService() {
         }
 
-        public string CallService(string serviceName, string functionName, string header, string inputParameters) {
+        public byte[] CallService(byte[] serviceName, byte[] functionName, byte[] header, byte[] inputParameters) {
             var result = RemotePublic.CallService(ServiceList, serviceName, functionName, header, inputParameters);
 
             return result;

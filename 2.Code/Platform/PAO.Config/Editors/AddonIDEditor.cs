@@ -9,7 +9,7 @@ using System.Text;
 using DevExpress.XtraEditors.Repository;
 using PAO.UI.WinForm;
 using PAO.Config.Controls.EditControls;
-using PAO.IO.Text;
+using PAO.IO;
 using DevExpress.XtraEditors;
 using PAO.UI;
 using PAO.Controls;

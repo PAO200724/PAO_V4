@@ -46,7 +46,7 @@ namespace PAO.Remote.Tcp
         public TcpRemote() {
         }
 
-        public string CallService(string serviceName, string functionName, string header, string inputParameters) {
+        public byte[] CallService(byte[] serviceName, byte[] functionName, byte[] header, byte[] inputParameters) {
             string hostName;
             int port;
             try {
@@ -67,25 +67,28 @@ namespace PAO.Remote.Tcp
             var reader = new BinaryReader(clientStream);
             var writer = new BinaryWriter(clientStream);
 
-            writer.NetWriteString(serviceName);
+            writer.NetWriteBinary(serviceName);
 
-            writer.NetWriteString(functionName);
+            writer.NetWriteBinary(functionName);
 
-            writer.NetWriteString(header);
+            writer.NetWriteBinary(header);
 
-            writer.NetWriteString(inputParameters);
+            writer.NetWriteBinary(inputParameters);
 
             // 获取返回参数
-            string resultType = reader.ReadString();
-            string result = null;
+            string resultType = reader.NetReadObject<string>();
+            byte[] result = null;
             if(resultType == RemotePublic.SuccessString) {
-                result = reader.NetReadString();
+                result = reader.NetReadBinary();
             }
             else {
-                string message = reader.NetReadString();
-                string exceptionString = reader.NetReadString();
+                var message = reader.NetReadObject<string>();
+                var exceptionString = reader.NetReadObject<string>();
+
                 var remoteException = new Exception(message);
-                var fullServiceName = String.Format("{0}.{1}", serviceName, functionName);
+                var fullServiceName = String.Format("{0}.{1}"
+                    , RemotePublic.Deserialize<string>(serviceName)
+                    , RemotePublic.Deserialize<string>(functionName));
                 throw new Exception("远程调用服务异常", remoteException)
                     .AddExceptionData("服务地址", ServerAddress)
                     .AddExceptionData("服务", fullServiceName)

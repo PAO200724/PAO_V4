@@ -9,7 +9,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using PAO.UI.MVC;
-using PAO.IO.Text;
+using PAO.IO;
 using PAO.Config.Properties;
 
 namespace PAO.Config.Views

@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm11="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner" dslVersion="1.0.0.0" Id="65c4b220-6760-4792-87ea-f4f032cda329" name="序列化" linkedPackageId="9d1933fc-2785-49fc-b74f-b6fc96c8629a" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
+  <packagedElements>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="3317023a-b496-4c0b-9b47-b20ed28235eb" name="DataContractSerializer" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="8a777334-af7a-4ae7-9eee-592e1cf74b38" />
+        <suppliersInternal>
+          <interfaceRealization Id="6446ef53-eba6-4cad-9e69-c0b7988f65e8">
+            <interfaceMoniker Id="8efa2167-5c21-4855-85b3-2a63687829ab" LastKnownName="ISerialize&lt;string&gt;" />
+            <elementDefinition Id="5f5f7fbe-a113-4dc2-b622-d597b141de47" />
+          </interfaceRealization>
+        </suppliersInternal>
+        <ownedOperationsInternal>
+          <operation Id="b2a18523-01cd-45a1-aeb8-1ce320766071" name="WriteObjectToStream" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="ae0b0da9-87a3-4542-a4a1-4902f30a933a" />
+          </operation>
+          <operation Id="3d49c9d9-42fb-4675-9173-5a8809f43793" name="ReadObjectFromStream" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="ed965405-5e94-4f61-aa9b-093be5fc4fdb" />
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <Interface Id="8efa2167-5c21-4855-85b3-2a63687829ab" name="ISerialize&lt;string&gt;" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="2d247cf1-4778-43c0-82fe-5f7740fba872" />
+        <generalsInternal>
+          <generalization Id="64ff4d97-5b07-4080-bcf3-3c23744e358f" isSubstitutable="false">
+            <interfaceMoniker Id="929a5de6-a134-46b0-ac2d-ebdd3747ab02" LastKnownName="ISerialize" />
+            <elementDefinition Id="ce2a3958-33b2-4419-9664-783940af80b5" />
+          </generalization>
+        </generalsInternal>
+      </Interface>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="cece04c3-4458-40d0-9ad9-facbf004df57" name="BinarySerializer" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="a1b1f7b0-6725-4a71-93a1-c4c8d096f7a7" />
+        <suppliersInternal>
+          <interfaceRealization Id="00571377-3097-45e5-9702-a7bbde5b04c3">
+            <interfaceMoniker Id="42e86c92-57a2-4d43-80f5-22b25a11589d" LastKnownName="ISerialize&lt;byte[]&gt;" />
+            <elementDefinition Id="4900d9cd-e8c0-42df-8061-befb6bd382bf" />
+          </interfaceRealization>
+        </suppliersInternal>
+        <ownedOperationsInternal>
+          <operation Id="a530fc90-67c2-4b93-93f1-18f501223c3e" name="WriteObjectToStream" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="a59b85d1-c08e-4466-8fae-158ebe51b6f9" />
+          </operation>
+          <operation Id="29e9d020-7106-42e1-b169-32eb125642bb" name="ReadObjectFromStream" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="623eb607-384b-4dc0-9030-a9abdbad4e6f" />
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="da67644c-09ca-4407-872d-01cfcdb94811" name="SafeFileStream" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="f8e4839d-8b2c-452e-9930-460a2b6f25ec" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <Interface Id="929a5de6-a134-46b0-ac2d-ebdd3747ab02" name="ISerialize" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="e9634454-0d0c-45dc-9c16-7939d0fb82ae" />
+        <ownedOperations>
+          <operation Id="cb0ccf6e-ff3b-4e70-b426-f633fefa5b1d" name="WriteObjectToStream" isLeaf="false" isStatic="false" isAbstract="true" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="62c6678d-be55-4662-b614-b367f329845b" />
+          </operation>
+          <operation Id="1d2050fb-467d-4a04-b8ad-959bd0e5931b" name="ReadObjectFromStream" isLeaf="false" isStatic="false" isAbstract="true" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="51422554-5c49-41d5-98b3-78fb8292925f" />
+          </operation>
+        </ownedOperations>
+      </Interface>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="023f50e8-90d7-4d26-b15c-7d7884ca4343" name="IOPublic" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="80a226c0-b1ed-41de-b90d-c03a276ce721" />
+        <suppliersInternal>
+          <dependency Id="c1c99299-25c2-4ea6-ba96-b1cb6cbd3d6f">
+            <interfaceMoniker Id="929a5de6-a134-46b0-ac2d-ebdd3747ab02" LastKnownName="ISerialize" />
+            <elementDefinition Id="10cc6125-a0d4-4953-8ab6-ce9e2fd888ba" />
+          </dependency>
+          <dependency Id="27fcabe2-0d24-4910-b644-0c8b10a2b7cd">
+            <classMoniker Id="da67644c-09ca-4407-872d-01cfcdb94811" LastKnownName="SafeFileStream" />
+            <elementDefinition Id="01e5c759-d4d4-4db3-985e-56484bcf9973" />
+          </dependency>
+        </suppliersInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <Interface Id="42e86c92-57a2-4d43-80f5-22b25a11589d" name="ISerialize&lt;byte[]&gt;" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="51168d31-607a-4af4-964f-eab2b8b7d31f" />
+        <generalsInternal>
+          <generalization Id="ca734b74-e149-488c-a6d7-4f32dcf6e940" isSubstitutable="false">
+            <interfaceMoniker Id="929a5de6-a134-46b0-ac2d-ebdd3747ab02" LastKnownName="ISerialize" />
+            <elementDefinition Id="432251f2-12a4-4e45-ae9c-fc2149f2c2ee" />
+          </generalization>
+        </generalsInternal>
+      </Interface>
+    </logicalClassDesignerModelHasTypes>
+  </packagedElements>
+  <package Id="9d1933fc-2785-49fc-b74f-b6fc96c8629a" name="PAODesign">
+    <elementDefinition Id="f7c6b53f-1c2e-4762-ad13-eb71efcb9a9d" />
+    <profileInstances>
+      <packageHasProfileInstances Id="570e4f51-b64e-40c2-9871-117ed9726994">
+        <profileInstance Id="6a745cc3-e440-4fd1-a63e-9546197b886a" name="StandardProfileL2">
+          <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+        </profileInstance>
+        <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="f473263c-cf1b-41a3-a358-f9e1ed139ef3">
+        <profileInstance Id="98cf4375-b6aa-49be-aa17-332e05909699" name="StandardProfileL3">
+          <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+        </profileInstance>
+        <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+      </packageHasProfileInstances>
+    </profileInstances>
+  </package>
+</logicalClassDesignerModel>

@@ -23,6 +23,6 @@ namespace PAO.Remote
         /// <param name="inputParameters">输入参数</param>
         /// <returns>输出结果</returns>
         [OperationContract]
-        string CallService(string serviceName, string functionName, string header, string inputParameters);
+        byte[] CallService(byte[] serviceName, byte[] functionName, byte[] header, byte[] inputParameters);
     }
 }

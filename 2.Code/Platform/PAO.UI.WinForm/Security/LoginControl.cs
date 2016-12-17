@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using PAO.UI.WinForm.Controls;
 using PAO.Security;
+using PAO.Event;
 
 namespace PAO.UI.WinForm.Security
 {
@@ -51,8 +52,8 @@ namespace PAO.UI.WinForm.Security
                     {
                         UserID = userID,
                     };
-                } catch {
-                    UIPublic.ShowWarningDialog("登录失败");
+                } catch (Exception err){
+                    UIPublic.ShowExceptionDialog(err);
                     cancel = true;
                 }
             }
