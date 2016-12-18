@@ -7,7 +7,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 
-namespace PAO.UI.WinForm.MDI.DockViews
+namespace PAO.App.MDI.DockViews
 {
     /// <summary>
     /// 类：MenuController

@@ -8,8 +8,8 @@ using System.Linq;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using PAO.UI.WinForm.Controls;
-using PAO.UI.WinForm.MDI;
 using PAO.UI.WinForm;
+using PAO.UI.MVC;
 
 namespace PAO.Config.DockViews
 {

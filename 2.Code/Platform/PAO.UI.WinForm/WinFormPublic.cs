@@ -5,7 +5,6 @@ using DevExpress.XtraEditors.Repository;
 using DevExpress.XtraSplashScreen;
 using PAO.UI.MVC;
 using PAO.UI.WinForm.Forms;
-using PAO.UI.WinForm.MDI;
 using System;
 using System.Collections.Generic;
 using System.Drawing;

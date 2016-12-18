@@ -115,22 +115,6 @@
     <Compile Include="Editors\TimeEditor.cs" />
     <Compile Include="Editors\ToggleSwitchEditor.cs" />
     <Compile Include="IPropertyView.cs" />
-    <Compile Include="MDI\DockViews\TreeMenuController.cs" />
-    <Compile Include="MDI\DockViews\TreeMenuView.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="MDI\DockViews\TreeMenuView.Designer.cs">
-      <DependentUpon>TreeMenuView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MDI\IDockView.cs" />
-    <Compile Include="MDI\IPropertyPage.cs" />
-    <Compile Include="MDI\MDIMainForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MDI\MDIMainForm.Designer.cs">
-      <DependentUpon>MDIMainForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MDI\MDIApplication.cs" />
     <Compile Include="Property\ConfigPropertyDescriptor.cs" />
     <Compile Include="Property\PropertyConfigInfo.cs" />
     <Compile Include="Property\TypeConfigInfo.cs" />
@@ -198,12 +182,6 @@
     <EmbeddedResource Include="Forms\PaoWaitForm.resx">
       <DependentUpon>PaoWaitForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MDI\DockViews\TreeMenuView.resx">
-      <DependentUpon>TreeMenuView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MDI\MDIMainForm.resx">
-      <DependentUpon>MDIMainForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -214,49 +192,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\cut_32x32.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\cut_16x16.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\copy_32x32.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\cut_32x321.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\paste_32x32.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\delete_32x32.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\zoom2_32x32.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\zoom100_32x32.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\zoomin_32x32.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\zoomout_32x32.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\save_32x32.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\properties_16x16.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\apply_16x16.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\cancel_16x16.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\drilldown_16x16.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\zoom_16x16.png" />
@@ -265,64 +201,25 @@
     <None Include="Resources\zoom_32x32.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\colors_16x16.png" />
+    <None Include="Resources\zoom100_32x32.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\colors_32x32.png" />
+    <None Include="Resources\zoom2_32x32.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\windows_16x16.png" />
+    <None Include="Resources\zoomin_32x32.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\windows_32x32.png" />
+    <None Include="Resources\zoomout_32x32.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\ide_16x16.png" />
+    <None Include="Resources\cancel_16x16.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\ide_32x32.png" />
+    <None Include="Resources\drilldown_16x16.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\close_16x16.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\close_32x32.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\operatingsystem_16x16.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\operatingsystem_32x32.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\morefunctions_16x16.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\morefunctions_32x32.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\customer_16x16.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\customer_32x32.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\reset_16x16.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\reset_32x32.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\undo_16x16.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\undo_32x32.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\application_cascade.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\page_white_edit.png" />
+    <None Include="Resources\save_32x32.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

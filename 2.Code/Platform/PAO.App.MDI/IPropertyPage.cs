@@ -5,18 +5,18 @@ using System.Linq;
 using System.Text;
 using PAO.UI.MVC;
 
-namespace PAO.UI.WinForm.MDI
+namespace PAO.App.MDI
 {
     /// <summary>
-    /// 接口：IDockView
-    /// 停靠视图接口
-    /// 停靠视图接口
+    /// 接口：IPropertyPage
+    /// 属性页支持
+    /// 属性页支持
     /// 作者：PAO
     /// </summary>
     [Addon]
-    [Name("停靠视图接口")]
-    [Description("停靠视图接口")]
-    public interface IDockView : IView
+    [Name("属性页支持")]
+    [Description("属性页支持")]
+    public interface IPropertyPage : IView
     {
 
     }

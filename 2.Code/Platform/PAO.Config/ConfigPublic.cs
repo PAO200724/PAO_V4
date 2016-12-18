@@ -7,7 +7,6 @@ using PAO.Data;
 using PAO.UI;
 using PAO.UI.WinForm;
 using PAO.UI.WinForm.Editors;
-using PAO.UI.WinForm.MDI.DockViews;
 using System;
 using System.Collections;
 using System.Collections.Generic;

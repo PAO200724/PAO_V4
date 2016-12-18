@@ -3,8 +3,7 @@ using PAO.App;
 using PAO.Config;
 using PAO.Configuration.Properties;
 using PAO.Event;
-using PAO.UI.WinForm.MDI;
-using PAO.UI.WinForm.MDI.DockViews;
+using PAO.App.MDI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +20,7 @@ using PAO.Data.DataFetchers;
 using PAO.Time;
 using PAO.Config.DockViews;
 using PAO.UI.WinForm;
+using PAO.App.MDI.DockViews;
 
 namespace PAO.Configuration
 {

@@ -1,4 +1,4 @@
-﻿namespace PAO.UI.WinForm.MDI.DockViews
+﻿namespace PAO.App.MDI.DockViews
 {
     partial class TreeMenuView
     {

@@ -12,7 +12,7 @@ using DevExpress.XtraTreeList.Nodes;
 using PAO.UI.MVC;
 using System.Threading.Tasks;
 
-namespace PAO.UI.WinForm.MDI.DockViews
+namespace PAO.App.MDI.DockViews
 {
     /// <summary>
     /// 菜单视图

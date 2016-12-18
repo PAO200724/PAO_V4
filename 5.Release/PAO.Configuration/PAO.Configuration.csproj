@@ -81,6 +81,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\2.Code\Platform\PAO.App.MDI\PAO.App.MDI.csproj">
+      <Project>{74dd08b5-3116-4715-b823-3a2180cb73e2}</Project>
+      <Name>PAO.App.MDI</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\2.Code\Platform\PAO.Config\PAO.Config.csproj">
       <Project>{a0f88184-cb49-4c7d-a56b-ae323fdb67ba}</Project>
       <Name>PAO.Config</Name>

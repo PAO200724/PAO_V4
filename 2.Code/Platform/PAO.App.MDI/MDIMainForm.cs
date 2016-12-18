@@ -20,8 +20,10 @@ using DevExpress.XtraSplashScreen;
 using PAO.Trans;
 using PAO.IO;
 using PAO.Event;
+using PAO.UI.WinForm;
+using PAO.UI;
 
-namespace PAO.UI.WinForm.MDI
+namespace PAO.App.MDI
 {
     /// <summary>
     /// MDI主窗体

@@ -16,8 +16,11 @@ using PAO.Time;
 using DevExpress.XtraSplashScreen;
 using PAO.Event;
 using PAO.UI.WinForm.Properties;
+using PAO.App.MDI.Properties;
+using PAO.UI;
+using PAO.UI.WinForm;
 
-namespace PAO.UI.WinForm.MDI
+namespace PAO.App.MDI
 {
     /// <summary>
     /// 类：MDIApplication

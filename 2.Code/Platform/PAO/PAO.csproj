@@ -155,6 +155,7 @@
     <Compile Include="Trans\TransactionPublic.cs" />
     <Compile Include="Trans\TransStatus_Running.cs" />
     <Compile Include="UI\MVC\BaseController.cs" />
+    <Compile Include="UI\MVC\IDockView.cs" />
     <Compile Include="UI\MVC\UIActionDispatcher.cs" />
     <Compile Include="UI\MVC\FolderItem.cs" />
     <Compile Include="UI\MVC\IMenuContainer.cs" />

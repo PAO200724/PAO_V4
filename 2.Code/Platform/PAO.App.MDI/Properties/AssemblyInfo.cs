@@ -5,8 +5,8 @@ using System.Runtime.InteropServices;
 // 有关程序集的一般信息由以下
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("PAO服务器")]
-[assembly: AssemblyDescription("PAOD的服务器")]
+[assembly: AssemblyTitle("PAO MDI开发平台")]
+[assembly: AssemblyDescription("PAO的多文档界面开发平台")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("PAO")]
 [assembly: AssemblyProduct("Programming of Aspect Oriented")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // 如果此项目向 COM 公开，则下列 GUID 用于类型库的 ID
-[assembly: Guid("b65e54dc-b437-446a-82eb-0a06780a6e08")]
+[assembly: Guid("74dd08b5-3116-4715-b823-3a2180cb73e2")]
 
 // 程序集的版本信息由下列四个值组成: 
 //
