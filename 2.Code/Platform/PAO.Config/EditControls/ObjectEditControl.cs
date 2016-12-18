@@ -13,7 +13,7 @@ using PAO.IO;
 using PAO.WinForm.Editors;
 using PAO.WinForm.Property;
 
-namespace PAO.Config.Controls.EditControls
+namespace PAO.Config.EditControls
 {
     /// <summary>
     /// 插件编辑控件

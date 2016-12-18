@@ -1,6 +1,6 @@
 ﻿using PAO.Data;
 
-namespace PAO.Config.Controls.EditControls
+namespace PAO.Config.EditControls
 {
     partial class DataCommandInfoEditControl
     {

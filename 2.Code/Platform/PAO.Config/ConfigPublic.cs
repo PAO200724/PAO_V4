@@ -1,7 +1,7 @@
 ﻿using DevExpress.XtraEditors.Repository;
 using DevExpress.XtraTreeList.Nodes;
 using PAO.Config.Controls;
-using PAO.Config.Controls.EditControls;
+using PAO.Config.EditControls;
 using PAO.Config.Editors;
 using PAO.Data;
 using PAO.UI;

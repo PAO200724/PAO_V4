@@ -1,6 +1,6 @@
 ﻿using PAO;
 using PAO.App;
-using PAO.Config.Controls.EditControls;
+using PAO.Config.EditControls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

@@ -15,7 +15,7 @@ using PAO.IO;
 using System.IO;
 using PAO.WinForm;
 
-namespace PAO.Config.Controls.EditControls
+namespace PAO.Config.EditControls
 {
     /// <summary>
     /// 列表编辑控件

@@ -25,7 +25,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            this.ObjectEditControl = new PAO.Config.Controls.EditControls.ObjectEditControl();
+            this.ObjectEditControl = new PAO.Config.EditControls.ObjectEditControl();
             this.SuspendLayout();
             // 
             // ObjectEditControl
@@ -56,6 +56,6 @@
 
         #endregion
 
-        private Controls.EditControls.ObjectEditControl ObjectEditControl;
+        private EditControls.ObjectEditControl ObjectEditControl;
     }
 }

@@ -12,8 +12,9 @@ using PAO.Config.Editors;
 using DevExpress.XtraEditors.Repository;
 using PAO.UI;
 using PAO.WinForm;
+using PAO.Config.Controls;
 
-namespace PAO.Config.Controls.EditControls
+namespace PAO.Config.EditControls
 {
     /// <summary>
     /// 字典编辑控件

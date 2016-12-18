@@ -1,4 +1,4 @@
-﻿namespace PAO.Config.Controls.EditControls
+﻿namespace PAO.Config.EditControls
 {
     partial class ObjectTreeEditControl
     {
@@ -60,12 +60,12 @@
             this.SplitContainerControlProperty = new DevExpress.XtraEditors.SplitContainerControl();
             this.TabControlObject = new DevExpress.XtraTab.XtraTabControl();
             this.TabPageObject = new DevExpress.XtraTab.XtraTabPage();
-            this.ObjectEditControl = new PAO.Config.Controls.EditControls.ObjectEditControl();
+            this.ObjectEditControl = new PAO.Config.EditControls.ObjectEditControl();
             this.TabPageList = new DevExpress.XtraTab.XtraTabPage();
-            this.ListEditControl = new PAO.Config.Controls.EditControls.ListEditControl();
+            this.ListEditControl = new PAO.Config.EditControls.ListEditControl();
             this.TabPageDictionary = new DevExpress.XtraTab.XtraTabPage();
-            this.DictionaryEditControl = new PAO.Config.Controls.EditControls.DictionaryEditControl();
-            this.AddonExtentionEditControl = new PAO.Config.Controls.EditControls.AddonExtentionEditControl();
+            this.DictionaryEditControl = new PAO.Config.EditControls.DictionaryEditControl();
+            this.AddonExtentionEditControl = new PAO.Config.EditControls.AddonExtentionEditControl();
             ((System.ComponentModel.ISupportInitialize)(this.ImageCollectionTree)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BarManagerObjectTree)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainerControlMain)).BeginInit();

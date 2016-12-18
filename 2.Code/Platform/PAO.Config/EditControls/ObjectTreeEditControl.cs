@@ -19,8 +19,9 @@ using PAO.IO;
 using PAO.WinForm;
 using static PAO.DataSetExtendProperty;
 using PAO.MVC;
+using PAO.Config.Controls;
 
-namespace PAO.Config.Controls.EditControls
+namespace PAO.Config.EditControls
 {
     /// <summary>
     /// 对象树控件

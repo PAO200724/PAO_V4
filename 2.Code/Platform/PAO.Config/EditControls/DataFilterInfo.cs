@@ -6,7 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 
-namespace PAO.Config.Controls.EditControls
+namespace PAO.Config.EditControls
 {
     /// <summary>
     /// 数据过滤器信息

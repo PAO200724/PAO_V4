@@ -7,7 +7,7 @@ using System.Text;
 using System.Linq;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
-using PAO.Config.Controls.EditControls;
+using PAO.Config.EditControls;
 using PAO.Data.Filters;
 using PAO.Data;
 using PAO.Config.Editors;
@@ -15,7 +15,7 @@ using DevExpress.XtraTreeList.Nodes;
 using PAO.WinForm;
 using PAO.WinForm.Editors;
 
-namespace PAO.Config.Controls.EditControls
+namespace PAO.Config.EditControls
 {
     /// <summary>
     /// 数据过滤器编辑器

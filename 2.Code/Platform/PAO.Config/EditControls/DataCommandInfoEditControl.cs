@@ -7,11 +7,11 @@ using System.Text;
 using System.Linq;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
-using PAO.Config.Controls.EditControls;
+using PAO.Config.EditControls;
 using PAO.Data;
 using PAO.WinForm;
 
-namespace PAO.Config.Controls.EditControls
+namespace PAO.Config.EditControls
 {
     /// <summary>
     /// 数据命令信息编辑器

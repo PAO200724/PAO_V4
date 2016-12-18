@@ -10,7 +10,7 @@ using PAO.Config.Controls;
 using PAO.UI;
 using PAO.IO;
 using DevExpress.XtraEditors;
-using PAO.Config.Controls.EditControls;
+using PAO.Config.EditControls;
 using System.Collections;
 using PAO.WinForm;
 using PAO.WinForm.Editors;

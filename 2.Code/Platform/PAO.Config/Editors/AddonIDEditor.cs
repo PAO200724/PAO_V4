@@ -8,7 +8,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using DevExpress.XtraEditors.Repository;
 using PAO.WinForm;
-using PAO.Config.Controls.EditControls;
+using PAO.Config.EditControls;
 using PAO.IO;
 using DevExpress.XtraEditors;
 using PAO.UI;

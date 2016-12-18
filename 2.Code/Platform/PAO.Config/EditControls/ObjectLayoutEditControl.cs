@@ -10,7 +10,7 @@ using DevExpress.XtraEditors;
 using PAO.WinForm;
 using DevExpress.XtraDataLayout;
 
-namespace PAO.Config.Controls.EditControls
+namespace PAO.Config.EditControls
 {
     /// <summary>
     /// 对象布局式编辑控件

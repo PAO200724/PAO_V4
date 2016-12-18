@@ -1,4 +1,4 @@
-﻿namespace PAO.Config.Controls.EditControls
+﻿namespace PAO.Config.EditControls
 {
     partial class DataFilterEditControl
     {
@@ -201,7 +201,7 @@
             // 
             // BindingSourceDataFilter
             // 
-            this.BindingSourceDataFilter.DataSource = typeof(PAO.Config.Controls.EditControls.DataFilterInfo);
+            this.BindingSourceDataFilter.DataSource = typeof(PAO.Config.EditControls.DataFilterInfo);
             // 
             // ImageCollectionDataFilter
             // 

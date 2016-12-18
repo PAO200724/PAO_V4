@@ -29,7 +29,7 @@
             this.DockManager = new DevExpress.XtraBars.Docking.DockManager(this.components);
             this.DockPanelProperties = new DevExpress.XtraBars.Docking.DockPanel();
             this.dockPanel1_Container = new DevExpress.XtraBars.Docking.ControlContainer();
-            this.ObjectEditControl = new PAO.Config.Controls.EditControls.ObjectEditControl();
+            this.ObjectEditControl = new PAO.Config.EditControls.ObjectEditControl();
             this.LayoutControl = new DevExpress.XtraLayout.LayoutControl();
             this.LayoutControlGroupRoot = new DevExpress.XtraLayout.LayoutControlGroup();
             ((System.ComponentModel.ISupportInitialize)(this.DockManager)).BeginInit();
@@ -130,7 +130,7 @@
         private DevExpress.XtraBars.Docking.DockManager DockManager;
         private DevExpress.XtraBars.Docking.DockPanel DockPanelProperties;
         private DevExpress.XtraBars.Docking.ControlContainer dockPanel1_Container;
-        private Config.Controls.EditControls.ObjectEditControl ObjectEditControl;
+        private Config.EditControls.ObjectEditControl ObjectEditControl;
         private DevExpress.XtraLayout.LayoutControl LayoutControl;
         private DevExpress.XtraLayout.LayoutControlGroup LayoutControlGroupRoot;
     }

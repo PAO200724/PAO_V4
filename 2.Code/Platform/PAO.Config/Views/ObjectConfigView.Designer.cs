@@ -25,7 +25,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            this.ObjectTreeEditControl = new PAO.Config.Controls.EditControls.ObjectTreeEditControl();
+            this.ObjectTreeEditControl = new PAO.Config.EditControls.ObjectTreeEditControl();
             this.SuspendLayout();
             // 
             // ObjectTreeEditControl
@@ -52,6 +52,6 @@
 
         #endregion
 
-        private Controls.EditControls.ObjectTreeEditControl ObjectTreeEditControl;
+        private EditControls.ObjectTreeEditControl ObjectTreeEditControl;
     }
 }

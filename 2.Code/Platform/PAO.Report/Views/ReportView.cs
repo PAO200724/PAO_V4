@@ -21,7 +21,7 @@ using PAO.WinForm.Editors;
 using DevExpress.XtraEditors.Repository;
 using PAO.Report.Controls;
 using DevExpress.XtraBars.Navigation;
-using PAO.Config.Controls.EditControls;
+using PAO.Config.EditControls;
 using PAO.IO;
 using PAO.Config;
 using PAO.Config.DockViews;

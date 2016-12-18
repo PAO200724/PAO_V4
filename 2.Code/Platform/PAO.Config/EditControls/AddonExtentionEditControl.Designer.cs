@@ -1,4 +1,4 @@
-﻿namespace PAO.Config.Controls.EditControls
+﻿namespace PAO.Config.EditControls
 {
     partial class AddonExtentionEditControl
     {
@@ -40,7 +40,7 @@
             // 
             // BindingSourceAddonPropertyInfo
             // 
-            this.BindingSourceAddonPropertyInfo.DataSource = typeof(PAO.Config.Controls.EditControls.AddonPropertyInfo);
+            this.BindingSourceAddonPropertyInfo.DataSource = typeof(PAO.Config.EditControls.AddonPropertyInfo);
             // 
             // GridControlAddonExtention
             // 

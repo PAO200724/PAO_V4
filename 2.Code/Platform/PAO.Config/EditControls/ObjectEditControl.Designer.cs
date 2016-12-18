@@ -1,4 +1,4 @@
-﻿namespace PAO.Config.Controls.EditControls
+﻿namespace PAO.Config.EditControls
 {
     partial class ObjectEditControl
     {

@@ -11,7 +11,7 @@ using static PAO.DataSetExtendProperty;
 using PAO.IO;
 using PAO.WinForm;
 
-namespace PAO.Config.Controls.EditControls
+namespace PAO.Config.EditControls
 {
     /// <summary>
     /// 插件扩展编辑器
