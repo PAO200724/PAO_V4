@@ -105,8 +105,8 @@ namespace PAO.Config.EditControls
         /// 将数据从画面读取
         /// </summary>
         public void GetDataFromControl() {
-            if (OriginAddon != null) {
-                this.GridViewAddonExtention.CloseEditor();
+            this.GridViewAddonExtention.CloseEditor();
+            if (OriginAddon != null && _ExtendPropertyDataTable != null) {
                 var extendPropertyRows = _ExtendPropertyDataTable.AsEnumerable<ExtendPropertyRow>().Where(p => p.AddonID == OriginAddon.ID).ToList();
                 foreach (var extendPropertyRow in extendPropertyRows) {
                     extendPropertyRow.Delete();

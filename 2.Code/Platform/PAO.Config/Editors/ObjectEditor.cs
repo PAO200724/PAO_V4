@@ -71,16 +71,11 @@ namespace PAO.Config.Editors
                 }
                 else if (editValue is IList) {
                     var listControl = new ListEditControl();
-                    listControl.ListType = objectType;
                     editControl = listControl;
                 }
                 else if (editValue is IDictionary) {
                     var dictionaryControl = new DictionaryEditControl();
-                    dictionaryControl.ListType = objectType;
                     editControl = dictionaryControl;
-                }
-                else if (editValue is PaoObject) {
-                    editControl = new ObjectTreeEditControl();
                 }
                 else
                     editControl = new ObjectEditControl();

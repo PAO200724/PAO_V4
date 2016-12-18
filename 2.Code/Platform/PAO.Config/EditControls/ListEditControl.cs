@@ -31,7 +31,11 @@ namespace PAO.Config.EditControls
         /// <summary>
         /// 元素类型
         /// </summary>
-        public Type ListType { get; set; }
+        public Type ListType {
+            get {
+                return this.SelectedObject.GetType();
+            }
+        }
 
         private List<ListElement> AddonList;
         private IList SourceList;
@@ -112,7 +116,12 @@ namespace PAO.Config.EditControls
                 if(newValue == null) {
                     DeleteElement(position);
                 } else {
-                    SourceList[position] = newValue;
+                    if(position >= SourceList.Count) {
+                        SourceList.Add(newValue);
+                    }
+                    else {
+                        SourceList[position] = newValue;
+                    }
                     SetControlStatus();
                     ModifyData();
                 }

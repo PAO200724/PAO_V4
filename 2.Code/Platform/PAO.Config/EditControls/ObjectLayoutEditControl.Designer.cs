@@ -25,8 +25,9 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            this.components = new System.ComponentModel.Container();
             this.DataLayoutControl = new DevExpress.XtraDataLayout.DataLayoutControl();
-            this.BindingSource = new System.Windows.Forms.BindingSource();
+            this.BindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.LayoutControlGroupRoot = new DevExpress.XtraLayout.LayoutControlGroup();
             ((System.ComponentModel.ISupportInitialize)(this.DataLayoutControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BindingSource)).BeginInit();
@@ -44,6 +45,10 @@
             this.DataLayoutControl.Size = new System.Drawing.Size(517, 605);
             this.DataLayoutControl.TabIndex = 0;
             this.DataLayoutControl.Text = "布局控件";
+            // 
+            // BindingSource
+            // 
+            this.BindingSource.DataSource = typeof(PAO.Config.EditControls.DataFilterInfo);
             // 
             // LayoutControlGroupRoot
             // 

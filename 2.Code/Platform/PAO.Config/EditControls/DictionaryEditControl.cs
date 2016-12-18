@@ -31,7 +31,11 @@ namespace PAO.Config.EditControls
         /// <summary>
         /// 元素类型
         /// </summary>
-        public Type ListType { get; set; }
+        public Type ListType {
+            get {
+                return this.SelectedObject.GetType();
+            }
+        }
 
         private List<ListElement> AddonList;
         private IDictionary SourceList;
@@ -88,9 +92,15 @@ namespace PAO.Config.EditControls
         }
 
         private void GridViewList_RowUpdated(object sender, DevExpress.XtraGrid.Views.Base.RowObjectEventArgs e) {
+            var position = this.BindingSourceList.Position;
             if (this.BindingSourceList.Position >= 0 && SourceList.IsNotNullOrEmpty()) {
                 var listElement = this.BindingSourceList.Current as ListElement;
-                SourceList[this.BindingSourceList.Position] = listElement.Element;
+                if (position >= SourceList.Count) {
+                    SourceList.Add(listElement.Index, listElement.Element);
+                }
+                else {
+                    SourceList[position] = listElement.Element;
+                }
                 SetControlStatus();
                 ModifyData();
             }

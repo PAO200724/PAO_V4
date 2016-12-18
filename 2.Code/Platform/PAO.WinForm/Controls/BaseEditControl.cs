@@ -98,7 +98,9 @@ namespace PAO.WinForm
         /// </summary>
         public virtual void CreateNew() {
             Newable.CheckTrue("只有设置了ObjectCreateMethod属性的编辑器控件才能新建对象");
-            var newObject = ObjectCreateMethod();
+            if(UIPublic.ShowYesNoDialog("您确定要删除当前对象并创建新的对象吗？") == DialogReturn.Yes) {
+                this.SelectedObject = ObjectCreateMethod();
+            }
         }
     }
 }

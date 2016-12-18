@@ -482,7 +482,6 @@
             // ListEditControl
             // 
             this.ListEditControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ListEditControl.ListType = null;
             this.ListEditControl.Location = new System.Drawing.Point(0, 0);
             this.ListEditControl.Name = "ListEditControl";
             this.ListEditControl.ShowApplyButton = true;
@@ -501,7 +500,6 @@
             // DictionaryEditControl
             // 
             this.DictionaryEditControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DictionaryEditControl.ListType = null;
             this.DictionaryEditControl.Location = new System.Drawing.Point(0, 0);
             this.DictionaryEditControl.Name = "DictionaryEditControl";
             this.DictionaryEditControl.ShowApplyButton = true;

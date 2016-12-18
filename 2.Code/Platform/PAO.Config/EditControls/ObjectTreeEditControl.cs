@@ -426,12 +426,10 @@ namespace PAO.Config.EditControls
             switch (nodeType) {
                 case ObjectTreeNodeType.ListProperty:
                     this.ListEditControl.SelectedObject = propertyValue;
-                    this.ListEditControl.ListType = propDesc.PropertyType;
                     this.TabControlObject.SelectedTabPage = TabPageList;
                     break;
                 case ObjectTreeNodeType.DictionaryProperty:
                     this.DictionaryEditControl.SelectedObject = propertyValue;
-                    this.DictionaryEditControl.ListType = propDesc.PropertyType;
                     this.TabControlObject.SelectedTabPage = TabPageDictionary;
                     break;
                 case ObjectTreeNodeType.ObjectProperty:
