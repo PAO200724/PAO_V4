@@ -51,6 +51,7 @@ namespace PAO.Config.EditControls
         }
 
         protected override void SetControlStatus() {
+            this.ButtonExport.Enabled = base.EditValue.IsNotNull();
             base.SetControlStatus();
         }
 
@@ -95,11 +96,7 @@ namespace PAO.Config.EditControls
         private void ButtonExport_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             ExportSelectedObject();
         }
-
-        private void ButtonImport_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            ImportSelectedObject();
-        }
-
+        
         private void ObjectEditControl_Leave(object sender, EventArgs e) {
             this.PropertyGridControl.CloseEditor();
         }

@@ -75,13 +75,14 @@ namespace PAO.Config.EditControls
             set {
                 this.DataSetList.Element.RowChanged -= Element_RowChanged;
                 this.DataSetList.Element.RowDeleted -= Element_RowChanged;
-                base.EditValue = value;
                 DataSetList.Element.Clear();
-                if (value == null) {
+                if (value.IsNull()) {
+                    base.EditValue = null;
                     this.GridControlList.DataSource = null;
                     this.StaticItemObject.Caption = "[未选择任何对象]";
                 }
                 else if (value is IList) {
+                    base.EditValue = value;
                     this.StaticItemObject.Caption = value.GetType().GetTypeString();
                     this.GridControlList.DataSource = this.BindingSourceList;
                     var list = value as IList;
@@ -105,7 +106,8 @@ namespace PAO.Config.EditControls
             this.ButtonMoveUp.Enabled = BindingSourceList.CanMoveUp(position);
             this.ButtonMoveDown.Enabled = BindingSourceList.CanMoveDown(position);
             this.ButtonDelete.Enabled = (position >= 0 && position < BindingSourceList.Count);
-            this.ButtonExport.Enabled = base.EditValue.IsNotNullOrEmpty();
+            this.ButtonAdd.Enabled = base.EditValue.IsNotNull();
+            this.ButtonExport.Enabled = base.EditValue.IsNotNull();
             base.SetControlStatus();
         }
 
@@ -193,10 +195,6 @@ namespace PAO.Config.EditControls
             ExportSelectedObject();
         }
         
-        private void ButtonImport_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            ImportSelectedObject();
-        }
-
         private void ListEditControl_Leave(object sender, EventArgs e) {
             this.GridViewList.CloseEditor();
         }

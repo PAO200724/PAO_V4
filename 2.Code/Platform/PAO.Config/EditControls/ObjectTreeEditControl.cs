@@ -640,11 +640,7 @@ namespace PAO.Config.EditControls
         private void ButtonExport_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             ExportSelectedObject();
         }
-
-        private void ButtonImport_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            ImportSelectedObject();
-        }
-
+        
         private void ButtonProperty_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             UIPublic.ShowWaitingForm();
             var focusedNode = this.TreeListObject.FocusedNode;

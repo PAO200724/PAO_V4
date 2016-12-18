@@ -48,16 +48,6 @@ namespace PAO.WinForm
         }
 
         /// <summary>
-        /// 导入对象
-        /// </summary>
-        public void ImportSelectedObject() {
-            IOPublic.ImportObject((obj)=> {
-                this.EditValue = obj;
-                ModifyData();
-            });
-        }
-
-        /// <summary>
         /// 可编辑
         /// </summary>
         public virtual bool Editable {
@@ -67,7 +57,6 @@ namespace PAO.WinForm
         }
         
         protected override void SetControlStatus() {
-            this.Enabled = Editable;
         }
     }
 }

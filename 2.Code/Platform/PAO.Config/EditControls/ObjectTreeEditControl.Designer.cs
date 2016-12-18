@@ -25,12 +25,12 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ObjectTreeEditControl));
-            this.ImageCollectionTree = new DevExpress.Utils.ImageCollection();
-            this.BarManagerObjectTree = new DevExpress.XtraBars.BarManager();
+            this.ImageCollectionTree = new DevExpress.Utils.ImageCollection(this.components);
+            this.BarManagerObjectTree = new DevExpress.XtraBars.BarManager(this.components);
             this.BarMainTools = new DevExpress.XtraBars.Bar();
             this.ButtonExport = new DevExpress.XtraBars.BarButtonItem();
-            this.ButtonImport = new DevExpress.XtraBars.BarButtonItem();
             this.MenuItemExtend = new DevExpress.XtraBars.BarSubItem();
             this.ButtonImportExtend = new DevExpress.XtraBars.BarButtonItem();
             this.ButtonExportExtend = new DevExpress.XtraBars.BarButtonItem();
@@ -109,7 +109,6 @@
             this.ButtonCreate,
             this.ButtonDelete,
             this.ButtonModifyKey,
-            this.ButtonImport,
             this.ButtonProperty,
             this.ButtonImportExtend,
             this.ButtonExportExtend,
@@ -124,7 +123,6 @@
             this.BarMainTools.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
             this.BarMainTools.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.ButtonExport, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.ButtonImport, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(this.MenuItemExtend, true),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.ButtonCreate, "", true, true, true, 0, null, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.ButtonAdd, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
@@ -144,15 +142,6 @@
             this.ButtonExport.LargeGlyph = global::PAO.Config.Properties.Resources.saveto_32x32;
             this.ButtonExport.Name = "ButtonExport";
             this.ButtonExport.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonExport_ItemClick);
-            // 
-            // ButtonImport
-            // 
-            this.ButtonImport.Caption = "导入(&I)";
-            this.ButtonImport.Glyph = global::PAO.Config.Properties.Resources.loadfrom_16x16;
-            this.ButtonImport.Id = 9;
-            this.ButtonImport.LargeGlyph = global::PAO.Config.Properties.Resources.loadfrom_32x32;
-            this.ButtonImport.Name = "ButtonImport";
-            this.ButtonImport.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonImport_ItemClick);
             // 
             // MenuItemExtend
             // 
@@ -463,7 +452,6 @@
             // ObjectEditControl
             // 
             this.ObjectEditControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ObjectEditControl.Enabled = false;
             this.ObjectEditControl.Location = new System.Drawing.Point(0, 0);
             this.ObjectEditControl.Name = "ObjectEditControl";
             this.ObjectEditControl.ShowApplyButton = true;
@@ -584,7 +572,6 @@
         private DevExpress.XtraTab.XtraTabPage TabPageDictionary;
         private ListEditControl ListEditControl;
         private DictionaryEditControl DictionaryEditControl;
-        private DevExpress.XtraBars.BarButtonItem ButtonImport;
         private DevExpress.XtraBars.BarButtonItem ButtonProperty;
         private DevExpress.XtraEditors.SplitContainerControl SplitContainerControlProperty;
         private ObjectEditControl ObjectEditControl;

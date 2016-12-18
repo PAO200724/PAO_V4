@@ -81,13 +81,14 @@ namespace PAO.Config.EditControls
             set {
                 this.DataSetList.Element.RowChanged -= Element_RowChanged;
                 this.DataSetList.Element.RowDeleted -= Element_RowChanged;
-                base.EditValue = value;
                 DataSetList.Element.Clear();
-                if (value == null) {
+                if (value.IsNull()) {
+                    base.EditValue = null;
                     this.GridControlList.DataSource = null;
                     this.StaticItemObject.Caption = "[未选择任何对象]";
                 }
                 else if (value is IDictionary) {
+                    base.EditValue = value;
                     this.StaticItemObject.Caption = value.GetType().GetTypeString();
                     this.GridControlList.DataSource = this.BindingSourceList;
                     var dict = value as IDictionary;
@@ -110,6 +111,8 @@ namespace PAO.Config.EditControls
         protected override void SetControlStatus() {
             var position = this.BindingSourceList.Position;
             this.ButtonDelete.Enabled = (position >= 0 && position < BindingSourceList.Count);
+            this.ButtonAdd.Enabled = base.EditValue.IsNotNull();
+            this.ButtonExport.Enabled = base.EditValue.IsNotNull();
             base.SetControlStatus();
         }
         
@@ -146,11 +149,7 @@ namespace PAO.Config.EditControls
         private void ButtonExport_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             ExportSelectedObject();
         }
-
-        private void ButtonImport_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            ImportSelectedObject();
-        }
-
+        
         private void DictionaryEditControl_Leave(object sender, EventArgs e) {
             this.GridViewList.CloseEditor();
         }

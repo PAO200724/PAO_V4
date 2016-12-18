@@ -11,6 +11,7 @@ using PAO.WinForm;
 using DevExpress.XtraDataLayout;
 using DevExpress.XtraLayout;
 using PAO.WinForm.Editors;
+using PAO.UI;
 
 namespace PAO.Config.EditControls
 {
@@ -113,6 +114,8 @@ namespace PAO.Config.EditControls
 
                     layoutControlItem = layoutGroupItem.AddItem();
                     layoutControlItem.TextLocation = DevExpress.Utils.Locations.Top;
+
+                    editControl.Enter += EditControl_Enter;
                 }
                 else {
                     layoutControlItem = groupItem.AddItem();
@@ -132,5 +135,24 @@ namespace PAO.Config.EditControls
                 }
             }
         }
+
+        private void EditControl_Enter(object sender, EventArgs e) {
+            var editControl = sender as BaseEditControl;
+            if (EditValue == null || editControl == null) {
+                return;
+            }
+
+            if (editControl.EditValue == null && UIPublic.ShowYesNoDialog("当前属性为空，您是否要创建一个新对象？") == DialogReturn.Yes) {
+                var propDesc = editControl.Tag as PropertyDescriptor;
+                object newObject;
+                if (ConfigPublic.CreateNewAddonValue(propDesc.PropertyType
+                    , false
+                    , out newObject)) {
+                    propDesc.SetValue(EditValue, newObject);
+                    editControl.EditValue = newObject;
+                }
+            }
+        }
+       
     }
 }
