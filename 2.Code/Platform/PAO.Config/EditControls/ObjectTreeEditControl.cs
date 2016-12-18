@@ -26,7 +26,7 @@ namespace PAO.Config.EditControls
     /// <summary>
     /// 对象树控件
     /// </summary>
-    public partial class ObjectTreeEditControl : TypeEditControl
+    public partial class ObjectTreeEditControl : AddonTypeEditControl
     {
 
         public ObjectTreeEditControl() {
@@ -50,13 +50,13 @@ namespace PAO.Config.EditControls
         /// </summary>
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public override object SelectedObject {
+        public override object EditValue {
             get {
-                return base.SelectedObject;
+                return base.EditValue;
             }
             set {
-                if (base.SelectedObject != value) {
-                    base.SelectedObject = value;
+                if (base.EditValue != value) {
+                    base.EditValue = value;
                     this.TreeListObject.Nodes.Clear();
                     CreateTreeNode(this.TreeListObject.Nodes, value);
                 }
@@ -87,7 +87,7 @@ namespace PAO.Config.EditControls
                     SplitContainerControlProperty.Panel2.Visible = true;
                     ExtendPropertyDataTable = new ExtendPropertyDataTable();
                     AddonPublic.LoadAddonExtendPropertiesFromStorage(ExtendPropertyDataTable, ExtendPropertyStorage);
-                    this.AddonExtentionEditControl.SelectedObject = ExtendPropertyDataTable;
+                    this.AddonExtentionEditControl.EditValue = ExtendPropertyDataTable;
                 }
                 else {
                     SplitContainerControlProperty.Panel2.Visible = false;
@@ -352,7 +352,7 @@ namespace PAO.Config.EditControls
                     && (propDesc.PropertyType.IsAddonDictionaryType() || propDesc.PropertyType.IsAddonListType());
                 this.ButtonDelete.Enabled = (nodeType != ObjectTreeNodeType.Object) && propertyValue.IsNotNull() && obj != null;
                 this.ButtonModifyKey.Enabled = (obj != null && nodeType == ObjectTreeNodeType.DictionaryElement);
-                this.ObjectEditControl.SelectedObject = propertyValue;
+                this.ObjectEditControl.EditValue = propertyValue;
                 this.ButtonProperty.Enabled = (propertyValue != null && ConfigPublic.GetEditControlType(propertyValue.GetType()) != null);
                 this.ButtonExportExtend.Enabled = ExtendPropertyDataTable != null;
             }
@@ -363,7 +363,7 @@ namespace PAO.Config.EditControls
                 this.ButtonModifyKey.Enabled = false;
                 this.ButtonProperty.Enabled = false;
             }
-            this.ButtonExport.Enabled = (SelectedObject != null);
+            this.ButtonExport.Enabled = (EditValue != null);
             base.SetControlStatus();
         }
 
@@ -425,11 +425,11 @@ namespace PAO.Config.EditControls
             this.AddonExtentionEditControl.Enabled = false;
             switch (nodeType) {
                 case ObjectTreeNodeType.ListProperty:
-                    this.ListEditControl.SelectedObject = propertyValue;
+                    this.ListEditControl.EditValue = propertyValue;
                     this.TabControlObject.SelectedTabPage = TabPageList;
                     break;
                 case ObjectTreeNodeType.DictionaryProperty:
-                    this.DictionaryEditControl.SelectedObject = propertyValue;
+                    this.DictionaryEditControl.EditValue = propertyValue;
                     this.TabControlObject.SelectedTabPage = TabPageDictionary;
                     break;
                 case ObjectTreeNodeType.ObjectProperty:
@@ -440,7 +440,7 @@ namespace PAO.Config.EditControls
                         this.AddonExtentionEditControl.Enabled = true;
                         this.AddonExtentionEditControl.OriginAddon = propertyValue as PaoObject;
                     }
-                    this.ObjectEditControl.SelectedObject = propertyValue;
+                    this.ObjectEditControl.EditValue = propertyValue;
                     this.TabControlObject.SelectedTabPage = TabPageObject;
                     break;
                 default:
@@ -459,7 +459,7 @@ namespace PAO.Config.EditControls
                 var propDesc = (PropertyDescriptor)focusedNode.GetValue(ColumnPropertyDescriptor);
                 var nodeType = (ObjectTreeNodeType)focusedNode.GetValue(ColumnPropertyElementType);
                 var obj = focusedNode.GetValue(ColumnObject);
-                var newObject = editControl.SelectedObject;
+                var newObject = editControl.EditValue;
 
                 switch (nodeType) {
                     case ObjectTreeNodeType.ListElement:
@@ -634,7 +634,7 @@ namespace PAO.Config.EditControls
         }
 
         private void ObjectTreeEditControl_Enter(object sender, EventArgs e) {
-            ConfigPublic.RootEditingObject = this.SelectedObject;
+            ConfigPublic.RootEditingObject = this.EditValue;
         }
 
         private void ButtonExport_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
@@ -651,10 +651,10 @@ namespace PAO.Config.EditControls
             var propertyValue = focusedNode.GetValue(ColumnPropertyValue);
             Type editControlType = ConfigPublic.GetEditControlType(propertyValue.GetType());
             var editControl = editControlType.CreateInstance() as BaseEditControl;
-            editControl.SelectedObject = propertyValue;
+            editControl.EditValue = propertyValue;
             UIPublic.CloseWaitingForm();
             if (WinFormPublic.ShowDialog(editControl) == DialogReturn.OK) {
-                SetPropertNewValue(focusedNode, editControl.SelectedObject);
+                SetPropertNewValue(focusedNode, editControl.EditValue);
             }
             FocuseNode(focusedNode);
             SetControlStatus();
@@ -669,7 +669,7 @@ namespace PAO.Config.EditControls
             IOPublic.ImportObject((obj) =>
             {
                 ExtendPropertyDataTable = obj as ExtendPropertyDataTable;
-                this.AddonExtentionEditControl.SelectedObject = ExtendPropertyDataTable;
+                this.AddonExtentionEditControl.EditValue = ExtendPropertyDataTable;
                 SetControlStatus();
             });
         }

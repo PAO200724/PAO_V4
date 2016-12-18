@@ -20,11 +20,11 @@ namespace PAO.Config.EditControls
     /// <summary>
     /// 字典编辑控件
     /// </summary>
-    public partial class DictionaryEditControl : TypeEditControl
+    public partial class DictionaryEditControl : AddonTypeEditControl
     {
         public DictionaryEditControl() {
             InitializeComponent();
-            this.ColumnObject.ColumnEdit = new ObjectEditor().CreateEditor();
+            this.ColumnObject.ColumnEdit = new ObjectEditor().CreateRepositoryItem();
             this.ColumnIndex.ColumnEdit = new RepositoryItemTextEdit();
         }
 
@@ -33,7 +33,7 @@ namespace PAO.Config.EditControls
         /// </summary>
         public Type ListType {
             get {
-                return this.SelectedObject.GetType();
+                return this.EditValue.GetType();
             }
         }
 
@@ -41,7 +41,7 @@ namespace PAO.Config.EditControls
         private IDictionary SourceList;
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public override object SelectedObject {
+        public override object EditValue {
             get {
                 this.GridViewList.CloseEditor();
 

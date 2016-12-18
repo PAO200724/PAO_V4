@@ -28,7 +28,7 @@ namespace PAO.WinForm.Editors
         public CalcEditor() {
         }
 
-        public override RepositoryItem CreateEditor() {
+        protected override RepositoryItem OnCreateRepositoryItem() {
             var edit = new RepositoryItemCalcEdit();
             WinFormPublic.AddClearButton(edit);
             return edit;

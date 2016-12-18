@@ -18,19 +18,19 @@ namespace PAO.Config.EditControls
     /// 对象布局式编辑控件
     /// 作者：PAO
     /// </summary>
-    public partial class ObjectLayoutEditControl : TypeEditControl
+    public partial class ObjectLayoutEditControl : AddonTypeEditControl
     {
         public ObjectLayoutEditControl() {
             InitializeComponent();
         }
 
-        public override object SelectedObject {
+        public override object EditValue {
             get {
-                return base.SelectedObject; 
+                return base.EditValue; 
             }
 
             set {
-                base.SelectedObject = value;
+                base.EditValue = value;
 
                 if(value == null) {
                     this.BindingSource.DataSource = value;
@@ -43,6 +43,19 @@ namespace PAO.Config.EditControls
             }
         }
 
+        private LayoutEditControlData _ControlData;
+        /// <summary>
+        /// 控制数据
+        /// </summary>
+        public LayoutEditControlData ControlData {
+            get { return _ControlData; }
+            set { _ControlData = value; }
+        }
+
+        public void GetControlData() {
+
+        }
+        
         /// <summary> 
         /// 根据对象填充属性字段
         /// </summary>
@@ -54,48 +67,73 @@ namespace PAO.Config.EditControls
             if (obj == null)
                 return;
 
+            TabbedControlGroup tabbledGroup = null;
             foreach (PropertyDescriptor propDesc in TypeDescriptor.GetProperties(obj)) {
                 var configedPropDesc = WinFormPublic.GetConfigedProperty(propDesc);
 
                 if (configedPropDesc == null || !configedPropDesc.IsBrowsable)
                     continue;
 
-                Control editControl;
-                if (AddonPublic.IsAddonDictionaryType(configedPropDesc.PropertyType)) {
-                    var dictEditControl = new DictionaryEditControl();
-                    dictEditControl.PropertyType = propDesc.PropertyType;
-                    dictEditControl.DataBindings.Add(new Binding("SelectedObject", this.BindingSource, propDesc.Name, true));
-                    editControl = dictEditControl;
+                Control editControl = null;
+                if (ControlData != null) {
+                    editControl = ControlData.CreateEditControl(propDesc.Name);
                 }
-                else if (AddonPublic.IsAddonListType(configedPropDesc.PropertyType)) {
-                    var listEditControl = new ListEditControl();
-                    listEditControl.PropertyType = propDesc.PropertyType;
-                    listEditControl.DataBindings.Add(new Binding("SelectedObject", this.BindingSource, propDesc.Name, true));
-                    editControl = listEditControl;
-                }
-                else {
-                    BaseEditor edit = null;
-                    edit = ConfigPublic.GetEditor(configedPropDesc);
-                    if (edit == null) {
-                        edit = new TextEditor();
+
+                if (editControl == null) {
+                    if (AddonPublic.IsAddonDictionaryType(configedPropDesc.PropertyType)) {
+                        editControl = new DictionaryEditControl();
                     }
-                    var repositoryItem = edit.CreateEditor();
-                    var editor = repositoryItem.CreateEditor();
-                    editor.Properties.Assign(repositoryItem);
-                    editor.DataBindings.Add(new Binding("EditValue", this.BindingSource, propDesc.Name, true));
-                    editControl = editor;
+                    else if (AddonPublic.IsAddonListType(configedPropDesc.PropertyType)) {
+                        editControl = new ListEditControl();
+                    }
+                    else {
+                        // 此处第二个参数为true，确保了最少能创建一种编辑器
+                        BaseEditor editor = ConfigPublic.GetEditor(configedPropDesc, true);
+                        editControl = editor.CreateEditControl();
+                    }
                 }
+
+                if (editControl is BaseEditControl) {
+                    editControl.As<BaseEditControl>().PropertyType = propDesc.PropertyType;
+                }
+
+                if (editControl.GetType().GetProperty("EditValue") == null)
+                    throw new Exception("编辑控件必须实现EditValue属性");
+
+                editControl.DataBindings.Add(new Binding("EditValue", this.BindingSource, propDesc.Name, true));
                 editControl.Tag = configedPropDesc;
                 editControl.Name = configedPropDesc.Name;
 
-                var layoutControlItem = groupItem.AddItem();
+                LayoutControlItem layoutControlItem = null;
+                if (editControl is BaseEditControl) {
+                    if (tabbledGroup == null) {
+                        tabbledGroup = groupItem.AddTabbedGroup();
+                    }
+                    var layoutGroupItem = tabbledGroup.AddTabPage();
+                    layoutGroupItem.Name = "Group_" + configedPropDesc.Name;
+                    layoutGroupItem.Text = configedPropDesc.DisplayName;
+                    layoutGroupItem.CustomizationFormText = "组_" + configedPropDesc.DisplayName;
+                    layoutGroupItem.Padding = new DevExpress.XtraLayout.Utils.Padding(0);
+
+                    layoutControlItem = layoutGroupItem.AddItem();
+                    layoutControlItem.TextLocation = DevExpress.Utils.Locations.Top;
+                }
+                else {
+                    layoutControlItem = groupItem.AddItem();
+                    layoutControlItem.TextLocation = DevExpress.Utils.Locations.Left;
+                }
+
+                layoutControlItem.Control = editControl;
                 layoutControlItem.Name = configedPropDesc.Name;
                 layoutControlItem.Text = configedPropDesc.DisplayName;
                 layoutControlItem.CustomizationFormText = configedPropDesc.DisplayName;
-                layoutControlItem.TextLocation = DevExpress.Utils.Locations.Left;
-                layoutControlItem.TextVisible = true;
-                layoutControlItem.ShowInCustomizationForm = true;
-                layoutControlItem.Control = editControl;
+
+                if (editControl is BaseEditControl) {
+                    layoutControlItem.TextVisible = false;
+                }
+                else {
+                    layoutControlItem.TextVisible = true;
+                }
             }
         }
     }

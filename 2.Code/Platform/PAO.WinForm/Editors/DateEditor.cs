@@ -28,7 +28,7 @@ namespace PAO.WinForm.Editors
         public DateEditor() {
         }
 
-        public override RepositoryItem CreateEditor() {
+        protected override RepositoryItem OnCreateRepositoryItem() {
             var edit = new RepositoryItemDateEdit();
             WinFormPublic.AddClearButton(edit);
             return edit;

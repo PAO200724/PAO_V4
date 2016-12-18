@@ -28,7 +28,7 @@ namespace PAO.WinForm.Editors
         public CheckComboBoxEditor() {
         }
 
-        public override RepositoryItem CreateEditor() {
+        protected override RepositoryItem OnCreateRepositoryItem() {
             var edit = new RepositoryItemCheckedComboBoxEdit();
             return edit;
         }

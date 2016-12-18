@@ -35,7 +35,7 @@ namespace PAO.Config.Editors
         public ObjectEditor() {
         }
 
-        public override RepositoryItem CreateEditor() {
+        protected override RepositoryItem OnCreateRepositoryItem() {
             var edit = new RepositoryItemButtonEdit();
             WinFormPublic.AddClearButton(edit);
             edit.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
@@ -70,20 +70,19 @@ namespace PAO.Config.Editors
                     editControl = objectEditorControlType.CreateInstance() as BaseEditControl;
                 }
                 else if (editValue is IList) {
-                    var listControl = new ListEditControl();
-                    editControl = listControl;
+                    editControl = new ListEditControl();
                 }
                 else if (editValue is IDictionary) {
-                    var dictionaryControl = new DictionaryEditControl();
-                    editControl = dictionaryControl;
+                    editControl = new DictionaryEditControl();
                 }
-                else
+                else {
                     editControl = new ObjectEditControl();
+                }
 
                 if (edit.EditValue.IsNotNull()) {
-                    editControl.SelectedObject = IOPublic.ObjectClone(editValue);
+                    editControl.EditValue = IOPublic.ObjectClone(editValue);
                     if (WinFormPublic.ShowDialog(editControl) == DialogReturn.OK) {
-                        edit.EditValue = editControl.SelectedObject;
+                        edit.EditValue = editControl.EditValue;
                     }
                 }
             }

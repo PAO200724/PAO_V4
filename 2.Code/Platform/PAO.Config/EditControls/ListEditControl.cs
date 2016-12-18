@@ -21,11 +21,11 @@ namespace PAO.Config.EditControls
     /// <summary>
     /// 列表编辑控件
     /// </summary>
-    public partial class ListEditControl : TypeEditControl
+    public partial class ListEditControl : AddonTypeEditControl
     {
         public ListEditControl() {
             InitializeComponent();
-            this.ColumnObject.ColumnEdit = new ObjectEditor().CreateEditor();
+            this.ColumnObject.ColumnEdit = new ObjectEditor().CreateRepositoryItem();
         }
 
         /// <summary>
@@ -33,7 +33,7 @@ namespace PAO.Config.EditControls
         /// </summary>
         public Type ListType {
             get {
-                return this.SelectedObject.GetType();
+                return this.EditValue.GetType();
             }
         }
 
@@ -41,7 +41,7 @@ namespace PAO.Config.EditControls
         private IList SourceList;
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public override object SelectedObject {
+        public override object EditValue {
             get {
                 this.GridViewList.CloseEditor();
 

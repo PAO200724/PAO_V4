@@ -31,7 +31,7 @@ namespace PAO.WinForm.Editors
         public GuidEditor() {
         }
 
-        public override RepositoryItem CreateEditor() {
+        protected override RepositoryItem OnCreateRepositoryItem() {
             var edit = new RepositoryItemButtonEdit();
             edit.Buttons.Clear();
             edit.Buttons.Add(new EditorButton(ButtonPredefines.Plus));

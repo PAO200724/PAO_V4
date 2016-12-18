@@ -155,12 +155,12 @@ namespace PAO.Report.Controls
                     // 创建编辑控件
                     RepositoryItem repositoryItem;
                     if (parameter.Editor != null) {
-                        repositoryItem = parameter.Editor.CreateEditor();
+                        repositoryItem = parameter.Editor.CreateRepositoryItem();
                     }
                     else {
                         Type valueType = DataPublic.GetNativeTypeByDbType(parameter.Type);
                         var repositoryItemCreator = ConfigPublic.GetDefaultEditorByType(valueType);
-                        repositoryItem = repositoryItemCreator.CreateEditor();
+                        repositoryItem = repositoryItemCreator.CreateRepositoryItem();
                     }
                     var editor = repositoryItem.CreateEditor();
                     editor.Name = parameter.ID;

@@ -143,7 +143,7 @@ namespace PAO.Config
         /// </summary>
         /// <param name="propertyDescriptor">属性</param>
         /// <returns>编辑器</returns>
-        public static BaseEditor GetEditor(PropertyDescriptor propertyDescriptor) {
+        public static BaseEditor GetEditor(PropertyDescriptor propertyDescriptor, bool textEditorForNull = false) {
             BaseEditor editor = null;
 
             // 如果属性是定义好了的扩展属性，则直接获取编辑器
@@ -165,6 +165,10 @@ namespace PAO.Config
             // 根据属性类型获取编辑器
             if (editor == null) {
                 editor = GetDefaultEditorByType(propertyDescriptor.PropertyType);
+            }
+
+            if(textEditorForNull && editor == null) {
+                editor = new TextEditor();
             }
 
             if (editor != null) {
@@ -235,7 +239,13 @@ namespace PAO.Config
             return null;
         }
         #endregion
-        
 
+        #region LayoutEditControl
+        /// <summary>
+        /// 布局编辑控件配置列表
+        /// </summary>
+        public static Dictionary<string, LayoutEditControlData> LayoutEditControlConfigs = new Dictionary<string, LayoutEditControlData>();
+
+        #endregion
     }
 }

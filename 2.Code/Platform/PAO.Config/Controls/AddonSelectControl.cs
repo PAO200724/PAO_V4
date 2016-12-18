@@ -54,7 +54,7 @@ namespace PAO.Controls
             }
         }
         
-        public override object SelectedObject {
+        public override object EditValue {
             get {
                 if (this.BindingSourceAddon.Position < 0)
                     return null;
@@ -63,7 +63,7 @@ namespace PAO.Controls
             }
 
             set {
-                base.SelectedObject = value;
+                base.EditValue = value;
                 if(value.IsNotNullOrEmpty()) {
                     for(int i=0;i<this.BindingSourceAddon.Count;i++) {
                         if(this.BindingSourceAddon[i].As<AddonInfo>().ID == (string)value) {

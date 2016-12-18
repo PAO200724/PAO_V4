@@ -1,6 +1,6 @@
 ﻿namespace PAO.Config.EditControls
 {
-    partial class TypeEditControl
+    partial class AddonTypeEditControl
     {
         /// <summary> 
         /// Required designer variable.

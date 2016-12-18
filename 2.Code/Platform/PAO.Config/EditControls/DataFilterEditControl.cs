@@ -20,7 +20,7 @@ namespace PAO.Config.EditControls
     /// <summary>
     /// 数据过滤器编辑器
     /// </summary>
-    public partial class DataFilterEditControl : TypeEditControl
+    public partial class DataFilterEditControl : AddonTypeEditControl
     {
         const int ImageIndex_AndFilter = 0;
         const int ImageIndex_OrFilter = 1;
@@ -28,11 +28,11 @@ namespace PAO.Config.EditControls
 
         public DataFilterEditControl() {
             InitializeComponent();
-            this.ColumnFilter.ColumnEdit = new MemoExEditor().CreateEditor();
+            this.ColumnFilter.ColumnEdit = new MemoExEditor().CreateRepositoryItem();
             this.ColumnDataType.ColumnEdit = new EnumEditor()
             {
                 PropertyDescriptor = typeof(DataFilterInfo).GetPropertyDescriptor("DataType")
-            }.CreateEditor();
+            }.CreateRepositoryItem();
         }
 
         [Browsable(false)]
@@ -43,7 +43,7 @@ namespace PAO.Config.EditControls
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         private List<DataFilterInfo> FilterInfoList;
 
-        public override object SelectedObject {
+        public override object EditValue {
             get {
                 return RootDataFilter;
             }

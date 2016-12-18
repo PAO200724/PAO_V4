@@ -19,7 +19,7 @@ namespace PAO.Config.EditControls
     /// <summary>
     /// 插件编辑控件
     /// </summary>
-    public partial class ObjectEditControl : TypeEditControl
+    public partial class ObjectEditControl : AddonTypeEditControl
     {
         static ObjectEditControl() {
         }
@@ -27,18 +27,18 @@ namespace PAO.Config.EditControls
         public ObjectEditControl() {
             InitializeComponent();
             SetControlStatus();
-            SelectedObject = null;
+            EditValue = null;
         }
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public override object SelectedObject {
+        public override object EditValue {
             get {
                 this.PropertyGridControl.CloseEditor();
-                return base.SelectedObject;
+                return base.EditValue;
             }
 
             set {
-                base.SelectedObject = value;
+                base.EditValue = value;
                 this.PropertyGridControl.SelectedObject = value;
                 this.PropertyGridControl.Refresh();
                 if(value == null) {
@@ -89,7 +89,7 @@ namespace PAO.Config.EditControls
 
             if (edit != null) {
                 edit.PropertyDescriptor = propDesc;
-                e.RepositoryItem = edit.CreateEditor();
+                e.RepositoryItem = edit.CreateRepositoryItem();
             }
         }
 

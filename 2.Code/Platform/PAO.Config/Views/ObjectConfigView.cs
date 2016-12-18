@@ -39,7 +39,7 @@ namespace PAO.Config.Views
             else {
                 addon = IOPublic.ReadObjectFromFile(controller.ConfigFile);
             }
-            ObjectTreeEditControl.SelectedObject = addon;
+            ObjectTreeEditControl.EditValue = addon;
         }
     }
 }

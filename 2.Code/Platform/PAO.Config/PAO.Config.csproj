@@ -76,13 +76,14 @@
     <Compile Include="DockViews\PropertyView.Designer.cs">
       <DependentUpon>PropertyView.cs</DependentUpon>
     </Compile>
-    <Compile Include="EditControls\TypeEditControl.cs">
+    <Compile Include="EditControls\AddonTypeEditControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="EditControls\TypeEditControl.Designer.cs">
-      <DependentUpon>TypeEditControl.cs</DependentUpon>
+    <Compile Include="EditControls\AddonTypeEditControl.Designer.cs">
+      <DependentUpon>AddonTypeEditControl.cs</DependentUpon>
     </Compile>
     <Compile Include="ExtendConfigPublic.cs" />
+    <Compile Include="LayoutEditControlData.cs" />
     <Compile Include="Views\ObjectConfigController.cs" />
     <Compile Include="EditControls\AddonExtentionEditControl.cs">
       <SubType>UserControl</SubType>

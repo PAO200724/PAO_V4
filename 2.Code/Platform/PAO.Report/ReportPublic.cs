@@ -122,12 +122,12 @@ namespace PAO.Report
                         editorRow.Properties.FieldName = parameter.Name;
                         RepositoryItem editor = null;
                         if (parameter.Editor != null) {
-                            editor = parameter.Editor.CreateEditor();
+                            editor = parameter.Editor.CreateRepositoryItem();
                         }
                         else {
                             Type valueType = DataPublic.GetNativeTypeByDbType(parameter.Type);
                             var edit = ConfigPublic.GetDefaultEditorByType(valueType);
-                            editor = edit.CreateEditor();
+                            editor = edit.CreateRepositoryItem();
                         }
                         editorRow.Properties.RowEdit = editor;
 

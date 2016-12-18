@@ -17,7 +17,7 @@ namespace PAO.Config.EditControls
     /// 插件扩展编辑器
     /// 作者：PAO
     /// </summary>
-    public partial class AddonExtentionEditControl : TypeEditControl
+    public partial class AddonExtentionEditControl : AddonTypeEditControl
     {
         public AddonExtentionEditControl() {
             InitializeComponent();
@@ -43,7 +43,7 @@ namespace PAO.Config.EditControls
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public override object SelectedObject {
+        public override object EditValue {
             get {
                 GetDataFromControl();
                 return _ExtendPropertyDataTable; 

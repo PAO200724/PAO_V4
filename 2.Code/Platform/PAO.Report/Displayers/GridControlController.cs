@@ -15,16 +15,16 @@ namespace PAO.Report.Displayers
 {
     /// <summary>
     /// 类：GridControlViewCommand
-    /// 表格控件视图命令
-    /// 用于创建表格控件视图的命令
+    /// 表格视图
+    /// 表格视图：支持二维表格、扩展二维表格、卡片式表格、布局式表格
     /// 作者：PAO
     /// </summary>
     [Addon]
     [Icon(typeof(Resources), "table")]
     [Serializable]
     [DataContract(Namespace = "")]
-    [Name("表格控件视图命令")]
-    [Description("用于创建表格控件视图的命令")]
+    [Name("表格视图")]
+    [Description("表格视图：支持二维表格、扩展二维表格、卡片式表格、布局式表格")]
     public class GridControlController : BaseDataDisplayerController
     {
         #region 插件属性

@@ -420,9 +420,9 @@ namespace PAO.Report.Views
             var queryBehavior = IOPublic.ObjectClone(tableControl.ReportDataTable.QueryBehavior);
             if (queryBehavior == null)
                 queryBehavior = new ReportQueryBehavior();
-            objectEditControl.SelectedObject = queryBehavior;
+            objectEditControl.EditValue = queryBehavior;
             if(WinFormPublic.ShowDialog(objectEditControl) == DialogReturn.OK) {
-                tableControl.ReportDataTable.QueryBehavior = objectEditControl.SelectedObject as ReportQueryBehavior;
+                tableControl.ReportDataTable.QueryBehavior = objectEditControl.EditValue as ReportQueryBehavior;
             }
             ResetAutoQuery();
         }
@@ -445,9 +445,9 @@ namespace PAO.Report.Views
             var queryBehavior = IOPublic.ObjectClone(controller.QueryBehavior);
             if (queryBehavior == null)
                 queryBehavior = new ReportQueryBehavior();
-            objectEditControl.SelectedObject = queryBehavior;
+            objectEditControl.EditValue = queryBehavior;
             if (WinFormPublic.ShowDialog(objectEditControl) == DialogReturn.OK) {
-                controller.QueryBehavior = objectEditControl.SelectedObject as ReportQueryBehavior;
+                controller.QueryBehavior = objectEditControl.EditValue as ReportQueryBehavior;
             }
             ResetAutoQuery();
         }
@@ -461,7 +461,7 @@ namespace PAO.Report.Views
         private void ButtonProperties_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             //ConfigForm.ShowConfigForm(Controller);
             var objectEditControl = new ObjectLayoutEditControl();
-            objectEditControl.SelectedObject = Controller;
+            objectEditControl.EditValue = Controller;
             WinFormPublic.ShowDialog(objectEditControl);
         }
         #endregion
