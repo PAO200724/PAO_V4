@@ -51,7 +51,7 @@ namespace PAO.Server
                         ServiceList = new Dictionary<string, Ref<PaoObject>>()
                              .Append("SecurityService", new SecurityService()
                              {
-                                 DataService = new AddonFactory<IDataService>("ServerDataService")
+                                 DataService = new AddonFactory<IDataService>("DataService")
                              }.ToRef())
                              .Append("DateTimeService", new DateTimeService().ToRef())
                              .Append("DataService", new AddonFactory<PaoObject>("DataService")),
@@ -64,7 +64,7 @@ namespace PAO.Server
         private static DataService CreateDataService() {
             return new DataService()
             {
-                ID = "ServerDataService",
+                ID = "DataService",
                 DataConnection = new Data.DataConnection()
                 {
                     ID = "PAO Db Connection",
