@@ -49,12 +49,20 @@ namespace PAO.WinForm.Controls
         /// </summary>
         public event EventHandler<DataModifyStateChangedEventArgs> DataModifyStateChanged;
 
+        protected virtual void SetControlStatus() {
+            
+        }
 
         protected void FileDataModifyStateChangedEvent(bool dataModifed) {
             if (DataModifyStateChanged != null)
                 DataModifyStateChanged(this, new DataModifyStateChangedEventArgs() { DataModified = dataModifed });
         }
-        
+
+        protected override void OnLoad(EventArgs e) {
+            SetControlStatus();
+            base.OnLoad(e);
+        }
+
         public virtual void OnClosing(DialogResult dialogResult, ref bool cancel) {
         }
 

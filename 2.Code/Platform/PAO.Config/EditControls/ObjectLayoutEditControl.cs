@@ -16,7 +16,7 @@ namespace PAO.Config.EditControls
     /// 对象布局式编辑控件
     /// 作者：PAO
     /// </summary>
-    public partial class ObjectLayoutEditControl : BaseEditControl
+    public partial class ObjectLayoutEditControl : TypeEditControl
     {
         public ObjectLayoutEditControl() {
             InitializeComponent();

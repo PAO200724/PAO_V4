@@ -38,13 +38,14 @@ namespace PAO.WinForm.Controls
             }
         }
 
-        private void SetControlStatus() {
+        protected override void SetControlStatus() {
             var imageNull = (Image == null);
             this.ButtonFitSize.Enabled = !imageNull;
             this.ButtonOriginalSize.Enabled = !imageNull;
             this.ButtonZoomIn.Enabled = !imageNull && (MinZoomPercent<0 || PictureEdit.Properties.ZoomPercent > MinZoomPercent);
             this.ButtonZoomOut.Enabled = !imageNull && (MaxZoomPercent<0 || PictureEdit.Properties.ZoomPercent < MaxZoomPercent);
             this.ButtonFitSize.Enabled = !imageNull;
+            base.SetControlStatus();
         }
 
         public Image Image {

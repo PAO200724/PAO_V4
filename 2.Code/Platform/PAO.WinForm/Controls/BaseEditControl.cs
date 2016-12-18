@@ -24,16 +24,36 @@ namespace PAO.WinForm
             InitializeComponent();
         }
 
+        private Func<object> _ObjectCreateMethod;
+        /// <summary>
+        /// 对象创建方法
+        /// </summary>
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public Func<object> ObjectCreateMethod {
+            get { return _ObjectCreateMethod; }
+            set {
+                _ObjectCreateMethod = value;
+                SetControlStatus();
+            }
+        }
+
+        private object _SelectedObject;
         /// <summary>
         /// 当前选择的对象
         /// </summary>
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public virtual object SelectedObject {
-            get;
-            set;
+            get {
+                return _SelectedObject;
+            }
+            set {
+                _SelectedObject = value;
+                SetControlStatus();
+            }
         }
-
+        
         /// <summary>
         /// 导出当前对象
         /// </summary>
@@ -50,6 +70,35 @@ namespace PAO.WinForm
                 ModifyData();
             });
         }
-    }
 
+        /// <summary>
+        /// 可编辑
+        /// </summary>
+        public virtual bool Editable {
+            get {
+                return Newable || (SelectedObject != null);
+            }
+        }
+
+        /// <summary>
+        /// 可新建
+        /// </summary>
+        public virtual bool Newable {
+            get {
+                return ObjectCreateMethod != null;
+            }
+        }
+
+        protected override void SetControlStatus() {
+            this.Enabled = Editable;
+        }
+
+        /// <summary>
+        /// 新建
+        /// </summary>
+        public virtual void CreateNew() {
+            Newable.CheckTrue("只有设置了ObjectCreateMethod属性的编辑器控件才能新建对象");
+            var newObject = ObjectCreateMethod();
+        }
+    }
 }

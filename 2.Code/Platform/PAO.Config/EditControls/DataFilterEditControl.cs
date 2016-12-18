@@ -20,7 +20,7 @@ namespace PAO.Config.EditControls
     /// <summary>
     /// 数据过滤器编辑器
     /// </summary>
-    public partial class DataFilterEditControl : BaseEditControl
+    public partial class DataFilterEditControl : TypeEditControl
     {
         const int ImageIndex_AndFilter = 0;
         const int ImageIndex_OrFilter = 1;
@@ -146,7 +146,7 @@ namespace PAO.Config.EditControls
             }
         }
 
-        private void SetControlStatus() {
+        protected override void SetControlStatus() {
             this.ButtonAnd.Enabled = true;
             this.ButtonOr.Enabled = true;
             this.ButtonSql.Enabled = true;
@@ -160,6 +160,7 @@ namespace PAO.Config.EditControls
                 }
             }
             this.ButtonDelete.Enabled = this.BindingSourceDataFilter.Count > 0;
+            base.SetControlStatus();
         }
 
         private void ButtonAnd_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {

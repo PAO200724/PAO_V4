@@ -13,13 +13,14 @@ using DevExpress.XtraEditors.Repository;
 using PAO.UI;
 using PAO.WinForm;
 using PAO.Config.Controls;
+using DevExpress.XtraBars;
 
 namespace PAO.Config.EditControls
 {
     /// <summary>
     /// 字典编辑控件
     /// </summary>
-    public partial class DictionaryEditControl : BaseEditControl
+    public partial class DictionaryEditControl : TypeEditControl
     {
         public DictionaryEditControl() {
             InitializeComponent();
@@ -54,11 +55,13 @@ namespace PAO.Config.EditControls
                 SourceList = value as IDictionary;
                 if (value == null) {
                     this.BindingSourceList.DataSource = null;
+                    this.StaticItemObject.Caption = "[未选择任何对象]";
                 }
                 else if (!(value is IDictionary)) {
                     throw new Exception("列表编辑器只支持插件列表的编辑。");
                 }
                 else {
+                    this.StaticItemObject.Caption = value.GetType().GetTypeString();
                     AddonList = new List<ListElement>();
                     int i = 0;
                     foreach (var key in SourceList.Keys) {
@@ -75,14 +78,14 @@ namespace PAO.Config.EditControls
             }
         }
 
-        private void SetControlStatus() {
+        protected override void SetControlStatus() {
             var position = this.BindingSourceList.Position;
-            this.Enabled = SourceList != null;
             this.ButtonMoveUp.Enabled = AddonList.IsNotNullOrEmpty() && AddonList.CanMoveUp(position);
             this.ButtonMoveDown.Enabled = AddonList.IsNotNullOrEmpty() && AddonList.CanMoveDown(position);
             this.ButtonDelete.Enabled = (position >= 0 && position < AddonList.Count);
+            this.ButtonNew.Visibility = Newable ? BarItemVisibility.Always : BarItemVisibility.Never;
+            base.SetControlStatus();
         }
-        
 
         private void GridViewList_RowUpdated(object sender, DevExpress.XtraGrid.Views.Base.RowObjectEventArgs e) {
             if (this.BindingSourceList.Position >= 0 && SourceList.IsNotNullOrEmpty()) {
@@ -149,6 +152,10 @@ namespace PAO.Config.EditControls
 
         private void DictionaryEditControl_Leave(object sender, EventArgs e) {
             this.GridViewList.CloseEditor();
+        }
+
+        private void ButtonNew_ItemClick(object sender, ItemClickEventArgs e) {
+            CreateNew();
         }
     }
 }

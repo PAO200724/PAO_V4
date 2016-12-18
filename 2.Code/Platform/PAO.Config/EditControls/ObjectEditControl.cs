@@ -12,13 +12,14 @@ using PAO.Config.Editors;
 using PAO.IO;
 using PAO.WinForm.Editors;
 using PAO.WinForm.Config;
+using DevExpress.XtraBars;
 
 namespace PAO.Config.EditControls
 {
     /// <summary>
     /// 插件编辑控件
     /// </summary>
-    public partial class ObjectEditControl : BaseEditControl
+    public partial class ObjectEditControl : TypeEditControl
     {
         static ObjectEditControl() {
         }
@@ -49,8 +50,9 @@ namespace PAO.Config.EditControls
             }
         }
 
-        private void SetControlStatus() {
-            this.Enabled = SelectedObject != null;
+        protected override void SetControlStatus() {
+            this.ButtonNew.Visibility = Newable? BarItemVisibility.Always: BarItemVisibility.Never;
+            base.SetControlStatus();
         }
 
         private void PropertyGridControl_CellValueChanged(object sender
@@ -116,6 +118,10 @@ namespace PAO.Config.EditControls
             }
 
             e.Properties = new PropertyDescriptorCollection(propertyDescriptors.ToArray());
+        }
+
+        private void ButtonNew_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+            CreateNew();
         }
     }
 }

@@ -17,7 +17,7 @@ namespace PAO.Config.EditControls
     /// 插件扩展编辑器
     /// 作者：PAO
     /// </summary>
-    public partial class AddonExtentionEditControl : BaseEditControl
+    public partial class AddonExtentionEditControl : TypeEditControl
     {
         public AddonExtentionEditControl() {
             InitializeComponent();

@@ -26,7 +26,8 @@ namespace PAO.Config.EditControls
     /// <summary>
     /// 对象树控件
     /// </summary>
-    public partial class ObjectTreeEditControl : BaseEditControl {
+    public partial class ObjectTreeEditControl : TypeEditControl
+    {
 
         public ObjectTreeEditControl() {
             InitializeComponent();
@@ -134,7 +135,15 @@ namespace PAO.Config.EditControls
         /// </summary>
         /// <param name="objectType">对象类型</param>
         /// <returns>图片索引</returns>
-        private int GetImageIndex(Type objectType) {
+        private int GetImageIndex(object obj) {
+            if (obj == null)
+                return ImageIndex_Null;
+
+            Type objectType = obj.GetType();
+            if (objectType.IsAddonDictionaryType())
+                return ImageIndex_DictionaryProperty;
+            else if(objectType.IsAddonListType())
+                return ImageIndex_ListProperty;
             var iconAttr = objectType.GetAttribute<IconAttribute>(true);
             if (iconAttr == null)
                 return -1;
@@ -170,7 +179,7 @@ namespace PAO.Config.EditControls
                 , ObjectTreeNodeType.Object
                 , null);
             // 创建属性
-            objNode.ImageIndex = GetImageIndex(obj.GetType());
+            objNode.ImageIndex = GetImageIndex(obj);
             objNode.SelectImageIndex = objNode.ImageIndex;
             CreateChildNodesByObject(objNode, obj, null);
             objNode.Expanded = true;
@@ -245,11 +254,7 @@ namespace PAO.Config.EditControls
             else {
                 throw new Exception("此类型的属性不支持增加元素节点").AddExceptionData("属性类型", parentPropDesc.PropertyType);
             }
-            if (value != null) {
-                imageIndex = GetImageIndex(value.GetType());
-            } else {
-                imageIndex = ImageIndex_Null;
-            }
+            imageIndex = GetImageIndex(value);
             var elementNode = parentNode.Nodes.Add(elementString
                 , GetObjectString(value)
                 , GetObjectTypeString(value)
@@ -278,19 +283,15 @@ namespace PAO.Config.EditControls
             int imageIndex = -1;
             if(propDesc.PropertyType.IsAddonDictionaryType()) {
                 nodeType = ObjectTreeNodeType.DictionaryProperty;
-                imageIndex = ImageIndex_DictionaryProperty;
             } else if(propDesc.PropertyType.IsAddonListType()) {
                 nodeType = ObjectTreeNodeType.ListProperty;
-                imageIndex = ImageIndex_ListProperty;
             }
             else {
                 nodeType = ObjectTreeNodeType.ObjectProperty;
-                if(propVal != null) {
-                    imageIndex = GetImageIndex(propVal.GetType());
-                } else {
-                    imageIndex = ImageIndex_Null;
-                }
             }
+
+            imageIndex = GetImageIndex(propVal);
+
             var propNode = parentNode.Nodes.Add(displayAttribute == null ? propDesc.Name : displayAttribute.DisplayName
                 , GetObjectString(propVal)
                 , GetObjectTypeString(propVal)
@@ -336,7 +337,7 @@ namespace PAO.Config.EditControls
         #endregion
 
         #region 私有方法
-        private void SetControlStatus() {
+        protected override void SetControlStatus() {
             var focusedNode = this.TreeListObject.FocusedNode;
             if (focusedNode != null && focusedNode.Id >= 0) {
                 var nodeType = (ObjectTreeNodeType)focusedNode.GetValue(ColumnPropertyElementType);
@@ -363,6 +364,7 @@ namespace PAO.Config.EditControls
                 this.ButtonProperty.Enabled = false;
             }
             this.ButtonExport.Enabled = (SelectedObject != null);
+            base.SetControlStatus();
         }
 
         /// <summary>
@@ -377,6 +379,8 @@ namespace PAO.Config.EditControls
             node.SetValue(ColumnPropertyValue, newObject);
             node.SetValue(ColumnPropertyValueString, GetObjectString(newObject));
             node.SetValue(ColumnPropertyTypeString, GetObjectTypeString(newObject));
+            node.ImageIndex = GetImageIndex(newObject);
+            node.SelectImageIndex = node.ImageIndex;
             switch (elementType) {
                 case ObjectTreeNodeType.ObjectProperty:
                 case ObjectTreeNodeType.ListProperty:
@@ -662,7 +666,6 @@ namespace PAO.Config.EditControls
             // 保存到扩展存储中
             this.AddonExtentionEditControl.GetDataFromControl();
         }
-        #endregion
 
         private void ButtonImportExtend_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             IOPublic.ImportObject((obj) =>
@@ -676,5 +679,6 @@ namespace PAO.Config.EditControls
         private void ButtonExportExtend_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             IOPublic.ExportObject(ExtendPropertyDataTable);
         }
+        #endregion
     }
 }

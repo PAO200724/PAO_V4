@@ -254,28 +254,31 @@ namespace PAO.Config
                 if (configedPropDesc == null || !configedPropDesc.IsBrowsable)
                     continue;
 
-                var typeConfigInfo = WinFormPublic.GetTypeConfigInfo(propDesc.ComponentType);
-                var propertyConfigInfo = WinFormPublic.GetPropertyConfigInfo(propDesc.ComponentType, propDesc.Name);
-                if (propertyConfigInfo != null) {
-                    configedPropDesc = new ConfigPropertyDescriptor(propDesc, propertyConfigInfo);
+                Control editControl;
+                var propValue = configedPropDesc.GetValue(obj);
+                if (AddonPublic.IsAddonDictionaryType(configedPropDesc.PropertyType)) {
+                    var dictEditControl = new DictionaryEditControl();
+                    dictEditControl.SelectedObject = propValue;
+                    editControl = dictEditControl;
+                } else if(AddonPublic.IsAddonListType(configedPropDesc.PropertyType)) {
+                    var listEditControl = new ListEditControl();
+                    listEditControl.SelectedObject = propValue;
+                    editControl = listEditControl;
                 }
                 else {
-                    if (typeConfigInfo == null || !typeConfigInfo.ShowDefinedPropertyOnly) {
-                        configedPropDesc = propDesc;
+                    BaseEditor edit = null;
+                    edit = ConfigPublic.GetEditor(configedPropDesc);
+                    if (edit == null) {
+                        edit = new TextEditor();
                     }
+                    var repositoryItem = edit.CreateEditor();
+                    var editor = repositoryItem.CreateEditor();
+                    editor.Properties.Assign(repositoryItem);
+                    editor.EditValue = propValue;
+                    editControl = editor;
                 }
-
-                BaseEditor edit = null;
-                edit = ConfigPublic.GetEditor(configedPropDesc);
-                if(edit == null) {
-                    edit = new TextEditor();
-                }
-                var repositoryItem = edit.CreateEditor();
-                var editor = repositoryItem.CreateEditor();
-                editor.Name = configedPropDesc.Name;
-                editor.Properties.Assign(repositoryItem);
-                editor.Tag = configedPropDesc;
-                editor.EditValue = configedPropDesc.GetValue(obj);
+                editControl.Tag = configedPropDesc;
+                editControl.Name = configedPropDesc.Name;
 
                 var layoutControlItem = groupItem.AddItem();
                 layoutControlItem.Name = configedPropDesc.Name;
@@ -284,7 +287,7 @@ namespace PAO.Config
                 layoutControlItem.TextLocation = DevExpress.Utils.Locations.Left;
                 layoutControlItem.TextVisible = true;
                 layoutControlItem.ShowInCustomizationForm = true;
-                layoutControlItem.Control = editor;
+                layoutControlItem.Control = editControl;
             }
         }
         #endregion

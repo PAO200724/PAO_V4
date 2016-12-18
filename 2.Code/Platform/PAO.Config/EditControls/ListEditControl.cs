@@ -14,13 +14,14 @@ using PAO.UI;
 using PAO.IO;
 using System.IO;
 using PAO.WinForm;
+using DevExpress.XtraBars;
 
 namespace PAO.Config.EditControls
 {
     /// <summary>
     /// 列表编辑控件
     /// </summary>
-    public partial class ListEditControl : BaseEditControl
+    public partial class ListEditControl : TypeEditControl
     {
         public ListEditControl() {
             InitializeComponent();
@@ -54,11 +55,13 @@ namespace PAO.Config.EditControls
                 SourceList = value as IList;
                 if (value == null) {
                     this.BindingSourceList.DataSource = null;
+                    this.StaticItemObject.Caption = "[未选择任何对象]";
                 }
                 else if (!(value is IList)) {
                     throw new Exception("列表编辑器只支持插件列表的编辑。");
                 }
                 else {
+                    this.StaticItemObject.Caption = value.GetType().GetTypeString();
                     AddonList = new List<ListElement>();
                     int i = 0;
                     foreach (var addon in SourceList) {
@@ -75,13 +78,14 @@ namespace PAO.Config.EditControls
             }
         }
 
-        private void SetControlStatus() {
+        protected override void SetControlStatus() {
             var position = this.BindingSourceList.Position;
-            this.Enabled = SourceList != null;
             this.ButtonMoveUp.Enabled = AddonList.IsNotNullOrEmpty() && AddonList.CanMoveUp(position);
             this.ButtonMoveDown.Enabled = AddonList.IsNotNullOrEmpty() && AddonList.CanMoveDown(position);
             this.ButtonDelete.Enabled = (position >= 0 && position < AddonList.Count);
             this.ButtonExport.Enabled = (AddonList.IsNotNullOrEmpty());
+            this.ButtonNew.Visibility = Newable ? BarItemVisibility.Always : BarItemVisibility.Never;
+            base.SetControlStatus();
         }
 
         private void DeleteElement(int position) {
@@ -169,6 +173,10 @@ namespace PAO.Config.EditControls
 
         private void ListEditControl_Leave(object sender, EventArgs e) {
             this.GridViewList.CloseEditor();
+        }
+
+        private void ButtonNew_ItemClick(object sender, ItemClickEventArgs e) {
+            CreateNew();
         }
     }
 }

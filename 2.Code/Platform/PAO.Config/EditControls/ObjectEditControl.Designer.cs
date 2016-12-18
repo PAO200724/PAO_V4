@@ -25,16 +25,16 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ObjectEditControl));
             this.PropertyDescriptionControl = new DevExpress.XtraVerticalGrid.PropertyDescriptionControl();
             this.PropertyGridControl = new DevExpress.XtraVerticalGrid.PropertyGridControl();
             this.SplitContainerControl = new DevExpress.XtraEditors.SplitContainerControl();
-            this.BarManagerObject = new DevExpress.XtraBars.BarManager(this.components);
+            this.BarManagerObject = new DevExpress.XtraBars.BarManager();
             this.BarToolObject = new DevExpress.XtraBars.Bar();
+            this.StaticItemObject = new DevExpress.XtraBars.BarStaticItem();
+            this.ButtonNew = new DevExpress.XtraBars.BarButtonItem();
             this.ButtonExport = new DevExpress.XtraBars.BarButtonItem();
             this.ButtonImport = new DevExpress.XtraBars.BarButtonItem();
-            this.StaticItemObject = new DevExpress.XtraBars.BarStaticItem();
             this.barDockControl1 = new DevExpress.XtraBars.BarDockControl();
             this.barDockControl2 = new DevExpress.XtraBars.BarDockControl();
             this.barDockControl3 = new DevExpress.XtraBars.BarDockControl();
@@ -97,8 +97,9 @@
             this.BarManagerObject.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.ButtonExport,
             this.ButtonImport,
-            this.StaticItemObject});
-            this.BarManagerObject.MaxItemId = 5;
+            this.StaticItemObject,
+            this.ButtonNew});
+            this.BarManagerObject.MaxItemId = 6;
             // 
             // BarToolObject
             // 
@@ -107,9 +108,10 @@
             this.BarToolObject.DockRow = 0;
             this.BarToolObject.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
             this.BarToolObject.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.ButtonExport, "", true, true, true, 0, null, DevExpress.XtraBars.BarItemPaintStyle.CaptionInMenu),
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.ButtonImport, DevExpress.XtraBars.BarItemPaintStyle.CaptionInMenu),
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.StaticItemObject, DevExpress.XtraBars.BarItemPaintStyle.Standard)});
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.StaticItemObject, "", true, true, true, 0, null, DevExpress.XtraBars.BarItemPaintStyle.Standard),
+            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonNew),
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.ButtonExport, DevExpress.XtraBars.BarItemPaintStyle.CaptionInMenu),
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.ButtonImport, DevExpress.XtraBars.BarItemPaintStyle.CaptionInMenu)});
             this.BarToolObject.OptionsBar.AllowQuickCustomization = false;
             this.BarToolObject.OptionsBar.DisableClose = true;
             this.BarToolObject.OptionsBar.DisableCustomization = true;
@@ -117,9 +119,25 @@
             this.BarToolObject.OptionsBar.UseWholeRow = true;
             this.BarToolObject.Text = "对象工具条";
             // 
+            // StaticItemObject
+            // 
+            this.StaticItemObject.AutoSize = DevExpress.XtraBars.BarStaticItemSize.Spring;
+            this.StaticItemObject.Caption = "对象信息";
+            this.StaticItemObject.Id = 4;
+            this.StaticItemObject.Name = "StaticItemObject";
+            this.StaticItemObject.TextAlignment = System.Drawing.StringAlignment.Near;
+            // 
+            // ButtonNew
+            // 
+            this.ButtonNew.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Left;
+            this.ButtonNew.Caption = "新对象(&N)";
+            this.ButtonNew.Glyph = global::PAO.Config.Properties.Resources.new_16x16;
+            this.ButtonNew.Id = 5;
+            this.ButtonNew.Name = "ButtonNew";
+            this.ButtonNew.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonNew_ItemClick);
+            // 
             // ButtonExport
             // 
-            this.ButtonExport.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
             this.ButtonExport.Caption = "导出(&E)";
             this.ButtonExport.Glyph = ((System.Drawing.Image)(resources.GetObject("ButtonExport.Glyph")));
             this.ButtonExport.Id = 2;
@@ -129,21 +147,12 @@
             // 
             // ButtonImport
             // 
-            this.ButtonImport.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
             this.ButtonImport.Caption = "导入(&I)";
             this.ButtonImport.Glyph = ((System.Drawing.Image)(resources.GetObject("ButtonImport.Glyph")));
             this.ButtonImport.Id = 3;
             this.ButtonImport.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("ButtonImport.LargeGlyph")));
             this.ButtonImport.Name = "ButtonImport";
             this.ButtonImport.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonImport_ItemClick);
-            // 
-            // StaticItemObject
-            // 
-            this.StaticItemObject.AutoSize = DevExpress.XtraBars.BarStaticItemSize.Spring;
-            this.StaticItemObject.Caption = "对象信息";
-            this.StaticItemObject.Id = 4;
-            this.StaticItemObject.Name = "StaticItemObject";
-            this.StaticItemObject.TextAlignment = System.Drawing.StringAlignment.Near;
             // 
             // barDockControl1
             // 
@@ -208,5 +217,6 @@
         private DevExpress.XtraBars.BarDockControl barDockControl3;
         private DevExpress.XtraBars.BarDockControl barDockControl4;
         private DevExpress.XtraBars.BarStaticItem StaticItemObject;
+        private DevExpress.XtraBars.BarButtonItem ButtonNew;
     }
 }
