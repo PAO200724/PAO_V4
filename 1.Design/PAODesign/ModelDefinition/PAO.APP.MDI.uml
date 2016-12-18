@@ -1,0 +1,235 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm10="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner" xmlns:dm11="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="eabf5781-a57e-4379-bd7d-71b93eb1b611"
+  name="MDI" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <packagedElements>
+    <packageHasNamedElement>
+      <Interface
+        Id="63b23f83-eacc-4b48-8c78-0cc8ce07cbf8"
+        name="IPropertyPage"
+        isAbstract="false"
+        isLeaf="false">
+        <generalsInternal>
+          <generalization
+            Id="41e99089-ea5a-4e82-9fd1-ef81930e6849"
+            isSubstitutable="false">
+            <interfaceMoniker
+              Id="3cd0f844-37a1-4b50-84c2-b24a0b9d6ee9"
+              LastKnownName="IView"
+              LastKnownLocation="PAO.MVC.uml" />
+          </generalization>
+        </generalsInternal>
+      </Interface>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="ffab1e3e-e751-4d35-b1ff-c042332b5a9f"
+        name="MDIApplication"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="64fc9c34-42e7-45fb-9810-6b2e78e5f9c5"
+            isSubstitutable="false">
+            <classMoniker
+              Id="5a4bdace-d996-4ee5-a308-bd2444b86f7e"
+              LastKnownName="PaoApplication"
+              LastKnownLocation="PAO.APP.uml" />
+          </generalization>
+        </generalsInternal>
+        <targetEnds>
+          <association
+            Id="3c7b52e7-3c0e-46a5-9b6b-982b459988f5"
+            isDerived="false"
+            sourceEndRoleName=""
+            targetEndRoleName="MainForm"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="ee0b62ce-ea5c-4d3d-9480-9de087cf5c3e"
+              LastKnownName="MDIMainForm"
+              LastKnownLocation="PAO.APP.MDI.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="3de4046a-7a3a-45d6-896b-64a5cb7abb1b"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="Shared"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="5ebf5022-9a74-49bd-8fd9-74030961190c"
+                  name="MainForm"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="ee0b62ce-ea5c-4d3d-9480-9de087cf5c3e"
+        name="MDIMainForm"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <suppliersInternal>
+          <interfaceRealization
+            Id="2eaa38f4-8962-45c0-b2df-ca92c37e4e5f">
+            <interfaceMoniker
+              Id="87439a56-48de-4894-adb6-9b9f968a7158"
+              LastKnownName="IMainForm"
+              LastKnownLocation="PAO.MVC.uml" />
+          </interfaceRealization>
+          <interfaceRealization
+            Id="4cc75157-89e4-4553-9cd3-932b078a0082">
+            <interfaceMoniker
+              Id="629d1f92-5f9b-48c6-bd72-b777891804a3"
+              LastKnownName="IDocumentContainer"
+              LastKnownLocation="未找到出处.uml" />
+          </interfaceRealization>
+          <interfaceRealization
+            Id="6d143ad5-4b0b-40b5-9ac4-ab449156052c">
+            <interfaceMoniker
+              Id="d0aaf6a0-cc13-4ad4-925f-e9362e93bb16"
+              LastKnownName="IDockViewContainer"
+              LastKnownLocation="未找到出处.uml" />
+          </interfaceRealization>
+          <interfaceRealization
+            Id="28545fa4-a437-4ef2-add0-b6002c4408d8">
+            <interfaceMoniker
+              Id="3b56ab3d-51b3-4939-a78f-5940f55618b6"
+              LastKnownName="IPropertyPageContainer"
+              LastKnownLocation="未找到出处.uml" />
+          </interfaceRealization>
+          <interfaceRealization
+            Id="ceff76c3-83f0-4d67-acb9-9311d7b3e695">
+            <interfaceMoniker
+              Id="be2bff2f-b659-49db-841b-bc458294de69"
+              LastKnownName="IViewContainer"
+              LastKnownLocation="PAO.MVC.uml" />
+          </interfaceRealization>
+        </suppliersInternal>
+        <targetEnds>
+          <association
+            Id="484d4b12-029e-4ee7-a082-60cea526f039"
+            isDerived="false"
+            sourceEndRoleName=""
+            targetEndRoleName="Controllers"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="6d73fbe3-60ee-41be-8f41-5fc2c880f99c"
+              LastKnownName="BaseDataDisplayerController"
+              LastKnownLocation="PAO.Report.Displayers.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="c23c5b25-891f-4c13-aaf5-22124dd8cf74"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="Composite"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="62d14d3d-11a4-45c2-b098-0099b042ff19"
+                  name="Controllers"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="true">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="24bc556a-7f2e-46a5-9915-fffc40c0fa77"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="f1bfe57b-caf7-4d6e-a559-e62a54765d1d"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="a2105368-6902-4e03-ade3-db112d1fa4c7"
+            isDerived="false"
+            sourceEndRoleName=""
+            targetEndRoleName="MenuItems"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="71623b96-05dd-498d-9e80-fb6d57d31924"
+              LastKnownName="UIItem"
+              LastKnownLocation="PAO.MVC.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="ac4fc982-c930-4899-bb5a-6f8245799df7"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="Composite"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="70eaa761-3f38-4d5f-8154-82e96a9ef3d5"
+                  name="MenuItems"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="true">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="f8fb9e81-9e09-4259-bc8d-a4442b34be8d"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="fe719fdd-c54e-43a3-ae82-a6fd06e30e82"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+      </class>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

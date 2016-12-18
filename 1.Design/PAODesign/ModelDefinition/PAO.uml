@@ -22,5 +22,116 @@
         LastKnownName="IO"
         LastKnownLocation="PAO.IO.uml" />
     </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="3fb73260-9e23-4277-b360-15ac015a6393"
+        LastKnownName="AOP"
+        LastKnownLocation="PAO.AOP.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="1cc7fec8-9be8-4f9d-88d7-5e85b7c6a322"
+        LastKnownName="APP"
+        LastKnownLocation="PAO.APP.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="a7c406e5-fdc5-4f49-bac3-188b77a95fb8"
+        LastKnownName="Event"
+        LastKnownLocation="PAO.Event.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="105385c9-8c97-44c5-8337-87829455c3ed"
+        LastKnownName="MVC"
+        LastKnownLocation="PAO.MVC.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="13bdeba7-496c-4b1b-bd3c-d431f721476a"
+        LastKnownName="Remote"
+        LastKnownLocation="PAO.Remote.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="43fa0980-6fa4-4c61-90c1-a7f6ca50a344"
+        LastKnownName="Report"
+        LastKnownLocation="PAO.Report.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="84b35449-ac21-43c1-9cee-e79f1af3cdd8"
+        LastKnownName="Part"
+        LastKnownLocation="PAO.Part.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="4fed7b87-d510-4ca1-afe2-12fe2171d5bd"
+        LastKnownName="Server"
+        LastKnownLocation="PAO.Server.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="80cd4da9-26d6-41bf-b1f5-3e8f9be6cb17"
+        name="Factory&lt;T&gt;"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="6452a215-cc5d-4338-8336-12d3c26bdce9"
+            isSubstitutable="false">
+            <classMoniker
+              Id="7e000b94-9d65-40fa-8c5b-03dc5acee097"
+              LastKnownName="Ref&lt;T&gt;"
+              LastKnownLocation="未找到出处.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="507fde59-ed0f-419c-aa07-c0ea26d2b8fc"
+        name="FileFactory&lt;T&gt;"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="802ebb3e-00e8-42ce-a678-e23916eac13b"
+            isSubstitutable="false">
+            <classMoniker
+              Id="80cd4da9-26d6-41bf-b1f5-3e8f9be6cb17"
+              LastKnownName="Factory&lt;T&gt;"
+              LastKnownLocation="PAO.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="9bf11365-9865-4cb2-95bb-de9aea0b1d7d"
+        name="ObjectRef&lt;T&gt;"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="25688690-fb8f-47b9-9138-b0e35bcc5d4d"
+            isSubstitutable="false">
+            <classMoniker
+              Id="7e000b94-9d65-40fa-8c5b-03dc5acee097"
+              LastKnownName="Ref&lt;T&gt;"
+              LastKnownLocation="未找到出处.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="c0a0836c-c79c-49a2-acb3-572d1ba3312c"
+        LastKnownName="Trans"
+        LastKnownLocation="PAO.Trans.uml" />
+    </packageHasNamedElement>
   </packagedElements>
 </package>

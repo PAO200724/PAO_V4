@@ -17,7 +17,61 @@
             <interfaceMoniker
               Id="316e5c56-ece2-41e0-83eb-eb207f7c8c2b"
               LastKnownName="IValueFetch"
-              LastKnownLocation="PAODesign.uml" />
+              LastKnownLocation="PAO.Data.uml" />
+          </interfaceRealization>
+        </suppliersInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="d7abe4cf-554a-4272-834f-b849f2bf9a5e"
+        name="ConstValueFetcher"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <suppliersInternal>
+          <interfaceRealization
+            Id="9c7fc428-7d08-46eb-880a-d945e0a89050">
+            <interfaceMoniker
+              Id="316e5c56-ece2-41e0-83eb-eb207f7c8c2b"
+              LastKnownName="IValueFetch"
+              LastKnownLocation="PAO.Data.uml" />
+          </interfaceRealization>
+        </suppliersInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="b01ce1e4-71ac-4bcb-a0c8-f782cff3bde4"
+        name="DataServiceValueFetcher"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <suppliersInternal>
+          <interfaceRealization
+            Id="ca47a862-7e6a-4fc3-8d46-5775d947cb58">
+            <interfaceMoniker
+              Id="316e5c56-ece2-41e0-83eb-eb207f7c8c2b"
+              LastKnownName="IValueFetch"
+              LastKnownLocation="PAO.Data.uml" />
+          </interfaceRealization>
+        </suppliersInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="f4199f15-d299-46be-b862-adef4ae1b384"
+        name="StaticValueFetcher"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <suppliersInternal>
+          <interfaceRealization
+            Id="b7d094ae-cd90-45cf-abc0-7c3ded4a0d14">
+            <interfaceMoniker
+              Id="316e5c56-ece2-41e0-83eb-eb207f7c8c2b"
+              LastKnownName="IValueFetch"
+              LastKnownLocation="PAO.Data.uml" />
           </interfaceRealization>
         </suppliersInternal>
       </class>

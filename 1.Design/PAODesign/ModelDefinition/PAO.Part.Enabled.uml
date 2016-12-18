@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm10="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner" xmlns:dm11="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="295be3d8-a346-4ec4-a859-3ec8805bf4c7"
+  name="Enabled" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <packagedElements>
+    <packageHasNamedElement>
+      <class
+        Id="76498ef0-bb55-4f12-aa44-2b0be1e891d3"
+        name="Status_Completed"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="4d214794-abff-4306-b0b8-5f70df3f7bd0"
+            isSubstitutable="false">
+            <classMoniker
+              Id="b885b28b-2e73-4d57-a925-7befeffac00e"
+              LastKnownName="Status_Enabled"
+              LastKnownLocation="PAO.Part.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="c921af67-fe27-4b3e-840c-ecd791de4faf"
+        LastKnownName="Running"
+        LastKnownLocation="PAO.Part.Enabled.Running.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="5ae2d637-d6b6-4c27-90b0-97615bbeed91"
+        name="Status_Pending"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="d5665a69-d418-45f7-b33b-7c9af77cb99f"
+            isSubstitutable="false">
+            <classMoniker
+              Id="b885b28b-2e73-4d57-a925-7befeffac00e"
+              LastKnownName="Status_Enabled"
+              LastKnownLocation="PAO.Part.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="5d1f049b-1d3f-4e77-b666-682c450ce820"
+        name="Status_Ready"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="cfa627a1-80b4-4fb0-988d-7bdb20dbe855"
+            isSubstitutable="false">
+            <classMoniker
+              Id="b885b28b-2e73-4d57-a925-7befeffac00e"
+              LastKnownName="Status_Enabled"
+              LastKnownLocation="PAO.Part.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="6ecdf9dd-38c1-47b6-b422-b52ac945cb8e"
+        name="Status_Running"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="627af968-d48b-40b2-98d0-6bf309be9769"
+            isSubstitutable="false">
+            <classMoniker
+              Id="b885b28b-2e73-4d57-a925-7befeffac00e"
+              LastKnownName="Status_Enabled"
+              LastKnownLocation="PAO.Part.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm10="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner" xmlns:dm11="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="ebb97a0e-1048-4143-b495-6e5cae90141e"
+  name="WCF" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <packagedElements>
+    <packageHasNamedElement>
+      <class
+        Id="ed032963-82d3-4744-a2cb-30f7cf0c4d0c"
+        name="WCFFactory&lt;T&gt;"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="242f93f5-8451-463b-97cd-fa3856c7e759"
+            isSubstitutable="false">
+            <classMoniker
+              Id="80cd4da9-26d6-41bf-b1f5-3e8f9be6cb17"
+              LastKnownName="Factory&lt;T&gt;"
+              LastKnownLocation="PAO.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="5ea237a9-f3e4-483f-bc5e-fd8b92166a74"
+        name="WCFRemoteFactory&lt;T&gt;"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <suppliersInternal>
+          <dependency
+            Id="9c246e38-69da-490f-889f-e4b3fd7bb519">
+            <classMoniker
+              Id="ed032963-82d3-4744-a2cb-30f7cf0c4d0c"
+              LastKnownName="WCFFactory&lt;T&gt;"
+              LastKnownLocation="PAO.Remote.WCF.uml" />
+          </dependency>
+          <dependency
+            Id="e9e0b75a-52b4-48d4-aaa6-fd15f646eab5">
+            <classMoniker
+              Id="f273e2d9-99c0-486a-982f-041e62718efd"
+              LastKnownName="RemoteProxy"
+              LastKnownLocation="PAO.Remote.uml" />
+          </dependency>
+        </suppliersInternal>
+        <generalsInternal>
+          <generalization
+            Id="250a8f31-9c3a-438f-b2ae-7101c1a9d6ac"
+            isSubstitutable="false">
+            <classMoniker
+              Id="80cd4da9-26d6-41bf-b1f5-3e8f9be6cb17"
+              LastKnownName="Factory&lt;T&gt;"
+              LastKnownLocation="PAO.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

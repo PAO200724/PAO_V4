@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm10="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner" xmlns:dm11="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="84b35449-ac21-43c1-9cee-e79f1af3cdd8"
+  name="Part" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <packagedElements>
+    <packageHasNamedElement>
+      <class
+        Id="2c935cc8-2d1a-4df5-b237-07a13ee65ce1"
+        name="BasePart"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="9c5b6e1c-8b40-4f4b-b767-d762239a9d1b"
+            isSubstitutable="false">
+            <classMoniker
+              Id="8fa558aa-fdf2-4bfd-b6a8-14cbcc150e43"
+              LastKnownName="PaoObject"
+              LastKnownLocation="PAO.AOP.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="d64769c2-18e9-4056-bc7c-a1470ab4e843"
+        name="Status"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedOperationsInternal>
+          <operation
+            Id="fdee9894-f987-4193-90b4-4677ecd3fa77"
+            name="Default&lt;T&gt;"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+        </ownedOperationsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="295be3d8-a346-4ec4-a859-3ec8805bf4c7"
+        LastKnownName="Enabled"
+        LastKnownLocation="PAO.Part.Enabled.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="1c1364fb-e9ba-4363-bc8f-092cd5b4619f"
+        name="Status_Disabled"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="875e962d-2e9d-497a-b561-79174c1ba345"
+            isSubstitutable="false">
+            <classMoniker
+              Id="d64769c2-18e9-4056-bc7c-a1470ab4e843"
+              LastKnownName="Status"
+              LastKnownLocation="PAO.Part.uml" />
+          </generalization>
+        </generalsInternal>
+        <ownedAttributesInternal>
+          <property
+            Id="6666367f-bdfc-4b86-ad75-dd92159513bc"
+            name="Message"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+        </ownedAttributesInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="b885b28b-2e73-4d57-a925-7befeffac00e"
+        name="Status_Enabled"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="77412050-5174-42b8-b859-7d1faa99c63c"
+            isSubstitutable="false">
+            <classMoniker
+              Id="d64769c2-18e9-4056-bc7c-a1470ab4e843"
+              LastKnownName="Status"
+              LastKnownLocation="PAO.Part.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

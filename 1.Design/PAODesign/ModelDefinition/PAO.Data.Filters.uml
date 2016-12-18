@@ -2,4 +2,175 @@
 <package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm10="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner" xmlns:dm11="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
   dslVersion="1.0.0.0"
   Id="002ffb43-2088-48ee-90e5-f08d141aec2c"
-  name="Filters" xmlns="http://schemas.microsoft.com/dsltools/ModelStore" />
+  name="Filters" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <packagedElements>
+    <packageHasNamedElement>
+      <class
+        Id="2772cdd8-a782-4d17-b177-31539c1023fe"
+        name="BaseDataFilter"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <suppliersInternal>
+          <interfaceRealization
+            Id="ab04a107-231c-4df0-8ffe-cb81baf834c4">
+            <interfaceMoniker
+              Id="a48de583-0c2d-45b7-909b-02eba28ddace"
+              LastKnownName="IDataFilter"
+              LastKnownLocation="PAO.Data.uml" />
+          </interfaceRealization>
+          <dependency
+            Id="13e3a94d-adb8-42e6-9690-6791bb442b47">
+            <classMoniker
+              Id="cd69f52c-a32e-4986-bc14-de8e3d411012"
+              LastKnownName="DataField"
+              LastKnownLocation="PAO.Data.uml" />
+          </dependency>
+        </suppliersInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="7f8ffbfd-5841-474e-9c28-b672c14d5335"
+            name="GetParameters"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+          <operation
+            Id="f08d05de-d97e-41a8-8ff0-3d6d37178ea5"
+            name="GetSql"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="844784ab-7d9f-4f69-ab9c-369325e1abcb"
+                  name="parameterValues"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="63c74cff-4882-4ddc-8974-d053287b088b"
+        name="CompositeLogicFilter"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="cea9c8ae-b399-4593-a160-2f69c0f50f7b"
+            isSubstitutable="false">
+            <classMoniker
+              Id="2772cdd8-a782-4d17-b177-31539c1023fe"
+              LastKnownName="BaseDataFilter"
+              LastKnownLocation="PAO.Data.Filters.uml" />
+          </generalization>
+        </generalsInternal>
+        <targetEnds>
+          <association
+            Id="70d1e8d3-abd4-4ee2-8f47-c6c3bdbc622e"
+            isDerived="false"
+            sourceEndRoleName=""
+            targetEndRoleName="ChildDataFilters"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="2772cdd8-a782-4d17-b177-31539c1023fe"
+              LastKnownName="BaseDataFilter"
+              LastKnownLocation="PAO.Data.Filters.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="382d9be0-27a6-426a-8ec5-82af3b5c2a9b"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="Composite"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="12e363ee-3086-45a7-bb82-a87d0ca4f209"
+                  name="ChildDataFilters"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="true">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="92a96a04-1164-493b-a3a6-63402b7e8fdf"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="adfb2bda-d00f-4530-9a01-9dd0b3ae5b3b"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="4e467c57-080e-4937-a49c-f1661fb660b6"
+        name="SqlFilter"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="318262eb-8b9e-474a-8a6f-c64562473813"
+            isSubstitutable="false">
+            <classMoniker
+              Id="2772cdd8-a782-4d17-b177-31539c1023fe"
+              LastKnownName="BaseDataFilter"
+              LastKnownLocation="PAO.Data.Filters.uml" />
+          </generalization>
+        </generalsInternal>
+        <ownedAttributesInternal>
+          <property
+            Id="3d270f38-7138-41fe-84ea-8c96641ad57a"
+            name="ParameterName"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+          <property
+            Id="d38234f7-e0ad-4bcc-a6d6-3ef5629af340"
+            name="Sql"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+        </ownedAttributesInternal>
+      </class>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

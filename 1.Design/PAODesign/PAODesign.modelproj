@@ -22,6 +22,54 @@
   </PropertyGroup>
   <Import Project="$(VSToolsPath)\ArchitectureTools\Microsoft.VisualStudio.TeamArchitect.ModelingProject.targets" Condition="'$(VSToolsPath)' != ''" />
   <ItemGroup>
+    <Content Include="ModelDefinition\PAO.Remote.WCF.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\PAO.Part.Enabled.Running.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\PAO.Part.Enabled.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\PAO.Trans.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\PAO.Data.DataFetchers.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\PAO.Server.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\PAO.Part.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\PAO.Report.Displayers.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\PAO.Report.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\PAO.Remote.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\PAO.APP.MDI.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\未找到出处.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\PAO.MVC.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\PAO.Event.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\PAO.APP.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\PAO.AOP.uml">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="ModelDefinition\PAO.IO.Text.uml">
       <SubType>Content</SubType>
     </Content>

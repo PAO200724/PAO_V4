@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm10="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner" xmlns:dm11="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="105385c9-8c97-44c5-8337-87829455c3ed"
+  name="MVC" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <packagedElements>
+    <packageHasNamedElement>
+      <Interface
+        Id="db4359ae-075b-4567-8036-8f725433a1ec"
+        name="IDockView"
+        isAbstract="false"
+        isLeaf="false">
+        <generalsInternal>
+          <generalization
+            Id="22fd96f9-e5bf-412a-8689-a51368408a9d"
+            isSubstitutable="false">
+            <interfaceMoniker
+              Id="3cd0f844-37a1-4b50-84c2-b24a0b9d6ee9"
+              LastKnownName="IView"
+              LastKnownLocation="PAO.MVC.uml" />
+          </generalization>
+        </generalsInternal>
+      </Interface>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="87439a56-48de-4894-adb6-9b9f968a7158"
+        name="IMainForm"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="4ce4d955-86e4-4056-a7aa-c65cbc8a4ec2"
+        name="IUIItem"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="be2bff2f-b659-49db-841b-bc458294de69"
+        name="IViewContainer"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="3cd0f844-37a1-4b50-84c2-b24a0b9d6ee9"
+        name="IView"
+        isAbstract="false"
+        isLeaf="false">
+        <generalsInternal>
+          <generalization
+            Id="038055c2-6b4a-4b01-85f3-53349161df40"
+            isSubstitutable="false">
+            <interfaceMoniker
+              Id="4ce4d955-86e4-4056-a7aa-c65cbc8a4ec2"
+              LastKnownName="IUIItem"
+              LastKnownLocation="PAO.MVC.uml" />
+          </generalization>
+        </generalsInternal>
+      </Interface>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="ebc07550-a718-43d5-8038-9710956b8b5d"
+        name="FolderItem"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="f0560c77-4e79-4a57-a77b-8f7b0264c1c7"
+            isSubstitutable="false">
+            <classMoniker
+              Id="71623b96-05dd-498d-9e80-fb6d57d31924"
+              LastKnownName="UIItem"
+              LastKnownLocation="PAO.MVC.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="71623b96-05dd-498d-9e80-fb6d57d31924"
+        name="UIItem"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <suppliersInternal>
+          <interfaceRealization
+            Id="dc90dffa-0c63-492c-bf67-0870b6032a14">
+            <interfaceMoniker
+              Id="4ce4d955-86e4-4056-a7aa-c65cbc8a4ec2"
+              LastKnownName="IUIItem"
+              LastKnownLocation="PAO.MVC.uml" />
+          </interfaceRealization>
+        </suppliersInternal>
+      </class>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>
