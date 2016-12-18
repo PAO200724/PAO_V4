@@ -32,6 +32,7 @@
             this.ColumnIndex = new DevExpress.XtraGrid.Columns.GridColumn();
             this.GridControlList = new DevExpress.XtraGrid.GridControl();
             this.BindingSourceList = new System.Windows.Forms.BindingSource(this.components);
+            this.DataSetList = new PAO.Config.EditControls.DataSetList();
             this.BarManagerObject = new DevExpress.XtraBars.BarManager(this.components);
             this.BarToolObject = new DevExpress.XtraBars.Bar();
             this.StaticItemObject = new DevExpress.XtraBars.BarStaticItem();
@@ -39,8 +40,6 @@
             this.ButtonImport = new DevExpress.XtraBars.BarButtonItem();
             this.ButtonAdd = new DevExpress.XtraBars.BarButtonItem();
             this.ButtonDelete = new DevExpress.XtraBars.BarButtonItem();
-            this.ButtonMoveUp = new DevExpress.XtraBars.BarButtonItem();
-            this.ButtonMoveDown = new DevExpress.XtraBars.BarButtonItem();
             this.barDockControl1 = new DevExpress.XtraBars.BarDockControl();
             this.barDockControl2 = new DevExpress.XtraBars.BarDockControl();
             this.barDockControl3 = new DevExpress.XtraBars.BarDockControl();
@@ -48,13 +47,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.GridViewList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridControlList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BindingSourceList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DataSetList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BarManagerObject)).BeginInit();
             this.SuspendLayout();
             // 
             // ColumnObject
             // 
             this.ColumnObject.Caption = "对象";
-            this.ColumnObject.FieldName = "Element";
+            this.ColumnObject.FieldName = "Value";
             this.ColumnObject.Name = "ColumnObject";
             this.ColumnObject.OptionsColumn.ReadOnly = true;
             this.ColumnObject.Visible = true;
@@ -70,14 +70,11 @@
             this.GridViewList.OptionsCustomization.AllowSort = false;
             this.GridViewList.OptionsView.ShowGroupPanel = false;
             this.GridViewList.RowHeight = 30;
-            this.GridViewList.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
-            new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.ColumnIndex, DevExpress.Data.ColumnSortOrder.Ascending)});
-            this.GridViewList.RowUpdated += new DevExpress.XtraGrid.Views.Base.RowObjectEventHandler(this.GridViewList_RowUpdated);
             // 
             // ColumnIndex
             // 
             this.ColumnIndex.Caption = "键";
-            this.ColumnIndex.FieldName = "Index";
+            this.ColumnIndex.FieldName = "Key";
             this.ColumnIndex.Name = "ColumnIndex";
             this.ColumnIndex.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
             this.ColumnIndex.OptionsColumn.FixedWidth = true;
@@ -100,7 +97,14 @@
             // 
             // BindingSourceList
             // 
-            this.BindingSourceList.DataSource = typeof(PAO.Config.ListElement);
+            this.BindingSourceList.DataMember = "Element";
+            this.BindingSourceList.DataSource = this.DataSetList;
+            this.BindingSourceList.Sort = "";
+            // 
+            // DataSetList
+            // 
+            this.DataSetList.DataSetName = "DataSetList";
+            this.DataSetList.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // BarManagerObject
             // 
@@ -117,8 +121,6 @@
             this.ButtonImport,
             this.ButtonAdd,
             this.ButtonDelete,
-            this.ButtonMoveUp,
-            this.ButtonMoveDown,
             this.StaticItemObject});
             this.BarManagerObject.MaxItemId = 10;
             // 
@@ -133,9 +135,7 @@
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.ButtonExport, DevExpress.XtraBars.BarItemPaintStyle.CaptionInMenu),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.ButtonImport, DevExpress.XtraBars.BarItemPaintStyle.CaptionInMenu),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.ButtonAdd, "", true, true, true, 0, null, DevExpress.XtraBars.BarItemPaintStyle.CaptionInMenu),
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.ButtonDelete, DevExpress.XtraBars.BarItemPaintStyle.CaptionInMenu),
-            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonMoveUp, true),
-            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonMoveDown)});
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.ButtonDelete, DevExpress.XtraBars.BarItemPaintStyle.CaptionInMenu)});
             this.BarToolObject.OptionsBar.AllowQuickCustomization = false;
             this.BarToolObject.OptionsBar.DisableClose = true;
             this.BarToolObject.OptionsBar.DisableCustomization = true;
@@ -185,24 +185,6 @@
             this.ButtonDelete.Name = "ButtonDelete";
             this.ButtonDelete.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonDelete_ItemClick);
             // 
-            // ButtonMoveUp
-            // 
-            this.ButtonMoveUp.Caption = "上移(&U)";
-            this.ButtonMoveUp.Glyph = global::PAO.Config.Properties.Resources.moveup_16x16;
-            this.ButtonMoveUp.Id = 6;
-            this.ButtonMoveUp.LargeGlyph = global::PAO.Config.Properties.Resources.moveup_32x32;
-            this.ButtonMoveUp.Name = "ButtonMoveUp";
-            this.ButtonMoveUp.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonMoveUp_ItemClick);
-            // 
-            // ButtonMoveDown
-            // 
-            this.ButtonMoveDown.Caption = "下移(&D)";
-            this.ButtonMoveDown.Glyph = global::PAO.Config.Properties.Resources.movedown_16x16;
-            this.ButtonMoveDown.Id = 7;
-            this.ButtonMoveDown.LargeGlyph = global::PAO.Config.Properties.Resources.movedown_32x32;
-            this.ButtonMoveDown.Name = "ButtonMoveDown";
-            this.ButtonMoveDown.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonMoveDown_ItemClick);
-            // 
             // barDockControl1
             // 
             this.barDockControl1.CausesValidation = false;
@@ -245,6 +227,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.GridViewList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridControlList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BindingSourceList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DataSetList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BarManagerObject)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -264,12 +247,11 @@
         private DevExpress.XtraBars.BarButtonItem ButtonImport;
         private DevExpress.XtraBars.BarButtonItem ButtonAdd;
         private DevExpress.XtraBars.BarButtonItem ButtonDelete;
-        private DevExpress.XtraBars.BarButtonItem ButtonMoveUp;
-        private DevExpress.XtraBars.BarButtonItem ButtonMoveDown;
         private DevExpress.XtraBars.BarDockControl barDockControl1;
         private DevExpress.XtraBars.BarDockControl barDockControl2;
         private DevExpress.XtraBars.BarDockControl barDockControl3;
         private DevExpress.XtraBars.BarDockControl barDockControl4;
         private DevExpress.XtraBars.BarStaticItem StaticItemObject;
+        private DataSetList DataSetList;
     }
 }

@@ -42,12 +42,14 @@
             this.barDockControl4 = new DevExpress.XtraBars.BarDockControl();
             this.GridControlList = new DevExpress.XtraGrid.GridControl();
             this.BindingSourceList = new System.Windows.Forms.BindingSource(this.components);
+            this.DataSetList = new PAO.Config.EditControls.DataSetList();
             this.GridViewList = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.ColumnIndex = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ColumnObject = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.BarManagerObject)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridControlList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BindingSourceList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DataSetList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewList)).BeginInit();
             this.SuspendLayout();
             // 
@@ -194,8 +196,15 @@
             // 
             // BindingSourceList
             // 
-            this.BindingSourceList.DataSource = typeof(PAO.Config.ListElement);
+            this.BindingSourceList.DataMember = "Element";
+            this.BindingSourceList.DataSource = this.DataSetList;
+            this.BindingSourceList.Sort = "Key";
             this.BindingSourceList.PositionChanged += new System.EventHandler(this.BindingSourceList_PositionChanged);
+            // 
+            // DataSetList
+            // 
+            this.DataSetList.DataSetName = "DataSetList";
+            this.DataSetList.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // GridViewList
             // 
@@ -208,14 +217,11 @@
             this.GridViewList.OptionsCustomization.AllowSort = false;
             this.GridViewList.OptionsView.ShowGroupPanel = false;
             this.GridViewList.RowHeight = 30;
-            this.GridViewList.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
-            new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.ColumnIndex, DevExpress.Data.ColumnSortOrder.Ascending)});
-            this.GridViewList.RowUpdated += new DevExpress.XtraGrid.Views.Base.RowObjectEventHandler(this.GridViewList_RowUpdated);
             // 
             // ColumnIndex
             // 
             this.ColumnIndex.Caption = "索引号";
-            this.ColumnIndex.FieldName = "Index";
+            this.ColumnIndex.FieldName = "Key";
             this.ColumnIndex.Name = "ColumnIndex";
             this.ColumnIndex.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
             this.ColumnIndex.OptionsColumn.FixedWidth = true;
@@ -226,7 +232,7 @@
             // ColumnObject
             // 
             this.ColumnObject.Caption = "对象";
-            this.ColumnObject.FieldName = "Element";
+            this.ColumnObject.FieldName = "Value";
             this.ColumnObject.Name = "ColumnObject";
             this.ColumnObject.Visible = true;
             this.ColumnObject.VisibleIndex = 1;
@@ -246,6 +252,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.BarManagerObject)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridControlList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BindingSourceList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DataSetList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewList)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -272,5 +279,6 @@
         private DevExpress.XtraBars.BarButtonItem ButtonMoveUp;
         private DevExpress.XtraBars.BarButtonItem ButtonMoveDown;
         private DevExpress.XtraBars.BarStaticItem StaticItemObject;
+        private DataSetList DataSetList;
     }
 }
