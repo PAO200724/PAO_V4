@@ -21,7 +21,7 @@ namespace PAO.Config.EditControls
     /// <summary>
     /// 列表编辑控件
     /// </summary>
-    public partial class ListEditControl : AddonTypeEditControl
+    public partial class ListEditControl : BaseEditControl
     {
         public ListEditControl() {
             InitializeComponent();
@@ -88,7 +88,6 @@ namespace PAO.Config.EditControls
             this.ButtonMoveDown.Enabled = AddonList.IsNotNullOrEmpty() && AddonList.CanMoveDown(position);
             this.ButtonDelete.Enabled = (position >= 0 && position < AddonList.Count);
             this.ButtonExport.Enabled = (AddonList.IsNotNullOrEmpty());
-            this.ButtonNew.Visibility = Newable ? BarItemVisibility.Always : BarItemVisibility.Never;
             base.SetControlStatus();
         }
 
@@ -112,16 +111,10 @@ namespace PAO.Config.EditControls
             var position = e.RowHandle;
             var newValue = this.GridViewList.GetRowCellValue(e.RowHandle, ColumnObject);
 
-            if (position >= 0 && SourceList.IsNotNullOrEmpty()) {
+            if (position >= 0) {
                 if(newValue == null) {
                     DeleteElement(position);
                 } else {
-                    if(position >= SourceList.Count) {
-                        SourceList.Add(newValue);
-                    }
-                    else {
-                        SourceList[position] = newValue;
-                    }
                     SetControlStatus();
                     ModifyData();
                 }
@@ -183,9 +176,6 @@ namespace PAO.Config.EditControls
         private void ListEditControl_Leave(object sender, EventArgs e) {
             this.GridViewList.CloseEditor();
         }
-
-        private void ButtonNew_ItemClick(object sender, ItemClickEventArgs e) {
-            CreateNew();
-        }
+        
     }
 }

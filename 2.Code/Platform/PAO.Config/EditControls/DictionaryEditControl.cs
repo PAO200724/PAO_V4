@@ -20,7 +20,7 @@ namespace PAO.Config.EditControls
     /// <summary>
     /// 字典编辑控件
     /// </summary>
-    public partial class DictionaryEditControl : AddonTypeEditControl
+    public partial class DictionaryEditControl : BaseEditControl
     {
         public DictionaryEditControl() {
             InitializeComponent();
@@ -87,20 +87,12 @@ namespace PAO.Config.EditControls
             this.ButtonMoveUp.Enabled = AddonList.IsNotNullOrEmpty() && AddonList.CanMoveUp(position);
             this.ButtonMoveDown.Enabled = AddonList.IsNotNullOrEmpty() && AddonList.CanMoveDown(position);
             this.ButtonDelete.Enabled = (position >= 0 && position < AddonList.Count);
-            this.ButtonNew.Visibility = Newable ? BarItemVisibility.Always : BarItemVisibility.Never;
             base.SetControlStatus();
         }
 
         private void GridViewList_RowUpdated(object sender, DevExpress.XtraGrid.Views.Base.RowObjectEventArgs e) {
             var position = this.BindingSourceList.Position;
             if (this.BindingSourceList.Position >= 0 && SourceList.IsNotNullOrEmpty()) {
-                var listElement = this.BindingSourceList.Current as ListElement;
-                if (position >= SourceList.Count) {
-                    SourceList.Add(listElement.Index, listElement.Element);
-                }
-                else {
-                    SourceList[position] = listElement.Element;
-                }
                 SetControlStatus();
                 ModifyData();
             }
@@ -162,10 +154,6 @@ namespace PAO.Config.EditControls
 
         private void DictionaryEditControl_Leave(object sender, EventArgs e) {
             this.GridViewList.CloseEditor();
-        }
-
-        private void ButtonNew_ItemClick(object sender, ItemClickEventArgs e) {
-            CreateNew();
         }
     }
 }

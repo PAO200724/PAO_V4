@@ -26,7 +26,7 @@ namespace PAO.Config.EditControls
     /// <summary>
     /// 对象树控件
     /// </summary>
-    public partial class ObjectTreeEditControl : AddonTypeEditControl
+    public partial class ObjectTreeEditControl : BaseEditControl
     {
 
         public ObjectTreeEditControl() {

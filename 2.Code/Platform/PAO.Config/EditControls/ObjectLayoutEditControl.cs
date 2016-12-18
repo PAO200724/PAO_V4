@@ -18,7 +18,7 @@ namespace PAO.Config.EditControls
     /// 对象布局式编辑控件
     /// 作者：PAO
     /// </summary>
-    public partial class ObjectLayoutEditControl : AddonTypeEditControl
+    public partial class ObjectLayoutEditControl : BaseEditControl
     {
         public ObjectLayoutEditControl() {
             InitializeComponent();
@@ -92,11 +92,7 @@ namespace PAO.Config.EditControls
                         editControl = editor.CreateEditControl();
                     }
                 }
-
-                if (editControl is BaseEditControl) {
-                    editControl.As<BaseEditControl>().PropertyType = propDesc.PropertyType;
-                }
-
+                
                 if (editControl.GetType().GetProperty("EditValue") == null)
                     throw new Exception("编辑控件必须实现EditValue属性");
 

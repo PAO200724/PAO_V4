@@ -17,7 +17,7 @@ namespace PAO.Config.EditControls
     /// 数据命令信息编辑器
     /// 作者：PAO
     /// </summary>
-    public partial class DataCommandInfoEditControl : AddonTypeEditControl
+    public partial class DataCommandInfoEditControl : BaseEditControl
     {
         public DataCommandInfoEditControl() {
             InitializeComponent();

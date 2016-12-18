@@ -19,7 +19,7 @@ namespace PAO.Config.EditControls
     /// <summary>
     /// 插件编辑控件
     /// </summary>
-    public partial class ObjectEditControl : AddonTypeEditControl
+    public partial class ObjectEditControl : BaseEditControl
     {
         static ObjectEditControl() {
         }
@@ -51,7 +51,6 @@ namespace PAO.Config.EditControls
         }
 
         protected override void SetControlStatus() {
-            this.ButtonNew.Visibility = Newable? BarItemVisibility.Always: BarItemVisibility.Never;
             base.SetControlStatus();
         }
 
@@ -118,10 +117,6 @@ namespace PAO.Config.EditControls
             }
 
             e.Properties = new PropertyDescriptorCollection(propertyDescriptors.ToArray());
-        }
-
-        private void ButtonNew_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            CreateNew();
         }
     }
 }

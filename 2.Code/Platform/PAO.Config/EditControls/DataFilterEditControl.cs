@@ -20,7 +20,7 @@ namespace PAO.Config.EditControls
     /// <summary>
     /// 数据过滤器编辑器
     /// </summary>
-    public partial class DataFilterEditControl : AddonTypeEditControl
+    public partial class DataFilterEditControl : BaseEditControl
     {
         const int ImageIndex_AndFilter = 0;
         const int ImageIndex_OrFilter = 1;

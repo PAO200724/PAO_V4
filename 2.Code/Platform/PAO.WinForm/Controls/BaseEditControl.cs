@@ -23,22 +23,7 @@ namespace PAO.WinForm
         public BaseEditControl() {
             InitializeComponent();
         }
-
-        private Type _PropertyType;
-
-        /// <summary>
-        /// 属性类型
-        /// </summary>
-        [Browsable(false)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public Type PropertyType {
-            get { return _PropertyType; }
-            set {
-                _PropertyType = value;
-                SetControlStatus();
-            }
-        }
-
+        
         private object _EditValue;
         /// <summary>
         /// 编辑对象
@@ -77,35 +62,12 @@ namespace PAO.WinForm
         /// </summary>
         public virtual bool Editable {
             get {
-                return Newable || (EditValue != null);
+                return (EditValue != null);
             }
         }
-
-        /// <summary>
-        /// 可新建
-        /// </summary>
-        public virtual bool Newable {
-            get {
-                return (PropertyType != null);
-            }
-        }
-
+        
         protected override void SetControlStatus() {
             this.Enabled = Editable;
-        }
-
-        protected virtual object OnCreateNewObject() {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// 新建
-        /// </summary>
-        public virtual void CreateNew() {
-            Newable.CheckTrue("只有设置了ObjectCreateMethod属性的编辑器控件才能新建对象");
-            if(UIPublic.ShowYesNoDialog("您确定要删除当前对象并创建新的对象吗？") == DialogReturn.Yes) {
-                this.EditValue = OnCreateNewObject();
-            }
         }
     }
 }
