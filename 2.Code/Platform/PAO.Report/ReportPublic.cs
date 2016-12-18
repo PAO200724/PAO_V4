@@ -1,6 +1,7 @@
 ﻿using DevExpress.XtraEditors.Repository;
 using DevExpress.XtraVerticalGrid;
 using DevExpress.XtraVerticalGrid.Rows;
+using PAO.Config;
 using PAO.Data;
 using PAO.UI.WinForm;
 using System;
@@ -125,7 +126,7 @@ namespace PAO.Report
                         }
                         else {
                             Type valueType = DataPublic.GetNativeTypeByDbType(parameter.Type);
-                            var edit = WinFormPublic.GetDefaultEditorByType(valueType);
+                            var edit = ConfigPublic.GetDefaultEditorByType(valueType);
                             editor = edit.CreateEditor();
                         }
                         editorRow.Properties.RowEdit = editor;

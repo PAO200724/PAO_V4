@@ -22,6 +22,8 @@ using PAO.UI.WinForm.Property;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraGrid.Views.BandedGrid;
+using DevExpress.XtraLayout;
+using PAO.IO;
 
 namespace PAO.Config
 {
@@ -418,5 +420,131 @@ namespace PAO.Config
         }
         #endregion
 
+        #region 属性的Editors
+
+        /// <summary>
+        /// 获取某个属性的编辑器类型
+        /// </summary>
+        /// <param name="propertyDescriptor">属性</param>
+        /// <returns>编辑器类型</returns>
+        public static BaseEditor GetPropertyEditor(PropertyDescriptor propertyDescriptor) {
+            var propConfigInfo = WinFormPublic.GetPropertyConfigInfo(propertyDescriptor.ComponentType, propertyDescriptor.Name);
+            if (propConfigInfo != null)
+                return propConfigInfo.Editor;
+            return null;
+        }
+
+        /// <summary>
+        /// 创建默认编辑器
+        /// </summary>
+        /// <param name="propertyDescriptor">属性</param>
+        /// <returns>编辑器</returns>
+        public static BaseEditor GetDefaultEditor(PropertyDescriptor propertyDescriptor) {
+            BaseEditor editor = GetPropertyEditor(propertyDescriptor);
+
+            if (propertyDescriptor is ConfigPropertyDescriptor) {
+                var configProp = propertyDescriptor as ConfigPropertyDescriptor;
+                if (configProp.Editor != null) {
+                    editor = IOPublic.ObjectClone(configProp.Editor) as BaseEditor;
+                }
+            }
+
+            if (editor == null) {
+                var type = propertyDescriptor.PropertyType;
+                editor = GetDefaultEditorByType(propertyDescriptor.PropertyType);
+            }
+            
+            if (editor != null) {
+                editor.PropertyDescriptor = propertyDescriptor;
+            }
+            return editor;
+        }
+
+        /// <summary>
+        /// 创建默认编辑器
+        /// </summary>
+        /// <param name="type">类型</param>
+        /// <returns>编辑器</returns>
+        public static BaseEditor GetDefaultEditorByType(Type type) {
+            BaseEditor editor;
+            if (type == typeof(string)) {
+                editor = new TextEditor();
+            }
+            else if (type.IsEnum) {
+                editor = new EnumEditor();
+            }
+            else if (type == typeof(Color)) {
+                editor = new ColorPickEditor();
+            }
+            else if (type == typeof(Font)) {
+                editor = new FontEditor();
+            }
+            else if (type == typeof(DateTime)) {
+                editor = new DateEditor();
+            }
+            else if (type == typeof(bool)) {
+                editor = new ToggleSwitchEditor();
+            }
+            else if (type == typeof(Image)) {
+                editor = new ImageEditor();
+            }
+            else if (type.IsNumberType()) {
+                editor = new TextEditor();
+            }
+            else if (type == typeof(Guid)) {
+                editor = new GuidEditor();
+            }
+            else if (type == typeof(PaoObject)) {
+                editor = new ObjectEditor();
+            }
+            else {
+                return null;
+            }
+            return editor;
+        }
+
+        #endregion
+
+        #region 类型的EditorCotrols
+        /// <summary>
+        /// 获取某个类型的编辑器类型
+        /// </summary>
+        /// <param name="type">类型</param>
+        /// <returns>编辑器类型</returns>
+        public static Type GetTypeEditControlType(Type type) {
+            var typeConfigInfo = WinFormPublic.GetTypeConfigInfo(type);
+            if (typeConfigInfo != null && typeConfigInfo.EditControlType != null)
+                return typeConfigInfo.EditControlType;
+
+            var addonAttr = type.GetAttribute<AddonAttribute>(true);
+            if (addonAttr != null && addonAttr.EditorType != null)
+                return addonAttr.EditorType;
+
+            return null;
+        }
+        #endregion
+
+        #region LayoutControl
+        /// <summary> 
+        /// 根据对象填充属性字段
+        /// </summary>
+        /// <param name="groupItem">组项目</param>
+        /// <param name="obj">对象</param>
+        public static void RetrievePropertyFields(this LayoutControlGroup groupItem, object obj) {
+            groupItem.Items.Clear();
+
+            if (obj == null)
+                return;
+
+            foreach(PropertyDescriptor propDesc in TypeDescriptor.GetProperties(obj)) {
+                BaseEditor edit = null;
+
+                if (edit == null) {
+                    edit = ConfigPublic.GetDefaultEditor(propDesc);
+                }
+
+            }
+        }
+        #endregion
     }
 }

@@ -165,8 +165,9 @@ namespace PAO.UI
         public static Image BinaryToImage(byte[] binary) {
             if (binary.IsNullOrEmpty())
                 return null;
-            MemoryStream buffer = new MemoryStream(binary);
-            return Image.FromStream(buffer);
+            using (MemoryStream buffer = new MemoryStream(binary)) {
+                return Image.FromStream(buffer);
+            }
         }
 
         /// <summary>
@@ -177,9 +178,10 @@ namespace PAO.UI
         public static byte[] ImageToBinary(Image image) {
             if (image == null)
                 return null;
-            MemoryStream buffer = new MemoryStream();
-            image.Save(buffer, image.RawFormat);
-            return buffer.ToArray();
+            using (MemoryStream buffer = new MemoryStream()) {
+                image.Save(buffer, image.RawFormat);
+                return buffer.ToArray();
+            }
         }
         #endregion
 

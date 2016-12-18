@@ -34,6 +34,7 @@ using System.ComponentModel;
 using PAO.UI.WinForm.Editors;
 using PAO.UI.WinForm.Property;
 using PAO.Event;
+using PAO.IO;
 
 namespace PAO.UI.WinForm
 {
@@ -107,9 +108,10 @@ namespace PAO.UI.WinForm
         /// <param name="control">控件</param>
         /// <returns>布局数据</returns>
         public static byte[] GetLayoutData(this DockManager control) {
-            MemoryStream buffer = new MemoryStream();
-            control.SaveLayoutToStream(buffer);
-            return buffer.ToArray();
+            using (MemoryStream buffer = new MemoryStream()) {
+                control.SaveLayoutToStream(buffer);
+                return buffer.ToArray();
+            }
         }
 
         /// <summary>
@@ -120,8 +122,9 @@ namespace PAO.UI.WinForm
         public static void SetLayoutData(this DockManager control, byte[] layoutData) {
             if (layoutData.IsNullOrEmpty())
                 return;
-            MemoryStream buffer = new MemoryStream(layoutData);
-            control.RestoreLayoutFromStream(buffer);
+            using (MemoryStream buffer = new MemoryStream(layoutData)) {
+                control.RestoreLayoutFromStream(buffer);
+            }
         }
 
         /// <summary>
@@ -130,9 +133,10 @@ namespace PAO.UI.WinForm
         /// <param name="dockManager">停靠管理器</param>
         /// <returns>布局数据</returns>
         public static byte[] GetLayoutData(this LayoutControl control) {
-            MemoryStream buffer = new MemoryStream();
-            control.SaveLayoutToStream(buffer);
-            return buffer.ToArray();
+            using (MemoryStream buffer = new MemoryStream()) {
+                control.SaveLayoutToStream(buffer);
+                return buffer.ToArray();
+            }
         }
 
         /// <summary>
@@ -143,8 +147,9 @@ namespace PAO.UI.WinForm
         public static void SetLayoutData(this LayoutControl control, byte[] layoutData) {
             if (layoutData.IsNullOrEmpty())
                 return;
-            MemoryStream buffer = new MemoryStream(layoutData);
-            control.RestoreLayoutFromStream(buffer);
+            using (MemoryStream buffer = new MemoryStream(layoutData)) {
+                control.RestoreLayoutFromStream(buffer);
+            }
         }
 
         /// <summary>
@@ -153,9 +158,10 @@ namespace PAO.UI.WinForm
         /// <param name="dockManager">停靠管理器</param>
         /// <returns>布局数据</returns>
         public static byte[] GetLayoutData(this BaseView control) {
-            MemoryStream buffer = new MemoryStream();
-            control.SaveLayoutToStream(buffer, OptionsLayoutBase.FullLayout);
-            return buffer.ToArray();
+            using (MemoryStream buffer = new MemoryStream()) {
+                control.SaveLayoutToStream(buffer, OptionsLayoutBase.FullLayout);
+                return buffer.ToArray();
+            }
         }
 
         /// <summary>
@@ -166,8 +172,9 @@ namespace PAO.UI.WinForm
         public static void SetLayoutData(this BaseView control, byte[] layoutData) {
             if (layoutData.IsNullOrEmpty())
                 return;
-            MemoryStream buffer = new MemoryStream(layoutData);
-            control.RestoreLayoutFromStream(buffer, OptionsLayoutBase.FullLayout);
+            using (MemoryStream buffer = new MemoryStream(layoutData)) {
+                control.RestoreLayoutFromStream(buffer, OptionsLayoutBase.FullLayout);
+            }
         }
 
         /// <summary>
@@ -176,9 +183,10 @@ namespace PAO.UI.WinForm
         /// <param name="dockManager">停靠管理器</param>
         /// <returns>布局数据</returns>
         public static byte[] GetLayoutData(this TreeList control) {
-            MemoryStream buffer = new MemoryStream();
-            control.SaveLayoutToStream(buffer, OptionsLayoutBase.FullLayout);
-            return buffer.ToArray();
+            using (MemoryStream buffer = new MemoryStream()) {
+                control.SaveLayoutToStream(buffer, OptionsLayoutBase.FullLayout);
+                return buffer.ToArray();
+            }
         }
 
         /// <summary>
@@ -189,8 +197,9 @@ namespace PAO.UI.WinForm
         public static void SetLayoutData(this TreeList control, byte[] layoutData) {
             if (layoutData.IsNullOrEmpty())
                 return;
-            MemoryStream buffer = new MemoryStream(layoutData);
-            control.RestoreLayoutFromStream(buffer);
+            using (MemoryStream buffer = new MemoryStream(layoutData)) {
+                control.RestoreLayoutFromStream(buffer);
+            }
         }
 
         /// <summary>
@@ -199,9 +208,10 @@ namespace PAO.UI.WinForm
         /// <param name="dockManager">停靠管理器</param>
         /// <returns>布局数据</returns>
         public static byte[] GetLayoutData(this VGridControl control) {
-            MemoryStream buffer = new MemoryStream();
-            control.SaveLayoutToStream(buffer, OptionsLayoutBase.FullLayout);
-            return buffer.ToArray();
+            using (MemoryStream buffer = new MemoryStream()) {
+                control.SaveLayoutToStream(buffer, OptionsLayoutBase.FullLayout);
+                return buffer.ToArray();
+            }
         }
 
         /// <summary>
@@ -212,8 +222,9 @@ namespace PAO.UI.WinForm
         public static void SetLayoutData(this VGridControl control, byte[] layoutData) {
             if (layoutData.IsNullOrEmpty())
                 return;
-            MemoryStream buffer = new MemoryStream(layoutData);
-            control.RestoreLayoutFromStream(buffer);
+            using (MemoryStream buffer = new MemoryStream(layoutData)) {
+                control.RestoreLayoutFromStream(buffer);
+            }
         }
 
         /// <summary>
@@ -222,9 +233,10 @@ namespace PAO.UI.WinForm
         /// <param name="dockManager">停靠管理器</param>
         /// <returns>布局数据</returns>
         public static byte[] GetLayoutData(this PivotGridControl control) {
-            MemoryStream buffer = new MemoryStream();
-            control.SaveLayoutToStream(buffer, OptionsLayoutBase.FullLayout);
-            return buffer.ToArray();
+            using (MemoryStream buffer = new MemoryStream()) {
+                control.SaveLayoutToStream(buffer, OptionsLayoutBase.FullLayout);
+                return buffer.ToArray();
+            }
         }
 
         /// <summary>
@@ -235,8 +247,9 @@ namespace PAO.UI.WinForm
         public static void SetLayoutData(this PivotGridControl control, byte[] layoutData) {
             if (layoutData.IsNullOrEmpty())
                 return;
-            MemoryStream buffer = new MemoryStream(layoutData);
-            control.RestoreLayoutFromStream(buffer);
+            using (MemoryStream buffer = new MemoryStream(layoutData)) {
+                control.RestoreLayoutFromStream(buffer);
+            }
         }
         
         /// <summary>
@@ -245,9 +258,10 @@ namespace PAO.UI.WinForm
         /// <param name="dockManager">停靠管理器</param>
         /// <returns>布局数据</returns>
         public static byte[] GetLayoutData(this SchedulerControl control) {
-            MemoryStream buffer = new MemoryStream();
-            control.SaveLayoutToStream(buffer);
-            return buffer.ToArray();
+            using (MemoryStream buffer = new MemoryStream()) {
+                control.SaveLayoutToStream(buffer);
+                return buffer.ToArray();
+            }
         }
 
         /// <summary>
@@ -258,8 +272,9 @@ namespace PAO.UI.WinForm
         public static void SetLayoutData(this SchedulerControl control, byte[] layoutData) {
             if (layoutData.IsNullOrEmpty())
                 return;
-            MemoryStream buffer = new MemoryStream(layoutData);
-            control.RestoreLayoutFromStream(buffer);
+            using (MemoryStream buffer = new MemoryStream(layoutData)) {
+                control.RestoreLayoutFromStream(buffer);
+            }
         }
         /// <summary>
         /// 获取布局数据
@@ -267,9 +282,10 @@ namespace PAO.UI.WinForm
         /// <param name="dockManager">停靠管理器</param>
         /// <returns>布局数据</returns>
         public static byte[] GetLayoutData(this XtraReport control) {
-            MemoryStream buffer = new MemoryStream();
-            control.SaveLayout(buffer);
-            return buffer.ToArray();
+            using (MemoryStream buffer = new MemoryStream()) {
+                control.SaveLayout(buffer);
+                return buffer.ToArray();
+            }
         }
 
         /// <summary>
@@ -280,8 +296,9 @@ namespace PAO.UI.WinForm
         public static void SetLayoutData(this XtraReport control, byte[] layoutData) {
             if (layoutData.IsNullOrEmpty())
                 return;
-            MemoryStream buffer = new MemoryStream(layoutData);
-            control.LoadLayout(buffer);
+            using (MemoryStream buffer = new MemoryStream(layoutData)) {
+                control.LoadLayout(buffer);
+            }
         }
 
         /// <summary>
@@ -290,9 +307,10 @@ namespace PAO.UI.WinForm
         /// <param name="dockManager">停靠管理器</param>
         /// <returns>布局数据</returns>
         public static byte[] GetLayoutData(this ChartControl control) {
-            MemoryStream buffer = new MemoryStream();
-            control.SaveToStream(buffer);
-            return buffer.ToArray();
+            using (MemoryStream buffer = new MemoryStream()) {
+                control.SaveToStream(buffer);
+                return buffer.ToArray();
+            }
         }
 
         /// <summary>
@@ -303,8 +321,9 @@ namespace PAO.UI.WinForm
         public static void SetLayoutData(this ChartControl control, byte[] layoutData) {
             if (layoutData.IsNullOrEmpty())
                 return;
-            MemoryStream buffer = new MemoryStream(layoutData);
-            control.LoadFromStream(buffer);
+            using (MemoryStream buffer = new MemoryStream(layoutData)) {
+                control.LoadFromStream(buffer);
+            }
         }
         #endregion
 
@@ -356,100 +375,6 @@ namespace PAO.UI.WinForm
             else {
                 throw new Exception("此对象不支持添加子菜单");
             }
-        }
-        #endregion
-
-        #region 属性的Editors
-
-        /// <summary>
-        /// 获取某个属性的编辑器类型
-        /// </summary>
-        /// <param name="propertyDescriptor">属性</param>
-        /// <returns>编辑器类型</returns>
-        public static BaseEditor GetPropertyEditor(PropertyDescriptor propertyDescriptor) {
-            var propConfigInfo = GetPropertyConfigInfo(propertyDescriptor.ComponentType, propertyDescriptor.Name);
-            if (propConfigInfo != null)
-                return propConfigInfo.Editor;
-            return null;
-        }
-
-        /// <summary>
-        /// 创建默认编辑器
-        /// </summary>
-        /// <param name="propertyDescriptor">属性</param>
-        /// <returns>编辑器</returns>
-        public static BaseEditor GetDefaultEditor(PropertyDescriptor propertyDescriptor) {
-            BaseEditor editor = GetPropertyEditor(propertyDescriptor);
-
-            if(editor == null) {
-                var type = propertyDescriptor.PropertyType;
-                editor = GetDefaultEditorByType(propertyDescriptor.PropertyType);
-            }
-
-            if (editor != null) {
-                editor.PropertyDescriptor = propertyDescriptor;
-            }
-            return editor;
-        }
-
-        /// <summary>
-        /// 创建默认编辑器
-        /// </summary>
-        /// <param name="type">类型</param>
-        /// <returns>编辑器</returns>
-        public static BaseEditor GetDefaultEditorByType(Type type) {
-            BaseEditor editor;
-            if (type == typeof(string)) {
-                editor = new TextEditor();
-            }
-            else if (type.IsEnum) {
-                editor = new EnumEditor();
-            }
-            else if (type == typeof(Color)) {
-                editor = new ColorPickEditor();
-            }
-            else if (type == typeof(Font)) {
-                editor = new FontEditor();
-            }
-            else if (type == typeof(DateTime)) {
-                editor = new DateEditor();
-            }
-            else if (type == typeof(bool)) {
-                editor = new ToggleSwitchEditor();
-            }
-            else if (type == typeof(Image)) {
-                editor = new ImageEditor();
-            }
-            else if (type.IsNumberType()) {
-                editor = new TextEditor();
-            }
-            else if (type == typeof(Guid)) {
-                editor = new GuidEditor();
-            }
-            else {
-                return null;
-            }
-            return editor;
-        }
-        
-        #endregion
-
-        #region 类型的EditorCotrols
-        /// <summary>
-        /// 获取某个类型的编辑器类型
-        /// </summary>
-        /// <param name="type">类型</param>
-        /// <returns>编辑器类型</returns>
-        public static Type GetTypeEditControlType(Type type) {
-            var typeConfigInfo = GetTypeConfigInfo(type);
-            if (typeConfigInfo != null && typeConfigInfo.EditControlType != null)
-                return typeConfigInfo.EditControlType;
-
-            var addonAttr = type.GetAttribute<AddonAttribute>(true);
-            if (addonAttr != null && addonAttr.EditorType != null)
-                return addonAttr.EditorType;
-
-            return null;
         }
         #endregion
 

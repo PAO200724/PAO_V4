@@ -459,7 +459,10 @@ namespace PAO.Report.Views
         }
 
         private void ButtonProperties_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            ConfigForm.ShowConfigForm(Controller);
+            //ConfigForm.ShowConfigForm(Controller);
+            var objectEditControl = new ObjectLayoutEditControl();
+            objectEditControl.SelectedObject = Controller;
+            WinFormPublic.ShowDialog(objectEditControl);
         }
         #endregion
     }

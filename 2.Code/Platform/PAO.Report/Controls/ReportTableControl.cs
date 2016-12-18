@@ -12,6 +12,7 @@ using DevExpress.XtraEditors.Repository;
 using PAO.Data;
 using PAO.UI.WinForm;
 using DevExpress.XtraLayout;
+using PAO.Config;
 
 namespace PAO.Report.Controls
 {
@@ -158,7 +159,7 @@ namespace PAO.Report.Controls
                     }
                     else {
                         Type valueType = DataPublic.GetNativeTypeByDbType(parameter.Type);
-                        var repositoryItemCreator = WinFormPublic.GetDefaultEditorByType(valueType);
+                        var repositoryItemCreator = ConfigPublic.GetDefaultEditorByType(valueType);
                         repositoryItem = repositoryItemCreator.CreateEditor();
                     }
                     var editor = repositoryItem.CreateEditor();

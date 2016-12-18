@@ -63,6 +63,12 @@
       <DependentUpon>ConfigForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ConfigPublic.cs" />
+    <Compile Include="Controls\EditControls\ObjectLayoutEditControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\EditControls\ObjectLayoutEditControl.Designer.cs">
+      <DependentUpon>ObjectLayoutEditControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="DockViews\PropertyController.cs" />
     <Compile Include="DockViews\PropertyView.cs">
       <SubType>UserControl</SubType>
@@ -177,6 +183,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\EditControls\ObjectEditControl.resx">
       <DependentUpon>ObjectEditControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\EditControls\ObjectLayoutEditControl.resx">
+      <DependentUpon>ObjectLayoutEditControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\InputKeyControl.resx">
       <DependentUpon>InputKeyControl.cs</DependentUpon>

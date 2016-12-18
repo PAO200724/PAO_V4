@@ -142,12 +142,11 @@ namespace PAO.IO
         public static object ObjectClone(this object sourceObject) {
             if (sourceObject == null)
                 return null;
-            MemoryStream buffer = new MemoryStream();
-            WriteObjectToStream(buffer, sourceObject);
-
-            buffer.Seek(0, SeekOrigin.Begin);
-
-            return ReadObjectFromStream(buffer);
+            using (MemoryStream buffer = new MemoryStream()) {
+                WriteObjectToStream(buffer, sourceObject);
+                buffer.Seek(0, SeekOrigin.Begin);
+                return ReadObjectFromStream(buffer);
+            }
         }
         #endregion
     }

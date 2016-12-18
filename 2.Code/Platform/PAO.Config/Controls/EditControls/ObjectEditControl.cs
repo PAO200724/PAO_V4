@@ -77,7 +77,7 @@ namespace PAO.Config.Controls.EditControls
             }
 
             if(edit == null) {
-                edit = WinFormPublic.GetDefaultEditor(propDesc);
+                edit = ConfigPublic.GetDefaultEditor(propDesc);
             }
 
             if (edit == null) {

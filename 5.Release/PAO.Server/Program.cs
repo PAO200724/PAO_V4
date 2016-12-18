@@ -5,11 +5,11 @@ using PAO.Data;
 using PAO.Event;
 using PAO.Remote.Tcp;
 using PAO.Server.Properties;
+using PAO.Time;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using PAO.Time;
 
 namespace PAO.Server
 {
@@ -22,6 +22,7 @@ namespace PAO.Server
         static void Main() {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            DevExpress.UserSkins.BonusSkins.Register();
             // 应用程序启动时创建PaoApplication
             AppPublic.StartApplication(Settings.Default.ConfigStart
                 , AppPublic.DefaultConfigFileName
@@ -29,20 +30,15 @@ namespace PAO.Server
                 , PrepareAppliation);
         }
 
-        private static void PrepareAppliation(PaoApplication app) {
-            app.RunAction = () =>
-            {
-                Application.Run(new MainForm());
-            };
-        }
 
+        private static void PrepareAppliation(PaoApplication app) {
+        }
 
         private static PaoApplication CreateApplication() {
             var app = new ServerApplication()
             {
                 EventProcessorList = new List<PAO.Ref<BaseEventProcessor>>()
-                    .Append(DebugLogger.Default.ToRef())
-                    .Append(EventLogger.Default.ToRef()),
+                    .Append(DebugLogger.Default.ToRef()),
                 ExtendPropertyStorage = new FileExtendPropertyStorage()
                 {
                     FilePath = "ExtendProperties.config"

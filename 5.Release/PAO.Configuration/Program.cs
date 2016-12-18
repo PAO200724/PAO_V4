@@ -57,8 +57,7 @@ namespace PAO.Configuration
                     ServiceName = "DateTimeService"
                 },
                 EventProcessorList = new List<PAO.Ref<BaseEventProcessor>>()
-                    .Append(DebugLogger.Default.ToRef())
-                    .Append(EventLogger.Default.ToRef()),
+                    .Append(DebugLogger.Default.ToRef()),
                 SecurityService = new TcpRemoteFactory<ISecurity>()
                 {
                     ServerAddress = "localhost:7990",

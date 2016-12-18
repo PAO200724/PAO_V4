@@ -5,13 +5,13 @@ using System.Runtime.InteropServices;
 // 有关程序集的一般信息由以下
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("PAO服务器")]
-[assembly: AssemblyDescription("为PAO提供服务的应用程序")]
+[assembly: AssemblyTitle("PAO.Server")]
+[assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("PAO")]
-[assembly: AssemblyProduct("Programming of Aspect Oriented")]
-[assembly: AssemblyCopyright("Copyright ©  2016")]
-[assembly: AssemblyTrademark("PAO")]
+[assembly: AssemblyCompany("Microsoft")]
+[assembly: AssemblyProduct("PAO.Server")]
+[assembly: AssemblyCopyright("Copyright © Microsoft 2016")]
+[assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
 //将 ComVisible 设置为 false 将使此程序集中的类型
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // 如果此项目向 COM 公开，则下列 GUID 用于类型库的 ID
-[assembly: Guid("677ab660-53e5-4309-ad0a-e770d4cc100e")]
+[assembly: Guid("b65e54dc-b437-446a-82eb-0a06780a6e08")]
 
 // 程序集的版本信息由下列四个值组成: 
 //

@@ -25,10 +25,9 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReportView));
-            this.BindingSourceTable = new System.Windows.Forms.BindingSource(this.components);
-            this.BarManager = new DevExpress.XtraBars.BarManager(this.components);
+            this.BindingSourceTable = new System.Windows.Forms.BindingSource();
+            this.BarManager = new DevExpress.XtraBars.BarManager();
             this.BarTools = new DevExpress.XtraBars.Bar();
             this.ButtonQuery = new DevExpress.XtraBars.BarButtonItem();
             this.MenuData = new DevExpress.XtraBars.BarSubItem();
@@ -47,7 +46,7 @@
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.DockManager = new DevExpress.XtraBars.Docking.DockManager(this.components);
+            this.DockManager = new DevExpress.XtraBars.Docking.DockManager();
             this.DockPanelTables = new DevExpress.XtraBars.Docking.DockPanel();
             this.DockPanelData_Container = new DevExpress.XtraBars.Docking.ControlContainer();
             this.AccordionControl = new DevExpress.XtraBars.Navigation.AccordionControl();
@@ -314,7 +313,7 @@
             this.LayoutControl.Location = new System.Drawing.Point(234, 31);
             this.LayoutControl.MenuManager = this.BarManager;
             this.LayoutControl.Name = "LayoutControl";
-            this.LayoutControl.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(685, 219, 250, 350);
+            this.LayoutControl.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(300, 200, 500, 600);
             this.LayoutControl.Root = this.LayoutControlGroupRoot;
             this.LayoutControl.Size = new System.Drawing.Size(646, 496);
             this.LayoutControl.TabIndex = 0;
