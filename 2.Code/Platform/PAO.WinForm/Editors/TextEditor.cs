@@ -28,7 +28,7 @@ namespace PAO.WinForm.Editors
         public TextEditor() {
         }
 
-        public override RepositoryItem CreateEditor() {
+        protected override RepositoryItem OnCreateRepositoryItem() {
             var edit = new RepositoryItemButtonEdit();
             edit.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
             edit.Buttons.RemoveAt(0);

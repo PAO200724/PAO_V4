@@ -37,7 +37,7 @@ namespace PAO.Config.Editors
 
         public Type AddonType { get; set; }
 
-        public override RepositoryItem CreateEditor() {
+        protected override RepositoryItem OnCreateRepositoryItem() {
             var edit = new RepositoryItemButtonEdit();
             WinFormPublic.AddClearButton(edit);
             edit.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
@@ -63,9 +63,9 @@ namespace PAO.Config.Editors
                     return false;
                 };
 
-                editControl.SelectedObject = editValue;
+                editControl.EditValue = editValue;
                 if (WinFormPublic.ShowDialog(editControl) == DialogReturn.OK) {
-                    edit.EditValue = editControl.SelectedObject;
+                    edit.EditValue = editControl.EditValue;
                 }
             }
         }

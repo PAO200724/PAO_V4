@@ -143,7 +143,7 @@ namespace PAO.Config
         /// </summary>
         /// <param name="propertyDescriptor">属性</param>
         /// <returns>编辑器</returns>
-        public static BaseEditor GetEditor(PropertyDescriptor propertyDescriptor) {
+        public static BaseEditor GetEditor(PropertyDescriptor propertyDescriptor, bool textEditorForNull = false) {
             BaseEditor editor = null;
 
             // 如果属性是定义好了的扩展属性，则直接获取编辑器
@@ -165,6 +165,10 @@ namespace PAO.Config
             // 根据属性类型获取编辑器
             if (editor == null) {
                 editor = GetDefaultEditorByType(propertyDescriptor.PropertyType);
+            }
+
+            if(textEditorForNull && editor == null) {
+                editor = new TextEditor();
             }
 
             if (editor != null) {
@@ -236,61 +240,12 @@ namespace PAO.Config
         }
         #endregion
 
-        #region LayoutControl
-        /// <summary> 
-        /// 根据对象填充属性字段
+        #region LayoutEditControl
+        /// <summary>
+        /// 布局编辑控件配置列表
         /// </summary>
-        /// <param name="groupItem">组项目</param>
-        /// <param name="obj">对象</param>
-        public static void RetrievePropertyFields(this LayoutControlGroup groupItem, object obj) {
-            groupItem.Items.Clear();
+        public static Dictionary<string, LayoutEditControlData> LayoutEditControlConfigs = new Dictionary<string, LayoutEditControlData>();
 
-            if (obj == null)
-                return;
-
-            foreach (PropertyDescriptor propDesc in TypeDescriptor.GetProperties(obj)) {
-                var configedPropDesc = WinFormPublic.GetConfigedProperty(propDesc);
-
-                if (configedPropDesc == null || !configedPropDesc.IsBrowsable)
-                    continue;
-
-                Control editControl;
-                var propValue = configedPropDesc.GetValue(obj);
-                if (AddonPublic.IsAddonDictionaryType(configedPropDesc.PropertyType)) {
-                    var dictEditControl = new DictionaryEditControl();
-                    dictEditControl.SelectedObject = propValue;
-                    editControl = dictEditControl;
-                } else if(AddonPublic.IsAddonListType(configedPropDesc.PropertyType)) {
-                    var listEditControl = new ListEditControl();
-                    listEditControl.SelectedObject = propValue;
-                    editControl = listEditControl;
-                }
-                else {
-                    BaseEditor edit = null;
-                    edit = ConfigPublic.GetEditor(configedPropDesc);
-                    if (edit == null) {
-                        edit = new TextEditor();
-                    }
-                    var repositoryItem = edit.CreateEditor();
-                    var editor = repositoryItem.CreateEditor();
-                    editor.Properties.Assign(repositoryItem);
-                    editor.EditValue = propValue;
-                    editControl = editor;
-                }
-                editControl.Tag = configedPropDesc;
-                editControl.Name = configedPropDesc.Name;
-
-                var layoutControlItem = groupItem.AddItem();
-                layoutControlItem.Name = configedPropDesc.Name;
-                layoutControlItem.Text = configedPropDesc.DisplayName;
-                layoutControlItem.CustomizationFormText = configedPropDesc.DisplayName;
-                layoutControlItem.TextLocation = DevExpress.Utils.Locations.Left;
-                layoutControlItem.TextVisible = true;
-                layoutControlItem.ShowInCustomizationForm = true;
-                layoutControlItem.Control = editControl;
-            }
-        }
         #endregion
-
     }
 }

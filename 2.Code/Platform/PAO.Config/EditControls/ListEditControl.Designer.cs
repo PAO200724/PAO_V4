@@ -25,13 +25,12 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ListEditControl));
-            this.BarManagerObject = new DevExpress.XtraBars.BarManager();
+            this.BarManagerObject = new DevExpress.XtraBars.BarManager(this.components);
             this.BarToolObject = new DevExpress.XtraBars.Bar();
             this.StaticItemObject = new DevExpress.XtraBars.BarStaticItem();
-            this.ButtonNew = new DevExpress.XtraBars.BarButtonItem();
             this.ButtonExport = new DevExpress.XtraBars.BarButtonItem();
-            this.ButtonImport = new DevExpress.XtraBars.BarButtonItem();
             this.ButtonAdd = new DevExpress.XtraBars.BarButtonItem();
             this.ButtonDelete = new DevExpress.XtraBars.BarButtonItem();
             this.ButtonMoveUp = new DevExpress.XtraBars.BarButtonItem();
@@ -41,13 +40,15 @@
             this.barDockControl3 = new DevExpress.XtraBars.BarDockControl();
             this.barDockControl4 = new DevExpress.XtraBars.BarDockControl();
             this.GridControlList = new DevExpress.XtraGrid.GridControl();
-            this.BindingSourceList = new System.Windows.Forms.BindingSource();
+            this.BindingSourceList = new System.Windows.Forms.BindingSource(this.components);
+            this.DataSetList = new PAO.Config.EditControls.DataSetList();
             this.GridViewList = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.ColumnIndex = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ColumnObject = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.BarManagerObject)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridControlList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BindingSourceList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DataSetList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewList)).BeginInit();
             this.SuspendLayout();
             // 
@@ -63,12 +64,10 @@
             this.BarManagerObject.Form = this;
             this.BarManagerObject.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.ButtonExport,
-            this.ButtonImport,
             this.ButtonAdd,
             this.ButtonDelete,
             this.ButtonMoveUp,
             this.ButtonMoveDown,
-            this.ButtonNew,
             this.StaticItemObject});
             this.BarManagerObject.MaxItemId = 10;
             // 
@@ -80,9 +79,7 @@
             this.BarToolObject.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
             this.BarToolObject.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.StaticItemObject, true),
-            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonNew),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.ButtonExport, DevExpress.XtraBars.BarItemPaintStyle.CaptionInMenu),
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.ButtonImport, DevExpress.XtraBars.BarItemPaintStyle.CaptionInMenu),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.ButtonAdd, "", true, true, true, 0, null, DevExpress.XtraBars.BarItemPaintStyle.CaptionInMenu),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.ButtonDelete, DevExpress.XtraBars.BarItemPaintStyle.CaptionInMenu),
             new DevExpress.XtraBars.LinkPersistInfo(this.ButtonMoveUp, true),
@@ -101,14 +98,6 @@
             this.StaticItemObject.Name = "StaticItemObject";
             this.StaticItemObject.TextAlignment = System.Drawing.StringAlignment.Near;
             // 
-            // ButtonNew
-            // 
-            this.ButtonNew.Caption = "新对象(&N)";
-            this.ButtonNew.Glyph = global::PAO.Config.Properties.Resources.new_16x16;
-            this.ButtonNew.Id = 8;
-            this.ButtonNew.Name = "ButtonNew";
-            this.ButtonNew.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonNew_ItemClick);
-            // 
             // ButtonExport
             // 
             this.ButtonExport.Caption = "导出(&E)";
@@ -117,15 +106,6 @@
             this.ButtonExport.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("ButtonExport.LargeGlyph")));
             this.ButtonExport.Name = "ButtonExport";
             this.ButtonExport.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonExport_ItemClick);
-            // 
-            // ButtonImport
-            // 
-            this.ButtonImport.Caption = "导入(&I)";
-            this.ButtonImport.Glyph = ((System.Drawing.Image)(resources.GetObject("ButtonImport.Glyph")));
-            this.ButtonImport.Id = 3;
-            this.ButtonImport.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("ButtonImport.LargeGlyph")));
-            this.ButtonImport.Name = "ButtonImport";
-            this.ButtonImport.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonImport_ItemClick);
             // 
             // ButtonAdd
             // 
@@ -204,8 +184,15 @@
             // 
             // BindingSourceList
             // 
-            this.BindingSourceList.DataSource = typeof(PAO.Config.ListElement);
+            this.BindingSourceList.DataMember = "Element";
+            this.BindingSourceList.DataSource = this.DataSetList;
+            this.BindingSourceList.Sort = "Key";
             this.BindingSourceList.PositionChanged += new System.EventHandler(this.BindingSourceList_PositionChanged);
+            // 
+            // DataSetList
+            // 
+            this.DataSetList.DataSetName = "DataSetList";
+            this.DataSetList.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // GridViewList
             // 
@@ -218,14 +205,11 @@
             this.GridViewList.OptionsCustomization.AllowSort = false;
             this.GridViewList.OptionsView.ShowGroupPanel = false;
             this.GridViewList.RowHeight = 30;
-            this.GridViewList.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
-            new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.ColumnIndex, DevExpress.Data.ColumnSortOrder.Ascending)});
-            this.GridViewList.RowUpdated += new DevExpress.XtraGrid.Views.Base.RowObjectEventHandler(this.GridViewList_RowUpdated);
             // 
             // ColumnIndex
             // 
             this.ColumnIndex.Caption = "索引号";
-            this.ColumnIndex.FieldName = "Index";
+            this.ColumnIndex.FieldName = "Key";
             this.ColumnIndex.Name = "ColumnIndex";
             this.ColumnIndex.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
             this.ColumnIndex.OptionsColumn.FixedWidth = true;
@@ -236,7 +220,7 @@
             // ColumnObject
             // 
             this.ColumnObject.Caption = "对象";
-            this.ColumnObject.FieldName = "Element";
+            this.ColumnObject.FieldName = "Value";
             this.ColumnObject.Name = "ColumnObject";
             this.ColumnObject.Visible = true;
             this.ColumnObject.VisibleIndex = 1;
@@ -256,6 +240,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.BarManagerObject)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridControlList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BindingSourceList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DataSetList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewList)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -267,7 +252,6 @@
         private DevExpress.XtraBars.BarManager BarManagerObject;
         private DevExpress.XtraBars.Bar BarToolObject;
         private DevExpress.XtraBars.BarButtonItem ButtonExport;
-        private DevExpress.XtraBars.BarButtonItem ButtonImport;
         private DevExpress.XtraBars.BarDockControl barDockControl1;
         private DevExpress.XtraBars.BarDockControl barDockControl2;
         private DevExpress.XtraBars.BarDockControl barDockControl3;
@@ -281,7 +265,7 @@
         private DevExpress.XtraBars.BarButtonItem ButtonDelete;
         private DevExpress.XtraBars.BarButtonItem ButtonMoveUp;
         private DevExpress.XtraBars.BarButtonItem ButtonMoveDown;
-        private DevExpress.XtraBars.BarButtonItem ButtonNew;
         private DevExpress.XtraBars.BarStaticItem StaticItemObject;
+        private DataSetList DataSetList;
     }
 }

@@ -9,6 +9,9 @@ using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using PAO.WinForm;
 using DevExpress.XtraDataLayout;
+using DevExpress.XtraLayout;
+using PAO.WinForm.Editors;
+using PAO.UI;
 
 namespace PAO.Config.EditControls
 {
@@ -16,19 +19,19 @@ namespace PAO.Config.EditControls
     /// 对象布局式编辑控件
     /// 作者：PAO
     /// </summary>
-    public partial class ObjectLayoutEditControl : TypeEditControl
+    public partial class ObjectLayoutEditControl : BaseEditControl
     {
         public ObjectLayoutEditControl() {
             InitializeComponent();
         }
 
-        public override object SelectedObject {
+        public override object EditValue {
             get {
-                return base.SelectedObject; 
+                return base.EditValue; 
             }
 
             set {
-                base.SelectedObject = value;
+                base.EditValue = value;
 
                 if(value == null) {
                     this.BindingSource.DataSource = value;
@@ -36,9 +39,120 @@ namespace PAO.Config.EditControls
                     this.BindingSource.DataSource = value.GetType();
                     this.BindingSource.Add(value);
 
-                    this.LayoutControlGroupRoot.RetrievePropertyFields(value);
+                    RetrievePropertyFields(this.LayoutControlGroupRoot, value);
                 }
             }
         }
+
+        private LayoutEditControlData _ControlData;
+        /// <summary>
+        /// 控制数据
+        /// </summary>
+        public LayoutEditControlData ControlData {
+            get { return _ControlData; }
+            set { _ControlData = value; }
+        }
+
+        public void GetControlData() {
+
+        }
+        
+        /// <summary> 
+        /// 根据对象填充属性字段
+        /// </summary>
+        /// <param name="groupItem">组项目</param>
+        /// <param name="obj">对象</param>
+        public void RetrievePropertyFields(LayoutControlGroup groupItem, object obj) {
+            groupItem.Items.Clear();
+
+            if (obj == null)
+                return;
+
+            TabbedControlGroup tabbledGroup = null;
+            foreach (PropertyDescriptor propDesc in TypeDescriptor.GetProperties(obj)) {
+                var configedPropDesc = WinFormPublic.GetConfigedProperty(propDesc);
+
+                if (configedPropDesc == null || !configedPropDesc.IsBrowsable)
+                    continue;
+
+                Control editControl = null;
+                if (ControlData != null) {
+                    editControl = ControlData.CreateEditControl(propDesc.Name);
+                }
+
+                if (editControl == null) {
+                    if (AddonPublic.IsAddonDictionaryType(configedPropDesc.PropertyType)) {
+                        editControl = new DictionaryEditControl();
+                    }
+                    else if (AddonPublic.IsAddonListType(configedPropDesc.PropertyType)) {
+                        editControl = new ListEditControl();
+                    }
+                    else {
+                        // 此处第二个参数为true，确保了最少能创建一种编辑器
+                        BaseEditor editor = ConfigPublic.GetEditor(configedPropDesc, true);
+                        editControl = editor.CreateEditControl();
+                    }
+                }
+                
+                if (editControl.GetType().GetProperty("EditValue") == null)
+                    throw new Exception("编辑控件必须实现EditValue属性");
+
+                editControl.DataBindings.Add(new Binding("EditValue", this.BindingSource, propDesc.Name, true));
+                editControl.Tag = configedPropDesc;
+                editControl.Name = configedPropDesc.Name;
+
+                LayoutControlItem layoutControlItem = null;
+                if (editControl is BaseEditControl) {
+                    if (tabbledGroup == null) {
+                        tabbledGroup = groupItem.AddTabbedGroup();
+                    }
+                    var layoutGroupItem = tabbledGroup.AddTabPage();
+                    layoutGroupItem.Name = "Group_" + configedPropDesc.Name;
+                    layoutGroupItem.Text = configedPropDesc.DisplayName;
+                    layoutGroupItem.CustomizationFormText = "组_" + configedPropDesc.DisplayName;
+                    layoutGroupItem.Padding = new DevExpress.XtraLayout.Utils.Padding(0);
+
+                    layoutControlItem = layoutGroupItem.AddItem();
+                    layoutControlItem.TextLocation = DevExpress.Utils.Locations.Top;
+
+                    editControl.Enter += EditControl_Enter;
+                }
+                else {
+                    layoutControlItem = groupItem.AddItem();
+                    layoutControlItem.TextLocation = DevExpress.Utils.Locations.Left;
+                }
+
+                layoutControlItem.Control = editControl;
+                layoutControlItem.Name = configedPropDesc.Name;
+                layoutControlItem.Text = configedPropDesc.DisplayName;
+                layoutControlItem.CustomizationFormText = configedPropDesc.DisplayName;
+
+                if (editControl is BaseEditControl) {
+                    layoutControlItem.TextVisible = false;
+                }
+                else {
+                    layoutControlItem.TextVisible = true;
+                }
+            }
+        }
+
+        private void EditControl_Enter(object sender, EventArgs e) {
+            var editControl = sender as BaseEditControl;
+            if (EditValue == null || editControl == null) {
+                return;
+            }
+
+            if (editControl.EditValue == null && UIPublic.ShowYesNoDialog("当前属性为空，您是否要创建一个新对象？") == DialogReturn.Yes) {
+                var propDesc = editControl.Tag as PropertyDescriptor;
+                object newObject;
+                if (ConfigPublic.CreateNewAddonValue(propDesc.PropertyType
+                    , false
+                    , out newObject)) {
+                    propDesc.SetValue(EditValue, newObject);
+                    editControl.EditValue = newObject;
+                }
+            }
+        }
+       
     }
 }

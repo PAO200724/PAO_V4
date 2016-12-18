@@ -17,7 +17,7 @@ namespace PAO.Config.EditControls
     /// 插件扩展编辑器
     /// 作者：PAO
     /// </summary>
-    public partial class AddonExtentionEditControl : TypeEditControl
+    public partial class AddonExtentionEditControl : BaseEditControl
     {
         public AddonExtentionEditControl() {
             InitializeComponent();
@@ -43,7 +43,7 @@ namespace PAO.Config.EditControls
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public override object SelectedObject {
+        public override object EditValue {
             get {
                 GetDataFromControl();
                 return _ExtendPropertyDataTable; 
@@ -105,8 +105,8 @@ namespace PAO.Config.EditControls
         /// 将数据从画面读取
         /// </summary>
         public void GetDataFromControl() {
-            if (OriginAddon != null) {
-                this.GridViewAddonExtention.CloseEditor();
+            this.GridViewAddonExtention.CloseEditor();
+            if (OriginAddon != null && _ExtendPropertyDataTable != null) {
                 var extendPropertyRows = _ExtendPropertyDataTable.AsEnumerable<ExtendPropertyRow>().Where(p => p.AddonID == OriginAddon.ID).ToList();
                 foreach (var extendPropertyRow in extendPropertyRows) {
                     extendPropertyRow.Delete();

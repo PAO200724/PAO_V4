@@ -28,7 +28,7 @@ namespace PAO.WinForm.Editors
         public EnumEditor() {
         }
 
-        public override RepositoryItem CreateEditor() {
+        protected override RepositoryItem OnCreateRepositoryItem() {
             var edit = new RepositoryItemComboBox();
             WinFormPublic.AddClearButton(edit);
             // 添加枚举项

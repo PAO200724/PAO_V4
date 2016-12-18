@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DataSetList" targetNamespace="http://tempuri.org/DataSetList.xsd" xmlns:mstns="http://tempuri.org/DataSetList.xsd" xmlns="http://tempuri.org/DataSetList.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DataSetList" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSetList" msprop:Generator_UserDSName="DataSetList">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Element" msprop:Generator_TableClassName="ElementDataTable" msprop:Generator_TableVarName="tableElement" msprop:Generator_RowChangedName="ElementRowChanged" msprop:Generator_TablePropName="Element" msprop:Generator_RowDeletingName="ElementRowDeleting" msprop:Generator_RowChangingName="ElementRowChanging" msprop:Generator_RowEvHandlerName="ElementRowChangeEventHandler" msprop:Generator_RowDeletedName="ElementRowDeleted" msprop:Generator_RowClassName="ElementRow" msprop:Generator_UserTableName="Element" msprop:Generator_RowEvArgName="ElementRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Key" msprop:nullValue="_null" msprop:Generator_ColumnPropNameInRow="Key" msprop:Generator_ColumnVarNameInTable="columnKey" msprop:Generator_ColumnPropNameInTable="KeyColumn" msprop:Generator_UserColumnName="Key" type="xs:anyType" minOccurs="0" />
+              <xs:element name="Value" msprop:nullValue="_null" msprop:Generator_ColumnPropNameInRow="Value" msprop:Generator_ColumnVarNameInTable="columnValue" msprop:Generator_ColumnPropNameInTable="ValueColumn" msprop:Generator_UserColumnName="Value" type="xs:anyType" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Element" />
+      <xs:field xpath="mstns:Key" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

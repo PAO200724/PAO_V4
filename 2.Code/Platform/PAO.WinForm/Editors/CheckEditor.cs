@@ -28,7 +28,7 @@ namespace PAO.WinForm.Editors
         public CheckEditor() {
         }
 
-        public override RepositoryItem CreateEditor() {
+        protected override RepositoryItem OnCreateRepositoryItem() {
             var edit = new RepositoryItemCheckEdit();
             return edit;
         }

@@ -28,7 +28,7 @@ namespace PAO.WinForm.Editors
         public ImageEditor() {
         }
 
-        public override RepositoryItem CreateEditor() {
+        protected override RepositoryItem OnCreateRepositoryItem() {
             var edit = new RepositoryItemImageEdit();
             WinFormPublic.AddClearButton(edit);
             return edit;

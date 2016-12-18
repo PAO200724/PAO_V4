@@ -19,7 +19,7 @@ namespace PAO.Config.EditControls
     /// <summary>
     /// 插件编辑控件
     /// </summary>
-    public partial class ObjectEditControl : TypeEditControl
+    public partial class ObjectEditControl : BaseEditControl
     {
         static ObjectEditControl() {
         }
@@ -27,18 +27,18 @@ namespace PAO.Config.EditControls
         public ObjectEditControl() {
             InitializeComponent();
             SetControlStatus();
-            SelectedObject = null;
+            EditValue = null;
         }
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public override object SelectedObject {
+        public override object EditValue {
             get {
                 this.PropertyGridControl.CloseEditor();
-                return base.SelectedObject;
+                return base.EditValue;
             }
 
             set {
-                base.SelectedObject = value;
+                base.EditValue = value;
                 this.PropertyGridControl.SelectedObject = value;
                 this.PropertyGridControl.Refresh();
                 if(value == null) {
@@ -51,7 +51,7 @@ namespace PAO.Config.EditControls
         }
 
         protected override void SetControlStatus() {
-            this.ButtonNew.Visibility = Newable? BarItemVisibility.Always: BarItemVisibility.Never;
+            this.ButtonExport.Enabled = base.EditValue.IsNotNull();
             base.SetControlStatus();
         }
 
@@ -89,18 +89,14 @@ namespace PAO.Config.EditControls
 
             if (edit != null) {
                 edit.PropertyDescriptor = propDesc;
-                e.RepositoryItem = edit.CreateEditor();
+                e.RepositoryItem = edit.CreateRepositoryItem();
             }
         }
 
         private void ButtonExport_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             ExportSelectedObject();
         }
-
-        private void ButtonImport_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            ImportSelectedObject();
-        }
-
+        
         private void ObjectEditControl_Leave(object sender, EventArgs e) {
             this.PropertyGridControl.CloseEditor();
         }
@@ -118,10 +114,6 @@ namespace PAO.Config.EditControls
             }
 
             e.Properties = new PropertyDescriptorCollection(propertyDescriptors.ToArray());
-        }
-
-        private void ButtonNew_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            CreateNew();
         }
     }
 }

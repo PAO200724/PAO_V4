@@ -59,7 +59,7 @@ namespace WinFormTest
             UIPublic.ShowWaitingForm();
             var objectTreeControl = new ObjectTreeEditControl();
             objectTreeControl.ExtendPropertyStorageFilePath = AppPublic.GetAbsolutePath("ExtendProperties.config");
-            objectTreeControl.SelectedObject = PaoApplication.Default;
+            objectTreeControl.EditValue = PaoApplication.Default;
             UIPublic.CloseWaitingForm();
             WinFormPublic.ShowDialog(objectTreeControl);
         }

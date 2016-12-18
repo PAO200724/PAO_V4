@@ -29,11 +29,11 @@ namespace PAO.Config.DockViews
 
         public object SelectedObject {
             get {
-                return ObjectEditControl.SelectedObject;
+                return ObjectEditControl.EditValue;
             }
 
             set {
-                ObjectEditControl.SelectedObject = value;
+                ObjectEditControl.EditValue = value;
             }
         }
         

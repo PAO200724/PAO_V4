@@ -14,104 +14,108 @@ using PAO.UI;
 using PAO.WinForm;
 using PAO.Config.Controls;
 using DevExpress.XtraBars;
+using PAO.WinForm.Editors;
 
 namespace PAO.Config.EditControls
 {
     /// <summary>
     /// 字典编辑控件
     /// </summary>
-    public partial class DictionaryEditControl : TypeEditControl
+    public partial class DictionaryEditControl : BaseEditControl
     {
         public DictionaryEditControl() {
             InitializeComponent();
-            this.ColumnObject.ColumnEdit = new ObjectEditor().CreateEditor();
-            this.ColumnIndex.ColumnEdit = new RepositoryItemTextEdit();
+            this.ColumnObject.ColumnEdit = new ObjectEditor().CreateRepositoryItem();
+            this.ColumnIndex.ColumnEdit = new TextEditor().CreateRepositoryItem();
+        }
+
+        private void Element_RowChanged(object sender, DataRowChangeEventArgs e) {
+            // 列表发生变化时直接改变EditValue
+            var dict = base.EditValue as IDictionary;
+            if (dict == null)
+                return;
+
+            if (e.Row.RowState == DataRowState.Modified) {
+                var elementRow = e.Row as DataSetList.ElementRow;
+                if (elementRow.Value == null) {
+                    elementRow.Delete();
+                }
+                else {
+                    var originalKey = e.Row["Key", DataRowVersion.Original];
+                    if(originalKey == elementRow.Key) {
+                        dict[elementRow.Key] = elementRow.Value;
+                    } else {
+                        dict.Remove(originalKey);
+                        dict.Add(elementRow.Key, elementRow.Value);
+                    }
+                }
+            }
+            else if (e.Row.RowState == DataRowState.Deleted) {
+                var originalKey = (int)e.Row["Key", DataRowVersion.Original];
+                dict.Remove(originalKey);
+            }
+            else if (e.Row.RowState == DataRowState.Added) {
+                var elementRow = e.Row as DataSetList.ElementRow;
+                dict.Add(elementRow.Key, elementRow.Value);
+            }
         }
 
         /// <summary>
         /// 元素类型
         /// </summary>
-        public Type ListType { get; set; }
+        public Type ListType {
+            get {
+                return this.EditValue.GetType();
+            }
+        }
 
-        private List<ListElement> AddonList;
-        private IDictionary SourceList;
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public override object SelectedObject {
+        public override object EditValue {
             get {
                 this.GridViewList.CloseEditor();
 
-                if (SourceList == null)
-                    return null;
-
-                SourceList.Clear();
-                for (int i = 0; i < AddonList.Count; i++) {
-                    SourceList.Add(AddonList[i].Index, AddonList[i].Element);
-                }
-                return SourceList;
+                return base.EditValue;
             }
 
             set {
-                SourceList = value as IDictionary;
-                if (value == null) {
-                    this.BindingSourceList.DataSource = null;
+                this.DataSetList.Element.RowChanged -= Element_RowChanged;
+                this.DataSetList.Element.RowDeleted -= Element_RowChanged;
+                DataSetList.Element.Clear();
+                if (value.IsNull()) {
+                    base.EditValue = null;
+                    this.GridControlList.DataSource = null;
                     this.StaticItemObject.Caption = "[未选择任何对象]";
                 }
-                else if (!(value is IDictionary)) {
-                    throw new Exception("列表编辑器只支持插件列表的编辑。");
+                else if (value is IDictionary) {
+                    base.EditValue = value;
+                    this.StaticItemObject.Caption = value.GetType().GetTypeString();
+                    this.GridControlList.DataSource = this.BindingSourceList;
+                    var dict = value as IDictionary;
+                    foreach(var key in dict.Keys) {
+                        DataSetList.Element.AddElementRow(key, dict[key]);
+                    }
+                    this.ColumnIndex.OptionsColumn.ReadOnly = false;
                 }
                 else {
-                    this.StaticItemObject.Caption = value.GetType().GetTypeString();
-                    AddonList = new List<ListElement>();
-                    int i = 0;
-                    foreach (var key in SourceList.Keys) {
-                        AddonList.Add(new ListElement()
-                        {
-                            Index = key,
-                            Element = SourceList[key]
-                        });
-                        i++;
-                    }
-                    this.BindingSourceList.DataSource = AddonList;
+                    throw new Exception("列表编辑器只支持列表的编辑。");
                 }
+                DataSetList.Element.AcceptChanges();
+                this.DataSetList.Element.RowChanged += Element_RowChanged;
+                this.DataSetList.Element.RowDeleted += Element_RowChanged;
                 SetControlStatus();
+
             }
         }
 
         protected override void SetControlStatus() {
             var position = this.BindingSourceList.Position;
-            this.ButtonMoveUp.Enabled = AddonList.IsNotNullOrEmpty() && AddonList.CanMoveUp(position);
-            this.ButtonMoveDown.Enabled = AddonList.IsNotNullOrEmpty() && AddonList.CanMoveDown(position);
-            this.ButtonDelete.Enabled = (position >= 0 && position < AddonList.Count);
-            this.ButtonNew.Visibility = Newable ? BarItemVisibility.Always : BarItemVisibility.Never;
+            this.ButtonDelete.Enabled = (position >= 0 && position < BindingSourceList.Count);
+            this.ButtonAdd.Enabled = base.EditValue.IsNotNull();
+            this.ButtonExport.Enabled = base.EditValue.IsNotNull();
             base.SetControlStatus();
         }
-
-        private void GridViewList_RowUpdated(object sender, DevExpress.XtraGrid.Views.Base.RowObjectEventArgs e) {
-            if (this.BindingSourceList.Position >= 0 && SourceList.IsNotNullOrEmpty()) {
-                var listElement = this.BindingSourceList.Current as ListElement;
-                SourceList[this.BindingSourceList.Position] = listElement.Element;
-                SetControlStatus();
-                ModifyData();
-            }
-        }
-
-        private void ButtonMoveUp_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            AddonList.MoveUp(this.BindingSourceList.Position);
-            this.BindingSourceList.Position--;
-            this.GridControlList.RefreshDataSource();
-            SetControlStatus();
-            ModifyData();
-        }
-
-        private void ButtonMoveDown_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            AddonList.MoveDown(this.BindingSourceList.Position);
-            this.BindingSourceList.Position++;
-            this.GridControlList.RefreshDataSource();
-            SetControlStatus();
-            ModifyData();
-        }
-
+        
         private void ButtonAdd_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             object newObject;
             var inputKeyControl = new InputKeyControl();
@@ -119,9 +123,9 @@ namespace PAO.Config.EditControls
                 if (ConfigPublic.CreateNewAddonValue(ListType
                     , true
                     , out newObject)) {
-                    AddonList.Add(new ListElement() { Index = inputKeyControl.KeyValue, Element = newObject });
+                    DataSetList.Element.AddElementRow(inputKeyControl.KeyValue, newObject);
                     this.GridControlList.RefreshDataSource();
-                    this.BindingSourceList.Position = AddonList.Count - 1;
+                    this.BindingSourceList.Position = BindingSourceList.Count - 1;
                     SetControlStatus();
                     ModifyData();
                 }
@@ -130,8 +134,8 @@ namespace PAO.Config.EditControls
 
         private void ButtonDelete_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             var position = this.BindingSourceList.Position;
-            if ((position >= 0 && position < AddonList.Count)) {
-                AddonList.RemoveAt(position);
+            if ((position >= 0 && position < BindingSourceList.Count)) {
+                BindingSourceList.RemoveAt(position);
                 this.GridControlList.RefreshDataSource();
                 SetControlStatus();
                 ModifyData();
@@ -145,17 +149,9 @@ namespace PAO.Config.EditControls
         private void ButtonExport_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             ExportSelectedObject();
         }
-
-        private void ButtonImport_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            ImportSelectedObject();
-        }
-
+        
         private void DictionaryEditControl_Leave(object sender, EventArgs e) {
             this.GridViewList.CloseEditor();
-        }
-
-        private void ButtonNew_ItemClick(object sender, ItemClickEventArgs e) {
-            CreateNew();
         }
     }
 }

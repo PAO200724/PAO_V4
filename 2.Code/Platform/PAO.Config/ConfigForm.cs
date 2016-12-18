@@ -22,17 +22,17 @@ namespace PAO.Config
         }
 
         public void Show(object obj) {
-            this.ObjectEditControl.SelectedObject = obj;
+            this.ObjectEditControl.EditValue = obj;
             this.ShowDialog();
         }
 
         public object SelectedObject {
             get {
-                return this.ObjectEditControl.SelectedObject;
+                return this.ObjectEditControl.EditValue;
             }
 
             set {
-                this.ObjectEditControl.SelectedObject = value;
+                this.ObjectEditControl.EditValue = value;
             }
         }
 

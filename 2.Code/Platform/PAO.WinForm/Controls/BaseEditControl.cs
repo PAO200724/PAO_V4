@@ -23,33 +23,19 @@ namespace PAO.WinForm
         public BaseEditControl() {
             InitializeComponent();
         }
-
-        private Func<object> _ObjectCreateMethod;
+        
+        private object _EditValue;
         /// <summary>
-        /// 对象创建方法
+        /// 编辑对象
         /// </summary>
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public Func<object> ObjectCreateMethod {
-            get { return _ObjectCreateMethod; }
-            set {
-                _ObjectCreateMethod = value;
-                SetControlStatus();
-            }
-        }
-
-        private object _SelectedObject;
-        /// <summary>
-        /// 当前选择的对象
-        /// </summary>
-        [Browsable(false)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public virtual object SelectedObject {
+        public virtual object EditValue {
             get {
-                return _SelectedObject;
+                return _EditValue;
             }
             set {
-                _SelectedObject = value;
+                _EditValue = value;
                 SetControlStatus();
             }
         }
@@ -58,17 +44,7 @@ namespace PAO.WinForm
         /// 导出当前对象
         /// </summary>
         public void ExportSelectedObject() {
-            IOPublic.ExportObject(this.SelectedObject);
-        }
-
-        /// <summary>
-        /// 导入对象
-        /// </summary>
-        public void ImportSelectedObject() {
-            IOPublic.ImportObject((obj)=> {
-                this.SelectedObject = obj;
-                ModifyData();
-            });
+            IOPublic.ExportObject(this.EditValue);
         }
 
         /// <summary>
@@ -76,29 +52,11 @@ namespace PAO.WinForm
         /// </summary>
         public virtual bool Editable {
             get {
-                return Newable || (SelectedObject != null);
+                return (EditValue != null);
             }
         }
-
-        /// <summary>
-        /// 可新建
-        /// </summary>
-        public virtual bool Newable {
-            get {
-                return ObjectCreateMethod != null;
-            }
-        }
-
+        
         protected override void SetControlStatus() {
-            this.Enabled = Editable;
-        }
-
-        /// <summary>
-        /// 新建
-        /// </summary>
-        public virtual void CreateNew() {
-            Newable.CheckTrue("只有设置了ObjectCreateMethod属性的编辑器控件才能新建对象");
-            var newObject = ObjectCreateMethod();
         }
     }
 }

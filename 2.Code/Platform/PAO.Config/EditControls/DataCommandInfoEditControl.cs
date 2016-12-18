@@ -17,7 +17,7 @@ namespace PAO.Config.EditControls
     /// 数据命令信息编辑器
     /// 作者：PAO
     /// </summary>
-    public partial class DataCommandInfoEditControl : TypeEditControl
+    public partial class DataCommandInfoEditControl : BaseEditControl
     {
         public DataCommandInfoEditControl() {
             InitializeComponent();
@@ -25,16 +25,16 @@ namespace PAO.Config.EditControls
         DataCommandInfo DataCommandInfo;
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public override object SelectedObject {
+        public override object EditValue {
             get {
-                DataCommandInfo.DataFilter = this.DataFilterEditControl.SelectedObject as IDataFilter;
+                DataCommandInfo.DataFilter = this.DataFilterEditControl.EditValue as IDataFilter;
                 return DataCommandInfo;
             }
 
             set {
                 if(value == null) {
                     DataCommandInfo = null;
-                    this.DataFilterEditControl.SelectedObject = null;
+                    this.DataFilterEditControl.EditValue = null;
                     this.DataFilterEditControl.Enabled = false;
                     this.BindingSourceDataCommandInfo.DataSource = null;
                 } else if(value is DataCommandInfo) {
@@ -42,7 +42,7 @@ namespace PAO.Config.EditControls
                     this.BindingSourceDataCommandInfo.DataSource = typeof(DataCommandInfo);
                     this.BindingSourceDataCommandInfo.Add(DataCommandInfo);
                     this.DataFilterEditControl.Enabled = true;
-                    this.DataFilterEditControl.SelectedObject = DataCommandInfo.DataFilter;
+                    this.DataFilterEditControl.EditValue = DataCommandInfo.DataFilter;
                 }
                 else {
                     throw new Exception("DataCommandInfoEditControl只支持编辑DataCommandInfo类型的数据")

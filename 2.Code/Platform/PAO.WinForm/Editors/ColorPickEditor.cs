@@ -28,7 +28,7 @@ namespace PAO.WinForm.Editors
         public ColorPickEditor() {
         }
 
-        public override RepositoryItem CreateEditor() {
+        protected override RepositoryItem OnCreateRepositoryItem() {
             var edit = new RepositoryItemColorPickEdit();
             WinFormPublic.AddClearButton(edit);
             return edit;
