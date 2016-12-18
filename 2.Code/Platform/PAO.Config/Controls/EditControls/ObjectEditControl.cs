@@ -7,11 +7,11 @@ using System.Text;
 using System.Linq;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
-using PAO.UI.WinForm;
+using PAO.WinForm;
 using PAO.Config.Editors;
 using PAO.IO;
-using PAO.UI.WinForm.Editors;
-using PAO.UI.WinForm.Property;
+using PAO.WinForm.Editors;
+using PAO.WinForm.Property;
 
 namespace PAO.Config.Controls.EditControls
 {

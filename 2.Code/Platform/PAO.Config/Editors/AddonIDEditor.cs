@@ -7,13 +7,13 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using DevExpress.XtraEditors.Repository;
-using PAO.UI.WinForm;
+using PAO.WinForm;
 using PAO.Config.Controls.EditControls;
 using PAO.IO;
 using DevExpress.XtraEditors;
 using PAO.UI;
 using PAO.Controls;
-using PAO.UI.WinForm.Editors;
+using PAO.WinForm.Editors;
 
 namespace PAO.Config.Editors
 {

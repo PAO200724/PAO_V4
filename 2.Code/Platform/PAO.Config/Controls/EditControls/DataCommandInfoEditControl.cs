@@ -9,7 +9,7 @@ using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using PAO.Config.Controls.EditControls;
 using PAO.Data;
-using PAO.UI.WinForm;
+using PAO.WinForm;
 
 namespace PAO.Config.Controls.EditControls
 {
@@ -52,7 +52,7 @@ namespace PAO.Config.Controls.EditControls
             }
         }
 
-        private void DataFilterEditControl_DataModifyStateChanged(object sender, UI.WinForm.DataModifyStateChangedEventArgs e) {
+        private void DataFilterEditControl_DataModifyStateChanged(object sender, WinForm.DataModifyStateChangedEventArgs e) {
             if(e.DataModified) {
                 ModifyData();
             }

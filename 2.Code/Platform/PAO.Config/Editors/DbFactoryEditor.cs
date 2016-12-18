@@ -6,11 +6,11 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using DevExpress.XtraEditors.Repository;
-using PAO.UI.WinForm;
+using PAO.WinForm;
 using System.Data.Common;
 using System.Data;
 using PAO.Config.Editors;
-using PAO.UI.WinForm.Editors;
+using PAO.WinForm.Editors;
 
 namespace PAO.Config.Editors
 {

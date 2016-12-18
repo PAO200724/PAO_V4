@@ -7,7 +7,7 @@ using System.Text;
 using System.Linq;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
-using PAO.UI.WinForm.Controls;
+using PAO.WinForm.Controls;
 using PAO.App;
 
 namespace PAO.Config.Controls

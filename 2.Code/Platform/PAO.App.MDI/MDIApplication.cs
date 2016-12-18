@@ -3,8 +3,8 @@ using PAO;
 using PAO.App;
 using PAO.Security;
 using PAO.Trans;
-using PAO.UI.MVC;
-using PAO.UI.WinForm.Security;
+using PAO.MVC;
+using PAO.WinForm.Security;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,10 +15,10 @@ using System.Windows.Forms;
 using PAO.Time;
 using DevExpress.XtraSplashScreen;
 using PAO.Event;
-using PAO.UI.WinForm.Properties;
+using PAO.WinForm.Properties;
 using PAO.App.MDI.Properties;
 using PAO.UI;
-using PAO.UI.WinForm;
+using PAO.WinForm;
 
 namespace PAO.App.MDI
 {

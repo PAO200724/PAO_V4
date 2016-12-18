@@ -77,9 +77,9 @@
       <Project>{a0f88184-cb49-4c7d-a56b-ae323fdb67ba}</Project>
       <Name>PAO.Config</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\2.Code\Platform\PAO.UI.WinForm\PAO.UI.WinForm.csproj">
+    <ProjectReference Include="..\..\2.Code\Platform\PAO.WinForm\PAO.WinForm.csproj">
       <Project>{49bd4858-22c7-431e-a0ac-638a182fd35e}</Project>
-      <Name>PAO.UI.WinForm</Name>
+      <Name>PAO.WinForm</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\2.Code\Platform\PAO\PAO.csproj">
       <Project>{13199ee0-1738-4e3a-a970-3771eb9d4d0e}</Project>

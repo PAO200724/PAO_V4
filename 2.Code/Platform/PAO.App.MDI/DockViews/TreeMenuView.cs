@@ -7,9 +7,9 @@ using System.Text;
 using System.Linq;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
-using PAO.UI.WinForm.Controls;
+using PAO.WinForm.Controls;
 using DevExpress.XtraTreeList.Nodes;
-using PAO.UI.MVC;
+using PAO.MVC;
 using System.Threading.Tasks;
 
 namespace PAO.App.MDI.DockViews

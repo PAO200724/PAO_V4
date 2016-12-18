@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using PAO;
 using DevExpress.XtraEditors;
-using PAO.UI.WinForm.Controls;
+using PAO.WinForm.Controls;
 using PAO.UI;
 using PAO.Config;
 using PAO.App;
@@ -19,7 +19,7 @@ using PAO.Data;
 using PAO.Config.Controls.EditControls;
 using PAO.Remote.Tcp;
 using TestLibrary;
-using PAO.UI.WinForm;
+using PAO.WinForm;
 
 namespace WinFormTest
 {

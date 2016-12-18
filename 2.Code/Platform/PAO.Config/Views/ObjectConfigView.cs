@@ -7,8 +7,8 @@ using System.Text;
 using System.Linq;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
-using PAO.UI.WinForm.Controls;
-using PAO.UI.MVC;
+using PAO.WinForm.Controls;
+using PAO.MVC;
 using PAO.App;
 using PAO.IO;
 

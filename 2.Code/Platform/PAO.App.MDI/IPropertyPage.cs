@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
-using PAO.UI.MVC;
+using PAO.MVC;
 
 namespace PAO.App.MDI
 {

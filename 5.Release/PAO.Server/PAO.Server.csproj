@@ -103,9 +103,9 @@
       <Project>{b566efe7-8823-429e-8c37-756e2527065e}</Project>
       <Name>PAO.Report</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\2.Code\Platform\PAO.UI.WinForm\PAO.UI.WinForm.csproj">
+    <ProjectReference Include="..\..\2.Code\Platform\PAO.WinForm\PAO.WinForm.csproj">
       <Project>{49bd4858-22c7-431e-a0ac-638a182fd35e}</Project>
-      <Name>PAO.UI.WinForm</Name>
+      <Name>PAO.WinForm</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\2.Code\Platform\PAO\PAO.csproj">
       <Project>{13199ee0-1738-4e3a-a970-3771eb9d4d0e}</Project>

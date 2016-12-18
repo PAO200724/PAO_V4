@@ -12,8 +12,8 @@ using PAO.Data.Filters;
 using PAO.Data;
 using PAO.Config.Editors;
 using DevExpress.XtraTreeList.Nodes;
-using PAO.UI.WinForm;
-using PAO.UI.WinForm.Editors;
+using PAO.WinForm;
+using PAO.WinForm.Editors;
 
 namespace PAO.Config.Controls.EditControls
 {

@@ -7,10 +7,10 @@ using System.Text;
 using System.Linq;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
-using PAO.UI.WinForm.Editors;
+using PAO.WinForm.Editors;
 using DevExpress.XtraEditors.Repository;
 using PAO.Data;
-using PAO.UI.WinForm;
+using PAO.WinForm;
 using DevExpress.XtraLayout;
 using PAO.Config;
 

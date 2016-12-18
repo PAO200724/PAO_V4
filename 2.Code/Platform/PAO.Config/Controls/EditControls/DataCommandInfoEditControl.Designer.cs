@@ -84,7 +84,7 @@ namespace PAO.Config.Controls.EditControls
             this.DataFilterEditControl.ShowCancelButton = true;
             this.DataFilterEditControl.Size = new System.Drawing.Size(370, 517);
             this.DataFilterEditControl.TabIndex = 6;
-            this.DataFilterEditControl.DataModifyStateChanged += new System.EventHandler<PAO.UI.WinForm.DataModifyStateChangedEventArgs>(this.DataFilterEditControl_DataModifyStateChanged);
+            this.DataFilterEditControl.DataModifyStateChanged += new System.EventHandler<PAO.WinForm.DataModifyStateChangedEventArgs>(this.DataFilterEditControl_DataModifyStateChanged);
             // 
             // NameTextEdit
             // 

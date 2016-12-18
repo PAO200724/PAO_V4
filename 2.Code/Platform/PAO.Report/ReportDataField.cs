@@ -1,6 +1,6 @@
 ﻿using PAO;
 using PAO.Data;
-using PAO.UI.WinForm.Editors;
+using PAO.WinForm.Editors;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

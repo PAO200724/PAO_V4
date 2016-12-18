@@ -9,7 +9,7 @@ using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using static PAO.DataSetExtendProperty;
 using PAO.IO;
-using PAO.UI.WinForm;
+using PAO.WinForm;
 
 namespace PAO.Config.Controls.EditControls
 {

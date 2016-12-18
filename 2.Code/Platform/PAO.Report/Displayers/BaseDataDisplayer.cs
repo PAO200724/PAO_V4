@@ -7,10 +7,10 @@ using System.Text;
 using System.Linq;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
-using PAO.UI.WinForm.Controls;
+using PAO.WinForm.Controls;
 using PAO.Data;
 using System.IO;
-using PAO.UI.WinForm;
+using PAO.WinForm;
 using PAO.UI;
 
 namespace PAO.Report.Displayers

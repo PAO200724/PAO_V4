@@ -9,18 +9,18 @@ using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using System.Threading;
 using DevExpress.XtraBars.Docking;
-using PAO.UI.MVC;
+using PAO.MVC;
 using DevExpress.XtraBars.Docking2010.Views.Tabbed;
 using DevExpress.XtraBars.Docking2010;
 using DevExpress.XtraScheduler;
 using PAO.App;
-using PAO.UI.WinForm.Security;
+using PAO.WinForm.Security;
 using PAO.Security;
 using DevExpress.XtraSplashScreen;
 using PAO.Trans;
 using PAO.IO;
 using PAO.Event;
-using PAO.UI.WinForm;
+using PAO.WinForm;
 using PAO.UI;
 
 namespace PAO.App.MDI

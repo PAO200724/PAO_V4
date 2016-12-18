@@ -470,7 +470,7 @@
             this.ObjectEditControl.ShowCancelButton = true;
             this.ObjectEditControl.Size = new System.Drawing.Size(403, 282);
             this.ObjectEditControl.TabIndex = 1;
-            this.ObjectEditControl.DataModifyStateChanged += new System.EventHandler<PAO.UI.WinForm.DataModifyStateChangedEventArgs>(this.ObjectEditControl_DataModifyStateChanged);
+            this.ObjectEditControl.DataModifyStateChanged += new System.EventHandler<PAO.WinForm.DataModifyStateChangedEventArgs>(this.ObjectEditControl_DataModifyStateChanged);
             // 
             // TabPageList
             // 
@@ -489,7 +489,7 @@
             this.ListEditControl.ShowCancelButton = true;
             this.ListEditControl.Size = new System.Drawing.Size(403, 282);
             this.ListEditControl.TabIndex = 0;
-            this.ListEditControl.DataModifyStateChanged += new System.EventHandler<PAO.UI.WinForm.DataModifyStateChangedEventArgs>(this.ListEditControl_DataModifyStateChanged);
+            this.ListEditControl.DataModifyStateChanged += new System.EventHandler<PAO.WinForm.DataModifyStateChangedEventArgs>(this.ListEditControl_DataModifyStateChanged);
             // 
             // TabPageDictionary
             // 
@@ -508,7 +508,7 @@
             this.DictionaryEditControl.ShowCancelButton = true;
             this.DictionaryEditControl.Size = new System.Drawing.Size(403, 282);
             this.DictionaryEditControl.TabIndex = 0;
-            this.DictionaryEditControl.DataModifyStateChanged += new System.EventHandler<PAO.UI.WinForm.DataModifyStateChangedEventArgs>(this.DictionaryEditControl_DataModifyStateChanged);
+            this.DictionaryEditControl.DataModifyStateChanged += new System.EventHandler<PAO.WinForm.DataModifyStateChangedEventArgs>(this.DictionaryEditControl_DataModifyStateChanged);
             // 
             // AddonExtentionEditControl
             // 
@@ -520,7 +520,7 @@
             this.AddonExtentionEditControl.ShowCancelButton = true;
             this.AddonExtentionEditControl.Size = new System.Drawing.Size(405, 184);
             this.AddonExtentionEditControl.TabIndex = 0;
-            this.AddonExtentionEditControl.DataModifyStateChanged += new System.EventHandler<PAO.UI.WinForm.DataModifyStateChangedEventArgs>(this.AddonExtentionEditControl_DataModifyStateChanged);
+            this.AddonExtentionEditControl.DataModifyStateChanged += new System.EventHandler<PAO.WinForm.DataModifyStateChangedEventArgs>(this.AddonExtentionEditControl_DataModifyStateChanged);
             // 
             // ObjectTreeEditControl
             // 

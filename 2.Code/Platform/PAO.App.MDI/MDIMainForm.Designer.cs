@@ -1,5 +1,5 @@
 ﻿using PAO.App.MDI.Properties;
-using PAO.UI.WinForm.Forms;
+using PAO.WinForm.Forms;
 
 namespace PAO.App.MDI
 {

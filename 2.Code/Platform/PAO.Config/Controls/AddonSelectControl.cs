@@ -10,7 +10,7 @@ using DevExpress.XtraEditors;
 using PAO.Config.Controls.EditControls;
 using PAO.App;
 using PAO.Config;
-using PAO.UI.WinForm;
+using PAO.WinForm;
 
 namespace PAO.Controls
 {

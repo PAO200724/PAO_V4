@@ -9,16 +9,16 @@ using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using DevExpress.XtraTreeList.Nodes;
 using DevExpress.XtraTreeList;
-using PAO.UI.WinForm.Controls;
+using PAO.WinForm.Controls;
 using System.Collections;
 using PAO.App;
 using PAO.UI;
 using PAO;
 using DevExpress.XtraSplashScreen;
 using PAO.IO;
-using PAO.UI.WinForm;
+using PAO.WinForm;
 using static PAO.DataSetExtendProperty;
-using PAO.UI.MVC;
+using PAO.MVC;
 
 namespace PAO.Config.Controls.EditControls
 {
@@ -612,19 +612,19 @@ namespace PAO.Config.Controls.EditControls
             }
         }
 
-        private void ListEditControl_DataModifyStateChanged(object sender, UI.WinForm.DataModifyStateChangedEventArgs e) {
+        private void ListEditControl_DataModifyStateChanged(object sender, WinForm.DataModifyStateChangedEventArgs e) {
             if (e.DataModified == true) {
                 ResetNodeValueByEditControl(ListEditControl);
             }
         }
 
-        private void ObjectEditControl_DataModifyStateChanged(object sender, UI.WinForm.DataModifyStateChangedEventArgs e) {
+        private void ObjectEditControl_DataModifyStateChanged(object sender, WinForm.DataModifyStateChangedEventArgs e) {
             if (e.DataModified == true) {
                 ResetNodeValueByEditControl(ObjectEditControl);
             }
         }
 
-        private void DictionaryEditControl_DataModifyStateChanged(object sender, UI.WinForm.DataModifyStateChangedEventArgs e) {
+        private void DictionaryEditControl_DataModifyStateChanged(object sender, WinForm.DataModifyStateChangedEventArgs e) {
             if (e.DataModified == true) {
                 ResetNodeValueByEditControl(DictionaryEditControl);
             }

@@ -8,7 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using PAO.UI.MVC;
+using PAO.MVC;
 using PAO.Config.Views;
 using PAO.Remote.Tcp;
 using PAO.Security;
@@ -19,7 +19,7 @@ using PAO.Data;
 using PAO.Data.DataFetchers;
 using PAO.Time;
 using PAO.Config.DockViews;
-using PAO.UI.WinForm;
+using PAO.WinForm;
 using PAO.App.MDI.DockViews;
 
 namespace PAO.Configuration
@@ -82,7 +82,7 @@ namespace PAO.Configuration
                         Caption = "菜单",
                         ID = "{20E5F90B-4356-4FFF-B454-5175C8F378A7}",
                         MenuItems = new List<Ref<UIItem>>()
-                            .Append(new UI.MVC.FolderItem()
+                            .Append(new FolderItem()
                             {
                                 ID = "Menu_Config",
                                 Caption = "配置菜单",

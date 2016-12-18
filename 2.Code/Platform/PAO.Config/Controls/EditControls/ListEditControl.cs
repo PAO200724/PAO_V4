@@ -7,13 +7,13 @@ using System.Text;
 using System.Linq;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
-using PAO.UI.WinForm.Controls;
+using PAO.WinForm.Controls;
 using System.Collections;
 using PAO.Config.Editors;
 using PAO.UI;
 using PAO.IO;
 using System.IO;
-using PAO.UI.WinForm;
+using PAO.WinForm;
 
 namespace PAO.Config.Controls.EditControls
 {

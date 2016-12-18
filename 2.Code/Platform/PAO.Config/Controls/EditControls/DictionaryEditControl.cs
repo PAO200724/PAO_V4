@@ -11,7 +11,7 @@ using System.Collections;
 using PAO.Config.Editors;
 using DevExpress.XtraEditors.Repository;
 using PAO.UI;
-using PAO.UI.WinForm;
+using PAO.WinForm;
 
 namespace PAO.Config.Controls.EditControls
 {
