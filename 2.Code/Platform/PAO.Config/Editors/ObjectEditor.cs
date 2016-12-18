@@ -64,7 +64,7 @@ namespace PAO.Config.Editors
                     return;
                 }
                 BaseEditControl editControl = null;
-                Type objectEditorControlType = ConfigPublic.GetTypeEditControlType(objectType);
+                Type objectEditorControlType = ConfigPublic.GetEditControlType(objectType);
                 if (objectEditorControlType != null) {
                     // 以预定义的编辑器对象优先
                     editControl = objectEditorControlType.CreateInstance() as BaseEditControl;

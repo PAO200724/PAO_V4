@@ -352,7 +352,7 @@ namespace PAO.Config.EditControls
                 this.ButtonDelete.Enabled = (nodeType != ObjectTreeNodeType.Object) && propertyValue.IsNotNull() && obj != null;
                 this.ButtonModifyKey.Enabled = (obj != null && nodeType == ObjectTreeNodeType.DictionaryElement);
                 this.ObjectEditControl.SelectedObject = propertyValue;
-                this.ButtonProperty.Enabled = (propertyValue != null && ConfigPublic.GetTypeEditControlType(propertyValue.GetType()) != null);
+                this.ButtonProperty.Enabled = (propertyValue != null && ConfigPublic.GetEditControlType(propertyValue.GetType()) != null);
                 this.ButtonExportExtend.Enabled = ExtendPropertyDataTable != null;
             }
             else {
@@ -647,7 +647,7 @@ namespace PAO.Config.EditControls
             UIPublic.ShowWaitingForm();
             var focusedNode = this.TreeListObject.FocusedNode;
             var propertyValue = focusedNode.GetValue(ColumnPropertyValue);
-            Type editControlType = ConfigPublic.GetTypeEditControlType(propertyValue.GetType());
+            Type editControlType = ConfigPublic.GetEditControlType(propertyValue.GetType());
             var editControl = editControlType.CreateInstance() as BaseEditControl;
             editControl.SelectedObject = propertyValue;
             UIPublic.CloseWaitingForm();

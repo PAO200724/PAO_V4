@@ -42,6 +42,7 @@ namespace PAO.Configuration
         }
 
         private static void PrepareAppliation(PaoApplication app) {
+            ExtendConfigPublic.RegisterEditors();
         }
 
 

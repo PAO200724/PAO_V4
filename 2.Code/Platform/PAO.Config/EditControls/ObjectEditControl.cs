@@ -11,7 +11,7 @@ using PAO.WinForm;
 using PAO.Config.Editors;
 using PAO.IO;
 using PAO.WinForm.Editors;
-using PAO.WinForm.Property;
+using PAO.WinForm.Config;
 
 namespace PAO.Config.EditControls
 {
@@ -21,7 +21,6 @@ namespace PAO.Config.EditControls
     public partial class ObjectEditControl : BaseEditControl
     {
         static ObjectEditControl() {
-            ConfigPublic.RegisterEditors();
         }
 
         public ObjectEditControl() {
@@ -77,7 +76,7 @@ namespace PAO.Config.EditControls
             }
 
             if(edit == null) {
-                edit = ConfigPublic.GetDefaultEditor(propDesc);
+                edit = ConfigPublic.GetEditor(propDesc);
             }
 
             if (edit == null) {
@@ -109,22 +108,10 @@ namespace PAO.Config.EditControls
                 return;
 
             var propertyDescriptors = new List<PropertyDescriptor>();
-
-
             foreach (PropertyDescriptor propertyDesc in e.Properties) {
-                var typeConfigInfo = WinFormPublic.GetTypeConfigInfo(propertyDesc.ComponentType);
-                var propertyConfigInfo = WinFormPublic.GetPropertyConfigInfo(propertyDesc.ComponentType, propertyDesc.Name);
-                if(propertyConfigInfo != null) {
-                    if (propertyConfigInfo.Browsable) {
-                        var newProp = new ConfigPropertyDescriptor(propertyDesc, propertyConfigInfo);
-
-                        propertyDescriptors.Add(newProp);
-                    }
-                }
-                else {
-                    if(typeConfigInfo == null || !typeConfigInfo.ShowDefinedPropertyOnly) {
-                        propertyDescriptors.Add(propertyDesc);
-                    }
+                var configedProperty = WinFormPublic.GetConfigedProperty(propertyDesc);
+                if(configedProperty != null) {
+                    propertyDescriptors.Add(configedProperty);
                 }
             }
 

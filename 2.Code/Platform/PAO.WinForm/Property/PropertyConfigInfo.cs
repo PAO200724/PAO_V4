@@ -7,7 +7,7 @@ using System.Text;
 using PAO;
 using PAO.WinForm.Editors;
 
-namespace PAO.WinForm.Property
+namespace PAO.WinForm.Config
 {
     /// <summary>
     /// 类：PropertyConfigInfo

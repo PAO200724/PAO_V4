@@ -31,7 +31,7 @@ using DevExpress.XtraSpreadsheet;
 using PAO.WinForm.Controls;
 using System.ComponentModel;
 using PAO.WinForm.Editors;
-using PAO.WinForm.Property;
+using PAO.WinForm.Config;
 using PAO.Event;
 using PAO.IO;
 using PAO.UI;
@@ -403,23 +403,19 @@ namespace PAO.WinForm
         /// <param name="type">类型</param>
         /// <returns>类型配置信息</returns>
         public static TypeConfigInfo GetTypeConfigInfo(Type type) {
-            if (type.IsGenericType)
-                type = type.GetGenericTypeDefinition();
+            TypeConfigInfo result = null;
+            // 遍历
+            type.GoThroughParentTypeList((t)=>
+            {
+                result = TypeConfigInfoList
+                    .Where(p=>p.Key == t)
+                    .Select(p=>p.Value).FirstOrDefault();
+                if (result != null)
+                    return false;
 
-            if (TypeConfigInfoList.ContainsKey(type)) {
-                return TypeConfigInfoList[type];
-            }
-
-            if (type.BaseType != null) {
-                return GetTypeConfigInfo(type.BaseType);
-            }
-
-            var keyType = TypeConfigInfoList.Keys.Where(p => type.IsDerivedFrom(p)).FirstOrDefault();
-            if (keyType != null) {
-                return TypeConfigInfoList[keyType];
-            }
-
-            return null;
+                return true;
+            });
+            return result;
         }
 
         /// <summary>
@@ -429,20 +425,46 @@ namespace PAO.WinForm
         /// <param name="propertyName">属性名称</param>
         /// <returns>属性配置信息</returns>
         public static PropertyConfigInfo GetPropertyConfigInfo(Type type, string propertyName) {
-            var typeConfigInfo = GetTypeConfigInfo(type);
-            if (typeConfigInfo != null) {
-                // 如果能找到配置属性，则返回
-                var propertyConfigInfo = typeConfigInfo.GetPropertyConfigInfo(propertyName);
-                if (propertyConfigInfo != null)
-                    return propertyConfigInfo;
-                // 否则，查找基类中的配置属性
-                if (type.BaseType != null) {
-                    propertyConfigInfo = GetPropertyConfigInfo(type.BaseType, propertyName);
+            PropertyConfigInfo result = null;
+            // 遍历
+            type.GoThroughParentTypeList((t) =>
+            {
+                var typeConfigInfo = TypeConfigInfoList
+                    .Where(p => p.Key == t)
+                    .Select(p => p.Value).FirstOrDefault();
+                if (typeConfigInfo != null) {
+                    // 如果能找到配置属性，则返回
+                    var propertyConfigInfo = typeConfigInfo.GetPropertyConfigInfo(propertyName);
                     if (propertyConfigInfo != null) {
-                        return propertyConfigInfo;
+                        result = propertyConfigInfo;
+                        return false;
                     }
                 }
+
+                return true;
+            });
+            return result;
+        }
+
+        /// <summary>
+        /// 获取配置后的属性
+        /// </summary>
+        /// <param name="propertyDesc">属性描述</param>
+        /// <returns>如果属性经过定义，返回经过定义的属性，如果属性定义为不再显示，则返回空</returns>
+        public static PropertyDescriptor GetConfigedProperty(PropertyDescriptor propertyDesc) {
+            var typeConfigInfo = WinFormPublic.GetTypeConfigInfo(propertyDesc.ComponentType);
+            var propertyConfigInfo = WinFormPublic.GetPropertyConfigInfo(propertyDesc.ComponentType, propertyDesc.Name);
+            if (propertyConfigInfo != null) {
+                if (propertyConfigInfo.Browsable) {
+                    return new ConfigPropertyDescriptor(propertyDesc, propertyConfigInfo);
+                }
             }
+            else {
+                if (typeConfigInfo == null || !typeConfigInfo.ShowDefinedPropertyOnly) {
+                    return propertyDesc;
+                }
+            }
+
             return null;
         }
         #endregion

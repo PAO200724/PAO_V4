@@ -502,6 +502,72 @@ namespace PAO {
         public static PropertyDescriptor GetPropertyDescriptor<T>(string propertyName) {
             return GetPropertyDescriptor(typeof(T), propertyName);
         }
+
+        /// <summary>
+        /// 获取父类型列表（包括基类、泛型定义类以及接口）
+        /// </summary>
+        /// <param name="type">类型</param>
+        /// <returns>父类型列表</returns>
+        public static IEnumerable<Type> GetParentTypeList(this Type type) {
+            List<Type> typeList = new List<Type>();
+            GoThroughParentTypeList(type, typeList);
+            return typeList;
+        }
+
+        /// <summary>
+        /// 遍历父类型列表，顺序为：泛型定义类，基类，接口
+        /// </summary>
+        /// <param name="type">类型</param>
+        /// <param name="action">遍历方法，返回值如果是false表示中断遍历</param>
+        public static void GoThroughParentTypeList(this Type type, Func<Type, bool> action) {
+            List<Type> typeList = new List<Type>();
+            GoThroughParentTypeList(type, typeList, action);
+        }
+
+        /// <summary>
+        /// 遍历某个类型的所有相关类型
+        /// </summary>
+        private static bool GoThroughParentTypeList(Type type, List<Type> typeList, Func<Type, bool> action = null) {
+            // 如果遍历过了，不再重复
+            if (typeList.Contains(type)) {
+                return false;
+            }
+
+            if (action != null) {
+                var goOn = action(type);
+                if (!goOn)
+                    return false;
+            }
+
+            // 添加类型本身
+            typeList.Add(type);
+            
+            // 遍历泛型定义类
+            if (type.IsGenericType) {
+                var goOn = GoThroughParentTypeList(type.GetGenericTypeDefinition(), typeList, action);
+                if (!goOn)
+                    return false;
+            }
+
+            // 遍历基类
+            if (type.BaseType != null) {
+                var goOn = GoThroughParentTypeList(type, typeList, action);
+                if (!goOn)
+                    return false;
+            }
+
+            // 遍历所有接口
+            var interfaces = type.GetInterfaces();
+            if (interfaces.IsNotNullOrEmpty()) {
+                foreach (var interfaceType in interfaces) {
+                    var goOn = GoThroughParentTypeList(interfaceType, typeList, action);
+                    if (!goOn)
+                        return false;
+                }
+            }
+
+            return true;
+        }
         #endregion
 
         #region 程序集

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using PAO.WinForm.Editors;
 
-namespace PAO.WinForm.Property
+namespace PAO.WinForm.Config
 {
     /// <summary>
     /// 配置用的属性描述器

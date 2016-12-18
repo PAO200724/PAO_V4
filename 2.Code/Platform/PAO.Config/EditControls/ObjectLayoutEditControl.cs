@@ -36,7 +36,7 @@ namespace PAO.Config.EditControls
                     this.BindingSource.DataSource = value.GetType();
                     this.BindingSource.Add(value);
 
-                    this.DataLayoutControl.RetrieveFields();
+                    this.LayoutControlGroupRoot.RetrievePropertyFields(value);
                 }
             }
         }

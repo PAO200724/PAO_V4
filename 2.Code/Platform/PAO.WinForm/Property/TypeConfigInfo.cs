@@ -7,7 +7,7 @@ using System.Text;
 using PAO;
 using PAO.WinForm.Editors;
 
-namespace PAO.WinForm.Property
+namespace PAO.WinForm.Config
 {
     /// <summary>
     /// 类：TypeConfigInfo
@@ -23,7 +23,6 @@ namespace PAO.WinForm.Property
     public class TypeConfigInfo : PaoObject
     {
         #region 插件属性
-
         #region 属性：PropertyConfigInfoList
         /// <summary>
         /// 属性：Properties
@@ -74,7 +73,7 @@ namespace PAO.WinForm.Property
         #endregion 属性：ShowDefinedPropertyOnly
         #endregion
         public TypeConfigInfo() {
-            PropertyConfigInfoList = new Dictionary<string, Property.PropertyConfigInfo>();
+            PropertyConfigInfoList = new Dictionary<string, Config.PropertyConfigInfo>();
             ShowDefinedPropertyOnly = false;
         }
 
@@ -97,7 +96,7 @@ namespace PAO.WinForm.Property
         /// <returns>this</returns>
         public TypeConfigInfo AddProperty(string property, string displayName = null, string description = null, BaseEditor editor = null, bool browsable = true) {
             if (PropertyConfigInfoList == null)
-                PropertyConfigInfoList = new Dictionary<string, Property.PropertyConfigInfo>();
+                PropertyConfigInfoList = new Dictionary<string, Config.PropertyConfigInfo>();
 
             var propertyConfigInfo = new PropertyConfigInfo(displayName, description, editor, browsable);
             if(PropertyConfigInfoList.ContainsKey(property)) {
