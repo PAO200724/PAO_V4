@@ -1,30 +1,54 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <layerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/SimpleShapesModel" dslVersion="1.0.0.0" Id="bba99d84-5945-4e5c-9ed5-40fd1769ec0e" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/LayerDesigner">
   <layers>
-    <layer Id="5994a357-445b-4d6a-a76c-80871d6bd349" name="基础平台层">
+    <layer Id="5994a357-445b-4d6a-a76c-80871d6bd349" name="平台层 PAO">
       <childLayers>
-        <layer Id="908e0dbf-c605-40bf-bfb9-cbe37c72b531" name="日志: Log" />
-        <layer Id="5a314c2a-af23-4269-ad77-c01fb692fb52" name="事务: Trans" />
-        <layer Id="653469d3-f28f-4ae6-93b4-123e37dc869e" name="数据: Data" />
-        <layer Id="ee982b9d-82fd-47be-809d-3f67f2ff646e" name="安装: Setup" />
-        <layer Id="7a282876-37f4-455e-8976-78f9b8593377" name="远程: Remote" />
-        <layer Id="13801ee4-bdd6-46dd-9cf7-6e65a8c34519" name="采集: Collect" />
-        <layer Id="48f5a779-0c70-4aaa-beed-25a344d5bf02" name="应用: App" />
-        <layer Id="28bbaf43-a2b7-4792-89e5-47994ebed6cb" name="输入输出: IO" />
-        <layer Id="55885205-55db-44c8-8d23-b45f76bd1648" name="安全: Security" />
         <layer Id="9b3d4406-7e2e-4a0f-82ff-c1a13e8cefaa" name="插件: AOP" />
-        <layer Id="e8939f3a-0d86-46f9-801c-635473f10066" name="部件: Part" />
-        <layer Id="6fae861b-fd42-46dd-be66-18ac5c6c1160" name="服务: Server" />
-        <layer Id="9041f8c5-f79d-4f95-a9a9-f4baf9a139af" name="设备: Device" />
-        <layer Id="e2635051-c132-4718-bbdd-fdca1ea4e952" name="界面: UI" />
+        <layer Id="041e1de9-c037-4be6-851a-46c6341fc100" name="基础框架层">
+          <dependencyToLayers>
+            <dependencyFromLayerToLayer Id="c8d7603b-69d0-43b4-9c92-fc7e45829ad7" direction="Forward">
+              <layerMoniker Id="9b3d4406-7e2e-4a0f-82ff-c1a13e8cefaa" />
+            </dependencyFromLayerToLayer>
+          </dependencyToLayers>
+          <childLayers>
+            <layer Id="908e0dbf-c605-40bf-bfb9-cbe37c72b531" name="事件: Event" />
+            <layer Id="5a314c2a-af23-4269-ad77-c01fb692fb52" name="事务: Trans" />
+            <layer Id="a459d894-3cab-45f8-a760-56467708596f" name="MVC" />
+            <layer Id="6fae861b-fd42-46dd-be66-18ac5c6c1160" name="服务: Server" />
+            <layer Id="55885205-55db-44c8-8d23-b45f76bd1648" name="安全: Security" />
+            <layer Id="e2635051-c132-4718-bbdd-fdca1ea4e952" name="界面: UI" />
+            <layer Id="7a282876-37f4-455e-8976-78f9b8593377" name="远程: Remote" />
+            <layer Id="e8939f3a-0d86-46f9-801c-635473f10066" name="部件: Part" />
+            <layer Id="28bbaf43-a2b7-4792-89e5-47994ebed6cb" name="输入输出: IO" />
+            <layer Id="48f5a779-0c70-4aaa-beed-25a344d5bf02" name="应用: App" />
+            <layer Id="9041f8c5-f79d-4f95-a9a9-f4baf9a139af" name="设备: Device" />
+            <layer Id="653469d3-f28f-4ae6-93b4-123e37dc869e" name="数据: Data" />
+          </childLayers>
+        </layer>
+        <layer Id="8f6dbd66-4aa5-4996-8c33-028bab6f4d37" name="平台扩展层">
+          <dependencyToLayers>
+            <dependencyFromLayerToLayer Id="ce2f6844-e92f-4261-aac1-996f0bb0309c" direction="Forward">
+              <layerMoniker Id="041e1de9-c037-4be6-851a-46c6341fc100" />
+            </dependencyFromLayerToLayer>
+          </dependencyToLayers>
+          <childLayers>
+            <layer Id="13801ee4-bdd6-46dd-9cf7-6e65a8c34519" name="采集: Collect" />
+            <layer Id="a76b58df-fdeb-4451-99e3-1489a798c2c5" name="报表: Report" />
+            <layer Id="3eb3cf47-ce88-409f-80a2-eafc0d411634" name="WinForm">
+              <childLayers>
+                <layer Id="882d5d70-2e18-4b7a-bae4-b9a63866af91" name="应用平台层: PAO.App">
+                  <childLayers>
+                    <layer Id="41d57c60-269e-4c24-80f0-51f2f3b76907" name="多文档: MDI" />
+                    <layer Id="408d0d25-c68f-459e-ba52-c1d10350a15f" name="服务: Server" />
+                  </childLayers>
+                </layer>
+              </childLayers>
+            </layer>
+            <layer Id="5914a7ea-ba3c-4cb9-ab85-4ded417d9a9f" name="时间: Time" />
+            <layer Id="ee982b9d-82fd-47be-809d-3f67f2ff646e" name="安装: Setup" />
+          </childLayers>
+        </layer>
       </childLayers>
-    </layer>
-    <layer Id="882d5d70-2e18-4b7a-bae4-b9a63866af91" name="应用平台层">
-      <dependencyToLayers>
-        <dependencyFromLayerToLayer Id="01458bb1-e215-484f-8b08-35986ab7e10b" direction="Forward">
-          <layerMoniker Id="5994a357-445b-4d6a-a76c-80871d6bd349" />
-        </dependencyFromLayerToLayer>
-      </dependencyToLayers>
     </layer>
   </layers>
 </layerModel>
