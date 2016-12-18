@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D0D990C1-0692-4EAE-AB54-5E890B931FC5}</ProjectGuid>
+    <ProjectGuid>{C576A3BD-AD2F-4181-BD96-4C4C3A1B5D12}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PAO.App.Server</RootNamespace>
-    <AssemblyName>PAO.App.Server</AssemblyName>
+    <RootNamespace>PAO.Ext</RootNamespace>
+    <AssemblyName>PAO.Ext</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,15 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DevExpress.Data.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Printing.v15.2.Core, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Utils.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraEditors.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -47,44 +41,39 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Settings.Designer.cs">
+    <Compile Include="Security\SecurityService.cs" />
+    <Compile Include="Security\UserDataSet.Designer.cs">
+      <DependentUpon>UserDataSet.xsd</DependentUpon>
       <AutoGen>True</AutoGen>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
-    <Compile Include="ServerApplication.cs" />
-    <Compile Include="ServerForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ServerForm.Designer.cs">
-      <DependentUpon>ServerForm.cs</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PAO.App\PAO.App.csproj">
-      <Project>{64fdc3f2-2c3e-4925-bbd4-e0afa5cd6161}</Project>
-      <Name>PAO.App</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\PAO.UI.WinForm\PAO.UI.WinForm.csproj">
-      <Project>{49bd4858-22c7-431e-a0ac-638a182fd35e}</Project>
-      <Name>PAO.UI.WinForm</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\PAO\PAO.csproj">
-      <Project>{13199ee0-1738-4e3a-a970-3771eb9d4d0e}</Project>
-      <Name>PAO</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    <None Include="Security\UserDataSet.xsc">
+      <DependentUpon>UserDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Security\UserDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>UserDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Security\UserDataSet.xss">
+      <DependentUpon>UserDataSet.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ServerForm.resx">
-      <DependentUpon>ServerForm.cs</DependentUpon>
-    </EmbeddedResource>
+    <ProjectReference Include="..\..\Platform\PAO.App\PAO.App.csproj">
+      <Project>{64fdc3f2-2c3e-4925-bbd4-e0afa5cd6161}</Project>
+      <Name>PAO.App</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Platform\PAO.UI.WinForm\PAO.UI.WinForm.csproj">
+      <Project>{49bd4858-22c7-431e-a0ac-638a182fd35e}</Project>
+      <Name>PAO.UI.WinForm</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Platform\PAO\PAO.csproj">
+      <Project>{13199ee0-1738-4e3a-a970-3771eb9d4d0e}</Project>
+      <Name>PAO</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

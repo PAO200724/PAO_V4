@@ -8,9 +8,9 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
-using static PAO.App.Server.UserDataSet;
+using static PAO.Ext.Security.UserDataSet;
 
-namespace PAO.App.Server.Security
+namespace PAO.Ext.Security
 {
     /// <summary>
     /// 类：SecurityService
@@ -26,6 +26,22 @@ namespace PAO.App.Server.Security
     public class SecurityService : PaoObject, ISecurity
     {
         #region 插件属性
+
+        #region 属性：DataService
+        /// <summary>
+        /// 属性：DataService
+        /// 数据服务
+        /// 实现本服务所需的数据服务
+        /// </summary>
+        [AddonProperty]
+        [DataMember(EmitDefaultValue = false)]
+        [Name("数据服务")]
+        [Description("实现本服务所需的数据服务")]
+        public Ref<IDataService> DataService {
+            get;
+            set;
+        }
+        #endregion 属性：DataService
         #endregion
 
         #region DataCommands
@@ -62,8 +78,8 @@ namespace PAO.App.Server.Security
         }
 
         public UserInfo GetUserInfo() {
-            T_UserDataTable userTable = new Server.UserDataSet.T_UserDataTable();
-            var dataService = ServerApplication.Default.DataService.Value;
+            T_UserDataTable userTable = new UserDataSet.T_UserDataTable();
+            var dataService = DataService.Value;
             dataService.Fill(userTable, DataCommand_QueryUserByID.ID, 0, 1, new DataField("@ID", SecurityPublic.CurrentUser.UserID));
             if (userTable.Count == 0)
                 return null;
@@ -75,8 +91,8 @@ namespace PAO.App.Server.Security
         }
 
         public string Login(string userID, string password) {
-            T_UserDataTable userTable = new Server.UserDataSet.T_UserDataTable();
-            var dataService = ServerApplication.Default.DataService.Value;
+            T_UserDataTable userTable = new UserDataSet.T_UserDataTable();
+            var dataService = DataService.Value;
             dataService.Fill(userTable, DataCommand_QueryUserByName.ID, 0, 1, new DataField("@UserName", userID));
             if (userTable.Count == 0)
                 throw new Exception("登录失败");

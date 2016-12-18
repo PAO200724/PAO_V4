@@ -1,8 +1,8 @@
 ﻿using PAO.App;
 using PAO.App.Server;
-using PAO.App.Server.Security;
 using PAO.Data;
 using PAO.Event;
+using PAO.Ext.Security;
 using PAO.Remote.Tcp;
 using PAO.Server.Properties;
 using PAO.Time;
@@ -49,7 +49,10 @@ namespace PAO.Server
                     {
                         Port = 7990,
                         ServiceList = new Dictionary<string, Ref<PaoObject>>()
-                             .Append("SecurityService", new SecurityService().ToRef())
+                             .Append("SecurityService", new SecurityService()
+                             {
+                                 DataService = new AddonFactory<IDataService>("ServerDataService")
+                             }.ToRef())
                              .Append("DateTimeService", new DateTimeService().ToRef())
                              .Append("DataService", new AddonFactory<PaoObject>("DataService")),
                     }.ToRef()),
@@ -61,7 +64,7 @@ namespace PAO.Server
         private static DataService CreateDataService() {
             return new DataService()
             {
-                ID = "DataService",
+                ID = "ServerDataService",
                 DataConnection = new Data.DataConnection()
                 {
                     ID = "PAO Db Connection",

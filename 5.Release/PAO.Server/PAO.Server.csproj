@@ -83,6 +83,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\2.Code\Extend\PAO.Ext\PAO.Ext.csproj">
+      <Project>{c576a3bd-ad2f-4181-bd96-4c4c3a1b5d12}</Project>
+      <Name>PAO.Ext</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\2.Code\Platform\PAO.App.Server\PAO.App.Server.csproj">
       <Project>{d0d990c1-0692-4eae-ab54-5e890b931fc5}</Project>
       <Name>PAO.App.Server</Name>

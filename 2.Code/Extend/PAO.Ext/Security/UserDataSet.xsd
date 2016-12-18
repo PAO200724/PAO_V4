@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="UserDataSet" targetNamespace="http://tempuri.org/UserDataSet.xsd" xmlns:mstns="http://tempuri.org/UserDataSet.xsd" xmlns="http://tempuri.org/UserDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="PAOConnectionString" IsAppSettingsProperty="true" Modifier="Assembly" Name="PAOConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.PAO.Ext.Properties.Settings.GlobalReference.Default.PAOConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="UserDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="UserDataSet" msprop:Generator_UserDSName="UserDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="T_User" msprop:Generator_TableClassName="T_UserDataTable" msprop:Generator_TableVarName="tableT_User" msprop:Generator_TablePropName="T_User" msprop:Generator_RowDeletingName="T_UserRowDeleting" msprop:Generator_RowChangingName="T_UserRowChanging" msprop:Generator_RowEvHandlerName="T_UserRowChangeEventHandler" msprop:Generator_RowDeletedName="T_UserRowDeleted" msprop:Generator_UserTableName="T_User" msprop:Generator_RowChangedName="T_UserRowChanged" msprop:Generator_RowEvArgName="T_UserRowChangeEvent" msprop:Generator_RowClassName="T_UserRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Enabled" msprop:Generator_ColumnVarNameInTable="columnEnabled" msprop:Generator_ColumnPropNameInRow="Enabled" msprop:Generator_ColumnPropNameInTable="EnabledColumn" msprop:Generator_UserColumnName="Enabled" type="xs:boolean" minOccurs="0" />
+              <xs:element name="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_UserColumnName="Name">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Password" msprop:Generator_ColumnVarNameInTable="columnPassword" msprop:Generator_ColumnPropNameInRow="Password" msprop:Generator_ColumnPropNameInTable="PasswordColumn" msprop:Generator_UserColumnName="Password" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="LoginName" msprop:Generator_ColumnVarNameInTable="columnLoginName" msprop:Generator_ColumnPropNameInRow="LoginName" msprop:Generator_ColumnPropNameInTable="LoginNameColumn" msprop:Generator_UserColumnName="LoginName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Tel" msprop:Generator_ColumnVarNameInTable="columnTel" msprop:Generator_ColumnPropNameInRow="Tel" msprop:Generator_ColumnPropNameInTable="TelColumn" msprop:Generator_UserColumnName="Tel" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Email" msprop:Generator_ColumnVarNameInTable="columnEmail" msprop:Generator_ColumnPropNameInRow="Email" msprop:Generator_ColumnPropNameInTable="EmailColumn" msprop:Generator_UserColumnName="Email" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Comment" msprop:Generator_ColumnVarNameInTable="columnComment" msprop:Generator_ColumnPropNameInRow="Comment" msprop:Generator_ColumnPropNameInTable="CommentColumn" msprop:Generator_UserColumnName="Comment" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1073741823" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="HeadImage" msprop:Generator_ColumnVarNameInTable="columnHeadImage" msprop:Generator_ColumnPropNameInRow="HeadImage" msprop:Generator_ColumnPropNameInTable="HeadImageColumn" msprop:Generator_UserColumnName="HeadImage" type="xs:base64Binary" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:T_User" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>
