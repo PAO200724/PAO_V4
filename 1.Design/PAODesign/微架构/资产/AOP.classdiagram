@@ -126,6 +126,12 @@
     <logicalClassDesignerModelHasTypes>
       <class Id="2a154cc8-fffa-40fe-a6d2-330fb254f2d5" name="PaoApplication" isAbstract="false" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="5a4bdace-d996-4ee5-a308-bd2444b86f7e" />
+        <generalsInternal>
+          <generalization Id="928eb0a9-7830-43cd-8b28-170e5d651083" isSubstitutable="false">
+            <classMoniker Id="a74f5056-d527-4b05-afc2-c47e9f48944b" LastKnownName="PaoObject" />
+            <elementDefinition Id="3086959f-8cbf-417b-8c2f-01a97f7b7df4" />
+          </generalization>
+        </generalsInternal>
         <targetEnds>
           <association Id="3510f28a-1d71-4a88-ac8e-2fc134f69ed5" isDerived="false" sourceEndRoleName="" targetEndRoleName="ExtendServers" isLeaf="false" isAbstract="false">
             <classMoniker Id="81155524-8108-4df8-84b9-1a7ec240fb04" LastKnownName="BaseServer" />
@@ -137,40 +143,23 @@
               </associationHasOwnedEnds>
               <associationHasOwnedEnds>
                 <memberEnd Id="bc573e45-1d3b-496f-883c-b178f320ece6" name="ExtendServers" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <lowerValueInternal>
+                    <literalString Id="e66cce76-cd0d-42ac-b61b-1bd78cae3038" name="Lower" value="*">
+                      <elementDefinition Id="58a15f54-be2b-47d0-a016-7fb560b80bc4" />
+                    </literalString>
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString Id="0be2d3c3-8013-44ff-b68d-c2093750973a" name="Upper" value="*">
+                      <elementDefinition Id="6a3d6639-457c-4e06-a273-c38d06facd3c" />
+                    </literalString>
+                  </upperValueInternal>
                   <elementDefinition Id="60140d1e-0865-48bc-b978-685a4aabf857" />
                 </memberEnd>
               </associationHasOwnedEnds>
             </relationshipOwnedElementsInternal>
             <elementDefinition Id="a6874de7-4367-43bb-81cd-59275060162d" />
           </association>
-          <association Id="e23dd314-39ad-4467-be8f-0242bbbe1e6c" isDerived="false" sourceEndRoleName="" targetEndRoleName="Devices" isLeaf="false" isAbstract="false">
-            <classMoniker Id="096e9bfd-62f4-4370-9c51-0e8df13b92f6" LastKnownName="BaseDevice" />
-            <relationshipOwnedElementsInternal>
-              <associationHasOwnedEnds>
-                <memberEnd Id="47b2aab4-1329-47a5-8bac-9fbf1657c2cb" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Shared" isComposite="false" isNavigableOwned="false">
-                  <elementDefinition Id="32aa3c44-e76e-4710-ab5f-fa98749b1bd1" />
-                </memberEnd>
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd Id="b0aca222-31f0-4207-9623-30d5e670c0ab" name="Devices" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
-                  <elementDefinition Id="d456fcb4-385f-406e-904c-8eddaaff95a0" />
-                </memberEnd>
-              </associationHasOwnedEnds>
-            </relationshipOwnedElementsInternal>
-            <elementDefinition Id="866b3953-44d1-458a-8070-424731e9738c" />
-          </association>
         </targetEnds>
-      </class>
-    </logicalClassDesignerModelHasTypes>
-    <logicalClassDesignerModelHasTypes>
-      <class Id="096e9bfd-62f4-4370-9c51-0e8df13b92f6" name="BaseDevice" isAbstract="false" isLeaf="false" isActiveClass="false">
-        <elementDefinition Id="6c138d40-d8fc-4c0f-81ee-66a3d3f48786" />
-        <generalsInternal>
-          <generalization Id="6e8f399b-1124-4616-ba6e-2b0c4697a851" isSubstitutable="false">
-            <classMoniker Id="6be47ae6-ab28-4fa9-9370-8833b99715b5" LastKnownName="BasePart" />
-            <elementDefinition Id="c6f3fa89-fa69-46ea-86a0-1821a2c5d626" />
-          </generalization>
-        </generalsInternal>
       </class>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
@@ -180,17 +169,6 @@
           <generalization Id="1ec740f3-4f53-4f77-9847-8ad732830f9e" isSubstitutable="false">
             <classMoniker Id="6be47ae6-ab28-4fa9-9370-8833b99715b5" LastKnownName="BasePart" />
             <elementDefinition Id="ea4d8baf-f5d2-49c4-a4ae-b427eb6cf8f1" />
-          </generalization>
-        </generalsInternal>
-      </class>
-    </logicalClassDesignerModelHasTypes>
-    <logicalClassDesignerModelHasTypes>
-      <class Id="ccd734a8-03ed-4301-bc10-b93baeb9d5f5" name="Controller" isAbstract="false" isLeaf="false" isActiveClass="false">
-        <elementDefinition Id="f2a99867-333b-474a-8c48-86f7c267597e" />
-        <generalsInternal>
-          <generalization Id="f7a23f57-f737-451a-b678-11e44e35efd5" isSubstitutable="false">
-            <classMoniker Id="a74f5056-d527-4b05-afc2-c47e9f48944b" LastKnownName="PaoObject" />
-            <elementDefinition Id="ebf64e37-08d9-45c8-a094-4e63f1e69e7b" />
           </generalization>
         </generalsInternal>
       </class>

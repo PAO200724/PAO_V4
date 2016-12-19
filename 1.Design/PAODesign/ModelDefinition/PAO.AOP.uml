@@ -27,7 +27,7 @@
             <classMoniker
               Id="80cd4da9-26d6-41bf-b1f5-3e8f9be6cb17"
               LastKnownName="Factory&lt;T&gt;"
-              LastKnownLocation="PAO.uml" />
+              LastKnownLocation="PAO.AOP.uml" />
           </generalization>
         </generalsInternal>
       </class>
@@ -39,6 +39,89 @@
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="7e000b94-9d65-40fa-8c5b-03dc5acee097"
+        name="Ref&lt;T&gt;"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="37f72b12-a3b9-4f7f-baa9-b9f12c2bef92"
+            isSubstitutable="false">
+            <classMoniker
+              Id="8fa558aa-fdf2-4bfd-b6a8-14cbcc150e43"
+              LastKnownName="PaoObject"
+              LastKnownLocation="PAO.AOP.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="24bf1f45-2fa3-4b67-bc62-e60ab7bee6db"
+        name="IExtendProperty"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="80cd4da9-26d6-41bf-b1f5-3e8f9be6cb17"
+        name="Factory&lt;T&gt;"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="6452a215-cc5d-4338-8336-12d3c26bdce9"
+            isSubstitutable="false">
+            <classMoniker
+              Id="7e000b94-9d65-40fa-8c5b-03dc5acee097"
+              LastKnownName="Ref&lt;T&gt;"
+              LastKnownLocation="PAO.AOP.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="507fde59-ed0f-419c-aa07-c0ea26d2b8fc"
+        name="FileFactory&lt;T&gt;"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="802ebb3e-00e8-42ce-a678-e23916eac13b"
+            isSubstitutable="false">
+            <classMoniker
+              Id="80cd4da9-26d6-41bf-b1f5-3e8f9be6cb17"
+              LastKnownName="Factory&lt;T&gt;"
+              LastKnownLocation="PAO.AOP.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="9bf11365-9865-4cb2-95bb-de9aea0b1d7d"
+        name="ObjectRef&lt;T&gt;"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="25688690-fb8f-47b9-9138-b0e35bcc5d4d"
+            isSubstitutable="false">
+            <classMoniker
+              Id="7e000b94-9d65-40fa-8c5b-03dc5acee097"
+              LastKnownName="Ref&lt;T&gt;"
+              LastKnownLocation="PAO.AOP.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
     </packageHasNamedElement>
   </packagedElements>
 </package>

@@ -16,8 +16,8 @@
             Id="45ac1d6a-d387-42ec-912e-46d1e3c8d97a">
             <interfaceMoniker
               Id="99c4a9ee-2e62-4fd0-89d4-45a7b24d7b54"
-              LastKnownName="IRemoteService"
-              LastKnownLocation="未找到出处.uml" />
+              LastKnownName="IRemote"
+              LastKnownLocation="PAO.Remote.uml" />
           </dependency>
         </suppliersInternal>
       </class>
@@ -27,6 +27,45 @@
         Id="ebb97a0e-1048-4143-b495-6e5cae90141e"
         LastKnownName="WCF"
         LastKnownLocation="PAO.Remote.WCF.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="a77bc08b-35a4-46e6-9d12-386568daa3d4"
+        name="Header"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="30075800-a10d-4408-a42d-bfefa32f9785"
+        LastKnownName="Tcp"
+        LastKnownLocation="PAO.Remote.Tcp.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="99c4a9ee-2e62-4fd0-89d4-45a7b24d7b54"
+        name="IRemote"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="f339f9dd-d693-4d56-a283-a6a357eeab74"
+        name="BaseRemoteFactory&lt;T&gt;"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <suppliersInternal>
+          <dependency
+            Id="9d8365cc-1dfd-4fe5-b40b-84a3a7ad8aee">
+            <classMoniker
+              Id="f273e2d9-99c0-486a-982f-041e62718efd"
+              LastKnownName="RemoteProxy"
+              LastKnownLocation="PAO.Remote.uml" />
+          </dependency>
+        </suppliersInternal>
+      </class>
     </packageHasNamedElement>
   </packagedElements>
 </package>

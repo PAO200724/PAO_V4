@@ -22,6 +22,36 @@
   </PropertyGroup>
   <Import Project="$(VSToolsPath)\ArchitectureTools\Microsoft.VisualStudio.TeamArchitect.ModelingProject.targets" Condition="'$(VSToolsPath)' != ''" />
   <ItemGroup>
+    <Content Include="ModelDefinition\PAO.Ext.Security.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\PAO.Ext.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\PAO.App.Log.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\PAO.Part.Disabled.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\PAO.App.Security.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\PAO.Log.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\PAO.Security.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\PAO.Remote.Tcp.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\PAO.App.DataCollect.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\PAO.App.AutoUpdate.uml">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="ModelDefinition\PAO.Remote.WCF.uml">
       <SubType>Content</SubType>
     </Content>
@@ -53,9 +83,6 @@
       <SubType>Content</SubType>
     </Content>
     <Content Include="ModelDefinition\PAO.APP.MDI.uml">
-      <SubType>Content</SubType>
-    </Content>
-    <Content Include="ModelDefinition\未找到出处.uml">
       <SubType>Content</SubType>
     </Content>
     <Content Include="ModelDefinition\PAO.MVC.uml">
@@ -104,6 +131,13 @@
     <Content Include="微架构\事务\Transaction.classdiagram.layout">
       <SubType>Content</SubType>
       <DependentUpon>微架构\事务\Transaction.classdiagram</DependentUpon>
+    </Content>
+    <Content Include="微架构\安全\Security.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="微架构\安全\Security.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>微架构\安全\Security.classdiagram</DependentUpon>
     </Content>
     <Content Include="微架构\序列化\序列化.classdiagram">
       <SubType>Content</SubType>
@@ -174,6 +208,7 @@
     </Content>
     <Folder Include="微架构" />
     <Folder Include="微架构\MVC" />
+    <Folder Include="微架构\安全" />
     <Folder Include="微架构\序列化" />
     <Folder Include="微架构\报表" />
     <Folder Include="微架构\资产\状态\" />

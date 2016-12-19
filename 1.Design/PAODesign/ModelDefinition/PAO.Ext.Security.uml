@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm10="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner" xmlns:dm11="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="6cd8d24c-b40a-4382-a381-7956cf535f56"
+  name="Security" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <packagedElements>
+    <packageHasNamedElement>
+      <class
+        Id="c4479561-e491-4f94-a01d-f39b080c4723"
+        name="SecurityService"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <suppliersInternal>
+          <interfaceRealization
+            Id="6c8f227a-1c5d-4923-b8ae-46492911e0e0">
+            <interfaceMoniker
+              Id="7361e73c-02da-48d4-baf6-5211ec6c8fca"
+              LastKnownName="ISecurity"
+              LastKnownLocation="PAO.Security.uml" />
+          </interfaceRealization>
+          <interfaceRealization
+            Id="122f0571-f79c-4d15-ad71-55bcfad3591f">
+            <interfaceMoniker
+              Id="e636a246-bfad-48a6-8b70-f8baa1e0b957"
+              LastKnownName="ISecurityManage"
+              LastKnownLocation="PAO.App.Security.uml" />
+          </interfaceRealization>
+        </suppliersInternal>
+      </class>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

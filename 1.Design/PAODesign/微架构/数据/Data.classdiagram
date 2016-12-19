@@ -34,6 +34,26 @@
     <logicalClassDesignerModelHasTypes>
       <class Id="b853cd3e-5eb5-4e5e-a77c-92e65fba7564" name="DataField" isAbstract="false" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="cd69f52c-a32e-4986-bc14-de8e3d411012" />
+        <ownedAttributesInternal>
+          <property Id="50f0c62b-637b-46f4-a6cf-037764356ca1" name="Type" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="0ab614d9-3a8b-4f65-b0db-beb04092e5e0" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="b5ad0dfe-941a-493f-bc8f-1a40445dde68" LastKnownName="DbType" />
+            </type_NamedElement>
+          </property>
+          <property Id="7307bc4f-5954-4d3f-8317-3e5940200ee2" name="Name" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="605b4a75-be47-4ddf-bb1d-33deffe74dad" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="1e03ec58-8dc2-4fc3-ab5b-da05f7a03e10" LastKnownName="string" />
+            </type_NamedElement>
+          </property>
+          <property Id="db501923-d7ca-450c-a843-7d71b8e8623f" name="Value" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="67d36ac6-0261-439b-93ff-891185012456" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="8db59c6e-ae20-4a17-85a4-72acbf14d97d" LastKnownName="object" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
       </class>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
@@ -72,24 +92,6 @@
     <logicalClassDesignerModelHasTypes>
       <class Id="9d950a30-727d-4bfd-9750-46cc91c5462e" name="DataCommandInfo" isAbstract="false" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="ec3420f5-b95b-4861-bcad-72b80fa374b8" />
-        <targetEnds>
-          <association Id="45328ed5-c0c0-47d0-9755-f40f96371ba2" isDerived="false" sourceEndRoleName="" targetEndRoleName="DataFilter" isLeaf="false" isAbstract="false">
-            <interfaceMoniker Id="469fb91a-b4fe-4eae-93f4-dc69c965d405" LastKnownName="IDataFilter" />
-            <relationshipOwnedElementsInternal>
-              <associationHasOwnedEnds>
-                <memberEnd Id="974d4aa4-cdb0-45bb-ae43-5a8e2fb98b6d" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Composite" isComposite="false" isNavigableOwned="false">
-                  <elementDefinition Id="d78fc9a7-c79c-4ef8-b59a-b98d97c93217" />
-                </memberEnd>
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd Id="8b7ec2be-fcf9-4928-870f-bc20f5a0ad17" name="DataFilter" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="true">
-                  <elementDefinition Id="c4febbc4-6bc5-4526-b73b-d8d5e7014eb3" />
-                </memberEnd>
-              </associationHasOwnedEnds>
-            </relationshipOwnedElementsInternal>
-            <elementDefinition Id="ad5b3d33-0d7c-44a6-b329-5c65e4a6c38a" />
-          </association>
-        </targetEnds>
       </class>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
@@ -211,6 +213,21 @@
         </generalsInternal>
       </class>
     </logicalClassDesignerModelHasTypes>
+    <packageHasNamedElement>
+      <referencedType Id="b5ad0dfe-941a-493f-bc8f-1a40445dde68" name="DbType" isAbstract="false" isLeaf="false" cachedFullName="DbType">
+        <elementDefinition Id="46b6fc58-4ef0-47f7-bc75-0aeadc4016c6" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="1e03ec58-8dc2-4fc3-ab5b-da05f7a03e10" name="string" isAbstract="false" isLeaf="false" cachedFullName="string">
+        <elementDefinition Id="51fb5b4c-c357-417e-a8e6-5824636441a5" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="8db59c6e-ae20-4a17-85a4-72acbf14d97d" name="object" isAbstract="false" isLeaf="false" cachedFullName="object">
+        <elementDefinition Id="fc79fc63-1001-44c1-a98f-8b95c4c93037" />
+      </referencedType>
+    </packageHasNamedElement>
   </packagedElements>
   <package Id="c645fef6-efa4-48db-b222-b48654f3a5c0" name="PAODesign">
     <elementDefinition Id="f7c6b53f-1c2e-4762-ad13-eb71efcb9a9d" />

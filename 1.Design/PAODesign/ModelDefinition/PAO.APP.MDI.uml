@@ -97,27 +97,6 @@
               LastKnownLocation="PAO.MVC.uml" />
           </interfaceRealization>
           <interfaceRealization
-            Id="4cc75157-89e4-4553-9cd3-932b078a0082">
-            <interfaceMoniker
-              Id="629d1f92-5f9b-48c6-bd72-b777891804a3"
-              LastKnownName="IDocumentContainer"
-              LastKnownLocation="未找到出处.uml" />
-          </interfaceRealization>
-          <interfaceRealization
-            Id="6d143ad5-4b0b-40b5-9ac4-ab449156052c">
-            <interfaceMoniker
-              Id="d0aaf6a0-cc13-4ad4-925f-e9362e93bb16"
-              LastKnownName="IDockViewContainer"
-              LastKnownLocation="未找到出处.uml" />
-          </interfaceRealization>
-          <interfaceRealization
-            Id="28545fa4-a437-4ef2-add0-b6002c4408d8">
-            <interfaceMoniker
-              Id="3b56ab3d-51b3-4939-a78f-5940f55618b6"
-              LastKnownName="IPropertyPageContainer"
-              LastKnownLocation="未找到出处.uml" />
-          </interfaceRealization>
-          <interfaceRealization
             Id="ceff76c3-83f0-4d67-acb9-9311d7b3e695">
             <interfaceMoniker
               Id="be2bff2f-b659-49db-841b-bc458294de69"

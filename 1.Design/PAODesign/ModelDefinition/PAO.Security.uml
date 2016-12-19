@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm10="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner" xmlns:dm11="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="f0916cf2-998b-4d42-86ef-43d36d7b4d18"
+  name="Security" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <packagedElements>
+    <packageHasNamedElement>
+      <Interface
+        Id="7361e73c-02da-48d4-baf6-5211ec6c8fca"
+        name="ISecurity"
+        isAbstract="false"
+        isLeaf="false">
+        <suppliersInternal>
+          <dependency
+            Id="c3b06b33-eae3-44f1-be7e-3396c181d1c8">
+            <classMoniker
+              Id="a1eb5fe9-9ea3-452d-9917-5ca6848699f2"
+              LastKnownName="UserInfo"
+              LastKnownLocation="PAO.Security.uml" />
+          </dependency>
+        </suppliersInternal>
+      </Interface>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="b38bb65e-50ad-4ce1-be02-31bfb47bfaf0"
+        name="IPermissionSet"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="93cb849f-af4d-47c5-afb3-cb29a71948ce"
+        name="UserToken"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <suppliersInternal>
+          <dependency
+            Id="b2d5ce62-bb01-4f4d-bc4d-19ff6c14a490">
+            <interfaceMoniker
+              Id="b38bb65e-50ad-4ce1-be02-31bfb47bfaf0"
+              LastKnownName="IPermissionSet"
+              LastKnownLocation="PAO.Security.uml" />
+          </dependency>
+        </suppliersInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="7cf94e3c-da85-4434-9b64-a3b391f2d14e"
+        name="SecurityPublic"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <suppliersInternal>
+          <dependency
+            Id="630e504a-71ff-4271-8fa3-34883f170464">
+            <interfaceMoniker
+              Id="7361e73c-02da-48d4-baf6-5211ec6c8fca"
+              LastKnownName="ISecurity"
+              LastKnownLocation="PAO.Security.uml" />
+          </dependency>
+          <dependency
+            Id="b7add647-7025-4767-9c2b-501acfb41c09">
+            <classMoniker
+              Id="93cb849f-af4d-47c5-afb3-cb29a71948ce"
+              LastKnownName="UserToken"
+              LastKnownLocation="PAO.Security.uml" />
+          </dependency>
+        </suppliersInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="a1eb5fe9-9ea3-452d-9917-5ca6848699f2"
+        name="UserInfo"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

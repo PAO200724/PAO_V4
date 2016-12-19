@@ -16,7 +16,7 @@
         </suppliersInternal>
         <targetEnds>
           <association Id="f2eb3f4c-da37-4613-9e96-1e76a2f41068" isDerived="false" sourceEndRoleName="" targetEndRoleName="Controllers" isLeaf="false" isAbstract="false">
-            <classMoniker Id="3bef57bc-c3d1-41e2-bcd9-22e300b1661a" LastKnownName="BaseController" />
+            <classMoniker Id="3bef57bc-c3d1-41e2-bcd9-22e300b1661a" LastKnownName="BaseDataDisplayerController" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
                 <memberEnd Id="2ac465bf-42e9-46c0-9607-4fa6b22d1851" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Composite" isComposite="false" isNavigableOwned="false">
@@ -131,7 +131,7 @@
       </class>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
-      <class Id="3bef57bc-c3d1-41e2-bcd9-22e300b1661a" name="BaseController" isAbstract="false" isLeaf="false" isActiveClass="false">
+      <class Id="3bef57bc-c3d1-41e2-bcd9-22e300b1661a" name="BaseDataDisplayerController" isAbstract="false" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="6d73fbe3-60ee-41be-8f41-5fc2c880f99c" />
         <suppliersInternal>
           <dependency Id="612566a7-3712-4f58-80cc-1428a340e210">

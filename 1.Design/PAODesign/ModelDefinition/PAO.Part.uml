@@ -99,5 +99,11 @@
         </generalsInternal>
       </class>
     </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="6a2812eb-cb15-4289-9a44-8e7d310b9c11"
+        LastKnownName="Disabled"
+        LastKnownLocation="PAO.Part.Disabled.uml" />
+    </packageHasNamedElement>
   </packagedElements>
 </package>

@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm10="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner" xmlns:dm11="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="30075800-a10d-4408-a42d-bfefa32f9785"
+  name="Tcp" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <packagedElements>
+    <packageHasNamedElement>
+      <class
+        Id="18b90e5e-4503-4c07-917a-8b3ab34d1b5f"
+        name="TcpRemote"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <suppliersInternal>
+          <interfaceRealization
+            Id="ab8680bd-278b-40f2-b409-d591906dc2c4">
+            <interfaceMoniker
+              Id="99c4a9ee-2e62-4fd0-89d4-45a7b24d7b54"
+              LastKnownName="IRemote"
+              LastKnownLocation="PAO.Remote.uml" />
+          </interfaceRealization>
+        </suppliersInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="263daea3-9b34-4692-9d1e-e3472d343e17"
+        name="TcpRemoteFactory&lt;T&gt;"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <suppliersInternal>
+          <dependency
+            Id="d13f03bf-ff55-4dce-a474-a12a59381794">
+            <classMoniker
+              Id="18b90e5e-4503-4c07-917a-8b3ab34d1b5f"
+              LastKnownName="TcpRemote"
+              LastKnownLocation="PAO.Remote.Tcp.uml" />
+          </dependency>
+        </suppliersInternal>
+        <generalsInternal>
+          <generalization
+            Id="c9c9d7a6-57b4-4596-903c-b2abcf455427"
+            isSubstitutable="false">
+            <classMoniker
+              Id="f339f9dd-d693-4d56-a283-a6a357eeab74"
+              LastKnownName="BaseRemoteFactory&lt;T&gt;"
+              LastKnownLocation="PAO.Remote.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="72f499bc-bbe8-40dd-b861-c946d4298269"
+        name="RemoteTcpServer"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <suppliersInternal>
+          <dependency
+            Id="b849f6bc-22d6-4ca8-ab51-ed216d059231">
+            <classMoniker
+              Id="a77bc08b-35a4-46e6-9d12-386568daa3d4"
+              LastKnownName="Header"
+              LastKnownLocation="PAO.Remote.uml" />
+          </dependency>
+        </suppliersInternal>
+        <targetEnds>
+          <association
+            Id="b09ddfac-18c3-4ed4-93f0-6a5cdee933b5"
+            isDerived="false"
+            sourceEndRoleName=""
+            targetEndRoleName="ServiceList"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="8fa558aa-fdf2-4bfd-b6a8-14cbcc150e43"
+              LastKnownName="PaoObject"
+              LastKnownLocation="PAO.AOP.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="6dfbb516-ca10-49d3-b3bf-1227b03d6f8a"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="Shared"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="63451937-d530-49f0-8331-9841ff44ee59"
+                  name="ServiceList"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="28e784a4-d130-4053-993b-f019fca8cecb"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="1c11da9c-caa3-4cb5-943c-aa4a864401b4"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+      </class>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

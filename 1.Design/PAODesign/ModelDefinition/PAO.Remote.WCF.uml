@@ -18,7 +18,7 @@
             <classMoniker
               Id="80cd4da9-26d6-41bf-b1f5-3e8f9be6cb17"
               LastKnownName="Factory&lt;T&gt;"
-              LastKnownLocation="PAO.uml" />
+              LastKnownLocation="PAO.AOP.uml" />
           </generalization>
         </generalsInternal>
       </class>
@@ -39,10 +39,10 @@
               LastKnownLocation="PAO.Remote.WCF.uml" />
           </dependency>
           <dependency
-            Id="e9e0b75a-52b4-48d4-aaa6-fd15f646eab5">
-            <classMoniker
-              Id="f273e2d9-99c0-486a-982f-041e62718efd"
-              LastKnownName="RemoteProxy"
+            Id="1f1511cb-bd2c-4fb1-8a00-2adcaa90b96d">
+            <interfaceMoniker
+              Id="99c4a9ee-2e62-4fd0-89d4-45a7b24d7b54"
+              LastKnownName="IRemote"
               LastKnownLocation="PAO.Remote.uml" />
           </dependency>
         </suppliersInternal>
@@ -53,9 +53,49 @@
             <classMoniker
               Id="80cd4da9-26d6-41bf-b1f5-3e8f9be6cb17"
               LastKnownName="Factory&lt;T&gt;"
-              LastKnownLocation="PAO.uml" />
+              LastKnownLocation="PAO.AOP.uml" />
+          </generalization>
+          <generalization
+            Id="b4051478-640c-4d34-9fbf-072418aa0eb4"
+            isSubstitutable="false">
+            <classMoniker
+              Id="f339f9dd-d693-4d56-a283-a6a357eeab74"
+              LastKnownName="BaseRemoteFactory&lt;T&gt;"
+              LastKnownLocation="PAO.Remote.uml" />
           </generalization>
         </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="05ff54e2-c19d-45c2-9ec8-a7671be60482"
+        name="WCFRemoteService"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <suppliersInternal>
+          <interfaceRealization
+            Id="d1fe601c-bbe0-4c1b-985a-4bfbba4b0a60">
+            <interfaceMoniker
+              Id="99c4a9ee-2e62-4fd0-89d4-45a7b24d7b54"
+              LastKnownName="IRemote"
+              LastKnownLocation="PAO.Remote.uml" />
+          </interfaceRealization>
+          <dependency
+            Id="d74c4c00-2878-4c60-a277-1cc85362974d">
+            <classMoniker
+              Id="a77bc08b-35a4-46e6-9d12-386568daa3d4"
+              LastKnownName="Header"
+              LastKnownLocation="PAO.Remote.uml" />
+          </dependency>
+          <dependency
+            Id="c33d09f9-d9e3-4033-82bc-41ea1a910296">
+            <classMoniker
+              Id="88ccc1ad-72c2-495f-843e-b86d8d11b71a"
+              LastKnownName="PaoTransaction"
+              LastKnownLocation="PAO.Trans.uml" />
+          </dependency>
+        </suppliersInternal>
       </class>
     </packageHasNamedElement>
   </packagedElements>

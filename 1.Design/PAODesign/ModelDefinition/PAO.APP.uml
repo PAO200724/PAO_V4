@@ -17,6 +17,16 @@
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="3086959f-8cbf-417b-8c2f-01a97f7b7df4"
+            isSubstitutable="false">
+            <classMoniker
+              Id="8fa558aa-fdf2-4bfd-b6a8-14cbcc150e43"
+              LastKnownName="PaoObject"
+              LastKnownLocation="PAO.AOP.uml" />
+          </generalization>
+        </generalsInternal>
         <targetEnds>
           <association
             Id="3a7226e2-09d4-4f99-a9db-78fdc4151e8f"
@@ -70,57 +80,6 @@
             </relationshipOwnedElementsInternal>
           </association>
           <association
-            Id="2f61d3de-5bd8-48b9-931b-05333d7e9576"
-            isDerived="false"
-            sourceEndRoleName=""
-            targetEndRoleName="EventProcessorList"
-            isLeaf="false"
-            isAbstract="false">
-            <classMoniker
-              Id="673ede5c-e11d-4681-9c4b-6e328fe610ee"
-              LastKnownName="ILog"
-              LastKnownLocation="未找到出处.uml" />
-            <relationshipOwnedElementsInternal>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="4d287c8d-5bee-43a4-8b13-13171b5acd0b"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="Shared"
-                  isComposite="false"
-                  isNavigableOwned="false" />
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="eb4baeb9-2be2-406b-b7d3-41c7a6714976"
-                  name="EventProcessorList"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false">
-                  <lowerValueInternal>
-                    <literalString
-                      Id="a866fbad-50cd-4da6-bf96-5bb2d923c1ec"
-                      name="Lower"
-                      value="*" />
-                  </lowerValueInternal>
-                  <upperValueInternal>
-                    <literalString
-                      Id="e2ac4fdd-c2ce-4bfb-a194-a4a40e315364"
-                      name="Upper"
-                      value="*" />
-                  </upperValueInternal>
-                </memberEnd>
-              </associationHasOwnedEnds>
-            </relationshipOwnedElementsInternal>
-          </association>
-          <association
             Id="a6874de7-4367-43bb-81cd-59275060162d"
             isDerived="false"
             sourceEndRoleName=""
@@ -154,25 +113,38 @@
                   isDerived="false"
                   isDerivedUnion="false"
                   aggregation="None"
-                  isComposite="false" />
+                  isComposite="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="58a15f54-be2b-47d0-a016-7fb560b80bc4"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="6a3d6639-457c-4e06-a273-c38d06facd3c"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                </memberEnd>
               </associationHasOwnedEnds>
             </relationshipOwnedElementsInternal>
           </association>
           <association
-            Id="866b3953-44d1-458a-8070-424731e9738c"
+            Id="bdfe02ef-48ac-4b5a-911b-d8ec65518e40"
             isDerived="false"
             sourceEndRoleName=""
-            targetEndRoleName="Devices"
+            targetEndRoleName="EventProcessorList"
             isLeaf="false"
             isAbstract="false">
             <classMoniker
-              Id="6c138d40-d8fc-4c0f-81ee-66a3d3f48786"
-              LastKnownName="BaseDevice"
-              LastKnownLocation="未找到出处.uml" />
+              Id="70fbc2c6-8bd8-4815-8122-a7240bc727b9"
+              LastKnownName="BaseEventProcessor"
+              LastKnownLocation="PAO.Event.uml" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
                 <memberEnd
-                  Id="32aa3c44-e76e-4710-ab5f-fa98749b1bd1"
+                  Id="921cca2b-2abd-400b-bb7a-62b35cf5001f"
                   isLeaf="false"
                   isStatic="false"
                   isReadOnly="false"
@@ -184,15 +156,28 @@
               </associationHasOwnedEnds>
               <associationHasOwnedEnds>
                 <memberEnd
-                  Id="d456fcb4-385f-406e-904c-8eddaaff95a0"
-                  name="Devices"
+                  Id="b958081f-4025-4ce6-a368-4ef32a370e9e"
+                  name="EventProcessorList"
                   isLeaf="false"
                   isStatic="false"
                   isReadOnly="false"
                   isDerived="false"
                   isDerivedUnion="false"
                   aggregation="None"
-                  isComposite="false" />
+                  isComposite="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="6a056fee-a9ab-4521-b9f2-618d651741d1"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="a50b67ea-e1c6-42f0-b321-626c2b6e169f"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                </memberEnd>
               </associationHasOwnedEnds>
             </relationshipOwnedElementsInternal>
           </association>
@@ -222,10 +207,34 @@
             <classMoniker
               Id="80cd4da9-26d6-41bf-b1f5-3e8f9be6cb17"
               LastKnownName="Factory&lt;T&gt;"
-              LastKnownLocation="PAO.uml" />
+              LastKnownLocation="PAO.AOP.uml" />
           </generalization>
         </generalsInternal>
       </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="f37270ba-d9b7-45f1-a832-27e5bb2b5cec"
+        LastKnownName="AutoUpdate"
+        LastKnownLocation="PAO.App.AutoUpdate.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="5a3687f1-e28a-46c8-84ca-82c8a6104f54"
+        LastKnownName="DataCollect"
+        LastKnownLocation="PAO.App.DataCollect.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="dcbabba4-b642-4a76-b7b8-b70e74b8a518"
+        LastKnownName="Security"
+        LastKnownLocation="PAO.App.Security.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="687b0435-de04-4ad3-826d-c51fcf63378a"
+        LastKnownName="Log"
+        LastKnownLocation="PAO.App.Log.uml" />
     </packageHasNamedElement>
   </packagedElements>
 </package>

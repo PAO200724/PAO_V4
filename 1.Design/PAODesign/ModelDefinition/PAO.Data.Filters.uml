@@ -172,5 +172,43 @@
         </ownedAttributesInternal>
       </class>
     </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="a545792b-ed60-4358-a7a9-8f6eb091f18a"
+        name="AndLogicalFilter"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="7679480f-4576-41ee-a21b-4b31d9b2cca1"
+            isSubstitutable="false">
+            <classMoniker
+              Id="63c74cff-4882-4ddc-8974-d053287b088b"
+              LastKnownName="CompositeLogicFilter"
+              LastKnownLocation="PAO.Data.Filters.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="878fa06b-2e7a-4ef3-84fb-602773dfd91d"
+        name="OrLoicalFilter"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="bf34de80-65a3-4d2a-9f06-6a0842573b36"
+            isSubstitutable="false">
+            <classMoniker
+              Id="63c74cff-4882-4ddc-8974-d053287b088b"
+              LastKnownName="CompositeLogicFilter"
+              LastKnownLocation="PAO.Data.Filters.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
   </packagedElements>
 </package>

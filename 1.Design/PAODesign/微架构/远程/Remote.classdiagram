@@ -1,51 +1,44 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm11="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner" dslVersion="1.0.0.0" Id="93360738-789c-480d-b242-e414849d9397" name="Remote" linkedPackageId="d176b931-8c80-4813-bd6c-7e93ae774fe8" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm11="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner" dslVersion="1.0.0.0" Id="93360738-789c-480d-b242-e414849d9397" name="Remote" linkedPackageId="d176b931-8c80-4813-bd6c-7e93ae774fe8" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
   <ownedCommentsInternal>
     <comment Id="5427aa6c-709b-4e51-aeab-44f2ab040055">
       <elementDefinition Id="0ea280ca-0590-4284-81ab-d45b4df59632" />
       <body>运行于服务端，在WCF容器中承载</body>
       <annotatedElements>
-        <classMoniker Id="d9705be5-c452-45a0-8596-2326d38ec585" LastKnownName="RemoteService" />
+        <classMoniker Id="d9705be5-c452-45a0-8596-2326d38ec585" LastKnownName="WCFRemoteService" />
       </annotatedElements>
     </comment>
     <comment Id="4c2d8a95-345f-4341-a097-a79abf36958b">
       <elementDefinition Id="958202a2-03bd-428b-be00-2769d54b48a5" />
       <body>客户端调用此工厂用于创建远程对象</body>
       <annotatedElements>
-        <classMoniker Id="91297959-a9b9-4a31-a442-2c3f2ced0f41" LastKnownName="WCFRemoteFactory&lt;T&gt;" />
+        <classMoniker Id="9f29b54a-78c7-460b-bc9a-6fc82be55762" LastKnownName="BaseRemoteFactory&lt;T&gt;" />
+      </annotatedElements>
+    </comment>
+    <comment Id="b6633137-d96a-4740-9914-12cbf1f804b2">
+      <elementDefinition Id="aada8c2c-72b5-4291-b5d4-3ddf2343c54a" />
+      <body>运行于服务端，作为远程Tcp服务器</body>
+      <annotatedElements>
+        <classMoniker Id="2a49f514-c9cf-4d0d-aa01-4929606f2ea8" LastKnownName="RemoteTcpServer" />
       </annotatedElements>
     </comment>
   </ownedCommentsInternal>
-  <profileInstances>
-    <packageHasProfileInstances Id="d6f61a69-68e2-4f6c-b404-bdf231d8a978">
-      <profileInstance Id="d518f0ef-3559-48e0-bc26-f78ee1a40bf1" name="StandardProfileL2">
-        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
-      </profileInstance>
-      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
-    </packageHasProfileInstances>
-    <packageHasProfileInstances Id="4b26cb60-8da8-4fe6-b2b8-1b8da4c79c40">
-      <profileInstance Id="4a170f10-3e1d-4079-b927-3d53acb5389f" name="StandardProfileL3">
-        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
-      </profileInstance>
-      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
-    </packageHasProfileInstances>
-  </profileInstances>
   <packagedElements>
     <logicalClassDesignerModelHasTypes>
-      <Interface Id="e783adc6-9443-4940-9525-d02f85a80a52" name="IRemoteService" isAbstract="false" isLeaf="false">
+      <Interface Id="e783adc6-9443-4940-9525-d02f85a80a52" name="IRemote" isAbstract="false" isLeaf="false">
         <elementDefinition Id="99c4a9ee-2e62-4fd0-89d4-45a7b24d7b54" />
       </Interface>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
-      <class Id="d9705be5-c452-45a0-8596-2326d38ec585" name="RemoteService" isAbstract="false" isLeaf="false" isActiveClass="false">
+      <class Id="d9705be5-c452-45a0-8596-2326d38ec585" name="WCFRemoteService" isAbstract="false" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="05ff54e2-c19d-45c2-9ec8-a7671be60482" />
         <suppliersInternal>
           <dependency Id="da1c4ae1-8070-424d-b9ba-3bba908658a2">
-            <classMoniker Id="b098ba79-b1ff-4f27-b1b1-1571e5639731" LastKnownName="Head" />
+            <classMoniker Id="b098ba79-b1ff-4f27-b1b1-1571e5639731" LastKnownName="Header" />
             <elementDefinition Id="d74c4c00-2878-4c60-a277-1cc85362974d" />
           </dependency>
           <interfaceRealization Id="56dcd2c7-fb94-4552-80fe-a141823098d3">
-            <interfaceMoniker Id="e783adc6-9443-4940-9525-d02f85a80a52" LastKnownName="IRemoteService" />
+            <interfaceMoniker Id="e783adc6-9443-4940-9525-d02f85a80a52" LastKnownName="IRemote" />
             <elementDefinition Id="d1fe601c-bbe0-4c1b-985a-4bfbba4b0a60" />
           </interfaceRealization>
         </suppliersInternal>
@@ -56,14 +49,14 @@
         <elementDefinition Id="f273e2d9-99c0-486a-982f-041e62718efd" />
         <suppliersInternal>
           <dependency Id="f5fa7469-6e7e-407d-8126-8d20ff1992ad">
-            <interfaceMoniker Id="e783adc6-9443-4940-9525-d02f85a80a52" LastKnownName="IRemoteService" />
+            <interfaceMoniker Id="e783adc6-9443-4940-9525-d02f85a80a52" LastKnownName="IRemote" />
             <elementDefinition Id="45ac1d6a-d387-42ec-912e-46d1e3c8d97a" />
           </dependency>
         </suppliersInternal>
       </class>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
-      <class Id="b098ba79-b1ff-4f27-b1b1-1571e5639731" name="Head" isAbstract="false" isLeaf="false" isActiveClass="false">
+      <class Id="b098ba79-b1ff-4f27-b1b1-1571e5639731" name="Header" isAbstract="false" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="a77bc08b-35a4-46e6-9d12-386568daa3d4" />
       </class>
     </logicalClassDesignerModelHasTypes>
@@ -71,15 +64,127 @@
       <class Id="91297959-a9b9-4a31-a442-2c3f2ced0f41" name="WCFRemoteFactory&lt;T&gt;" isAbstract="false" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="5ea237a9-f3e4-483f-bc5e-fd8b92166a74" />
         <suppliersInternal>
-          <dependency Id="a4411584-0bc4-445f-abf4-42a7faa2e16a">
-            <classMoniker Id="02137b87-fb41-47b5-a135-025f4c86275f" LastKnownName="RemoteProxy" />
-            <elementDefinition Id="e9e0b75a-52b4-48d4-aaa6-fd15f646eab5" />
+          <dependency Id="e5f607ea-1940-4c08-8c96-98eefa4e1cf1">
+            <classMoniker Id="50517b2e-41fa-4e39-9d71-6ab7b27ce517" LastKnownName="WCFFactory&lt;T&gt;" />
+            <elementDefinition Id="9c246e38-69da-490f-889f-e4b3fd7bb519" />
+          </dependency>
+          <dependency Id="a7531210-0566-4fd9-a8ef-f109afd0c45a">
+            <interfaceMoniker Id="e783adc6-9443-4940-9525-d02f85a80a52" LastKnownName="IRemote" />
+            <elementDefinition Id="1f1511cb-bd2c-4fb1-8a00-2adcaa90b96d" />
           </dependency>
         </suppliersInternal>
+        <generalsInternal>
+          <generalization Id="40d01e22-ae3a-4674-92f7-cb2649eb7f9c" isSubstitutable="false">
+            <classMoniker Id="9f29b54a-78c7-460b-bc9a-6fc82be55762" LastKnownName="BaseRemoteFactory&lt;T&gt;" />
+            <elementDefinition Id="b4051478-640c-4d34-9fbf-072418aa0eb4" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="c721afb0-7259-43ca-a056-80bec43b3cb9" name="TcpRemoteFactory&lt;T&gt;" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="263daea3-9b34-4692-9d1e-e3472d343e17" />
+        <suppliersInternal>
+          <dependency Id="8f292127-3f33-4b4a-adc3-3b41d4230724">
+            <classMoniker Id="3323b0f6-9ab4-4a5d-aea8-a1de6dea8ad9" LastKnownName="TcpRemote" />
+            <elementDefinition Id="d13f03bf-ff55-4dce-a474-a12a59381794" />
+          </dependency>
+        </suppliersInternal>
+        <generalsInternal>
+          <generalization Id="b4a2ee7c-b175-4555-9483-3cc63d241466" isSubstitutable="false">
+            <classMoniker Id="9f29b54a-78c7-460b-bc9a-6fc82be55762" LastKnownName="BaseRemoteFactory&lt;T&gt;" />
+            <elementDefinition Id="c9c9d7a6-57b4-4596-903c-b2abcf455427" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="3323b0f6-9ab4-4a5d-aea8-a1de6dea8ad9" name="TcpRemote" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="18b90e5e-4503-4c07-917a-8b3ab34d1b5f" />
+        <suppliersInternal>
+          <interfaceRealization Id="9e66ed4d-ce5c-4c9b-bbfe-0e191105bcf7">
+            <interfaceMoniker Id="e783adc6-9443-4940-9525-d02f85a80a52" LastKnownName="IRemote" />
+            <elementDefinition Id="ab8680bd-278b-40f2-b409-d591906dc2c4" />
+          </interfaceRealization>
+        </suppliersInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="2a49f514-c9cf-4d0d-aa01-4929606f2ea8" name="RemoteTcpServer" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="72f499bc-bbe8-40dd-b861-c946d4298269" />
+        <suppliersInternal>
+          <dependency Id="c178a241-5723-4a92-b6ac-c65bd2a55fba">
+            <classMoniker Id="b098ba79-b1ff-4f27-b1b1-1571e5639731" LastKnownName="Header" />
+            <elementDefinition Id="b849f6bc-22d6-4ca8-ab51-ed216d059231" />
+          </dependency>
+        </suppliersInternal>
+        <targetEnds>
+          <association Id="5ed80913-8f5c-4f70-a45c-b1514fef7b22" isDerived="false" sourceEndRoleName="" targetEndRoleName="ServiceList" isLeaf="false" isAbstract="false">
+            <classMoniker Id="a63d469a-80c6-422e-b93d-f4b097906e8e" LastKnownName="PaoObject" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="b7e13d59-c644-48c1-810c-43767ab1252c" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Shared" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="6dfbb516-ca10-49d3-b3bf-1227b03d6f8a" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="e4fb6be4-8f84-4ff8-822c-41144e956d20" name="ServiceList" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <lowerValueInternal>
+                    <literalString Id="03a0663e-3633-4fc3-9900-3c937d95bd17" name="Lower" value="*">
+                      <elementDefinition Id="28e784a4-d130-4053-993b-f019fca8cecb" />
+                    </literalString>
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString Id="e46d5697-1367-4d09-87bb-b9edd0bb7b78" name="Upper" value="*">
+                      <elementDefinition Id="1c11da9c-caa3-4cb5-943c-aa4a864401b4" />
+                    </literalString>
+                  </upperValueInternal>
+                  <elementDefinition Id="63451937-d530-49f0-8331-9841ff44ee59" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="b09ddfac-18c3-4ed4-93f0-6a5cdee933b5" />
+          </association>
+        </targetEnds>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="9f29b54a-78c7-460b-bc9a-6fc82be55762" name="BaseRemoteFactory&lt;T&gt;" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="f339f9dd-d693-4d56-a283-a6a357eeab74" />
+        <suppliersInternal>
+          <dependency Id="97bce80f-b12e-4b85-87eb-ad2183c670b3">
+            <classMoniker Id="02137b87-fb41-47b5-a135-025f4c86275f" LastKnownName="RemoteProxy" />
+            <elementDefinition Id="9d8365cc-1dfd-4fe5-b40b-84a3a7ad8aee" />
+          </dependency>
+        </suppliersInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="50517b2e-41fa-4e39-9d71-6ab7b27ce517" name="WCFFactory&lt;T&gt;" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="ed032963-82d3-4744-a2cb-30f7cf0c4d0c" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="a63d469a-80c6-422e-b93d-f4b097906e8e" name="PaoObject" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="8fa558aa-fdf2-4bfd-b6a8-14cbcc150e43" />
       </class>
     </logicalClassDesignerModelHasTypes>
   </packagedElements>
   <package Id="d176b931-8c80-4813-bd6c-7e93ae774fe8" name="PAODesign">
     <elementDefinition Id="f7c6b53f-1c2e-4762-ad13-eb71efcb9a9d" />
+    <profileInstances>
+      <packageHasProfileInstances Id="d6f61a69-68e2-4f6c-b404-bdf231d8a978">
+        <profileInstance Id="d518f0ef-3559-48e0-bc26-f78ee1a40bf1" name="StandardProfileL2">
+          <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+        </profileInstance>
+        <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="4b26cb60-8da8-4fe6-b2b8-1b8da4c79c40">
+        <profileInstance Id="4a170f10-3e1d-4079-b927-3d53acb5389f" name="StandardProfileL3">
+          <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+        </profileInstance>
+        <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+      </packageHasProfileInstances>
+    </profileInstances>
   </package>
 </logicalClassDesignerModel>

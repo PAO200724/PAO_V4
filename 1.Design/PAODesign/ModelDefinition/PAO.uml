@@ -71,67 +71,28 @@
         LastKnownLocation="PAO.Server.uml" />
     </packageHasNamedElement>
     <packageHasNamedElement>
-      <class
-        Id="80cd4da9-26d6-41bf-b1f5-3e8f9be6cb17"
-        name="Factory&lt;T&gt;"
-        isAbstract="false"
-        isLeaf="false"
-        isActiveClass="false">
-        <generalsInternal>
-          <generalization
-            Id="6452a215-cc5d-4338-8336-12d3c26bdce9"
-            isSubstitutable="false">
-            <classMoniker
-              Id="7e000b94-9d65-40fa-8c5b-03dc5acee097"
-              LastKnownName="Ref&lt;T&gt;"
-              LastKnownLocation="未找到出处.uml" />
-          </generalization>
-        </generalsInternal>
-      </class>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <class
-        Id="507fde59-ed0f-419c-aa07-c0ea26d2b8fc"
-        name="FileFactory&lt;T&gt;"
-        isAbstract="false"
-        isLeaf="false"
-        isActiveClass="false">
-        <generalsInternal>
-          <generalization
-            Id="802ebb3e-00e8-42ce-a678-e23916eac13b"
-            isSubstitutable="false">
-            <classMoniker
-              Id="80cd4da9-26d6-41bf-b1f5-3e8f9be6cb17"
-              LastKnownName="Factory&lt;T&gt;"
-              LastKnownLocation="PAO.uml" />
-          </generalization>
-        </generalsInternal>
-      </class>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <class
-        Id="9bf11365-9865-4cb2-95bb-de9aea0b1d7d"
-        name="ObjectRef&lt;T&gt;"
-        isAbstract="false"
-        isLeaf="false"
-        isActiveClass="false">
-        <generalsInternal>
-          <generalization
-            Id="25688690-fb8f-47b9-9138-b0e35bcc5d4d"
-            isSubstitutable="false">
-            <classMoniker
-              Id="7e000b94-9d65-40fa-8c5b-03dc5acee097"
-              LastKnownName="Ref&lt;T&gt;"
-              LastKnownLocation="未找到出处.uml" />
-          </generalization>
-        </generalsInternal>
-      </class>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
       <packageMoniker
         Id="c0a0836c-c79c-49a2-acb3-572d1ba3312c"
         LastKnownName="Trans"
         LastKnownLocation="PAO.Trans.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="f0916cf2-998b-4d42-86ef-43d36d7b4d18"
+        LastKnownName="Security"
+        LastKnownLocation="PAO.Security.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="427151cd-4322-4a3d-8ed3-907ad37a0d29"
+        LastKnownName="Log"
+        LastKnownLocation="PAO.Log.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="21062a01-c4e3-47a0-9683-2eceb8d05a37"
+        LastKnownName="Ext"
+        LastKnownLocation="PAO.Ext.uml" />
     </packageHasNamedElement>
   </packagedElements>
 </package>

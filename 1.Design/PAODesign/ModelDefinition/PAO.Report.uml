@@ -103,8 +103,8 @@
             isAbstract="false">
             <classMoniker
               Id="24ba47ce-d356-4a0d-8e62-6ab303bd9e75"
-              LastKnownName="QueryBehavior"
-              LastKnownLocation="未找到出处.uml" />
+              LastKnownName="ReportQueryBehavior"
+              LastKnownLocation="PAO.Report.uml" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
                 <memberEnd
@@ -346,6 +346,165 @@
           </association>
         </targetEnds>
       </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="a3f3b354-e6b0-46d1-be1e-49e446ce2dd9"
+        name="Report"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <targetEnds>
+          <association
+            Id="fb3a8d85-7a52-4dbe-a4c5-7bec8f8e274f"
+            isDerived="false"
+            sourceEndRoleName=""
+            targetEndRoleName="Tables"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="b62b5a7d-3c63-4ab1-a617-14975e4a82fb"
+              LastKnownName="ReportDataTable"
+              LastKnownLocation="PAO.Report.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="a65a7857-8299-43bf-9a0e-819af5bfae51"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="Composite"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="170b6e5b-6943-42ce-8e6f-20fcffba3163"
+                  name="Tables"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="true">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="82626d13-bc90-41d1-867d-5d7a69dbc228"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="2f06190e-f29b-4386-8759-b4a664a6d190"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="ee664725-21f0-471d-a6b7-e5303c055d60"
+            isDerived="false"
+            sourceEndRoleName=""
+            targetEndRoleName="DataDisplayers"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="6d73fbe3-60ee-41be-8f41-5fc2c880f99c"
+              LastKnownName="BaseDataDisplayerController"
+              LastKnownLocation="PAO.Report.Displayers.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="37a8924c-a455-432d-93ac-426b37a46f2c"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="Shared"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="8ba1f71d-cfab-42b1-93c9-f56272f8a0ce"
+                  name="DataDisplayers"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="fdb53459-7abd-44a9-ba68-705c36b245f9"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="debb9c1f-6f3e-483f-9e67-7a9ed9fe610c"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="1d3b8c08-ea25-404d-8af4-115c347f5f4d"
+            isDerived="false"
+            sourceEndRoleName=""
+            targetEndRoleName="QueryBehavior"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="24ba47ce-d356-4a0d-8e62-6ab303bd9e75"
+              LastKnownName="ReportQueryBehavior"
+              LastKnownLocation="PAO.Report.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="88fe3876-2c2c-4e36-9f9f-5709de02b16c"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="Composite"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="09fe46ba-c364-4f2d-9dc3-cc80b5c1d8b5"
+                  name="QueryBehavior"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="true" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="24ba47ce-d356-4a0d-8e62-6ab303bd9e75"
+        name="ReportQueryBehavior"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
     </packageHasNamedElement>
   </packagedElements>
 </package>

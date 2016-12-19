@@ -31,32 +31,6 @@
             </relationshipOwnedElementsInternal>
             <elementDefinition Id="3a7226e2-09d4-4f99-a9db-78fdc4151e8f" />
           </association>
-          <association Id="c49611e9-b3b6-4125-b994-6c5632ed2291" isDerived="false" sourceEndRoleName="" targetEndRoleName="EventProcessorList" isLeaf="false" isAbstract="false">
-            <classMoniker Id="40387403-2cb0-422f-923a-5fd5397e236b" LastKnownName="ILog" />
-            <relationshipOwnedElementsInternal>
-              <associationHasOwnedEnds>
-                <memberEnd Id="6619ee38-38fd-4ba4-89fc-486cd0c5ce49" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Shared" isComposite="false" isNavigableOwned="false">
-                  <elementDefinition Id="4d287c8d-5bee-43a4-8b13-13171b5acd0b" />
-                </memberEnd>
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd Id="d6e55c65-0fb5-4190-8401-6b4b5ef2349a" name="EventProcessorList" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
-                  <lowerValueInternal>
-                    <literalString Id="6dfa0499-bce0-4ae3-bb6c-1c42583d844d" name="Lower" value="*">
-                      <elementDefinition Id="a866fbad-50cd-4da6-bf96-5bb2d923c1ec" />
-                    </literalString>
-                  </lowerValueInternal>
-                  <upperValueInternal>
-                    <literalString Id="9e8f247f-e75f-415b-bbad-808c63bbcf3b" name="Upper" value="*">
-                      <elementDefinition Id="e2ac4fdd-c2ce-4bfb-a194-a4a40e315364" />
-                    </literalString>
-                  </upperValueInternal>
-                  <elementDefinition Id="eb4baeb9-2be2-406b-b7d3-41c7a6714976" />
-                </memberEnd>
-              </associationHasOwnedEnds>
-            </relationshipOwnedElementsInternal>
-            <elementDefinition Id="2f61d3de-5bd8-48b9-931b-05333d7e9576" />
-          </association>
           <association Id="0067af97-ae7c-4953-92b9-a1503101396b" isDerived="false" sourceEndRoleName="" targetEndRoleName="ExtendServers" isLeaf="false" isAbstract="false">
             <classMoniker Id="7c83a5e1-4253-4a18-82f6-d3be8a29bf4e" LastKnownName="BaseServer" />
             <relationshipOwnedElementsInternal>
@@ -67,27 +41,47 @@
               </associationHasOwnedEnds>
               <associationHasOwnedEnds>
                 <memberEnd Id="444a3786-2385-44c7-8037-866d64024d41" name="ExtendServers" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <lowerValueInternal>
+                    <literalString Id="2e746aeb-be77-4959-8386-32d312f2298d" name="Lower" value="*">
+                      <elementDefinition Id="58a15f54-be2b-47d0-a016-7fb560b80bc4" />
+                    </literalString>
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString Id="733617ba-0015-44ab-ab9b-2435948e8036" name="Upper" value="*">
+                      <elementDefinition Id="6a3d6639-457c-4e06-a273-c38d06facd3c" />
+                    </literalString>
+                  </upperValueInternal>
                   <elementDefinition Id="60140d1e-0865-48bc-b978-685a4aabf857" />
                 </memberEnd>
               </associationHasOwnedEnds>
             </relationshipOwnedElementsInternal>
             <elementDefinition Id="a6874de7-4367-43bb-81cd-59275060162d" />
           </association>
-          <association Id="ad2c261e-8c79-4860-93a6-0e7b8387a48a" isDerived="false" sourceEndRoleName="" targetEndRoleName="Devices" isLeaf="false" isAbstract="false">
-            <classMoniker Id="f90e6834-8f56-44fd-9b7c-bc8ca50a2b60" LastKnownName="BaseDevice" />
+          <association Id="8f6d6fd8-9b20-4fdb-a774-6e20c1bd8fe6" isDerived="false" sourceEndRoleName="" targetEndRoleName="EventProcessorList" isLeaf="false" isAbstract="false">
+            <classMoniker Id="3e8f8343-f030-468b-a003-aaad547374aa" LastKnownName="BaseEventProcessor" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
-                <memberEnd Id="57913099-7348-434a-b756-d95b5f9db632" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Shared" isComposite="false" isNavigableOwned="false">
-                  <elementDefinition Id="32aa3c44-e76e-4710-ab5f-fa98749b1bd1" />
+                <memberEnd Id="e63dbf75-cd1b-4270-89fd-093891abd000" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Shared" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="921cca2b-2abd-400b-bb7a-62b35cf5001f" />
                 </memberEnd>
               </associationHasOwnedEnds>
               <associationHasOwnedEnds>
-                <memberEnd Id="ab0d8de4-58f5-4476-ad54-5f133e9f3944" name="Devices" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
-                  <elementDefinition Id="d456fcb4-385f-406e-904c-8eddaaff95a0" />
+                <memberEnd Id="0fd5a943-75e1-4cf1-bc19-48af492d76bb" name="EventProcessorList" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <lowerValueInternal>
+                    <literalString Id="6ccb8df1-7df3-4772-bb5b-e9217192cf9f" name="Lower" value="*">
+                      <elementDefinition Id="6a056fee-a9ab-4521-b9f2-618d651741d1" />
+                    </literalString>
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString Id="2443c06c-dc3c-4e7c-a05c-fbb0ca710b31" name="Upper" value="*">
+                      <elementDefinition Id="a50b67ea-e1c6-42f0-b321-626c2b6e169f" />
+                    </literalString>
+                  </upperValueInternal>
+                  <elementDefinition Id="b958081f-4025-4ce6-a368-4ef32a370e9e" />
                 </memberEnd>
               </associationHasOwnedEnds>
             </relationshipOwnedElementsInternal>
-            <elementDefinition Id="866b3953-44d1-458a-8070-424731e9738c" />
+            <elementDefinition Id="bdfe02ef-48ac-4b5a-911b-d8ec65518e40" />
           </association>
         </targetEnds>
       </class>
@@ -98,18 +92,8 @@
       </class>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
-      <class Id="f90e6834-8f56-44fd-9b7c-bc8ca50a2b60" name="BaseDevice" isAbstract="false" isLeaf="false" isActiveClass="false">
-        <elementDefinition Id="6c138d40-d8fc-4c0f-81ee-66a3d3f48786" />
-      </class>
-    </logicalClassDesignerModelHasTypes>
-    <logicalClassDesignerModelHasTypes>
       <class Id="fcd97a41-0edb-430d-8f68-aa810ba96689" name="PaoObject" isAbstract="false" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="8fa558aa-fdf2-4bfd-b6a8-14cbcc150e43" />
-      </class>
-    </logicalClassDesignerModelHasTypes>
-    <logicalClassDesignerModelHasTypes>
-      <class Id="40387403-2cb0-422f-923a-5fd5397e236b" name="ILog" isAbstract="false" isLeaf="false" isActiveClass="false">
-        <elementDefinition Id="673ede5c-e11d-4681-9c4b-6e328fe610ee" />
       </class>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
@@ -121,6 +105,11 @@
             <elementDefinition Id="64fc9c34-42e7-45fb-9810-6b2e78e5f9c5" />
           </generalization>
         </generalsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="3e8f8343-f030-468b-a003-aaad547374aa" name="BaseEventProcessor" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="70fbc2c6-8bd8-4815-8122-a7240bc727b9" />
       </class>
     </logicalClassDesignerModelHasTypes>
   </packagedElements>

@@ -10,8 +10,8 @@
       <annotatedElements>
         <classMoniker
           Id="05ff54e2-c19d-45c2-9ec8-a7671be60482"
-          LastKnownName="RemoteService"
-          LastKnownLocation="未找到出处.uml" />
+          LastKnownName="WCFRemoteService"
+          LastKnownLocation="PAO.Remote.WCF.uml" />
       </annotatedElements>
     </comment>
     <comment
@@ -19,9 +19,29 @@
       <body>客户端调用此工厂用于创建远程对象</body>
       <annotatedElements>
         <classMoniker
-          Id="5ea237a9-f3e4-483f-bc5e-fd8b92166a74"
-          LastKnownName="WCFRemoteFactory&lt;T&gt;"
-          LastKnownLocation="PAO.Remote.WCF.uml" />
+          Id="f339f9dd-d693-4d56-a283-a6a357eeab74"
+          LastKnownName="BaseRemoteFactory&lt;T&gt;"
+          LastKnownLocation="PAO.Remote.uml" />
+      </annotatedElements>
+    </comment>
+    <comment
+      Id="aada8c2c-72b5-4291-b5d4-3ddf2343c54a">
+      <body>运行于服务端，作为远程Tcp服务器</body>
+      <annotatedElements>
+        <classMoniker
+          Id="72f499bc-bbe8-40dd-b861-c946d4298269"
+          LastKnownName="RemoteTcpServer"
+          LastKnownLocation="PAO.Remote.Tcp.uml" />
+      </annotatedElements>
+    </comment>
+    <comment
+      Id="4747e8cf-73a5-4183-9a0e-8e9e9b095f0a">
+      <body>安全公共类提供应用当前用户、线程当前用户以及相应的权限支持。</body>
+      <annotatedElements>
+        <classMoniker
+          Id="7cf94e3c-da85-4434-9b64-a3b391f2d14e"
+          LastKnownName="SecurityPublic"
+          LastKnownLocation="PAO.Security.uml" />
       </annotatedElements>
     </comment>
   </ownedCommentsInternal>
@@ -49,24 +69,10 @@
         isActiveClass="false">
         <suppliersInternal>
           <dependency
-            Id="d2411aca-484b-4bfc-ba51-b7137222ab1c">
-            <providedInterfaceMoniker
-              Id="aece5430-d3c9-44ad-b07c-35d3bffc7d5f"
-              LastKnownName="Port1"
-              LastKnownLocation="PAODesign.uml" />
-          </dependency>
-          <dependency
             Id="8c3a1485-fa50-4bb1-9281-8e50771a9cf7">
             <providedInterfaceMoniker
               Id="c50562c7-89c0-453f-bb31-526c5721aa94"
               LastKnownName="Port2"
-              LastKnownLocation="PAODesign.uml" />
-          </dependency>
-          <dependency
-            Id="5e1bb577-4a9c-4dd2-913c-270f3df0045a">
-            <providedInterfaceMoniker
-              Id="e3571b34-c827-4a7d-a951-51a5a397d9ad"
-              LastKnownName="Port3"
               LastKnownLocation="PAODesign.uml" />
           </dependency>
           <dependency
@@ -102,25 +108,6 @@
         isActiveClass="false">
         <ownedAttributesInternal>
           <providedInterface
-            Id="aece5430-d3c9-44ad-b07c-35d3bffc7d5f"
-            name="Port1"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false"
-            isService="false"
-            isBehavior="false">
-            <type_NamedElement>
-              <interfaceMoniker
-                Id="a451a04a-f066-42f4-9d63-9ebd6dc15c93"
-                LastKnownName="ITransactionService"
-                LastKnownLocation="未找到出处.uml" />
-            </type_NamedElement>
-          </providedInterface>
-          <providedInterface
             Id="c50562c7-89c0-453f-bb31-526c5721aa94"
             name="Port2"
             isLeaf="false"
@@ -135,27 +122,8 @@
             <type_NamedElement>
               <interfaceMoniker
                 Id="074d5fcd-340b-4000-ac85-2488d0b6a9ba"
-                LastKnownName="ILogService"
-                LastKnownLocation="未找到出处.uml" />
-            </type_NamedElement>
-          </providedInterface>
-          <providedInterface
-            Id="e3571b34-c827-4a7d-a951-51a5a397d9ad"
-            name="Port3"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false"
-            isService="false"
-            isBehavior="false">
-            <type_NamedElement>
-              <interfaceMoniker
-                Id="db1c852a-268f-4285-b582-b75151ed1c3f"
-                LastKnownName="IReverseAccessService"
-                LastKnownLocation="未找到出处.uml" />
+                LastKnownName="ILog"
+                LastKnownLocation="PAO.Log.uml" />
             </type_NamedElement>
           </providedInterface>
           <providedInterface
@@ -173,8 +141,8 @@
             <type_NamedElement>
               <interfaceMoniker
                 Id="24bf1f45-2fa3-4b67-bc62-e60ab7bee6db"
-                LastKnownName="IExtendPropertyService"
-                LastKnownLocation="未找到出处.uml" />
+                LastKnownName="IExtendProperty"
+                LastKnownLocation="PAO.AOP.uml" />
             </type_NamedElement>
           </providedInterface>
           <providedInterface
@@ -192,8 +160,8 @@
             <type_NamedElement>
               <interfaceMoniker
                 Id="7361e73c-02da-48d4-baf6-5211ec6c8fca"
-                LastKnownName="ISecurityService"
-                LastKnownLocation="未找到出处.uml" />
+                LastKnownName="ISecurity"
+                LastKnownLocation="PAO.Security.uml" />
             </type_NamedElement>
           </providedInterface>
           <providedInterface
@@ -211,8 +179,8 @@
             <type_NamedElement>
               <interfaceMoniker
                 Id="3f810739-6563-4c1d-ba3c-ab91915b3fb1"
-                LastKnownName="IDataCollectService"
-                LastKnownLocation="未找到出处.uml" />
+                LastKnownName="IDataCollect"
+                LastKnownLocation="PAO.App.DataCollect.uml" />
             </type_NamedElement>
           </providedInterface>
           <providedInterface
@@ -230,27 +198,8 @@
             <type_NamedElement>
               <interfaceMoniker
                 Id="e636a246-bfad-48a6-8b70-f8baa1e0b957"
-                LastKnownName="ISecurityManagementService"
-                LastKnownLocation="未找到出处.uml" />
-            </type_NamedElement>
-          </providedInterface>
-          <providedInterface
-            Id="36cac03c-9d7b-4002-8162-5a71b98ff3c8"
-            name="Port9"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false"
-            isService="false"
-            isBehavior="false">
-            <type_NamedElement>
-              <interfaceMoniker
-                Id="7c6a5b2a-c10d-4b6a-8652-6aef9ce36e4e"
-                LastKnownName="ITransactionManagmentService"
-                LastKnownLocation="未找到出处.uml" />
+                LastKnownName="ISecurityManage"
+                LastKnownLocation="PAO.App.Security.uml" />
             </type_NamedElement>
           </providedInterface>
           <providedInterface
@@ -268,8 +217,8 @@
             <type_NamedElement>
               <interfaceMoniker
                 Id="b3a38fd0-c73d-4d95-b7fe-9c98895e265b"
-                LastKnownName="ILogManagementService"
-                LastKnownLocation="未找到出处.uml" />
+                LastKnownName="ILogManage"
+                LastKnownLocation="PAO.App.Log.uml" />
             </type_NamedElement>
           </providedInterface>
           <providedInterface
@@ -287,8 +236,8 @@
             <type_NamedElement>
               <interfaceMoniker
                 Id="62972567-8891-42f7-af0f-0be25828dc5a"
-                LastKnownName="IAutoUpdateService"
-                LastKnownLocation="未找到出处.uml" />
+                LastKnownName="IAutoUpdate"
+                LastKnownLocation="PAO.App.AutoUpdate.uml" />
             </type_NamedElement>
           </providedInterface>
           <providedInterface
@@ -306,8 +255,8 @@
             <type_NamedElement>
               <interfaceMoniker
                 Id="e62886e0-9cd7-405d-bf86-ac03fc6d8ec4"
-                LastKnownName="IPublishService"
-                LastKnownLocation="未找到出处.uml" />
+                LastKnownName="IPublish"
+                LastKnownLocation="PAO.App.AutoUpdate.uml" />
             </type_NamedElement>
           </providedInterface>
         </ownedAttributesInternal>
@@ -321,13 +270,6 @@
         isLeaf="false"
         isActiveClass="false">
         <suppliersInternal>
-          <dependency
-            Id="501a1e6a-1f17-4584-8c84-e5cc7473bf30">
-            <providedInterfaceMoniker
-              Id="36cac03c-9d7b-4002-8162-5a71b98ff3c8"
-              LastKnownName="Port9"
-              LastKnownLocation="PAODesign.uml" />
-          </dependency>
           <dependency
             Id="3e1af5fc-985b-4d0e-bc40-4ff36cb44e17">
             <providedInterfaceMoniker
@@ -399,10 +341,12 @@
         LastKnownLocation="PAO.uml" />
     </packageHasNamedElement>
     <packageHasNamedElement>
-      <packageMoniker
-        Id="88a0a702-e47e-4c6a-867f-22d0d0d2d362"
-        LastKnownName="未找到出处"
-        LastKnownLocation="未找到出处.uml" />
+      <class
+        Id="7136c149-ecdf-4504-92f9-b5abf2287221"
+        name="Object"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
     </packageHasNamedElement>
   </packagedElements>
   <primitiveType

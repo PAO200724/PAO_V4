@@ -11,59 +11,61 @@
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
-        <targetEnds>
-          <association
-            Id="fd926835-3ee2-4be3-ad47-b1207f7769b5"
-            isDerived="false"
-            sourceEndRoleName=""
-            targetEndRoleName="LogList"
-            isLeaf="false"
-            isAbstract="false">
-            <interfaceMoniker
-              Id="c5e7adb7-9af9-49ac-917f-98141f295f32"
-              LastKnownName="ILog"
-              LastKnownLocation="未找到出处.uml" />
-            <relationshipOwnedElementsInternal>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="4716e8fb-e5fe-4c09-9ac0-b180a1b62e46"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="Composite"
-                  isComposite="false"
-                  isNavigableOwned="false" />
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="de8fe57f-2688-485f-b025-2275b9a4b009"
-                  name="LogList"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="true">
-                  <lowerValueInternal>
-                    <literalString
-                      Id="75c3952a-434f-4fce-83d4-4cb60288241a"
-                      name="Lower"
-                      value="*" />
-                  </lowerValueInternal>
-                  <upperValueInternal>
-                    <literalString
-                      Id="bcfc3137-63f9-411d-b8da-14c56805d118"
-                      name="Upper"
-                      value="*" />
-                  </upperValueInternal>
-                </memberEnd>
-              </associationHasOwnedEnds>
-            </relationshipOwnedElementsInternal>
-          </association>
-        </targetEnds>
+        <suppliersInternal>
+          <dependency
+            Id="11f4015b-9670-4d38-aee1-145654b2d772">
+            <classMoniker
+              Id="70fbc2c6-8bd8-4815-8122-a7240bc727b9"
+              LastKnownName="BaseEventProcessor"
+              LastKnownLocation="PAO.Event.uml" />
+          </dependency>
+        </suppliersInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="70fbc2c6-8bd8-4815-8122-a7240bc727b9"
+        name="BaseEventProcessor"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="e85ab97e-a8a8-439b-aedd-ceeb121b4982"
+        name="DebugLogger"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="6be7306b-2af4-432a-9738-ad90cbe3f530"
+            isSubstitutable="false">
+            <classMoniker
+              Id="70fbc2c6-8bd8-4815-8122-a7240bc727b9"
+              LastKnownName="BaseEventProcessor"
+              LastKnownLocation="PAO.Event.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="22d6439d-8405-4799-9b6b-0366fe0179b7"
+        name="EventLogger"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="43b02cdf-0a77-4217-b3d6-dff8d69f7462"
+            isSubstitutable="false">
+            <classMoniker
+              Id="70fbc2c6-8bd8-4815-8122-a7240bc727b9"
+              LastKnownName="BaseEventProcessor"
+              LastKnownLocation="PAO.Event.uml" />
+          </generalization>
+        </generalsInternal>
       </class>
     </packageHasNamedElement>
   </packagedElements>

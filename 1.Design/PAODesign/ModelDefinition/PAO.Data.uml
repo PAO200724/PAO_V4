@@ -185,5 +185,63 @@
         LastKnownName="DataFetchers"
         LastKnownLocation="PAO.Data.DataFetchers.uml" />
     </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="6b6adc4a-ac47-41d0-b6f3-dd36522d0b29"
+        name="DataService"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <suppliersInternal>
+          <interfaceRealization
+            Id="9c475868-b0e0-4b48-a9d2-29367246ce0d">
+            <interfaceMoniker
+              Id="cf2e1411-2dd1-4e8c-9ecf-fa2233d42a4a"
+              LastKnownName="IDataService"
+              LastKnownLocation="PAO.Data.uml" />
+          </interfaceRealization>
+        </suppliersInternal>
+        <targetEnds>
+          <association
+            Id="e32621c7-f8c7-4870-8931-8eb9c5eed1c4"
+            isDerived="false"
+            sourceEndRoleName=""
+            targetEndRoleName="DataConnection"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="c662031e-d65b-4c81-a68d-6caf6a429a8e"
+              LastKnownName="DataConnection"
+              LastKnownLocation="PAO.Data.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="9c048e81-7f41-466b-aa45-36eddc0ce4d2"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="Composite"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="a2691080-47d5-4eb2-be2d-e020332cb0f3"
+                  name="DataConnection"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="true" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+      </class>
+    </packageHasNamedElement>
   </packagedElements>
 </package>

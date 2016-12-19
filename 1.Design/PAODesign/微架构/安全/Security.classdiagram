@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm11="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner" dslVersion="1.0.0.0" Id="a386aece-2144-47e8-a431-c00e08452060" name="Security" linkedPackageId="3765da06-3504-4962-a163-f96f6a9703e1" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
+  <ownedCommentsInternal>
+    <comment Id="71c19ebb-6960-4b4d-9cdf-6b70d1af0ebb">
+      <elementDefinition Id="4747e8cf-73a5-4183-9a0e-8e9e9b095f0a" />
+      <body>安全公共类提供应用当前用户、线程当前用户以及相应的权限支持。</body>
+      <annotatedElements>
+        <classMoniker Id="cdaa6f63-ffad-4a0d-b6af-6f94f8559ebd" LastKnownName="SecurityPublic" />
+      </annotatedElements>
+    </comment>
+  </ownedCommentsInternal>
+  <profileInstances>
+    <packageHasProfileInstances Id="fc5b2884-a78f-4350-9210-c8be764ac9c6">
+      <profileInstance Id="64d66e26-8c56-41ed-934c-b27e4197e6cb" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="1e567ab1-1ef3-45f9-8d65-177fc25f2dbf">
+      <profileInstance Id="e3e4bda6-4c1a-4ccb-b0c8-622872d81f51" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <logicalClassDesignerModelHasTypes>
+      <Interface Id="09aa227a-13e0-4dfe-92d1-91811aff037a" name="ISecurity" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="7361e73c-02da-48d4-baf6-5211ec6c8fca" />
+        <suppliersInternal>
+          <dependency Id="8fd46ed4-bbde-406f-b012-055abcdb8e44">
+            <classMoniker Id="25b96bf9-fdfd-4c6c-a872-658770f742d8" LastKnownName="UserInfo" />
+            <elementDefinition Id="c3b06b33-eae3-44f1-be7e-3396c181d1c8" />
+          </dependency>
+        </suppliersInternal>
+      </Interface>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <Interface Id="6305b988-092c-488c-a5de-2ff158bab6f6" name="ISecurityManage" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="e636a246-bfad-48a6-8b70-f8baa1e0b957" />
+        <suppliersInternal>
+          <dependency Id="dbc3b5c4-cc94-4ae0-b778-22393b6ecd55">
+            <classMoniker Id="25b96bf9-fdfd-4c6c-a872-658770f742d8" LastKnownName="UserInfo" />
+            <elementDefinition Id="4e47ccae-057b-4efb-a142-2abbcb192ad3" />
+          </dependency>
+        </suppliersInternal>
+      </Interface>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="49434d03-eece-4558-bbd0-2335f848dc83" name="SecurityService" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="c4479561-e491-4f94-a01d-f39b080c4723" />
+        <suppliersInternal>
+          <interfaceRealization Id="aa2bcbc9-8e32-43e0-9130-4214a07cfa36">
+            <interfaceMoniker Id="09aa227a-13e0-4dfe-92d1-91811aff037a" LastKnownName="ISecurity" />
+            <elementDefinition Id="6c8f227a-1c5d-4923-b8ae-46492911e0e0" />
+          </interfaceRealization>
+          <interfaceRealization Id="025356b6-5322-4fb9-92c1-7348479d1c04">
+            <interfaceMoniker Id="6305b988-092c-488c-a5de-2ff158bab6f6" LastKnownName="ISecurityManage" />
+            <elementDefinition Id="122f0571-f79c-4d15-ad71-55bcfad3591f" />
+          </interfaceRealization>
+        </suppliersInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="cdaa6f63-ffad-4a0d-b6af-6f94f8559ebd" name="SecurityPublic" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="7cf94e3c-da85-4434-9b64-a3b391f2d14e" />
+        <suppliersInternal>
+          <dependency Id="6be21012-37b2-4ebd-ae8a-7cf4cf6dc8b8">
+            <interfaceMoniker Id="09aa227a-13e0-4dfe-92d1-91811aff037a" LastKnownName="ISecurity" />
+            <elementDefinition Id="630e504a-71ff-4271-8fa3-34883f170464" />
+          </dependency>
+          <dependency Id="489de7cd-c160-41f0-8234-cc7fa7a106aa">
+            <classMoniker Id="be24376a-1259-4c18-9d8f-27720eb25bcf" LastKnownName="UserToken" />
+            <elementDefinition Id="b7add647-7025-4767-9c2b-501acfb41c09" />
+          </dependency>
+        </suppliersInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="25b96bf9-fdfd-4c6c-a872-658770f742d8" name="UserInfo" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="a1eb5fe9-9ea3-452d-9917-5ca6848699f2" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="be24376a-1259-4c18-9d8f-27720eb25bcf" name="UserToken" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="93cb849f-af4d-47c5-afb3-cb29a71948ce" />
+        <suppliersInternal>
+          <dependency Id="7aa756c6-7619-4660-b270-7164244c146e">
+            <interfaceMoniker Id="a1761101-1265-4cfb-bcff-06e1a47437dc" LastKnownName="IPermissionSet" />
+            <elementDefinition Id="b2d5ce62-bb01-4f4d-bc4d-19ff6c14a490" />
+          </dependency>
+        </suppliersInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <Interface Id="a1761101-1265-4cfb-bcff-06e1a47437dc" name="IPermissionSet" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="b38bb65e-50ad-4ce1-be02-31bfb47bfaf0" />
+      </Interface>
+    </logicalClassDesignerModelHasTypes>
+  </packagedElements>
+  <package Id="3765da06-3504-4962-a163-f96f6a9703e1" name="PAODesign">
+    <elementDefinition Id="f7c6b53f-1c2e-4762-ad13-eb71efcb9a9d" />
+  </package>
+</logicalClassDesignerModel>
