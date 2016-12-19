@@ -12,6 +12,7 @@ using DevExpress.XtraDataLayout;
 using DevExpress.XtraLayout;
 using PAO.WinForm.Editors;
 using PAO.UI;
+using System.Collections;
 
 namespace PAO.Config.EditControls
 {
@@ -31,6 +32,15 @@ namespace PAO.Config.EditControls
             }
 
             set {
+                var valueString = "[未设置对象]";
+                if (value.IsNull())
+                    value = null;
+                else if (value is IEnumerable)
+                    valueString = value.GetType().GetTypeString();
+                else
+                    valueString = value.ToString();
+
+                Text = String.Format("属性: {0}", valueString);
                 base.EditValue = value;
 
                 if(value == null) {
