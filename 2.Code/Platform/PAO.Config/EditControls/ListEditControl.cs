@@ -22,7 +22,7 @@ namespace PAO.Config.EditControls
     /// 集合编辑控件
     /// 作者：PAO
     /// </summary>
-    public partial class ListEditControl : BaseEditControl
+    public partial class ListEditControl : BaseEditControl, IBarSupport
     {
         public ListEditControl() {
             InitializeComponent();
@@ -79,11 +79,9 @@ namespace PAO.Config.EditControls
                 if (value.IsNull()) {
                     base.EditValue = null;
                     this.GridControlList.DataSource = null;
-                    this.StaticItemObject.Caption = "[未选择任何对象]";
                 }
                 else if (value is IList) {
                     base.EditValue = value;
-                    this.StaticItemObject.Caption = value.GetType().GetTypeString();
                     this.GridControlList.DataSource = this.BindingSourceList;
                     var list = value as IList;
                     for (int i = 0; i < list.Count; i++) {
@@ -100,14 +98,19 @@ namespace PAO.Config.EditControls
                 SetControlStatus();
             }
         }
-        
+
+        public IEnumerable<Bar> ExtendBars {
+            get {
+                return new Bar[] { this.BarToolObject };
+            }
+        }
+
         protected override void SetControlStatus() {
             var position = this.BindingSourceList.Position;
             this.ButtonMoveUp.Enabled = BindingSourceList.CanMoveUp(position);
             this.ButtonMoveDown.Enabled = BindingSourceList.CanMoveDown(position);
             this.ButtonDelete.Enabled = (position >= 0 && position < BindingSourceList.Count);
             this.ButtonAdd.Enabled = base.EditValue.IsNotNull();
-            this.ButtonExport.Enabled = base.EditValue.IsNotNull();
             base.SetControlStatus();
         }
 
@@ -190,11 +193,7 @@ namespace PAO.Config.EditControls
         private void BindingSourceList_PositionChanged(object sender, EventArgs e) {
             SetControlStatus();
         }
-
-        private void ButtonExport_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            ExportSelectedObject();
-        }
-        
+                
         private void ListEditControl_Leave(object sender, EventArgs e) {
             this.GridViewList.CloseEditor();
         }

@@ -21,7 +21,7 @@ namespace PAO.Config.EditControls
     /// <summary>
     /// 字典编辑控件
     /// </summary>
-    public partial class DictionaryEditControl : BaseEditControl
+    public partial class DictionaryEditControl : BaseEditControl, IBarSupport
     {
         public DictionaryEditControl() {
             InitializeComponent();
@@ -85,11 +85,9 @@ namespace PAO.Config.EditControls
                 if (value.IsNull()) {
                     base.EditValue = null;
                     this.GridControlList.DataSource = null;
-                    this.StaticItemObject.Caption = "[未选择任何对象]";
                 }
                 else if (value is IDictionary) {
                     base.EditValue = value;
-                    this.StaticItemObject.Caption = value.GetType().GetTypeString();
                     this.GridControlList.DataSource = this.BindingSourceList;
                     var dict = value as IDictionary;
                     foreach(var key in dict.Keys) {
@@ -108,11 +106,16 @@ namespace PAO.Config.EditControls
             }
         }
 
+        public IEnumerable<Bar> ExtendBars {
+            get {
+                return new Bar[] { this.BarToolObject };
+            }
+        }
+
         protected override void SetControlStatus() {
             var position = this.BindingSourceList.Position;
             this.ButtonDelete.Enabled = (position >= 0 && position < BindingSourceList.Count);
             this.ButtonAdd.Enabled = base.EditValue.IsNotNull();
-            this.ButtonExport.Enabled = base.EditValue.IsNotNull();
             base.SetControlStatus();
         }
         

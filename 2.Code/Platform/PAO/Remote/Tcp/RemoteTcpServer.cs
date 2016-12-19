@@ -132,10 +132,18 @@ namespace PAO.Remote.Tcp
             // 输入参数
             var inputParameters = reader.NetReadBinary();
 
+            var serviceNameString = RemotePublic.Deserialize<string>(serviceName);
+            var functionNameString = RemotePublic.Deserialize<string>(functionName);
             // 调用服务
-            EventPublic.Information("开始调用服务：{0}.{1}", serviceName, functionName);
+            EventPublic.Information("开始调用服务：{0}.{1}"
+                , serviceNameString
+                , functionNameString);
             try {
-                var result = RemotePublic.CallService(ServiceList, serviceName, functionName, header, inputParameters);
+                var result = RemotePublic.CallService(ServiceList
+                    , serviceNameString
+                    , functionNameString
+                    , RemotePublic.Deserialize<Header>(header)
+                    , RemotePublic.Deserialize<object[]>(inputParameters));
                 writer.NetWriteObject(RemotePublic.SuccessString);
                 writer.NetWriteBinary(result);
             } catch (Exception err) {

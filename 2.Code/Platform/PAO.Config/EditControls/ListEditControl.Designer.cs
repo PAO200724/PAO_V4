@@ -26,11 +26,8 @@
         /// </summary>
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ListEditControl));
             this.BarManagerObject = new DevExpress.XtraBars.BarManager(this.components);
             this.BarToolObject = new DevExpress.XtraBars.Bar();
-            this.StaticItemObject = new DevExpress.XtraBars.BarStaticItem();
-            this.ButtonExport = new DevExpress.XtraBars.BarButtonItem();
             this.ButtonAdd = new DevExpress.XtraBars.BarButtonItem();
             this.ButtonDelete = new DevExpress.XtraBars.BarButtonItem();
             this.ButtonMoveUp = new DevExpress.XtraBars.BarButtonItem();
@@ -63,23 +60,20 @@
             this.BarManagerObject.DockControls.Add(this.barDockControl4);
             this.BarManagerObject.Form = this;
             this.BarManagerObject.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
-            this.ButtonExport,
             this.ButtonAdd,
             this.ButtonDelete,
             this.ButtonMoveUp,
-            this.ButtonMoveDown,
-            this.StaticItemObject});
+            this.ButtonMoveDown});
             this.BarManagerObject.MaxItemId = 10;
             // 
             // BarToolObject
             // 
-            this.BarToolObject.BarName = "对象工具条";
+            this.BarToolObject.BarName = "扩展工具条";
             this.BarToolObject.DockCol = 0;
             this.BarToolObject.DockRow = 0;
             this.BarToolObject.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
+            this.BarToolObject.HideWhenMerging = DevExpress.Utils.DefaultBoolean.True;
             this.BarToolObject.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.StaticItemObject, true),
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.ButtonExport, DevExpress.XtraBars.BarItemPaintStyle.CaptionInMenu),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.ButtonAdd, "", true, true, true, 0, null, DevExpress.XtraBars.BarItemPaintStyle.CaptionInMenu),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.ButtonDelete, DevExpress.XtraBars.BarItemPaintStyle.CaptionInMenu),
             new DevExpress.XtraBars.LinkPersistInfo(this.ButtonMoveUp, true),
@@ -88,37 +82,22 @@
             this.BarToolObject.OptionsBar.DisableClose = true;
             this.BarToolObject.OptionsBar.DisableCustomization = true;
             this.BarToolObject.OptionsBar.DrawDragBorder = false;
+            this.BarToolObject.OptionsBar.UseWholeRow = true;
             this.BarToolObject.Text = "对象工具条";
-            // 
-            // StaticItemObject
-            // 
-            this.StaticItemObject.AutoSize = DevExpress.XtraBars.BarStaticItemSize.Spring;
-            this.StaticItemObject.Caption = "对象信息";
-            this.StaticItemObject.Id = 9;
-            this.StaticItemObject.Name = "StaticItemObject";
-            this.StaticItemObject.TextAlignment = System.Drawing.StringAlignment.Near;
-            // 
-            // ButtonExport
-            // 
-            this.ButtonExport.Caption = "导出(&E)";
-            this.ButtonExport.Glyph = ((System.Drawing.Image)(resources.GetObject("ButtonExport.Glyph")));
-            this.ButtonExport.Id = 2;
-            this.ButtonExport.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("ButtonExport.LargeGlyph")));
-            this.ButtonExport.Name = "ButtonExport";
-            this.ButtonExport.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonExport_ItemClick);
             // 
             // ButtonAdd
             // 
             this.ButtonAdd.Caption = "新增(&A)";
-            this.ButtonAdd.Glyph = global::PAO.Config.Properties.Resources.addfile_16x16;
+            this.ButtonAdd.Glyph = global::PAO.Config.Properties.Resources.add_16x16;
             this.ButtonAdd.Id = 4;
+            this.ButtonAdd.LargeGlyph = global::PAO.Config.Properties.Resources.add_32x32;
             this.ButtonAdd.Name = "ButtonAdd";
             this.ButtonAdd.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonAdd_ItemClick);
             // 
             // ButtonDelete
             // 
             this.ButtonDelete.Caption = "删除(&D)";
-            this.ButtonDelete.Glyph = global::PAO.Config.Properties.Resources.removeitem_16x16;
+            this.ButtonDelete.Glyph = global::PAO.Config.Properties.Resources.remove_16x16;
             this.ButtonDelete.Id = 5;
             this.ButtonDelete.Name = "ButtonDelete";
             this.ButtonDelete.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonDelete_ItemClick);
@@ -146,7 +125,7 @@
             this.barDockControl1.CausesValidation = false;
             this.barDockControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControl1.Location = new System.Drawing.Point(0, 0);
-            this.barDockControl1.Size = new System.Drawing.Size(623, 31);
+            this.barDockControl1.Size = new System.Drawing.Size(623, 28);
             // 
             // barDockControl2
             // 
@@ -159,25 +138,25 @@
             // 
             this.barDockControl3.CausesValidation = false;
             this.barDockControl3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControl3.Location = new System.Drawing.Point(0, 31);
-            this.barDockControl3.Size = new System.Drawing.Size(0, 476);
+            this.barDockControl3.Location = new System.Drawing.Point(0, 28);
+            this.barDockControl3.Size = new System.Drawing.Size(0, 479);
             // 
             // barDockControl4
             // 
             this.barDockControl4.CausesValidation = false;
             this.barDockControl4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControl4.Location = new System.Drawing.Point(623, 31);
-            this.barDockControl4.Size = new System.Drawing.Size(0, 476);
+            this.barDockControl4.Location = new System.Drawing.Point(623, 28);
+            this.barDockControl4.Size = new System.Drawing.Size(0, 479);
             // 
             // GridControlList
             // 
             this.GridControlList.DataSource = this.BindingSourceList;
             this.GridControlList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.GridControlList.Location = new System.Drawing.Point(0, 31);
+            this.GridControlList.Location = new System.Drawing.Point(0, 28);
             this.GridControlList.MainView = this.GridViewList;
             this.GridControlList.MenuManager = this.BarManagerObject;
             this.GridControlList.Name = "GridControlList";
-            this.GridControlList.Size = new System.Drawing.Size(623, 476);
+            this.GridControlList.Size = new System.Drawing.Size(623, 479);
             this.GridControlList.TabIndex = 4;
             this.GridControlList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.GridViewList});
@@ -251,7 +230,6 @@
 
         private DevExpress.XtraBars.BarManager BarManagerObject;
         private DevExpress.XtraBars.Bar BarToolObject;
-        private DevExpress.XtraBars.BarButtonItem ButtonExport;
         private DevExpress.XtraBars.BarDockControl barDockControl1;
         private DevExpress.XtraBars.BarDockControl barDockControl2;
         private DevExpress.XtraBars.BarDockControl barDockControl3;
@@ -265,7 +243,6 @@
         private DevExpress.XtraBars.BarButtonItem ButtonDelete;
         private DevExpress.XtraBars.BarButtonItem ButtonMoveUp;
         private DevExpress.XtraBars.BarButtonItem ButtonMoveDown;
-        private DevExpress.XtraBars.BarStaticItem StaticItemObject;
         private DataSetList DataSetList;
     }
 }

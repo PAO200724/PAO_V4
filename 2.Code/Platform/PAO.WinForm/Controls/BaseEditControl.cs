@@ -35,8 +35,9 @@ namespace PAO.WinForm
                 return _EditValue;
             }
             set {
+                if (value.IsNull())
+                    value = null;
                 _EditValue = value;
-                SetControlStatus();
             }
         }
         

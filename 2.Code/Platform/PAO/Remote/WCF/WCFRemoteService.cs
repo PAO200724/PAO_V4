@@ -34,7 +34,11 @@ namespace PAO.Remote.WCF
         }
 
         public byte[] CallService(byte[] serviceName, byte[] functionName, byte[] header, byte[] inputParameters) {
-            var result = RemotePublic.CallService(ServiceList, serviceName, functionName, header, inputParameters);
+            var result = RemotePublic.CallService(ServiceList
+                , RemotePublic.Deserialize<string>(serviceName)
+                , RemotePublic.Deserialize<string>(functionName)
+                , RemotePublic.Deserialize<Header>(header)
+                , RemotePublic.Deserialize<object[]>(inputParameters));
 
             return result;
         }

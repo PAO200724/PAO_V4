@@ -77,6 +77,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataSetList.xsd</DependentUpon>
     </Compile>
+    <Compile Include="EditControls\ObjectContainerEditControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="EditControls\ObjectContainerEditControl.Designer.cs">
+      <DependentUpon>ObjectContainerEditControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EditControls\ObjectEditMode.cs" />
     <Compile Include="EditControls\ObjectLayoutEditControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -190,6 +197,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="EditControls\ListEditControl.resx">
       <DependentUpon>ListEditControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditControls\ObjectContainerEditControl.resx">
+      <DependentUpon>ObjectContainerEditControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EditControls\ObjectEditControl.resx">
       <DependentUpon>ObjectEditControl.cs</DependentUpon>
@@ -327,6 +337,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\cog.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add_32x32.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

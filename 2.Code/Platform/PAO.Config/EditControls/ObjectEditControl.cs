@@ -26,8 +26,8 @@ namespace PAO.Config.EditControls
 
         public ObjectEditControl() {
             InitializeComponent();
-            SetControlStatus();
             EditValue = null;
+            SetControlStatus();
         }
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
@@ -41,18 +41,9 @@ namespace PAO.Config.EditControls
                 base.EditValue = value;
                 this.PropertyGridControl.SelectedObject = value;
                 this.PropertyGridControl.Refresh();
-                if(value == null) {
-                    StaticItemObject.Caption = "[未选择任何对象]";
-                } else {
-                    StaticItemObject.Caption = value.ToString();
-                }
+
                 SetControlStatus();
             }
-        }
-
-        protected override void SetControlStatus() {
-            this.ButtonExport.Enabled = base.EditValue.IsNotNull();
-            base.SetControlStatus();
         }
 
         private void PropertyGridControl_CellValueChanged(object sender
@@ -91,10 +82,6 @@ namespace PAO.Config.EditControls
                 edit.PropertyDescriptor = propDesc;
                 e.RepositoryItem = edit.CreateRepositoryItem();
             }
-        }
-
-        private void ButtonExport_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            ExportSelectedObject();
         }
         
         private void ObjectEditControl_Leave(object sender, EventArgs e) {

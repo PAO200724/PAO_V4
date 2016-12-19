@@ -67,52 +67,41 @@ namespace PAO.Remote
         /// <param name="header">协议头</param>
         /// <param name="inputParameters">输入参数</param>
         /// <returns></returns>
-        public static byte[] CallService(Dictionary<string, Ref<PaoObject>> serviceList, byte[] serviceName, byte[] functionName, byte[] header, byte[] inputParameters) {
+        public static byte[] CallService(Dictionary<string, Ref<PaoObject>> serviceList, string serviceName, string functionName, Header header, object[] inputParameters) {
             // 获取头信息
-            Header head = null;
             header.CheckNotNullOrEmpty("协议头读取错误!");
-
-            head = Deserialize<Header>(header);
+            
 
             // 设置线程用户
-            SecurityPublic.ThreadUser = head.UserToken;
-            // 获取服务对象
-            var serviceNameString = Deserialize<string>(serviceName);
-            var functionNameString = Deserialize<string>(functionName);
+            SecurityPublic.ThreadUser = header.UserToken;
 
             byte[] result = null;
             Action callService = () =>
             {
-                if (!serviceList.ContainsKey(serviceNameString)) {
-                    throw new Exception("找不到指定的服务").AddExceptionData("服务名称", serviceNameString);
+                if (!serviceList.ContainsKey(serviceName)) {
+                    throw new Exception("找不到指定的服务").AddExceptionData("服务名称", serviceName);
                 }
-                var serviceObject = serviceList[serviceNameString].Value;
+                var serviceObject = serviceList[serviceName].Value;
                 if(serviceObject == null)
-                    throw new Exception("找不到指定的服务").AddExceptionData("服务名称", serviceNameString);
-
-                // 获取参数信息
-                object[] inputParamList = null;
-                if (!inputParameters.IsNullOrEmpty()) {
-                    inputParamList = Deserialize<object[]>(inputParameters);
-                }
-
+                    throw new Exception("找不到指定的服务").AddExceptionData("服务名称", serviceName);
+                
                 // 获取方法
-                var method = serviceObject.GetType().GetMethod(functionNameString
+                var method = serviceObject.GetType().GetMethod(functionName
                     , BindingFlags.Public | BindingFlags.Instance);
                 if (method == null)
                     throw new Exception("找不到指定的服务方法")
-                        .AddExceptionData("服务名称", serviceNameString)
-                        .AddExceptionData("方法名称", functionNameString);
+                        .AddExceptionData("服务名称", serviceName)
+                        .AddExceptionData("方法名称", functionName);
 
                 // 调用方法
-                var resultObj = method.Invoke(serviceObject, inputParamList);
+                var resultObj = method.Invoke(serviceObject, inputParameters);
                 result = Serialize<object>(resultObj);
             };
 
             // 在事务中调用服务
-            var transName = String.Format("{0}.{1}", serviceNameString, functionNameString);
-            if (head != null && head.Transaction != null) {
-                TransactionPublic.RunService(head.Transaction, transName, callService);
+            var transName = String.Format("{0}.{1}", serviceName, functionName);
+            if (header != null && header.Transaction != null) {
+                TransactionPublic.RunService(header.Transaction, transName, callService);
             }
             else {
                 TransactionPublic.Run(transName, callService);

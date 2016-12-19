@@ -114,6 +114,7 @@
     <Compile Include="Editors\TextEditor.cs" />
     <Compile Include="Editors\TimeEditor.cs" />
     <Compile Include="Editors\ToggleSwitchEditor.cs" />
+    <Compile Include="IBarSupport.cs" />
     <Compile Include="IPropertyView.cs" />
     <Compile Include="Property\ConfigPropertyDescriptor.cs" />
     <Compile Include="Property\PropertyConfigInfo.cs" />

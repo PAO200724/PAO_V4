@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using DevExpress.XtraBars;
 
-namespace PAO.Report
+namespace PAO.WinForm
 {
     /// <summary>
     /// 接口：IBarSupport

@@ -42,7 +42,7 @@
             this.DataLayoutControl.Name = "DataLayoutControl";
             this.DataLayoutControl.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(300, 200, 500, 600);
             this.DataLayoutControl.Root = this.LayoutControlGroupRoot;
-            this.DataLayoutControl.Size = new System.Drawing.Size(517, 605);
+            this.DataLayoutControl.Size = new System.Drawing.Size(861, 703);
             this.DataLayoutControl.TabIndex = 0;
             this.DataLayoutControl.Text = "布局控件";
             // 
@@ -56,7 +56,7 @@
             this.LayoutControlGroupRoot.GroupBordersVisible = false;
             this.LayoutControlGroupRoot.Location = new System.Drawing.Point(0, 0);
             this.LayoutControlGroupRoot.Name = "Root";
-            this.LayoutControlGroupRoot.Size = new System.Drawing.Size(517, 605);
+            this.LayoutControlGroupRoot.Size = new System.Drawing.Size(861, 703);
             this.LayoutControlGroupRoot.Text = "根";
             this.LayoutControlGroupRoot.TextVisible = false;
             // 
@@ -66,7 +66,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.DataLayoutControl);
             this.Name = "ObjectLayoutEditControl";
-            this.Size = new System.Drawing.Size(517, 605);
+            this.Size = new System.Drawing.Size(861, 703);
             ((System.ComponentModel.ISupportInitialize)(this.DataLayoutControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.LayoutControlGroupRoot)).EndInit();

@@ -286,7 +286,7 @@ namespace PAO.Report.Views
                             this.BarItemSelectedObject.LargeGlyph = view.LargeIcon;
                         }
                     }
-                    if(this.BarExtend.ItemLinks.Count > 1) {
+                    if(this.BarExtend.VisibleLinks.Count > 1) {
                         this.BarExtend.Visible = true;
                     } else {
                         this.BarExtend.Visible = false;

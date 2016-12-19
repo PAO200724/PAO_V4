@@ -20,6 +20,7 @@ namespace PAO.WinForm.Security
     public partial class LoginControl : DialogControl {
         public LoginControl() {
             InitializeComponent();
+            Text = "用户登录";
         }
 
         public ISecurity SecurtiyService { get; set; }

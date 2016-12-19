@@ -97,12 +97,13 @@ namespace PAO.Config.EditControls
                 if (editControl.GetType().GetProperty("EditValue") == null)
                     throw new Exception("编辑控件必须实现EditValue属性");
 
-                editControl.DataBindings.Add(new Binding("EditValue", this.BindingSource, propDesc.Name, true));
-                editControl.Tag = configedPropDesc;
-                editControl.Name = configedPropDesc.Name;
-
                 LayoutControlItem layoutControlItem = null;
                 if (editControl is BaseEditControl) {
+                    // 在BaseEditControl外套一层ObjectContainerEditControl，用于实现属性的新增删除等
+                    var objectContainerEditControl = new ObjectContainerEditControl();
+                    objectContainerEditControl.StartEditProperty(obj, propDesc.Name, editControl as BaseEditControl);
+                    editControl = objectContainerEditControl;
+
                     if (tabbledGroup == null) {
                         tabbledGroup = groupItem.AddTabbedGroup();
                     }
@@ -114,13 +115,15 @@ namespace PAO.Config.EditControls
 
                     layoutControlItem = layoutGroupItem.AddItem();
                     layoutControlItem.TextLocation = DevExpress.Utils.Locations.Top;
-
-                    editControl.Enter += EditControl_Enter;
                 }
                 else {
                     layoutControlItem = groupItem.AddItem();
                     layoutControlItem.TextLocation = DevExpress.Utils.Locations.Left;
                 }
+
+                editControl.DataBindings.Add(new Binding("EditValue", this.BindingSource, propDesc.Name, true));
+                editControl.Tag = configedPropDesc;
+                editControl.Name = configedPropDesc.Name;
 
                 layoutControlItem.Control = editControl;
                 layoutControlItem.Name = configedPropDesc.Name;
@@ -135,24 +138,7 @@ namespace PAO.Config.EditControls
                 }
             }
         }
-
-        private void EditControl_Enter(object sender, EventArgs e) {
-            var editControl = sender as BaseEditControl;
-            if (EditValue == null || editControl == null) {
-                return;
-            }
-
-            if (editControl.EditValue == null && UIPublic.ShowYesNoDialog("当前属性为空，您是否要创建一个新对象？") == DialogReturn.Yes) {
-                var propDesc = editControl.Tag as PropertyDescriptor;
-                object newObject;
-                if (ConfigPublic.CreateNewAddonValue(propDesc.PropertyType
-                    , false
-                    , out newObject)) {
-                    propDesc.SetValue(EditValue, newObject);
-                    editControl.EditValue = newObject;
-                }
-            }
-        }
+        
        
     }
 }
