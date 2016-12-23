@@ -148,7 +148,5 @@ namespace PAO.Config.EditControls
                 }
             }
         }
-        
-       
     }
 }

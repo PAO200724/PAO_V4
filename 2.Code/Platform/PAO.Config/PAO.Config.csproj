@@ -83,6 +83,7 @@
     <Compile Include="EditControls\ObjectContainerEditControl.Designer.cs">
       <DependentUpon>ObjectContainerEditControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="EditControls\ObjectLayoutEditorController.cs" />
     <Compile Include="EditControls\ObjectEditMode.cs" />
     <Compile Include="EditControls\ObjectLayoutEditControl.cs">
       <SubType>UserControl</SubType>
@@ -97,6 +98,7 @@
     <Compile Include="DockViews\PropertyView.Designer.cs">
       <DependentUpon>PropertyView.cs</DependentUpon>
     </Compile>
+    <Compile Include="EditControls\TypeEditorController.cs" />
     <Compile Include="ExtendConfigPublic.cs" />
     <Compile Include="LayoutEditControlData.cs" />
     <Compile Include="Views\ObjectConfigController.cs" />
