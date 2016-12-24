@@ -51,7 +51,7 @@ namespace PAO.Configuration
             {
                 ID = "ConfigApplication",
                 Caption = "系统配置程序",
-                ClientID = "PAO_Config",
+                SoftwareID = "PAO_Config",
                 DateTimeService = new TcpRemoteFactory<IDateTime>()
                 {
                     ServerAddress = "localhost:7990",

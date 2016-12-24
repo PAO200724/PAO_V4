@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ConfigDataSet" targetNamespace="http://tempuri.org/ConfigDataSet.xsd" xmlns:mstns="http://tempuri.org/ConfigDataSet.xsd" xmlns="http://tempuri.org/ConfigDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="PAOConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="PAOConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.PAO.Ext.Properties.Settings.GlobalReference.Default.PAOConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="ConfigDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="ConfigDataSet" msprop:Generator_UserDSName="ConfigDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="T_Config" msprop:Generator_TableClassName="T_ConfigDataTable" msprop:Generator_TableVarName="tableT_Config" msprop:Generator_TablePropName="T_Config" msprop:Generator_RowDeletingName="T_ConfigRowDeleting" msprop:Generator_RowChangingName="T_ConfigRowChanging" msprop:Generator_RowEvHandlerName="T_ConfigRowChangeEventHandler" msprop:Generator_RowDeletedName="T_ConfigRowDeleted" msprop:Generator_UserTableName="T_Config" msprop:Generator_RowChangedName="T_ConfigRowChanged" msprop:Generator_RowEvArgName="T_ConfigRowChangeEvent" msprop:Generator_RowClassName="T_ConfigRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:string" />
+              <xs:element name="SoftwareID" msprop:Generator_ColumnVarNameInTable="columnSoftwareID" msprop:Generator_ColumnPropNameInRow="SoftwareID" msprop:Generator_ColumnPropNameInTable="SoftwareIDColumn" msprop:Generator_UserColumnName="SoftwareID" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ComputerID" msprop:Generator_ColumnVarNameInTable="columnComputerID" msprop:Generator_ColumnPropNameInRow="ComputerID" msprop:Generator_ColumnPropNameInTable="ComputerIDColumn" msprop:Generator_UserColumnName="ComputerID" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ConfigName" msprop:Generator_ColumnVarNameInTable="columnConfigName" msprop:Generator_ColumnPropNameInRow="ConfigName" msprop:Generator_ColumnPropNameInTable="ConfigNameColumn" msprop:Generator_UserColumnName="ConfigName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Priority" msprop:Generator_ColumnVarNameInTable="columnPriority" msprop:Generator_ColumnPropNameInRow="Priority" msprop:Generator_ColumnPropNameInTable="PriorityColumn" msprop:Generator_UserColumnName="Priority" type="xs:int" />
+              <xs:element name="EnabledTime" msprop:Generator_ColumnVarNameInTable="columnEnabledTime" msprop:Generator_ColumnPropNameInRow="EnabledTime" msprop:Generator_ColumnPropNameInTable="EnabledTimeColumn" msprop:Generator_UserColumnName="EnabledTime" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="DisabledTime" msprop:Generator_ColumnVarNameInTable="columnDisabledTime" msprop:Generator_ColumnPropNameInRow="DisabledTime" msprop:Generator_ColumnPropNameInTable="DisabledTimeColumn" msprop:Generator_UserColumnName="DisabledTime" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Filter" msprop:Generator_ColumnVarNameInTable="columnFilter" msprop:Generator_ColumnPropNameInRow="Filter" msprop:Generator_ColumnPropNameInTable="FilterColumn" msprop:Generator_UserColumnName="Filter" type="xs:base64Binary" minOccurs="0" />
+              <xs:element name="Config" msprop:Generator_ColumnVarNameInTable="columnConfig" msprop:Generator_ColumnPropNameInRow="Config" msprop:Generator_ColumnPropNameInTable="ConfigColumn" msprop:Generator_UserColumnName="Config" type="xs:base64Binary" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:T_Config" />
+      <xs:field xpath="mstns:Id" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

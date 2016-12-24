@@ -65,34 +65,73 @@ namespace PAO.Data {
                     select cmd).FirstOrDefault();
         }
 
-        #region IDataService 成员
-
-        public System.Data.DataTable GetSchema(string commandID) {
-            var commandInfo = GetDataCommandInfoByID(commandID);
+        /// <summary>
+        /// 获取数据格式
+        /// </summary>
+        /// <param name="sql">sql语句</param>
+        /// <returns>数据格式</returns>
+        public System.Data.DataTable GetSchema(string sql) {
+            var commandInfo = new DataCommandInfo() { Sql = sql };
             return DataConnection.Value.GetSchema(commandInfo);
         }
 
-        public DataField[] GetParameters(string commandID) {
-            var commandInfo = GetDataCommandInfoByID(commandID);
+        /// <summary>
+        /// 获取参数列表
+        /// </summary>
+        /// <param name="sql">sql语句</param>
+        /// <returns>参数列表</returns>
+        public DataField[] GetParameters(string sql) {
+            var commandInfo = new DataCommandInfo() { Sql = sql };
             return DataConnection.Value.GetParameters(commandInfo);
         }
 
-        public System.Data.DataTable Query(string commandID, int startIndex, int maxCount, params DataField[] parameters) {
-            var commandInfo = GetDataCommandInfoByID(commandID);
+        public System.Data.DataTable Query(string sql, int startIndex, int maxCount, params DataField[] parameters) {
+            var commandInfo = new DataCommandInfo() { Sql = sql };
             return DataConnection.Value.QueryTableByCommand(commandInfo, startIndex, maxCount, parameters);
         }
 
-        public void Execute(string commandID, params DataField[] parameterList) {
-            var commandInfo = GetDataCommandInfoByID(commandID);
+        public void Execute(string sql, params DataField[] parameterList) {
+            var commandInfo = new DataCommandInfo() { Sql = sql };
             DataConnection.Value.Execute(commandInfo, parameterList);
         }
 
-        public object ExecuteScalar(string commandID, params DataField[] parameterList) {
-            var commandInfo = GetDataCommandInfoByID(commandID);
+        public object ExecuteScalar(string sql, params DataField[] parameterList) {
+            var commandInfo = new DataCommandInfo() { Sql = sql };
             return DataConnection.Value.ExecuteScalar(commandInfo, parameterList);
         }
 
         public void UpdateTable(System.Data.DataTable dataTable, string tableName) {
+            DataConnection.Value.UpdateTable(dataTable, tableName);
+        }
+
+        #region IDataService 成员
+
+        System.Data.DataTable IDataService.GetSchema(string commandID) {
+            var commandInfo = GetDataCommandInfoByID(commandID);
+            return DataConnection.Value.GetSchema(commandInfo);
+        }
+
+        DataField[] IDataService.GetParameters(string commandID) {
+            var commandInfo = GetDataCommandInfoByID(commandID);
+            return DataConnection.Value.GetParameters(commandInfo);
+        }
+
+        System.Data.DataTable IDataService.Query(string commandID, int startIndex, int maxCount, params DataField[] parameters) {
+            var commandInfo = GetDataCommandInfoByID(commandID);
+            return DataConnection.Value.QueryTableByCommand(commandInfo, startIndex, maxCount, parameters);
+        }
+
+        void IDataService.Execute(string commandID, params DataField[] parameterList) {
+            var commandInfo = GetDataCommandInfoByID(commandID);
+            DataConnection.Value.Execute(commandInfo, parameterList);
+        }
+
+        object IDataService.ExecuteScalar(string commandID, params DataField[] parameterList) {
+            var commandInfo = GetDataCommandInfoByID(commandID);
+            return DataConnection.Value.ExecuteScalar(commandInfo, parameterList);
+        }
+
+        void IDataService.UpdateTable(System.Data.DataTable dataTable, string tableName) {
             DataConnection.Value.UpdateTable(dataTable, tableName);
         }
 

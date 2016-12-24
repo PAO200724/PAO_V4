@@ -1,4 +1,5 @@
-﻿using PAO.Event;
+﻿using PAO.Config;
+using PAO.Event;
 using PAO.Properties;
 using PAO.Remote;
 using PAO.Server;
@@ -36,21 +37,21 @@ namespace PAO.App {
             private set;
         }
         #region 插件属性
-        #region 属性:ClientID
+        #region 属性:SoftwareID
         /// <summary>
         /// 属性:ClientID
-        /// 客户端ID
-        /// 客户端应用的唯一标识
+        /// 软件ID
+        /// 客户端软件的唯一标识
         /// </summary>
         [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
-        [Name("客户端ID")]
-        [Description("客户端应用的唯一标识")]
-        public string ClientID {
+        [Name("软件ID")]
+        [Description("客户端软件的唯一标识")]
+        public string SoftwareID {
             get;
             set;
         }
-        #endregion 属性:ClientID
+        #endregion 属性:SoftwareID
 
         #region 属性:EventProcessorList
         /// <summary>
@@ -198,10 +199,9 @@ namespace PAO.App {
                         //  遍历插件，应用插件
                         AddonPublic.TraverseAddon((addon) =>
                         {
-                            if(addon is PaoObject) {
-                                AddonPublic.LoadAddonExtendProperties(addon as PaoObject);
-                            }
-                            return false;
+                            AddonPublic.LoadAddonExtendProperties(addon);
+
+                            return true;
                         }, PaoApplication.Default);
                     });
 

@@ -26,7 +26,6 @@ namespace PAO.Ext.Security
     public class SecurityService : PaoObject, ISecurity
     {
         #region 插件属性
-
         #region 属性：DataService
         /// <summary>
         /// 属性：DataService
@@ -37,41 +36,29 @@ namespace PAO.Ext.Security
         [DataMember(EmitDefaultValue = false)]
         [Name("数据服务")]
         [Description("实现本服务所需的数据服务")]
-        public Ref<IDataService> DataService {
+        public Ref<DataService> DataService {
             get;
             set;
         }
         #endregion 属性：DataService
         #endregion
 
-        #region DataCommands
-        public static readonly DataCommandInfo DataCommand_QueryUserByID = new DataCommandInfo()
-        {
-            ID = "DataCommand_QueryUserByID",
-            Sql = "SELECT * FROM [T_User] WHERE [Enabled] = 1 AND [ID] = @ID",
-        };
+        #region Sql
 
-        public static readonly DataCommandInfo DataCommand_QueryUserByName = new DataCommandInfo()
-        {
-            ID = "DataCommand_QueryUserByName",
-            Sql = "SELECT * FROM [T_User] WHERE [Enabled] = 1 AND ([ID] = @UserName OR [Name] = @UserName OR LoginName = @UserName OR [Tel] = @UserName OR Email = @UserName)",
-        };
-
-        public static readonly DataCommandInfo DataCommand_QueryUsers = new DataCommandInfo()
-        {
-            ID = "DataCommand_QueryUsers",
-            Sql = "SELECT * FROM [T_User] WHERE {0}",
-            DataFilter = new AndLogicFilter()
-            {
-                ChildFilters = new List<IDataFilter>()
-                    .Append(new SqlFilter("Enabled=@Enabled", "@Enabled", System.Data.DbType.Boolean))
-                    .Append(new SqlFilter("LoginName LIKE '%' + @LoginName + '%'", "@LoginName"))
-                    .Append(new SqlFilter("UserName LIKE '%' + @UserName + '%'", "@UserName"))
-                    .Append(new SqlFilter("Tel LIKE '%' + @Tel + '%'", "@Tel"))
-                    .Append(new SqlFilter("Email LIKE '%' + @Email + '%'", "@Email"))
-            }
-        };
-
+        public const string Sql_QueryUserByID = 
+            @"SELECT * 
+                FROM [T_User] 
+               WHERE [Enabled] = 1 AND [ID] = @ID";
+        public const string Sql_QueryUserByName = 
+            @"SELECT * 
+                FROM [T_User] 
+               WHERE [Enabled] = 1 
+                 AND ([ID] = @UserName 
+                        OR [Name] = @UserName 
+                        OR LoginName = @UserName 
+                        OR [Tel] = @UserName 
+                        OR Email = @UserName)";
+        
         #endregion
 
         public SecurityService() {
@@ -80,7 +67,7 @@ namespace PAO.Ext.Security
         public UserInfo GetUserInfo() {
             T_UserDataTable userTable = new UserDataSet.T_UserDataTable();
             var dataService = DataService.Value;
-            dataService.Fill(userTable, DataCommand_QueryUserByID.ID, 0, 1, new DataField("@ID", SecurityPublic.CurrentUser.UserID));
+            dataService.Fill(userTable, Sql_QueryUserByID, 0, 1, new DataField("@ID", SecurityPublic.CurrentUser.UserID));
             if (userTable.Count == 0)
                 return null;
             return new UserInfo()
@@ -93,7 +80,7 @@ namespace PAO.Ext.Security
         public string Login(string userID, string password) {
             T_UserDataTable userTable = new UserDataSet.T_UserDataTable();
             var dataService = DataService.Value;
-            dataService.Fill(userTable, DataCommand_QueryUserByName.ID, 0, 1, new DataField("@UserName", userID));
+            dataService.Fill(userTable, Sql_QueryUserByName, 0, 1, new DataField("@UserName", userID));
             if (userTable.Count == 0)
                 throw new Exception("登录失败");
             if (userTable[0].IsPasswordNull()) {

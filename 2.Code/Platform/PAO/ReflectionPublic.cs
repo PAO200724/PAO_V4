@@ -510,7 +510,7 @@ namespace PAO {
         /// <returns>父类型列表</returns>
         public static IEnumerable<Type> GetParentTypeList(this Type type) {
             List<Type> typeList = new List<Type>();
-            GoThroughParentTypeList(type, typeList);
+            TraverseParentTypeList(type, typeList);
             return typeList;
         }
 
@@ -519,15 +519,15 @@ namespace PAO {
         /// </summary>
         /// <param name="type">类型</param>
         /// <param name="action">遍历方法，返回值如果是false表示中断遍历</param>
-        public static void GoThroughParentTypeList(this Type type, Func<Type, bool> action) {
+        public static void TraverseParentTypeList(this Type type, Func<Type, bool> action) {
             List<Type> typeList = new List<Type>();
-            GoThroughParentTypeList(type, typeList, action);
+            TraverseParentTypeList(type, typeList, action);
         }
 
         /// <summary>
         /// 遍历某个类型的所有相关类型
         /// </summary>
-        private static bool GoThroughParentTypeList(Type type, List<Type> typeList, Func<Type, bool> action = null) {
+        private static bool TraverseParentTypeList(Type type, List<Type> typeList, Func<Type, bool> action = null) {
             // 如果遍历过了，不再重复
             if (typeList.Contains(type)) {
                 return false;
@@ -544,14 +544,14 @@ namespace PAO {
             
             // 遍历泛型定义类
             if (type.IsGenericType) {
-                var goOn = GoThroughParentTypeList(type.GetGenericTypeDefinition(), typeList, action);
+                var goOn = TraverseParentTypeList(type.GetGenericTypeDefinition(), typeList, action);
                 if (!goOn)
                     return false;
             }
 
             // 遍历基类
             if (type.BaseType != null) {
-                var goOn = GoThroughParentTypeList(type, typeList, action);
+                var goOn = TraverseParentTypeList(type, typeList, action);
                 if (!goOn)
                     return false;
             }
@@ -560,7 +560,7 @@ namespace PAO {
             var interfaces = type.GetInterfaces();
             if (interfaces.IsNotNullOrEmpty()) {
                 foreach (var interfaceType in interfaces) {
-                    var goOn = GoThroughParentTypeList(interfaceType, typeList, action);
+                    var goOn = TraverseParentTypeList(interfaceType, typeList, action);
                     if (!goOn)
                         return false;
                 }

@@ -405,7 +405,7 @@ namespace PAO.WinForm
         public static TypeConfigInfo GetTypeConfigInfo(Type type) {
             TypeConfigInfo result = null;
             // 遍历
-            type.GoThroughParentTypeList((t)=>
+            type.TraverseParentTypeList((t)=>
             {
                 result = TypeConfigInfoList
                     .Where(p=>p.Key == t)
@@ -427,7 +427,7 @@ namespace PAO.WinForm
         public static PropertyConfigInfo GetPropertyConfigInfo(Type type, string propertyName) {
             PropertyConfigInfo result = null;
             // 遍历
-            type.GoThroughParentTypeList((t) =>
+            type.TraverseParentTypeList((t) =>
             {
                 var typeConfigInfo = TypeConfigInfoList
                     .Where(p => p.Key == t)

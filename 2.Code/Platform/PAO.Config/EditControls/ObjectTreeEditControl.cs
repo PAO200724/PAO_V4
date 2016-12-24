@@ -17,9 +17,9 @@ using PAO;
 using DevExpress.XtraSplashScreen;
 using PAO.IO;
 using PAO.WinForm;
-using static PAO.DataSetExtendProperty;
 using PAO.MVC;
 using PAO.Config.Controls;
+using static PAO.Config.DataSetExtendProperty;
 
 namespace PAO.Config.EditControls
 {
@@ -86,7 +86,7 @@ namespace PAO.Config.EditControls
                     ExtendPropertyStorage = new FileExtendPropertyStorage() { FilePath = value };
                     SplitContainerControlProperty.Panel2.Visible = true;
                     ExtendPropertyDataTable = new ExtendPropertyDataTable();
-                    AddonPublic.LoadAddonExtendPropertiesFromStorage(ExtendPropertyDataTable, ExtendPropertyStorage);
+                    ExtendAddonPublic.LoadAddonExtendPropertiesFromStorage(ExtendPropertyDataTable, ExtendPropertyStorage);
                     this.AddonExtentionEditControl.EditValue = ExtendPropertyDataTable;
                 }
                 else {
@@ -104,7 +104,7 @@ namespace PAO.Config.EditControls
 
         public override void OnClosing(DialogResult dialogResult, ref bool cancel) {
             /// 保存
-            AddonPublic.SaveAddonExtendPropertiesToStorage(ExtendPropertyDataTable, ExtendPropertyStorage);
+            ExtendAddonPublic.SaveAddonExtendPropertiesToStorage(ExtendPropertyDataTable, ExtendPropertyStorage);
             base.OnClosing(dialogResult, ref cancel);
         }
         #endregion
@@ -446,7 +446,7 @@ namespace PAO.Config.EditControls
                 default:
                     throw new Exception("此节点不支持显示数据");
             }
-            AddonPublic.SaveAddonExtendPropertiesToStorage(ExtendPropertyDataTable, ExtendPropertyStorage);
+            ExtendAddonPublic.SaveAddonExtendPropertiesToStorage(ExtendPropertyDataTable, ExtendPropertyStorage);
         }
 
         /// <summary>

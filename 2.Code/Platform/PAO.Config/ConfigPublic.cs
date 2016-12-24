@@ -15,7 +15,6 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using static PAO.DataSetExtendProperty;
 using DevExpress.XtraGrid.Views.Grid;
 using PAO.WinForm.Config;
 using DevExpress.XtraGrid.Views.Base;
@@ -54,11 +53,11 @@ namespace PAO.Config
                     var paoObj = addon as PaoObject;
                     if (paoObj.ID == addonID) {
                         addonEditing = paoObj;
-                        return true;
+                        return false;
                     }
                 }
 
-                return false;
+                return true;
             }, RootEditingObject);
 
             return addonEditing;

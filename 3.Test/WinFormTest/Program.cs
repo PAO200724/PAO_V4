@@ -14,6 +14,7 @@ using PAO.Data;
 using PAO.Remote.Tcp;
 using TestLibrary;
 using PAO.IO;
+using PAO.Config;
 
 namespace WinFormTest
 {

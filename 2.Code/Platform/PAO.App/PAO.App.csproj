@@ -43,7 +43,14 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AutoUpdate\" />
+    <Folder Include="Config\" />
     <Folder Include="Security\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PAO\PAO.csproj">
+      <Project>{13199ee0-1738-4e3a-a970-3771eb9d4d0e}</Project>
+      <Name>PAO</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

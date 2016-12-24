@@ -1,5 +1,6 @@
 ﻿using PAO.App;
 using PAO.App.Server;
+using PAO.Config;
 using PAO.Data;
 using PAO.Event;
 using PAO.Ext.Security;
@@ -51,7 +52,7 @@ namespace PAO.Server
                         ServiceList = new Dictionary<string, Ref<PaoObject>>()
                              .Append("SecurityService", new SecurityService()
                              {
-                                 DataService = new AddonFactory<IDataService>("DataService")
+                                 DataService = new AddonFactory<DataService>("DataService")
                              }.ToRef())
                              .Append("DateTimeService", new DateTimeService().ToRef())
                              .Append("DataService", new AddonFactory<PaoObject>("DataService")),
@@ -73,9 +74,6 @@ namespace PAO.Server
                     ParamPrefix = "@",
                 }.ToRef(),
                 CommandList = new List<DataCommandInfo>()
-                            .Append(SecurityService.DataCommand_QueryUserByID)
-                            .Append(SecurityService.DataCommand_QueryUserByName)
-                            .Append(SecurityService.DataCommand_QueryUsers)
             };
         }
     }

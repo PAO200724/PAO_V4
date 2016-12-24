@@ -1,4 +1,5 @@
 ﻿using PAO.App;
+using PAO.Config;
 using PAO.Event;
 using PAO.IO;
 using PAO.UI;
@@ -13,7 +14,7 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization;
 using System.Text;
-using static PAO.DataSetExtendProperty;
+using static PAO.Config.DataSetExtendProperty;
 
 namespace PAO {
     /// <summary>
@@ -63,33 +64,32 @@ namespace PAO {
         /// </summary>
         /// <param name="addonList">插件列表</param>
         /// <param name="rootObj">根插件</param>
-        public static void TraverseAddon(Dictionary<string, PaoObject> addonList, object rootObj) {
-            TraverseAddon((addon) =>
+        public static bool TraverseAddon(Dictionary<string, PaoObject> addonList, object rootObj) {
+            return TraverseAddon((addon) =>
             {
-                if(addon is PaoObject) {
-                    var paoObj = addon as PaoObject;
-                    // 如果已经存在此插件，则直接返回
-                    if (addonList.ContainsKey(paoObj.ID))
-                        return false;
+                // 如果已经存在此插件，则直接返回
+                if (addonList.ContainsKey(addon.ID))
+                    return false;
 
-                    addonList.Add(paoObj.ID, paoObj);
-                }
-                return false;
+                addonList.Add(addon.ID, addon);
+                return true;
             }, rootObj);
         }
 
         /// <summary>
         /// 遍历插件，检索插件以及子插件，并将这些插件放入addonList
         /// </summary>
-        /// <param name="addonAction">对插件的操作，如果返回false，表示继续；如果返回true，表示中断检索</param>
+        /// <param name="addonAction">对插件的操作，如果返回false，表示中断；如果返回true，表示继续检索</param>
         /// <param name="rootObj">根插件</param>
-        public static void TraverseAddon(Func<object, bool> addonAction, object rootObj) {
+        public static bool TraverseAddon(Func<PaoObject, bool> addonAction, object rootObj) {
             if (rootObj == null)
-                return;
+                return true;
 
-            // 如果插件动作返回true，则退出检索
-            if (addonAction(rootObj))
-                return;
+            if(rootObj is PaoObject) {
+                // 如果插件动作返回false，则退出检索
+                if (!addonAction(rootObj as PaoObject))
+                    return false;
+            }
 
             var properties = TypeDescriptor.GetProperties(rootObj);
             foreach (PropertyDescriptor property in properties) {
@@ -116,7 +116,9 @@ namespace PAO {
 
                 if (propertyValue is PaoObject) {
                     // 插件属性
-                    TraverseAddon(addonAction, propertyValue);
+                    if(!TraverseAddon(addonAction, propertyValue)) {
+                        return false;
+                    }
                 }
                 else if (propertyValue is IDictionary) {
                     // 处理字典
@@ -127,7 +129,8 @@ namespace PAO {
                         }
 
                         if (element is PaoObject) {
-                            TraverseAddon(addonAction, element);
+                            if (!TraverseAddon(addonAction, element))
+                                return false;
                         }
                     }
                 }
@@ -144,13 +147,15 @@ namespace PAO {
                         }
 
                         if (element is PaoObject) {
-                            TraverseAddon(addonAction, element);
+                            if (!TraverseAddon(addonAction, element))
+                                return false;
                         }
                     }
                 }
             }
+            return true;
         }
-        
+
         #endregion
 
         #region 插件类型判断
@@ -444,73 +449,10 @@ namespace PAO {
         /// <summary>
         /// 抽取插件扩展属性
         /// </summary>
-        /// <param name="dataTable">扩展数据表</param>
-        /// <param name="addon">插件</param>
-        /// <param name="properties">需要纳入扩展的属性</param>
-        public static void SaveAddonExtendProperties(ExtendPropertyDataTable dataTable, PaoObject addon, params string[] properties) {
-            // 移除原来的插件属性
-            var addonRows = dataTable.AsEnumerable<ExtendPropertyRow>().Where(p=>p.AddonID == addon.ID).ToList();
-            foreach(var addonRow in addonRows) {
-                addonRow.Delete();
-            }
-
-            if (properties.IsNotNullOrEmpty()) {
-                foreach (var property in properties) {
-                    var value = addon.GetPropertyValueByPath(property);
-                    var newRow = dataTable.AddExtendPropertyRow(addon.ID, property, IOPublic.Serialize<string>(value));
-                }
-            }
-            dataTable.AcceptChanges();
-        }
-
-        /// <summary>
-        /// 应用插件扩展属性
-        /// </summary>
-        /// <param name="dataTable">扩展数据表</param>
-        /// <param name="addon">插件</param>
-        public static void LoadAddonExtendProperties(ExtendPropertyDataTable dataTable, PaoObject addon) {
-            var addonRows = dataTable.AsEnumerable<ExtendPropertyRow>().Where(p => p.AddonID == addon.ID).ToList();
-            foreach (var addonRow in addonRows) {
-                try {
-                    addon.SetPropertyValueByPath(addonRow.PropertyName, IOPublic.Deserialize<string>(addonRow.PropertyValue));
-                }
-                catch {
-                    if (UIPublic.ShowYesNoDialog(String.Format("读取属性：{0}.{1}的本地配置时发生异常，您是否要继续，如果继续，本地配置将会被覆盖.", addon.GetType(), addonRow.PropertyName)) != DialogReturn.Yes) {
-                        throw;
-                    }
-                }
-            }
-        }
-
-        /// <summary>
-        /// 从Storage加载扩展插件
-        /// </summary>
-        /// <param name="dataTable">扩展数据表</param>
-        /// <param name="extendPropertyStorage">扩展属性存储器</param>
-        public static void LoadAddonExtendPropertiesFromStorage(ExtendPropertyDataTable dataTable, IExtendPropertyStorage extendPropertyStorage) {
-            if (extendPropertyStorage != null) {
-                extendPropertyStorage.LoadExtendProperties(dataTable);
-            }
-        }
-
-        /// <summary>
-        /// 保存扩展插件到存储器
-        /// </summary>
-        /// <param name="dataTable">扩展数据表</param>
-        /// <param name="extendPropertyStorage">扩展属性存储器</param>
-        public static void SaveAddonExtendPropertiesToStorage(ExtendPropertyDataTable dataTable, IExtendPropertyStorage extendPropertyStorage) {
-            if (extendPropertyStorage != null) {
-                extendPropertyStorage.SaveExtendProperties(dataTable);
-            }
-        }
-
-        /// <summary>
-        /// 抽取插件扩展属性
-        /// </summary>
         /// <param name="addon">插件</param>
         /// <param name="properties">需要纳入扩展的属性</param>
         public static void SaveAddonExtendProperties(PaoObject addon, params string[] properties) {
-            SaveAddonExtendProperties(ExtendPropertyDataTable, addon, properties);
+            ExtendAddonPublic.SaveAddonExtendProperties(ExtendPropertyDataTable, addon, properties);
         }
 
         /// <summary>
@@ -518,7 +460,7 @@ namespace PAO {
         /// </summary>
         /// <param name="addon">插件</param>
         public static void LoadAddonExtendProperties(PaoObject addon) {
-            LoadAddonExtendProperties(ExtendPropertyDataTable, addon);
+            ExtendAddonPublic.LoadAddonExtendProperties(ExtendPropertyDataTable, addon);
         }
 
         /// <summary>
@@ -526,7 +468,7 @@ namespace PAO {
         /// </summary>
         /// <param name="extendPropertyStorage">扩展属性存储器</param>
         public static void LoadAddonExtendPropertiesFromStorage() {
-            LoadAddonExtendPropertiesFromStorage(ExtendPropertyDataTable, ExtendPropertyStorage);
+            ExtendAddonPublic.LoadAddonExtendPropertiesFromStorage(ExtendPropertyDataTable, ExtendPropertyStorage);
         }
 
         /// <summary>
@@ -534,10 +476,8 @@ namespace PAO {
         /// </summary>
         /// <param name="extendPropertyStorage">扩展属性存储器</param>
         public static void SaveAddonExtendPropertiesToStorage() {
-            SaveAddonExtendPropertiesToStorage(ExtendPropertyDataTable, ExtendPropertyStorage);
+            ExtendAddonPublic.SaveAddonExtendPropertiesToStorage(ExtendPropertyDataTable, ExtendPropertyStorage);
         }
         #endregion
-
-
     }
 }

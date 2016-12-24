@@ -49,14 +49,17 @@
     <Compile Include="AOP\AddonPropertyAttribute.cs" />
     <Compile Include="AOP\AddonFactory.cs" />
     <Compile Include="AOP\AddonPublic.cs" />
-    <Compile Include="AOP\DataSetExtendProperty.Designer.cs">
+    <Compile Include="Config\DataSetExtendProperty.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DataSetExtendProperty.xsd</DependentUpon>
     </Compile>
-    <Compile Include="AOP\FileExtendPropertyStorage.cs" />
+    <Compile Include="App\IClientFilter.cs" />
+    <Compile Include="Config\ExtendAddonPublic.cs" />
+    <Compile Include="Config\FileExtendPropertyStorage.cs" />
     <Compile Include="AOP\IconAttribute.cs" />
-    <Compile Include="AOP\IExtendPropertyStorage.cs" />
+    <Compile Include="Config\IConfigStorage.cs" />
+    <Compile Include="Config\IExtendPropertyStorage.cs" />
     <Compile Include="AOP\NameAttribute.cs" />
     <Compile Include="AOP\BaseRef.cs" />
     <Compile Include="AOP\ObjectFolder.cs" />
@@ -173,16 +176,15 @@
     <Compile Include="UI\UIPublic.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="AOP\DataSetExtendProperty.xsc">
+    <None Include="Config\DataSetExtendProperty.xsc">
       <DependentUpon>DataSetExtendProperty.xsd</DependentUpon>
     </None>
-    <None Include="AOP\DataSetExtendProperty.xsd">
+    <None Include="Config\DataSetExtendProperty.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DataSetExtendProperty.Designer.cs</LastGenOutput>
-      <CustomToolNamespace>PAO</CustomToolNamespace>
     </None>
-    <None Include="AOP\DataSetExtendProperty.xss">
+    <None Include="Config\DataSetExtendProperty.xss">
       <DependentUpon>DataSetExtendProperty.xsd</DependentUpon>
     </None>
   </ItemGroup>

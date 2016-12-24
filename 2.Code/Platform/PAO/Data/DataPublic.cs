@@ -264,6 +264,43 @@ namespace PAO.Data {
         /// <summary>
         /// 查询所有
         /// </summary>
+        /// <param name="sql">命令</param>
+        /// <param name="parameters">参数</param>
+        /// <param name="dataService">数据服务</param>
+        /// <returns>数据表</returns>
+        public static DataTable QueryAll(this DataService dataService, string sql, params DataField[] parameters) {
+            return dataService.Query(sql, 0, Int32.MaxValue, parameters);
+        }
+
+        /// <summary>
+        /// 填充数据表
+        /// </summary>
+        /// <param name="sql">命令</param>
+        /// <param name="startIndex">开始索引</param>
+        /// <param name="maxCount">最大行数</param>
+        /// <param name="parameters">参数</param>
+        /// <param name="dataService">数据服务</param>
+        /// <param name="dataTable">数据表</param>
+        public static void Fill(this DataService dataService, DataTable dataTable, string sql, int startIndex, int maxCount, params DataField[] parameters) {
+            var table = dataService.Query(sql, startIndex, maxCount, parameters);
+
+            dataTable.Merge(table, false, MissingSchemaAction.Ignore);
+        }
+
+        /// <summary>
+        /// 填充数据表
+        /// </summary>
+        /// <param name="sql">命令</param>
+        /// <param name="parameters">参数</param>
+        /// <param name="dataService">数据服务</param>
+        /// <param name="dataTable">数据表</param>
+        public static void FillAll(this DataService dataService, DataTable dataTable, string sql, params DataField[] parameters) {
+            Fill(dataService, dataTable, sql, 0, Int32.MaxValue, parameters);
+        }
+
+        /// <summary>
+        /// 查询所有
+        /// </summary>
         /// <param name="commandID">命令</param>
         /// <param name="parameters">参数</param>
         /// <param name="dataService">数据服务</param>
