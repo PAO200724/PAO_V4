@@ -40,10 +40,7 @@ namespace PAO.Server
             {
                 EventProcessorList = new List<PAO.Ref<BaseEventProcessor>>()
                     .Append(DebugLogger.Default.ToRef()),
-                ExtendPropertyStorage = new FileExtendPropertyStorage()
-                {
-                    FilePath = "ExtendProperties.config"
-                }.ToRef(),
+                ExtendConfigFile = "ExtendProperties.config",
                 DataService = CreateDataService().ToRef(),
                 ServerList = new List<PAO.Ref<PAO.Server.BaseServer>>()
                     .Append(new RemoteTcpServer()

@@ -45,7 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AOP\AddonAttribute.cs" />
-    <Compile Include="AOP\AddonExtention.cs" />
+    <Compile Include="Config\AddonExtention.cs" />
     <Compile Include="AOP\AddonPropertyAttribute.cs" />
     <Compile Include="AOP\AddonFactory.cs" />
     <Compile Include="AOP\AddonPublic.cs" />
@@ -56,10 +56,9 @@
     </Compile>
     <Compile Include="App\IClientFilter.cs" />
     <Compile Include="Config\ExtendAddonPublic.cs" />
-    <Compile Include="Config\FileExtendPropertyStorage.cs" />
+    <Compile Include="Config\ExtendPropertyStorage.cs" />
     <Compile Include="AOP\IconAttribute.cs" />
     <Compile Include="Config\IConfigStorage.cs" />
-    <Compile Include="Config\IExtendPropertyStorage.cs" />
     <Compile Include="AOP\NameAttribute.cs" />
     <Compile Include="AOP\BaseRef.cs" />
     <Compile Include="AOP\ObjectFolder.cs" />

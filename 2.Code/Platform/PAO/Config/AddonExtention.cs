@@ -6,7 +6,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 
-namespace PAO
+namespace PAO.Config
 {
     /// <summary>
     /// 类：AddonExtention

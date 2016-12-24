@@ -64,10 +64,7 @@ namespace PAO.Configuration
                     ServerAddress = "localhost:7990",
                     ServiceName = "SecurityService"
                 },
-                ExtendPropertyStorage = new FileExtendPropertyStorage()
-                {
-                    FilePath = "ExtendProperties.config"
-                }.ToRef(),
+                ExtendConfigFile = "ExtendProperties.config",
                 ExtendAddonList = new List<PaoObject>()
                     .Append(new TcpRemoteFactory<IDataService>()
                     {

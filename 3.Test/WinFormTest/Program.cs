@@ -47,10 +47,7 @@ namespace WinFormTest
                 EventProcessorList = new List<PAO.Ref<BaseEventProcessor>>()
                     .Append(DebugLogger.Default.ToRef())
                     .Append(EventLogger.Default.ToRef()),
-                ExtendPropertyStorage = new FileExtendPropertyStorage()
-                {
-                    FilePath = "ExtendProperties.config"
-                }.ToRef(),
+                ExtendConfigFile = "ExtendProperties.config",
                 ServerList = new List<PAO.Ref<PAO.Server.BaseServer>>()
                     .Append(new RemoteTcpServer()
                     {

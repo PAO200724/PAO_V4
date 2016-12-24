@@ -346,10 +346,10 @@ namespace PAO.Report.Views
             ResetAutoQuery();
 
             // 读取报表和数据的客户端设置
-            AddonPublic.LoadAddonExtendProperties(controller);
+            ExtendAddonPublic.GetAddonExtendProperties(controller);
             this.LayoutControl.SetLayoutData(controller.LayoutData);
             foreach (var reportTable in controller.Tables) {
-                AddonPublic.LoadAddonExtendProperties(reportTable);
+                ExtendAddonPublic.GetAddonExtendProperties(reportTable);
             }
         }
 
@@ -362,9 +362,9 @@ namespace PAO.Report.Views
             var controller = Controller as ReportController;
             // 保存报表和数据的客户端设置
             controller.LayoutData = this.LayoutControl.GetLayoutData();
-            AddonPublic.SaveAddonExtendProperties(controller, "LayoutData", "QueryBehavior");
+            ExtendAddonPublic.SetAddonExtendProperties(controller, "LayoutData", "QueryBehavior");
             foreach(var reportTable in controller.Tables) {
-                AddonPublic.SaveAddonExtendProperties(reportTable, "QueryBehavior");
+                ExtendAddonPublic.SetAddonExtendProperties(reportTable, "QueryBehavior");
             }
         }
         #endregion

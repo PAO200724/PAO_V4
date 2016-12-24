@@ -434,50 +434,5 @@ namespace PAO {
             }
         }
         #endregion
-
-        #region 扩展属性
-        /// <summary>
-        /// 扩展属性表
-        /// </summary>
-        public static ExtendPropertyDataTable ExtendPropertyDataTable = new ExtendPropertyDataTable();
-
-        /// <summary>
-        /// 扩展属性存储器
-        /// </summary>
-        public static IExtendPropertyStorage ExtendPropertyStorage;
-
-        /// <summary>
-        /// 抽取插件扩展属性
-        /// </summary>
-        /// <param name="addon">插件</param>
-        /// <param name="properties">需要纳入扩展的属性</param>
-        public static void SaveAddonExtendProperties(PaoObject addon, params string[] properties) {
-            ExtendAddonPublic.SaveAddonExtendProperties(ExtendPropertyDataTable, addon, properties);
-        }
-
-        /// <summary>
-        /// 应用插件扩展属性
-        /// </summary>
-        /// <param name="addon">插件</param>
-        public static void LoadAddonExtendProperties(PaoObject addon) {
-            ExtendAddonPublic.LoadAddonExtendProperties(ExtendPropertyDataTable, addon);
-        }
-
-        /// <summary>
-        /// 从Storage加载扩展插件
-        /// </summary>
-        /// <param name="extendPropertyStorage">扩展属性存储器</param>
-        public static void LoadAddonExtendPropertiesFromStorage() {
-            ExtendAddonPublic.LoadAddonExtendPropertiesFromStorage(ExtendPropertyDataTable, ExtendPropertyStorage);
-        }
-
-        /// <summary>
-        /// 保存扩展插件到存储器
-        /// </summary>
-        /// <param name="extendPropertyStorage">扩展属性存储器</param>
-        public static void SaveAddonExtendPropertiesToStorage() {
-            ExtendAddonPublic.SaveAddonExtendPropertiesToStorage(ExtendPropertyDataTable, ExtendPropertyStorage);
-        }
-        #endregion
     }
 }

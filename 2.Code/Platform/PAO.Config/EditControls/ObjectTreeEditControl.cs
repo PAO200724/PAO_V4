@@ -36,13 +36,9 @@ namespace PAO.Config.EditControls
             EditMode = true;
         }
         /// <summary>
-        /// 扩展属性表
-        /// </summary>
-        ExtendPropertyDataTable ExtendPropertyDataTable;
-        /// <summary>
         /// 扩展属性存储
         /// </summary>
-        FileExtendPropertyStorage ExtendPropertyStorage;
+        ExtendPropertyStorage ExtendPropertyStorage;
 
         #region 公共属性
         /// <summary>
@@ -83,11 +79,14 @@ namespace PAO.Config.EditControls
             set {
                 _ExtendPropertyStorageFilePath = value;
                 if(_ExtendPropertyStorageFilePath.IsNotNullOrEmpty() ) {
-                    ExtendPropertyStorage = new FileExtendPropertyStorage() { FilePath = value };
+                    ExtendPropertyStorage = new ExtendPropertyStorage() { FilePath = value };
                     SplitContainerControlProperty.Panel2.Visible = true;
-                    ExtendPropertyDataTable = new ExtendPropertyDataTable();
-                    ExtendAddonPublic.LoadAddonExtendPropertiesFromStorage(ExtendPropertyDataTable, ExtendPropertyStorage);
-                    this.AddonExtentionEditControl.EditValue = ExtendPropertyDataTable;
+                    ExtendPropertyStorage = new ExtendPropertyStorage()
+                    {
+                        FilePath = _ExtendPropertyStorageFilePath
+                    };
+                    ExtendPropertyStorage.Load();
+                    this.AddonExtentionEditControl.EditValue = ExtendPropertyStorage.PropertyTable;
                 }
                 else {
                     SplitContainerControlProperty.Panel2.Visible = false;
@@ -104,7 +103,9 @@ namespace PAO.Config.EditControls
 
         public override void OnClosing(DialogResult dialogResult, ref bool cancel) {
             /// 保存
-            ExtendAddonPublic.SaveAddonExtendPropertiesToStorage(ExtendPropertyDataTable, ExtendPropertyStorage);
+            if(ExtendPropertyStorage != null) {
+                ExtendPropertyStorage.Save();
+            }
             base.OnClosing(dialogResult, ref cancel);
         }
         #endregion
@@ -354,7 +355,7 @@ namespace PAO.Config.EditControls
                 this.ButtonModifyKey.Enabled = (obj != null && nodeType == ObjectTreeNodeType.DictionaryElement);
                 this.ObjectEditControl.EditValue = propertyValue;
                 this.ButtonProperty.Enabled = (propertyValue != null && ConfigPublic.GetEditControlType(propertyValue.GetType()) != null);
-                this.ButtonExportExtend.Enabled = ExtendPropertyDataTable != null;
+                this.ButtonExportExtend.Enabled = ExtendPropertyStorage.PropertyTable != null;
             }
             else {
                 this.ButtonCreate.Enabled = false;
@@ -446,7 +447,7 @@ namespace PAO.Config.EditControls
                 default:
                     throw new Exception("此节点不支持显示数据");
             }
-            ExtendAddonPublic.SaveAddonExtendPropertiesToStorage(ExtendPropertyDataTable, ExtendPropertyStorage);
+            ExtendPropertyStorage.Save();
         }
 
         /// <summary>
@@ -664,14 +665,14 @@ namespace PAO.Config.EditControls
         private void ButtonImportExtend_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             IOPublic.ImportObject((obj) =>
             {
-                ExtendPropertyDataTable = obj as ExtendPropertyDataTable;
-                this.AddonExtentionEditControl.EditValue = ExtendPropertyDataTable;
+                ExtendPropertyStorage.PropertyTable = obj as ExtendPropertyDataTable;
+                this.AddonExtentionEditControl.EditValue = ExtendPropertyStorage.PropertyTable;
                 SetControlStatus();
             });
         }
 
         private void ButtonExportExtend_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            IOPublic.ExportObject(ExtendPropertyDataTable);
+            IOPublic.ExportObject(ExtendPropertyStorage.PropertyTable);
         }
         #endregion
     }

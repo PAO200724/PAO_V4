@@ -22,6 +22,7 @@ using PAO.IO;
 using PAO.Event;
 using PAO.WinForm;
 using PAO.UI;
+using PAO.Config;
 
 namespace PAO.App.MDI
 {
@@ -101,7 +102,7 @@ namespace PAO.App.MDI
                 MenuFunction.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
 
             DefaultLayoutData = this.DockManager.GetLayoutData();
-            AddonPublic.LoadAddonExtendProperties(_MDIApplication);
+            ExtendAddonPublic.SetAddonExtendProperties(_MDIApplication);
 
             // 加载布局数据
             this.DockManager.SetLayoutData(_MDIApplication.LayoutData);
@@ -125,7 +126,7 @@ namespace PAO.App.MDI
 
             _MDIApplication.LayoutData = this.DockManager.GetLayoutData();
             _MDIApplication.SkinName = DevExpress.LookAndFeel.UserLookAndFeel.Default.SkinName;
-            AddonPublic.SaveAddonExtendProperties(_MDIApplication, "LayoutData", "SkinName");
+            ExtendAddonPublic.SetAddonExtendProperties(_MDIApplication, "LayoutData", "SkinName");
             base.OnClosing(e);
         }
         

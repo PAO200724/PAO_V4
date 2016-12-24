@@ -101,21 +101,22 @@ namespace PAO.App {
         }
         #endregion 属性：ExtendAddonList       
 
-        #region 属性：ExtendPropertyStorageList
+        #region 属性：ExtendConfigFile
         /// <summary>
-        /// 属性：ExtendPropertyStorage
-        /// 扩展属性存储
-        /// 存储扩展属性的存储器
+        /// 属性：ExtendConfigFile
+        /// 插件扩展配置文件名
+        /// 插件扩展配置文件名
         /// </summary>
         [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
-        [Name("扩展属性存储")]
-        [Description("存储扩展属性的存储器")]
-        public Ref<IExtendPropertyStorage> ExtendPropertyStorage {
+        [Name("插件扩展配置文件名")]
+        [Description("插件扩展配置文件名")]
+        public string ExtendConfigFile {
             get;
             set;
         }
-        #endregion 属性：ExtendPropertyStorageList
+        #endregion 属性：ExtendConfigFile
+        
         #endregion
 
         #region Actions
@@ -192,14 +193,14 @@ namespace PAO.App {
 
                     TransactionPublic.Run("扩展配置加载", () =>
                     {
-                        if (ExtendPropertyStorage != null) {
-                            AddonPublic.ExtendPropertyStorage = ExtendPropertyStorage.Value;
-                            AddonPublic.LoadAddonExtendPropertiesFromStorage();
+                        if (ExtendConfigFile.IsNotNullOrEmpty()) {
+                            ExtendAddonPublic.Initialize(ExtendConfigFile);
+                            ExtendAddonPublic.LoadAddonExtendPropertiesFromStorage();
                         }
                         //  遍历插件，应用插件
                         AddonPublic.TraverseAddon((addon) =>
                         {
-                            AddonPublic.LoadAddonExtendProperties(addon);
+                            ExtendAddonPublic.GetAddonExtendProperties(addon);
 
                             return true;
                         }, PaoApplication.Default);
@@ -246,7 +247,7 @@ namespace PAO.App {
                 {
                     TransactionPublic.Run("扩展属性保存", ()=>
                     {
-                        AddonPublic.SaveAddonExtendPropertiesToStorage();
+                        ExtendAddonPublic.SaveAddonExtendPropertiesToStorage();
                     });
                 });
             }, OnException);
