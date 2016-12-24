@@ -101,7 +101,7 @@ namespace PAO.Configuration
                                     {
                                         TableName = "User",
                                         Caption = "用户",
-                                        DataFetcher = new DataServiceFetcher()
+                                        DataFetcher = new RemoteDataServiceFetcher()
                                         {
                                             DataService = new AddonFactory<IDataService>("CommonDataService"),
                                             CommandID = "Command_QueryUsers",
@@ -123,16 +123,23 @@ namespace PAO.Configuration
                                             })
                                             .Append(new ReportQueryParameter()
                                             {
-                                                Name = "@UserName",
+                                                Name = "@Name",
                                                 Caption = "姓名",
                                                 Type = System.Data.DbType.String,
                                                 UserInput = true
                                             })
                                             .Append(new ReportQueryParameter()
                                             {
-                                                Name = "@CreateTime",
-                                                Caption = "创建时间",
-                                                Type = System.Data.DbType.DateTime,
+                                                Name = "@Tel",
+                                                Caption = "电话",
+                                                Type = System.Data.DbType.String,
+                                                UserInput = true
+                                            })
+                                            .Append(new ReportQueryParameter()
+                                            {
+                                                Name = "@Email",
+                                                Caption = "电子邮箱",
+                                                Type = System.Data.DbType.String,
                                                 UserInput = true
                                             }),
                                         DataColumns = new List<ReportDataColumn>()

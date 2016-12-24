@@ -13,17 +13,17 @@ namespace PAO.Data.DataFetchers
 {
     /// <summary>
     /// 类：DataServiceFetcher
-    /// 数据服务获取器
-    /// 从数据服务获取数据的数据获取器
+    /// 远程数据服务获取器
+    /// 从远程数据服务获取数据的数据获取器，远程数据服务获取器需要通过已经在服务注册的命令ID来获取数据
     /// 作者：PAO
     /// </summary>
     [Addon]
     [Icon(typeof(Resources), "fetcher")]
     [Serializable]
     [DataContract(Namespace = "")]
-    [Name("数据服务获取器")]
-    [Description("从数据服务获取数据的数据获取器")]
-    public class DataServiceFetcher : PaoObject, IDataFetch
+    [Name("远程数据服务获取器")]
+    [Description("从远程数据服务获取数据的数据获取器，远程数据服务获取器需要通过已经在服务注册的命令ID来获取数据")]
+    public class RemoteDataServiceFetcher : PaoObject, IDataFetch
     {
         #region 插件属性
         #region 属性：DataService
@@ -58,7 +58,7 @@ namespace PAO.Data.DataFetchers
         }
         #endregion 属性：CommandID
         #endregion
-        public DataServiceFetcher() {
+        public RemoteDataServiceFetcher() {
         }
 
         public DataTable FetchData(int startIndex, int count, params DataField[] parameterValues) {

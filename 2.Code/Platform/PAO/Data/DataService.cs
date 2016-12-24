@@ -70,7 +70,7 @@ namespace PAO.Data {
         /// </summary>
         /// <param name="sql">sql语句</param>
         /// <returns>数据格式</returns>
-        public System.Data.DataTable GetSchemabBySql(string sql) {
+        public System.Data.DataTable GetSchemaBySql(string sql) {
             var commandInfo = new DataCommandInfo() { Sql = sql };
             return DataConnection.Value.GetSchema(commandInfo);
         }
