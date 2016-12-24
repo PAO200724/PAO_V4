@@ -101,6 +101,22 @@ namespace PAO.App {
         }
         #endregion 属性：ExtendAddonList       
 
+        #region 属性：ExtendLocalAddonList
+        /// <summary>
+        /// 属性：ExtendLocalAddonList
+        /// 本地扩展插件
+        /// 保存在本地的扩展插件
+        /// </summary>
+        [AddonProperty]
+        [DataMember(EmitDefaultValue = false)]
+        [Name("本地扩展插件")]
+        [Description("保存在本地的扩展插件")]
+        public List<PaoObject> ExtendLocalAddonList {
+            get;
+            set;
+        }
+        #endregion 属性：ExtendAddonList       
+
         #region 属性：ExtendConfigFile
         /// <summary>
         /// 属性：ExtendConfigFile
@@ -195,15 +211,17 @@ namespace PAO.App {
                     {
                         if (ExtendConfigFile.IsNotNullOrEmpty()) {
                             ExtendAddonPublic.Initialize(ExtendConfigFile);
-                            ExtendAddonPublic.LoadAddonExtendPropertiesFromStorage();
+                            try {
+                                ExtendAddonPublic.LoadAddonExtendPropertiesFromStorage();
+                            }
+                            catch (Exception err){
+                                ExtendAddonPublic.BackupStorage();
+                                // 加载扩展插件如果出现异常，可能是版本问题，直接退出。
+                                EventPublic.Exception(err);
+                            }
                         }
-                        //  遍历插件，应用插件
-                        AddonPublic.TraverseAddon((addon) =>
-                        {
-                            ExtendAddonPublic.GetAddonExtendProperties(addon);
-
-                            return true;
-                        }, PaoApplication.Default);
+                        // 加载本地扩展插件
+                        ExtendAddonPublic.GetAddonExtendProperties(this);
                     });
 
                     TransactionPublic.Run("检索全局插件", ()=> {
@@ -245,6 +263,8 @@ namespace PAO.App {
 
                 TransactionPublic.Run("应用程序退出", () =>
                 {
+                    // 保存本地扩展插件
+                    ExtendAddonPublic.SetAddonExtendProperties(this, "ExtendLocalAddonList");
                     TransactionPublic.Run("扩展属性保存", ()=>
                     {
                         ExtendAddonPublic.SaveAddonExtendPropertiesToStorage();
@@ -268,6 +288,33 @@ namespace PAO.App {
             var eventInfo = new ExceptionEventInfo(exception, true, true);
             UIPublic.CloseWaitingForm();
             UIPublic.ShowEventDialog(eventInfo);
+        }
+
+        /// <summary>
+        /// 设置本地扩展插件
+        /// </summary>
+        /// <param name="addon">插件</param>
+        public void SetExtendLocalAddon(PaoObject addon) {
+            if (ExtendLocalAddonList == null) {
+                ExtendLocalAddonList = new List<PaoObject>();
+            }
+            var extendAddon = ExtendLocalAddonList.Where(p => p.ID == addon.ID).FirstOrDefault();
+            if (extendAddon != null)
+                ExtendLocalAddonList.Remove(extendAddon);
+
+            ExtendLocalAddonList.Add(addon);
+        }
+
+        /// <summary>
+        /// 设置本地扩展插件
+        /// </summary>
+        /// <param name="addon">插件</param>
+        public PaoObject GetExtendLocalAddon(string addonID) {
+            if (ExtendLocalAddonList == null) {
+                return null;
+            }
+            var extendAddon = ExtendLocalAddonList.Where(p => p.ID == addonID).FirstOrDefault();
+            return extendAddon;
         }
     }
 }

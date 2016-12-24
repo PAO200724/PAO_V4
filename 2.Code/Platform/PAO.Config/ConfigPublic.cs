@@ -238,13 +238,6 @@ namespace PAO.Config
             return null;
         }
         #endregion
-
-        #region LayoutEditControl
-        /// <summary>
-        /// 布局编辑控件配置列表
-        /// </summary>
-        public static Dictionary<string, LayoutEditControlData> LayoutEditControlConfigs = new Dictionary<string, LayoutEditControlData>();
-
-        #endregion
+       
     }
 }

@@ -80,11 +80,11 @@ namespace PAO.Config.EditControls
                 return;
 
             int imageIndex;
-            if (dataFilter is SqlFilter)
+            if (dataFilter is Filter)
                 imageIndex = ImageIndex_SqlFilter;
-            else if (dataFilter is AndLogicFilter)
+            else if (dataFilter is And)
                 imageIndex = ImageIndex_AndFilter;
-            else if (dataFilter is OrLogicFilter)
+            else if (dataFilter is Or)
                 imageIndex = ImageIndex_OrFilter;
             else
                 throw new Exception("不支持的过滤器类型").AddExceptionData("过滤器", dataFilter);
@@ -153,7 +153,7 @@ namespace PAO.Config.EditControls
             var dataFilterInfo = GetCurrentData();
             if (dataFilterInfo != null) {
                 var currentFilter = dataFilterInfo.DataFilter as IDataFilter;
-                if (currentFilter != null && currentFilter is SqlFilter) {
+                if (currentFilter != null && currentFilter is Filter) {
                     this.ButtonAnd.Enabled = false;
                     this.ButtonOr.Enabled = false;
                     this.ButtonSql.Enabled = false;
@@ -164,15 +164,15 @@ namespace PAO.Config.EditControls
         }
 
         private void ButtonAnd_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            AddDataFilter(typeof(AndLogicFilter), ImageIndex_AndFilter);
+            AddDataFilter(typeof(And), ImageIndex_AndFilter);
         }
 
         private void ButtonOr_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            AddDataFilter(typeof(OrLogicFilter), ImageIndex_AndFilter);
+            AddDataFilter(typeof(Or), ImageIndex_AndFilter);
         }
 
         private void ButtonSql_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            AddDataFilter(typeof(SqlFilter), ImageIndex_SqlFilter);
+            AddDataFilter(typeof(Filter), ImageIndex_SqlFilter);
         }
 
         private void ButtonDelete_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {

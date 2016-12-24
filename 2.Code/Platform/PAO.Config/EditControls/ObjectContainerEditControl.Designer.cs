@@ -33,15 +33,15 @@
             this.ButtonCreate = new DevExpress.XtraBars.BarButtonItem();
             this.ButtonDelete = new DevExpress.XtraBars.BarButtonItem();
             this.ButtonExport = new DevExpress.XtraBars.BarButtonItem();
-            this.barDockControl1 = new DevExpress.XtraBars.BarDockControl();
-            this.barDockControl2 = new DevExpress.XtraBars.BarDockControl();
-            this.barDockControl3 = new DevExpress.XtraBars.BarDockControl();
-            this.barDockControl4 = new DevExpress.XtraBars.BarDockControl();
             this.MenuFormat = new DevExpress.XtraBars.BarSubItem();
             this.ButtonSaveFormat = new DevExpress.XtraBars.BarButtonItem();
             this.ButtonSaveFormatAs = new DevExpress.XtraBars.BarButtonItem();
             this.ButtonRecoverFormat = new DevExpress.XtraBars.BarButtonItem();
             this.ButtonImportFormat = new DevExpress.XtraBars.BarButtonItem();
+            this.barDockControl1 = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControl2 = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControl3 = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControl4 = new DevExpress.XtraBars.BarDockControl();
             ((System.ComponentModel.ISupportInitialize)(this.BarManagerObject)).BeginInit();
             this.SuspendLayout();
             // 
@@ -118,34 +118,6 @@
             this.ButtonExport.Name = "ButtonExport";
             this.ButtonExport.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonExport_ItemClick);
             // 
-            // barDockControl1
-            // 
-            this.barDockControl1.CausesValidation = false;
-            this.barDockControl1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.barDockControl1.Location = new System.Drawing.Point(0, 0);
-            this.barDockControl1.Size = new System.Drawing.Size(674, 32);
-            // 
-            // barDockControl2
-            // 
-            this.barDockControl2.CausesValidation = false;
-            this.barDockControl2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControl2.Location = new System.Drawing.Point(0, 425);
-            this.barDockControl2.Size = new System.Drawing.Size(674, 0);
-            // 
-            // barDockControl3
-            // 
-            this.barDockControl3.CausesValidation = false;
-            this.barDockControl3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControl3.Location = new System.Drawing.Point(0, 32);
-            this.barDockControl3.Size = new System.Drawing.Size(0, 393);
-            // 
-            // barDockControl4
-            // 
-            this.barDockControl4.CausesValidation = false;
-            this.barDockControl4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControl4.Location = new System.Drawing.Point(674, 32);
-            this.barDockControl4.Size = new System.Drawing.Size(0, 393);
-            // 
             // MenuFormat
             // 
             this.MenuFormat.Caption = "格式(&F)";
@@ -164,12 +136,14 @@
             this.ButtonSaveFormat.Caption = "保存格式(&S)";
             this.ButtonSaveFormat.Id = 13;
             this.ButtonSaveFormat.Name = "ButtonSaveFormat";
+            this.ButtonSaveFormat.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonSaveFormat_ItemClick);
             // 
             // ButtonSaveFormatAs
             // 
             this.ButtonSaveFormatAs.Caption = "格式另存为(&S)...";
             this.ButtonSaveFormatAs.Id = 14;
             this.ButtonSaveFormatAs.Name = "ButtonSaveFormatAs";
+            this.ButtonSaveFormatAs.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonSaveFormatAs_ItemClick);
             // 
             // ButtonRecoverFormat
             // 
@@ -182,6 +156,34 @@
             this.ButtonImportFormat.Caption = "导入格式(&L)...";
             this.ButtonImportFormat.Id = 16;
             this.ButtonImportFormat.Name = "ButtonImportFormat";
+            // 
+            // barDockControl1
+            // 
+            this.barDockControl1.CausesValidation = false;
+            this.barDockControl1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.barDockControl1.Location = new System.Drawing.Point(0, 0);
+            this.barDockControl1.Size = new System.Drawing.Size(674, 31);
+            // 
+            // barDockControl2
+            // 
+            this.barDockControl2.CausesValidation = false;
+            this.barDockControl2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.barDockControl2.Location = new System.Drawing.Point(0, 425);
+            this.barDockControl2.Size = new System.Drawing.Size(674, 0);
+            // 
+            // barDockControl3
+            // 
+            this.barDockControl3.CausesValidation = false;
+            this.barDockControl3.Dock = System.Windows.Forms.DockStyle.Left;
+            this.barDockControl3.Location = new System.Drawing.Point(0, 31);
+            this.barDockControl3.Size = new System.Drawing.Size(0, 394);
+            // 
+            // barDockControl4
+            // 
+            this.barDockControl4.CausesValidation = false;
+            this.barDockControl4.Dock = System.Windows.Forms.DockStyle.Right;
+            this.barDockControl4.Location = new System.Drawing.Point(674, 31);
+            this.barDockControl4.Size = new System.Drawing.Size(0, 394);
             // 
             // ObjectContainerEditControl
             // 

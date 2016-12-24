@@ -24,11 +24,11 @@ namespace PAO.Config.EditControls
 
         public string Name {
             get {
-                if (DataFilter is SqlFilter)
+                if (DataFilter is Filter)
                     return "SQL";
-                else if (DataFilter is AndLogicFilter)
+                else if (DataFilter is And)
                     return "AND";
-                else if (DataFilter is OrLogicFilter)
+                else if (DataFilter is Or)
                     return "OR";
                 else
                     throw new Exception("不支持的过滤器类型").AddExceptionData("过滤器", DataFilter);
@@ -38,39 +38,39 @@ namespace PAO.Config.EditControls
 
         public string ParameterName {
             get {
-                if (DataFilter is SqlFilter)
-                    return DataFilter.As<SqlFilter>().Name;
+                if (DataFilter is Filter)
+                    return DataFilter.As<Filter>().Name;
                 return null;
             }
 
             set {
-                if (DataFilter is SqlFilter)
-                    DataFilter.As<SqlFilter>().Name = value;
+                if (DataFilter is Filter)
+                    DataFilter.As<Filter>().Name = value;
             }
         }
         public DbType DataType {
             get {
-                if (DataFilter is SqlFilter)
-                    return DataFilter.As<SqlFilter>().Type;
+                if (DataFilter is Filter)
+                    return DataFilter.As<Filter>().Type;
                 return DbType.String;
             }
 
             set {
-                if (DataFilter is SqlFilter)
-                    DataFilter.As<SqlFilter>().Type = value;
+                if (DataFilter is Filter)
+                    DataFilter.As<Filter>().Type = value;
             }
         }
 
         public string Sql {
             get {
-                if (DataFilter is SqlFilter)
-                    return DataFilter.As<SqlFilter>().Sql;
+                if (DataFilter is Filter)
+                    return DataFilter.As<Filter>().Sql;
                 return null;
             }
 
             set {
-                if (DataFilter is SqlFilter)
-                    DataFilter.As<SqlFilter>().Sql = value;
+                if (DataFilter is Filter)
+                    DataFilter.As<Filter>().Sql = value;
             }
         }
     }

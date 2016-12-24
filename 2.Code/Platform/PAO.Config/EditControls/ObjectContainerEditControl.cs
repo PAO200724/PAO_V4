@@ -10,6 +10,7 @@ using DevExpress.XtraEditors;
 using PAO.WinForm;
 using System.Collections;
 using PAO.UI;
+using PAO.IO;
 
 namespace PAO.Config.EditControls
 {
@@ -31,7 +32,7 @@ namespace PAO.Config.EditControls
         /// </summary>
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public object ComponentObject { get; private set; }
+        public object ComponentObject { get; set; }
 
         /// <summary>
         /// 键，在属性、列表元素和字典元素编辑模式下分别代表属性名称、索引和键
@@ -74,22 +75,25 @@ namespace PAO.Config.EditControls
                 if(EditControl != null) {
                     EditControl.EditValue = value;
                 }
-                switch (EditMode) {
-                    case ObjectEditMode.Property:
-                        var propertyName = (string)Key;
-                        ComponentObject.SetPropertyValueByPath(propertyName, value);
-                        break;
-                    case ObjectEditMode.ListElement:
-                        var index = (int)Key;
-                        ComponentObject.SetPropertyValueByPath(index.ToString(), value);
-                        break;
-                    case ObjectEditMode.DictionaryElement:
-                        ComponentObject.SetPropertyValueByPath(Key.ToString(), value);
-                        break;
-                    default:
-                        break;
-                }
                 SetControlStatus();
+            }
+        }
+
+        private void SetComponentPropertyValue() {
+            switch (EditMode) {
+                case ObjectEditMode.Property:
+                    var propertyName = (string)Key;
+                    ComponentObject.SetPropertyValueByPath(propertyName, EditValue);
+                    break;
+                case ObjectEditMode.ListElement:
+                    var index = (int)Key;
+                    ComponentObject.SetPropertyValueByPath(index.ToString(), EditValue);
+                    break;
+                case ObjectEditMode.DictionaryElement:
+                    ComponentObject.SetPropertyValueByPath(Key.ToString(), EditValue);
+                    break;
+                default:
+                    break;
             }
         }
 
@@ -186,6 +190,7 @@ namespace PAO.Config.EditControls
                         , false
                         , out newObject)) {
                         EditValue = newObject;
+                        SetComponentPropertyValue();
                     }
                     break;
                 case ObjectEditMode.ListElement:
@@ -194,6 +199,7 @@ namespace PAO.Config.EditControls
                         , true
                         , out newObject)) {
                         EditValue = newObject;
+                        SetComponentPropertyValue();
                     }
                     break;
                 default:
@@ -207,10 +213,18 @@ namespace PAO.Config.EditControls
                 case ObjectEditMode.ListElement:
                 case ObjectEditMode.DictionaryElement:
                     EditValue = null;
+                    SetComponentPropertyValue();
                     break;
                 default:
                     break;
             }
+        }
+
+        private void ButtonSaveFormat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+
+        }
+
+        private void ButtonSaveFormatAs_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
         }
     }
 }

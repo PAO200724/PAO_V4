@@ -268,8 +268,8 @@ namespace PAO.Data {
         /// <param name="parameters">参数</param>
         /// <param name="dataService">数据服务</param>
         /// <returns>数据表</returns>
-        public static DataTable QueryAll(this DataService dataService, string sql, params DataField[] parameters) {
-            return dataService.Query(sql, 0, Int32.MaxValue, parameters);
+        public static DataTable QueryAllBySql(this DataService dataService, string sql, params DataField[] parameters) {
+            return dataService.QueryBySql(sql, 0, Int32.MaxValue, parameters);
         }
 
         /// <summary>
@@ -281,8 +281,8 @@ namespace PAO.Data {
         /// <param name="parameters">参数</param>
         /// <param name="dataService">数据服务</param>
         /// <param name="dataTable">数据表</param>
-        public static void Fill(this DataService dataService, DataTable dataTable, string sql, int startIndex, int maxCount, params DataField[] parameters) {
-            var table = dataService.Query(sql, startIndex, maxCount, parameters);
+        public static void FillBySql(this DataService dataService, DataTable dataTable, string sql, int startIndex, int maxCount, params DataField[] parameters) {
+            var table = dataService.QueryBySql(sql, startIndex, maxCount, parameters);
 
             dataTable.Merge(table, false, MissingSchemaAction.Ignore);
         }
@@ -294,8 +294,8 @@ namespace PAO.Data {
         /// <param name="parameters">参数</param>
         /// <param name="dataService">数据服务</param>
         /// <param name="dataTable">数据表</param>
-        public static void FillAll(this DataService dataService, DataTable dataTable, string sql, params DataField[] parameters) {
-            Fill(dataService, dataTable, sql, 0, Int32.MaxValue, parameters);
+        public static void FillAllBySql(this DataService dataService, DataTable dataTable, string sql, params DataField[] parameters) {
+            FillBySql(dataService, dataTable, sql, 0, Int32.MaxValue, parameters);
         }
 
         /// <summary>

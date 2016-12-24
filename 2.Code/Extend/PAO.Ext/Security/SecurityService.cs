@@ -67,7 +67,7 @@ namespace PAO.Ext.Security
         public UserInfo GetUserInfo() {
             T_UserDataTable userTable = new UserDataSet.T_UserDataTable();
             var dataService = DataService.Value;
-            dataService.Fill(userTable, Sql_QueryUserByID, 0, 1, new DataField("@ID", SecurityPublic.CurrentUser.UserID));
+            dataService.FillBySql(userTable, Sql_QueryUserByID, 0, 1, new DataField("@ID", SecurityPublic.CurrentUser.UserID));
             if (userTable.Count == 0)
                 return null;
             return new UserInfo()
@@ -80,7 +80,7 @@ namespace PAO.Ext.Security
         public string Login(string userID, string password) {
             T_UserDataTable userTable = new UserDataSet.T_UserDataTable();
             var dataService = DataService.Value;
-            dataService.Fill(userTable, Sql_QueryUserByName, 0, 1, new DataField("@UserName", userID));
+            dataService.FillBySql(userTable, Sql_QueryUserByName, 0, 1, new DataField("@UserName", userID));
             if (userTable.Count == 0)
                 throw new Exception("登录失败");
             if (userTable[0].IsPasswordNull()) {

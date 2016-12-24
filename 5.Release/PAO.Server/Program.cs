@@ -2,6 +2,7 @@
 using PAO.App.Server;
 using PAO.Config;
 using PAO.Data;
+using PAO.Data.Filters;
 using PAO.Event;
 using PAO.Ext.Security;
 using PAO.Remote.Tcp;
@@ -16,6 +17,19 @@ namespace PAO.Server
 {
     static class Program
     {
+        #region Commands
+        private static readonly DataCommandInfo Command_QueryUsers = new DataCommandInfo()
+        {
+            ID = "Command_QueryUsers",
+            Sql = @"SELECT * FROM T_User WHERE {0}",
+            DataFilter = new Filter("ID LIKE @ID", "@ID")
+                & new Filter("Name LIKE @Name", "@Name")
+                & new Filter("LoginName LIKE @LoginName", "@LoginName")
+                & new Filter("Tel LIKE @Tel", "@Tel")
+                & new Filter("Email LIKE @Email", "@Email")
+        };
+        #endregion
+
         /// <summary>
         /// 应用程序的主入口点。
         /// </summary>
@@ -71,6 +85,7 @@ namespace PAO.Server
                     ParamPrefix = "@",
                 }.ToRef(),
                 CommandList = new List<DataCommandInfo>()
+                    .Append(Command_QueryUsers)
             };
         }
     }

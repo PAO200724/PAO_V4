@@ -185,7 +185,7 @@ namespace PAO.Ext.Config
         public void SaveGlobalConfig(PaoObject configObject, int priority, IClientFilter clientFilter) {
             var dataService = DataService.Value;
             SecurityPublic.CheckPermission(ID, Permission_SaveGlobalConfig).CheckTrue("当前用户不拥有保存全局配置的权限");
-            dataService.Execute(Sql_DisableCurrentLocalConfig
+            dataService.ExecuteBySql(Sql_DisableCurrentLocalConfig
                 , new DataField("@ConfigName", configObject.ID)
                 , new DataField("@SoftwareID", PaoApplication.Default.SoftwareID));
 
@@ -204,7 +204,7 @@ namespace PAO.Ext.Config
 
         public void SaveLocalConfig(PaoObject configObject) {
             var dataService = DataService.Value;
-            dataService.Execute(Sql_DisableCurrentLocalConfig
+            dataService.ExecuteBySql(Sql_DisableCurrentLocalConfig
                 , new DataField("@ConfigName", configObject.ID)
                 , new DataField("@ComputerID", SecurityPublic.CurrentUser.ComputerID)
                 , new DataField("@SoftwareID", PaoApplication.Default.SoftwareID));

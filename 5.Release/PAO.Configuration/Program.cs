@@ -21,6 +21,7 @@ using PAO.Time;
 using PAO.Config.DockViews;
 using PAO.WinForm;
 using PAO.App.MDI.DockViews;
+using PAO.Data.Filters;
 
 namespace PAO.Configuration
 {
@@ -45,6 +46,7 @@ namespace PAO.Configuration
             ExtendConfigPublic.RegisterEditors();
         }
 
+        
 
         private static PaoApplication CreateApplication() {
             var app = new MDIApplication()
@@ -102,7 +104,7 @@ namespace PAO.Configuration
                                         DataFetcher = new DataServiceFetcher()
                                         {
                                             DataService = new AddonFactory<IDataService>("CommonDataService"),
-                                            CommandID = "DataCommand_QueryUsers",
+                                            CommandID = "Command_QueryUsers",
                                         }.ToRef(),
                                         QueryParameters = new List<ReportQueryParameter>()
                                             .Append(new ReportQueryParameter()

@@ -20,11 +20,13 @@ namespace PAO.Config.EditControls
     /// 对象布局式编辑控件
     /// 作者：PAO
     /// </summary>
-    public partial class ObjectLayoutEditControl : BaseEditControl
+    public partial class ObjectLayoutEditControl : BaseEditControl, ILayoutDataSupport
     {
         public ObjectLayoutEditControl() {
             InitializeComponent();
         }
+
+        private Dictionary<PropertyDescriptor, Control> EditControls = new Dictionary<PropertyDescriptor, Control>();
 
         public override object EditValue {
             get {
@@ -48,46 +50,92 @@ namespace PAO.Config.EditControls
                 } else {
                     this.BindingSource.DataSource = value.GetType();
                     this.BindingSource.Add(value);
-
-                    RetrievePropertyFields(this.LayoutControlGroupRoot, value);
                 }
             }
         }
 
-        private LayoutEditControlData _ControlData;
+        private Type _ObjectType;
         /// <summary>
-        /// 控制数据
+        /// 对象类型
         /// </summary>
-        public LayoutEditControlData ControlData {
-            get { return _ControlData; }
-            set { _ControlData = value; }
+        public Type ObjectType {
+            get { return _ObjectType; }
+            set { _ObjectType = value; }
         }
 
-        public void GetControlData() {
+        private ObjectLayoutEditorLayoutData _LayoutData;
+        /// <summary>
+        /// 布局数据
+        /// </summary>
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public object LayoutData {
+            get {
+                // 获取布局数据
+                if (_LayoutData == null) {
+                    _LayoutData = new ObjectLayoutEditorLayoutData();
+                    _LayoutData.LayoutData = this.DataLayoutControl.GetLayoutData();
+                }
+                return _LayoutData;
+            }
 
+            set {
+                _LayoutData = value as ObjectLayoutEditorLayoutData;
+                if(_LayoutData == null) {
+                    _LayoutData = new ObjectLayoutEditorLayoutData();
+                }
+
+                RetrieveFields(this.LayoutControlGroupRoot, ObjectType);
+            }
         }
-        
+
+        /// <summary>
+        /// 绑定编辑值
+        /// </summary>
+        /// <param name="editValue"></param>
+        private void BindEditValue(object editValue) {
+            if (editValue == null)
+                return;
+            foreach (PropertyDescriptor propDesc in TypeDescriptor.GetProperties(ObjectType)) {
+                if (!EditControls.ContainsKey(propDesc))
+                    continue;
+
+                var editControl = EditControls[propDesc] as ObjectContainerEditControl;
+                if(editControl != null) {
+                    editControl.ComponentObject = editValue;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 根据对象填充属性字段
+        /// </summary>
+        public void RetrieveFields() {
+            RetrieveFields(this.LayoutControlGroupRoot, ObjectType);
+        }
+
         /// <summary> 
         /// 根据对象填充属性字段
         /// </summary>
         /// <param name="groupItem">组项目</param>
-        /// <param name="obj">对象</param>
-        public void RetrievePropertyFields(LayoutControlGroup groupItem, object obj) {
+        /// <param name="objType">对象类型</param>
+        private void RetrieveFields(LayoutControlGroup groupItem, Type objType) {
             groupItem.Items.Clear();
+            EditControls.Clear();
 
-            if (obj == null)
+            if (objType == null)
                 return;
 
             TabbedControlGroup tabbledGroup = null;
-            foreach (PropertyDescriptor propDesc in TypeDescriptor.GetProperties(obj)) {
+            foreach (PropertyDescriptor propDesc in TypeDescriptor.GetProperties(objType)) {
                 var configedPropDesc = WinFormPublic.GetConfigedProperty(propDesc);
 
                 if (configedPropDesc == null || !configedPropDesc.IsBrowsable)
                     continue;
 
                 Control editControl = null;
-                if (ControlData != null) {
-                    editControl = ControlData.CreateEditControl(propDesc.Name);
+                if (_LayoutData != null) {
+                    editControl = _LayoutData.CreateEditControl(propDesc.Name);
                 }
 
                 if (editControl == null) {
@@ -111,7 +159,7 @@ namespace PAO.Config.EditControls
                 if (editControl is BaseEditControl) {
                     // 在BaseEditControl外套一层ObjectContainerEditControl，用于实现属性的新增删除等
                     var objectContainerEditControl = new ObjectContainerEditControl();
-                    objectContainerEditControl.StartEditProperty(obj, propDesc.Name, editControl as BaseEditControl);
+                    objectContainerEditControl.StartEditProperty(EditValue, propDesc.Name, editControl as BaseEditControl);
                     editControl = objectContainerEditControl;
 
                     if (tabbledGroup == null) {
@@ -130,7 +178,7 @@ namespace PAO.Config.EditControls
                     layoutControlItem = groupItem.AddItem();
                     layoutControlItem.TextLocation = DevExpress.Utils.Locations.Left;
                 }
-
+                EditControls.Add(propDesc, editControl);
                 editControl.DataBindings.Add(new Binding("EditValue", this.BindingSource, propDesc.Name, true));
                 editControl.Tag = configedPropDesc;
                 editControl.Name = configedPropDesc.Name;

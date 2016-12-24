@@ -43,8 +43,8 @@ namespace PAO.Data.Filters
         /// <param name="dataFilter1">查询条件1</param>
         /// <param name="dataFilter2">查询条件2</param>
         /// <returns>组合条件</returns>
-        public static AndLogicFilter operator &(BaseDataFilter dataFilter1, IDataFilter dataFilter2) {
-            return new AndLogicFilter() { ChildFilters = new List<IDataFilter>().Append(dataFilter1).Append(dataFilter2) };
+        public static And operator &(BaseDataFilter dataFilter1, IDataFilter dataFilter2) {
+            return new And() { ChildFilters = new List<IDataFilter>().Append(dataFilter1).Append(dataFilter2) };
         }
 
         /// <summary>s
@@ -53,8 +53,8 @@ namespace PAO.Data.Filters
         /// <param name="dataFilter1">查询条件1</param>
         /// <param name="dataFilter2">查询条件2</param>
         /// <returns>组合条件</returns>
-        public static OrLogicFilter operator |(BaseDataFilter dataFilter1, IDataFilter dataFilter2) {
-            return new OrLogicFilter() { ChildFilters = new List<IDataFilter>().Append(dataFilter1).Append(dataFilter2) };
+        public static Or operator |(BaseDataFilter dataFilter1, IDataFilter dataFilter2) {
+            return new Or() { ChildFilters = new List<IDataFilter>().Append(dataFilter1).Append(dataFilter2) };
         }
     }
 }

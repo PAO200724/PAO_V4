@@ -35,7 +35,7 @@ namespace PAO {
 
                 // 从当前AppDomain中查找
                 foreach (var asmb in AppDomain.CurrentDomain.GetAssemblies()) {
-                    Type type = asmb.GetType(name);
+                    Type type = asmb.GetType(name, false);
                     if (type != null)
                         return type;
                 }

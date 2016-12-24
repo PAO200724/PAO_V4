@@ -15,14 +15,14 @@ namespace PAO.Config
 {
     /// <summary>
     /// 类：FileExtendPropertyStorage
-    /// 文件时扩展属性存储
+    /// 扩展属性存储
     /// 文件形式的扩展属性存储
     /// 作者：PAO
     /// </summary>
     [Addon]
     [Serializable]
     [DataContract(Namespace = "")]
-    [Name("文件时扩展属性存储")]
+    [Name("扩展属性存储")]
     [Description("文件形式的扩展属性存储")]
     public class ExtendPropertyStorage : PaoObject
     {
@@ -79,6 +79,20 @@ namespace PAO.Config
                 Directory.CreateDirectory(dir);
 
             IOPublic.WriteObjectToFile(path, PropertyTable);
+        }
+
+        /// <summary>
+        /// 备份扩展配置
+        /// </summary>
+        public void Backup() {
+            if (FilePath.IsNullOrEmpty() || !File.Exists(FilePath))
+                return;
+
+            string fileName = Path.GetFileName(FilePath);
+            string dirName = Path.GetDirectoryName(FilePath);
+            string backupFileName = Path.Combine(dirName, Guid.NewGuid().ToString() + "." + fileName);
+
+            File.Copy(FilePath, backupFileName);
         }
 
         /// <summary>
