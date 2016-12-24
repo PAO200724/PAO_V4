@@ -315,6 +315,6 @@ namespace PAO.App {
             }
             var extendAddon = ExtendLocalAddonList.Where(p => p.ID == addonID).FirstOrDefault();
             return extendAddon;
-        }
+        }       
     }
 }

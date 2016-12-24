@@ -28,7 +28,7 @@ namespace PAO.App.MDI
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            DevExpress.XtraSplashScreen.SplashScreenManager SplashScreenManager = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(PaoSplashScreen), true, true);
+            DevExpress.XtraSplashScreen.SplashScreenManager SplashScreenManager = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::PAO.WinForm.Forms.PaoSplashScreen), true, true);
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MDIMainForm));
             this.DockManager = new DevExpress.XtraBars.Docking.DockManager();
             this.BarManager = new DevExpress.XtraBars.BarManager();
@@ -61,6 +61,7 @@ namespace PAO.App.MDI
             this.DocumentManager = new DevExpress.XtraBars.Docking2010.DocumentManager();
             this.TabbedView = new DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView();
             this.TimerDateTime = new System.Windows.Forms.Timer();
+            this.ButtonSaveClientConfig = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.DockManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BarManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemProgressBar)).BeginInit();
@@ -117,9 +118,10 @@ namespace PAO.App.MDI
             this.ButtonRecoverLayout,
             this.ButtonLogout,
             this.MenuConfig,
-            this.ButtonSaveConfig});
+            this.ButtonSaveConfig,
+            this.ButtonSaveClientConfig});
             this.BarManager.MainMenu = this.BarMain;
-            this.BarManager.MaxItemId = 26;
+            this.BarManager.MaxItemId = 27;
             this.BarManager.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.RepositoryItemCalcEdit,
             this.RepositoryItemProgressBar,
@@ -143,9 +145,9 @@ namespace PAO.App.MDI
             // MenuSystem
             // 
             this.MenuSystem.Caption = "系统(&S)";
-            this.MenuSystem.Glyph = Resources.operatingsystem_16x16;
+            this.MenuSystem.Glyph = global::PAO.App.MDI.Properties.Resources.operatingsystem_16x16;
             this.MenuSystem.Id = 0;
-            this.MenuSystem.LargeGlyph = Resources.operatingsystem_32x32;
+            this.MenuSystem.LargeGlyph = global::PAO.App.MDI.Properties.Resources.operatingsystem_32x32;
             this.MenuSystem.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.MenuSkin),
             new DevExpress.XtraBars.LinkPersistInfo(this.MenuWindow),
@@ -156,17 +158,17 @@ namespace PAO.App.MDI
             // MenuSkin
             // 
             this.MenuSkin.Caption = "皮肤(&S)";
-            this.MenuSkin.Glyph = Resources.colors_16x16;
+            this.MenuSkin.Glyph = global::PAO.App.MDI.Properties.Resources.colors_16x16;
             this.MenuSkin.Id = 2;
-            this.MenuSkin.LargeGlyph = Resources.colors_32x32;
+            this.MenuSkin.LargeGlyph = global::PAO.App.MDI.Properties.Resources.colors_32x32;
             this.MenuSkin.Name = "MenuSkin";
             // 
             // MenuWindow
             // 
             this.MenuWindow.Caption = "窗口(&W)";
-            this.MenuWindow.Glyph = Resources.windows_16x16;
+            this.MenuWindow.Glyph = global::PAO.App.MDI.Properties.Resources.windows_16x16;
             this.MenuWindow.Id = 5;
-            this.MenuWindow.LargeGlyph = Resources.windows_32x32;
+            this.MenuWindow.LargeGlyph = global::PAO.App.MDI.Properties.Resources.windows_32x32;
             this.MenuWindow.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.ButtonRecoverLayout, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.BarDockingMenuItem, true)});
@@ -175,9 +177,9 @@ namespace PAO.App.MDI
             // ButtonRecoverLayout
             // 
             this.ButtonRecoverLayout.Caption = "恢复布局(&R)";
-            this.ButtonRecoverLayout.Glyph = Resources.reset_16x16;
+            this.ButtonRecoverLayout.Glyph = global::PAO.App.MDI.Properties.Resources.reset_16x16;
             this.ButtonRecoverLayout.Id = 22;
-            this.ButtonRecoverLayout.LargeGlyph = Resources.reset_32x32;
+            this.ButtonRecoverLayout.LargeGlyph = global::PAO.App.MDI.Properties.Resources.reset_32x32;
             this.ButtonRecoverLayout.Name = "ButtonRecoverLayout";
             this.ButtonRecoverLayout.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonRecoverLayout_ItemClick);
             // 
@@ -194,12 +196,13 @@ namespace PAO.App.MDI
             this.MenuConfig.Id = 24;
             this.MenuConfig.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("MenuConfig.LargeGlyph")));
             this.MenuConfig.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonSaveClientConfig),
             new DevExpress.XtraBars.LinkPersistInfo(this.ButtonSaveConfig)});
             this.MenuConfig.Name = "MenuConfig";
             // 
             // ButtonSaveConfig
             // 
-            this.ButtonSaveConfig.Caption = "保存当前配置(&S)";
+            this.ButtonSaveConfig.Caption = "保存配置到(&S)...";
             this.ButtonSaveConfig.Glyph = ((System.Drawing.Image)(resources.GetObject("ButtonSaveConfig.Glyph")));
             this.ButtonSaveConfig.Id = 25;
             this.ButtonSaveConfig.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("ButtonSaveConfig.LargeGlyph")));
@@ -209,9 +212,9 @@ namespace PAO.App.MDI
             // ButtonExit
             // 
             this.ButtonExit.Caption = "退出(&X)";
-            this.ButtonExit.Glyph = Resources.close_16x16;
+            this.ButtonExit.Glyph = global::PAO.App.MDI.Properties.Resources.close_16x16;
             this.ButtonExit.Id = 1;
-            this.ButtonExit.LargeGlyph = Resources.close_32x32;
+            this.ButtonExit.LargeGlyph = global::PAO.App.MDI.Properties.Resources.close_32x32;
             this.ButtonExit.Name = "ButtonExit";
             this.ButtonExit.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonExit_ItemClick);
             // 
@@ -219,9 +222,9 @@ namespace PAO.App.MDI
             // 
             this.MenuCurrentUser.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
             this.MenuCurrentUser.Caption = "当前用户";
-            this.MenuCurrentUser.Glyph = Resources.customer_16x16;
+            this.MenuCurrentUser.Glyph = global::PAO.App.MDI.Properties.Resources.customer_16x16;
             this.MenuCurrentUser.Id = 18;
-            this.MenuCurrentUser.LargeGlyph = Resources.customer_32x32;
+            this.MenuCurrentUser.LargeGlyph = global::PAO.App.MDI.Properties.Resources.customer_32x32;
             this.MenuCurrentUser.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.ButtonLogout)});
             this.MenuCurrentUser.Name = "MenuCurrentUser";
@@ -229,18 +232,18 @@ namespace PAO.App.MDI
             // ButtonLogout
             // 
             this.ButtonLogout.Caption = "注销(&L)";
-            this.ButtonLogout.Glyph = Resources.undo_16x16;
+            this.ButtonLogout.Glyph = global::PAO.App.MDI.Properties.Resources.undo_16x16;
             this.ButtonLogout.Id = 23;
-            this.ButtonLogout.LargeGlyph = Resources.undo_32x32;
+            this.ButtonLogout.LargeGlyph = global::PAO.App.MDI.Properties.Resources.undo_32x32;
             this.ButtonLogout.Name = "ButtonLogout";
             this.ButtonLogout.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonLogout_ItemClick);
             // 
             // MenuFunction
             // 
             this.MenuFunction.Caption = "扩展功能(&E)";
-            this.MenuFunction.Glyph = Resources.morefunctions_16x16;
+            this.MenuFunction.Glyph = global::PAO.App.MDI.Properties.Resources.morefunctions_16x16;
             this.MenuFunction.Id = 20;
-            this.MenuFunction.LargeGlyph = Resources.morefunctions_32x32;
+            this.MenuFunction.LargeGlyph = global::PAO.App.MDI.Properties.Resources.morefunctions_32x32;
             this.MenuFunction.Name = "MenuFunction";
             // 
             // BarStatus
@@ -375,6 +378,13 @@ namespace PAO.App.MDI
             this.TimerDateTime.Interval = 1000;
             this.TimerDateTime.Tick += new System.EventHandler(this.TimerDateTime_Tick);
             // 
+            // ButtonSaveClientConfig
+            // 
+            this.ButtonSaveClientConfig.Caption = "保存客户端配置(&C)";
+            this.ButtonSaveClientConfig.Id = 26;
+            this.ButtonSaveClientConfig.Name = "ButtonSaveClientConfig";
+            this.ButtonSaveClientConfig.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonSaveClientConfig_ItemClick);
+            // 
             // MDIMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -436,5 +446,6 @@ namespace PAO.App.MDI
         private DevExpress.XtraBars.BarButtonItem ButtonLogout;
         private DevExpress.XtraBars.BarSubItem MenuConfig;
         private DevExpress.XtraBars.BarButtonItem ButtonSaveConfig;
+        private DevExpress.XtraBars.BarButtonItem ButtonSaveClientConfig;
     }
 }

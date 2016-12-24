@@ -238,19 +238,16 @@ namespace PAO.App.MDI
         }
 
         private void ButtonSaveConfig_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            string fileName = AppPublic.GetAbsolutePath(AppPublic.DefaultConfigFileName);
-            if (UIPublic.ShowSaveFileDialog("保存配置", ref fileName,
-                FileExtentions.CONFIG,
-                FileExtentions.XML,
-                FileExtentions.All) == DialogReturn.OK) {
-                IOPublic.WriteObjectToFile(fileName, PaoApplication.Default);
-            }
+            IOPublic.ExportObject(PaoApplication.Default);
+        }
+
+        private void ButtonSaveClientConfig_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+
         }
 
         private void DocumentManager_DocumentActivate(object sender, DevExpress.XtraBars.Docking2010.Views.DocumentEventArgs e) {
             WinFormPublic.ShowInPropertyView(null);
         }
         #endregion
-
     }
 }

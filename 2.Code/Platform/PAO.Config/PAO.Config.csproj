@@ -87,7 +87,6 @@
       <DependentUpon>ConfigForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ConfigPublic.cs" />
-    <Compile Include="EditControls\ILayoutDataSupport.cs" />
     <Compile Include="EditControls\ListEditControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

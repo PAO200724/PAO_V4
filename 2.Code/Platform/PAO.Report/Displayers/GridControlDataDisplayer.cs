@@ -189,10 +189,7 @@ namespace PAO.Report.Displayers
         }
         
         private void ButtonExport_ItemClick(object sender, ItemClickEventArgs e) {
-            string fileName = null;
-            if(UIPublic.ShowSaveFileDialog("导出",ref fileName, ExportFileFilters) == DialogReturn.OK) {
-                Export();
-            }
+            Export();
         }
 
         private void ButtonPrint_ItemClick(object sender, ItemClickEventArgs e) {

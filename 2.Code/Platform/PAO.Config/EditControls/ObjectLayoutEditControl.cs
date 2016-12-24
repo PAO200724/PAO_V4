@@ -20,13 +20,32 @@ namespace PAO.Config.EditControls
     /// 对象布局式编辑控件
     /// 作者：PAO
     /// </summary>
-    public partial class ObjectLayoutEditControl : BaseEditControl, ILayoutDataSupport
+    public partial class ObjectLayoutEditControl : BaseEditControl
     {
         public ObjectLayoutEditControl() {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// 编辑控件列表
+        /// </summary>
         private Dictionary<PropertyDescriptor, Control> EditControls = new Dictionary<PropertyDescriptor, Control>();
+        /// <summary>
+        /// 布局数据
+        /// </summary>
+        private ObjectLayoutEditorLayoutData LayoutData;
+
+        private Type _ObjectType;
+        /// <summary>
+        /// 对象类型
+        /// </summary>
+        public Type ObjectType {
+            get { return _ObjectType; }
+            set { _ObjectType = value;
+                GetTypeLayoutData();
+            }
+        }
+
 
         public override object EditValue {
             get {
@@ -50,45 +69,40 @@ namespace PAO.Config.EditControls
                 } else {
                     this.BindingSource.DataSource = value.GetType();
                     this.BindingSource.Add(value);
+                    BindEditValue(value);
                 }
             }
         }
 
-        private Type _ObjectType;
-        /// <summary>
-        /// 对象类型
-        /// </summary>
-        public Type ObjectType {
-            get { return _ObjectType; }
-            set { _ObjectType = value; }
+        public override void OnClosing(DialogResult dialogResult, ref bool cancel) {
+            if(ObjectType != null) {
+                if (LayoutData.IsNull()) {
+                    string typeID = ObjectType.FullName;
+                    LayoutData = new Config.EditControls.ObjectLayoutEditorLayoutData()
+                    {
+                        ID = GetTypeID()
+                    };
+                }
+                LayoutData.LayoutData = this.DataLayoutControl.GetLayoutData();
+                ExtendAddonPublic.SetExtendLocalAddon(LayoutData);
+            }
+            base.OnClosing(dialogResult, ref cancel);
         }
 
-        private ObjectLayoutEditorLayoutData _LayoutData;
-        /// <summary>
-        /// 布局数据
-        /// </summary>
-        [Browsable(false)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public object LayoutData {
-            get {
-                // 获取布局数据
-                if (_LayoutData == null) {
-                    _LayoutData = new ObjectLayoutEditorLayoutData();
-                    _LayoutData.LayoutData = this.DataLayoutControl.GetLayoutData();
-                }
-                return _LayoutData;
-            }
+        private void GetTypeLayoutData() {
+            if (ObjectType.IsNull())
+                return;
 
-            set {
-                _LayoutData = value as ObjectLayoutEditorLayoutData;
-                if(_LayoutData == null) {
-                    _LayoutData = new ObjectLayoutEditorLayoutData();
-                }
+            string typeID = GetTypeID();
 
-                RetrieveFields(this.LayoutControlGroupRoot, ObjectType);
-            }
+            LayoutData = ExtendAddonPublic.GetExtendLocalAddon(typeID) as ObjectLayoutEditorLayoutData;
+            RetrieveFields(this.LayoutControlGroupRoot, ObjectType);
         }
 
+        private string GetTypeID() {
+            return ObjectType.FullName;
+        }
+        
         /// <summary>
         /// 绑定编辑值
         /// </summary>
@@ -103,15 +117,12 @@ namespace PAO.Config.EditControls
                 var editControl = EditControls[propDesc] as ObjectContainerEditControl;
                 if(editControl != null) {
                     editControl.ComponentObject = editValue;
+                    editControl.DataBindings.Clear();
+                    if (this.BindingSource != null) {
+                        editControl.DataBindings.Add(new Binding("EditValue", this.BindingSource, propDesc.Name, true));
+                    }
                 }
             }
-        }
-
-        /// <summary>
-        /// 根据对象填充属性字段
-        /// </summary>
-        public void RetrieveFields() {
-            RetrieveFields(this.LayoutControlGroupRoot, ObjectType);
         }
 
         /// <summary> 
@@ -134,8 +145,8 @@ namespace PAO.Config.EditControls
                     continue;
 
                 Control editControl = null;
-                if (_LayoutData != null) {
-                    editControl = _LayoutData.CreateEditControl(propDesc.Name);
+                if (LayoutData != null) {
+                    editControl = LayoutData.CreateEditControl(propDesc.Name);
                 }
 
                 if (editControl == null) {
@@ -179,7 +190,6 @@ namespace PAO.Config.EditControls
                     layoutControlItem.TextLocation = DevExpress.Utils.Locations.Left;
                 }
                 EditControls.Add(propDesc, editControl);
-                editControl.DataBindings.Add(new Binding("EditValue", this.BindingSource, propDesc.Name, true));
                 editControl.Tag = configedPropDesc;
                 editControl.Name = configedPropDesc.Name;
 
@@ -194,6 +204,12 @@ namespace PAO.Config.EditControls
                 else {
                     layoutControlItem.TextVisible = true;
                 }
+            }
+            this.DataLayoutControl.SetDefaultLayout();
+
+            // 读取布局数据
+            if(LayoutData.IsNotNull() && LayoutData.LayoutData.IsNotNullOrEmpty()) {
+                this.DataLayoutControl.SetLayoutData(LayoutData.LayoutData);
             }
         }
     }

@@ -25,12 +25,23 @@ namespace PAO.IO
         /// <summary>
         /// 导出当前对象
         /// </summary>
-        public static void ExportObject(object obj) {
-            string fileName = null;
+        public static void ExportObject(object obj
+            , string defaultFileName = null
+            , params string[] defaultFileExtentions) {
+            string fileName = defaultFileName;
+            string[] fileExtentions;
+            if (defaultFileExtentions.IsNotNullOrEmpty()) {
+                fileExtentions = defaultFileExtentions;
+            } else {
+                fileExtentions = new string[]
+                {
+                    FileExtentions.CONFIG
+                    , FileExtentions.XML
+                    , FileExtentions.All
+                };
+            }
             if (UIPublic.ShowSaveFileDialog("导出", ref fileName
-                , FileExtentions.CONFIG
-                , FileExtentions.XML
-                , FileExtentions.All) == DialogReturn.OK) {
+                , fileExtentions) == DialogReturn.OK) {
                 if (fileName.IsNullOrEmpty())
                     UIPublic.ShowErrorDialog("输入了错误的文件名");
                 else {
@@ -42,12 +53,24 @@ namespace PAO.IO
         /// <summary>
         /// 导入对象
         /// </summary>
-        public static void ImportObject(Action<object> action) {
-            string fileName = null;
+        public static void ImportObject(Action<object> action
+            , string defaultFileName = null
+            , params string[] defaultFileExtentions) {
+            string fileName = defaultFileName;
+            string[] fileExtentions;
+            if (defaultFileExtentions.IsNotNullOrEmpty()) {
+                fileExtentions = defaultFileExtentions;
+            }
+            else {
+                fileExtentions = new string[]
+                {
+                    FileExtentions.CONFIG
+                    , FileExtentions.XML
+                    , FileExtentions.All
+                };
+            }
             if (UIPublic.ShowOpenFileDialog("导入", ref fileName
-                , FileExtentions.CONFIG
-                , FileExtentions.XML
-                , FileExtentions.All) == DialogReturn.OK) {
+                , fileExtentions) == DialogReturn.OK) {
                 if (!File.Exists(fileName))
                     UIPublic.ShowErrorDialog("选择的文件不存在");
                 else {
