@@ -297,6 +297,7 @@
             // AccordionControl
             // 
             this.AccordionControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.AccordionControl.ExpandElementMode = DevExpress.XtraBars.Navigation.ExpandElementMode.Multiple;
             this.AccordionControl.Location = new System.Drawing.Point(0, 0);
             this.AccordionControl.Name = "AccordionControl";
             this.AccordionControl.Size = new System.Drawing.Size(226, 469);

@@ -59,22 +59,25 @@ namespace PAO.Data.ValueFetchers
         public AddonValueFetcher() {
         }
 
-        public object FetchValue() {
-            // 获取插件
-            var addon = AddonPublic.GetRuntimeAddonByID(AddonID);
-            if (addon == null)
+        public object Value {
+            get {
+                // 获取插件
+                var addon = AddonPublic.GetRuntimeAddonByID(AddonID);
+                if (addon == null)
+                    return default(T);
+
+                // 获取插件的值
+                Type addonType = addon.GetType();
+                var propInfo = addonType.GetProperty(MemberName, BindingFlags.Instance | BindingFlags.Public | BindingFlags.GetProperty);
+                if (propInfo != null)
+                    return (T)propInfo.GetValue(addon, null);
+                var fieldInfo = addonType.GetField(MemberName, BindingFlags.Instance | BindingFlags.Public | BindingFlags.GetField);
+                if (fieldInfo != null)
+                    return (T)fieldInfo.GetValue(addon);
+
                 return default(T);
-
-            // 获取插件的值
-            Type addonType = addon.GetType();
-            var propInfo = addonType.GetProperty(MemberName, BindingFlags.Instance | BindingFlags.Public | BindingFlags.GetProperty);
-            if (propInfo != null)
-                return (T)propInfo.GetValue(addon, null);
-            var fieldInfo = addonType.GetField(MemberName, BindingFlags.Instance | BindingFlags.Public | BindingFlags.GetField);
-            if (fieldInfo != null)
-                return (T)fieldInfo.GetValue(addon);
-
-            return default(T);
+            }
         }
+        
     }
 }

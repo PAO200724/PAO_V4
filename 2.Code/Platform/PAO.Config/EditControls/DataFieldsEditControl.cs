@@ -71,9 +71,11 @@ namespace PAO.Config.EditControls
             get {
                 // 从SchemaTable中获取值
                 this.BindingSource.EndEdit();
-                var dataRow = DataTable.Rows[0];
                 foreach(var dataColumn in DataFields) {
-                    dataColumn.Value = dataRow.Field<object>(dataColumn.Name);
+                    dynamic editControl = EditControls[dataColumn.Name];
+                    if(editControl != null) {
+                        dataColumn.Value = editControl.EditValue;
+                    }
                 }
                 return DataFields; 
             }
@@ -161,8 +163,15 @@ namespace PAO.Config.EditControls
 
                 editControl.Tag = dataField.Name;
                 editControl.Name = dataField.Name;
-                if (this.BindingSource != null) {
-                    editControl.DataBindings.Add(new Binding("EditValue", this.BindingSource, dataField.Name, true));
+
+                dynamic dynamicControl = editControl;
+                if(dataField.ValueFetcher.IsNotNull()){
+                    editControl.DataBindings.Add(new Binding("EditValue", dataField.ValueFetcher.Value, "Value", true));
+                    dynamicControl.Enabled = false;
+                } else {
+                    if (this.BindingSource != null) {
+                        editControl.DataBindings.Add(new Binding("EditValue", this.BindingSource, dataField.Name, true));
+                    }
                 }
 
                 layoutControlItem.Control = editControl;

@@ -73,22 +73,6 @@ namespace PAO.Data
         }
         #endregion 属性:DataFilter
 
-        #region 属性：Parameters
-        /// <summary>
-        /// 属性：Parameters
-        /// 参数定义
-        /// 参数定义
-        /// </summary>
-        [AddonProperty]
-        [DataMember(EmitDefaultValue = false)]
-        [Name("参数定义")]
-        [Description("参数定义")]
-        public List<DataField> Parameters {
-            get;
-            set;
-        }
-        #endregion 属性：Parameters
-
         #endregion
 
         const string TrueFilter = "1=1";
@@ -129,17 +113,6 @@ namespace PAO.Data
 
                 var newParam = new DataField(paramName,DbType.String);
 
-                if(Parameters.IsNotNullOrEmpty()) {
-                    // 从预定义参数列表中查找参数并设置类型
-                    var paramDefined = Parameters.Where(p => p.Name == paramName).FirstOrDefault();
-                    if (paramDefined != null) {
-                        newParam.DbType = paramDefined.DbType;
-                    }
-                    else {
-                        newParam.DbType = DbType.String;
-                    }
-                }
-
                 parameters.Add(newParam);
             }
             return parameters.ToArray();
@@ -148,38 +121,27 @@ namespace PAO.Data
         public virtual void FillCommand(DbCommand command, DataField[] parameterList) {
             command.CommandText = GetCommandText(parameterList, true);
 
-            string sql = GetCommandText(null, true);
+            string sql = GetCommandText(parameterList, true);
             // 从Sql创建参数
             var paramNames = DataPublic.FindParameters(sql);
             foreach (var paramName in paramNames) {
+                DbParameter dbParam;
                 // 如果参数列表中已经存在，则不再重复
                 if (command.Parameters.Contains(paramName)) {
-                    continue;
-                }
-
-                var dbParam = command.CreateParameter();
-                dbParam.ParameterName = paramName;
-
-                if (Parameters.IsNotNullOrEmpty()) {
-                    // 从预定义参数列表中查找参数并设置类型
-                    var paramDefined = Parameters.Where(p => p.Name == paramName).FirstOrDefault();
-                    if (paramDefined != null) {
-                        dbParam.DbType = paramDefined.DbType;
-                    }
-                    else {
-                        dbParam.DbType = DbType.String;
-                    }
+                    dbParam = command.Parameters[paramName];
+                } else {
+                    dbParam = command.CreateParameter();
+                    dbParam.ParameterName = paramName;
+                    command.Parameters.Add(dbParam);
                 }
 
                 // 设置参数值
-                if(parameterList.IsNotNullOrEmpty()) {
+                if (parameterList.IsNotNullOrEmpty()) {
                     var paramValue = parameterList.Where(p => p.Name == paramName).FirstOrDefault();
                     if (paramValue != null) {
                         dbParam.Value = paramValue.Value;
                     }
                 }
-
-                command.Parameters.Add(dbParam);
             }
         }
     }

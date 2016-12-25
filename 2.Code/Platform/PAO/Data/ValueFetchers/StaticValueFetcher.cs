@@ -59,15 +59,17 @@ namespace PAO.Data.ValueFetchers
         public StaticValueFetcher() {
         }
 
-        public object FetchValue() {
-            var propInfo = Type.GetProperty(MemberName, BindingFlags.Static | BindingFlags.Public | BindingFlags.GetProperty);
-            if (propInfo != null)
-                return (T)propInfo.GetValue(null, null);
-            var fieldInfo = Type.GetField(MemberName, BindingFlags.Static | BindingFlags.Public | BindingFlags.GetField);
-            if (fieldInfo != null)
-                return (T)fieldInfo.GetValue(null);
+        public object Value {
+            get {
+                var propInfo = Type.GetProperty(MemberName, BindingFlags.Static | BindingFlags.Public | BindingFlags.GetProperty);
+                if (propInfo != null)
+                    return (T)propInfo.GetValue(null, null);
+                var fieldInfo = Type.GetField(MemberName, BindingFlags.Static | BindingFlags.Public | BindingFlags.GetField);
+                if (fieldInfo != null)
+                    return (T)fieldInfo.GetValue(null);
 
-            return default(T);
+                return default(T);
+            }
         }
     }
 }

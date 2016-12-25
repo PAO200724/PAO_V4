@@ -110,23 +110,25 @@ namespace PAO.Report.ValueFetchers
             Filter = "TRUE";
         }
 
-        public object FetchValue() {
-            if (ReportView.DataSource == null || TableName.IsNullOrEmpty() || !ReportView.DataSource.Tables.Contains(TableName))
-                return default(T);
+        public object Value {
+            get {
+                if (ReportView.DataSource == null || TableName.IsNullOrEmpty() || !ReportView.DataSource.Tables.Contains(TableName))
+                    return default(T);
 
-            if (Expression.IsNotNullOrEmpty()) {
-                return (T)ReportView.DataSource.Tables[0].Compute(Expression, Filter);
-            }
-
-            // 获取当前行
-            if (ColumnName.IsNotNullOrEmpty()) {
-                var bindingContext = ReportView.BindingContext[ReportView.DataSource, TableName];
-                if(bindingContext.Position >= 0) {
-                    return (T)bindingContext.Current.As<DataRowView>()[ColumnName];
+                if (Expression.IsNotNullOrEmpty()) {
+                    return (T)ReportView.DataSource.Tables[0].Compute(Expression, Filter);
                 }
-            }
 
-            return default(T);
+                // 获取当前行
+                if (ColumnName.IsNotNullOrEmpty()) {
+                    var bindingContext = ReportView.BindingContext[ReportView.DataSource, TableName];
+                    if (bindingContext.Position >= 0) {
+                        return (T)bindingContext.Current.As<DataRowView>()[ColumnName];
+                    }
+                }
+
+                return default(T);
+            }
         }
     }
 }

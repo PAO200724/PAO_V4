@@ -26,7 +26,7 @@ namespace PAO.Server
                 & new Filter("Name LIKE @Name")
                 & new Filter("LoginName LIKE @LoginName")
                 & new Filter("Tel LIKE @Tel")
-                & new Filter("Email LIKE @Email")
+                & new Filter("Email LIKE @Email"),
         };
         private static readonly DataCommandInfo Command_QueryConfig = new DataCommandInfo()
         {
@@ -35,7 +35,7 @@ namespace PAO.Server
             DataFilter = new Filter("SoftwareID LIKE @SoftwareID")
                 & new Filter("ComputerID LIKE @ComputerID")
                 & new Filter("ConfigName LIKE @ConfigName")
-                & new Filter("EnabledTime <= @TimeStart AND DisabedTime > @TimeEnd"),
+                & new Filter("EnabledTime <= @TimeStart AND DisabledTime > @TimeEnd"),
         };
         #endregion
 

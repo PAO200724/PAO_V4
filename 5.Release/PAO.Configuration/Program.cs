@@ -22,6 +22,7 @@ using PAO.Config.DockViews;
 using PAO.WinForm;
 using PAO.App.MDI.DockViews;
 using PAO.Data.Filters;
+using PAO.Data.ValueFetchers;
 
 namespace PAO.Configuration
 {
@@ -107,6 +108,15 @@ namespace PAO.Configuration
                                             DataService = new AddonFactory<IDataService>("CommonDataService"),
                                             CommandID = "Command_QueryUser",
                                         }.ToRef(),
+                                        QueryParameters = new List<DataField>()
+                                            .Append(new DataField()
+                                            {
+                                                Name = "@LoginName",
+                                                ValueFetcher = new ConstValueFetcher<string>()
+                                                {
+                                                    ConstValue = "PAO"
+                                                }.ToRef()
+                                            }),
                                     }).Append(new ReportDataTable()
                                     {
                                         ID = "Smart_Report_Config",
@@ -117,6 +127,17 @@ namespace PAO.Configuration
                                             DataService = new AddonFactory<IDataService>("CommonDataService"),
                                             CommandID = "Command_QueryConfig",
                                         }.ToRef(),
+                                        QueryParameters = new List<DataField>()
+                                            .Append(new DataField()
+                                            {
+                                                Name = "@TimeStart",
+                                                DbType = System.Data.DbType.DateTime
+                                            })
+                                            .Append(new DataField()
+                                            {
+                                                Name = "@TimeEnd",
+                                                DbType = System.Data.DbType.DateTime
+                                            }),
                                     }),
                                 Displayers = new List<Ref<BaseDataDisplayerController>>()
                                     .Append(new GridControlController()

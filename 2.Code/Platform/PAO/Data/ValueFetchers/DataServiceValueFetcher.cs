@@ -58,12 +58,15 @@ namespace PAO.Data.ValueFetchers
         public DataServiceValueFetcher() {
         }
 
-        public object FetchValue() {
-            var dataService = DataService.Value;
-            object result = dataService.ExecuteScalar(CommandID);
-            if (result == null)
-                return default(T);
-            return (T)result;
+
+        public object Value {
+            get {
+                var dataService = DataService.Value;
+                object result = dataService.ExecuteScalar(CommandID);
+                if (result == null)
+                    return default(T);
+                return (T)result;
+            }
         }
     }
 }

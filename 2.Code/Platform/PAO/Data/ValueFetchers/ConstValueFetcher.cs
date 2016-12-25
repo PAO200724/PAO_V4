@@ -42,8 +42,10 @@ namespace PAO.Data.ValueFetchers
         public ConstValueFetcher() {
         }
 
-        public object FetchValue() {
-            return ConstValue;
+        public object Value {
+            get {
+                return ConstValue;
+            }
         }
     }
 }

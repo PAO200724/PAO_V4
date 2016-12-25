@@ -21,6 +21,6 @@ namespace PAO.Data
         /// 获取值
         /// </summary>
         /// <returns>值</returns>
-        object FetchValue();
+        object Value { get; }
     }
 }
