@@ -40,7 +40,18 @@ namespace PAO.Config.Editors
             WinFormPublic.AddClearButton(edit);
             edit.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             edit.ButtonClick += Edit_ButtonClick;
+            edit.CustomDisplayText += Edit_CustomDisplayText;
             return edit;
+        }
+
+        private void Edit_CustomDisplayText(object sender, DevExpress.XtraEditors.Controls.CustomDisplayTextEventArgs e) {
+            if(e.Value.IsNull()) {
+                e.DisplayText = "[空]";
+            } else if(e.Value.GetType().IsAddonListType() || e.Value.GetType().IsAddonDictionaryType()){
+                e.DisplayText = e.Value.GetType().GetTypeString();
+            } else {
+                e.DisplayText = e.Value.ToString();
+            }
         }
 
         private void Edit_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e) {

@@ -70,22 +70,6 @@ namespace PAO.App.MDI
         }
         #endregion 属性：Controllers
 
-        #region 属性：LayoutData
-        /// <summary>
-        /// 属性：LayoutData
-        /// 布局数据
-        /// 布局数据
-        /// </summary>
-        [AddonProperty]
-        [DataMember(EmitDefaultValue = false)]
-        [Name("布局数据")]
-        [Description("布局数据")]
-        public byte[] LayoutData {
-            get;
-            set;
-        }
-        #endregion 属性：LayoutData
-
         #region 属性：SecurityService
         /// <summary>
         /// 属性：SecurityService
@@ -168,6 +152,23 @@ namespace PAO.App.MDI
         #endregion 属性：TimeSyncInterval
 
         #endregion
+
+        #region 属性：LayoutData
+        /// <summary>
+        /// 属性：LayoutData
+        /// 布局数据
+        /// 布局数据
+        /// </summary>
+        [Browsable(false)]
+        [DataMember(EmitDefaultValue = false)]
+        [Name("布局数据")]
+        [Description("布局数据")]
+        public byte[] LayoutData {
+            get;
+            set;
+        }
+        #endregion 属性：LayoutData
+
         public MDIApplication() {
             TimeSyncInterval = 5;
         }

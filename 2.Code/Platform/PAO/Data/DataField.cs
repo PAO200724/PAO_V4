@@ -172,7 +172,7 @@ namespace PAO.Data
         }
 
         public override string ToString() {
-            return ObjectPublic.ObjectToString(this, null, "Name", "Type", "Value");
+            return ObjectPublic.ObjectToString(this, null, "Name", "DbType", "ObjectType", "Value");
         }
     }
 }

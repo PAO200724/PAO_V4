@@ -68,7 +68,7 @@ namespace PAO.WinForm.Editors
         public RepositoryItem CreateRepositoryItem() {
             var repositoryItem = OnCreateRepositoryItem();
             repositoryItem.ReadOnly = ReadOnly;
-            if(repositoryItem is RepositoryItemButtonEdit) {
+            if(repositoryItem is RepositoryItemButtonEdit && repositoryItem.ReadOnly) {
                 repositoryItem.As<RepositoryItemButtonEdit>().Buttons.Clear();
             }
             return repositoryItem;

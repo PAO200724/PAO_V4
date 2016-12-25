@@ -78,25 +78,23 @@ namespace PAO.Report.Views
         }
         #endregion 属性：QueryBehavior
 
+        #endregion
+
         #region 属性：LayoutData
         /// <summary>
         /// 属性：LayoutData
         /// 布局数据
         /// 布局数据
         /// </summary>
-        [AddonProperty]
+        [Browsable(false)]
         [DataMember(EmitDefaultValue = false)]
         [Name("布局数据")]
         [Description("布局数据")]
-        [Browsable(false)]
         public byte[] LayoutData {
             get;
             set;
         }
         #endregion 属性：LayoutData
-
-        #endregion
-
         public ReportController() {
         }
         protected override Type ViewType {

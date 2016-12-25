@@ -26,13 +26,15 @@ namespace PAO.Config.EditControls
     {
         #region 插件属性
 
+        #endregion
+
         #region 属性：LayoutData
         /// <summary>
         /// 属性：LayoutData
         /// 布局数据
         /// 布局数据
         /// </summary>
-        [AddonProperty]
+        [Browsable(false)]
         [DataMember(EmitDefaultValue = false)]
         [Name("布局数据")]
         [Description("布局数据")]
@@ -42,8 +44,7 @@ namespace PAO.Config.EditControls
         }
         #endregion 属性：LayoutData
 
-        #endregion
         public ObjectLayoutEditorLayoutData() {
-        }
     }
+}
 }

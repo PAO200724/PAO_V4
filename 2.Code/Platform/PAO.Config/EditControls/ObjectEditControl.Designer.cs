@@ -49,7 +49,10 @@
             this.PropertyGridControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PropertyGridControl.Location = new System.Drawing.Point(0, 0);
             this.PropertyGridControl.Name = "PropertyGridControl";
+            this.PropertyGridControl.OptionsView.FixRowHeaderPanelWidth = true;
             this.PropertyGridControl.OptionsView.MinRowAutoHeight = 30;
+            this.PropertyGridControl.RecordWidth = 50;
+            this.PropertyGridControl.RowHeaderWidth = 150;
             this.PropertyGridControl.Size = new System.Drawing.Size(466, 567);
             this.PropertyGridControl.TabIndex = 0;
             this.PropertyGridControl.CustomPropertyDescriptors += new DevExpress.XtraVerticalGrid.Events.CustomPropertyDescriptorsEventHandler(this.PropertyGridControl_CustomPropertyDescriptors);

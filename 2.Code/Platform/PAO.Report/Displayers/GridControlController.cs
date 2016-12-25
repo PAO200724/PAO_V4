@@ -29,22 +29,6 @@ namespace PAO.Report.Displayers
     {
         #region 插件属性
 
-        #region 属性：LayoutData
-        /// <summary>
-        /// 属性：LayoutData
-        /// 布局数据
-        /// 控件的布局数据
-        /// </summary>
-        [AddonProperty]
-        [DataMember(EmitDefaultValue = false)]
-        [Name("布局数据")]
-        [Description("控件的布局数据")]
-        public byte[] LayoutData {
-            get;
-            set;
-        }
-        #endregion 属性：LayoutData
-
         #region 属性：DataMember
         /// <summary>
         /// 属性：DataMember
@@ -79,6 +63,23 @@ namespace PAO.Report.Displayers
         #endregion 属性：GridViewType
 
         #endregion
+
+        #region 属性：LayoutData
+        /// <summary>
+        /// 属性：LayoutData
+        /// 布局数据
+        /// 控件的布局数据
+        /// </summary>
+        [Browsable(false)]
+        [DataMember(EmitDefaultValue = false)]
+        [Name("布局数据")]
+        [Description("布局数据")]
+        public byte[] LayoutData {
+            get;
+            set;
+        }
+        #endregion 属性：LayoutData
+
         public GridControlController() {
             GridViewType = GridViewType.GridView;
         }
