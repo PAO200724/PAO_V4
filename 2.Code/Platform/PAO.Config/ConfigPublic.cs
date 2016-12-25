@@ -198,7 +198,7 @@ namespace PAO.Config
                 editor = new DateEditController();
             }
             else if (type == typeof(bool)) {
-                editor = new ToggleSwitchEditor();
+                editor = new ToggleSwitchEditController();
             }
             else if (type == typeof(Image)) {
                 editor = new ImageEditController();

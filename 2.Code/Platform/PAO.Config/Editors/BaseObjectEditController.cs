@@ -6,55 +6,40 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using DevExpress.XtraEditors.Repository;
-using PAO.Config.Controls;
-using PAO.UI;
-using PAO.IO;
+using System.Windows.Forms;
 using DevExpress.XtraEditors;
-using PAO.Config.EditControls;
-using System.Collections;
-using PAO.WinForm;
 using PAO.WinForm.Editors;
+using PAO.WinForm;
+using PAO.IO;
+using PAO.UI;
 
 namespace PAO.Config.Editors
 {
     /// <summary>
-    /// 类：ObjectEditor
-    /// 对象编辑器
-    /// 编辑对象的编辑器
+    /// 类：BaseObjectEditController
+    /// 对象编辑控制器基类
+    /// 对象编辑控制器基类
     /// 作者：PAO
     /// </summary>
     [Addon]
     [Serializable]
     [DataContract(Namespace = "")]
-    [Name("对象编辑器")]
-    [Description("编辑对象的编辑器")]
-    public class ObjectEditController : BaseObjectEditController
+    [Name("对象编辑控制器基类")]
+    [Description("对象编辑控制器基类")]
+    public abstract class BaseObjectEditController : BaseEditController
     {
         #region 插件属性
         #endregion
-        public ObjectEditController() {
+        public BaseObjectEditController() {
         }
 
-        protected override BaseEditControl OnCreateEditControl() {
-            BaseEditControl editControl = null;
-            Type objectEditorControlType = ConfigPublic.GetEditControlType(objectType);
-            if (objectEditorControlType != null) {
-                // 以预定义的编辑器对象优先
-                editControl = objectEditorControlType.CreateInstance() as BaseEditControl;
-            }
-            else if (editValue is IList) {
-                editControl = new ListEditControl();
-            }
-            else if (editValue is IDictionary) {
-                editControl = new DictionaryEditControl();
-            }
-            else {
-                editControl = new ObjectEditControl();
-            }
-            return editControl;
+        protected abstract BaseEditControl OnCreateEditControl();
+
+        public override Control CreateEditControl() {
+            return OnCreateEditControl();
         }
 
-        protected override RepositoryItem OnCreateRepositoryItem() {
+        public override RepositoryItem CreateRepositoryItem() {
             var edit = new RepositoryItemButtonEdit();
             WinFormPublic.AddClearButton(edit);
             edit.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
@@ -64,11 +49,13 @@ namespace PAO.Config.Editors
         }
 
         private void Edit_CustomDisplayText(object sender, DevExpress.XtraEditors.Controls.CustomDisplayTextEventArgs e) {
-            if(e.Value.IsNull()) {
+            if (e.Value.IsNull()) {
                 e.DisplayText = "[空]";
-            } else if(e.Value.GetType().IsAddonListType() || e.Value.GetType().IsAddonDictionaryType()){
+            }
+            else if (e.Value.GetType().IsAddonListType() || e.Value.GetType().IsAddonDictionaryType()) {
                 e.DisplayText = e.Value.GetType().GetTypeString();
-            } else {
+            }
+            else {
                 e.DisplayText = e.Value.ToString();
             }
         }
@@ -84,31 +71,18 @@ namespace PAO.Config.Editors
                 }
                 var editValue = edit.EditValue;
                 Type objectType = null;
-                if(PropertyDescriptor == null) {
+                if (PropertyDescriptor == null) {
                     objectType = editValue.GetType();
-                } else {
+                }
+                else {
                     objectType = PropertyDescriptor.PropertyType;
                 }
                 if (objectType == null) {
                     // 如果无法确定对象类型，则退出
                     return;
                 }
-                BaseEditControl editControl = null;
-                Type objectEditorControlType = ConfigPublic.GetEditControlType(objectType);
-                if (objectEditorControlType != null) {
-                    // 以预定义的编辑器对象优先
-                    editControl = objectEditorControlType.CreateInstance() as BaseEditControl;
-                }
-                else if (editValue is IList) {
-                    editControl = new ListEditControl();
-                }
-                else if (editValue is IDictionary) {
-                    editControl = new DictionaryEditControl();
-                }
-                else {
-                    editControl = new ObjectEditControl();
-                }
-
+                var editControl = OnCreateEditControl();
+                
                 if (edit.EditValue.IsNotNull()) {
                     editControl.EditValue = IOPublic.ObjectClone(editValue);
                     if (WinFormPublic.ShowDialog(editControl) == DialogReturn.OK) {
@@ -117,6 +91,5 @@ namespace PAO.Config.Editors
                 }
             }
         }
-        
     }
 }

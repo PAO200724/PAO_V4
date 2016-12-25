@@ -129,6 +129,7 @@
       <DependentUpon>PropertyView.cs</DependentUpon>
     </Compile>
     <Compile Include="EditControls\TypeEditorLayoutData.cs" />
+    <Compile Include="Editors\BaseObjectEditController.cs" />
     <Compile Include="ExtendConfigPublic.cs" />
     <Compile Include="Views\ObjectConfigController.cs" />
     <Compile Include="EditControls\AddonExtentionEditControl.cs">

@@ -21,11 +21,11 @@ namespace PAO.WinForm.Editors
     [DataContract(Namespace = "")]
     [Name("是否切换编辑器")]
     [Description("是否切换编辑器")]
-    public class ToggleSwitchController : BaseDevEditController
+    public class ToggleSwitchEditController : BaseDevEditController
     {
         #region 插件属性
         #endregion
-        public ToggleSwitchController() {
+        public ToggleSwitchEditController() {
         }
 
         protected override RepositoryItem OnCreateRepositoryItem() {
