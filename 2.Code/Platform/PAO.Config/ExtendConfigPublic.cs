@@ -61,20 +61,20 @@ namespace PAO.Config
         public static void RegisterEditors() {
             WinFormPublic.RegisterTypeConfig(typeof(PaoObject)
                 , TypeConfigInfo.Create()
-                    .AddProperty("ID", new GuidEditor()));
+                    .AddProperty("ID", new GuidEditController()));
 
             WinFormPublic.RegisterTypeConfig(typeof(AddonFactory<>)
                 , TypeConfigInfo.Create()
-                    .AddProperty("AddonID", new AddonIDEditor()));
+                    .AddProperty("AddonID", new AddonIDEditController()));
 
             WinFormPublic.RegisterTypeConfig(typeof(DataConnection)
                 , TypeConfigInfo.Create()
-                    .AddProperty("DbFactoryName", new DbFactoryEditor())
+                    .AddProperty("DbFactoryName", new DbFactoryEditController())
             );
 
             WinFormPublic.RegisterTypeConfig(typeof(DataCommandInfo)
                 , TypeConfigInfo.Create(typeof(DataCommandInfoEditControl))
-                    .AddProperty("Sql", new MemoExEditor())
+                    .AddProperty("Sql", new MemoExEditController())
             );
 
             WinFormPublic.RegisterTypeConfig(typeof(DataFilter)

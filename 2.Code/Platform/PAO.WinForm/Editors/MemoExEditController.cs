@@ -11,25 +11,25 @@ using PAO.WinForm;
 namespace PAO.WinForm.Editors
 {
     /// <summary>
-    /// 类：ColorEditor
-    /// 颜色编辑器
-    /// 颜色编辑器
+    /// 类：MemoExEditor
+    /// 下拉式多行文本编辑器
+    /// 下拉式用于编辑多行文本的编辑器
     /// 作者：PAO
     /// </summary>
     [Addon]
     [Serializable]
     [DataContract(Namespace = "")]
-    [Name("颜色编辑器")]
-    [Description("颜色编辑器")]
-    public class ColorEditor : BaseRepositoryItemEditor
+    [Name("下拉式多行文本编辑器")]
+    [Description("下拉式用于编辑多行文本的编辑器")]
+    public class MemoExEditController : BaseDevEditController
     {
         #region 插件属性
         #endregion
-        public ColorEditor() {
+        public MemoExEditController() {
         }
 
         protected override RepositoryItem OnCreateRepositoryItem() {
-            var edit = new RepositoryItemColorEdit();
+            var edit = new RepositoryItemMemoExEdit();
             WinFormPublic.AddClearButton(edit);
             return edit;
         }

@@ -11,25 +11,26 @@ using PAO.WinForm;
 namespace PAO.WinForm.Editors
 {
     /// <summary>
-    /// 类：CheckEditor
-    /// 组合框式复选框
-    /// 组合框式复选框
+    /// 类：DateEditor
+    /// 日期编辑器
+    /// 日期编辑器
     /// 作者：PAO
     /// </summary>
     [Addon]
     [Serializable]
     [DataContract(Namespace = "")]
-    [Name("组合框式复选框")]
-    [Description("组合框式复选框")]
-    public class CheckComboBoxEditor : BaseRepositoryItemEditor
+    [Name("日期编辑器")]
+    [Description("日期编辑器")]
+    public class DateEditController : BaseDevEditController
     {
         #region 插件属性
         #endregion
-        public CheckComboBoxEditor() {
+        public DateEditController() {
         }
 
         protected override RepositoryItem OnCreateRepositoryItem() {
-            var edit = new RepositoryItemCheckedComboBoxEdit();
+            var edit = new RepositoryItemDateEdit();
+            WinFormPublic.AddClearButton(edit);
             return edit;
         }
     }

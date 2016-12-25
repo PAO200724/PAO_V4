@@ -142,14 +142,14 @@ namespace PAO.Config
         /// </summary>
         /// <param name="propertyDescriptor">属性</param>
         /// <returns>编辑器</returns>
-        public static BaseEditor GetEditor(PropertyDescriptor propertyDescriptor, bool textEditorForNull = false) {
-            BaseEditor editor = null;
+        public static BaseEditController GetEditor(PropertyDescriptor propertyDescriptor, bool textEditorForNull = false) {
+            BaseEditController editor = null;
 
             // 如果属性是定义好了的扩展属性，则直接获取编辑器
             if (propertyDescriptor is ConfigPropertyDescriptor) {
                 var configProp = propertyDescriptor as ConfigPropertyDescriptor;
                 if (configProp.Editor != null) {
-                    editor = IOPublic.ObjectClone(configProp.Editor) as BaseEditor;
+                    editor = IOPublic.ObjectClone(configProp.Editor) as BaseEditController;
                 }
             }
 
@@ -167,7 +167,7 @@ namespace PAO.Config
             }
 
             if(textEditorForNull && editor == null) {
-                editor = new TextEditor();
+                editor = new TextEditController();
             }
 
             if (editor != null) {
@@ -180,37 +180,37 @@ namespace PAO.Config
         /// </summary>
         /// <param name="type">类型</param>
         /// <returns>编辑器</returns>
-        public static BaseEditor GetDefaultEditorByType(Type type) {
-            BaseEditor editor;
+        public static BaseEditController GetDefaultEditorByType(Type type) {
+            BaseEditController editor;
             if (type == typeof(string)) {
-                editor = new TextEditor();
+                editor = new TextEditController();
             }
             else if (type.IsEnum) {
-                editor = new EnumEditor();
+                editor = new EnumEditController();
             }
             else if (type == typeof(Color)) {
-                editor = new ColorPickEditor();
+                editor = new ColorPickEditController();
             }
             else if (type == typeof(Font)) {
                 editor = new FontEditor();
             }
             else if (type == typeof(DateTime)) {
-                editor = new DateEditor();
+                editor = new DateEditController();
             }
             else if (type == typeof(bool)) {
                 editor = new ToggleSwitchEditor();
             }
             else if (type == typeof(Image)) {
-                editor = new ImageEditor();
+                editor = new ImageEditController();
             }
             else if (type.IsNumberType()) {
-                editor = new TextEditor();
+                editor = new TextEditController();
             }
             else if (type == typeof(Guid)) {
-                editor = new GuidEditor();
+                editor = new GuidEditController();
             }
             else if (AddonPublic.IsAddon(type)) {
-                editor = new ObjectEditor();
+                editor = new ObjectEditController();
             }
             else {
                 return null;

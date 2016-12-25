@@ -53,8 +53,8 @@ namespace PAO.Config.EditControls
                 if (editor is BaseEditControl) {
                     return editor as BaseEditControl;
                 }
-                else if (editor is BaseEditor) {
-                    return editor.As<BaseEditor>().CreateEditControl();
+                else if (editor is BaseEditController) {
+                    return editor.As<BaseEditController>().CreateEditControl();
                 }
                 else {
                     throw new Exception("设置了不支持的编辑器类型").AddExceptionData("EditorType", editorType);

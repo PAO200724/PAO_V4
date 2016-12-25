@@ -94,7 +94,7 @@ namespace PAO.WinForm.Config
         /// <param name="editor">编辑器</param>
         /// <param name="browsable">可浏览</param>
         /// <returns>this</returns>
-        public TypeConfigInfo AddProperty(string property, string displayName = null, string description = null, BaseEditor editor = null, bool browsable = true) {
+        public TypeConfigInfo AddProperty(string property, string displayName = null, string description = null, BaseEditController editor = null, bool browsable = true) {
             if (PropertyConfigInfoList == null)
                 PropertyConfigInfoList = new Dictionary<string, Config.PropertyConfigInfo>();
 
@@ -122,7 +122,7 @@ namespace PAO.WinForm.Config
         /// <param name="property">属性</param>
         /// <param name="editor">编辑器</param>
         /// <returns>this</returns>
-        public TypeConfigInfo AddProperty(string property, BaseEditor editor) {
+        public TypeConfigInfo AddProperty(string property, BaseEditController editor) {
             return AddProperty(property, null, null, editor);
         }
 

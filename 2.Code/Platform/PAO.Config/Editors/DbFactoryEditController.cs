@@ -25,11 +25,11 @@ namespace PAO.Config.Editors
     [DataContract(Namespace = "")]
     [Name("数据工厂编辑器")]
     [Description("数据工厂的名称列表编辑器")]
-    public class DbFactoryEditor : BaseRepositoryItemEditor
+    public class DbFactoryEditController : BaseDevEditController
     {
         #region 插件属性
         #endregion
-        public DbFactoryEditor() {
+        public DbFactoryEditController() {
         }
 
         protected override RepositoryItem OnCreateRepositoryItem() {

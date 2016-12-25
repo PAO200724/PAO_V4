@@ -11,25 +11,28 @@ using PAO.WinForm;
 namespace PAO.WinForm.Editors
 {
     /// <summary>
-    /// 类：ToggleSwitchEditor
-    /// 是否切换编辑器
-    /// 是否切换编辑器
+    /// 类：TextEditor
+    /// 文本编辑器
+    /// 用于编辑文本的编辑器
     /// 作者：PAO
     /// </summary>
     [Addon]
     [Serializable]
     [DataContract(Namespace = "")]
-    [Name("是否切换编辑器")]
-    [Description("是否切换编辑器")]
-    public class ToggleSwitchEditor : BaseRepositoryItemEditor
+    [Name("文本编辑器")]
+    [Description("用于编辑文本的编辑器")]
+    public class TextEditController : BaseDevEditController
     {
         #region 插件属性
         #endregion
-        public ToggleSwitchEditor() {
+        public TextEditController() {
         }
 
         protected override RepositoryItem OnCreateRepositoryItem() {
-            var edit = new RepositoryItemToggleSwitch();
+            var edit = new RepositoryItemButtonEdit();
+            edit.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
+            edit.Buttons.RemoveAt(0);
+            WinFormPublic.AddClearButton(edit);
             return edit;
         }
     }

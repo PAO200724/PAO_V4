@@ -24,11 +24,11 @@ namespace PAO.WinForm.Editors
     [DataContract(Namespace = "")]
     [Name("GUID编辑器")]
     [Description("GUID编辑器")]
-    public class GuidEditor : BaseRepositoryItemEditor
+    public class GuidEditController : BaseDevEditController
     {
         #region 插件属性
         #endregion
-        public GuidEditor() {
+        public GuidEditController() {
         }
 
         protected override RepositoryItem OnCreateRepositoryItem() {

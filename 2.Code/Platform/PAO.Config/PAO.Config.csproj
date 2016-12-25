@@ -144,7 +144,7 @@
     <Compile Include="EditControls\DictionaryEditControl.Designer.cs">
       <DependentUpon>DictionaryEditControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Editors\ObjectEditor.cs" />
+    <Compile Include="Editors\ObjectEditController.cs" />
     <Compile Include="EditControls\DataCommandInfoEditControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -158,7 +158,7 @@
       <DependentUpon>DataFilterEditControl.cs</DependentUpon>
     </Compile>
     <Compile Include="EditControls\DataFilterInfo.cs" />
-    <Compile Include="Editors\DbFactoryEditor.cs" />
+    <Compile Include="Editors\DbFactoryEditController.cs" />
     <Compile Include="ListElement.cs" />
     <Compile Include="EditControls\ObjectEditControl.cs">
       <SubType>UserControl</SubType>
@@ -191,7 +191,7 @@
     <Compile Include="Controls\AddonSelectControl.Designer.cs">
       <DependentUpon>AddonSelectControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Editors\AddonIDEditor.cs" />
+    <Compile Include="Editors\AddonIDEditController.cs" />
     <Compile Include="Controls\AddonInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">

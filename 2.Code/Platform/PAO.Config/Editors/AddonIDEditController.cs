@@ -28,11 +28,11 @@ namespace PAO.Config.Editors
     [DataContract(Namespace = "")]
     [Name("插件ID编辑器")]
     [Description("在全局插件列表中选择插件ID的编辑器")]
-    public class AddonIDEditor : BaseRepositoryItemEditor
+    public class AddonIDEditController : BaseDevEditController
     {
         #region 插件属性
         #endregion
-        public AddonIDEditor() {
+        public AddonIDEditController() {
         }
 
         public Type AddonType { get; set; }

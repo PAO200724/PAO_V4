@@ -146,9 +146,9 @@ namespace PAO.Config.EditControls
 
                 if (editControl == null) {
                     // 此处第二个参数为true，确保了最少能创建一种编辑器
-                    BaseEditor editor = ConfigPublic.GetDefaultEditorByType(dataField.ObjectType);
+                    BaseEditController editor = ConfigPublic.GetDefaultEditorByType(dataField.ObjectType);
                     if (editor == null)
-                        editor = new TextEditor();
+                        editor = new TextEditController();
                     editControl = editor.CreateEditControl();
                 }
                 

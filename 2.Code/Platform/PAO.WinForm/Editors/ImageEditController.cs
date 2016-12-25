@@ -11,25 +11,25 @@ using PAO.WinForm;
 namespace PAO.WinForm.Editors
 {
     /// <summary>
-    /// 类：SpinEditor
-    /// 微调编辑器
-    /// 微调编辑器
+    /// 类：ImageEditor
+    /// 下拉式图片编辑器
+    /// 下拉式图片编辑器
     /// 作者：PAO
     /// </summary>
     [Addon]
     [Serializable]
     [DataContract(Namespace = "")]
-    [Name("微调编辑器")]
-    [Description("微调编辑器")]
-    public class SpinEditor : BaseRepositoryItemEditor
+    [Name("下拉式图片编辑器")]
+    [Description("下拉式图片编辑器")]
+    public class ImageEditController : BaseDevEditController
     {
         #region 插件属性
         #endregion
-        public SpinEditor() {
+        public ImageEditController() {
         }
 
         protected override RepositoryItem OnCreateRepositoryItem() {
-            var edit = new RepositoryItemSpinEdit();
+            var edit = new RepositoryItemImageEdit();
             WinFormPublic.AddClearButton(edit);
             return edit;
         }

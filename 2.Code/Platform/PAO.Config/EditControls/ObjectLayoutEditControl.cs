@@ -159,7 +159,7 @@ namespace PAO.Config.EditControls
                     }
                     else {
                         // 此处第二个参数为true，确保了最少能创建一种编辑器
-                        BaseEditor editor = ConfigPublic.GetEditor(configedPropDesc, true);
+                        BaseEditController editor = ConfigPublic.GetEditor(configedPropDesc, true);
                         editControl = editor.CreateEditControl();
                     }
                 }

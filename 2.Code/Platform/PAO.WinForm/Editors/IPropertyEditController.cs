@@ -16,7 +16,7 @@ namespace PAO.WinForm.Editors
     [Addon]
     [Name("属性编辑器")]
     [Description("属性编辑器接口")]
-    public interface IPropertyEditor
+    public interface IPropertyEditController
     {
         /// <summary>
         /// 创建RepositoryItem

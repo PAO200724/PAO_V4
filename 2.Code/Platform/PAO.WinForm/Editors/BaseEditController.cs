@@ -24,7 +24,7 @@ namespace PAO.WinForm.Editors
     [DataContract(Namespace = "")]
     [Name("编辑器")]
     [Description("编辑器基类")]
-    public abstract class BaseEditor : PaoObject, IPropertyEditor, ITypeEditor
+    public abstract class BaseEditController : PaoObject, IPropertyEditController, ITypeEditController
     {
         #region 插件属性
 
@@ -45,7 +45,7 @@ namespace PAO.WinForm.Editors
         }
         #endregion 属性：ReadOnly
         #endregion
-        public BaseEditor() {
+        public BaseEditController() {
             ReadOnly = false;
         }
 

@@ -21,11 +21,11 @@ namespace PAO.WinForm.Editors
     [DataContract(Namespace = "")]
     [Name("计算器式数字编辑器")]
     [Description("计算器式数字编辑器")]
-    public class CalcEditor : BaseRepositoryItemEditor
+    public class CalcEditController : BaseDevEditController
     {
         #region 插件属性
         #endregion
-        public CalcEditor() {
+        public CalcEditController() {
         }
 
         protected override RepositoryItem OnCreateRepositoryItem() {

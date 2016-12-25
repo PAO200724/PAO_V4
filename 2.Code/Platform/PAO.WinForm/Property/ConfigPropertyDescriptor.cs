@@ -73,7 +73,7 @@ namespace PAO.WinForm.Config
             }
         }
 
-        public BaseEditor Editor { get; set; }
+        public BaseEditController Editor { get; set; }
 
         public ConfigPropertyDescriptor(PropertyDescriptor origionPropertyDescriptor) : base(origionPropertyDescriptor) {
             OrigionPropertyDescriptor = origionPropertyDescriptor;

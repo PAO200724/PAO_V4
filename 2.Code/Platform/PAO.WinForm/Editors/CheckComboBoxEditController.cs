@@ -11,26 +11,25 @@ using PAO.WinForm;
 namespace PAO.WinForm.Editors
 {
     /// <summary>
-    /// 类：MemoEditor
-    /// 多行文本编辑器
-    /// 多行文本编辑器
+    /// 类：CheckEditor
+    /// 组合框式复选框
+    /// 组合框式复选框
     /// 作者：PAO
     /// </summary>
     [Addon]
     [Serializable]
     [DataContract(Namespace = "")]
-    [Name("多行文本编辑器")]
-    [Description("多行文本编辑器")]
-    public class MemoEditor : BaseRepositoryItemEditor
+    [Name("组合框式复选框")]
+    [Description("组合框式复选框")]
+    public class CheckComboBoxEditController : BaseDevEditController
     {
         #region 插件属性
         #endregion
-        public MemoEditor() {
+        public CheckComboBoxEditController() {
         }
 
         protected override RepositoryItem OnCreateRepositoryItem() {
-            var edit = new RepositoryItemMemoExEdit();
-            WinFormPublic.AddClearButton(edit);
+            var edit = new RepositoryItemCheckedComboBoxEdit();
             return edit;
         }
     }

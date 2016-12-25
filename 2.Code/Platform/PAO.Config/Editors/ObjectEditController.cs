@@ -28,11 +28,11 @@ namespace PAO.Config.Editors
     [DataContract(Namespace = "")]
     [Name("对象编辑器")]
     [Description("编辑对象的编辑器")]
-    public class ObjectEditor : BaseRepositoryItemEditor
+    public class ObjectEditController : BaseDevEditController
     {
         #region 插件属性
         #endregion
-        public ObjectEditor() {
+        public ObjectEditController() {
         }
 
         protected override RepositoryItem OnCreateRepositoryItem() {

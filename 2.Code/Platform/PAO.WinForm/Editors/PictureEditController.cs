@@ -11,26 +11,25 @@ using PAO.WinForm;
 namespace PAO.WinForm.Editors
 {
     /// <summary>
-    /// 类：MemoExEditor
-    /// 下拉式多行文本编辑器
-    /// 下拉式用于编辑多行文本的编辑器
+    /// 类：ImageEditor
+    /// 图片编辑器
+    /// 图片编辑器
     /// 作者：PAO
     /// </summary>
     [Addon]
     [Serializable]
     [DataContract(Namespace = "")]
-    [Name("下拉式多行文本编辑器")]
-    [Description("下拉式用于编辑多行文本的编辑器")]
-    public class MemoExEditor : BaseRepositoryItemEditor
+    [Name("图片编辑器")]
+    [Description("图片编辑器")]
+    public class PictureEditController : BaseDevEditController
     {
         #region 插件属性
         #endregion
-        public MemoExEditor() {
+        public PictureEditController() {
         }
 
         protected override RepositoryItem OnCreateRepositoryItem() {
-            var edit = new RepositoryItemMemoExEdit();
-            WinFormPublic.AddClearButton(edit);
+            var edit = new RepositoryItemPictureEdit();
             return edit;
         }
     }

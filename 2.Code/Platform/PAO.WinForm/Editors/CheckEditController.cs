@@ -11,25 +11,25 @@ using PAO.WinForm;
 namespace PAO.WinForm.Editors
 {
     /// <summary>
-    /// 类：ImageEditor
-    /// 图片编辑器
-    /// 图片编辑器
+    /// 类：CheckEditor
+    /// 复选框编辑器
+    /// 复选框编辑器
     /// 作者：PAO
     /// </summary>
     [Addon]
     [Serializable]
     [DataContract(Namespace = "")]
-    [Name("图片编辑器")]
-    [Description("图片编辑器")]
-    public class PictureEditor : BaseRepositoryItemEditor
+    [Name("复选框编辑器")]
+    [Description("复选框编辑器")]
+    public class CheckEditController : BaseDevEditController
     {
         #region 插件属性
         #endregion
-        public PictureEditor() {
+        public CheckEditController() {
         }
 
         protected override RepositoryItem OnCreateRepositoryItem() {
-            var edit = new RepositoryItemPictureEdit();
+            var edit = new RepositoryItemCheckEdit();
             return edit;
         }
     }

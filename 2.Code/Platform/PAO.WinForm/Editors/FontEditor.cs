@@ -21,7 +21,7 @@ namespace PAO.WinForm.Editors
     [DataContract(Namespace = "")]
     [Name("字体编辑器")]
     [Description("字体编辑器")]
-    public class FontEditor : BaseRepositoryItemEditor
+    public class FontEditor : BaseDevEditController
     {
         #region 插件属性
         #endregion

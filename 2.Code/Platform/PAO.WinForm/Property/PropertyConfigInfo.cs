@@ -66,7 +66,7 @@ namespace PAO.WinForm.Config
         [DataMember(EmitDefaultValue = false)]
         [Name("编辑器")]
         [Description("编辑器")]
-        public BaseEditor Editor {
+        public BaseEditController Editor {
             get;
             set;
         }
@@ -93,7 +93,7 @@ namespace PAO.WinForm.Config
             Browsable = true;
         }
 
-        public PropertyConfigInfo(string displayName,string description = null, BaseEditor editor = null, bool browsable = true) {
+        public PropertyConfigInfo(string displayName,string description = null, BaseEditController editor = null, bool browsable = true) {
             DisplayName = displayName;
             Description = description;
             Editor = editor;

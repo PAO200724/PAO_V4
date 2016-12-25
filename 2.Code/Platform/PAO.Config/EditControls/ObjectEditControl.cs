@@ -56,7 +56,7 @@ namespace PAO.Config.EditControls
          }
 
         private void PropertyGridControl_CustomRecordCellEdit(object sender, DevExpress.XtraVerticalGrid.Events.GetCustomRowCellEditEventArgs e) {
-            BaseEditor edit = null;
+            BaseEditController edit = null;
             var propDesc = PropertyGridControl.GetPropertyDescriptor(e.Row);
             if (propDesc == null)
                 return;
@@ -64,7 +64,7 @@ namespace PAO.Config.EditControls
             if(propDesc is ConfigPropertyDescriptor) {
                 var configProp = propDesc as ConfigPropertyDescriptor;
                 if(configProp.Editor != null) {
-                    edit = IOPublic.ObjectClone(configProp.Editor) as BaseEditor;
+                    edit = IOPublic.ObjectClone(configProp.Editor) as BaseEditController;
                 }
             }
 
@@ -74,7 +74,7 @@ namespace PAO.Config.EditControls
 
             if (edit == null) {
                 if(propDesc.PropertyType.IsDerivedFrom(typeof(PaoObject))) {
-                    edit = new ObjectEditor();
+                    edit = new ObjectEditController();
                 }
             }
 

@@ -21,11 +21,11 @@ namespace PAO.WinForm.Editors
     [DataContract(Namespace = "")]
     [Name("RepositoryItem编辑器")]
     [Description("RepositoryItem形式的编辑器")]
-    public abstract class BaseRepositoryItemEditor : BaseEditor
+    public abstract class BaseDevEditController : BaseEditController
     {
         #region 插件属性
         #endregion
-        public BaseRepositoryItemEditor() {
+        public BaseDevEditController() {
         }
 
         protected abstract RepositoryItem OnCreateRepositoryItem();

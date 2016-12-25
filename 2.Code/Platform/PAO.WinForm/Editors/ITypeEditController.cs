@@ -16,7 +16,7 @@ namespace PAO.WinForm.Editors
     [Addon]
     [Name("类型编辑器")]
     [Description("类型编辑器接口")]
-    public interface ITypeEditor
+    public interface ITypeEditController
     {
         /// <summary>
         /// 创建编辑控件

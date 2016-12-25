@@ -11,25 +11,25 @@ using PAO.WinForm;
 namespace PAO.WinForm.Editors
 {
     /// <summary>
-    /// 类：TimeEditor
-    /// 时间编辑器
-    /// 时间编辑器
+    /// 类：ColorPickEditor
+    /// 颜色提取编辑器
+    /// 颜色提取编辑器
     /// 作者：PAO
     /// </summary>
     [Addon]
     [Serializable]
     [DataContract(Namespace = "")]
-    [Name("时间编辑器")]
-    [Description("时间编辑器")]
-    public class TimeEditor : BaseRepositoryItemEditor
+    [Name("颜色提取编辑器")]
+    [Description("颜色提取编辑器")]
+    public class ColorPickEditController : BaseDevEditController
     {
         #region 插件属性
         #endregion
-        public TimeEditor() {
+        public ColorPickEditController() {
         }
 
         protected override RepositoryItem OnCreateRepositoryItem() {
-            var edit = new RepositoryItemTimeEdit();
+            var edit = new RepositoryItemColorPickEdit();
             WinFormPublic.AddClearButton(edit);
             return edit;
         }
