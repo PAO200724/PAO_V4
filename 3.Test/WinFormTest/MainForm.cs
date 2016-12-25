@@ -20,6 +20,7 @@ using PAO.Config.EditControls;
 using PAO.Remote.Tcp;
 using TestLibrary;
 using PAO.WinForm;
+using PAO.Data.Filters;
 
 namespace WinFormTest
 {
@@ -69,7 +70,7 @@ namespace WinFormTest
             var typeSelectControl = new TypeSelectControl();
             typeSelectControl.Initialize(p=>
             {
-                return p.IsDerivedFrom<IDataFilter>();
+                return p.IsDerivedFrom<DataFilter>();
             });
             UIPublic.CloseWaitingForm();
             WinFormPublic.ShowDialog(typeSelectControl);

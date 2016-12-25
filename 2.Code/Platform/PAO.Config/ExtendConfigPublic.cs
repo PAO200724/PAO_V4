@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using PAO.Data.Filters;
 
 namespace PAO.Config
 {
@@ -76,7 +77,7 @@ namespace PAO.Config
                     .AddProperty("Sql", new MemoExEditor())
             );
 
-            WinFormPublic.RegisterTypeConfig(typeof(IDataFilter)
+            WinFormPublic.RegisterTypeConfig(typeof(DataFilter)
                 , TypeConfigInfo.Create(typeof(DataFilterEditControl))
             );
 

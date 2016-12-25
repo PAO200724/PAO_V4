@@ -22,20 +22,20 @@ namespace PAO.Server
         {
             ID = "Command_QueryUser",
             Sql = @"SELECT * FROM T_User WHERE {0}",
-            DataFilter = new Filter("ID LIKE @ID")
-                & new Filter("Name LIKE @Name")
-                & new Filter("LoginName LIKE @LoginName")
-                & new Filter("Tel LIKE @Tel")
-                & new Filter("Email LIKE @Email"),
+            DataFilter = new Sql("ID LIKE @ID")
+                & new Sql("Name LIKE @Name")
+                & new Sql("LoginName LIKE @LoginName")
+                & new Sql("Tel LIKE @Tel")
+                & new Sql("Email LIKE @Email"),
         };
         private static readonly DataCommandInfo Command_QueryConfig = new DataCommandInfo()
         {
             ID = "Command_QueryConfig",
             Sql = @"SELECT * FROM T_Config WHERE {0}",
-            DataFilter = new Filter("SoftwareID LIKE @SoftwareID")
-                & new Filter("ComputerID LIKE @ComputerID")
-                & new Filter("ConfigName LIKE @ConfigName")
-                & new Filter("EnabledTime <= @TimeStart AND DisabledTime > @TimeEnd"),
+            DataFilter = new Sql("SoftwareID LIKE @SoftwareID")
+                & new Sql("ComputerID LIKE @ComputerID")
+                & new Sql("ConfigName LIKE @ConfigName")
+                & new Sql("EnabledTime <= @TimeStart AND DisabledTime > @TimeEnd"),
         };
         #endregion
 

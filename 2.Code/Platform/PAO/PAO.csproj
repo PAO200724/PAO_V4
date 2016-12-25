@@ -77,14 +77,13 @@
     <Compile Include="Data\DataPublic.cs" />
     <Compile Include="Data\DataService.cs" />
     <Compile Include="Data\Filters\And.cs" />
-    <Compile Include="Data\Filters\BaseDataFilter.cs" />
+    <Compile Include="Data\Filters\DataFilter.cs" />
     <Compile Include="Data\Filters\CompositeLogicFilter.cs" />
     <Compile Include="Data\Filters\Or.cs" />
-    <Compile Include="Data\Filters\Filter.cs" />
+    <Compile Include="Data\Filters\Sql.cs" />
     <Compile Include="Data\IDataConnection.cs" />
     <Compile Include="Data\IDataContainer.cs" />
     <Compile Include="Data\IDataFetch.cs" />
-    <Compile Include="Data\IDataFilter.cs" />
     <Compile Include="Data\IDataService.cs" />
     <Compile Include="Data\IDataView.cs" />
     <Compile Include="Data\IValueFetch.cs" />

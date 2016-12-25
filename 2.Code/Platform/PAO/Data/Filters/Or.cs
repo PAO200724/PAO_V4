@@ -23,25 +23,5 @@ namespace PAO.Data.Filters
         protected override string GetLogicSign() {
             return "OR";
         }
-
-        /// <summary>
-        /// 逻辑Anad
-        /// </summary>
-        /// <param name="dataFilter1">查询条件1</param>
-        /// <param name="dataFilter2">查询条件2</param>
-        /// <returns>组合条件</returns>
-        public static And operator &(Or dataFilter1, IDataFilter dataFilter2) {
-            return new And() { ChildFilters = new List<IDataFilter>().Append(dataFilter1).Append(dataFilter2) };
-        }
-
-        /// <summary>s
-        /// 逻辑Anad
-        /// </summary>
-        /// <param name="dataFilter1">查询条件1</param>
-        /// <param name="dataFilter2">查询条件2</param>
-        /// <returns>组合条件</returns>
-        public static Or operator |(Or dataFilter1, IDataFilter dataFilter2) {
-            return new Or() { ChildFilters = new List<IDataFilter>().Append(dataFilter1).Append(dataFilter2) };
-        }
     }
 }

@@ -18,7 +18,7 @@ namespace PAO.Data.Filters
     [Serializable]
     [Name("组合逻辑过滤器")]
     [Description("创建And逻辑表达式的过滤器")]
-    public abstract class CompositeLogicFilter : BaseDataFilter
+    public abstract class CompositeLogicFilter : DataFilter
     {
         #region 插件属性
         #region 属性:ChildFilters
@@ -31,7 +31,7 @@ namespace PAO.Data.Filters
         [DataMember(EmitDefaultValue = false)]
         [Name("子过滤器")]
         [Description("自过滤器列表")]
-        public List<IDataFilter> ChildFilters {
+        public List<DataFilter> ChildFilters {
             get;
             set;
         }
@@ -42,7 +42,7 @@ namespace PAO.Data.Filters
         /// 构造方法
         /// </summary>
         public CompositeLogicFilter() {
-            ChildFilters = new List<IDataFilter>();
+            ChildFilters = new List<DataFilter>();
         }
 
         /// <summary>

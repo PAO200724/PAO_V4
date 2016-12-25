@@ -31,7 +31,7 @@ namespace PAO.Config.EditControls
             this.ColumnFilter.ColumnEdit = new MemoExEditor().CreateRepositoryItem();
         }
 
-        private IDataFilter RootDataFilter;
+        private DataFilter RootDataFilter;
 
         private List<DataFilterInfo> FilterInfoList;
 
@@ -46,8 +46,8 @@ namespace PAO.Config.EditControls
                 FilterInfoList = new List<DataFilterInfo>();
                 this.BindingSourceDataFilter.DataSource = FilterInfoList;
                 if (value != null) {
-                    value.CheckType<IDataFilter>("DataFilterEditControl只支持IDataFilter类型的编辑");
-                    RootDataFilter = value as IDataFilter;
+                    value.CheckType<DataFilter>("DataFilterEditControl只支持IDataFilter类型的编辑");
+                    RootDataFilter = value as DataFilter;
                     InitByDataFilter(FilterInfoList, RootDataFilter, null);
                     this.TreeListDataFilter.ExpandAll();
                 }
@@ -69,12 +69,12 @@ namespace PAO.Config.EditControls
             return this.TreeListDataFilter.GetDataRecordByNode(focusedNode) as DataFilterInfo;
         }
 
-        private static void InitByDataFilter(List<DataFilterInfo> filterInfoList, IDataFilter dataFilter, string parentID) {
+        private static void InitByDataFilter(List<DataFilterInfo> filterInfoList, DataFilter dataFilter, string parentID) {
             if (dataFilter == null)
                 return;
 
             int imageIndex;
-            if (dataFilter is Filter)
+            if (dataFilter is Sql)
                 imageIndex = ImageIndex_SqlFilter;
             else if (dataFilter is And)
                 imageIndex = ImageIndex_AndFilter;
@@ -99,8 +99,8 @@ namespace PAO.Config.EditControls
             }
         }
 
-        private IDataFilter AddDataFilter(Type filterType, int imageIndex) {
-            var dataFilter = filterType.CreateInstance() as IDataFilter;
+        private DataFilter AddDataFilter(Type filterType, int imageIndex) {
+            var dataFilter = filterType.CreateInstance() as DataFilter;
             var dataFilterInfo = GetCurrentData();
             if (dataFilterInfo == null) {
                 RootDataFilter = dataFilter;
@@ -146,8 +146,8 @@ namespace PAO.Config.EditControls
             this.ButtonSql.Enabled = true;
             var dataFilterInfo = GetCurrentData();
             if (dataFilterInfo != null) {
-                var currentFilter = dataFilterInfo.DataFilter as IDataFilter;
-                if (currentFilter != null && currentFilter is Filter) {
+                var currentFilter = dataFilterInfo.DataFilter as DataFilter;
+                if (currentFilter != null && currentFilter is Sql) {
                     this.ButtonAnd.Enabled = false;
                     this.ButtonOr.Enabled = false;
                     this.ButtonSql.Enabled = false;
@@ -166,7 +166,7 @@ namespace PAO.Config.EditControls
         }
 
         private void ButtonSql_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            AddDataFilter(typeof(Filter), ImageIndex_SqlFilter);
+            AddDataFilter(typeof(Sql), ImageIndex_SqlFilter);
         }
 
         private void ButtonDelete_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {

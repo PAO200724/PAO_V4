@@ -7,6 +7,7 @@ using System.Text;
 using System.Data;
 using System.ComponentModel;
 using PAO.Properties;
+using PAO.Data.Filters;
 
 namespace PAO.Data
 {
@@ -265,7 +266,7 @@ namespace PAO.Data
         /// <param name="dataFilter">数据查询器</param>
         /// <param name="parameterList">参数</param>
         /// <returns>数据记录集</returns>
-        public DataTable QueryTableBySql(string sql, IDataFilter dataFilter, int startIndex, int maxCount, params DataField[] parameterList) {
+        public DataTable QueryTableBySql(string sql, DataFilter dataFilter, int startIndex, int maxCount, params DataField[] parameterList) {
             var commandInfo = new DataCommandInfo() { Sql = sql, DataFilter = dataFilter };
             var command = CreateDataCommand(commandInfo, parameterList);
             var dataTable = GetSchema(commandInfo);

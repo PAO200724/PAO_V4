@@ -15,6 +15,7 @@ using PAO.Remote.Tcp;
 using TestLibrary;
 using PAO.IO;
 using PAO.Config;
+using PAO.Data.Filters;
 
 namespace WinFormTest
 {
@@ -81,13 +82,13 @@ namespace WinFormTest
 
             Test("typeof(Factory<PaoObject>).IsAddon()", typeof(Factory<PaoObject>).IsAddon());
 
-            Test("typeof(Ref<IDataFilter>).IsAddon()", typeof(Ref<IDataFilter>).IsAddon());
+            Test("typeof(Ref<IDataFilter>).IsAddon()", typeof(Ref<DataFilter>).IsAddon());
 
-            Test("typeof(List<IDataFilter>).IsAddon()", typeof(List<IDataFilter>).IsAddon());
+            Test("typeof(List<IDataFilter>).IsAddon()", typeof(List<DataFilter>).IsAddon());
 
-            Test("typeof(List<Ref<IDataFilter>>).IsAddon()", typeof(List<Ref<IDataFilter>>).IsAddon());
+            Test("typeof(List<Ref<IDataFilter>>).IsAddon()", typeof(List<Ref<DataFilter>>).IsAddon());
 
-            Test("typeof(List<List<Ref<IDataFilter>>>).IsAddon()", typeof(List<List<Ref<IDataFilter>>>).IsAddon());
+            Test("typeof(List<List<Ref<IDataFilter>>>).IsAddon()", typeof(List<List<Ref<DataFilter>>>).IsAddon());
 
             Test("typeof(object).IsAddon()", typeof(object).IsAddon());
         }
@@ -115,8 +116,8 @@ namespace WinFormTest
 
             Test("typeof(List<PaoObject>).GetTypeString()", typeof(List<PaoObject>).GetTypeString());
             Test("typeof(Dictionary<string,PaoObject>).GetTypeString()", typeof(Dictionary<string, PaoObject>).GetTypeString());
-            Test("typeof(List<List<Ref<IDataFilter>>>).GetTypeString()", typeof(List<List<Ref<IDataFilter>>>).GetTypeString());
-            Test("typeof(List<Dictionary<string,Ref<IDataFilter>>>).GetTypeString()", typeof(List<Dictionary<string, Ref<IDataFilter>>>).GetTypeString());
+            Test("typeof(List<List<Ref<IDataFilter>>>).GetTypeString()", typeof(List<List<Ref<DataFilter>>>).GetTypeString());
+            Test("typeof(List<Dictionary<string,Ref<IDataFilter>>>).GetTypeString()", typeof(List<Dictionary<string, Ref<DataFilter>>>).GetTypeString());
         }
 
         private static void Test(string testString, object resultObject) {

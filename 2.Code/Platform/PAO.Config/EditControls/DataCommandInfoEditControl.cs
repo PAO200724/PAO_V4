@@ -10,6 +10,7 @@ using DevExpress.XtraEditors;
 using PAO.Config.EditControls;
 using PAO.Data;
 using PAO.WinForm;
+using PAO.Data.Filters;
 
 namespace PAO.Config.EditControls
 {
@@ -27,7 +28,7 @@ namespace PAO.Config.EditControls
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public override object EditValue {
             get {
-                DataCommandInfo.DataFilter = this.DataFilterEditControl.EditValue as IDataFilter;
+                DataCommandInfo.DataFilter = this.DataFilterEditControl.EditValue as DataFilter;
                 return DataCommandInfo;
             }
 

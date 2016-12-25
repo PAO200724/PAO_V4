@@ -20,11 +20,11 @@ namespace PAO.Config.EditControls
         }
         public string ParentID { get; set; }
         public int ImageIndex { get; set; }
-        public IDataFilter DataFilter { get; set; }
+        public DataFilter DataFilter { get; set; }
 
         public string Name {
             get {
-                if (DataFilter is Filter)
+                if (DataFilter is Sql)
                     return "SQL";
                 else if (DataFilter is And)
                     return "AND";
@@ -37,14 +37,14 @@ namespace PAO.Config.EditControls
         
         public string Sql {
             get {
-                if (DataFilter is Filter)
-                    return DataFilter.As<Filter>().Sql;
+                if (DataFilter is Sql)
+                    return DataFilter.As<Sql>().Filter;
                 return null;
             }
 
             set {
-                if (DataFilter is Filter)
-                    DataFilter.As<Filter>().Sql = value;
+                if (DataFilter is Sql)
+                    DataFilter.As<Sql>().Filter = value;
             }
         }
     }

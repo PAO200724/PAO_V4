@@ -7,6 +7,7 @@ using System.Data;
 using System.ComponentModel;
 using PAO.Properties;
 using System.Data.Common;
+using PAO.Data.Filters;
 
 namespace PAO.Data
 {
@@ -67,7 +68,7 @@ namespace PAO.Data
         [DataMember(EmitDefaultValue = false)]
         [Name("数据过滤器")]
         [Description("用于过滤数据的过滤器")]
-        public IDataFilter DataFilter {
+        public DataFilter DataFilter {
             get;
             set;
         }
