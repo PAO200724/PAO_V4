@@ -39,6 +39,8 @@ namespace PAO.Config.EditControls
         /// <summary>
         /// 对象类型
         /// </summary>
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Type ObjectType {
             get { return _ObjectType; }
             set { _ObjectType = value;
@@ -46,7 +48,8 @@ namespace PAO.Config.EditControls
             }
         }
 
-
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public override object EditValue {
             get {
                 return base.EditValue; 
@@ -56,8 +59,6 @@ namespace PAO.Config.EditControls
                 var valueString = "[未设置对象]";
                 if (value.IsNull())
                     value = null;
-                else if (value is IEnumerable)
-                    valueString = value.GetType().GetTypeString();
                 else
                     valueString = value.ToString();
 
@@ -74,7 +75,7 @@ namespace PAO.Config.EditControls
             }
         }
 
-        public override void OnClosing(DialogResult dialogResult, ref bool cancel) {
+        protected override bool OnClosing(DialogReturn dialogResult) {
             if(ObjectType != null) {
                 if (LayoutData.IsNull()) {
                     string typeID = ObjectType.FullName;
@@ -86,7 +87,7 @@ namespace PAO.Config.EditControls
                 LayoutData.LayoutData = this.DataLayoutControl.GetLayoutData();
                 ExtendAddonPublic.SetExtendLocalAddon(LayoutData);
             }
-            base.OnClosing(dialogResult, ref cancel);
+            return base.OnClosing(dialogResult);
         }
 
         private void GetTypeLayoutData() {

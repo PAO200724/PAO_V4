@@ -67,7 +67,7 @@ namespace PAO.WinForm.Forms
             if (ChildControl is DialogControl) {
                 var dialogControl = ChildControl as DialogControl;
                 bool cancel = e.Cancel;
-                dialogControl.OnClosing(DialogResult, ref cancel);
+                cancel = dialogControl.Close(WinFormPublic.DialogResultToDialogReturn(DialogResult));
                 e.Cancel = cancel;
             }
             base.OnClosing(e);

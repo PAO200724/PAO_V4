@@ -13,6 +13,8 @@ using PAO.Data;
 using PAO.WinForm;
 using DevExpress.XtraLayout;
 using PAO.Config;
+using PAO.WinForm.Controls;
+using PAO.UI;
 
 namespace PAO.Report.Controls
 {
@@ -20,7 +22,7 @@ namespace PAO.Report.Controls
     /// 报表数据表控件
     /// 作者：PAO
     /// </summary>
-    public partial class ReportTableControl : DevExpress.XtraEditors.XtraUserControl
+    public partial class ReportTableControl : ViewControl
     {
         public ReportTableControl() {
             InitializeComponent();
@@ -47,9 +49,7 @@ namespace PAO.Report.Controls
         /// 重新查询事件
         /// </summary>
         public event EventHandler ClearQueryBehavior;
-
-        private Dictionary<string, BaseEdit> ParameterControls;
-
+        
         private ReportDataTable _ReportDataTable;
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
@@ -90,6 +90,16 @@ namespace PAO.Report.Controls
             }
         }
 
+        protected override bool OnClosing(DialogReturn dialogResult) {
+            if (this.DataFieldsEditControl != null) {
+                if (this.DataFieldsEditControl.Close(dialogResult))
+                    return true;
+
+                _ReportDataTable.ParameterInputLayoutData = this.DataFieldsEditControl.LayoutData;
+            }
+            return base.OnClosing(dialogResult);
+        }
+
         public void StartQuery() {
             this.BarProgress.Visible = true;
             this.EditItemProgress.Stopped = false;
@@ -125,22 +135,11 @@ namespace PAO.Report.Controls
 
         public DataField[] ParameterValues {
             get {
-                if (ParameterControls == null)
+                var dataFields = DataFieldsEditControl.EditValue as IEnumerable<DataField>;
+                if (dataFields == null)
                     return null;
 
-                var fieldList = new List<DataField>();
-                foreach(var kv in ParameterControls) {
-                    if(kv.Value.EditValue != null) {
-                        var parameter = new DataField()
-                        {
-                            Name = kv.Key,
-                            Value = kv.Value.EditValue
-                        };
-                        fieldList.Add(parameter);
-                    }
-                }
-
-                return fieldList.ToArray();
+                return dataFields.ToArray();
             }
         }
 
@@ -148,42 +147,12 @@ namespace PAO.Report.Controls
         /// 创建参数输入控件
         /// </summary>
         private void RecreateParameterInputControls() {
-            LayoutControlGroupRoot.Items.Clear();
-            ParameterControls = new Dictionary<string, BaseEdit>();
-            foreach (var parameter in _ReportDataTable.QueryParameters) {
-                if (parameter.UserInput) {
-                    // 创建编辑控件
-                    RepositoryItem repositoryItem;
-                    if (parameter.Editor != null) {
-                        repositoryItem = parameter.Editor.CreateRepositoryItem();
-                    }
-                    else {
-                        Type valueType = DataPublic.GetNativeTypeByDbType(parameter.Type);
-                        var repositoryItemCreator = ConfigPublic.GetDefaultEditorByType(valueType);
-                        repositoryItem = repositoryItemCreator.CreateRepositoryItem();
-                    }
-                    var editor = repositoryItem.CreateEditor();
-                    editor.Name = parameter.ID;
-                    editor.Properties.Assign(repositoryItem);
-
-                    if (parameter.ValueFetcher != null) {
-                        editor.EditValue = parameter.ValueFetcher.Value.FetchValue();
-                    }
-                    else {
-                        editor.EditValue = null;
-                    }
-                    ParameterControls.Add(parameter.Name, editor);
-                    // 创建LayoutItem
-                    var layoutControlItem = LayoutControlGroupRoot.AddItem();
-                    layoutControlItem.Name = parameter.ID;
-                    layoutControlItem.Text = parameter.Caption;
-                    layoutControlItem.CustomizationFormText = parameter.Caption;
-                    layoutControlItem.TextLocation = DevExpress.Utils.Locations.Left;
-                    layoutControlItem.TextVisible = true;
-                    layoutControlItem.ShowInCustomizationForm = true;
-                    layoutControlItem.Control = editor;
-                    LayoutControl.Refresh();
-                }
+            if(ReportDataTable != null) {
+                this.DataFieldsEditControl.LayoutData = ReportDataTable.ParameterInputLayoutData;
+                this.DataFieldsEditControl.EditValue = ReportDataTable.GetParameters();
+            } else {
+                this.DataFieldsEditControl.LayoutData = null;
+                this.DataFieldsEditControl.EditValue = null;
             }
             this.Refresh();
         }

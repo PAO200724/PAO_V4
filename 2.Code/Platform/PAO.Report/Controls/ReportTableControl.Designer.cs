@@ -27,17 +27,15 @@
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReportTableControl));
-            DevExpress.Utils.SuperToolTip superToolTip7 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem7 = new DevExpress.Utils.ToolTipTitleItem();
-            DevExpress.Utils.ToolTipItem toolTipItem7 = new DevExpress.Utils.ToolTipItem();
-            DevExpress.Utils.SuperToolTip superToolTip8 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem8 = new DevExpress.Utils.ToolTipTitleItem();
-            DevExpress.Utils.ToolTipItem toolTipItem8 = new DevExpress.Utils.ToolTipItem();
-            DevExpress.Utils.SuperToolTip superToolTip9 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem9 = new DevExpress.Utils.ToolTipTitleItem();
-            DevExpress.Utils.ToolTipItem toolTipItem9 = new DevExpress.Utils.ToolTipItem();
-            this.LayoutControl = new DevExpress.XtraLayout.LayoutControl();
-            this.LayoutControlGroupRoot = new DevExpress.XtraLayout.LayoutControlGroup();
+            DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem1 = new DevExpress.Utils.ToolTipTitleItem();
+            DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
+            DevExpress.Utils.SuperToolTip superToolTip2 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem2 = new DevExpress.Utils.ToolTipTitleItem();
+            DevExpress.Utils.ToolTipItem toolTipItem2 = new DevExpress.Utils.ToolTipItem();
+            DevExpress.Utils.SuperToolTip superToolTip3 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem3 = new DevExpress.Utils.ToolTipTitleItem();
+            DevExpress.Utils.ToolTipItem toolTipItem3 = new DevExpress.Utils.ToolTipItem();
             this.BarManager = new DevExpress.XtraBars.BarManager(this.components);
             this.BarTools = new DevExpress.XtraBars.Bar();
             this.BarItemCount = new DevExpress.XtraBars.BarEditItem();
@@ -56,36 +54,11 @@
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.TimerAutoQuery = new System.Windows.Forms.Timer(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.LayoutControl)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.LayoutControlGroupRoot)).BeginInit();
+            this.DataFieldsEditControl = new PAO.Config.EditControls.DataFieldsEditControl();
             ((System.ComponentModel.ISupportInitialize)(this.BarManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextEditCount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.EditItemProgress)).BeginInit();
             this.SuspendLayout();
-            // 
-            // LayoutControl
-            // 
-            this.LayoutControl.AllowCustomization = false;
-            this.LayoutControl.AutoSize = true;
-            this.LayoutControl.Dock = System.Windows.Forms.DockStyle.Top;
-            this.LayoutControl.Location = new System.Drawing.Point(0, 60);
-            this.LayoutControl.Name = "LayoutControl";
-            this.LayoutControl.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(913, -910, 709, 661);
-            this.LayoutControl.Root = this.LayoutControlGroupRoot;
-            this.LayoutControl.Size = new System.Drawing.Size(290, 6);
-            this.LayoutControl.TabIndex = 3;
-            this.LayoutControl.Text = "布局控件";
-            // 
-            // LayoutControlGroupRoot
-            // 
-            this.LayoutControlGroupRoot.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
-            this.LayoutControlGroupRoot.GroupBordersVisible = false;
-            this.LayoutControlGroupRoot.Location = new System.Drawing.Point(0, 0);
-            this.LayoutControlGroupRoot.Name = "Root";
-            this.LayoutControlGroupRoot.Padding = new DevExpress.XtraLayout.Utils.Padding(3, 3, 3, 3);
-            this.LayoutControlGroupRoot.Size = new System.Drawing.Size(290, 6);
-            this.LayoutControlGroupRoot.Text = "根";
-            this.LayoutControlGroupRoot.TextVisible = false;
             // 
             // BarManager
             // 
@@ -151,12 +124,12 @@
             this.ButtonRequery.Glyph = ((System.Drawing.Image)(resources.GetObject("ButtonRequery.Glyph")));
             this.ButtonRequery.Id = 4;
             this.ButtonRequery.Name = "ButtonRequery";
-            toolTipTitleItem7.Text = "重新查询";
-            toolTipItem7.LeftIndent = 6;
-            toolTipItem7.Text = "清空数据后重新查询";
-            superToolTip7.Items.Add(toolTipTitleItem7);
-            superToolTip7.Items.Add(toolTipItem7);
-            this.ButtonRequery.SuperTip = superToolTip7;
+            toolTipTitleItem1.Text = "重新查询";
+            toolTipItem1.LeftIndent = 6;
+            toolTipItem1.Text = "清空数据后重新查询";
+            superToolTip1.Items.Add(toolTipTitleItem1);
+            superToolTip1.Items.Add(toolTipItem1);
+            this.ButtonRequery.SuperTip = superToolTip1;
             this.ButtonRequery.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonRequery_ItemClick);
             // 
             // ButtonMore
@@ -165,12 +138,12 @@
             this.ButtonMore.Glyph = global::PAO.Report.Properties.Resources.doublenext_16x16;
             this.ButtonMore.Id = 1;
             this.ButtonMore.Name = "ButtonMore";
-            toolTipTitleItem8.Text = "更多";
-            toolTipItem8.LeftIndent = 6;
-            toolTipItem8.Text = "查询更多的数据，耗时较短";
-            superToolTip8.Items.Add(toolTipTitleItem8);
-            superToolTip8.Items.Add(toolTipItem8);
-            this.ButtonMore.SuperTip = superToolTip8;
+            toolTipTitleItem2.Text = "更多";
+            toolTipItem2.LeftIndent = 6;
+            toolTipItem2.Text = "查询更多的数据，耗时较短";
+            superToolTip2.Items.Add(toolTipTitleItem2);
+            superToolTip2.Items.Add(toolTipItem2);
+            this.ButtonMore.SuperTip = superToolTip2;
             this.ButtonMore.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonMore_ItemClick);
             // 
             // ButtonAll
@@ -179,12 +152,12 @@
             this.ButtonAll.Glyph = global::PAO.Report.Properties.Resources.last_16x16;
             this.ButtonAll.Id = 2;
             this.ButtonAll.Name = "ButtonAll";
-            toolTipTitleItem9.Text = "所有";
-            toolTipItem9.LeftIndent = 6;
-            toolTipItem9.Text = "查询所有的数据，耗时较长";
-            superToolTip9.Items.Add(toolTipTitleItem9);
-            superToolTip9.Items.Add(toolTipItem9);
-            this.ButtonAll.SuperTip = superToolTip9;
+            toolTipTitleItem3.Text = "所有";
+            toolTipItem3.LeftIndent = 6;
+            toolTipItem3.Text = "查询所有的数据，耗时较长";
+            superToolTip3.Items.Add(toolTipTitleItem3);
+            superToolTip3.Items.Add(toolTipItem3);
+            this.ButtonAll.SuperTip = superToolTip3;
             this.ButtonAll.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonAll_ItemClick);
             // 
             // MenuSetup
@@ -271,20 +244,29 @@
             // 
             this.TimerAutoQuery.Tick += new System.EventHandler(this.TimerAutoQuery_Tick);
             // 
+            // DataFieldsEditControl
+            // 
+            this.DataFieldsEditControl.AutoSize = true;
+            this.DataFieldsEditControl.Dock = System.Windows.Forms.DockStyle.Top;
+            this.DataFieldsEditControl.Location = new System.Drawing.Point(0, 60);
+            this.DataFieldsEditControl.Name = "DataFieldsEditControl";
+            this.DataFieldsEditControl.ShowApplyButton = false;
+            this.DataFieldsEditControl.ShowCancelButton = true;
+            this.DataFieldsEditControl.Size = new System.Drawing.Size(290, 0);
+            this.DataFieldsEditControl.TabIndex = 8;
+            // 
             // ReportTableControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.Controls.Add(this.LayoutControl);
+            this.Controls.Add(this.DataFieldsEditControl);
             this.Controls.Add(this.barDockControlLeft);
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
             this.Name = "ReportTableControl";
             this.Size = new System.Drawing.Size(290, 157);
-            ((System.ComponentModel.ISupportInitialize)(this.LayoutControl)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.LayoutControlGroupRoot)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BarManager)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextEditCount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.EditItemProgress)).EndInit();
@@ -294,8 +276,6 @@
         }
 
         #endregion
-        private DevExpress.XtraLayout.LayoutControl LayoutControl;
-        private DevExpress.XtraLayout.LayoutControlGroup LayoutControlGroupRoot;
         private DevExpress.XtraBars.BarManager BarManager;
         private DevExpress.XtraBars.Bar BarTools;
         private DevExpress.XtraBars.BarDockControl barDockControlTop;
@@ -314,5 +294,6 @@
         private DevExpress.XtraBars.BarSubItem MenuSetup;
         private DevExpress.XtraBars.BarButtonItem ButtonQueryBehavior;
         private DevExpress.XtraBars.BarButtonItem ButtonClearQueryBehavior;
+        private Config.EditControls.DataFieldsEditControl DataFieldsEditControl;
     }
 }

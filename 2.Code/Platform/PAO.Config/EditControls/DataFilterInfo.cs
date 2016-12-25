@@ -51,13 +51,13 @@ namespace PAO.Config.EditControls
         public DbType DataType {
             get {
                 if (DataFilter is Filter)
-                    return DataFilter.As<Filter>().Type;
+                    return DataFilter.As<Filter>().DbType;
                 return DbType.String;
             }
 
             set {
                 if (DataFilter is Filter)
-                    DataFilter.As<Filter>().Type = value;
+                    DataFilter.As<Filter>().DbType = value;
             }
         }
 

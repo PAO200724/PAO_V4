@@ -99,6 +99,7 @@ namespace PAO.Configuration
                                 Tables = new List<ReportDataTable>()
                                     .Append(new ReportDataTable()
                                     {
+                                        ID = "Smart_Report_User",
                                         TableName = "User",
                                         Caption = "用户",
                                         DataFetcher = new RemoteDataServiceFetcher()
@@ -106,61 +107,6 @@ namespace PAO.Configuration
                                             DataService = new AddonFactory<IDataService>("CommonDataService"),
                                             CommandID = "Command_QueryUsers",
                                         }.ToRef(),
-                                        QueryParameters = new List<ReportQueryParameter>()
-                                            .Append(new ReportQueryParameter()
-                                            {
-                                                Name = "@ID",
-                                                Caption = "ID",
-                                                Type = System.Data.DbType.String,
-                                                UserInput = true
-                                            })
-                                            .Append(new ReportQueryParameter()
-                                            {
-                                                Name = "@LoginName",
-                                                Caption = "登录名",
-                                                Type = System.Data.DbType.String,
-                                                UserInput = true
-                                            })
-                                            .Append(new ReportQueryParameter()
-                                            {
-                                                Name = "@Name",
-                                                Caption = "姓名",
-                                                Type = System.Data.DbType.String,
-                                                UserInput = true
-                                            })
-                                            .Append(new ReportQueryParameter()
-                                            {
-                                                Name = "@Tel",
-                                                Caption = "电话",
-                                                Type = System.Data.DbType.String,
-                                                UserInput = true
-                                            })
-                                            .Append(new ReportQueryParameter()
-                                            {
-                                                Name = "@Email",
-                                                Caption = "电子邮箱",
-                                                Type = System.Data.DbType.String,
-                                                UserInput = true
-                                            }),
-                                        DataColumns = new List<ReportDataColumn>()
-                                            .Append(new ReportDataColumn()
-                                            {
-                                                Name = "ID",
-                                                Caption = "ID",
-                                                Type = System.Data.DbType.String
-                                            })
-                                            .Append(new ReportDataColumn()
-                                            {
-                                                Name = "LoginName",
-                                                Caption = "登录名",
-                                                Type = System.Data.DbType.String
-                                            })
-                                            .Append(new ReportDataColumn()
-                                            {
-                                                Name = "Name",
-                                                Caption = "姓名",
-                                                Type = System.Data.DbType.String
-                                            })
                                     }),
                                 Displayers = new List<Ref<BaseDataDisplayerController>>()
                                     .Append(new GridControlController()

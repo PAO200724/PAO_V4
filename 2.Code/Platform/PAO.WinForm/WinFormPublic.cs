@@ -62,6 +62,21 @@ namespace PAO.WinForm
             }
         }
 
+        public static DialogResult DialogReturnToDialogResult(DialogReturn dialogReturn) {
+            switch (dialogReturn) {
+                case DialogReturn.OK:
+                    return DialogResult.OK;
+                case DialogReturn.Cancel:
+                    return DialogResult.Cancel;
+                case DialogReturn.Yes:
+                    return DialogResult.Yes;
+                case DialogReturn.No:
+                    return DialogResult.No;
+                default:
+                    return DialogResult.None;
+            }
+        }
+
         public static DialogReturn ShowDialog(DialogControl childControl) {
             var dialog = new Dialog();
             dialog.OpenControl(childControl);

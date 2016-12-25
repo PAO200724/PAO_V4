@@ -25,6 +25,11 @@ namespace PAO.Data
         /// <returns>数据格式</returns>
         DataTable GetDataSchema();
         /// <summary>
+        /// 获取参数
+        /// </summary>
+        /// <returns>参数</returns>
+        DataField[] GetParameters();
+        /// <summary>
         /// 获取数据
         /// </summary>
         /// <param name="startIndex">其实索引</param>

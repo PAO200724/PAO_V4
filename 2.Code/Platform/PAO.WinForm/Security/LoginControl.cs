@@ -41,8 +41,8 @@ namespace PAO.WinForm.Security
             }
         }
 
-        public override void OnClosing(DialogResult dialogResult, ref bool cancel) {
-            if (dialogResult == DialogResult.OK) {
+        protected override bool OnClosing(DialogReturn dialogResult) {
+            if (dialogResult == DialogReturn.OK) {
                 try {
                     string hashPassword = null;
                     if (SecurtiyService == null)
@@ -56,10 +56,10 @@ namespace PAO.WinForm.Security
                     };
                 } catch (Exception err){
                     UIPublic.ShowExceptionDialog(err);
-                    cancel = true;
+                    return true;
                 }
             }
-            base.OnClosing(dialogResult, ref cancel);
+            return base.OnClosing(dialogResult);
         }
 
         private void HyperlinkLabelControlRegisterUser_HyperlinkClick(object sender, DevExpress.Utils.HyperlinkClickEventArgs e) {

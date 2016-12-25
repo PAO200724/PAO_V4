@@ -46,7 +46,7 @@ namespace PAO.Data.Filters
 
         public Filter( string sql, string paramterName, DbType parameterType= DbType.String) {
             Name = paramterName;
-            Type = parameterType;
+            DbType = parameterType;
             Sql = sql;
         }
 
@@ -54,7 +54,7 @@ namespace PAO.Data.Filters
             if (paramValues == null)
                 return null;
 
-            if (!paramValues.Any(p => (p.Name == Name && p.Value != null)))
+            if (!paramValues.Any(p => (p.Name == Name && p.Value.IsNotNullOrEmpty())))
                 return null;
 
             return Sql;

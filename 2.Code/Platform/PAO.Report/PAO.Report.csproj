@@ -138,11 +138,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="ReportDataColumn.cs" />
-    <Compile Include="ReportDataField.cs" />
     <Compile Include="ReportPublic.cs" />
     <Compile Include="ReportQueryBehavior.cs" />
-    <Compile Include="ReportQueryParameter.cs" />
     <Compile Include="ReportSurface.cs" />
     <Compile Include="ValueFetchers\ReportDataValueFetcher.cs" />
     <Compile Include="Views\ReportController.cs" />

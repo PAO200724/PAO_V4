@@ -101,12 +101,12 @@ namespace PAO.Config.EditControls
             form.WindowState = FormWindowState.Maximized;
         }
 
-        public override void OnClosing(DialogResult dialogResult, ref bool cancel) {
+        protected override bool OnClosing(DialogReturn dialogResult) {
             /// 保存
             if(ExtendPropertyStorage != null) {
                 ExtendPropertyStorage.Save();
             }
-            base.OnClosing(dialogResult, ref cancel);
+            return base.OnClosing(dialogResult);
         }
         #endregion
 

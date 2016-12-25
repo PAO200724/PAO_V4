@@ -95,38 +95,6 @@ namespace PAO.Report.Views
         }
         #endregion 属性：LayoutData
 
-        #region 属性：TestList
-        /// <summary>
-        /// 属性：TestList
-        /// 测试列表
-        /// 测试列表
-        /// </summary>
-        [AddonProperty]
-        [DataMember(EmitDefaultValue = false)]
-        [Name("测试列表")]
-        [Description("测试列表")]
-        public List<BaseController> TestList {
-            get;
-            set;
-        }
-        #endregion 属性：TestList
-
-        #region 属性：TestDict
-        /// <summary>
-        /// 属性：TestDict
-        /// 测试字典
-        /// 测试字典
-        /// </summary>
-        [AddonProperty]
-        [DataMember(EmitDefaultValue = false)]
-        [Name("测试字典")]
-        [Description("测试字典")]
-        public Dictionary<string, BaseController> TestDict {
-            get;
-            set;
-        }
-        #endregion 属性：TestDict
-
         #endregion
 
         public ReportController() {

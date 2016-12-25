@@ -143,29 +143,33 @@ namespace PAO.Data
             // 从Sql创建参数
             var paramNames = DataPublic.FindParameters(command.CommandText, ParamPrefix);
             foreach(var paramName in paramNames) {
-                if(!command.Parameters.Contains(paramName)) {
-                    var dbParam = command.CreateParameter();
-                    dbParam.ParameterName = paramName;
-                    // 设置类型
-                    var paramDefined = paramDefines.Where(p => p.Name == paramName).FirstOrDefault();
-                    if (paramDefined!=null) {
-                        dbParam.DbType = paramDefined.Type;
-                    } else {
-                        dbParam.DbType = DbType.String;
-                    }
-                    // 设置值
-                    parameterList = parameterList ?? new DataField[0];
-                    DataField paramField = null;
-                    if (parameterList != null) {
-                        paramField = parameterList.Where(p => p.Name == paramName).FirstOrDefault();
-                    }
-                    if(paramField != null) {
-                        dbParam.Value = paramField.Value;
-                    }
-                    command.Parameters.Add(dbParam);
+                // 如果参数列表中已经存在，则不再重复
+                if(command.Parameters.Contains(paramName)) {
+                    continue;
                 }
+
+                var dbParam = command.CreateParameter();
+                dbParam.ParameterName = paramName;
+                
+                // 从预定义参数列表中查找参数并设置类型
+                var paramDefined = paramDefines.Where(p => p.Name == paramName).FirstOrDefault();
+                if (paramDefined != null) {
+                    dbParam.DbType = paramDefined.DbType;
+                }
+                else {
+                    dbParam.DbType = DbType.String;
+                }
+
+                // 设置值
+                parameterList = parameterList ?? new DataField[0];
+                DataField paramField = null;
+                paramField = parameterList.Where(p => p.Name == paramName).FirstOrDefault();
+                if (paramField != null) {
+                    dbParam.Value = paramField.Value;
+                }
+                command.Parameters.Add(dbParam);
             }
-            
+
             return command;
         }
         /// <summary>
@@ -225,7 +229,11 @@ namespace PAO.Data
             var dataAdapter = CreateDataAdapter(commandInfo);
             try {
                 string sql = String.Format(@"SELECT * FROM ({0}) SCHEMA_TABLE WHERE 1=0", dataAdapter.SelectCommand.CommandText);
-                dataAdapter.SelectCommand.CommandText = sql;
+                var selectCommand = new DataCommandInfo()
+                {
+                    Sql = sql
+                };
+                dataAdapter.SelectCommand = CreateDataCommand(selectCommand);
                 dataAdapter.SelectCommand.Connection.Open();
 
                 DataSet dataSet = new DataSet();

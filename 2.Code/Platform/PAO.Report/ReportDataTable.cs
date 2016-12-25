@@ -1,4 +1,5 @@
 ﻿using PAO;
+using PAO.Config.EditControls;
 using PAO.Data;
 using System;
 using System.Collections.Generic;
@@ -83,7 +84,7 @@ namespace PAO.Report
         [DataMember(EmitDefaultValue = false)]
         [Name("数据字段")]
         [Description("数据列定义")]
-        public List<ReportDataColumn> DataColumns {
+        public List<DataField> DataColumns {
             get;
             set;
         }
@@ -93,17 +94,33 @@ namespace PAO.Report
         /// <summary>
         /// 属性：QueryParameters
         /// 查询参数
-        /// 查询用的参数
+        /// 查询参数
         /// </summary>
         [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
         [Name("查询参数")]
-        [Description("查询用的参数")]
-        public List<ReportQueryParameter> QueryParameters {
+        [Description("查询参数")]
+        public List<DataField> QueryParameters {
             get;
             set;
         }
-        #endregion 属性：QueryParameters        
+        #endregion 属性：QueryParameters
+
+        #region 属性：ParameterInputLayoutData
+        /// <summary>
+        /// 属性：ParameterInputLayoutData
+        /// 参数输入布局数据
+        /// 参数输入布局数据
+        /// </summary>
+        [AddonProperty]
+        [DataMember(EmitDefaultValue = false)]
+        [Name("参数输入布局数据")]
+        [Description("参数输入布局数据")]
+        public ObjectLayoutEditorLayoutData ParameterInputLayoutData {
+            get;
+            set;
+        }
+        #endregion 属性：ParameterInputLayoutData
 
         #region 属性：DataFetcher
         /// <summary>
@@ -122,6 +139,77 @@ namespace PAO.Report
         #endregion 属性：DataFetcher
         #endregion
         public ReportDataTable() {
+        }
+
+        /// <summary>
+        /// 获取格式表
+        /// DataColumns，则以其为准，否则，以DataColumns为准
+        /// </summary>
+        /// <returns>格式表</returns>
+        public DataTable GetSchemaTable() {
+            DataTable schemaTable = null;
+            if(DataFetcher.IsNotNull()) {
+                schemaTable = DataFetcher.Value.GetDataSchema();
+            } else {
+                schemaTable = new DataTable();
+            }
+
+            // 根据DataColumn填充DataChema
+            var columnSchemaTable = DataPublic.GetTableByFields(DataColumns);
+            if(columnSchemaTable != null) {
+                schemaTable.Merge(columnSchemaTable);
+            }
+            schemaTable.TableName = TableName;
+            return schemaTable;
+        }
+
+        /// <summary>
+        /// 获取格式表
+        /// DataColumns，则以其为准，否则，以DataColumns为准
+        /// </summary>
+        /// <returns>格式表</returns>
+        public IEnumerable<DataField> GetColumns() {
+            List<DataField> dataColumns = new List<DataField>(); ;
+            if (DataFetcher.IsNotNull()) {
+                var schemaTable = DataFetcher.Value.GetDataSchema();
+                var fields = DataPublic.GetFieldsByTable(schemaTable);
+                dataColumns.AddRange(fields);
+            }
+
+            if(DataColumns.IsNotNullOrEmpty()) {
+                foreach(DataField dataColumn in DataColumns) {
+                    var foundColumn = dataColumns.Where(p => p.Name == dataColumn.Name).FirstOrDefault();
+                    if (foundColumn != null)
+                        dataColumns.Remove(foundColumn);
+                    dataColumns.Add(dataColumn);
+                }
+            }
+            return dataColumns;
+        }
+
+        /// <summary>
+        /// 获取查询参数列表
+        /// 如果QueryParameters有值，则以其为准，否则，以DataFetcher为准
+        /// </summary>
+        /// <returns>查询参数列表</returns>
+        public IEnumerable<DataField> GetParameters() {
+            List<DataField> queryParameters = new List<DataField>();
+            if (DataFetcher.IsNotNull()) {
+                var parameters = DataFetcher.Value.GetParameters();
+                if (parameters.IsNotNullOrEmpty())
+                    queryParameters.AddRange(parameters);
+            }
+
+            if(QueryParameters.IsNotNullOrEmpty()) {
+                foreach(var parameter in QueryParameters) {
+                    var foundParam = queryParameters.Where(p => p.Name == parameter.Name).FirstOrDefault();
+                    if (foundParam != null) {
+                        queryParameters.Remove(foundParam);
+                    }
+                    queryParameters.Add(parameter);
+                }
+            }
+            return queryParameters;
         }
     }
 }

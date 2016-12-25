@@ -113,14 +113,14 @@ namespace PAO.App.MDI
 
             if(DockViews.IsNotNullOrEmpty()) {
                 foreach(var dockView in DockViews) {
-                    dockView.CloseView();
+                    dockView.Close(WinFormPublic.DialogResultToDialogReturn(DialogResult));
                 }
             }
 
             foreach(Document doc in this.TabbedView.Documents) {
                 var view = doc.Control as IView;
                 if (view != null) {
-                    view.CloseView();
+                    view.Close(WinFormPublic.DialogResultToDialogReturn(DialogResult));
                 }
             }
 
@@ -195,7 +195,7 @@ namespace PAO.App.MDI
         private void TabbedView_DocumentClosing(object sender, DevExpress.XtraBars.Docking2010.Views.DocumentCancelEventArgs e) {
             var view = e.Document.Control as IView;
             if (view != null) {
-                view.CloseView();
+                view.Close(WinFormPublic.DialogResultToDialogReturn(DialogResult.OK));
             }
         }
 

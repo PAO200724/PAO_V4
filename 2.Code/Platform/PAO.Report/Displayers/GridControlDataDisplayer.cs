@@ -128,11 +128,12 @@ namespace PAO.Report.Displayers
             MainView.SetLayoutData(controller.LayoutData);
         }
 
-        protected override void OnClosing() {
+        protected override bool OnClosing(DialogReturn dialogResult) {
             var controller = Controller as GridControlController;
             controller.GridViewType = GridViewType;
             controller.LayoutData = MainView.GetLayoutData();
             ExtendAddonPublic.SetAddonExtendProperties(controller, "GridViewType", "LayoutData");
+            return base.OnClosing(dialogResult);
         }
         
         protected override void OnExport(string fileName) {

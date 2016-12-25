@@ -10,6 +10,7 @@ using DevExpress.XtraEditors;
 using PAO.MVC;
 using System.Resources;
 using PAO.WinForm.Properties;
+using PAO.UI;
 
 namespace PAO.WinForm.Controls
 {
@@ -66,15 +67,6 @@ namespace PAO.WinForm.Controls
         public event EventHandler Closing;
 
         /// <summary>
-        /// 发出OnClosing事件
-        /// </summary>
-        public virtual void CloseView() {
-            if (Closing != null)
-                Closing(this, new EventArgs());
-            OnClosing();
-        }
-
-        /// <summary>
         /// 控制器
         /// </summary>
         private BaseController _Controller;
@@ -107,7 +99,9 @@ namespace PAO.WinForm.Controls
         protected virtual void SetControlStatus() {
 
         }
-        protected virtual void OnClosing() { }
+        protected virtual bool OnClosing(DialogReturn dialogResult) {
+            return false;
+        }
 
         /// <summary>
         /// 分发动作
@@ -119,6 +113,13 @@ namespace PAO.WinForm.Controls
             if(ViewContainer != null && ViewContainer.UIActionDispatcher != null) {
                 ViewContainer.UIActionDispatcher.DoUIAction(this, actionName, parameters, asyncRun);
             }
+        }
+
+        public bool Close(DialogReturn dialogReturn) {
+            if (Closing != null)
+                Closing(this, new EventArgs());
+
+            return OnClosing(dialogReturn);
         }
     }
 }

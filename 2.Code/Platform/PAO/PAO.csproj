@@ -105,6 +105,7 @@
     <Compile Include="AOP\ObjectRef.cs" />
     <Compile Include="AOP\PaoObject.cs" />
     <Compile Include="AOP\Ref.cs" />
+    <Compile Include="MVC\IClosable.cs" />
     <Compile Include="ObjectPublic.cs" />
     <Compile Include="NothingType.cs" />
     <Compile Include="IO\TextDataContractResolver.cs" />

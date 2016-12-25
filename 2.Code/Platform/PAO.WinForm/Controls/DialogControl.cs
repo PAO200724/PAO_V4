@@ -8,6 +8,7 @@ using System.Linq;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using PAO.MVC;
+using PAO.UI;
 
 namespace PAO.WinForm.Controls
 {
@@ -15,7 +16,7 @@ namespace PAO.WinForm.Controls
     /// 基础对话框控件
     /// 作者：刘丹
     /// </summary>
-    public partial class DialogControl : XtraUserControl
+    public partial class DialogControl : XtraUserControl, IClosable
     {
         public DialogControl() {
             InitializeComponent();
@@ -63,7 +64,8 @@ namespace PAO.WinForm.Controls
             base.OnLoad(e);
         }
 
-        public virtual void OnClosing(DialogResult dialogResult, ref bool cancel) {
+        protected virtual bool OnClosing(DialogReturn dialogResult) {
+            return false;
         }
 
         public virtual void SetFormState(Form form) {
@@ -80,6 +82,10 @@ namespace PAO.WinForm.Controls
         public virtual void Apply() {
             DataModified = false;
             FileDataModifyStateChangedEvent(DataModified);
+        }
+
+        public bool Close(DialogReturn dialogReturn) {
+            return OnClosing(dialogReturn);
         }
     }
 }

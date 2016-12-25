@@ -16,16 +16,12 @@ namespace PAO.MVC
     [Addon]
     [Name("文档接口")]
     [Description("所有视图都应该实现的接口")]
-    public interface IView : IUIItem
+    public interface IView : IUIItem, IClosable
     {
         /// <summary>
         /// 控制器
         /// </summary>
         BaseController Controller { get; set; }
-        /// <summary>
-        /// 关闭视图
-        /// </summary>
-        void CloseView();
         /// <summary>
         /// 关闭事件
         /// </summary>

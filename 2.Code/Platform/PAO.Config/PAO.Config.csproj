@@ -107,6 +107,12 @@
     <Compile Include="EditControls\ObjectContainerEditControl.Designer.cs">
       <DependentUpon>ObjectContainerEditControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="EditControls\DataFieldsEditControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="EditControls\DataFieldsEditControl.Designer.cs">
+      <DependentUpon>DataFieldsEditControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="EditControls\ObjectLayoutEditorLayoutData.cs" />
     <Compile Include="EditControls\ObjectEditMode.cs" />
     <Compile Include="EditControls\ObjectLayoutEditControl.cs">
@@ -228,6 +234,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="EditControls\ObjectEditControl.resx">
       <DependentUpon>ObjectEditControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditControls\DataFieldsEditControl.resx">
+      <DependentUpon>DataFieldsEditControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EditControls\ObjectLayoutEditControl.resx">
       <DependentUpon>ObjectLayoutEditControl.cs</DependentUpon>

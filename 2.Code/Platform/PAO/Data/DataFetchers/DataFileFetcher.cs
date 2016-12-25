@@ -76,5 +76,9 @@ namespace PAO.Data.DataFetchers
             var dataTable = DataTable;
             return dataTable;
         }
+
+        public DataField[] GetParameters() {
+            return null;
+        }
     }
 }

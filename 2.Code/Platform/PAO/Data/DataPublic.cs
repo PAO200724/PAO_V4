@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
+using System.Text.RegularExpressions; 
 
 namespace PAO.Data {
     /// <summary>
@@ -348,6 +348,81 @@ namespace PAO.Data {
             var matches = regex.Matches(sql);
             return matches.Cast<Match>().Select(p=>p.ToString());
         }
+        #endregion
+
+        #region DataFields
+        /// <summary>
+        /// 通过数据字段列表创建表
+        /// </summary>
+        /// <param name="dataFields">数据列列表</param>
+        /// <returns>数据表</returns>
+        public static DataTable GetTableByFields(IEnumerable<DataField> dataFields) {
+            if (dataFields == null)
+                return null;
+            var schemaTable = new DataTable();
+            var keyColumnList = new List<System.Data.DataColumn>();
+            foreach(var dataField in dataFields) {
+                var newColumn = schemaTable.Columns.Add();
+                DataFieldToDataColumn(dataField, newColumn);
+                if (dataField.IsKey) {
+                    keyColumnList.Add(newColumn);
+                }
+            }
+            if(keyColumnList.IsNotNullOrEmpty()) {
+                schemaTable.PrimaryKey = keyColumnList.ToArray();
+            }
+            return schemaTable;
+        }
+
+        /// <summary>
+        /// 根据表格获取数据字段列表
+        /// </summary>
+        /// <param name="dataTable">数据表</param>
+        /// <returns>数据列列表</returns>
+        public static IEnumerable<DataField> GetFieldsByTable(DataTable dataTable) {
+            if (dataTable == null)
+                return null;
+
+            var dataFields = new List<DataField>();
+            foreach(DataColumn dataColumn in dataTable.Columns) {
+                var newField = new DataField();
+                DataColumnToDataField(dataColumn, newField);
+                if (dataTable.PrimaryKey.Contains(dataColumn))
+                    newField.IsKey = true;
+                dataFields.Add(newField);
+            }
+
+            return dataFields;
+        }
+
+        /// <summary>
+        /// 将数据列转换为报表列
+        /// </summary>
+        /// <param name="dataColumns">数据列</param>
+        /// <param name="dataField">报表列</param>
+        public static void DataColumnToDataField(DataColumn dataColumn, DataField dataField) {
+            if (dataColumn == null || dataField == null)
+                return;
+
+            dataField.Name = dataColumn.ColumnName;
+            dataField.ObjectType = dataColumn.DataType;
+            dataField.Expression = dataColumn.Expression;
+        }
+
+        /// <summary>
+        /// 将数据列转换为报表列
+        /// </summary>
+        /// <param name="dataColumns">数据列</param>
+        /// <param name="dataField">报表列</param>
+        public static void DataFieldToDataColumn(DataField dataField, DataColumn dataColumn) {
+            if (dataColumn == null || dataField == null)
+                return;
+
+            dataColumn.ColumnName = dataField.Name;
+            dataColumn.DataType = dataField.ObjectType;
+            dataColumn.Expression = dataField.Expression;
+        }
+        
         #endregion
     }
 }

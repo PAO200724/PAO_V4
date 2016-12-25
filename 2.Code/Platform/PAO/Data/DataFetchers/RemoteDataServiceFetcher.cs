@@ -70,5 +70,10 @@ namespace PAO.Data.DataFetchers
             var dataService = DataService.Value;
             return dataService.GetSchema(CommandID);
         }
+
+        public DataField[] GetParameters() {
+            var dataService = DataService.Value;
+            return dataService.GetParameters(CommandID);
+        }
     }
 }

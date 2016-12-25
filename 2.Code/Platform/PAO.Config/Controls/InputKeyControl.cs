@@ -29,12 +29,12 @@ namespace PAO.Config.Controls
             form.FormBorderStyle = FormBorderStyle.FixedDialog;
         }
 
-        public override void OnClosing(DialogResult dialogResult, ref bool cancel) {
-            if(dialogResult == DialogResult.OK && KeyValue.IsNullOrEmpty()) {
+        protected override bool OnClosing(DialogReturn dialogResult) {
+            if (dialogResult == DialogReturn.OK && KeyValue.IsNullOrEmpty()) {
                 UIPublic.ShowWarningDialog("键值不能为空");
-                cancel = true;
-   
+                return true;
             }
+            return false;
         }
 
         public string KeyValue {

@@ -34,7 +34,7 @@ namespace PAO.Report.Views
     /// 作者：PAO
     /// </summary>
     [Icon(typeof(Resources), "report")]
-    public partial class ReportView : ViewControl, IViewContainer
+    public partial class ReportView : ViewControl, IViewContainer, IView
     {
         /// <summary>
         /// 数据集
@@ -72,7 +72,7 @@ namespace PAO.Report.Views
         private void InitValueFetcher() {
             var controller = Controller as ReportController;
             foreach (var reportTable in controller.Tables) {
-                foreach (var parameter in reportTable.QueryParameters) {
+                foreach (var parameter in reportTable.GetParameters()) {
                     if (parameter.ValueFetcher != null && parameter.ValueFetcher.Value is IReportElement) {
                         parameter.ValueFetcher.Value.As<IReportElement>().ReportView = this;
                     }
@@ -208,7 +208,6 @@ namespace PAO.Report.Views
                 if(reportTable.DataFetcher != null) {
                     // 获取数据格式
                     var dataSchema = reportTable.DataFetcher.Value.GetDataSchema();
-                    dataSchema = ReportPublic.RebuildReportTable(reportTable, dataSchema);
                     DataSource.Merge(dataSchema);
                     SetDataSource();
                 }
@@ -230,6 +229,7 @@ namespace PAO.Report.Views
             var controller = Controller as ReportController;
             TableControls = new Dictionary<string, Report.Controls.ReportTableControl>();
             foreach (var reportDataTable in controller.Tables) {
+                ExtendAddonPublic.GetAddonExtendProperties(reportDataTable);
                 var reportTableControl = new ReportTableControl();
                 reportTableControl.ReportDataTable = reportDataTable;
                 reportTableControl.Dock = DockStyle.Top;
@@ -353,19 +353,24 @@ namespace PAO.Report.Views
             }
         }
 
-        protected override void OnClosing() {
+        protected override bool OnClosing(DialogReturn dialogResult) {
+            foreach (var tableControl in TableControls.Values) {
+                if (tableControl.Close(dialogResult))
+                    return true;
+
+                ExtendAddonPublic.SetAddonExtendProperties(tableControl.ReportDataTable, "QueryBehavior", "ParameterInputLayoutData");
+            }
             if (ViewList.IsNotNullOrEmpty()) {
                 foreach (var view in ViewList) {
-                    view.CloseView();
+                    if (view.Close(dialogResult))
+                        return true;
                 }
             }
             var controller = Controller as ReportController;
             // 保存报表和数据的客户端设置
             controller.LayoutData = this.LayoutControl.GetLayoutData();
             ExtendAddonPublic.SetAddonExtendProperties(controller, "LayoutData", "QueryBehavior");
-            foreach(var reportTable in controller.Tables) {
-                ExtendAddonPublic.SetAddonExtendProperties(reportTable, "QueryBehavior");
-            }
+            return base.OnClosing(dialogResult);
         }
         #endregion
 

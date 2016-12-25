@@ -35,14 +35,12 @@ namespace PAO.Config.EditControls
             }.CreateRepositoryItem();
         }
 
-        [Browsable(false)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         private IDataFilter RootDataFilter;
 
-        [Browsable(false)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         private List<DataFilterInfo> FilterInfoList;
 
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public override object EditValue {
             get {
                 return RootDataFilter;
