@@ -21,7 +21,7 @@ namespace PAO.WinForm.Editors
     [DataContract(Namespace = "")]
     [Name("日期编辑器")]
     [Description("日期编辑器")]
-    public class DateEditor : BaseEditor
+    public class DateEditor : BaseRepositoryItemEditor
     {
         #region 插件属性
         #endregion

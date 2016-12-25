@@ -21,7 +21,7 @@ namespace PAO.WinForm.Editors
     [DataContract(Namespace = "")]
     [Name("多行文本编辑器")]
     [Description("多行文本编辑器")]
-    public class MemoEditor : BaseEditor
+    public class MemoEditor : BaseRepositoryItemEditor
     {
         #region 插件属性
         #endregion

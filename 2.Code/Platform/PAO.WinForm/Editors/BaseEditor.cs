@@ -24,7 +24,7 @@ namespace PAO.WinForm.Editors
     [DataContract(Namespace = "")]
     [Name("编辑器")]
     [Description("编辑器基类")]
-    public abstract class BaseEditor : PaoObject
+    public abstract class BaseEditor : PaoObject, IPropertyEditor, ITypeEditor
     {
         #region 插件属性
 
@@ -52,26 +52,8 @@ namespace PAO.WinForm.Editors
         [NonSerialized]
         public PropertyDescriptor PropertyDescriptor;
 
-        /// <summary>
-        /// 创建编辑器控件
-        /// </summary>
-        /// <returns></returns>
-        public BaseEdit CreateEditControl() {
-            var repositoryItem = OnCreateRepositoryItem();
-            var editor = repositoryItem.CreateEditor();
-            editor.Properties.Assign(repositoryItem);
-            return editor;
-        }
+        public abstract RepositoryItem CreateRepositoryItem();
 
-        protected abstract RepositoryItem OnCreateRepositoryItem();
-
-        public RepositoryItem CreateRepositoryItem() {
-            var repositoryItem = OnCreateRepositoryItem();
-            repositoryItem.ReadOnly = ReadOnly;
-            if(repositoryItem is RepositoryItemButtonEdit && repositoryItem.ReadOnly) {
-                repositoryItem.As<RepositoryItemButtonEdit>().Buttons.Clear();
-            }
-            return repositoryItem;
-        }
+        public abstract Control CreateEditControl();
     }
 }

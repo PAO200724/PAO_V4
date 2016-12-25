@@ -109,7 +109,7 @@ namespace PAO.WinForm
             fileDialog.FileName = fileName;
             fileDialog.Filter = filter;
             fileDialog.AddExtension = true;
-            if (fileDialog.IsNotNullOrEmpty())
+            if (fileName.IsNotNullOrEmpty())
                 fileDialog.InitialDirectory = Path.GetDirectoryName(fileName);
             var result = fileDialog.ShowDialog();
             fileName = fileDialog.FileName;

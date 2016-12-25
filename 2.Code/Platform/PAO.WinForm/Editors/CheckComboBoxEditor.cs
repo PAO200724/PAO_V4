@@ -21,7 +21,7 @@ namespace PAO.WinForm.Editors
     [DataContract(Namespace = "")]
     [Name("组合框式复选框")]
     [Description("组合框式复选框")]
-    public class CheckComboBoxEditor : BaseEditor
+    public class CheckComboBoxEditor : BaseRepositoryItemEditor
     {
         #region 插件属性
         #endregion

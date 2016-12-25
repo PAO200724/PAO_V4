@@ -28,7 +28,7 @@ namespace PAO.Config.Editors
     [DataContract(Namespace = "")]
     [Name("对象编辑器")]
     [Description("编辑对象的编辑器")]
-    public class ObjectEditor : BaseEditor
+    public class ObjectEditor : BaseRepositoryItemEditor
     {
         #region 插件属性
         #endregion

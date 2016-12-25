@@ -25,7 +25,7 @@ namespace PAO.Config.Editors
     [DataContract(Namespace = "")]
     [Name("数据工厂编辑器")]
     [Description("数据工厂的名称列表编辑器")]
-    public class DbFactoryEditor : BaseEditor
+    public class DbFactoryEditor : BaseRepositoryItemEditor
     {
         #region 插件属性
         #endregion

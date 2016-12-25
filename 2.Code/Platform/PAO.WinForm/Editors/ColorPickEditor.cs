@@ -21,7 +21,7 @@ namespace PAO.WinForm.Editors
     [DataContract(Namespace = "")]
     [Name("颜色提取编辑器")]
     [Description("颜色提取编辑器")]
-    public class ColorPickEditor : BaseEditor
+    public class ColorPickEditor : BaseRepositoryItemEditor
     {
         #region 插件属性
         #endregion

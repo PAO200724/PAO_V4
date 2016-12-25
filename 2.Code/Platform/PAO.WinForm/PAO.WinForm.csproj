@@ -97,6 +97,7 @@
       <DependentUpon>ImageControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Editors\BaseEditor.cs" />
+    <Compile Include="Editors\BaseRepositoryItemEditor.cs" />
     <Compile Include="Editors\CalcEditor.cs" />
     <Compile Include="Editors\CheckComboBoxEditor.cs" />
     <Compile Include="Editors\CheckEditor.cs" />
@@ -107,6 +108,8 @@
     <Compile Include="Editors\FontEditor.cs" />
     <Compile Include="Editors\GuidEditor.cs" />
     <Compile Include="Editors\ImageEditor.cs" />
+    <Compile Include="Editors\IPropertyEditor.cs" />
+    <Compile Include="Editors\ITypeEditor.cs" />
     <Compile Include="Editors\MemoEditor.cs" />
     <Compile Include="Editors\MemoExEditor.cs" />
     <Compile Include="Editors\PictureEditor.cs" />

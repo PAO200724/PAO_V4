@@ -21,7 +21,7 @@ namespace PAO.WinForm.Editors
     [DataContract(Namespace = "")]
     [Name("图片编辑器")]
     [Description("图片编辑器")]
-    public class PictureEditor : BaseEditor
+    public class PictureEditor : BaseRepositoryItemEditor
     {
         #region 插件属性
         #endregion
