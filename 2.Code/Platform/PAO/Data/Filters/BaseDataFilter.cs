@@ -31,10 +31,8 @@ namespace PAO.Data.Filters
 
         #region IDataFilter 成员
 
-        public abstract string GetFilterString(DataField[] paramValues);
-
-        public abstract DataField[] GetParameters();
-
+        public abstract string GetFilterString(DataField[] paramValues, bool ignoreNullValue);
+        
         #endregion
 
         /// <summary>

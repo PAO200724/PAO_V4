@@ -19,7 +19,7 @@ namespace PAO.Data.Filters
     [Serializable]
     [Name("Sql语句过滤器")]
     [Description("通过Sql语句生成过滤字符串")]
-    public class Filter : DataField, IDataFilter
+    public class Filter : BaseDataFilter, IDataFilter
     {
         #region 插件属性
         #region 属性:Sql
@@ -44,48 +44,39 @@ namespace PAO.Data.Filters
         public Filter() {
         }
 
-        public Filter( string sql, string paramterName, DbType parameterType= DbType.String) {
-            Name = paramterName;
-            DbType = parameterType;
+        public Filter( string sql) {
             Sql = sql;
         }
 
-        public virtual string GetFilterString(DataField[] paramValues) {
-            if (paramValues == null)
+        public override string GetFilterString(DataField[] paramValues, bool ignoreNullValue) {
+            if (ignoreNullValue && paramValues == null)
                 return null;
 
-            if (!paramValues.Any(p => (p.Name == Name && p.Value.IsNotNullOrEmpty())))
+            var parameters = GetParameters();
+
+            if (ignoreNullValue 
+                && !paramValues.Any(p => (parameters.Any(q=>q.Name == p.Name) && p.Value.IsNotNullOrEmpty())))
                 return null;
 
             return Sql;
         }
 
-        public virtual DataField[] GetParameters() {
-            return new DataField[] { this };
+        private DataField[] GetParameters() {
+            if (Sql.IsNull())
+                return null;
+
+            List<DataField> dataFields = new List<Data.DataField>();
+            var parameters = DataPublic.FindParameters(Sql);
+            foreach(var parameter in parameters) {
+                var dataField = new DataField(parameter);
+                dataFields.Add(dataField);
+            }
+            return dataFields.ToArray();
         }
 
         #region IDataFilter 成员
         
         #endregion
-
-        /// <summary>
-        /// 逻辑Anad
-        /// </summary>
-        /// <param name="dataFilter1">查询条件1</param>
-        /// <param name="dataFilter2">查询条件2</param>
-        /// <returns>组合条件</returns>
-        public static And operator &(Filter dataFilter1, IDataFilter dataFilter2) {
-            return new And() { ChildFilters = new List<IDataFilter>().Append(dataFilter1).Append(dataFilter2) };
-        }
-
-        /// <summary>s
-        /// 逻辑Anad
-        /// </summary>
-        /// <param name="dataFilter1">查询条件1</param>
-        /// <param name="dataFilter2">查询条件2</param>
-        /// <returns>组合条件</returns>
-        public static Or operator |(Filter dataFilter1, IDataFilter dataFilter2) {
-            return new Or() { ChildFilters = new List<IDataFilter>().Append(dataFilter1).Append(dataFilter2) };
-        }
+      
     }
 }

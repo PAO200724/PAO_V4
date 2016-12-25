@@ -25,13 +25,8 @@ namespace PAO.Data
         /// 获取过滤字符串
         /// </summary>
         /// <param name="paramValues">参数值</param>
+        /// <param name="ignoreNullValue">忽略空值</param>
         /// <returns>过滤字符串</returns>
-        string GetFilterString(DataField[] paramValues);
-
-        /// <summary>
-        /// 获取参数列表
-        /// </summary>
-        /// <returns>数据过滤器的参数列表</returns>
-        DataField[] GetParameters();
+        string GetFilterString(DataField[] paramValues, bool ignoreNullValue);
     }
 }

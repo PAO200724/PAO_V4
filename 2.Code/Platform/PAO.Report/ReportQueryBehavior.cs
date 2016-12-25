@@ -39,24 +39,7 @@ namespace PAO.Report
             set;
         }
         #endregion 属性：AutoQueryInterval
-
-        #region 属性：AsyncQuery
-        /// <summary>
-        /// 属性：AsyncQuery
-        /// 异步查询
-        /// 是否异步查询
-        /// </summary>
-        [AddonProperty]
-        [DefaultValue(true)]
-        [DataMember(EmitDefaultValue = false)]
-        [Name("异步查询")]
-        [Description("是否异步查询")]
-        public bool AsyncQuery {
-            get;
-            set;
-        }
-        #endregion 属性：AsyncQuery
-
+        
         #region 属性：QueryCountPerTime
         /// <summary>
         /// 属性：QueryCountPerTime
@@ -76,7 +59,6 @@ namespace PAO.Report
 
         #endregion
         public ReportQueryBehavior() {
-            AsyncQuery = true;
             AutoQueryInterval = 0;
             QueryCountPerTime = 100;
         }

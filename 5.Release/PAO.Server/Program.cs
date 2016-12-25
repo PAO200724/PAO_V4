@@ -18,15 +18,24 @@ namespace PAO.Server
     static class Program
     {
         #region Commands
-        private static readonly DataCommandInfo Command_QueryUsers = new DataCommandInfo()
+        private static readonly DataCommandInfo Command_QueryUser = new DataCommandInfo()
         {
-            ID = "Command_QueryUsers",
+            ID = "Command_QueryUser",
             Sql = @"SELECT * FROM T_User WHERE {0}",
-            DataFilter = new Filter("ID LIKE @ID", "@ID")
-                & new Filter("Name LIKE @Name", "@Name")
-                & new Filter("LoginName LIKE @LoginName", "@LoginName")
-                & new Filter("Tel LIKE @Tel", "@Tel")
-                & new Filter("Email LIKE @Email", "@Email")
+            DataFilter = new Filter("ID LIKE @ID")
+                & new Filter("Name LIKE @Name")
+                & new Filter("LoginName LIKE @LoginName")
+                & new Filter("Tel LIKE @Tel")
+                & new Filter("Email LIKE @Email")
+        };
+        private static readonly DataCommandInfo Command_QueryConfig = new DataCommandInfo()
+        {
+            ID = "Command_QueryConfig",
+            Sql = @"SELECT * FROM T_Config WHERE {0}",
+            DataFilter = new Filter("SoftwareID LIKE @SoftwareID")
+                & new Filter("ComputerID LIKE @ComputerID")
+                & new Filter("ConfigName LIKE @ConfigName")
+                & new Filter("EnabledTime <= @TimeStart AND DisabedTime > @TimeEnd"),
         };
         #endregion
 
@@ -81,11 +90,11 @@ namespace PAO.Server
                 {
                     ID = "PAO Db Connection",
                     DbFactoryName = "System.Data.SqlClient",
-                    ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\PAO.mdf;Integrated Security=True",
-                    ParamPrefix = "@",
+                    ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\PAO.mdf;Integrated Security=True"
                 }.ToRef(),
                 CommandList = new List<DataCommandInfo>()
-                    .Append(Command_QueryUsers)
+                    .Append(Command_QueryUser)
+                    .Append(Command_QueryConfig)
             };
         }
     }

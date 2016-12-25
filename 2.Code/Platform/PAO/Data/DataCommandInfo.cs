@@ -6,6 +6,7 @@ using System.Text;
 using System.Data;
 using System.ComponentModel;
 using PAO.Properties;
+using System.Data.Common;
 
 namespace PAO.Data
 {
@@ -72,6 +73,22 @@ namespace PAO.Data
         }
         #endregion 属性:DataFilter
 
+        #region 属性：Parameters
+        /// <summary>
+        /// 属性：Parameters
+        /// 参数定义
+        /// 参数定义
+        /// </summary>
+        [AddonProperty]
+        [DataMember(EmitDefaultValue = false)]
+        [Name("参数定义")]
+        [Description("参数定义")]
+        public List<DataField> Parameters {
+            get;
+            set;
+        }
+        #endregion 属性：Parameters
+
         #endregion
 
         const string TrueFilter = "1=1";
@@ -85,24 +102,85 @@ namespace PAO.Data
             return ObjectPublic.ObjectToString(this, null, "Name");
         }
 
-        public virtual string GetCommandText(params DataField[] parameterList) {
+        public virtual string GetCommandText(DataField[] parameterList, bool ignoreNullValue) {
             string filterString;
             if (DataFilter == null) {
                 return Sql;
             }
 
-            filterString = DataFilter.GetFilterString(parameterList);
+            filterString = DataFilter.GetFilterString(parameterList, ignoreNullValue);
             if (filterString.IsNullOrEmpty())
                 filterString = TrueFilter;
             
             return String.Format(Sql, filterString);
         }
+        
+        public virtual DataField[] GetDefinedParameters() {
+            List<DataField> parameters = new List<Data.DataField>();
 
-        public virtual DataField[] GetParameters() {
-            if (DataFilter == null)
-                return new DataField[0];
-            return DataFilter.GetParameters();
+            string sql = GetCommandText(null, false);
+            // 从Sql创建参数
+            var paramNames = DataPublic.FindParameters(sql);
+            foreach (var paramName in paramNames) {
+                // 如果参数列表中已经存在，则不再重复
+                if (parameters.Any(p => p.Name == paramName)) {
+                    continue;
+                }
+
+                var newParam = new DataField(paramName,DbType.String);
+
+                if(Parameters.IsNotNullOrEmpty()) {
+                    // 从预定义参数列表中查找参数并设置类型
+                    var paramDefined = Parameters.Where(p => p.Name == paramName).FirstOrDefault();
+                    if (paramDefined != null) {
+                        newParam.DbType = paramDefined.DbType;
+                    }
+                    else {
+                        newParam.DbType = DbType.String;
+                    }
+                }
+
+                parameters.Add(newParam);
+            }
+            return parameters.ToArray();
         }
 
+        public virtual void FillCommand(DbCommand command, DataField[] parameterList) {
+            command.CommandText = GetCommandText(parameterList, true);
+
+            string sql = GetCommandText(null, true);
+            // 从Sql创建参数
+            var paramNames = DataPublic.FindParameters(sql);
+            foreach (var paramName in paramNames) {
+                // 如果参数列表中已经存在，则不再重复
+                if (command.Parameters.Contains(paramName)) {
+                    continue;
+                }
+
+                var dbParam = command.CreateParameter();
+                dbParam.ParameterName = paramName;
+
+                if (Parameters.IsNotNullOrEmpty()) {
+                    // 从预定义参数列表中查找参数并设置类型
+                    var paramDefined = Parameters.Where(p => p.Name == paramName).FirstOrDefault();
+                    if (paramDefined != null) {
+                        dbParam.DbType = paramDefined.DbType;
+                    }
+                    else {
+                        dbParam.DbType = DbType.String;
+                    }
+                }
+
+                // 设置参数值
+                if(parameterList.IsNotNullOrEmpty()) {
+                    var paramValue = parameterList.Where(p => p.Name == paramName).FirstOrDefault();
+                    if (paramValue != null) {
+                        dbParam.Value = paramValue.Value;
+                    }
+                }
+
+                command.Parameters.Add(dbParam);
+            }
+        }
     }
 }

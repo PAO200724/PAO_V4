@@ -61,7 +61,9 @@ namespace PAO.Report.Controls
                 _ReportDataTable = value;
                 if (_ReportDataTable == null)
                     return;
-                
+
+                ExtendAddonPublic.GetAddonExtendProperties(_ReportDataTable);
+
                 RecreateParameterInputControls();
             }
         }
@@ -97,6 +99,7 @@ namespace PAO.Report.Controls
 
                 _ReportDataTable.ParameterInputLayoutData = this.DataFieldsEditControl.LayoutData;
             }
+            ExtendAddonPublic.SetAddonExtendProperties(_ReportDataTable, "QueryBehavior", "ParameterInputLayoutData");
             return base.OnClosing(dialogResult);
         }
 

@@ -55,28 +55,11 @@ namespace PAO.Data
             set;
         }
         #endregion 属性:ConnectionString
-
-        #region 属性：ParamPrefix
-        /// <summary>
-        /// 属性：ParamPrefix
-        /// 参数前缀
-        /// 参数的前缀字符
-        /// </summary>
-        [AddonProperty]
-        [DataMember(EmitDefaultValue = false)]
-        [Name("参数前缀")]
-        [Description("参数的前缀字符")]
-        public string ParamPrefix {
-            get;
-            set;
-        }
-        #endregion 属性：ParamPrefix
         #endregion
         /// <summary>
         /// 构造方法
         /// </summary>
         public DataConnection() {
-            ParamPrefix = "@";
         }
 
         public override string ToString() {
@@ -137,38 +120,7 @@ namespace PAO.Data
                 , params DataField[] parameterList) {
             DbCommand command = Factory.CreateCommand();
             command.Connection = CreateConnection();
-            command.CommandText = commandInfo.GetCommandText(parameterList);
-            var paramDefines = commandInfo.GetParameters();
-
-            // 从Sql创建参数
-            var paramNames = DataPublic.FindParameters(command.CommandText, ParamPrefix);
-            foreach(var paramName in paramNames) {
-                // 如果参数列表中已经存在，则不再重复
-                if(command.Parameters.Contains(paramName)) {
-                    continue;
-                }
-
-                var dbParam = command.CreateParameter();
-                dbParam.ParameterName = paramName;
-                
-                // 从预定义参数列表中查找参数并设置类型
-                var paramDefined = paramDefines.Where(p => p.Name == paramName).FirstOrDefault();
-                if (paramDefined != null) {
-                    dbParam.DbType = paramDefined.DbType;
-                }
-                else {
-                    dbParam.DbType = DbType.String;
-                }
-
-                // 设置值
-                parameterList = parameterList ?? new DataField[0];
-                DataField paramField = null;
-                paramField = parameterList.Where(p => p.Name == paramName).FirstOrDefault();
-                if (paramField != null) {
-                    dbParam.Value = paramField.Value;
-                }
-                command.Parameters.Add(dbParam);
-            }
+            commandInfo.FillCommand(command, parameterList);
 
             return command;
         }
@@ -251,7 +203,7 @@ namespace PAO.Data
         /// <param name="commandInfo">命令ID</param>
         /// <returns>参数列表</returns>
         public DataField[] GetParameters(DataCommandInfo commandInfo) {
-            return commandInfo.GetParameters();
+            return commandInfo.GetDefinedParameters();
         }
 
         /// <summary>

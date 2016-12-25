@@ -105,7 +105,17 @@ namespace PAO.Configuration
                                         DataFetcher = new RemoteDataServiceFetcher()
                                         {
                                             DataService = new AddonFactory<IDataService>("CommonDataService"),
-                                            CommandID = "Command_QueryUsers",
+                                            CommandID = "Command_QueryUser",
+                                        }.ToRef(),
+                                    }).Append(new ReportDataTable()
+                                    {
+                                        ID = "Smart_Report_Config",
+                                        TableName = "Config",
+                                        Caption = "配置",
+                                        DataFetcher = new RemoteDataServiceFetcher()
+                                        {
+                                            DataService = new AddonFactory<IDataService>("CommonDataService"),
+                                            CommandID = "Command_QueryConfig",
                                         }.ToRef(),
                                     }),
                                 Displayers = new List<Ref<BaseDataDisplayerController>>()

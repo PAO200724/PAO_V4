@@ -29,10 +29,6 @@ namespace PAO.Config.EditControls
         public DataFilterEditControl() {
             InitializeComponent();
             this.ColumnFilter.ColumnEdit = new MemoExEditor().CreateRepositoryItem();
-            this.ColumnDataType.ColumnEdit = new EnumEditor()
-            {
-                PropertyDescriptor = typeof(DataFilterInfo).GetPropertyDescriptor("DataType")
-            }.CreateRepositoryItem();
         }
 
         private IDataFilter RootDataFilter;

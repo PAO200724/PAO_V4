@@ -25,9 +25,10 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReportView));
-            this.BindingSourceTable = new System.Windows.Forms.BindingSource();
-            this.BarManager = new DevExpress.XtraBars.BarManager();
+            this.BindingSourceTable = new System.Windows.Forms.BindingSource(this.components);
+            this.BarManager = new DevExpress.XtraBars.BarManager(this.components);
             this.BarTools = new DevExpress.XtraBars.Bar();
             this.ButtonQuery = new DevExpress.XtraBars.BarButtonItem();
             this.MenuData = new DevExpress.XtraBars.BarSubItem();
@@ -46,7 +47,7 @@
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.DockManager = new DevExpress.XtraBars.Docking.DockManager();
+            this.DockManager = new DevExpress.XtraBars.Docking.DockManager(this.components);
             this.DockPanelTables = new DevExpress.XtraBars.Docking.DockPanel();
             this.DockPanelData_Container = new DevExpress.XtraBars.Docking.ControlContainer();
             this.AccordionControl = new DevExpress.XtraBars.Navigation.AccordionControl();
@@ -300,7 +301,7 @@
             this.AccordionControl.Name = "AccordionControl";
             this.AccordionControl.Size = new System.Drawing.Size(226, 469);
             this.AccordionControl.TabIndex = 0;
-            this.AccordionControl.Text = "accordionControl1";
+            this.AccordionControl.Text = "数据";
             // 
             // RepositoryItemTextEditCaption
             // 

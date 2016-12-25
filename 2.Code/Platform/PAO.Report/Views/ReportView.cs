@@ -26,6 +26,7 @@ using PAO.IO;
 using PAO.Config;
 using PAO.Config.DockViews;
 using PAO.Report.Properties;
+using System.Collections.Concurrent;
 
 namespace PAO.Report.Views
 {
@@ -49,6 +50,10 @@ namespace PAO.Report.Views
         /// </summary>
         private Dictionary<string, ReportTableControl> TableControls = new Dictionary<string, ReportTableControl>();
 
+        /// <summary>
+        /// 背景工作
+        /// </summary>
+        private List<BackgroundWorker> BackgroundWorkers = new List<BackgroundWorker>();
         /// <summary>
         /// UI动作分派器
         /// </summary>
@@ -168,24 +173,24 @@ namespace PAO.Report.Views
                     SetDataSource();
                 };
 
-                if(queryBehavior != null && !queryBehavior.AsyncQuery) {
-                    // 同步查询
+                // 异步查询(避免同步查询导致的死机问题)
+                var backgroundWorker = new BackgroundWorker();
+                backgroundWorker.DoWork += (s, e) =>
+                {
                     query();
+                };
+                backgroundWorker.RunWorkerCompleted += (s, e) =>
+                {
+                    // 如果背景线程已经取消，则不再执行后续工作
+                    if (backgroundWorker.CancellationPending)
+                        return;
 
                     queryComplete();
-                } else {
-                    // 异步查询
-                    var backgroundWorker = new BackgroundWorker();
-                    backgroundWorker.DoWork += (s, e) =>
-                    {
-                        query();
-                    };
-                    backgroundWorker.RunWorkerCompleted += (s, e) =>
-                    {
-                        queryComplete();
-                    };
-                    backgroundWorker.RunWorkerAsync();
-                }
+                    // 执行完毕后从包内移除
+                    BackgroundWorkers.Remove(backgroundWorker);
+                };
+                BackgroundWorkers.Add(backgroundWorker);
+                backgroundWorker.RunWorkerAsync();
             }
         }
 
@@ -207,8 +212,8 @@ namespace PAO.Report.Views
             foreach (var reportTable in controller.Tables) {
                 if(reportTable.DataFetcher != null) {
                     // 获取数据格式
-                    var dataSchema = reportTable.DataFetcher.Value.GetDataSchema();
-                    DataSource.Merge(dataSchema);
+                    var dataSchema = reportTable.GetSchemaTable();
+                    DataSource.Merge(dataSchema, true, MissingSchemaAction.AddWithKey);
                     SetDataSource();
                 }
             }
@@ -348,18 +353,20 @@ namespace PAO.Report.Views
             // 读取报表和数据的客户端设置
             ExtendAddonPublic.GetAddonExtendProperties(controller);
             this.LayoutControl.SetLayoutData(controller.LayoutData);
-            foreach (var reportTable in controller.Tables) {
-                ExtendAddonPublic.GetAddonExtendProperties(reportTable);
-            }
         }
 
         protected override bool OnClosing(DialogReturn dialogResult) {
+            // 杀掉背景线程
+            while(BackgroundWorkers.Count > 0) {
+                var backgroundWorker = BackgroundWorkers[0];
+                BackgroundWorkers.RemoveAt(0);
+                backgroundWorker.CancelAsync();
+            }
             foreach (var tableControl in TableControls.Values) {
                 if (tableControl.Close(dialogResult))
                     return true;
-
-                ExtendAddonPublic.SetAddonExtendProperties(tableControl.ReportDataTable, "QueryBehavior", "ParameterInputLayoutData");
             }
+            
             if (ViewList.IsNotNullOrEmpty()) {
                 foreach (var view in ViewList) {
                     if (view.Close(dialogResult))

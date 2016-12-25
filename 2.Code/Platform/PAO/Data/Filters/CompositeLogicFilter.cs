@@ -51,11 +51,11 @@ namespace PAO.Data.Filters
         /// <returns>逻辑运算符</returns>
         protected abstract string GetLogicSign();
 
-        public override string GetFilterString(DataField[] paramValues) {
+        public override string GetFilterString(DataField[] paramValues, bool ignoreNullValue) {
             string sql = null;
 
             foreach (var dataFilter in ChildFilters) {
-                string childSql = dataFilter.GetFilterString(paramValues);
+                string childSql = dataFilter.GetFilterString(paramValues, ignoreNullValue);
                 if (childSql != null) {
                     if (sql != null)
                         sql += String.Format(" {0} ({1})", GetLogicSign(), childSql);
@@ -65,15 +65,6 @@ namespace PAO.Data.Filters
             }
 
             return sql;
-        }
-
-        public override DataField[] GetParameters() {
-            IEnumerable<DataField> dataField = new List<DataField>();
-
-            foreach (var dataFilter in ChildFilters) {
-                dataField = dataField.Union(dataFilter.GetParameters());
-            }
-            return dataField.ToArray();
         }
     }
 }

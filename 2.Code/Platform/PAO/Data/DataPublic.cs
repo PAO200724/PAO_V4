@@ -16,6 +16,13 @@ namespace PAO.Data {
         /// 默认数据连接
         /// </summary>
         public static DataConnection DataConnection;
+        /// <summary>
+        /// 参数前缀列表
+        /// </summary>
+        public static readonly string[] ParamPrefixes = new string[]
+        {
+                "@", ":"
+        };
 
         #region 数据类型
         public const string INT = "INT";
@@ -343,8 +350,12 @@ namespace PAO.Data {
         /// <param name="sql">sql语句</param>
         /// <param name="paramPrefix">参数前缀</param>
         /// <returns>参数名称列表</returns>
-        public static IEnumerable<string> FindParameters(string sql, string paramPrefix) {
-            Regex regex = new Regex(String.Format(@"{0}\w+", paramPrefix));
+        public static IEnumerable<string> FindParameters(string sql) {
+            string paramPrefixString = "";
+            foreach(var paramPrefix in ParamPrefixes) {
+                paramPrefixString += paramPrefix;
+            }
+            Regex regex = new Regex(String.Format(@"[{0}]\w+", paramPrefixString));
             var matches = regex.Matches(sql);
             return matches.Cast<Match>().Select(p=>p.ToString());
         }

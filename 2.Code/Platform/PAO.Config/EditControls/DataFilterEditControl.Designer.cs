@@ -38,9 +38,7 @@
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.TreeListDataFilter = new DevExpress.XtraTreeList.TreeList();
             this.ColumnName = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.ColumnArgument = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.ColumnFilter = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.ColumnDataType = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.BindingSourceDataFilter = new System.Windows.Forms.BindingSource();
             this.ImageCollectionDataFilter = new DevExpress.Utils.ImageCollection();
             ((System.ComponentModel.ISupportInitialize)(this.BarManager)).BeginInit();
@@ -142,9 +140,7 @@
             // 
             this.TreeListDataFilter.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
             this.ColumnName,
-            this.ColumnArgument,
-            this.ColumnFilter,
-            this.ColumnDataType});
+            this.ColumnFilter});
             this.TreeListDataFilter.DataSource = this.BindingSourceDataFilter;
             this.TreeListDataFilter.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TreeListDataFilter.Location = new System.Drawing.Point(0, 31);
@@ -166,18 +162,10 @@
             this.ColumnName.FieldName = "Name";
             this.ColumnName.MinWidth = 33;
             this.ColumnName.Name = "ColumnName";
+            this.ColumnName.OptionsColumn.FixedWidth = true;
             this.ColumnName.Visible = true;
             this.ColumnName.VisibleIndex = 0;
-            this.ColumnName.Width = 147;
-            // 
-            // ColumnArgument
-            // 
-            this.ColumnArgument.Caption = "参数";
-            this.ColumnArgument.FieldName = "ParameterName";
-            this.ColumnArgument.Name = "ColumnArgument";
-            this.ColumnArgument.Visible = true;
-            this.ColumnArgument.VisibleIndex = 1;
-            this.ColumnArgument.Width = 126;
+            this.ColumnName.Width = 160;
             // 
             // ColumnFilter
             // 
@@ -185,19 +173,8 @@
             this.ColumnFilter.FieldName = "Sql";
             this.ColumnFilter.Name = "ColumnFilter";
             this.ColumnFilter.Visible = true;
-            this.ColumnFilter.VisibleIndex = 3;
-            this.ColumnFilter.Width = 159;
-            // 
-            // ColumnDataType
-            // 
-            this.ColumnDataType.AppearanceCell.Options.UseTextOptions = true;
-            this.ColumnDataType.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
-            this.ColumnDataType.Caption = "数据类型";
-            this.ColumnDataType.FieldName = "DataType";
-            this.ColumnDataType.Name = "ColumnDataType";
-            this.ColumnDataType.Visible = true;
-            this.ColumnDataType.VisibleIndex = 2;
-            this.ColumnDataType.Width = 112;
+            this.ColumnFilter.VisibleIndex = 1;
+            this.ColumnFilter.Width = 614;
             // 
             // BindingSourceDataFilter
             // 
@@ -240,10 +217,8 @@
         private DevExpress.XtraBars.BarDockControl barDockControlRight;
         private DevExpress.XtraTreeList.TreeList TreeListDataFilter;
         private DevExpress.XtraTreeList.Columns.TreeListColumn ColumnName;
-        private DevExpress.XtraTreeList.Columns.TreeListColumn ColumnArgument;
         private DevExpress.XtraTreeList.Columns.TreeListColumn ColumnFilter;
         private DevExpress.Utils.ImageCollection ImageCollectionDataFilter;
-        private DevExpress.XtraTreeList.Columns.TreeListColumn ColumnDataType;
         private DevExpress.XtraBars.BarButtonItem ButtonAnd;
         private DevExpress.XtraBars.BarButtonItem ButtonOr;
         private DevExpress.XtraBars.BarButtonItem ButtonSql;

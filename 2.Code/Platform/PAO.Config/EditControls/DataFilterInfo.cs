@@ -34,33 +34,7 @@ namespace PAO.Config.EditControls
                     throw new Exception("不支持的过滤器类型").AddExceptionData("过滤器", DataFilter);
             }
         }
-
-
-        public string ParameterName {
-            get {
-                if (DataFilter is Filter)
-                    return DataFilter.As<Filter>().Name;
-                return null;
-            }
-
-            set {
-                if (DataFilter is Filter)
-                    DataFilter.As<Filter>().Name = value;
-            }
-        }
-        public DbType DataType {
-            get {
-                if (DataFilter is Filter)
-                    return DataFilter.As<Filter>().DbType;
-                return DbType.String;
-            }
-
-            set {
-                if (DataFilter is Filter)
-                    DataFilter.As<Filter>().DbType = value;
-            }
-        }
-
+        
         public string Sql {
             get {
                 if (DataFilter is Filter)
