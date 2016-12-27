@@ -92,7 +92,7 @@ namespace PAO.Config
             string dirName = Path.GetDirectoryName(FilePath);
             string backupFileName = Path.Combine(dirName, Guid.NewGuid().ToString() + "." + fileName);
 
-            File.Copy(FilePath, backupFileName);
+            File.Move(FilePath, backupFileName);
         }
 
         /// <summary>

@@ -42,6 +42,15 @@ namespace PAO.Config.Editor
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public object Key { get; set; }
 
+
+        /// <summary>
+        /// 对象类型
+        /// </summary>
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public Type ObjectType { get; set; }
+
+
         private BaseEditControl _EditControl;
         /// <summary>
         /// 编辑控件
@@ -102,9 +111,11 @@ namespace PAO.Config.Editor
             InitializeComponent();
         }
 
-        public void StartEditObject(BaseEditControl editControl) {
+        #region StartEditXXX
+        public void StartEditObject(Type objectType, BaseEditControl editControl) {
             EditMode = ObjectEditMode.Object;
             EditControl = editControl;
+            ObjectType = objectType;
         }
 
         public void StartEditProperty(object componentObject, string propertyName, BaseEditControl editControl) {
@@ -127,6 +138,7 @@ namespace PAO.Config.Editor
             ComponentObject = componentObject;
             Key = key;
         }
+        #endregion
 
         private void InitEditControl() {
             if(EditControl != null)
@@ -181,12 +193,12 @@ namespace PAO.Config.Editor
         }
 
         private void ButtonCreate_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+            object newObject = null;
+            var editValue = EditValue;
             switch (EditMode) {
                 case ObjectEditMode.Property:
                     var propertyName = (string)Key;
                     var property = ComponentObject.GetType().GetProperty(propertyName);
-                    object newObject = null;
-                    var editValue = EditValue;
                     if (ConfigPublic.CreateNewAddonValue(property.PropertyType
                         , false
                         , out newObject)) {
@@ -198,6 +210,17 @@ namespace PAO.Config.Editor
                 case ObjectEditMode.DictionaryElement:
                     if (ConfigPublic.CreateNewAddonValue(ComponentObject.GetType()
                         , true
+                        , out newObject)) {
+                        EditValue = newObject;
+                        SetComponentPropertyValue();
+                    }
+                    break;
+                case ObjectEditMode.Object:
+                    var objectType = ObjectType;
+                    if (objectType == null)
+                        objectType = typeof(PaoObject);
+                    if (ConfigPublic.CreateNewAddonValue(objectType
+                        , false
                         , out newObject)) {
                         EditValue = newObject;
                         SetComponentPropertyValue();
