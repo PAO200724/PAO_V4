@@ -30,7 +30,7 @@ using DevExpress.XtraScheduler;
 using DevExpress.XtraSpreadsheet;
 using PAO.WinForm.Controls;
 using System.ComponentModel;
-using PAO.WinForm.Editors;
+using PAO.WinForm.Editor;
 using PAO.WinForm.Config;
 using PAO.Event;
 using PAO.IO;

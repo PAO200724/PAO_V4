@@ -16,7 +16,7 @@ using PAO.Config;
 using PAO.App;
 using PAO.Config.Controls;
 using PAO.Data;
-using PAO.Config.EditControls;
+using PAO.Config.Editor;
 using PAO.Remote.Tcp;
 using TestLibrary;
 using PAO.WinForm;

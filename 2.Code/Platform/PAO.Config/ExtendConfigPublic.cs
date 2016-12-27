@@ -2,11 +2,10 @@
 using DevExpress.XtraGrid.Views.BandedGrid;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
-using PAO.Config.EditControls;
-using PAO.Config.Editors;
+using PAO.Config.Editor;
 using PAO.Data;
 using PAO.WinForm;
-using PAO.WinForm.Editors;
+using PAO.WinForm.Editor;
 using PAO.WinForm.Config;
 using System;
 using System.Collections.Generic;

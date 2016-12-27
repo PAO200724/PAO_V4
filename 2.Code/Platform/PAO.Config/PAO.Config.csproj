@@ -87,38 +87,37 @@
       <DependentUpon>ConfigForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ConfigPublic.cs" />
-    <Compile Include="EditControls\ListEditControl.cs">
+    <Compile Include="Editor\ListEditControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="EditControls\ListEditControl.Designer.cs">
+    <Compile Include="Editor\ListEditControl.Designer.cs">
       <DependentUpon>ListEditControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="EditControls\DataSetList.cs">
+    <Compile Include="Editor\DataSetList.cs">
       <DependentUpon>DataSetList.xsd</DependentUpon>
     </Compile>
-    <Compile Include="EditControls\DataSetList.Designer.cs">
+    <Compile Include="Editor\DataSetList.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DataSetList.xsd</DependentUpon>
     </Compile>
-    <Compile Include="EditControls\ObjectContainerEditControl.cs">
+    <Compile Include="Editor\ObjectContainerEditControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="EditControls\ObjectContainerEditControl.Designer.cs">
+    <Compile Include="Editor\ObjectContainerEditControl.Designer.cs">
       <DependentUpon>ObjectContainerEditControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="EditControls\DataFieldsEditControl.cs">
+    <Compile Include="Editor\DataFieldsEditControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="EditControls\DataFieldsEditControl.Designer.cs">
+    <Compile Include="Editor\DataFieldsEditControl.Designer.cs">
       <DependentUpon>DataFieldsEditControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="EditControls\ObjectLayoutEditorLayoutData.cs" />
-    <Compile Include="EditControls\ObjectEditMode.cs" />
-    <Compile Include="EditControls\ObjectLayoutEditControl.cs">
+    <Compile Include="Editor\ObjectLayoutEditorLayoutData.cs" />
+    <Compile Include="Editor\ObjectLayoutEditControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="EditControls\ObjectLayoutEditControl.Designer.cs">
+    <Compile Include="Editor\ObjectLayoutEditControl.Designer.cs">
       <DependentUpon>ObjectLayoutEditControl.cs</DependentUpon>
     </Compile>
     <Compile Include="DockViews\PropertyController.cs" />
@@ -128,43 +127,45 @@
     <Compile Include="DockViews\PropertyView.Designer.cs">
       <DependentUpon>PropertyView.cs</DependentUpon>
     </Compile>
-    <Compile Include="EditControls\TypeEditorLayoutData.cs" />
-    <Compile Include="Editors\BaseObjectEditController.cs" />
+    <Compile Include="Editor\TypeEditorLayoutData.cs" />
+    <Compile Include="Editor\BaseObjectEditController.cs" />
+    <Compile Include="Editor\DictionaryEditController.cs" />
+    <Compile Include="Editor\ListEditController.cs" />
     <Compile Include="ExtendConfigPublic.cs" />
     <Compile Include="Views\ObjectConfigController.cs" />
-    <Compile Include="EditControls\AddonExtentionEditControl.cs">
+    <Compile Include="Editor\AddonExtentionEditControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="EditControls\AddonExtentionEditControl.Designer.cs">
+    <Compile Include="Editor\AddonExtentionEditControl.Designer.cs">
       <DependentUpon>AddonExtentionEditControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="EditControls\AddonPropertyInfo.cs" />
-    <Compile Include="EditControls\DictionaryEditControl.cs">
+    <Compile Include="Editor\AddonPropertyInfo.cs" />
+    <Compile Include="Editor\DictionaryEditControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="EditControls\DictionaryEditControl.Designer.cs">
+    <Compile Include="Editor\DictionaryEditControl.Designer.cs">
       <DependentUpon>DictionaryEditControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Editors\ObjectEditController.cs" />
-    <Compile Include="EditControls\DataCommandInfoEditControl.cs">
+    <Compile Include="Editor\ObjectEditController.cs" />
+    <Compile Include="Editor\DataCommandInfoEditControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="EditControls\DataCommandInfoEditControl.Designer.cs">
+    <Compile Include="Editor\DataCommandInfoEditControl.Designer.cs">
       <DependentUpon>DataCommandInfoEditControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="EditControls\DataFilterEditControl.cs">
+    <Compile Include="Editor\DataFilterEditControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="EditControls\DataFilterEditControl.Designer.cs">
+    <Compile Include="Editor\DataFilterEditControl.Designer.cs">
       <DependentUpon>DataFilterEditControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="EditControls\DataFilterInfo.cs" />
-    <Compile Include="Editors\DbFactoryEditController.cs" />
+    <Compile Include="Editor\DataFilterInfo.cs" />
+    <Compile Include="Editor\DbFactoryEditController.cs" />
     <Compile Include="ListElement.cs" />
-    <Compile Include="EditControls\ObjectEditControl.cs">
+    <Compile Include="Editor\ObjectEditControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="EditControls\ObjectEditControl.Designer.cs">
+    <Compile Include="Editor\ObjectEditControl.Designer.cs">
       <DependentUpon>ObjectEditControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\InputKeyControl.cs">
@@ -180,10 +181,10 @@
       <DependentUpon>TypeSelectControl.cs</DependentUpon>
     </Compile>
     <Compile Include="ObjectTreeNodeType.cs" />
-    <Compile Include="EditControls\ObjectTreeEditControl.cs">
+    <Compile Include="Editor\ObjectTreeEditControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="EditControls\ObjectTreeEditControl.Designer.cs">
+    <Compile Include="Editor\ObjectTreeEditControl.Designer.cs">
       <DependentUpon>ObjectTreeEditControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\AddonSelectControl.cs">
@@ -192,7 +193,7 @@
     <Compile Include="Controls\AddonSelectControl.Designer.cs">
       <DependentUpon>AddonSelectControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Editors\AddonIDEditController.cs" />
+    <Compile Include="Editor\AddonIDEditController.cs" />
     <Compile Include="Controls\AddonInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -221,25 +222,25 @@
     <EmbeddedResource Include="ConfigForm.resx">
       <DependentUpon>ConfigForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EditControls\AddonExtentionEditControl.resx">
+    <EmbeddedResource Include="Editor\AddonExtentionEditControl.resx">
       <DependentUpon>AddonExtentionEditControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EditControls\DictionaryEditControl.resx">
+    <EmbeddedResource Include="Editor\DictionaryEditControl.resx">
       <DependentUpon>DictionaryEditControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EditControls\ListEditControl.resx">
+    <EmbeddedResource Include="Editor\ListEditControl.resx">
       <DependentUpon>ListEditControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EditControls\ObjectContainerEditControl.resx">
+    <EmbeddedResource Include="Editor\ObjectContainerEditControl.resx">
       <DependentUpon>ObjectContainerEditControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EditControls\ObjectEditControl.resx">
+    <EmbeddedResource Include="Editor\ObjectEditControl.resx">
       <DependentUpon>ObjectEditControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EditControls\DataFieldsEditControl.resx">
+    <EmbeddedResource Include="Editor\DataFieldsEditControl.resx">
       <DependentUpon>DataFieldsEditControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EditControls\ObjectLayoutEditControl.resx">
+    <EmbeddedResource Include="Editor\ObjectLayoutEditControl.resx">
       <DependentUpon>ObjectLayoutEditControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\InputKeyControl.resx">
@@ -248,16 +249,16 @@
     <EmbeddedResource Include="Controls\TypeSelectControl.resx">
       <DependentUpon>TypeSelectControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EditControls\ObjectTreeEditControl.resx">
+    <EmbeddedResource Include="Editor\ObjectTreeEditControl.resx">
       <DependentUpon>ObjectTreeEditControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\AddonSelectControl.resx">
       <DependentUpon>AddonSelectControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EditControls\DataCommandInfoEditControl.resx">
+    <EmbeddedResource Include="Editor\DataCommandInfoEditControl.resx">
       <DependentUpon>DataCommandInfoEditControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EditControls\DataFilterEditControl.resx">
+    <EmbeddedResource Include="Editor\DataFilterEditControl.resx">
       <DependentUpon>DataFilterEditControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DockViews\PropertyView.resx">
@@ -273,15 +274,15 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="EditControls\DataSetList.xsc">
+    <None Include="Editor\DataSetList.xsc">
       <DependentUpon>DataSetList.xsd</DependentUpon>
     </None>
-    <None Include="EditControls\DataSetList.xsd">
+    <None Include="Editor\DataSetList.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DataSetList.Designer.cs</LastGenOutput>
     </None>
-    <None Include="EditControls\DataSetList.xss">
+    <None Include="Editor\DataSetList.xss">
       <DependentUpon>DataSetList.xsd</DependentUpon>
     </None>
     <None Include="Resources\addfile_16x16.png" />

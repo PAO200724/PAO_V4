@@ -1,5 +1,5 @@
 ﻿using PAO;
-using PAO.Config.EditControls;
+using PAO.Config.Editor;
 using PAO.Data;
 using System;
 using System.Collections.Generic;

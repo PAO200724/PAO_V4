@@ -54,7 +54,7 @@
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.TimerAutoQuery = new System.Windows.Forms.Timer(this.components);
-            this.DataFieldsEditControl = new PAO.Config.EditControls.DataFieldsEditControl();
+            this.DataFieldsEditControl = new PAO.Config.Editor.DataFieldsEditControl();
             ((System.ComponentModel.ISupportInitialize)(this.BarManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextEditCount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.EditItemProgress)).BeginInit();
@@ -294,6 +294,6 @@
         private DevExpress.XtraBars.BarSubItem MenuSetup;
         private DevExpress.XtraBars.BarButtonItem ButtonQueryBehavior;
         private DevExpress.XtraBars.BarButtonItem ButtonClearQueryBehavior;
-        private Config.EditControls.DataFieldsEditControl DataFieldsEditControl;
+        private Config.Editor.DataFieldsEditControl DataFieldsEditControl;
     }
 }

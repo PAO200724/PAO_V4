@@ -5,7 +5,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using PAO;
-using PAO.WinForm.Editors;
+using PAO.WinForm.Editor;
 
 namespace PAO.WinForm.Config
 {

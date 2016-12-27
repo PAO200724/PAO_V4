@@ -7,7 +7,7 @@ using System.Text;
 using System.Linq;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
-using PAO.Config.EditControls;
+using PAO.Config.Editor;
 using PAO.App;
 using PAO.Config;
 using PAO.WinForm;
