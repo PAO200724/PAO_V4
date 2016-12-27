@@ -19,8 +19,7 @@ namespace PAO.Config.Editor
     /// 对象容器编辑控件
     /// 作者：PAO
     /// </summary>
-    public partial class ObjectContainerEditControl : BaseEditControl
-    {
+    public partial class ObjectContainerEditControl : BaseEditControl {
         /// <summary>
         /// 组件对象，在属性、列表元素和字典元素编辑模式下分别代表组件对象、列表和字典
         /// </summary>
@@ -62,8 +61,17 @@ namespace PAO.Config.Editor
                 return _EditControl;
             }
             private set {
+                if (_EditControl != null) {
+                    UnMergeBars();
+                    this.Controls.Remove(_EditControl);
+                }
+
                 _EditControl = value;
-                InitEditControl();
+                _EditControl.Dock = DockStyle.Fill;
+                _EditControl.DataModifyStateChanged -= EditControl_DataModifyStateChanged;
+                _EditControl.DataModifyStateChanged += EditControl_DataModifyStateChanged;
+                this.Controls.Add(_EditControl);
+                MergeBars();
             }
         }
 
@@ -71,8 +79,8 @@ namespace PAO.Config.Editor
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public override object EditValue {
             get {
-                if (EditControl != null) {
-                    EditControl.EditValue = EditControl.EditValue;
+                if (_EditControl != null) {
+                    _EditControl.EditValue = _EditControl.EditValue;
                 }
                 return base.EditValue;
             }
@@ -82,8 +90,8 @@ namespace PAO.Config.Editor
                     value = null;
                 }
                 base.EditValue = value;
-                if(EditControl != null) {
-                    EditControl.EditValue = value;
+                if (_EditControl != null) {
+                    _EditControl.EditValue = value;
                 }
                 SetControlStatus();
             }
@@ -112,6 +120,12 @@ namespace PAO.Config.Editor
         }
 
         #region StartEditXXX
+        public void StartEditNull() {
+            EditMode = ObjectEditMode.Object;
+            EditControl = null;
+            ObjectType = null;
+        }
+
         public void StartEditObject(Type objectType, BaseEditControl editControl) {
             EditMode = ObjectEditMode.Object;
             EditControl = editControl;
@@ -132,7 +146,7 @@ namespace PAO.Config.Editor
             Key = index;
         }
 
-        public void StartEditDictionary(object componentObject, object key, BaseEditControl editControl) {
+        public void StartEditDictionaryElement(object componentObject, object key, BaseEditControl editControl) {
             EditMode = ObjectEditMode.DictionaryElement;
             EditControl = editControl;
             ComponentObject = componentObject;
@@ -140,23 +154,22 @@ namespace PAO.Config.Editor
         }
         #endregion
 
-        private void InitEditControl() {
-            if(EditControl != null)
-                this.Controls.Remove(EditControl);
-            EditControl.Dock = DockStyle.Fill;
-            EditControl.DataModifyStateChanged -= EditControl_DataModifyStateChanged;
-            EditControl.DataModifyStateChanged += EditControl_DataModifyStateChanged;
-            this.Controls.Add(EditControl);
-        }
-
-        protected override void OnLoad(EventArgs e) {
-            base.OnLoad(e);
-            if (EditControl is IBarSupport) {
-                foreach (var bar in EditControl.As<IBarSupport>().ExtendBars) {
+        private void MergeBars() {
+            if (_EditControl is IBarSupport) {
+                foreach (var bar in _EditControl.As<IBarSupport>().ExtendBars) {
                     this.BarToolObject.Merge(bar);
                     bar.Visible = false;
                 }
             }
+        }
+
+        private void UnMergeBars() {
+            this.BarToolObject.UnMerge();
+        }
+
+        protected override void OnLoad(EventArgs e) {
+            base.OnLoad(e);
+            MergeBars();
         }
 
         private void EditControl_DataModifyStateChanged(object sender, DataModifyStateChangedEventArgs e) {
@@ -170,20 +183,11 @@ namespace PAO.Config.Editor
 
         protected override void SetControlStatus() {
             object editValue = base.EditValue;
-            if (editValue.IsNull()) {
-                StaticItemObject.Caption = "[未选择任何对象]";
-            }
-            else if(editValue is IDictionary || editValue is IList){
-                this.StaticItemObject.Caption = editValue.GetType().GetTypeString();
-            }
-            else {
-                StaticItemObject.Caption = editValue.ToString();
-            }
             this.ButtonExport.Enabled = editValue.IsNotNull();
             this.ButtonCreate.Enabled = editValue.IsNull();
             this.ButtonDelete.Enabled = editValue.IsNotNull();
-            this.ButtonCreate.Visibility = EditMode != ObjectEditMode.Object? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
-            this.ButtonDelete.Visibility = EditMode != ObjectEditMode.Object ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
+            this.ButtonCreate.Visibility = (EditMode == ObjectEditMode.Object && ObjectType == null)? DevExpress.XtraBars.BarItemVisibility.Never : DevExpress.XtraBars.BarItemVisibility.Always;
+            this.ButtonDelete.Visibility = (EditMode == ObjectEditMode.Object && ObjectType == null) ? DevExpress.XtraBars.BarItemVisibility.Never : DevExpress.XtraBars.BarItemVisibility.Always;
             base.SetControlStatus();
         }
 
@@ -204,6 +208,7 @@ namespace PAO.Config.Editor
                         , out newObject)) {
                         EditValue = newObject;
                         SetComponentPropertyValue();
+                        ModifyData();
                     }
                     break;
                 case ObjectEditMode.ListElement:
@@ -213,6 +218,7 @@ namespace PAO.Config.Editor
                         , out newObject)) {
                         EditValue = newObject;
                         SetComponentPropertyValue();
+                        ModifyData();
                     }
                     break;
                 case ObjectEditMode.Object:
@@ -224,6 +230,7 @@ namespace PAO.Config.Editor
                         , out newObject)) {
                         EditValue = newObject;
                         SetComponentPropertyValue();
+                        ModifyData();
                     }
                     break;
                 default:
@@ -238,6 +245,7 @@ namespace PAO.Config.Editor
                 case ObjectEditMode.DictionaryElement:
                     EditValue = null;
                     SetComponentPropertyValue();
+                    ModifyData();
                     break;
                 default:
                     break;

@@ -207,7 +207,7 @@ namespace PAO.App {
                 {
                     TransactionPublic.Run("准备启动", OnPreparing);
 
-                    TransactionPublic.Run("扩展配置加载", () =>
+                    TransactionPublic.Run("本地配置加载", () =>
                     {
                         if (ExtendConfigFile.IsNotNullOrEmpty()) {
                             ExtendAddonPublic.Initialize(ExtendConfigFile);
@@ -215,9 +215,13 @@ namespace PAO.App {
                                 ExtendAddonPublic.LoadAddonExtendPropertiesFromStorage();
                             }
                             catch (Exception err){
-                                ExtendAddonPublic.BackupStorage();
-                                // 加载扩展插件如果出现异常，可能是版本问题，直接退出。
-                                EventPublic.Exception(err);
+                                if(UIPublic.ShowYesNoDialog("本地配置加载错误，可能是本地配置文件版本错误，如果您选择继续，程序可以运行，但本地配置将会丢失，您确认要继续吗。") == DialogReturn.Yes) {
+                                    ExtendAddonPublic.BackupStorage();
+                                    // 加载扩展插件如果出现异常，可能是版本问题，直接退出。
+                                    EventPublic.Exception(err);
+                                } else {
+                                    throw err;
+                                }
                             }
                         }
                         // 加载本地扩展插件

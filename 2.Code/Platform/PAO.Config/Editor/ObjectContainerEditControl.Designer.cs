@@ -29,7 +29,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ObjectContainerEditControl));
             this.BarManagerObject = new DevExpress.XtraBars.BarManager(this.components);
             this.BarToolObject = new DevExpress.XtraBars.Bar();
-            this.StaticItemObject = new DevExpress.XtraBars.BarStaticItem();
             this.ButtonCreate = new DevExpress.XtraBars.BarButtonItem();
             this.ButtonDelete = new DevExpress.XtraBars.BarButtonItem();
             this.ButtonExport = new DevExpress.XtraBars.BarButtonItem();
@@ -57,7 +56,6 @@
             this.BarManagerObject.Form = this;
             this.BarManagerObject.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.ButtonExport,
-            this.StaticItemObject,
             this.ButtonCreate,
             this.ButtonDelete,
             this.MenuFormat,
@@ -74,7 +72,6 @@
             this.BarToolObject.DockRow = 0;
             this.BarToolObject.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
             this.BarToolObject.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.StaticItemObject, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.ButtonCreate),
             new DevExpress.XtraBars.LinkPersistInfo(this.ButtonDelete),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.ButtonExport, "", true, true, true, 0, null, DevExpress.XtraBars.BarItemPaintStyle.CaptionInMenu),
@@ -85,13 +82,6 @@
             this.BarToolObject.OptionsBar.DrawDragBorder = false;
             this.BarToolObject.OptionsBar.UseWholeRow = true;
             this.BarToolObject.Text = "对象工具条";
-            // 
-            // StaticItemObject
-            // 
-            this.StaticItemObject.Caption = "对象信息";
-            this.StaticItemObject.Id = 9;
-            this.StaticItemObject.Name = "StaticItemObject";
-            this.StaticItemObject.TextAlignment = System.Drawing.StringAlignment.Near;
             // 
             // ButtonCreate
             // 
@@ -162,7 +152,7 @@
             this.barDockControl1.CausesValidation = false;
             this.barDockControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControl1.Location = new System.Drawing.Point(0, 0);
-            this.barDockControl1.Size = new System.Drawing.Size(674, 31);
+            this.barDockControl1.Size = new System.Drawing.Size(674, 28);
             // 
             // barDockControl2
             // 
@@ -175,15 +165,15 @@
             // 
             this.barDockControl3.CausesValidation = false;
             this.barDockControl3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControl3.Location = new System.Drawing.Point(0, 31);
-            this.barDockControl3.Size = new System.Drawing.Size(0, 394);
+            this.barDockControl3.Location = new System.Drawing.Point(0, 28);
+            this.barDockControl3.Size = new System.Drawing.Size(0, 397);
             // 
             // barDockControl4
             // 
             this.barDockControl4.CausesValidation = false;
             this.barDockControl4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControl4.Location = new System.Drawing.Point(674, 31);
-            this.barDockControl4.Size = new System.Drawing.Size(0, 394);
+            this.barDockControl4.Location = new System.Drawing.Point(674, 28);
+            this.barDockControl4.Size = new System.Drawing.Size(0, 397);
             // 
             // ObjectContainerEditControl
             // 
@@ -205,7 +195,6 @@
 
         private DevExpress.XtraBars.BarManager BarManagerObject;
         private DevExpress.XtraBars.Bar BarToolObject;
-        private DevExpress.XtraBars.BarStaticItem StaticItemObject;
         private DevExpress.XtraBars.BarButtonItem ButtonCreate;
         private DevExpress.XtraBars.BarButtonItem ButtonDelete;
         private DevExpress.XtraBars.BarButtonItem ButtonExport;

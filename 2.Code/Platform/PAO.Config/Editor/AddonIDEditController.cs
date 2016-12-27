@@ -34,8 +34,6 @@ namespace PAO.Config.Editor
         public AddonIDEditController() {
         }
 
-        public Type AddonType { get; set; }
-
         protected override RepositoryItem OnCreateRepositoryItem() {
             var edit = new RepositoryItemButtonEdit();
             WinFormPublic.AddClearButton(edit);
@@ -46,13 +44,17 @@ namespace PAO.Config.Editor
 
         private void Edit_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e) {
             var edit = (ButtonEdit)sender;
+            Type AddonType = null;
             if (e.Button.Kind == DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis) {
                 var editValue = edit.EditValue;
                 var editControl = new AddonSelectControl();
 
                 var componentType = PropertyDescriptor.ComponentType;
-                if (componentType.IsDerivedFrom(typeof(AddonFactory<>)))
+                if (componentType.IsDerivedFrom(typeof(AddonFactory<>))) {
                     AddonType = componentType.GetGenericArguments()[0];
+                } else {
+                    AddonType = null;
+                }
 
                 editControl.AddonFilter = (addon) =>
                 {
