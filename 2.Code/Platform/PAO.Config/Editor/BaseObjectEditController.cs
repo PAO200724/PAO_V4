@@ -12,6 +12,7 @@ using PAO.WinForm.Editor;
 using PAO.WinForm;
 using PAO.IO;
 using PAO.UI;
+using PAO.Config.Editor;
 
 namespace PAO.Config.Editor
 {
@@ -29,14 +30,55 @@ namespace PAO.Config.Editor
     public abstract class BaseObjectEditController : BaseEditController
     {
         #region 插件属性
+        #region 属性：PropertyEditorTypes
+        /// <summary>
+        /// 属性：PropertyEditorTypes
+        /// 属性编辑器类型
+        /// 自定义的属性编辑器类型列表，Key是属性名称，Value是编辑器（BaseEditor或者是BaseEditControl）
+        /// </summary>
+        [AddonProperty]
+        [DataMember(EmitDefaultValue = false)]
+        [Name("属性编辑器类型")]
+        [Description("自定义的属性编辑器类型列表，Key是属性名称，Value是编辑器（BaseEditor或者是BaseEditControl）")]
+        public Dictionary<string, Type> PropertyEditorTypes {
+            get;
+            set;
+        }
+        #endregion 属性：PropertyEditorTypes
         #endregion
         public BaseObjectEditController() {
+        }
+
+        /// <summary>
+        /// 根据属性创建编辑控件
+        /// </summary>
+        /// <param name="propertyName"></param>
+        /// <returns></returns>
+        public Control CreateEditControl(string propertyName) {
+            if (PropertyEditorTypes.IsNotNullOrEmpty()
+                    && PropertyEditorTypes.ContainsKey(propertyName)) {
+                var editorType = PropertyEditorTypes[propertyName];
+                // 创建控件
+                var editor = editorType.CreateInstance();
+                if (editor is BaseEditControl) {
+                    return editor as BaseEditControl;
+                }
+                else if (editor is BaseEditController) {
+                    return editor.As<BaseEditController>().CreateEditControl();
+                }
+                else {
+                    throw new Exception("设置了不支持的编辑器类型").AddExceptionData("EditorType", editorType);
+                }
+            }
+            return null;
         }
 
         protected abstract BaseEditControl OnCreateEditControl();
 
         public override Control CreateEditControl() {
-            return OnCreateEditControl();
+            var editControl = OnCreateEditControl();
+            editControl.Controller = this;
+            return editControl;
         }
 
         public override RepositoryItem CreateRepositoryItem() {
@@ -85,11 +127,11 @@ namespace PAO.Config.Editor
                 BaseEditControl editControl;
                 if (AddonPublic.IsAddonDictionaryType(objectType)) {
                     // 如果是插件，默认创建列表控件
-                    editControl = new DictionaryEditControl();
+                    editControl = new DictionaryEditController().CreateEditControl() as BaseEditControl;
                 }
                 else if (AddonPublic.IsAddonListType(objectType)) {
                     // 如果是列表，默认创建列表控件
-                    editControl = new ListEditControl();
+                    editControl = new ListEditController().CreateEditControl() as BaseEditControl;
                 } else {
                     editControl = OnCreateEditControl();
                 }

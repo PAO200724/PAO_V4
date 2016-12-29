@@ -13,6 +13,7 @@ using PAO.IO;
 using PAO.WinForm.Editor;
 using PAO.WinForm.Config;
 using DevExpress.XtraBars;
+using DevExpress.XtraEditors.Repository;
 
 namespace PAO.Config.Editor
 {
@@ -21,10 +22,7 @@ namespace PAO.Config.Editor
     /// </summary>
     public partial class ObjectEditControl : BaseEditControl
     {
-        static ObjectEditControl() {
-        }
-
-        public ObjectEditControl() {
+        internal ObjectEditControl() {
             InitializeComponent();
             EditValue = null;
             SetControlStatus();
@@ -40,7 +38,6 @@ namespace PAO.Config.Editor
             set {
                 base.EditValue = value;
                 this.PropertyGridControl.SelectedObject = value;
-                this.PropertyGridControl.Refresh();
 
                 SetControlStatus();
             }
@@ -53,13 +50,19 @@ namespace PAO.Config.Editor
 
         private void PropertyGridControl_CustomRecordCellEditForEditing(object sender
             , DevExpress.XtraVerticalGrid.Events.GetCustomRowCellEditEventArgs e) {
-         }
+        }
 
+        Dictionary<PropertyDescriptor, RepositoryItem> EditList = new Dictionary<PropertyDescriptor, RepositoryItem>();
         private void PropertyGridControl_CustomRecordCellEdit(object sender, DevExpress.XtraVerticalGrid.Events.GetCustomRowCellEditEventArgs e) {
             BaseEditController edit = null;
             var propDesc = PropertyGridControl.GetPropertyDescriptor(e.Row);
             if (propDesc == null)
                 return;
+
+            if(EditList.ContainsKey(propDesc)) {
+                e.RepositoryItem = EditList[propDesc];
+                return;
+            }
 
             if(propDesc is ConfigPropertyDescriptor) {
                 var configProp = propDesc as ConfigPropertyDescriptor;
@@ -82,6 +85,8 @@ namespace PAO.Config.Editor
                 edit.PropertyDescriptor = propDesc;
                 e.RepositoryItem = edit.CreateRepositoryItem();
             }
+
+            EditList.Add(propDesc, e.RepositoryItem);
         }
         
         private void ObjectEditControl_Leave(object sender, EventArgs e) {

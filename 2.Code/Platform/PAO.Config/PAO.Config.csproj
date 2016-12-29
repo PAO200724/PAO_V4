@@ -87,6 +87,7 @@
       <DependentUpon>ConfigForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ConfigPublic.cs" />
+    <Compile Include="Editor\DataFieldsEditController.cs" />
     <Compile Include="Editor\ListEditControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -113,7 +114,6 @@
     <Compile Include="Editor\DataFieldsEditControl.Designer.cs">
       <DependentUpon>DataFieldsEditControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Editor\ObjectLayoutEditorLayoutData.cs" />
     <Compile Include="Editor\ObjectLayoutEditControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -127,10 +127,10 @@
     <Compile Include="DockViews\PropertyView.Designer.cs">
       <DependentUpon>PropertyView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Editor\TypeEditorLayoutData.cs" />
     <Compile Include="Editor\BaseObjectEditController.cs" />
     <Compile Include="Editor\DictionaryEditController.cs" />
     <Compile Include="Editor\ListEditController.cs" />
+    <Compile Include="Editor\ObjectLayoutEditController.cs" />
     <Compile Include="ExtendConfigPublic.cs" />
     <Compile Include="Views\ObjectConfigController.cs" />
     <Compile Include="Editor\AddonExtentionEditControl.cs">

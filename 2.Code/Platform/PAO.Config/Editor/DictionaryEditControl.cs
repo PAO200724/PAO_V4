@@ -23,7 +23,7 @@ namespace PAO.Config.Editor
     /// </summary>
     public partial class DictionaryEditControl : BaseEditControl, IBarSupport
     {
-        public DictionaryEditControl() {
+        internal DictionaryEditControl() {
             InitializeComponent();
             this.ColumnObject.ColumnEdit = new ObjectEditController().CreateRepositoryItem();
             this.ColumnIndex.ColumnEdit = new TextEditController().CreateRepositoryItem();

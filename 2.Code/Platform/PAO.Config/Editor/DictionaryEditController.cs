@@ -10,12 +10,11 @@ using PAO.Config.Controls;
 using PAO.UI;
 using PAO.IO;
 using DevExpress.XtraEditors;
-using PAO.Config.Editor;
 using System.Collections;
 using PAO.WinForm;
 using PAO.WinForm.Editor;
 
-namespace PAO.Config.EditControl
+namespace PAO.Config.Editor
 {
     /// <summary>
     /// 类：ObjectEditor

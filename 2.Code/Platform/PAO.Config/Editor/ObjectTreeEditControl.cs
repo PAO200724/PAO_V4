@@ -29,8 +29,8 @@ namespace PAO.Config.Editor
     public partial class ObjectTreeEditControl : BaseEditControl
     {
 
-        ListEditControl ListEditControl = new ListEditControl();
-        DictionaryEditControl DictionaryEditControl = new DictionaryEditControl();
+        ListEditControl ListEditControl = new ListEditController().CreateEditControl() as ListEditControl;
+        DictionaryEditControl DictionaryEditControl = new DictionaryEditController().CreateEditControl() as DictionaryEditControl;
         ObjectEditControl ObjectEditControl = new ObjectEditControl();
 
         /// <summary>

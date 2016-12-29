@@ -15,6 +15,7 @@ using DevExpress.XtraLayout;
 using PAO.Config;
 using PAO.WinForm.Controls;
 using PAO.UI;
+using PAO.Config.Editor;
 
 namespace PAO.Report.Controls
 {
@@ -49,7 +50,9 @@ namespace PAO.Report.Controls
         /// 重新查询事件
         /// </summary>
         public event EventHandler ClearQueryBehavior;
-        
+
+        private DataFieldsEditControl DataFieldsEditControl;
+
         private ReportDataTable _ReportDataTable;
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
@@ -61,6 +64,14 @@ namespace PAO.Report.Controls
                 _ReportDataTable = value;
                 if (_ReportDataTable == null)
                     return;
+
+                if (DataFieldsEditControl != null) {
+                    DataFieldsEditControl.Parent = null;
+                    DataFieldsEditControl.Close(DialogReturn.Cancel);
+                    DataFieldsEditControl.Dispose();
+                }
+
+                DataFieldsEditControl = _ReportDataTable.ParameterEditController.CreateEditControl() as DataFieldsEditControl;
 
                 ExtendAddonPublic.GetAddonExtendProperties(_ReportDataTable);
 
@@ -96,10 +107,8 @@ namespace PAO.Report.Controls
             if (this.DataFieldsEditControl != null) {
                 if (this.DataFieldsEditControl.Close(dialogResult))
                     return true;
-
-                _ReportDataTable.ParameterInputLayoutData = this.DataFieldsEditControl.LayoutData;
             }
-            ExtendAddonPublic.SetAddonExtendProperties(_ReportDataTable, "QueryBehavior", "ParameterInputLayoutData");
+            ExtendAddonPublic.SetAddonExtendProperties(_ReportDataTable, "QueryBehavior", "ParameterEditController");
             return base.OnClosing(dialogResult);
         }
 
@@ -151,10 +160,8 @@ namespace PAO.Report.Controls
         /// </summary>
         private void RecreateParameterInputControls() {
             if(ReportDataTable != null) {
-                this.DataFieldsEditControl.LayoutData = ReportDataTable.ParameterInputLayoutData;
                 this.DataFieldsEditControl.EditValue = ReportDataTable.GetParameters();
             } else {
-                this.DataFieldsEditControl.LayoutData = null;
                 this.DataFieldsEditControl.EditValue = null;
             }
             this.Refresh();

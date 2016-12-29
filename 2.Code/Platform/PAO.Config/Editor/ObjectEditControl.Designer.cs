@@ -50,10 +50,7 @@
             this.PropertyGridControl.Location = new System.Drawing.Point(0, 0);
             this.PropertyGridControl.Name = "PropertyGridControl";
             this.PropertyGridControl.OptionsView.MinRowAutoHeight = 30;
-            this.PropertyGridControl.RecordWidth = 120;
-            this.PropertyGridControl.RowHeaderWidth = 200;
-            this.PropertyGridControl.OptionsView.FixRowHeaderPanelWidth = true;
-            this.PropertyGridControl.Size = new System.Drawing.Size(466, 567);
+            this.PropertyGridControl.Size = new System.Drawing.Size(466, 566);
             this.PropertyGridControl.TabIndex = 0;
             this.PropertyGridControl.CustomPropertyDescriptors += new DevExpress.XtraVerticalGrid.Events.CustomPropertyDescriptorsEventHandler(this.PropertyGridControl_CustomPropertyDescriptors);
             this.PropertyGridControl.CustomRecordCellEdit += new DevExpress.XtraVerticalGrid.Events.GetCustomRowCellEditEventHandler(this.PropertyGridControl_CustomRecordCellEdit);

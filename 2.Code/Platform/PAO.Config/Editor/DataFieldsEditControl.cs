@@ -25,7 +25,7 @@ namespace PAO.Config.Editor
     /// </summary>
     public partial class DataFieldsEditControl : BaseEditControl
     {
-        public DataFieldsEditControl() {
+        internal DataFieldsEditControl() {
             InitializeComponent();
             this.DataLayoutControl.AutoSizeMode = AutoSizeMode.GrowAndShrink;
         }
@@ -101,27 +101,14 @@ namespace PAO.Config.Editor
                 RetrieveFields(this.LayoutControlGroupRoot);
             }
         }
-
-        private ObjectLayoutEditorLayoutData _LayoutData;
-        [Browsable(false)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public ObjectLayoutEditorLayoutData LayoutData {
-            get {
-                return _LayoutData;
-            }
-            set {
-                _LayoutData = value;
-            }
-        }
-
+        
         public void EndEdit() {
             this.BindingSource.EndEdit();
         }
 
         protected override bool OnClosing(DialogReturn dialogResult) {
-            if (_LayoutData == null)
-                _LayoutData = new ObjectLayoutEditorLayoutData();
-            _LayoutData.LayoutData = this.DataLayoutControl.GetLayoutData();
+            var controller = Controller as DataFieldsEditController;
+            controller.LayoutData = this.DataLayoutControl.GetLayoutData();
             return base.OnClosing(dialogResult);
         }
 
@@ -134,15 +121,14 @@ namespace PAO.Config.Editor
         private void RetrieveFields(LayoutControlGroup groupItem) {
             groupItem.Items.Clear();
             EditControls.Clear();
+            var controller = Controller as DataFieldsEditController;
 
             if (DataFields == null)
                 return;
 
             foreach (var dataField in DataFields) {
                 Control editControl = null;
-                if (_LayoutData != null) {
-                    editControl = _LayoutData.CreateEditControl(dataField.Name);
-                }
+                editControl = controller.CreateEditControl(dataField.Name);
 
                 if (editControl == null) {
                     // 此处第二个参数为true，确保了最少能创建一种编辑器
@@ -190,8 +176,8 @@ namespace PAO.Config.Editor
             this.DataLayoutControl.SetDefaultLayout();
 
             /// 读取布局数据
-            if (_LayoutData.IsNotNull() && _LayoutData.LayoutData.IsNotNullOrEmpty()) {
-                this.DataLayoutControl.SetLayoutData(_LayoutData.LayoutData);
+            if (controller.LayoutData.IsNotNull()) {
+                this.DataLayoutControl.SetLayoutData(controller.LayoutData);
             }
         }
     }

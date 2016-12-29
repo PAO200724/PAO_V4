@@ -22,7 +22,7 @@ namespace PAO.Config.Editor
     /// </summary>
     public partial class ObjectLayoutEditControl : BaseEditControl
     {
-        public ObjectLayoutEditControl() {
+        internal ObjectLayoutEditControl() {
             InitializeComponent();
         }
 
@@ -30,10 +30,6 @@ namespace PAO.Config.Editor
         /// 编辑控件列表
         /// </summary>
         private Dictionary<PropertyDescriptor, Control> EditControls = new Dictionary<PropertyDescriptor, Control>();
-        /// <summary>
-        /// 布局数据
-        /// </summary>
-        private ObjectLayoutEditorLayoutData LayoutData;
 
         private Type _ObjectType;
         /// <summary>
@@ -77,15 +73,8 @@ namespace PAO.Config.Editor
 
         protected override bool OnClosing(DialogReturn dialogResult) {
             if(ObjectType != null) {
-                if (LayoutData.IsNull()) {
-                    string typeID = ObjectType.FullName;
-                    LayoutData = new Config.Editor.ObjectLayoutEditorLayoutData()
-                    {
-                        ID = GetTypeID()
-                    };
-                }
-                LayoutData.LayoutData = this.DataLayoutControl.GetLayoutData();
-                ExtendAddonPublic.SetExtendLocalAddon(LayoutData);
+                var controller = Controller as ObjectLayoutEditController;
+                controller.LayoutData = this.DataLayoutControl.GetLayoutData();
             }
             return base.OnClosing(dialogResult);
         }
@@ -96,7 +85,6 @@ namespace PAO.Config.Editor
 
             string typeID = GetTypeID();
 
-            LayoutData = ExtendAddonPublic.GetExtendLocalAddon(typeID) as ObjectLayoutEditorLayoutData;
             RetrieveFields(this.LayoutControlGroupRoot, ObjectType);
         }
 
@@ -135,6 +123,8 @@ namespace PAO.Config.Editor
             groupItem.Items.Clear();
             EditControls.Clear();
 
+            var controller = Controller as ObjectLayoutEditController;
+
             if (objType == null)
                 return;
 
@@ -146,16 +136,14 @@ namespace PAO.Config.Editor
                     continue;
 
                 Control editControl = null;
-                if (LayoutData != null) {
-                    editControl = LayoutData.CreateEditControl(propDesc.Name);
-                }
+                editControl = controller.CreateEditControl(propDesc.Name);
 
                 if (editControl == null) {
                     if (AddonPublic.IsAddonDictionaryType(configedPropDesc.PropertyType)) {
-                        editControl = new DictionaryEditControl();
+                        editControl = new DictionaryEditController().CreateEditControl() as BaseEditControl;
                     }
                     else if (AddonPublic.IsAddonListType(configedPropDesc.PropertyType)) {
-                        editControl = new ListEditControl();
+                        editControl = new ListEditController().CreateEditControl() as BaseEditControl;
                     }
                     else {
                         // 此处第二个参数为true，确保了最少能创建一种编辑器
@@ -209,8 +197,8 @@ namespace PAO.Config.Editor
             this.DataLayoutControl.SetDefaultLayout();
 
             // 读取布局数据
-            if(LayoutData.IsNotNull() && LayoutData.LayoutData.IsNotNullOrEmpty()) {
-                this.DataLayoutControl.SetLayoutData(LayoutData.LayoutData);
+            if(controller.LayoutData.IsNotNullOrEmpty()) {
+                this.DataLayoutControl.SetLayoutData(controller.LayoutData);
             }
         }
     }

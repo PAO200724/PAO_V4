@@ -428,7 +428,7 @@ namespace PAO.Report.Views
 
         private void ReportTableControl_SetupQueryBehavior(object sender, EventArgs e) {
             var tableControl = sender as ReportTableControl;
-            var objectEditControl = new ObjectEditControl();
+            var objectEditControl = new ObjectEditController().CreateEditControl() as ObjectEditControl;
             var queryBehavior = IOPublic.ObjectClone(tableControl.ReportDataTable.QueryBehavior);
             if (queryBehavior == null)
                 queryBehavior = new ReportQueryBehavior();
@@ -453,7 +453,7 @@ namespace PAO.Report.Views
 
         private void ButtonSetupQueryBehavior_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             var controller = Controller as ReportController;
-            var objectEditControl = new ObjectEditControl();
+            var objectEditControl = new ObjectEditController().CreateEditControl() as ObjectEditControl;
             var queryBehavior = IOPublic.ObjectClone(controller.QueryBehavior);
             if (queryBehavior == null)
                 queryBehavior = new ReportQueryBehavior();
@@ -472,7 +472,7 @@ namespace PAO.Report.Views
 
         private void ButtonProperties_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             //ConfigForm.ShowConfigForm(Controller);
-            var objectEditControl = new ObjectLayoutEditControl();
+            var objectEditControl = new ObjectLayoutEditController().CreateEditControl() as ObjectLayoutEditControl;
             objectEditControl.ObjectType = Controller.GetType();
             objectEditControl.EditValue = Controller;
             WinFormPublic.ShowDialog(objectEditControl);

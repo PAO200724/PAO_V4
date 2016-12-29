@@ -56,7 +56,6 @@ namespace PAO.Remote
             set;
         }
         #endregion 属性：ServiceName
-
         #endregion
         public BaseRemoteFactory() {
         }

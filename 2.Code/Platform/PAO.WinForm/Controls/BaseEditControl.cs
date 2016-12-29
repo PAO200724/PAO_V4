@@ -11,6 +11,7 @@ using PAO.WinForm.Controls;
 using PAO.UI;
 using PAO.IO;
 using System.IO;
+using PAO.WinForm.Editor;
 
 namespace PAO.WinForm
 {
@@ -40,6 +41,13 @@ namespace PAO.WinForm
                 _EditValue = value;
             }
         }
+
+        /// <summary>
+        /// 控制器
+        /// </summary>
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public virtual BaseEditController Controller { get; set; }
         
         /// <summary>
         /// 导出当前对象

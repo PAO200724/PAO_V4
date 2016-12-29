@@ -106,21 +106,22 @@ namespace PAO.Report
         }
         #endregion 属性：QueryParameters
 
-        #region 属性：ParameterInputLayoutData
+        #region 属性：ParameterEditController
         /// <summary>
-        /// 属性：ParameterInputLayoutData
-        /// 参数输入布局数据
-        /// 参数输入布局数据
+        /// 属性：ParameterEditController
+        /// 参数编辑控制器
+        /// 参数编辑控制器
         /// </summary>
         [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
-        [Name("参数输入布局数据")]
-        [Description("参数输入布局数据")]
-        public ObjectLayoutEditorLayoutData ParameterInputLayoutData {
+        [Name("参数编辑控制器")]
+        [Description("参数编辑控制器")]
+        public DataFieldsEditController ParameterEditController {
             get;
             set;
         }
-        #endregion 属性：ParameterInputLayoutData
+        #endregion 属性：ParameterEditController
+
 
         #region 属性：DataFetcher
         /// <summary>

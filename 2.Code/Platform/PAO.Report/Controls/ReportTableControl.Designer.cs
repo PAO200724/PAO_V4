@@ -54,7 +54,6 @@
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.TimerAutoQuery = new System.Windows.Forms.Timer(this.components);
-            this.DataFieldsEditControl = new PAO.Config.Editor.DataFieldsEditControl();
             ((System.ComponentModel.ISupportInitialize)(this.BarManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextEditCount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.EditItemProgress)).BeginInit();
@@ -217,7 +216,7 @@
             this.barDockControlTop.CausesValidation = false;
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(290, 60);
+            this.barDockControlTop.Size = new System.Drawing.Size(290, 53);
             // 
             // barDockControlBottom
             // 
@@ -230,37 +229,25 @@
             // 
             this.barDockControlLeft.CausesValidation = false;
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 60);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 97);
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 53);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 104);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(290, 60);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 97);
+            this.barDockControlRight.Location = new System.Drawing.Point(290, 53);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 104);
             // 
             // TimerAutoQuery
             // 
             this.TimerAutoQuery.Tick += new System.EventHandler(this.TimerAutoQuery_Tick);
-            // 
-            // DataFieldsEditControl
-            // 
-            this.DataFieldsEditControl.AutoSize = true;
-            this.DataFieldsEditControl.Dock = System.Windows.Forms.DockStyle.Top;
-            this.DataFieldsEditControl.Location = new System.Drawing.Point(0, 60);
-            this.DataFieldsEditControl.Name = "DataFieldsEditControl";
-            this.DataFieldsEditControl.ShowApplyButton = false;
-            this.DataFieldsEditControl.ShowCancelButton = true;
-            this.DataFieldsEditControl.Size = new System.Drawing.Size(290, 0);
-            this.DataFieldsEditControl.TabIndex = 8;
             // 
             // ReportTableControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.Controls.Add(this.DataFieldsEditControl);
             this.Controls.Add(this.barDockControlLeft);
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
@@ -294,6 +281,5 @@
         private DevExpress.XtraBars.BarSubItem MenuSetup;
         private DevExpress.XtraBars.BarButtonItem ButtonQueryBehavior;
         private DevExpress.XtraBars.BarButtonItem ButtonClearQueryBehavior;
-        private Config.Editor.DataFieldsEditControl DataFieldsEditControl;
     }
 }
