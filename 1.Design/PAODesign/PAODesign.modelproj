@@ -22,6 +22,15 @@
   </PropertyGroup>
   <Import Project="$(VSToolsPath)\ArchitectureTools\Microsoft.VisualStudio.TeamArchitect.ModelingProject.targets" Condition="'$(VSToolsPath)' != ''" />
   <ItemGroup>
+    <Content Include="ModelDefinition\PAO.Config.Editor.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\PAO.Config.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\PAO.Editor.uml">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="ModelDefinition\PAO.Ext.Security.uml">
       <SubType>Content</SubType>
     </Content>
@@ -103,7 +112,7 @@
     <Content Include="ModelDefinition\PAO.IO.uml">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="ModelDefinition\PAO.UI.uml">
+    <Content Include="ModelDefinition\PAO.WinForm.uml">
       <SubType>Content</SubType>
     </Content>
     <Content Include="ModelDefinition\PAO.Data.uml">
@@ -174,6 +183,13 @@
       <SubType>Content</SubType>
       <DependentUpon>微架构\日志\Log.classdiagram</DependentUpon>
     </Content>
+    <Content Include="微架构\编辑器\Editor.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="微架构\编辑器\Editor.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>微架构\编辑器\Editor.classdiagram</DependentUpon>
+    </Content>
     <Content Include="微架构\资产\状态\Status.classdiagram">
       <SubType>Content</SubType>
     </Content>
@@ -208,6 +224,7 @@
     </Content>
     <Folder Include="微架构" />
     <Folder Include="微架构\MVC" />
+    <Folder Include="微架构\编辑器" />
     <Folder Include="微架构\安全" />
     <Folder Include="微架构\序列化" />
     <Folder Include="微架构\报表" />

@@ -13,8 +13,8 @@
     <packageHasNamedElement>
       <packageMoniker
         Id="324475a1-8189-4d3d-b265-3d7649707570"
-        LastKnownName="UI"
-        LastKnownLocation="PAO.UI.uml" />
+        LastKnownName="WinForm"
+        LastKnownLocation="PAO.WinForm.uml" />
     </packageHasNamedElement>
     <packageHasNamedElement>
       <packageMoniker
@@ -93,6 +93,12 @@
         Id="21062a01-c4e3-47a0-9683-2eceb8d05a37"
         LastKnownName="Ext"
         LastKnownLocation="PAO.Ext.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="b4a9724a-0b06-42cd-8928-de66bd2e297b"
+        LastKnownName="Config"
+        LastKnownLocation="PAO.Config.uml" />
     </packageHasNamedElement>
   </packagedElements>
 </package>

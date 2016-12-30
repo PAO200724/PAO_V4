@@ -87,7 +87,10 @@
       <DependentUpon>ConfigForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ConfigPublic.cs" />
+    <Compile Include="Editor\AddonExtentionEditController.cs" />
+    <Compile Include="Editor\DataCommandInfoEditController.cs" />
     <Compile Include="Editor\DataFieldsEditController.cs" />
+    <Compile Include="Editor\DataFilterEditController.cs" />
     <Compile Include="Editor\ListEditControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
