@@ -36,6 +36,7 @@
             this.ButtonCustom = new DevExpress.XtraBars.BarButtonItem();
             this.BarManager = new DevExpress.XtraBars.BarManager(this.components);
             this.BarTools = new DevExpress.XtraBars.Bar();
+            this.ButtonRecoverFormat = new DevExpress.XtraBars.BarButtonItem();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
@@ -54,7 +55,7 @@
             this.PropertyDescriptionControl.Location = new System.Drawing.Point(0, 0);
             this.PropertyDescriptionControl.Name = "PropertyDescriptionControl";
             this.PropertyDescriptionControl.PropertyGrid = this.PropertyGridControl;
-            this.PropertyDescriptionControl.Size = new System.Drawing.Size(466, 100);
+            this.PropertyDescriptionControl.Size = new System.Drawing.Size(466, 96);
             this.PropertyDescriptionControl.TabIndex = 0;
             this.PropertyDescriptionControl.TabStop = false;
             // 
@@ -65,7 +66,7 @@
             this.PropertyGridControl.Location = new System.Drawing.Point(0, 0);
             this.PropertyGridControl.Name = "PropertyGridControl";
             this.PropertyGridControl.OptionsView.MinRowAutoHeight = 30;
-            this.PropertyGridControl.Size = new System.Drawing.Size(466, 538);
+            this.PropertyGridControl.Size = new System.Drawing.Size(466, 542);
             this.PropertyGridControl.TabIndex = 0;
             this.PropertyGridControl.CustomPropertyDescriptors += new DevExpress.XtraVerticalGrid.Events.CustomPropertyDescriptorsEventHandler(this.PropertyGridControl_CustomPropertyDescriptors);
             this.PropertyGridControl.FocusedRowChanged += new DevExpress.XtraVerticalGrid.Events.FocusedRowChangedEventHandler(this.PropertyGridControl_FocusedRowChanged);
@@ -86,6 +87,7 @@
             this.SplitContainerControl.Panel2.Controls.Add(this.PropertyDescriptionControl);
             this.SplitContainerControl.Panel2.Text = "Panel2";
             this.SplitContainerControl.Size = new System.Drawing.Size(466, 644);
+            this.SplitContainerControl.SplitterPosition = 96;
             this.SplitContainerControl.TabIndex = 1;
             this.SplitContainerControl.Text = "splitContainerControl1";
             // 
@@ -141,8 +143,9 @@
             this.BarManager.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.EditCaption,
             this.ButtonDeleteRow,
-            this.ButtonCustom});
-            this.BarManager.MaxItemId = 3;
+            this.ButtonCustom,
+            this.ButtonRecoverFormat});
+            this.BarManager.MaxItemId = 4;
             this.BarManager.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.TextEditCaption});
             // 
@@ -155,11 +158,21 @@
             this.BarTools.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.ButtonDeleteRow, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.ButtonCustom),
+            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonRecoverFormat),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.EditCaption, "", true, true, true, 0, null, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph)});
             this.BarTools.OptionsBar.AllowQuickCustomization = false;
             this.BarTools.OptionsBar.DrawDragBorder = false;
             this.BarTools.OptionsBar.UseWholeRow = true;
             this.BarTools.Text = "工具条";
+            // 
+            // ButtonRecoverFormat
+            // 
+            this.ButtonRecoverFormat.Caption = "恢复默认格式(&R)";
+            this.ButtonRecoverFormat.Glyph = global::PAO.Config.Properties.Resources.reset_16x16;
+            this.ButtonRecoverFormat.Id = 3;
+            this.ButtonRecoverFormat.LargeGlyph = global::PAO.Config.Properties.Resources.reset_32x32;
+            this.ButtonRecoverFormat.Name = "ButtonRecoverFormat";
+            this.ButtonRecoverFormat.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonRecoverFormat_ItemClick);
             // 
             // barDockControlTop
             // 
@@ -228,5 +241,6 @@
         private DevExpress.XtraBars.BarButtonItem ButtonDeleteRow;
         private DevExpress.XtraBars.BarButtonItem ButtonCustom;
         private DevExpress.XtraBars.Bar BarTools;
+        private DevExpress.XtraBars.BarButtonItem ButtonRecoverFormat;
     }
 }

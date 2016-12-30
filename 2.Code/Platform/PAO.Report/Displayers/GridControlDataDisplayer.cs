@@ -198,7 +198,6 @@ namespace PAO.Report.Displayers
         }
 
         private void ButtonProperty_ItemClick(object sender, ItemClickEventArgs e) {
-            ConfigForm.ShowConfigForm(MainView);
         }
     }
 }

@@ -76,10 +76,16 @@ namespace PAO.Config.Editor
         }
 
         protected override bool OnClosing(DialogReturn dialogResult) {
-            if(ObjectType != null) {
-                var editController = ConfigPublic.CreateEditControllerByType<ObjectEditController>(ObjectType);
-                editController.LayoutData = this.DataLayoutControl.GetLayoutData();
+            var controller = Controller as ObjectLayoutEditController;
+            if (controller.IsTypeEditController) {
+                controller = ConfigPublic.CreateEditControllerByType<ObjectLayoutEditController>(ObjectType);
             }
+
+            if (controller != null) {
+                controller.LayoutData = this.DataLayoutControl.GetLayoutData();
+                ExtendAddonPublic.SetExtendLocalAddon(controller);
+            }
+
             return base.OnClosing(dialogResult);
         }
 
@@ -107,13 +113,13 @@ namespace PAO.Config.Editor
                 if (!EditControls.ContainsKey(propDesc))
                     continue;
 
-                var editControl = EditControls[propDesc] as ObjectContainerEditControl;
-                if(editControl != null) {
-                    editControl.ComponentObject = editValue;
-                    editControl.DataBindings.Clear();
-                    if (this.BindingSource != null) {
-                        editControl.DataBindings.Add(new Binding("EditValue", this.BindingSource, propDesc.Name, true));
-                    }
+                var editControl = EditControls[propDesc];
+                if(editControl is ObjectContainerEditControl) {
+                    editControl.As<ObjectContainerEditControl>().ComponentObject = editValue;
+                }
+                editControl.DataBindings.Clear();
+                if (this.BindingSource != null) {
+                    editControl.DataBindings.Add(new Binding("EditValue", this.BindingSource, propDesc.Name, true));
                 }
             }
         }
@@ -127,11 +133,18 @@ namespace PAO.Config.Editor
             groupItem.Items.Clear();
             EditControls.Clear();
 
-            var controller = ConfigPublic.GetEditControllerByType<ObjectLayoutEditController>(objType);
+            var controller = Controller as ObjectLayoutEditController;
+            if (controller.IsTypeEditController) {
+                controller = ConfigPublic.GetEditControllerByType<ObjectLayoutEditController>(objType);
+            }
+            if (controller != null) {
+                this.DataLayoutControl.SetLayoutData(controller.LayoutData);
+            }
 
             if (objType == null)
                 return;
 
+            this.DataLayoutControl.SuspendLayout();
             TabbedControlGroup tabbledGroup = null;
             foreach (PropertyDescriptor propDesc in TypeDescriptor.GetProperties(objType)) {
                 var configedPropDesc = WinFormPublic.GetConfigedProperty(propDesc);
@@ -140,7 +153,9 @@ namespace PAO.Config.Editor
                     continue;
 
                 Control editControl = null;
-                editControl = controller.CreateEditControl(propDesc.Name);
+                if(controller != null) {
+                   editControl = controller.CreateEditControl(propDesc.Name);
+                }
 
                 if (editControl == null) {
                     if (AddonPublic.IsAddonDictionaryType(configedPropDesc.PropertyType)) {
@@ -198,11 +213,22 @@ namespace PAO.Config.Editor
                     layoutControlItem.TextVisible = true;
                 }
             }
+            this.DataLayoutControl.ResumeLayout();
             this.DataLayoutControl.SetDefaultLayout();
 
             // 读取布局数据
-            if(controller.LayoutData.IsNotNullOrEmpty()) {
+            if(controller != null  && controller.LayoutData.IsNotNullOrEmpty()) {
                 this.DataLayoutControl.SetLayoutData(controller.LayoutData);
+            }
+        }
+
+        private void ButtonCustom_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+            this.DataLayoutControl.ShowCustomizationForm();
+        }
+
+        private void ButtonRecoverFormat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+            if (UIPublic.ShowYesNoCancelDialog("您是否需要默认格式？") == DialogReturn.Yes) {
+                this.DataLayoutControl.RestoreDefaultLayout();
             }
         }
     }

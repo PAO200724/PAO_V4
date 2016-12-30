@@ -29,7 +29,7 @@ namespace PAO {
         [DataMember(EmitDefaultValue = false)]
         [Name("ID")]
         [Description("唯一编号")]
-        public string ID {
+        public virtual string ID {
             get;
             set;
         }

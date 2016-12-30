@@ -24,11 +24,8 @@ namespace PAO.Config.Editor
     /// </summary>
     public partial class ObjectEditControl : BaseEditControl, IBarSupport
     {
-        public ObjectEditControl() {
-            InitializeComponent();
-            EditValue = null;
-            SetControlStatus();
-        }
+        private byte[] DefaultLayoutData = null;
+
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public override object EditValue {
@@ -41,12 +38,14 @@ namespace PAO.Config.Editor
                 base.EditValue = value;
 
                 this.PropertyGridControl.SelectedObject = value;
-                if(value != null) {
-                    // 加载类别有关的控制器
-                    var editController = ConfigPublic.GetEditControllerByType<ObjectEditController>(value.GetType());
-                    if(editController != null) {
-                        this.PropertyGridControl.SetLayoutData(editController.LayoutData);
-                    }
+                var controller = Controller as ObjectEditController;
+                if (controller.IsTypeEditController && value != null) {
+                    controller = ConfigPublic.GetEditControllerByType<ObjectEditController>(value.GetType());
+                }
+
+                DefaultLayoutData = this.PropertyGridControl.GetLayoutData();
+                if (controller != null) {
+                    this.PropertyGridControl.SetLayoutData(controller.LayoutData);
                 }
                 SetControlStatus();
             }
@@ -58,12 +57,21 @@ namespace PAO.Config.Editor
             }
         }
 
+        public ObjectEditControl() {
+            InitializeComponent();
+            SetControlStatus();
+        }
+
         protected override bool OnClosing(DialogReturn dialogResult) {
             var editValue = EditValue;
-            if(editValue != null) {
-                var editController = ConfigPublic.CreateEditControllerByType<ObjectEditController>(editValue.GetType());
-                editController.LayoutData = this.PropertyGridControl.GetLayoutData();
-                ExtendAddonPublic.SetExtendLocalAddon(editController);
+            var controller = Controller as ObjectEditController;
+            if (controller.IsTypeEditController && editValue != null) {
+                controller = ConfigPublic.CreateEditControllerByType<ObjectEditController>(editValue.GetType());
+            }
+
+            if (controller != null) {
+                controller.LayoutData = this.PropertyGridControl.GetLayoutData();
+                ExtendAddonPublic.SetExtendLocalAddon(controller);
             }
             return base.OnClosing(dialogResult);
         }
@@ -111,7 +119,7 @@ namespace PAO.Config.Editor
 
             if (edit == null) {
                 if(propDesc.PropertyType.IsDerivedFrom(typeof(PaoObject))) {
-                    edit = new ObjectEditController();
+                    edit = ObjectEditController.DefaultTypeEditController;
                 }
             }
 
@@ -173,6 +181,14 @@ namespace PAO.Config.Editor
 
         private void PropertyGridControl_FocusedRowChanged(object sender, DevExpress.XtraVerticalGrid.Events.FocusedRowChangedEventArgs e) {
             SetControlStatus();
+        }
+
+        private void ButtonRecoverFormat_ItemClick(object sender, ItemClickEventArgs e) {
+            if(DefaultLayoutData.IsNotNullOrEmpty()) {
+                if(UIPublic.ShowYesNoCancelDialog("您是否需要默认格式？") == DialogReturn.Yes) {
+                    this.PropertyGridControl.SetLayoutData(DefaultLayoutData);
+                }
+            }
         }
     }
 }

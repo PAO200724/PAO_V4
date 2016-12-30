@@ -45,9 +45,28 @@ namespace PAO.Config.Editor
             set;
         }
         #endregion 属性：PropertyEditorTypes
-        #endregion
-        public BaseObjectEditController() {
+
+        #region 属性：IsTypeEditController
+        /// <summary>
+        /// 属性：IsTypeEditController
+        /// 是否类型编辑控制器
+        /// 是否类型编辑控制器
+        /// </summary>
+        [AddonProperty]
+        [DataMember(EmitDefaultValue = false)]
+        [Name("是否类型编辑控制器")]
+        [Description("是否类型编辑控制器")]
+        public bool IsTypeEditController {
+            get;
+            set;
         }
+        #endregion 属性：IsTypeEditController
+        #endregion
+
+        public BaseObjectEditController() {
+            IsTypeEditController = false;
+        }
+
 
         /// <summary>
         /// 根据属性创建编辑控件

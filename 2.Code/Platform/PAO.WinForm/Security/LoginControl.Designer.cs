@@ -61,14 +61,14 @@
             this.LayoutControl.Location = new System.Drawing.Point(0, 0);
             this.LayoutControl.Name = "LayoutControl";
             this.LayoutControl.Root = this.LayoutControlGroupRoot;
-            this.LayoutControl.Size = new System.Drawing.Size(297, 113);
+            this.LayoutControl.Size = new System.Drawing.Size(297, 91);
             this.LayoutControl.TabIndex = 0;
             this.LayoutControl.Text = "布局控件";
             // 
             // HyperlinkLabelControlRegisterUser
             // 
             this.HyperlinkLabelControlRegisterUser.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.HyperlinkLabelControlRegisterUser.Location = new System.Drawing.Point(64, 83);
+            this.HyperlinkLabelControlRegisterUser.Location = new System.Drawing.Point(257, 60);
             this.HyperlinkLabelControlRegisterUser.Name = "HyperlinkLabelControlRegisterUser";
             this.HyperlinkLabelControlRegisterUser.Padding = new System.Windows.Forms.Padding(4, 0, 0, 0);
             this.HyperlinkLabelControlRegisterUser.Size = new System.Drawing.Size(28, 14);
@@ -80,7 +80,7 @@
             // HyperlinkLabelControlForgetPassword
             // 
             this.HyperlinkLabelControlForgetPassword.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.HyperlinkLabelControlForgetPassword.Location = new System.Drawing.Point(12, 83);
+            this.HyperlinkLabelControlForgetPassword.Location = new System.Drawing.Point(205, 60);
             this.HyperlinkLabelControlForgetPassword.Name = "HyperlinkLabelControlForgetPassword";
             this.HyperlinkLabelControlForgetPassword.Size = new System.Drawing.Size(48, 14);
             this.HyperlinkLabelControlForgetPassword.StyleController = this.LayoutControl;
@@ -93,7 +93,7 @@
             this.CheckEditRememberPassword.Location = new System.Drawing.Point(12, 60);
             this.CheckEditRememberPassword.Name = "CheckEditRememberPassword";
             this.CheckEditRememberPassword.Properties.Caption = "记住密码";
-            this.CheckEditRememberPassword.Size = new System.Drawing.Size(273, 19);
+            this.CheckEditRememberPassword.Size = new System.Drawing.Size(189, 19);
             this.CheckEditRememberPassword.StyleController = this.LayoutControl;
             this.CheckEditRememberPassword.TabIndex = 6;
             // 
@@ -125,11 +125,11 @@
             this.LayoutControlItemUser,
             this.LayoutControlItemPassword,
             this.LayoutControlItemRememberPassword,
-            this.LayoutControlItemForgetPassword,
-            this.LayoutControlItemRegisterUser});
+            this.LayoutControlItemRegisterUser,
+            this.LayoutControlItemForgetPassword});
             this.LayoutControlGroupRoot.Location = new System.Drawing.Point(0, 0);
             this.LayoutControlGroupRoot.Name = "LayoutControlGroupRoot";
-            this.LayoutControlGroupRoot.Size = new System.Drawing.Size(297, 113);
+            this.LayoutControlGroupRoot.Size = new System.Drawing.Size(297, 91);
             this.LayoutControlGroupRoot.TextVisible = false;
             // 
             // LayoutControlItemUser
@@ -155,25 +155,25 @@
             this.LayoutControlItemRememberPassword.Control = this.CheckEditRememberPassword;
             this.LayoutControlItemRememberPassword.Location = new System.Drawing.Point(0, 48);
             this.LayoutControlItemRememberPassword.Name = "LayoutControlItemRememberPassword";
-            this.LayoutControlItemRememberPassword.Size = new System.Drawing.Size(277, 23);
+            this.LayoutControlItemRememberPassword.Size = new System.Drawing.Size(193, 23);
             this.LayoutControlItemRememberPassword.TextSize = new System.Drawing.Size(0, 0);
             this.LayoutControlItemRememberPassword.TextVisible = false;
             // 
             // LayoutControlItemForgetPassword
             // 
             this.LayoutControlItemForgetPassword.Control = this.HyperlinkLabelControlForgetPassword;
-            this.LayoutControlItemForgetPassword.Location = new System.Drawing.Point(0, 71);
+            this.LayoutControlItemForgetPassword.Location = new System.Drawing.Point(193, 48);
             this.LayoutControlItemForgetPassword.Name = "LayoutControlItemForgetPassword";
-            this.LayoutControlItemForgetPassword.Size = new System.Drawing.Size(52, 22);
+            this.LayoutControlItemForgetPassword.Size = new System.Drawing.Size(52, 23);
             this.LayoutControlItemForgetPassword.TextSize = new System.Drawing.Size(0, 0);
             this.LayoutControlItemForgetPassword.TextVisible = false;
             // 
             // LayoutControlItemRegisterUser
             // 
             this.LayoutControlItemRegisterUser.Control = this.HyperlinkLabelControlRegisterUser;
-            this.LayoutControlItemRegisterUser.Location = new System.Drawing.Point(52, 71);
+            this.LayoutControlItemRegisterUser.Location = new System.Drawing.Point(245, 48);
             this.LayoutControlItemRegisterUser.Name = "LayoutControlItemRegisterUser";
-            this.LayoutControlItemRegisterUser.Size = new System.Drawing.Size(225, 22);
+            this.LayoutControlItemRegisterUser.Size = new System.Drawing.Size(32, 23);
             this.LayoutControlItemRegisterUser.TextSize = new System.Drawing.Size(0, 0);
             this.LayoutControlItemRegisterUser.TextVisible = false;
             // 
@@ -183,7 +183,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.LayoutControl);
             this.Name = "LoginControl";
-            this.Size = new System.Drawing.Size(297, 113);
+            this.Size = new System.Drawing.Size(297, 91);
             ((System.ComponentModel.ISupportInitialize)(this.LayoutControl)).EndInit();
             this.LayoutControl.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.CheckEditRememberPassword.Properties)).EndInit();

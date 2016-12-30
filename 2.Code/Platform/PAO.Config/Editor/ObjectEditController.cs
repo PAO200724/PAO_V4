@@ -30,6 +30,8 @@ namespace PAO.Config.Editor
     [Description("插件编辑控制器")]
     public class ObjectEditController : BaseObjectEditController
     {
+        public static ObjectEditController DefaultTypeEditController = new ObjectEditController() { IsTypeEditController = true };
+
         #region 插件属性
         #endregion
 
@@ -53,6 +55,10 @@ namespace PAO.Config.Editor
         protected override BaseEditControl OnCreateEditControl() {
             var editControl = new ObjectEditControl();
             return editControl;
+        }
+
+        public static ObjectEditControl CreateTypeEditControl() {
+            return DefaultTypeEditController.CreateEditControl() as ObjectEditControl;
         }
     }
 }

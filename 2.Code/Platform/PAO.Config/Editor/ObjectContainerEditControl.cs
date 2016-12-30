@@ -271,17 +271,24 @@ namespace PAO.Config.Editor
         private void ButtonProperty_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             UIPublic.ShowWaitingForm();
             var propertyValue = EditValue;
-            if(propertyValue != null) {
 
-            }
             Type editControlType = ConfigPublic.GetEditControllerType(propertyValue.GetType());
             BaseEditControl editControl = null;
             if (editControlType != null) {
                 var editController = editControlType.CreateInstance() as BaseEditController;
                 editControl = editController.CreateEditControl() as BaseEditControl;
             }
-            if(editControl == null) {
-                editControl = new BaseEditControl();
+            if (editControl == null) {
+                var objectType = propertyValue.GetType();
+                if (objectType.IsAddonDictionaryType()) {
+                    editControl = new DictionaryEditController().CreateEditControl() as BaseEditControl;
+                }
+                else if (objectType.IsAddonListType()) {
+                    editControl = new ListEditController().CreateEditControl() as BaseEditControl;
+                }
+            }
+            if (editControl == null) {
+                editControl = ObjectLayoutEditController.CreateTypeEditControl();
             }
 
             editControl.EditValue = IOPublic.ObjectClone(propertyValue);
