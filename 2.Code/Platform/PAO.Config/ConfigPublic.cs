@@ -165,7 +165,7 @@ namespace PAO.Config
                 editor = GetDefaultEditorByType(propertyDescriptor.PropertyType);
             }
 
-            if(textEditorForNull && editor == null) {
+            if (textEditorForNull && editor == null) {
                 editor = new TextEditController();
             }
 
@@ -225,7 +225,7 @@ namespace PAO.Config
         /// </summary>
         /// <param name="type">类型</param>
         /// <returns>编辑器类型</returns>
-        public static Type GetEditControlType(Type type) {
+        public static Type GetEditControllerType(Type type) {
             var typeConfigInfo = WinFormPublic.GetTypeConfigInfo(type);
             if (typeConfigInfo != null && typeConfigInfo.EditControlType != null)
                 return typeConfigInfo.EditControlType;
@@ -235,6 +235,43 @@ namespace PAO.Config
                 return addonAttr.EditorType;
 
             return null;
+        }
+
+        /// <summary>
+        /// 获取对象编辑器ID
+        /// </summary>
+        /// <param name="objectType">对象类型</param>
+        /// <param name="editorType">编辑器类型</param>
+        /// <returns>对象编辑器ID</returns>
+        private static string GetTypeEditControlID(Type editorType, Type objectType) {
+            return String.Format("EditController_{0}_{1}", editorType, objectType);
+        }
+
+
+        /// <summary>
+        /// 根据类型获取编辑器控制器
+        /// </summary>
+        /// <param name="objectType">对象类型</param>
+        /// <typeparam name="T">编辑器类型类型</typeparam>
+        /// <returns>编辑器控制器</returns>
+        public static T GetEditControllerByType<T>(Type objectType) where T : BaseEditController {
+            var id = GetTypeEditControlID(typeof(T), objectType);
+
+            var editController = (T)ExtendAddonPublic.GetExtendLocalAddon(id);
+            return editController;
+        }
+
+        /// <summary>
+        /// 编辑器控制器
+        /// </summary>
+        /// <typeparam name="T">编辑器类型类型</typeparam>
+        /// <param name="objectType">对象类型</param>
+        /// <returns>新的编辑器控制器</returns>
+        public static T CreateEditControllerByType<T>(Type objectType) where T : BaseEditController, new() {
+            var id = GetTypeEditControlID(typeof(T), objectType);
+            var editController = new T();
+            editController.ID = id;
+            return editController;
         }
         #endregion
     }

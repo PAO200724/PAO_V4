@@ -15,6 +15,7 @@ using PAO.WinForm.Config;
 using DevExpress.XtraBars;
 using DevExpress.XtraEditors.Repository;
 using DevExpress.XtraVerticalGrid;
+using PAO.UI;
 
 namespace PAO.Config.Editor
 {
@@ -23,7 +24,7 @@ namespace PAO.Config.Editor
     /// </summary>
     public partial class ObjectEditControl : BaseEditControl, IBarSupport
     {
-        internal ObjectEditControl() {
+        public ObjectEditControl() {
             InitializeComponent();
             EditValue = null;
             SetControlStatus();
@@ -38,8 +39,15 @@ namespace PAO.Config.Editor
 
             set {
                 base.EditValue = value;
-                this.PropertyGridControl.SelectedObject = value;
 
+                this.PropertyGridControl.SelectedObject = value;
+                if(value != null) {
+                    // 加载类别有关的控制器
+                    var editController = ConfigPublic.GetEditControllerByType<ObjectEditController>(value.GetType());
+                    if(editController != null) {
+                        this.PropertyGridControl.SetLayoutData(editController.LayoutData);
+                    }
+                }
                 SetControlStatus();
             }
         }
@@ -48,6 +56,16 @@ namespace PAO.Config.Editor
             get {
                 return new Bar[] { this.BarTools };
             }
+        }
+
+        protected override bool OnClosing(DialogReturn dialogResult) {
+            var editValue = EditValue;
+            if(editValue != null) {
+                var editController = ConfigPublic.CreateEditControllerByType<ObjectEditController>(editValue.GetType());
+                editController.LayoutData = this.PropertyGridControl.GetLayoutData();
+                ExtendAddonPublic.SetExtendLocalAddon(editController);
+            }
+            return base.OnClosing(dialogResult);
         }
 
         protected override void SetControlStatus() {

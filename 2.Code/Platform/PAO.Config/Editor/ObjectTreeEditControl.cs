@@ -30,8 +30,8 @@ namespace PAO.Config.Editor
     public partial class ObjectTreeEditControl : BaseEditControl
     {
 
-        ListEditControl ListEditControl = new ListEditController().CreateEditControl() as ListEditControl;
-        DictionaryEditControl DictionaryEditControl = new DictionaryEditController().CreateEditControl() as DictionaryEditControl;
+        ListEditControl ListEditControl = new ListEditControl();
+        DictionaryEditControl DictionaryEditControl = new DictionaryEditControl();
         ObjectEditControl ObjectEditControl = new ObjectEditControl();
 
         /// <summary>
@@ -112,6 +112,8 @@ namespace PAO.Config.Editor
             if(ExtendPropertyStorage != null) {
                 ExtendPropertyStorage.Save();
             }
+            this.ObjectContainerEditControl.Close(dialogResult);
+            this.AddonExtentionEditControl.Close(dialogResult);
             return base.OnClosing(dialogResult);
         }
         #endregion

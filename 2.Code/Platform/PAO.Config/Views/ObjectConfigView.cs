@@ -11,6 +11,7 @@ using PAO.WinForm.Controls;
 using PAO.MVC;
 using PAO.App;
 using PAO.IO;
+using PAO.UI;
 
 namespace PAO.Config.Views
 {
@@ -40,6 +41,11 @@ namespace PAO.Config.Views
                 addon = IOPublic.ReadObjectFromFile(controller.ConfigFile);
             }
             ObjectTreeEditControl.EditValue = addon;
+        }
+
+        protected override bool OnClosing(DialogReturn dialogResult) {
+            ObjectTreeEditControl.Close(dialogResult);
+            return base.OnClosing(dialogResult);
         }
     }
 }

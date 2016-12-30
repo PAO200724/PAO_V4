@@ -472,7 +472,7 @@ namespace PAO.Report.Views
 
         private void ButtonProperties_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             //ConfigForm.ShowConfigForm(Controller);
-            var objectEditControl = new ObjectLayoutEditController().CreateEditControl() as ObjectLayoutEditControl;
+            var objectEditControl = new ObjectLayoutEditControl();
             objectEditControl.ObjectType = Controller.GetType();
             objectEditControl.EditValue = Controller;
             WinFormPublic.ShowDialog(objectEditControl);

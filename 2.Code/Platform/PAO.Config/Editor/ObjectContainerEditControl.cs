@@ -63,6 +63,7 @@ namespace PAO.Config.Editor
             private set {
                 if (_EditControl != null) {
                     UnMergeBars();
+                    _EditControl.Close(DialogReturn.Cancel);
                     this.Controls.Remove(_EditControl);
                 }
 
@@ -173,6 +174,12 @@ namespace PAO.Config.Editor
             MergeBars();
         }
 
+        protected override bool OnClosing(DialogReturn dialogResult) {
+            if (_EditControl != null)
+                _EditControl.Close(dialogResult);
+            return base.OnClosing(dialogResult);
+        }
+
         private void EditControl_DataModifyStateChanged(object sender, DataModifyStateChangedEventArgs e) {
             if (e.DataModified) {
                 ModifyData();
@@ -267,15 +274,14 @@ namespace PAO.Config.Editor
             if(propertyValue != null) {
 
             }
-            Type editControlType = ConfigPublic.GetEditControlType(propertyValue.GetType());
+            Type editControlType = ConfigPublic.GetEditControllerType(propertyValue.GetType());
             BaseEditControl editControl = null;
             if (editControlType != null) {
                 var editController = editControlType.CreateInstance() as BaseEditController;
                 editControl = editController.CreateEditControl() as BaseEditControl;
             }
             if(editControl == null) {
-                var editController = new ObjectLayoutEditController();
-                editControl = editController.CreateEditControl() as BaseEditControl;
+                editControl = new BaseEditControl();
             }
 
             editControl.EditValue = IOPublic.ObjectClone(propertyValue);

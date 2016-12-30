@@ -50,6 +50,13 @@ namespace PAO.WinForm.Controls
         /// </summary>
         public event EventHandler<DataModifyStateChangedEventArgs> DataModifyStateChanged;
 
+        protected override void OnParentChanged(EventArgs e) {
+            if (Parent == null) {
+                Close(DialogReturn.Cancel);
+            }
+            base.OnParentChanged(e);
+        }
+
         protected virtual void SetControlStatus() {
             
         }

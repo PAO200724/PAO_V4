@@ -22,7 +22,7 @@ namespace PAO.Config.Editor
     /// </summary>
     public partial class ObjectLayoutEditControl : BaseEditControl
     {
-        internal ObjectLayoutEditControl() {
+        public ObjectLayoutEditControl() {
             InitializeComponent();
         }
 
@@ -77,8 +77,8 @@ namespace PAO.Config.Editor
 
         protected override bool OnClosing(DialogReturn dialogResult) {
             if(ObjectType != null) {
-                var controller = Controller as ObjectLayoutEditController;
-                controller.LayoutData = this.DataLayoutControl.GetLayoutData();
+                var editController = ConfigPublic.CreateEditControllerByType<ObjectEditController>(ObjectType);
+                editController.LayoutData = this.DataLayoutControl.GetLayoutData();
             }
             return base.OnClosing(dialogResult);
         }
@@ -127,7 +127,7 @@ namespace PAO.Config.Editor
             groupItem.Items.Clear();
             EditControls.Clear();
 
-            var controller = Controller as ObjectLayoutEditController;
+            var controller = ConfigPublic.GetEditControllerByType<ObjectLayoutEditController>(objType);
 
             if (objType == null)
                 return;

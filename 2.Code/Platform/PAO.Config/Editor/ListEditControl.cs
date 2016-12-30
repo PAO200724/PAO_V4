@@ -24,7 +24,7 @@ namespace PAO.Config.Editor
     /// </summary>
     public partial class ListEditControl : BaseEditControl, IBarSupport
     {
-        internal ListEditControl() {
+        public ListEditControl() {
             InitializeComponent();
             this.ColumnObject.ColumnEdit = new ObjectEditController().CreateRepositoryItem();
         }

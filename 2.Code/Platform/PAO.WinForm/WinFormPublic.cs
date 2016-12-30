@@ -222,7 +222,7 @@ namespace PAO.WinForm
         /// </summary>
         /// <param name="dockManager">停靠管理器</param>
         /// <returns>布局数据</returns>
-        public static byte[] GetLayoutData(this VGridControl control) {
+        public static byte[] GetLayoutData(this VGridControlBase control) {
             using (MemoryStream buffer = new MemoryStream()) {
                 control.SaveLayoutToStream(buffer, OptionsLayoutBase.FullLayout);
                 return buffer.ToArray();
@@ -234,7 +234,7 @@ namespace PAO.WinForm
         /// </summary>
         /// <param name="dockManager">停靠管理器</param>
         /// <param name="layoutData">布局数据</param>
-        public static void SetLayoutData(this VGridControl control, byte[] layoutData) {
+        public static void SetLayoutData(this VGridControlBase control, byte[] layoutData) {
             if (layoutData.IsNullOrEmpty())
                 return;
             using (MemoryStream buffer = new MemoryStream(layoutData)) {
