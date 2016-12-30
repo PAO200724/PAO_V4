@@ -25,8 +25,9 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ObjectContainerEditControl));
-            this.BarManagerObject = new DevExpress.XtraBars.BarManager();
+            this.BarManagerObject = new DevExpress.XtraBars.BarManager(this.components);
             this.BarToolObject = new DevExpress.XtraBars.Bar();
             this.ButtonCreate = new DevExpress.XtraBars.BarButtonItem();
             this.ButtonDelete = new DevExpress.XtraBars.BarButtonItem();
@@ -40,6 +41,7 @@
             this.barDockControl2 = new DevExpress.XtraBars.BarDockControl();
             this.barDockControl3 = new DevExpress.XtraBars.BarDockControl();
             this.barDockControl4 = new DevExpress.XtraBars.BarDockControl();
+            this.ButtonProperty = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.BarManagerObject)).BeginInit();
             this.SuspendLayout();
             // 
@@ -61,8 +63,9 @@
             this.ButtonSaveFormat,
             this.ButtonSaveFormatAs,
             this.ButtonRecoverFormat,
-            this.ButtonImportFormat});
-            this.BarManagerObject.MaxItemId = 18;
+            this.ButtonImportFormat,
+            this.ButtonProperty});
+            this.BarManagerObject.MaxItemId = 19;
             // 
             // BarToolObject
             // 
@@ -74,7 +77,8 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.ButtonCreate),
             new DevExpress.XtraBars.LinkPersistInfo(this.ButtonDelete),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.ButtonExport, "", true, true, true, 0, null, DevExpress.XtraBars.BarItemPaintStyle.CaptionInMenu),
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.MenuFormat, DevExpress.XtraBars.BarItemPaintStyle.CaptionInMenu)});
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.MenuFormat, DevExpress.XtraBars.BarItemPaintStyle.CaptionInMenu),
+            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonProperty, true)});
             this.BarToolObject.OptionsBar.AllowQuickCustomization = false;
             this.BarToolObject.OptionsBar.DisableClose = true;
             this.BarToolObject.OptionsBar.DisableCustomization = true;
@@ -174,6 +178,14 @@
             this.barDockControl4.Location = new System.Drawing.Point(674, 28);
             this.barDockControl4.Size = new System.Drawing.Size(0, 397);
             // 
+            // ButtonProperty
+            // 
+            this.ButtonProperty.Caption = "属性(&P)";
+            this.ButtonProperty.Glyph = global::PAO.Config.Properties.Resources.properties_16x16;
+            this.ButtonProperty.Id = 18;
+            this.ButtonProperty.Name = "ButtonProperty";
+            this.ButtonProperty.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonProperty_ItemClick);
+            // 
             // ObjectContainerEditControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -207,5 +219,6 @@
         private DevExpress.XtraBars.BarButtonItem ButtonSaveFormatAs;
         private DevExpress.XtraBars.BarButtonItem ButtonRecoverFormat;
         private DevExpress.XtraBars.BarButtonItem ButtonImportFormat;
+        private DevExpress.XtraBars.BarButtonItem ButtonProperty;
     }
 }

@@ -55,8 +55,12 @@ namespace PAO.Config.Editor
                 var valueString = "[未设置对象]";
                 if (value.IsNull())
                     value = null;
-                else
+                else {
                     valueString = value.ToString();
+                    if(ObjectType == null) {
+                        ObjectType = value.GetType();
+                    }
+                }
 
                 Text = String.Format("属性: {0}", valueString);
                 base.EditValue = value;

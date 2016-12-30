@@ -34,7 +34,6 @@
             this.MenuItemExtend = new DevExpress.XtraBars.BarSubItem();
             this.ButtonImportExtend = new DevExpress.XtraBars.BarButtonItem();
             this.ButtonExportExtend = new DevExpress.XtraBars.BarButtonItem();
-            this.ButtonProperty = new DevExpress.XtraBars.BarButtonItem();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
@@ -90,7 +89,6 @@
             this.BarManagerObjectTree.Form = this;
             this.BarManagerObjectTree.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.ButtonExport,
-            this.ButtonProperty,
             this.ButtonImportExtend,
             this.ButtonExportExtend,
             this.MenuItemExtend});
@@ -104,8 +102,7 @@
             this.BarMainTools.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
             this.BarMainTools.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.ButtonExport, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
-            new DevExpress.XtraBars.LinkPersistInfo(this.MenuItemExtend, true),
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.ButtonProperty, "", true, true, true, 0, null, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.MenuItemExtend, true)});
             this.BarMainTools.OptionsBar.AllowQuickCustomization = false;
             this.BarMainTools.OptionsBar.DisableCustomization = true;
             this.BarMainTools.Text = "主工具条";
@@ -142,15 +139,6 @@
             this.ButtonExportExtend.Id = 12;
             this.ButtonExportExtend.Name = "ButtonExportExtend";
             this.ButtonExportExtend.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonExportExtend_ItemClick);
-            // 
-            // ButtonProperty
-            // 
-            this.ButtonProperty.Caption = "属性(&P)";
-            this.ButtonProperty.Glyph = global::PAO.Config.Properties.Resources.properties_16x16;
-            this.ButtonProperty.Id = 10;
-            this.ButtonProperty.LargeGlyph = global::PAO.Config.Properties.Resources.properties_32x32;
-            this.ButtonProperty.Name = "ButtonProperty";
-            this.ButtonProperty.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonProperty_ItemClick);
             // 
             // barDockControlTop
             // 
@@ -370,6 +358,7 @@
             // 
             this.ObjectContainerEditControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ObjectContainerEditControl.Location = new System.Drawing.Point(0, 0);
+            this.ObjectContainerEditControl.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.ObjectContainerEditControl.Name = "ObjectContainerEditControl";
             this.ObjectContainerEditControl.ShowApplyButton = false;
             this.ObjectContainerEditControl.ShowCancelButton = true;
@@ -438,7 +427,6 @@
         private DevExpress.XtraEditors.LabelControl LabelControlPropertyDescription;
         private DevExpress.XtraEditors.LabelControl LabelControlPropertyType;
         private DevExpress.XtraEditors.LabelControl LabelControlPropertyTitle;
-        private DevExpress.XtraBars.BarButtonItem ButtonProperty;
         private DevExpress.XtraEditors.SplitContainerControl SplitContainerControlProperty;
         private AddonExtentionEditControl AddonExtentionEditControl;
         private DevExpress.XtraBars.BarSubItem MenuItemExtend;

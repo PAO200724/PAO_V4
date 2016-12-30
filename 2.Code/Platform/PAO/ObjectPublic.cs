@@ -502,7 +502,7 @@ namespace PAO {
 
             Type destType = destObject.GetType();
             Type srcType = srcObject.GetType();
-            var destProperties = destType.GetProperties(BindingFlags.Public | BindingFlags.SetProperty | BindingFlags.Instance);
+            var destProperties = destType.GetProperties(BindingFlags.Public | BindingFlags.SetProperty | BindingFlags.GetProperty | BindingFlags.Instance);
             foreach(var destProp in destProperties) {
                 var srcProp = srcType.GetProperty(destProp.Name, BindingFlags.Public | BindingFlags.GetProperty | BindingFlags.Instance);
                 if (srcProp != null) {
@@ -510,7 +510,7 @@ namespace PAO {
                 }
             }
 
-            var destFields = destType.GetFields(BindingFlags.Public | BindingFlags.SetField | BindingFlags.Instance);
+            var destFields = destType.GetFields(BindingFlags.Public | BindingFlags.SetField | BindingFlags.GetField | BindingFlags.Instance);
             foreach (var destField in destFields) {
                 var srcField = srcType.GetField(destField.Name, BindingFlags.Public | BindingFlags.GetField| BindingFlags.Instance);
                 if (srcField != null) {

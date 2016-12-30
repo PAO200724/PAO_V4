@@ -20,6 +20,7 @@ using PAO.WinForm;
 using PAO.MVC;
 using PAO.Config.Controls;
 using static PAO.Config.DataSetExtendProperty;
+using PAO.WinForm.Editor;
 
 namespace PAO.Config.Editor
 {
@@ -351,12 +352,9 @@ namespace PAO.Config.Editor
                 var propertyValue = focusedNode.GetValue(ColumnPropertyValue);
                 var obj = focusedNode.GetValue(ColumnObject);
                 this.ObjectEditControl.EditValue = propertyValue;
-                this.ButtonProperty.Enabled = (propertyValue != null && ConfigPublic.GetEditControlType(propertyValue.GetType()) != null);
                 this.ButtonExportExtend.Enabled = ExtendPropertyStorage.PropertyTable != null;
             }
-            else {
-                this.ButtonProperty.Enabled = false;
-            }
+
             this.ButtonExport.Enabled = (EditValue != null);
             base.SetControlStatus();
         }
@@ -496,21 +494,6 @@ namespace PAO.Config.Editor
             ExportSelectedObject();
         }
         
-        private void ButtonProperty_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            UIPublic.ShowWaitingForm();
-            var focusedNode = this.TreeListObject.FocusedNode;
-            var propertyValue = focusedNode.GetValue(ColumnPropertyValue);
-            Type editControlType = ConfigPublic.GetEditControlType(propertyValue.GetType());
-            var editControl = editControlType.CreateInstance() as BaseEditControl;
-            editControl.EditValue = propertyValue;
-            UIPublic.CloseWaitingForm();
-            if (WinFormPublic.ShowDialog(editControl) == DialogReturn.OK) {
-                SetPropertNewValue(focusedNode, editControl.EditValue);
-            }
-            FocuseNode(focusedNode);
-            SetControlStatus();
-        }
-
         private void AddonExtentionEditControl_DataModifyStateChanged(object sender, DataModifyStateChangedEventArgs e) {
             // 保存到扩展存储中
             this.AddonExtentionEditControl.GetDataFromControl();

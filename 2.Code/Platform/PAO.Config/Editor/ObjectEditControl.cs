@@ -21,10 +21,8 @@ namespace PAO.Config.Editor
     /// <summary>
     /// 插件编辑控件
     /// </summary>
-    public partial class ObjectEditControl : BaseEditControl
+    public partial class ObjectEditControl : BaseEditControl, IBarSupport
     {
-        VGridHitInfo HitInfo;
-
         internal ObjectEditControl() {
             InitializeComponent();
             EditValue = null;
@@ -43,6 +41,21 @@ namespace PAO.Config.Editor
                 this.PropertyGridControl.SelectedObject = value;
 
                 SetControlStatus();
+            }
+        }
+
+        public IEnumerable<Bar> ExtendBars {
+            get {
+                return new Bar[] { this.BarTools };
+            }
+        }
+
+        protected override void SetControlStatus() {
+            base.SetControlStatus();
+            this.EditCaption.Enabled = this.PropertyGridControl.FocusedRow != null;
+            this.ButtonDeleteRow.Enabled = this.PropertyGridControl.FocusedRow != null;
+            if (this.PropertyGridControl.FocusedRow != null) {
+                EditCaption.EditValue = this.PropertyGridControl.FocusedRow.Properties.Caption;
             }
         }
 
@@ -112,11 +125,11 @@ namespace PAO.Config.Editor
         }
 
         private void PropertyGridControl_MouseUp(object sender, MouseEventArgs e) {
-            HitInfo = null;
             if (e.Button == MouseButtons.Right) {
                 var pt = new Point(e.X, e.Y);
-                HitInfo = this.PropertyGridControl.CalcHitInfo(pt);
+                var HitInfo = this.PropertyGridControl.CalcHitInfo(pt);
                 if(HitInfo.HitInfoType == DevExpress.XtraVerticalGrid.HitInfoTypeEnum.HeaderCell) {
+                    this.PropertyGridControl.FocusedRow = HitInfo.Row;
                     // 显示菜单
                     PopupMenu.ShowPopup(this.PropertyGridControl.PointToScreen(pt));
                 }
@@ -124,15 +137,24 @@ namespace PAO.Config.Editor
         }
 
         private void EditCaption_EditValueChanged(object sender, EventArgs e) {
-            if(HitInfo != null) {
-                HitInfo.Row.Properties.Caption = EditCaption.EditValue as string;
+            if(this.PropertyGridControl.FocusedRow != null) {
+                this.PropertyGridControl.FocusedRow.Properties.Caption = EditCaption.EditValue as string;
+            }
+        }
+                        
+        private void ButtonCustom_ItemClick(object sender, ItemClickEventArgs e) {
+            this.PropertyGridControl.RowsCustomization();
+        }
+
+        private void ButtonDeleteRow_ItemClick(object sender, ItemClickEventArgs e) {
+            if (this.PropertyGridControl.FocusedRow != null) {
+                this.PropertyGridControl.FocusedRow.Visible = false;
+                SetControlStatus();
             }
         }
 
-        private void PopupMenu_BeforePopup(object sender, CancelEventArgs e) {
-            if (HitInfo != null) {
-                EditCaption.EditValue = HitInfo.Row.Properties.Caption;
-            }
+        private void PropertyGridControl_FocusedRowChanged(object sender, DevExpress.XtraVerticalGrid.Events.FocusedRowChangedEventArgs e) {
+            SetControlStatus();
         }
     }
 }

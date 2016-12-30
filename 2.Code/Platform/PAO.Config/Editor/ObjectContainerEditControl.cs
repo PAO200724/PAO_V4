@@ -155,6 +155,7 @@ namespace PAO.Config.Editor
         #endregion
 
         private void MergeBars() {
+            this.BarToolObject.UnMerge();
             if (_EditControl is IBarSupport) {
                 foreach (var bar in _EditControl.As<IBarSupport>().ExtendBars) {
                     this.BarToolObject.Merge(bar);
@@ -186,6 +187,7 @@ namespace PAO.Config.Editor
             this.ButtonExport.Enabled = editValue.IsNotNull();
             this.ButtonCreate.Enabled = editValue.IsNull();
             this.ButtonDelete.Enabled = editValue.IsNotNull();
+            this.ButtonProperty.Enabled = editValue.IsNotNull();
             this.ButtonCreate.Visibility = (EditMode == ObjectEditMode.Object && ObjectType == null)? DevExpress.XtraBars.BarItemVisibility.Never : DevExpress.XtraBars.BarItemVisibility.Always;
             this.ButtonDelete.Visibility = (EditMode == ObjectEditMode.Object && ObjectType == null) ? DevExpress.XtraBars.BarItemVisibility.Never : DevExpress.XtraBars.BarItemVisibility.Always;
             base.SetControlStatus();
@@ -260,6 +262,28 @@ namespace PAO.Config.Editor
         }
 
         private void ButtonProperty_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+            UIPublic.ShowWaitingForm();
+            var propertyValue = EditValue;
+            if(propertyValue != null) {
+
+            }
+            Type editControlType = ConfigPublic.GetEditControlType(propertyValue.GetType());
+            BaseEditControl editControl = null;
+            if (editControlType != null) {
+                var editController = editControlType.CreateInstance() as BaseEditController;
+                editControl = editController.CreateEditControl() as BaseEditControl;
+            }
+            if(editControl == null) {
+                var editController = new ObjectLayoutEditController();
+                editControl = editController.CreateEditControl() as BaseEditControl;
+            }
+
+            editControl.EditValue = IOPublic.ObjectClone(propertyValue);
+            UIPublic.CloseWaitingForm();
+            if (WinFormPublic.ShowDialog(editControl) == DialogReturn.OK) {
+                EditValue = editControl.EditValue;
+            }
+            SetControlStatus();
         }
     }
 }
