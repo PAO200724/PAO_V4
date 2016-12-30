@@ -72,6 +72,11 @@ namespace PAO.Report.Controls
                 }
 
                 DataFieldsEditControl = _ReportDataTable.ParameterEditController.CreateEditControl() as DataFieldsEditControl;
+                DataFieldsEditControl.Dock = DockStyle.Top;
+                DataFieldsEditControl.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+                DataFieldsEditControl.AutoSize = true;
+                DataFieldsEditControl.Parent = this;
+
 
                 ExtendAddonPublic.GetAddonExtendProperties(_ReportDataTable);
 

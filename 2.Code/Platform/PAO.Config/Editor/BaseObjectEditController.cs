@@ -40,7 +40,7 @@ namespace PAO.Config.Editor
         [DataMember(EmitDefaultValue = false)]
         [Name("属性编辑器类型")]
         [Description("自定义的属性编辑器类型列表，Key是属性名称，Value是编辑器（BaseEditor或者是BaseEditControl）")]
-        public Dictionary<string, Type> PropertyEditorTypes {
+        public Dictionary<string, BaseEditController> PropertyEditorTypes {
             get;
             set;
         }
@@ -57,18 +57,8 @@ namespace PAO.Config.Editor
         public Control CreateEditControl(string propertyName) {
             if (PropertyEditorTypes.IsNotNullOrEmpty()
                     && PropertyEditorTypes.ContainsKey(propertyName)) {
-                var editorType = PropertyEditorTypes[propertyName];
-                // 创建控件
-                var editor = editorType.CreateInstance();
-                if (editor is BaseEditControl) {
-                    return editor as BaseEditControl;
-                }
-                else if (editor is BaseEditController) {
-                    return editor.As<BaseEditController>().CreateEditControl();
-                }
-                else {
-                    throw new Exception("设置了不支持的编辑器类型").AddExceptionData("EditorType", editorType);
-                }
+                var editController = PropertyEditorTypes[propertyName];
+                return editController.CreateEditControl();
             }
             return null;
         }

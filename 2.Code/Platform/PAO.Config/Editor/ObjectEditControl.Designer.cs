@@ -28,9 +28,20 @@
             this.PropertyDescriptionControl = new DevExpress.XtraVerticalGrid.PropertyDescriptionControl();
             this.PropertyGridControl = new DevExpress.XtraVerticalGrid.PropertyGridControl();
             this.SplitContainerControl = new DevExpress.XtraEditors.SplitContainerControl();
+            this.PopupMenu = new DevExpress.XtraBars.PopupMenu();
+            this.BarManager = new DevExpress.XtraBars.BarManager();
+            this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            this.EditCaption = new DevExpress.XtraBars.BarEditItem();
+            this.TextEditCaption = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.PropertyGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainerControl)).BeginInit();
             this.SplitContainerControl.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PopupMenu)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BarManager)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TextEditCaption)).BeginInit();
             this.SuspendLayout();
             // 
             // PropertyDescriptionControl
@@ -56,6 +67,7 @@
             this.PropertyGridControl.CustomRecordCellEdit += new DevExpress.XtraVerticalGrid.Events.GetCustomRowCellEditEventHandler(this.PropertyGridControl_CustomRecordCellEdit);
             this.PropertyGridControl.CustomRecordCellEditForEditing += new DevExpress.XtraVerticalGrid.Events.GetCustomRowCellEditEventHandler(this.PropertyGridControl_CustomRecordCellEditForEditing);
             this.PropertyGridControl.CellValueChanged += new DevExpress.XtraVerticalGrid.Events.CellValueChangedEventHandler(this.PropertyGridControl_CellValueChanged);
+            this.PropertyGridControl.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PropertyGridControl_MouseUp);
             // 
             // SplitContainerControl
             // 
@@ -72,18 +84,89 @@
             this.SplitContainerControl.TabIndex = 1;
             this.SplitContainerControl.Text = "splitContainerControl1";
             // 
+            // PopupMenu
+            // 
+            this.PopupMenu.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.EditCaption)});
+            this.PopupMenu.Manager = this.BarManager;
+            this.PopupMenu.Name = "PopupMenu";
+            this.PopupMenu.BeforePopup += new System.ComponentModel.CancelEventHandler(this.PopupMenu_BeforePopup);
+            // 
+            // BarManager
+            // 
+            this.BarManager.DockControls.Add(this.barDockControlTop);
+            this.BarManager.DockControls.Add(this.barDockControlBottom);
+            this.BarManager.DockControls.Add(this.barDockControlLeft);
+            this.BarManager.DockControls.Add(this.barDockControlRight);
+            this.BarManager.Form = this;
+            this.BarManager.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
+            this.EditCaption});
+            this.BarManager.MaxItemId = 1;
+            this.BarManager.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.TextEditCaption});
+            // 
+            // barDockControlTop
+            // 
+            this.barDockControlTop.CausesValidation = false;
+            this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
+            this.barDockControlTop.Size = new System.Drawing.Size(466, 0);
+            // 
+            // barDockControlBottom
+            // 
+            this.barDockControlBottom.CausesValidation = false;
+            this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 672);
+            this.barDockControlBottom.Size = new System.Drawing.Size(466, 0);
+            // 
+            // barDockControlLeft
+            // 
+            this.barDockControlLeft.CausesValidation = false;
+            this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 0);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 672);
+            // 
+            // barDockControlRight
+            // 
+            this.barDockControlRight.CausesValidation = false;
+            this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
+            this.barDockControlRight.Location = new System.Drawing.Point(466, 0);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 672);
+            // 
+            // EditCaption
+            // 
+            this.EditCaption.Caption = "标题(&C)";
+            this.EditCaption.Edit = this.TextEditCaption;
+            this.EditCaption.EditWidth = 263;
+            this.EditCaption.Id = 0;
+            this.EditCaption.Name = "EditCaption";
+            this.EditCaption.EditValueChanged += new System.EventHandler(this.EditCaption_EditValueChanged);
+            // 
+            // TextEditCaption
+            // 
+            this.TextEditCaption.AutoHeight = false;
+            this.TextEditCaption.Name = "TextEditCaption";
+            // 
             // ObjectEditControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.SplitContainerControl);
+            this.Controls.Add(this.barDockControlLeft);
+            this.Controls.Add(this.barDockControlRight);
+            this.Controls.Add(this.barDockControlBottom);
+            this.Controls.Add(this.barDockControlTop);
             this.Name = "ObjectEditControl";
             this.Size = new System.Drawing.Size(466, 672);
             this.Leave += new System.EventHandler(this.ObjectEditControl_Leave);
             ((System.ComponentModel.ISupportInitialize)(this.PropertyGridControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainerControl)).EndInit();
             this.SplitContainerControl.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.PopupMenu)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BarManager)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TextEditCaption)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -92,5 +175,13 @@
         private DevExpress.XtraVerticalGrid.PropertyDescriptionControl PropertyDescriptionControl;
         private DevExpress.XtraEditors.SplitContainerControl SplitContainerControl;
         private DevExpress.XtraVerticalGrid.PropertyGridControl PropertyGridControl;
+        private DevExpress.XtraBars.PopupMenu PopupMenu;
+        private DevExpress.XtraBars.BarManager BarManager;
+        private DevExpress.XtraBars.BarDockControl barDockControlTop;
+        private DevExpress.XtraBars.BarDockControl barDockControlBottom;
+        private DevExpress.XtraBars.BarDockControl barDockControlLeft;
+        private DevExpress.XtraBars.BarDockControl barDockControlRight;
+        private DevExpress.XtraBars.BarEditItem EditCaption;
+        private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit TextEditCaption;
     }
 }

@@ -186,7 +186,6 @@ namespace PAO.Config.Editor
             this.ButtonExport.Enabled = editValue.IsNotNull();
             this.ButtonCreate.Enabled = editValue.IsNull();
             this.ButtonDelete.Enabled = editValue.IsNotNull();
-            this.ButtonProperty.Enabled = editValue.IsNotNull();
             this.ButtonCreate.Visibility = (EditMode == ObjectEditMode.Object && ObjectType == null)? DevExpress.XtraBars.BarItemVisibility.Never : DevExpress.XtraBars.BarItemVisibility.Always;
             this.ButtonDelete.Visibility = (EditMode == ObjectEditMode.Object && ObjectType == null) ? DevExpress.XtraBars.BarItemVisibility.Never : DevExpress.XtraBars.BarItemVisibility.Always;
             base.SetControlStatus();
@@ -261,12 +260,6 @@ namespace PAO.Config.Editor
         }
 
         private void ButtonProperty_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            var objectEditControl = new ObjectLayoutEditController().CreateEditControl() as ObjectLayoutEditControl;
-            objectEditControl.ShowCancelButton = false;
-            var editValue = EditValue;
-            objectEditControl.ObjectType = editValue.GetType();
-            objectEditControl.EditValue = editValue;
-            WinFormPublic.ShowDialog(objectEditControl);
         }
     }
 }

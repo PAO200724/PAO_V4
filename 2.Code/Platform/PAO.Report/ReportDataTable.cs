@@ -140,6 +140,7 @@ namespace PAO.Report
         #endregion 属性：DataFetcher
         #endregion
         public ReportDataTable() {
+            ParameterEditController = new Config.Editor.DataFieldsEditController();
         }
 
         /// <summary>

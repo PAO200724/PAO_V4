@@ -14,6 +14,7 @@ using PAO.WinForm.Editor;
 using PAO.WinForm.Config;
 using DevExpress.XtraBars;
 using DevExpress.XtraEditors.Repository;
+using DevExpress.XtraVerticalGrid;
 
 namespace PAO.Config.Editor
 {
@@ -22,6 +23,8 @@ namespace PAO.Config.Editor
     /// </summary>
     public partial class ObjectEditControl : BaseEditControl
     {
+        VGridHitInfo HitInfo;
+
         internal ObjectEditControl() {
             InitializeComponent();
             EditValue = null;
@@ -106,6 +109,30 @@ namespace PAO.Config.Editor
             }
 
             e.Properties = new PropertyDescriptorCollection(propertyDescriptors.ToArray());
+        }
+
+        private void PropertyGridControl_MouseUp(object sender, MouseEventArgs e) {
+            HitInfo = null;
+            if (e.Button == MouseButtons.Right) {
+                var pt = new Point(e.X, e.Y);
+                HitInfo = this.PropertyGridControl.CalcHitInfo(pt);
+                if(HitInfo.HitInfoType == DevExpress.XtraVerticalGrid.HitInfoTypeEnum.HeaderCell) {
+                    // 显示菜单
+                    PopupMenu.ShowPopup(this.PropertyGridControl.PointToScreen(pt));
+                }
+            }
+        }
+
+        private void EditCaption_EditValueChanged(object sender, EventArgs e) {
+            if(HitInfo != null) {
+                HitInfo.Row.Properties.Caption = EditCaption.EditValue as string;
+            }
+        }
+
+        private void PopupMenu_BeforePopup(object sender, CancelEventArgs e) {
+            if (HitInfo != null) {
+                EditCaption.EditValue = HitInfo.Row.Properties.Caption;
+            }
         }
     }
 }

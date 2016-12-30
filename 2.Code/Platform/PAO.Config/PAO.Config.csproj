@@ -131,6 +131,7 @@
     <Compile Include="Editor\DictionaryEditController.cs" />
     <Compile Include="Editor\ListEditController.cs" />
     <Compile Include="Editor\ObjectLayoutEditController.cs" />
+    <Compile Include="Editor\ObjectTreeEditController.cs" />
     <Compile Include="ExtendConfigPublic.cs" />
     <Compile Include="Views\ObjectConfigController.cs" />
     <Compile Include="Editor\AddonExtentionEditControl.cs">

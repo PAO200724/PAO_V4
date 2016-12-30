@@ -25,9 +25,8 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ObjectContainerEditControl));
-            this.BarManagerObject = new DevExpress.XtraBars.BarManager(this.components);
+            this.BarManagerObject = new DevExpress.XtraBars.BarManager();
             this.BarToolObject = new DevExpress.XtraBars.Bar();
             this.ButtonCreate = new DevExpress.XtraBars.BarButtonItem();
             this.ButtonDelete = new DevExpress.XtraBars.BarButtonItem();
@@ -41,7 +40,6 @@
             this.barDockControl2 = new DevExpress.XtraBars.BarDockControl();
             this.barDockControl3 = new DevExpress.XtraBars.BarDockControl();
             this.barDockControl4 = new DevExpress.XtraBars.BarDockControl();
-            this.ButtonProperty = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.BarManagerObject)).BeginInit();
             this.SuspendLayout();
             // 
@@ -63,8 +61,7 @@
             this.ButtonSaveFormat,
             this.ButtonSaveFormatAs,
             this.ButtonRecoverFormat,
-            this.ButtonImportFormat,
-            this.ButtonProperty});
+            this.ButtonImportFormat});
             this.BarManagerObject.MaxItemId = 18;
             // 
             // BarToolObject
@@ -77,7 +74,6 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.ButtonCreate),
             new DevExpress.XtraBars.LinkPersistInfo(this.ButtonDelete),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.ButtonExport, "", true, true, true, 0, null, DevExpress.XtraBars.BarItemPaintStyle.CaptionInMenu),
-            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonProperty),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.MenuFormat, DevExpress.XtraBars.BarItemPaintStyle.CaptionInMenu)});
             this.BarToolObject.OptionsBar.AllowQuickCustomization = false;
             this.BarToolObject.OptionsBar.DisableClose = true;
@@ -155,52 +151,40 @@
             this.barDockControl1.CausesValidation = false;
             this.barDockControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControl1.Location = new System.Drawing.Point(0, 0);
-            this.barDockControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.barDockControl1.Size = new System.Drawing.Size(770, 36);
+            this.barDockControl1.Size = new System.Drawing.Size(674, 28);
             // 
             // barDockControl2
             // 
             this.barDockControl2.CausesValidation = false;
             this.barDockControl2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControl2.Location = new System.Drawing.Point(0, 546);
-            this.barDockControl2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.barDockControl2.Size = new System.Drawing.Size(770, 0);
+            this.barDockControl2.Location = new System.Drawing.Point(0, 425);
+            this.barDockControl2.Size = new System.Drawing.Size(674, 0);
             // 
             // barDockControl3
             // 
             this.barDockControl3.CausesValidation = false;
             this.barDockControl3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControl3.Location = new System.Drawing.Point(0, 36);
-            this.barDockControl3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.barDockControl3.Size = new System.Drawing.Size(0, 510);
+            this.barDockControl3.Location = new System.Drawing.Point(0, 28);
+            this.barDockControl3.Size = new System.Drawing.Size(0, 397);
             // 
             // barDockControl4
             // 
             this.barDockControl4.CausesValidation = false;
             this.barDockControl4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControl4.Location = new System.Drawing.Point(770, 36);
-            this.barDockControl4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.barDockControl4.Size = new System.Drawing.Size(0, 510);
-            // 
-            // ButtonProperty
-            // 
-            this.ButtonProperty.Caption = "属性(&S)";
-            this.ButtonProperty.Glyph = global::PAO.Config.Properties.Resources.cog;
-            this.ButtonProperty.Id = 17;
-            this.ButtonProperty.Name = "ButtonProperty";
-            this.ButtonProperty.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonProperty_ItemClick);
+            this.barDockControl4.Location = new System.Drawing.Point(674, 28);
+            this.barDockControl4.Size = new System.Drawing.Size(0, 397);
             // 
             // ObjectContainerEditControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.barDockControl3);
             this.Controls.Add(this.barDockControl4);
             this.Controls.Add(this.barDockControl2);
             this.Controls.Add(this.barDockControl1);
-            this.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
+            this.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.Name = "ObjectContainerEditControl";
-            this.Size = new System.Drawing.Size(770, 546);
+            this.Size = new System.Drawing.Size(674, 425);
             ((System.ComponentModel.ISupportInitialize)(this.BarManagerObject)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -223,6 +207,5 @@
         private DevExpress.XtraBars.BarButtonItem ButtonSaveFormatAs;
         private DevExpress.XtraBars.BarButtonItem ButtonRecoverFormat;
         private DevExpress.XtraBars.BarButtonItem ButtonImportFormat;
-        private DevExpress.XtraBars.BarButtonItem ButtonProperty;
     }
 }
