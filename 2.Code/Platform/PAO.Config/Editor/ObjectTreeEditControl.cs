@@ -79,7 +79,7 @@ namespace PAO.Config.Editor
                 _ExtendPropertyStorageFilePath = value;
                 if(_ExtendPropertyStorageFilePath.IsNotNullOrEmpty() ) {
                     ExtendPropertyStorage = new ExtendPropertyStorage() { FilePath = value };
-                    SplitContainerControlProperty.Panel2.Visible = true;
+                    this.TabPageExtendProperty.Visible = true;
                     ExtendPropertyStorage = new ExtendPropertyStorage()
                     {
                         FilePath = _ExtendPropertyStorageFilePath
@@ -88,8 +88,9 @@ namespace PAO.Config.Editor
                     this.AddonExtentionEditControl.EditValue = ExtendPropertyStorage.PropertyTable;
                 }
                 else {
-                    SplitContainerControlProperty.Panel2.Visible = false;
+                    this.TabPageExtendProperty.Visible = false;
                 }
+                this.TabControl.SelectedTabPage = this.TabPageProperty;
                 SetControlStatus();
             }
         }
@@ -440,8 +441,6 @@ namespace PAO.Config.Editor
                     break;
                 case ObjectTreeNodeType.Object:
                     if(propertyValue is PaoObject) {
-                        this.AddonExtentionEditControl.Enabled = true;
-                        this.AddonExtentionEditControl.OriginAddon = propertyValue as PaoObject;
                         this.ObjectContainerEditControl.StartEditObject(propertyValue.GetType(), ObjectEditControl);
                     } else {
                         this.ObjectContainerEditControl.StartEditNull();
@@ -450,6 +449,14 @@ namespace PAO.Config.Editor
                     break;
                 default:
                     throw new Exception("此节点不支持显示数据");
+            }
+
+            if (propertyValue is PaoObject) {
+                this.AddonExtentionEditControl.Enabled = true;
+                this.AddonExtentionEditControl.OriginAddon = propertyValue as PaoObject;
+            } else {
+                this.AddonExtentionEditControl.Enabled = false;
+                this.AddonExtentionEditControl.OriginAddon = null;
             }
             this.ObjectContainerEditControl.EditValue = propertyValue;
             ExtendPropertyStorage.Save();
