@@ -108,8 +108,6 @@
     <Compile Include="Editor\FontEditor.cs" />
     <Compile Include="Editor\GuidEditController.cs" />
     <Compile Include="Editor\ImageEditController.cs" />
-    <Compile Include="Editor\IPropertyEditController.cs" />
-    <Compile Include="Editor\ITypeEditController.cs" />
     <Compile Include="Editor\MemoEditController.cs" />
     <Compile Include="Editor\MemoExEditController.cs" />
     <Compile Include="Editor\ObjectEditMode.cs" />

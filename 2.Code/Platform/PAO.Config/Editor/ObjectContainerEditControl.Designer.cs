@@ -32,16 +32,11 @@
             this.ButtonCreate = new DevExpress.XtraBars.BarButtonItem();
             this.ButtonDelete = new DevExpress.XtraBars.BarButtonItem();
             this.ButtonExport = new DevExpress.XtraBars.BarButtonItem();
-            this.MenuFormat = new DevExpress.XtraBars.BarSubItem();
-            this.ButtonSaveFormat = new DevExpress.XtraBars.BarButtonItem();
-            this.ButtonSaveFormatAs = new DevExpress.XtraBars.BarButtonItem();
-            this.ButtonRecoverFormat = new DevExpress.XtraBars.BarButtonItem();
-            this.ButtonImportFormat = new DevExpress.XtraBars.BarButtonItem();
+            this.W = new DevExpress.XtraBars.BarButtonItem();
             this.barDockControl1 = new DevExpress.XtraBars.BarDockControl();
             this.barDockControl2 = new DevExpress.XtraBars.BarDockControl();
             this.barDockControl3 = new DevExpress.XtraBars.BarDockControl();
             this.barDockControl4 = new DevExpress.XtraBars.BarDockControl();
-            this.ButtonProperty = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.BarManagerObject)).BeginInit();
             this.SuspendLayout();
             // 
@@ -59,12 +54,7 @@
             this.ButtonExport,
             this.ButtonCreate,
             this.ButtonDelete,
-            this.MenuFormat,
-            this.ButtonSaveFormat,
-            this.ButtonSaveFormatAs,
-            this.ButtonRecoverFormat,
-            this.ButtonImportFormat,
-            this.ButtonProperty});
+            this.W});
             this.BarManagerObject.MaxItemId = 19;
             // 
             // BarToolObject
@@ -77,8 +67,7 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.ButtonCreate),
             new DevExpress.XtraBars.LinkPersistInfo(this.ButtonDelete),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.ButtonExport, "", true, true, true, 0, null, DevExpress.XtraBars.BarItemPaintStyle.CaptionInMenu),
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.MenuFormat, DevExpress.XtraBars.BarItemPaintStyle.CaptionInMenu),
-            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonProperty, true)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.W, true)});
             this.BarToolObject.OptionsBar.AllowQuickCustomization = false;
             this.BarToolObject.OptionsBar.DisableClose = true;
             this.BarToolObject.OptionsBar.DisableCustomization = true;
@@ -111,44 +100,13 @@
             this.ButtonExport.Name = "ButtonExport";
             this.ButtonExport.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonExport_ItemClick);
             // 
-            // MenuFormat
+            // W
             // 
-            this.MenuFormat.Caption = "格式(&F)";
-            this.MenuFormat.Glyph = ((System.Drawing.Image)(resources.GetObject("MenuFormat.Glyph")));
-            this.MenuFormat.Id = 12;
-            this.MenuFormat.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("MenuFormat.LargeGlyph")));
-            this.MenuFormat.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonSaveFormat),
-            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonSaveFormatAs),
-            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonRecoverFormat, true),
-            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonImportFormat)});
-            this.MenuFormat.Name = "MenuFormat";
-            // 
-            // ButtonSaveFormat
-            // 
-            this.ButtonSaveFormat.Caption = "保存格式(&S)";
-            this.ButtonSaveFormat.Id = 13;
-            this.ButtonSaveFormat.Name = "ButtonSaveFormat";
-            this.ButtonSaveFormat.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonSaveFormat_ItemClick);
-            // 
-            // ButtonSaveFormatAs
-            // 
-            this.ButtonSaveFormatAs.Caption = "格式另存为(&S)...";
-            this.ButtonSaveFormatAs.Id = 14;
-            this.ButtonSaveFormatAs.Name = "ButtonSaveFormatAs";
-            this.ButtonSaveFormatAs.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonSaveFormatAs_ItemClick);
-            // 
-            // ButtonRecoverFormat
-            // 
-            this.ButtonRecoverFormat.Caption = "恢复初始格式(&R)";
-            this.ButtonRecoverFormat.Id = 15;
-            this.ButtonRecoverFormat.Name = "ButtonRecoverFormat";
-            // 
-            // ButtonImportFormat
-            // 
-            this.ButtonImportFormat.Caption = "导入格式(&L)...";
-            this.ButtonImportFormat.Id = 16;
-            this.ButtonImportFormat.Name = "ButtonImportFormat";
+            this.W.Caption = "属性(&P)";
+            this.W.Glyph = global::PAO.Config.Properties.Resources.properties_16x16;
+            this.W.Id = 18;
+            this.W.Name = "W";
+            this.W.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonProperty_ItemClick);
             // 
             // barDockControl1
             // 
@@ -178,14 +136,6 @@
             this.barDockControl4.Location = new System.Drawing.Point(674, 28);
             this.barDockControl4.Size = new System.Drawing.Size(0, 397);
             // 
-            // ButtonProperty
-            // 
-            this.ButtonProperty.Caption = "属性(&P)";
-            this.ButtonProperty.Glyph = global::PAO.Config.Properties.Resources.properties_16x16;
-            this.ButtonProperty.Id = 18;
-            this.ButtonProperty.Name = "ButtonProperty";
-            this.ButtonProperty.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonProperty_ItemClick);
-            // 
             // ObjectContainerEditControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -214,11 +164,6 @@
         private DevExpress.XtraBars.BarDockControl barDockControl2;
         private DevExpress.XtraBars.BarDockControl barDockControl3;
         private DevExpress.XtraBars.BarDockControl barDockControl4;
-        private DevExpress.XtraBars.BarSubItem MenuFormat;
-        private DevExpress.XtraBars.BarButtonItem ButtonSaveFormat;
-        private DevExpress.XtraBars.BarButtonItem ButtonSaveFormatAs;
-        private DevExpress.XtraBars.BarButtonItem ButtonRecoverFormat;
-        private DevExpress.XtraBars.BarButtonItem ButtonImportFormat;
-        private DevExpress.XtraBars.BarButtonItem ButtonProperty;
+        private DevExpress.XtraBars.BarButtonItem W;
     }
 }

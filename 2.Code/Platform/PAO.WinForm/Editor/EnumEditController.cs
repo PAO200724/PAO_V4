@@ -30,6 +30,7 @@ namespace PAO.WinForm.Editor
 
         protected override RepositoryItem OnCreateRepositoryItem() {
             var edit = new RepositoryItemComboBox();
+
             WinFormPublic.AddClearButton(edit);
             // 添加枚举项
             var enumType = PropertyDescriptor.PropertyType;

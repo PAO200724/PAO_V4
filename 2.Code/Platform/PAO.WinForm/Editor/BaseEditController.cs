@@ -24,7 +24,7 @@ namespace PAO.WinForm.Editor
     [DataContract(Namespace = "")]
     [Name("编辑器")]
     [Description("编辑器基类")]
-    public abstract class BaseEditController : PaoObject, IPropertyEditController, ITypeEditController
+    public abstract class BaseEditController : PaoObject
     {
         #region 插件属性
         #region 属性：ReadOnly
@@ -63,7 +63,7 @@ namespace PAO.WinForm.Editor
         /// <summary>
         /// 创建RepositoryItem
         /// </summary>
-        /// <returns></returns>
+        /// <returns>RepositoryItem</returns>
         public abstract RepositoryItem CreateRepositoryItem();
 
         /// <summary>

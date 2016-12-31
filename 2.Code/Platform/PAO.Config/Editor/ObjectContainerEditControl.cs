@@ -194,7 +194,7 @@ namespace PAO.Config.Editor
             this.ButtonExport.Enabled = editValue.IsNotNull();
             this.ButtonCreate.Enabled = editValue.IsNull();
             this.ButtonDelete.Enabled = editValue.IsNotNull();
-            this.ButtonProperty.Enabled = editValue.IsNotNull();
+            this.W.Enabled = editValue.IsNotNull();
             this.ButtonCreate.Visibility = (EditMode == ObjectEditMode.Object && ObjectType == null)? DevExpress.XtraBars.BarItemVisibility.Never : DevExpress.XtraBars.BarItemVisibility.Always;
             this.ButtonDelete.Visibility = (EditMode == ObjectEditMode.Object && ObjectType == null) ? DevExpress.XtraBars.BarItemVisibility.Never : DevExpress.XtraBars.BarItemVisibility.Always;
             base.SetControlStatus();
