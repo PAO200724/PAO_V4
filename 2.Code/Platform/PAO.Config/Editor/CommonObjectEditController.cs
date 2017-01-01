@@ -41,7 +41,7 @@ namespace PAO.Config.Editor
                 return new ListEditController().CreateEditControl(objectType); ;
             }
 
-            return ObjectPropertyEditController.CreateTypeEditControl(objectType); ;
+            return new ObjectPropertyEditController().CreateEditControl(objectType); ;
         }
     }
 }

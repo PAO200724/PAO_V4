@@ -24,7 +24,6 @@ namespace PAO.Config.Editor
     [Description("布局式对象编辑器的控制器")]
     public class ObjectLayoutEditController : BaseObjectEditController
     {
-        public static ObjectLayoutEditController DefaultTypeEditController = new ObjectLayoutEditController() { IsTypeEditController = true };
         #region 插件属性
 
         #region 属性：LayoutData
@@ -49,10 +48,6 @@ namespace PAO.Config.Editor
         protected override Control OnCreateEditControl(Type objectType) {
             var editControl = new ObjectLayoutEditControl();
             return editControl;
-        }
-
-        public static ObjectLayoutEditControl CreateTypeEditControl() {
-            return DefaultTypeEditController.CreateEditControl(null) as ObjectLayoutEditControl;
         }
     }
 }

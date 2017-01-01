@@ -30,9 +30,9 @@ namespace PAO.Config.Editor
     public partial class ObjectTreeEditControl : BaseObjectEditControl
     {
 
-        ListEditControl ListEditControl = new ListEditControl();
-        DictionaryEditControl DictionaryEditControl = new DictionaryEditControl();
-        ObjectPropertyEditControl ObjectEditControl = ObjectPropertyEditController.CreateTypeEditControl(typeof(object));
+        ListEditControl ListEditControl = new ListEditController().CreateEditControl(null) as ListEditControl;
+        DictionaryEditControl DictionaryEditControl = new DictionaryEditController().CreateEditControl(null) as DictionaryEditControl;
+        ObjectPropertyEditControl ObjectEditControl = new ObjectPropertyEditController().CreateEditControl(typeof(object)) as ObjectPropertyEditControl;
 
         /// <summary>
         /// 扩展属性存储

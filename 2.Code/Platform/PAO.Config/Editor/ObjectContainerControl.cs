@@ -282,7 +282,7 @@ namespace PAO.Config.Editor
                 }
             }
             if (editControl == null) {
-                editControl = ObjectLayoutEditController.CreateTypeEditControl();
+                editControl = new ObjectLayoutEditController().CreateEditControl(objectType) as BaseObjectEditControl;
             }
 
             editControl.EditValue = IOPublic.ObjectClone(propertyValue);

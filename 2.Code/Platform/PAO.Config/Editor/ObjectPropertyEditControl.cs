@@ -57,6 +57,13 @@ namespace PAO.Config.Editor
             }
         }
 
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public Type ObjectType {
+            get;
+            set;
+        }
+
         public ObjectPropertyEditControl() {
             InitializeComponent();
             SetControlStatus();
@@ -119,7 +126,7 @@ namespace PAO.Config.Editor
 
             if (edit == null) {
                 if(propDesc.PropertyType.IsDerivedFrom(typeof(PaoObject))) {
-                    edit = ObjectPropertyEditController.DefaultTypeEditController;
+                    edit = new CommonObjectEditController();
                 }
             }
 
