@@ -142,5 +142,24 @@
         isAbstract="false"
         isLeaf="false" />
     </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="80a06339-0d8b-4871-ae65-3393e8a899e5"
+        name="BaseObjectEditController"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="79138ffb-263f-4fc2-a706-7aad58cf3f41"
+            isSubstitutable="false">
+            <classMoniker
+              Id="bde51c3b-5360-4715-9b8b-39be3d06c2b7"
+              LastKnownName="BaseEditController"
+              LastKnownLocation="PAO.Editor.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
   </packagedElements>
 </package>

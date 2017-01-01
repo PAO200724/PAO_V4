@@ -417,7 +417,7 @@ namespace PAO.Report.Views
 
         private void ReportTableControl_SetupQueryBehavior(object sender, EventArgs e) {
             var tableControl = sender as ReportTableControl;
-            var objectEditControl = ObjectPropertyEditController.CreateTypeEditControl();
+            var objectEditControl = ObjectPropertyEditController.CreateTypeEditControl(typeof(ReportQueryBehavior));
             var queryBehavior = IOPublic.ObjectClone(tableControl.ReportDataTable.QueryBehavior);
             if (queryBehavior == null)
                 queryBehavior = new ReportQueryBehavior();
@@ -442,7 +442,7 @@ namespace PAO.Report.Views
 
         private void ButtonSetupQueryBehavior_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             var controller = Controller as ReportController;
-            var objectEditControl = ObjectPropertyEditController.CreateTypeEditControl();
+            var objectEditControl = ObjectPropertyEditController.CreateTypeEditControl(typeof(ReportQueryBehavior));
             var queryBehavior = IOPublic.ObjectClone(controller.QueryBehavior);
             if (queryBehavior == null)
                 queryBehavior = new ReportQueryBehavior();

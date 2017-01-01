@@ -29,7 +29,19 @@ namespace PAO.Config.Editor
         }
 
         protected override Control OnCreateEditControl(Type objectType) {
-            throw new NotImplementedException();
+            if(objectType == null) {
+                return null;
+            } 
+
+            if(objectType.IsAddonDictionaryType()) {
+                return new DictionaryEditController().CreateEditControl(objectType); ;
+            }
+
+            if (objectType.IsAddonListType()) {
+                return new ListEditController().CreateEditControl(objectType); ;
+            }
+
+            return ObjectPropertyEditController.CreateTypeEditControl(objectType); ;
         }
     }
 }

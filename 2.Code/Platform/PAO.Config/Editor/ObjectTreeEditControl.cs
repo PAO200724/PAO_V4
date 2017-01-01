@@ -32,7 +32,7 @@ namespace PAO.Config.Editor
 
         ListEditControl ListEditControl = new ListEditControl();
         DictionaryEditControl DictionaryEditControl = new DictionaryEditControl();
-        ObjectPropertyEditControl ObjectEditControl = ObjectPropertyEditController.CreateTypeEditControl();
+        ObjectPropertyEditControl ObjectEditControl = ObjectPropertyEditController.CreateTypeEditControl(typeof(object));
 
         /// <summary>
         /// 扩展属性存储

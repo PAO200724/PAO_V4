@@ -205,7 +205,7 @@ namespace PAO.Config
                 editor = new GuidEditController();
             }
             else if (AddonPublic.IsAddon(type)) {
-                editor = new ObjectPropertyEditController();
+                editor = new CommonObjectEditController();
             }
             else {
                 return null;

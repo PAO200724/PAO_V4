@@ -217,6 +217,7 @@ namespace PAO.App {
                             catch (Exception err){
                                 if(UIPublic.ShowYesNoDialog("本地配置加载错误，可能是本地配置文件版本错误，如果您选择继续，程序可以运行，但本地配置将会丢失，您确认要继续吗。") == DialogReturn.Yes) {
                                     ExtendAddonPublic.BackupStorage();
+                                    ExtendAddonPublic.SaveAddonExtendPropertiesToStorage();
                                     // 加载扩展插件如果出现异常，可能是版本问题，直接退出。
                                     EventPublic.Exception(err);
                                 } else {

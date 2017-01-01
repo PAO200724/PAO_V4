@@ -1,19 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm11="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner" dslVersion="1.0.0.0" Id="84a17b51-7e79-414d-865e-faf4737760ae" name="Editor" linkedPackageId="490938c3-03a3-44ce-9c5b-455e936a2e0a" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
-  <profileInstances>
-    <packageHasProfileInstances Id="180f4299-98cc-4a65-9e84-4191696ac582">
-      <profileInstance Id="f0420dd4-9345-4eb3-aca2-ab659bb743c7" name="StandardProfileL2">
-        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
-      </profileInstance>
-      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
-    </packageHasProfileInstances>
-    <packageHasProfileInstances Id="a564a4a5-e86f-4d54-baf4-a9f2b3718947">
-      <profileInstance Id="33080bc6-ad42-4a9e-aaf6-529d7f770aab" name="StandardProfileL3">
-        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
-      </profileInstance>
-      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
-    </packageHasProfileInstances>
-  </profileInstances>
   <packagedElements>
     <logicalClassDesignerModelHasTypes>
       <class Id="e9aabf7a-4dea-4d09-b9cc-7fc802f19701" name="BaseEditController" isAbstract="false" isLeaf="false" isActiveClass="false">
@@ -101,42 +87,123 @@
       </Interface>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
-      <class Id="93e42eb4-57cc-4b6a-a5f9-9e1555abe6de" name="ObjectEditController" isAbstract="false" isLeaf="false" isActiveClass="false">
+      <class Id="93e42eb4-57cc-4b6a-a5f9-9e1555abe6de" name="ObjectPropertyEditController" isAbstract="false" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="cdfea2d9-711d-4b07-b856-c75f7be31fab" />
+        <generalsInternal>
+          <generalization Id="451d1183-4469-4853-86e9-77314cd883e5" isSubstitutable="false">
+            <classMoniker Id="b82c84e6-d587-4058-9ab1-078265e58aa8" LastKnownName="BaseObjectEditController" />
+            <elementDefinition Id="513c0aee-97cb-4a82-aa3f-96f0faa1d856" />
+          </generalization>
+        </generalsInternal>
       </class>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
       <class Id="50023439-2566-4cc0-b56e-f2d00739707a" name="ListEditController" isAbstract="false" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="1a18a509-aad2-4955-b4e6-96add49ee4d2" />
+        <generalsInternal>
+          <generalization Id="f45c3a57-031a-4ead-8509-af1a4fb593c9" isSubstitutable="false">
+            <classMoniker Id="b82c84e6-d587-4058-9ab1-078265e58aa8" LastKnownName="BaseObjectEditController" />
+            <elementDefinition Id="959f0777-b754-4760-a2ac-0c95a0bd64e0" />
+          </generalization>
+        </generalsInternal>
       </class>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
       <class Id="166301b1-b9cd-42fe-9657-62a2f8d9ad65" name="DictionaryEditController" isAbstract="false" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="267af799-5b85-48cc-947e-7480fc44d8ff" />
+        <generalsInternal>
+          <generalization Id="54c4db01-4c3f-4511-9985-d56bcd54ab00" isSubstitutable="false">
+            <classMoniker Id="b82c84e6-d587-4058-9ab1-078265e58aa8" LastKnownName="BaseObjectEditController" />
+            <elementDefinition Id="0853c0f0-978e-43a4-a983-523588d1de13" />
+          </generalization>
+        </generalsInternal>
       </class>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
       <class Id="3bf96fac-5030-4d9d-bbf1-2892973b8070" name="ObjectLayoutEditController" isAbstract="false" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="6fecca65-9f45-4671-ba77-7b4771dd4f7b" />
+        <generalsInternal>
+          <generalization Id="3c11ef8d-c590-48be-aafd-dc1144ffaba2" isSubstitutable="false">
+            <classMoniker Id="b82c84e6-d587-4058-9ab1-078265e58aa8" LastKnownName="BaseObjectEditController" />
+            <elementDefinition Id="3359db10-c215-42f9-ad55-19c0922f146e" />
+          </generalization>
+        </generalsInternal>
       </class>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
-      <class Id="e3ccd390-64b5-4754-9450-f4aa5abb2a63" name="ObjectContainerEditControll" isAbstract="false" isLeaf="false" isActiveClass="false">
+      <class Id="e3ccd390-64b5-4754-9450-f4aa5abb2a63" name="ObjectContainerControl" isAbstract="false" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="c923baff-f6bd-4837-8f48-c0ba43e343ba" />
       </class>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
       <class Id="902a4028-ce29-4a27-9e34-018bb82ca04c" name="ObjectTreeEditControl" isAbstract="false" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="892611b5-7662-454b-800e-45796697ac6c" />
+        <suppliersInternal>
+          <dependency Id="1c375835-3271-4eb4-bd12-98d4988eca57">
+            <classMoniker Id="e3ccd390-64b5-4754-9450-f4aa5abb2a63" LastKnownName="ObjectContainerControl" />
+            <elementDefinition Id="655a0fcb-45a9-4410-bd3b-725b9a78b2db" />
+          </dependency>
+        </suppliersInternal>
       </class>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
       <class Id="cf1611db-5447-418c-b539-a484a3242536" name="ObjectTreeEditController" isAbstract="false" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="53a4c438-3f3d-4555-8bcf-ac91f12a3754" />
+        <suppliersInternal>
+          <dependency Id="e6a04937-67f0-4d60-a507-d9acbef7332d">
+            <classMoniker Id="902a4028-ce29-4a27-9e34-018bb82ca04c" LastKnownName="ObjectTreeEditControl" />
+            <elementDefinition Id="78faaf85-98a5-4c7c-b3e1-6b3cd994fb62" />
+          </dependency>
+        </suppliersInternal>
+        <generalsInternal>
+          <generalization Id="def8af50-a117-4b2b-8991-30e727d91cf2" isSubstitutable="false">
+            <classMoniker Id="b82c84e6-d587-4058-9ab1-078265e58aa8" LastKnownName="BaseObjectEditController" />
+            <elementDefinition Id="4b633226-2031-4aba-8617-04e68eff98b3" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="0510bbf8-2df0-4ecf-8e70-6507ebb3bbb4" name="CommonObjectEditController" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="2f458f20-ef5b-4236-9a42-69969407b4cc" />
+        <suppliersInternal>
+          <dependency Id="68ab911f-edd2-4427-aecb-348d675ba668">
+            <classMoniker Id="50023439-2566-4cc0-b56e-f2d00739707a" LastKnownName="ListEditController" />
+            <elementDefinition Id="db6ceb4c-db88-44bb-9801-561cdb444c3b" />
+          </dependency>
+          <dependency Id="3c796719-d2af-454b-a055-2c3f1da93cd7">
+            <classMoniker Id="166301b1-b9cd-42fe-9657-62a2f8d9ad65" LastKnownName="DictionaryEditController" />
+            <elementDefinition Id="f60036f5-68fc-4c5f-86d8-2eacea2b5ecd" />
+          </dependency>
+          <dependency Id="cd2c27a9-ed06-4255-ada7-dfe649d57c71">
+            <classMoniker Id="93e42eb4-57cc-4b6a-a5f9-9e1555abe6de" LastKnownName="ObjectPropertyEditController" />
+            <elementDefinition Id="6896907c-1830-4708-a587-941f2291a412" />
+          </dependency>
+        </suppliersInternal>
+        <generalsInternal>
+          <generalization Id="3b67843a-6aac-4237-938f-63827c157b80" isSubstitutable="false">
+            <classMoniker Id="b82c84e6-d587-4058-9ab1-078265e58aa8" LastKnownName="BaseObjectEditController" />
+            <elementDefinition Id="d6ed3646-b8aa-4ca0-b7da-3f724eb73648" />
+          </generalization>
+        </generalsInternal>
       </class>
     </logicalClassDesignerModelHasTypes>
   </packagedElements>
   <package Id="490938c3-03a3-44ce-9c5b-455e936a2e0a" name="PAODesign">
     <elementDefinition Id="f7c6b53f-1c2e-4762-ad13-eb71efcb9a9d" />
+    <profileInstances>
+      <packageHasProfileInstances Id="180f4299-98cc-4a65-9e84-4191696ac582">
+        <profileInstance Id="f0420dd4-9345-4eb3-aca2-ab659bb743c7" name="StandardProfileL2">
+          <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+        </profileInstance>
+        <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="a564a4a5-e86f-4d54-baf4-a9f2b3718947">
+        <profileInstance Id="33080bc6-ad42-4a9e-aaf6-529d7f770aab" name="StandardProfileL3">
+          <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+        </profileInstance>
+        <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+      </packageHasProfileInstances>
+    </profileInstances>
   </package>
 </logicalClassDesignerModel>

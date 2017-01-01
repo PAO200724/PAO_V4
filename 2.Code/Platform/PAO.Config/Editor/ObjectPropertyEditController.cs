@@ -58,8 +58,8 @@ namespace PAO.Config.Editor
             return editControl;
         }
 
-        public static ObjectPropertyEditControl CreateTypeEditControl() {
-            return DefaultTypeEditController.CreateEditControl(null) as ObjectPropertyEditControl;
+        public static ObjectPropertyEditControl CreateTypeEditControl(Type objectType) {
+            return DefaultTypeEditController.CreateEditControl(objectType) as ObjectPropertyEditControl;
         }
     }
 }
