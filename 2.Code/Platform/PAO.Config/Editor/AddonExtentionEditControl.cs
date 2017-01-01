@@ -10,6 +10,7 @@ using DevExpress.XtraEditors;
 using PAO.IO;
 using PAO.WinForm;
 using static PAO.Config.DataSetExtendProperty;
+using PAO.WinForm.Editor;
 
 namespace PAO.Config.Editor
 {
@@ -17,7 +18,7 @@ namespace PAO.Config.Editor
     /// 插件扩展编辑器
     /// 作者：PAO
     /// </summary>
-    public partial class AddonExtentionEditControl : BaseEditControl
+    public partial class AddonExtentionEditControl : BaseObjectEditControl
     {
         public AddonExtentionEditControl() {
             InitializeComponent();

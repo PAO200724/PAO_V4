@@ -12,9 +12,8 @@ using PAO.WinForm.Editor;
 using PAO.WinForm;
 using PAO.IO;
 using PAO.UI;
-using PAO.Config.Editor;
 
-namespace PAO.Config.Editor
+namespace PAO.WinForm.Editor
 {
     /// <summary>
     /// 类：BaseObjectEditController
@@ -83,7 +82,7 @@ namespace PAO.Config.Editor
         }
         
         public override Control CreateEditControl(Type objectType) {
-            var editControl = base.CreateEditControl(objectType) as BaseEditControl;
+            var editControl = base.CreateEditControl(objectType) as BaseObjectEditControl;
             if(editControl != null)
                 editControl.Controller = this;
             return editControl;
@@ -98,7 +97,7 @@ namespace PAO.Config.Editor
                 var edit = (ButtonEdit)sender;
                 if (e.Button.Kind == DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis) {
                     var editValue = edit.EditValue;
-                    BaseEditControl editControl = CreateEditControl(objectType) as BaseEditControl;
+                    BaseObjectEditControl editControl = CreateEditControl(objectType) as BaseObjectEditControl;
 
                     if (edit.EditValue.IsNotNull()) {
                         editControl.EditValue = IOPublic.ObjectClone(editValue);

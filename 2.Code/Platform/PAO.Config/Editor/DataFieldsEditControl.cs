@@ -23,7 +23,7 @@ namespace PAO.Config.Editor
     /// 对象布局式编辑控件
     /// 作者：PAO
     /// </summary>
-    public partial class DataFieldsEditControl : BaseEditControl
+    public partial class DataFieldsEditControl : BaseObjectEditControl
     {
         internal DataFieldsEditControl() {
             InitializeComponent();
@@ -165,7 +165,7 @@ namespace PAO.Config.Editor
                 layoutControlItem.Text = dataField.Name;
                 layoutControlItem.CustomizationFormText = dataField.Name;
 
-                if (editControl is BaseEditControl) {
+                if (editControl is BaseObjectEditControl) {
                     layoutControlItem.TextVisible = false;
                 }
                 else {

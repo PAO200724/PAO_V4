@@ -20,7 +20,7 @@ namespace PAO.Config.Editor
     /// 对象布局式编辑控件
     /// 作者：PAO
     /// </summary>
-    public partial class ObjectLayoutEditControl : BaseEditControl
+    public partial class ObjectLayoutEditControl : BaseObjectEditControl
     {
         public ObjectLayoutEditControl() {
             InitializeComponent();
@@ -159,10 +159,10 @@ namespace PAO.Config.Editor
 
                 if (editControl == null) {
                     if (AddonPublic.IsAddonDictionaryType(configedPropDesc.PropertyType)) {
-                        editControl = new DictionaryEditController().CreateEditControl(propDesc.PropertyType) as BaseEditControl;
+                        editControl = new DictionaryEditController().CreateEditControl(propDesc.PropertyType) as BaseObjectEditControl;
                     }
                     else if (AddonPublic.IsAddonListType(configedPropDesc.PropertyType)) {
-                        editControl = new ListEditController().CreateEditControl(propDesc.PropertyType) as BaseEditControl;
+                        editControl = new ListEditController().CreateEditControl(propDesc.PropertyType) as BaseObjectEditControl;
                     }
                     else {
                         // 此处第二个参数为true，确保了最少能创建一种编辑器
@@ -175,10 +175,10 @@ namespace PAO.Config.Editor
                     throw new Exception("编辑控件必须实现EditValue属性");
 
                 LayoutControlItem layoutControlItem = null;
-                if (editControl is BaseEditControl) {
+                if (editControl is BaseObjectEditControl) {
                     // 在BaseEditControl外套一层ObjectContainerEditControl，用于实现属性的新增删除等
                     var objectContainerEditControl = new ObjectContainerControl();
-                    objectContainerEditControl.StartEditProperty(EditValue, propDesc.Name, editControl as BaseEditControl);
+                    objectContainerEditControl.StartEditProperty(EditValue, propDesc.Name, editControl as BaseObjectEditControl);
                     editControl = objectContainerEditControl;
 
                     if (tabbledGroup == null) {
@@ -206,7 +206,7 @@ namespace PAO.Config.Editor
                 layoutControlItem.Text = configedPropDesc.DisplayName;
                 layoutControlItem.CustomizationFormText = configedPropDesc.DisplayName;
 
-                if (editControl is BaseEditControl) {
+                if (editControl is BaseObjectEditControl) {
                     layoutControlItem.TextVisible = false;
                 }
                 else {

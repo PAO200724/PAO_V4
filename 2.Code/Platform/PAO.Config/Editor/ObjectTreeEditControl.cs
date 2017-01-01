@@ -27,12 +27,12 @@ namespace PAO.Config.Editor
     /// <summary>
     /// 对象树控件
     /// </summary>
-    public partial class ObjectTreeEditControl : BaseEditControl
+    public partial class ObjectTreeEditControl : BaseObjectEditControl
     {
 
         ListEditControl ListEditControl = new ListEditControl();
         DictionaryEditControl DictionaryEditControl = new DictionaryEditControl();
-        ObjectEditControl ObjectEditControl = ObjectEditController.CreateTypeEditControl();
+        ObjectPropertyEditControl ObjectEditControl = ObjectPropertyEditController.CreateTypeEditControl();
 
         /// <summary>
         /// 扩展属性存储
@@ -466,7 +466,7 @@ namespace PAO.Config.Editor
         /// 根据编辑控件重置对象
         /// </summary>
         /// <param name="editControl">编辑控件</param>
-        private void ResetNodeValueByEditControl(BaseEditControl editControl) {
+        private void ResetNodeValueByEditControl(BaseObjectEditControl editControl) {
             var focusedNode = this.TreeListObject.FocusedNode;
             if (focusedNode != null) {
                 var propDesc = (PropertyDescriptor)focusedNode.GetValue(ColumnPropertyDescriptor);

@@ -11,13 +11,14 @@ using PAO.Config.Editor;
 using PAO.App;
 using PAO.Config;
 using PAO.WinForm;
+using PAO.WinForm.Editor;
 
 namespace PAO.Controls
 {
     /// <summary>
     /// 插件选择控件
     /// </summary>
-    public partial class AddonSelectControl : BaseEditControl
+    public partial class AddonSelectControl : BaseObjectEditControl
     {
         public AddonSelectControl() {
             InitializeComponent();

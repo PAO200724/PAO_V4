@@ -79,6 +79,7 @@
   <ItemGroup>
     <Compile Include="ConfigPublic.cs" />
     <Compile Include="Editor\AddonExtentionEditController.cs" />
+    <Compile Include="Editor\CommonObjectEditController.cs" />
     <Compile Include="Editor\DataCommandInfoEditController.cs" />
     <Compile Include="Editor\DataFieldsEditController.cs" />
     <Compile Include="Editor\DataFilterEditController.cs" />
@@ -121,7 +122,6 @@
     <Compile Include="DockViews\PropertyView.Designer.cs">
       <DependentUpon>PropertyView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Editor\BaseObjectEditController.cs" />
     <Compile Include="Editor\DictionaryEditController.cs" />
     <Compile Include="Editor\ListEditController.cs" />
     <Compile Include="Editor\ObjectLayoutEditController.cs" />
@@ -141,7 +141,7 @@
     <Compile Include="Editor\DictionaryEditControl.Designer.cs">
       <DependentUpon>DictionaryEditControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Editor\ObjectEditController.cs" />
+    <Compile Include="Editor\ObjectPropertyEditController.cs" />
     <Compile Include="Editor\DataCommandInfoEditControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -157,11 +157,11 @@
     <Compile Include="Editor\DataFilterInfo.cs" />
     <Compile Include="Editor\DbFactoryEditController.cs" />
     <Compile Include="ListElement.cs" />
-    <Compile Include="Editor\ObjectEditControl.cs">
+    <Compile Include="Editor\ObjectPropertyEditControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Editor\ObjectEditControl.Designer.cs">
-      <DependentUpon>ObjectEditControl.cs</DependentUpon>
+    <Compile Include="Editor\ObjectPropertyEditControl.Designer.cs">
+      <DependentUpon>ObjectPropertyEditControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\InputKeyControl.cs">
       <SubType>UserControl</SubType>
@@ -226,8 +226,8 @@
     <EmbeddedResource Include="Editor\ObjectContainerControl.resx">
       <DependentUpon>ObjectContainerControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Editor\ObjectEditControl.resx">
-      <DependentUpon>ObjectEditControl.cs</DependentUpon>
+    <EmbeddedResource Include="Editor\ObjectPropertyEditControl.resx">
+      <DependentUpon>ObjectPropertyEditControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Editor\DataFieldsEditControl.resx">
       <DependentUpon>DataFieldsEditControl.cs</DependentUpon>

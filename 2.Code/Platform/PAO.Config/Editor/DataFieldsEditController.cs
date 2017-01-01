@@ -8,6 +8,7 @@ using DevExpress.XtraEditors.Repository;
 using PAO;
 using PAO.WinForm;
 using System.Windows.Forms;
+using PAO.WinForm.Editor;
 
 namespace PAO.Config.Editor
 {

@@ -13,15 +13,15 @@ using PAO.IO;
 using System.IO;
 using PAO.WinForm.Editor;
 
-namespace PAO.WinForm
+namespace PAO.WinForm.Editor
 {
     /// <summary>
     /// 基础编辑控件
     /// 作者：PAO
     /// </summary>
-    public partial class BaseEditControl : DialogControl
+    public partial class BaseObjectEditControl : DialogControl
     {
-        public BaseEditControl() {
+        public BaseObjectEditControl() {
             InitializeComponent();
         }
         

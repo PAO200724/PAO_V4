@@ -1,6 +1,6 @@
 ﻿namespace PAO.Config.Editor
 {
-    partial class ObjectEditControl
+    partial class ObjectPropertyEditControl
     {
         /// <summary> 
         /// Required designer variable.

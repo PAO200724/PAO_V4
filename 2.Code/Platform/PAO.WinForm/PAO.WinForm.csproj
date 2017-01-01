@@ -71,11 +71,11 @@
     <Compile Include="Controls\BaseControl.Designer.cs">
       <DependentUpon>BaseControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\BaseEditControl.cs">
+    <Compile Include="Editor\BaseObjectEditControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\BaseEditControl.Designer.cs">
-      <DependentUpon>BaseEditControl.cs</DependentUpon>
+    <Compile Include="Editor\BaseObjectEditControl.Designer.cs">
+      <DependentUpon>BaseObjectEditControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\ViewControl.cs">
       <SubType>UserControl</SubType>
@@ -104,6 +104,7 @@
     </Compile>
     <Compile Include="Editor\BaseEditController.cs" />
     <Compile Include="Editor\BaseDevEditController.cs" />
+    <Compile Include="Editor\BaseObjectEditController.cs" />
     <Compile Include="Editor\CalcEditController.cs" />
     <Compile Include="Editor\CheckComboBoxEditController.cs" />
     <Compile Include="Editor\CheckEditController.cs" />
@@ -167,8 +168,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Controls\BaseEditControl.resx">
-      <DependentUpon>BaseEditControl.cs</DependentUpon>
+    <EmbeddedResource Include="Editor\BaseObjectEditControl.resx">
+      <DependentUpon>BaseObjectEditControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\ViewControl.resx">
       <DependentUpon>ViewControl.cs</DependentUpon>

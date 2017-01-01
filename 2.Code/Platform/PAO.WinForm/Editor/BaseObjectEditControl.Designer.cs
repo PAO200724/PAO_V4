@@ -1,6 +1,6 @@
-﻿namespace PAO.WinForm
+﻿namespace PAO.WinForm.Editor
 {
-    partial class BaseEditControl
+    partial class BaseObjectEditControl
     {
         /// <summary> 
         /// Required designer variable.

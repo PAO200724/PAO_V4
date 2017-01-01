@@ -15,6 +15,7 @@ using PAO.IO;
 using System.IO;
 using PAO.WinForm;
 using DevExpress.XtraBars;
+using PAO.WinForm.Editor;
 
 namespace PAO.Config.Editor
 {
@@ -22,11 +23,11 @@ namespace PAO.Config.Editor
     /// 集合编辑控件
     /// 作者：PAO
     /// </summary>
-    public partial class ListEditControl : BaseEditControl, IBarSupport
+    public partial class ListEditControl : BaseObjectEditControl, IBarSupport
     {
         public ListEditControl() {
             InitializeComponent();
-            this.ColumnObject.ColumnEdit = ObjectEditController.DefaultTypeEditController.CreateRepositoryItem(typeof(object));
+            this.ColumnObject.ColumnEdit = ObjectPropertyEditController.DefaultTypeEditController.CreateRepositoryItem(typeof(object));
         }
         
         private void Element_RowChanged(object sender, DataRowChangeEventArgs e) {

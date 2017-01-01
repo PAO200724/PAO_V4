@@ -19,7 +19,7 @@ namespace PAO.Config.Editor
     /// 对象容器编辑控件
     /// 作者：PAO
     /// </summary>
-    public partial class ObjectContainerControl : BaseEditControl {
+    public partial class ObjectContainerControl : BaseObjectEditControl {
         /// <summary>
         /// 组件对象，在属性、列表元素和字典元素编辑模式下分别代表组件对象、列表和字典
         /// </summary>
@@ -50,13 +50,13 @@ namespace PAO.Config.Editor
         public Type ObjectType { get; set; }
 
 
-        private BaseEditControl _EditControl;
+        private BaseObjectEditControl _EditControl;
         /// <summary>
         /// 编辑控件
         /// </summary>
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public BaseEditControl EditControl {
+        public BaseObjectEditControl EditControl {
             get {
                 return _EditControl;
             }
@@ -127,27 +127,27 @@ namespace PAO.Config.Editor
             ObjectType = null;
         }
 
-        public void StartEditObject(Type objectType, BaseEditControl editControl) {
+        public void StartEditObject(Type objectType, BaseObjectEditControl editControl) {
             EditMode = ObjectEditMode.Object;
             EditControl = editControl;
             ObjectType = objectType;
         }
 
-        public void StartEditProperty(object componentObject, string propertyName, BaseEditControl editControl) {
+        public void StartEditProperty(object componentObject, string propertyName, BaseObjectEditControl editControl) {
             EditMode = ObjectEditMode.Property;
             EditControl = editControl;
             ComponentObject = componentObject;
             Key = propertyName;
         }
 
-        public void StartEditListEelement(object componentObject, int index, BaseEditControl editControl) {
+        public void StartEditListEelement(object componentObject, int index, BaseObjectEditControl editControl) {
             EditMode = ObjectEditMode.ListElement;
             EditControl = editControl;
             ComponentObject = componentObject;
             Key = index;
         }
 
-        public void StartEditDictionaryElement(object componentObject, object key, BaseEditControl editControl) {
+        public void StartEditDictionaryElement(object componentObject, object key, BaseObjectEditControl editControl) {
             EditMode = ObjectEditMode.DictionaryElement;
             EditControl = editControl;
             ComponentObject = componentObject;
@@ -267,18 +267,18 @@ namespace PAO.Config.Editor
             var propertyValue = EditValue;
 
             Type editControlType = ConfigPublic.GetEditControllerType(propertyValue.GetType());
-            BaseEditControl editControl = null;
+            BaseObjectEditControl editControl = null;
             var objectType = propertyValue.GetType();
             if (editControlType != null) {
                 var editController = editControlType.CreateInstance() as BaseEditController;
-                editControl = editController.CreateEditControl(objectType) as BaseEditControl;
+                editControl = editController.CreateEditControl(objectType) as BaseObjectEditControl;
             }
             if (editControl == null) {
                 if (objectType.IsAddonDictionaryType()) {
-                    editControl = new DictionaryEditController().CreateEditControl(objectType) as BaseEditControl;
+                    editControl = new DictionaryEditController().CreateEditControl(objectType) as BaseObjectEditControl;
                 }
                 else if (objectType.IsAddonListType()) {
-                    editControl = new ListEditController().CreateEditControl(objectType) as BaseEditControl;
+                    editControl = new ListEditController().CreateEditControl(objectType) as BaseObjectEditControl;
                 }
             }
             if (editControl == null) {

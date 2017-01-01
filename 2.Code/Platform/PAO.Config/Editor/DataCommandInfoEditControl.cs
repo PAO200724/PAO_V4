@@ -11,6 +11,7 @@ using PAO.Config.Editor;
 using PAO.Data;
 using PAO.WinForm;
 using PAO.Data.Filters;
+using PAO.WinForm.Editor;
 
 namespace PAO.Config.Editor
 {
@@ -18,7 +19,7 @@ namespace PAO.Config.Editor
     /// 数据命令信息编辑器
     /// 作者：PAO
     /// </summary>
-    public partial class DataCommandInfoEditControl : BaseEditControl
+    public partial class DataCommandInfoEditControl : BaseObjectEditControl
     {
         public DataCommandInfoEditControl() {
             InitializeComponent();

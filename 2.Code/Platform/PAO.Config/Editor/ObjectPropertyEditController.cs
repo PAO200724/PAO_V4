@@ -29,9 +29,9 @@ namespace PAO.Config.Editor
     [DataContract(Namespace = "")]
     [Name("插件编辑控制器")]
     [Description("插件编辑控制器")]
-    public class ObjectEditController : BaseObjectEditController
+    public class ObjectPropertyEditController : BaseObjectEditController
     {
-        public static ObjectEditController DefaultTypeEditController = new ObjectEditController() { IsTypeEditController = true };
+        public static ObjectPropertyEditController DefaultTypeEditController = new ObjectPropertyEditController() { IsTypeEditController = true };
 
         #region 插件属性
         #endregion
@@ -50,16 +50,16 @@ namespace PAO.Config.Editor
             set;
         }
 
-        public ObjectEditController() {
+        public ObjectPropertyEditController() {
         }
 
         protected override Control OnCreateEditControl(Type objectType) {
-            var editControl = new ObjectEditControl();
+            var editControl = new ObjectPropertyEditControl();
             return editControl;
         }
 
-        public static ObjectEditControl CreateTypeEditControl() {
-            return DefaultTypeEditController.CreateEditControl(null) as ObjectEditControl;
+        public static ObjectPropertyEditControl CreateTypeEditControl() {
+            return DefaultTypeEditController.CreateEditControl(null) as ObjectPropertyEditControl;
         }
     }
 }

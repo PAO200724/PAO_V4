@@ -22,7 +22,7 @@ namespace PAO.Config.Editor
     /// <summary>
     /// 插件编辑控件
     /// </summary>
-    public partial class ObjectEditControl : BaseEditControl, IBarSupport
+    public partial class ObjectPropertyEditControl : BaseObjectEditControl, IBarSupport
     {
         private byte[] DefaultLayoutData = null;
 
@@ -38,9 +38,9 @@ namespace PAO.Config.Editor
                 base.EditValue = value;
 
                 this.PropertyGridControl.SelectedObject = value;
-                var controller = Controller as ObjectEditController;
+                var controller = Controller as ObjectPropertyEditController;
                 if (controller.IsTypeEditController && value != null) {
-                    controller = ConfigPublic.GetEditControllerByType<ObjectEditController>(value.GetType());
+                    controller = ConfigPublic.GetEditControllerByType<ObjectPropertyEditController>(value.GetType());
                 }
 
                 DefaultLayoutData = this.PropertyGridControl.GetLayoutData();
@@ -57,16 +57,16 @@ namespace PAO.Config.Editor
             }
         }
 
-        public ObjectEditControl() {
+        public ObjectPropertyEditControl() {
             InitializeComponent();
             SetControlStatus();
         }
 
         protected override void OnClose() {
             var editValue = EditValue;
-            var controller = Controller as ObjectEditController;
+            var controller = Controller as ObjectPropertyEditController;
             if (controller.IsTypeEditController && editValue != null) {
-                controller = ConfigPublic.CreateEditControllerByType<ObjectEditController>(editValue.GetType());
+                controller = ConfigPublic.CreateEditControllerByType<ObjectPropertyEditController>(editValue.GetType());
             }
 
             if (controller != null) {
@@ -119,7 +119,7 @@ namespace PAO.Config.Editor
 
             if (edit == null) {
                 if(propDesc.PropertyType.IsDerivedFrom(typeof(PaoObject))) {
-                    edit = ObjectEditController.DefaultTypeEditController;
+                    edit = ObjectPropertyEditController.DefaultTypeEditController;
                 }
             }
 

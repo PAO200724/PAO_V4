@@ -21,11 +21,11 @@ namespace PAO.Config.Editor
     /// <summary>
     /// 字典编辑控件
     /// </summary>
-    public partial class DictionaryEditControl : BaseEditControl, IBarSupport
+    public partial class DictionaryEditControl : BaseObjectEditControl, IBarSupport
     {
         public DictionaryEditControl() {
             InitializeComponent();
-            this.ColumnObject.ColumnEdit = ObjectEditController.DefaultTypeEditController.CreateRepositoryItem(typeof(object));
+            this.ColumnObject.ColumnEdit = ObjectPropertyEditController.DefaultTypeEditController.CreateRepositoryItem(typeof(object));
             this.ColumnIndex.ColumnEdit = new TextEditController().CreateRepositoryItem(typeof(object));
         }
 
