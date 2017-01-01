@@ -25,10 +25,11 @@ namespace PAO.WinForm.Editor
     {
         #region 插件属性
         #endregion
+
         public ColorPickEditController() {
         }
 
-        protected override RepositoryItem OnCreateRepositoryItem() {
+        protected override RepositoryItem OnCreateRepositoryItem(Type objectType) {
             var edit = new RepositoryItemColorPickEdit();
             WinFormPublic.AddClearButton(edit);
             return edit;

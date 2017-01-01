@@ -154,20 +154,20 @@ namespace PAO.Config.Editor
 
                 Control editControl = null;
                 if(controller != null) {
-                   editControl = controller.CreateEditControl(propDesc.Name);
+                   editControl = controller.CreateEditControl(propDesc.PropertyType, propDesc.Name);
                 }
 
                 if (editControl == null) {
                     if (AddonPublic.IsAddonDictionaryType(configedPropDesc.PropertyType)) {
-                        editControl = new DictionaryEditController().CreateEditControl() as BaseEditControl;
+                        editControl = new DictionaryEditController().CreateEditControl(propDesc.PropertyType) as BaseEditControl;
                     }
                     else if (AddonPublic.IsAddonListType(configedPropDesc.PropertyType)) {
-                        editControl = new ListEditController().CreateEditControl() as BaseEditControl;
+                        editControl = new ListEditController().CreateEditControl(propDesc.PropertyType) as BaseEditControl;
                     }
                     else {
                         // 此处第二个参数为true，确保了最少能创建一种编辑器
                         BaseEditController editor = ConfigPublic.GetEditor(configedPropDesc, true);
-                        editControl = editor.CreateEditControl();
+                        editControl = editor.CreateEditControl(propDesc.PropertyType);
                     }
                 }
                 

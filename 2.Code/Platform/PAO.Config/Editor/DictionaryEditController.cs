@@ -13,6 +13,7 @@ using DevExpress.XtraEditors;
 using System.Collections;
 using PAO.WinForm;
 using PAO.WinForm.Editor;
+using System.Windows.Forms;
 
 namespace PAO.Config.Editor
 {
@@ -34,7 +35,7 @@ namespace PAO.Config.Editor
         public DictionaryEditController() {
         }
 
-        protected override BaseEditControl OnCreateEditControl() {
+        protected override Control OnCreateEditControl(Type objectType) {
             var editControl = new DictionaryEditControl();
             return editControl;
         }

@@ -124,8 +124,7 @@ namespace PAO.Config.Editor
             }
 
             if (edit != null) {
-                edit.PropertyDescriptor = propDesc;
-                e.RepositoryItem = edit.CreateRepositoryItem();
+                e.RepositoryItem = edit.CreateRepositoryItem(propDesc.PropertyType);
             }
 
             EditList.Add(propDesc, e.RepositoryItem);

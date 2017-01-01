@@ -25,22 +25,10 @@ namespace PAO.WinForm.Editor
     {
         #region 插件属性
         #endregion
-        public BaseDevEditController() {
-        }
 
-        protected abstract RepositoryItem OnCreateRepositoryItem();
-
-        public override RepositoryItem CreateRepositoryItem() {
-            var repositoryItem = OnCreateRepositoryItem();
-            repositoryItem.ReadOnly = ReadOnly;
-            if (repositoryItem is RepositoryItemButtonEdit && repositoryItem.ReadOnly) {
-                repositoryItem.As<RepositoryItemButtonEdit>().Buttons.Clear();
-            }
-            return repositoryItem;
-        }
-
-        public override Control CreateEditControl() {
-            var repositoryItem = CreateRepositoryItem();
+        protected override Control OnCreateEditControl(Type objectType) {
+            
+            var repositoryItem = CreateRepositoryItem(objectType);
             var editor = repositoryItem.CreateEditor();
             editor.Properties.Assign(repositoryItem);
             return editor;

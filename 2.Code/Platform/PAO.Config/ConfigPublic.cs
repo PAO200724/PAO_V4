@@ -168,10 +168,6 @@ namespace PAO.Config
             if (textEditorForNull && editor == null) {
                 editor = new TextEditController();
             }
-
-            if (editor != null) {
-                editor.PropertyDescriptor = propertyDescriptor;
-            }
             return editor;
         }
         /// <summary>

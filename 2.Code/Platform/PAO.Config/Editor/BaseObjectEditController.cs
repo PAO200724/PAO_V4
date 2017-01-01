@@ -73,85 +73,53 @@ namespace PAO.Config.Editor
         /// </summary>
         /// <param name="propertyName"></param>
         /// <returns></returns>
-        public Control CreateEditControl(string propertyName) {
+        public Control CreateEditControl(Type objectType, string propertyName) {
             if (PropertyEditorTypes.IsNotNullOrEmpty()
                     && PropertyEditorTypes.ContainsKey(propertyName)) {
                 var editController = PropertyEditorTypes[propertyName];
-                return editController.CreateEditControl();
+                return editController.CreateEditControl(objectType);
             }
             return null;
         }
-
-        protected abstract BaseEditControl OnCreateEditControl();
-
-        public override Control CreateEditControl() {
-            var editControl = OnCreateEditControl();
-            editControl.Controller = this;
+        
+        public override Control CreateEditControl(Type objectType) {
+            var editControl = base.CreateEditControl(objectType) as BaseEditControl;
+            if(editControl != null)
+                editControl.Controller = this;
             return editControl;
         }
 
-        public override RepositoryItem CreateRepositoryItem() {
-            var edit = new RepositoryItemButtonEdit();
-            WinFormPublic.AddClearButton(edit);
-            edit.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            edit.ButtonClick += Edit_ButtonClick;
-            edit.CustomDisplayText += Edit_CustomDisplayText;
-            return edit;
-        }
+        protected override RepositoryItem OnCreateRepositoryItem(Type objectType) {
+            var repositoryItem = new RepositoryItemButtonEdit();
+            WinFormPublic.AddClearButton(repositoryItem);
+            repositoryItem.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            repositoryItem.ButtonClick += (sender, e) =>
+            {
+                var edit = (ButtonEdit)sender;
+                if (e.Button.Kind == DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis) {
+                    var editValue = edit.EditValue;
+                    BaseEditControl editControl = CreateEditControl(objectType) as BaseEditControl;
 
-        private void Edit_CustomDisplayText(object sender, DevExpress.XtraEditors.Controls.CustomDisplayTextEventArgs e) {
-            if (e.Value.IsNull()) {
-                e.DisplayText = "[空]";
-            }
-            else if (e.Value.GetType().IsAddonListType() || e.Value.GetType().IsAddonDictionaryType()) {
-                e.DisplayText = e.Value.GetType().GetTypeString();
-            }
-            else {
-                e.DisplayText = e.Value.ToString();
-            }
-        }
-
-        private void Edit_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e) {
-            var edit = (ButtonEdit)sender;
-            if (e.Button.Kind == DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis) {
-                if (edit.EditValue.IsNull() && PropertyDescriptor != null) {
-                    object newObject;
-                    if (!ConfigPublic.CreateNewAddonValue(PropertyDescriptor.PropertyType, false, out newObject))
-                        return;
-                    edit.EditValue = newObject;
-                }
-                var editValue = edit.EditValue;
-                Type objectType = null;
-                if (PropertyDescriptor == null) {
-                    objectType = editValue.GetType();
-                }
-                else {
-                    objectType = PropertyDescriptor.PropertyType;
-                }
-                if (objectType == null) {
-                    // 如果无法确定对象类型，则退出
-                    return;
-                }
-                
-                BaseEditControl editControl;
-                if (AddonPublic.IsAddonDictionaryType(objectType)) {
-                    // 如果是插件，默认创建列表控件
-                    editControl = new DictionaryEditController().CreateEditControl() as BaseEditControl;
-                }
-                else if (AddonPublic.IsAddonListType(objectType)) {
-                    // 如果是列表，默认创建列表控件
-                    editControl = new ListEditController().CreateEditControl() as BaseEditControl;
-                } else {
-                    editControl = OnCreateEditControl();
-                }
-                
-                if (edit.EditValue.IsNotNull()) {
-                    editControl.EditValue = IOPublic.ObjectClone(editValue);
-                    if (WinFormPublic.ShowDialog(editControl) == DialogReturn.OK) {
-                        edit.EditValue = editControl.EditValue;
+                    if (edit.EditValue.IsNotNull()) {
+                        editControl.EditValue = IOPublic.ObjectClone(editValue);
+                        if (WinFormPublic.ShowDialog(editControl) == DialogReturn.OK) {
+                            edit.EditValue = editControl.EditValue;
+                        }
                     }
                 }
-            }
+            };
+            repositoryItem.CustomDisplayText += (sender, e) => {
+                if (e.Value.IsNull()) {
+                    e.DisplayText = "[空]";
+                }
+                else if (e.Value.GetType().IsAddonListType() || e.Value.GetType().IsAddonDictionaryType()) {
+                    e.DisplayText = e.Value.GetType().GetTypeString();
+                }
+                else {
+                    e.DisplayText = e.Value.ToString();
+                }
+            };
+            return repositoryItem;
         }
     }
 }

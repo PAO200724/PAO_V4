@@ -27,49 +27,32 @@ namespace PAO.WinForm.Editor
     public abstract class BaseEditController : PaoObject
     {
         #region 插件属性
-        #region 属性：ReadOnly
-        /// <summary>
-        /// 属性：ReadOnly
-        /// 只读
-        /// 只读
-        /// </summary>
-        [AddonProperty]
-        [DefaultValue(false)]
-        [DataMember(EmitDefaultValue = false)]
-        [Name("只读")]
-        [Description("只读")]
-        public bool ReadOnly {
-            get;
-            set;
-        }
-        #endregion 属性：ReadOnly
         #endregion
         public BaseEditController() {
-            ReadOnly = false;
         }
 
-        /// <summary>
-        /// 属性描述
-        /// </summary>
-        [NonSerialized]
-        public PropertyDescriptor PropertyDescriptor;
-
-        /// <summary>
-        /// 编辑模式
-        /// </summary>
-        [NonSerialized]
-        public ObjectEditMode EditMode;
-
+        protected abstract RepositoryItem OnCreateRepositoryItem(Type objectType);
+        
         /// <summary>
         /// 创建RepositoryItem
         /// </summary>
+        /// <param name="objectType">对象类型</param>
         /// <returns>RepositoryItem</returns>
-        public abstract RepositoryItem CreateRepositoryItem();
+        public virtual RepositoryItem CreateRepositoryItem(Type objectType) {
+            var repositoryItem = OnCreateRepositoryItem(objectType);
+            return repositoryItem;
+        }
+
+        protected abstract Control OnCreateEditControl(Type objectType);
 
         /// <summary>
         /// 创建编辑控件（可以是BaseEdit或BaseEditControl）
         /// </summary>
+        /// <param name="objectType">对象类型</param>
         /// <returns>编辑控件</returns>
-        public abstract Control CreateEditControl();
+        public virtual Control CreateEditControl(Type objectType) {
+            var editControl = OnCreateEditControl(objectType);
+            return editControl;
+        }
     }
 }

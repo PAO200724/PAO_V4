@@ -6,6 +6,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using PAO;
 using PAO.WinForm;
+using System.Windows.Forms;
 
 namespace PAO.Config.Editor
 {
@@ -27,7 +28,7 @@ namespace PAO.Config.Editor
         public DataFilterEditController() {
         }
 
-        protected override BaseEditControl OnCreateEditControl() {
+        protected override Control OnCreateEditControl(Type objectType) {
             var editControl = new DataFilterEditControl();
             return editControl;
         }

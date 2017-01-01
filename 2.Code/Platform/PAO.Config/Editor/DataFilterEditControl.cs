@@ -27,7 +27,7 @@ namespace PAO.Config.Editor
 
         public DataFilterEditControl() {
             InitializeComponent();
-            this.ColumnFilter.ColumnEdit = new MemoExEditController().CreateRepositoryItem();
+            this.ColumnFilter.ColumnEdit = new MemoExEditController().CreateRepositoryItem(typeof(string));
         }
 
         private DataFilter RootDataFilter;

@@ -4,8 +4,10 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
+using DevExpress.XtraEditors.Repository;
 using PAO;
 using PAO.WinForm;
+using System.Windows.Forms;
 
 namespace PAO.Config.Editor
 {
@@ -43,9 +45,9 @@ namespace PAO.Config.Editor
         public DataFieldsEditController() {
         }
 
-        protected override BaseEditControl OnCreateEditControl() {
+        protected override Control OnCreateEditControl(Type objectType) {
             var editControl = new DataFieldsEditControl();
             return editControl;
-        }
+        }   
     }
 }

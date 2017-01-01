@@ -28,7 +28,7 @@ namespace PAO.WinForm.Editor
         public SpinEditController() {
         }
 
-        protected override RepositoryItem OnCreateRepositoryItem() {
+        protected override RepositoryItem OnCreateRepositoryItem(Type objectType) {
             var edit = new RepositoryItemSpinEdit();
             WinFormPublic.AddClearButton(edit);
             return edit;

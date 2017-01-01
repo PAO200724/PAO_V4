@@ -32,7 +32,7 @@ namespace PAO.Config.Editor
         public DbFactoryEditController() {
         }
 
-        protected override RepositoryItem OnCreateRepositoryItem() {
+        protected override RepositoryItem OnCreateRepositoryItem(Type objectType) {
             var edit = new RepositoryItemComboBox();
             WinFormPublic.AddClearButton(edit);
             var factoryClasses = DbProviderFactories.GetFactoryClasses();

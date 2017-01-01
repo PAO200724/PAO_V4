@@ -128,14 +128,14 @@ namespace PAO.Config.Editor
 
             foreach (var dataField in DataFields) {
                 Control editControl = null;
-                editControl = controller.CreateEditControl(dataField.Name);
+                editControl = controller.CreateEditControl(dataField.ObjectType, dataField.Name);
 
                 if (editControl == null) {
                     // 此处第二个参数为true，确保了最少能创建一种编辑器
                     BaseEditController editor = ConfigPublic.GetDefaultEditorByType(dataField.ObjectType);
                     if (editor == null)
                         editor = new TextEditController();
-                    editControl = editor.CreateEditControl();
+                    editControl = editor.CreateEditControl(dataField.ObjectType);
                 }
                 
                 if (editControl.GetType().GetProperty("EditValue") == null)

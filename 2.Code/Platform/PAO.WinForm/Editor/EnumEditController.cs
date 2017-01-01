@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
+using System.Windows.Forms;
 
 namespace PAO.WinForm.Editor
 {
@@ -27,17 +28,16 @@ namespace PAO.WinForm.Editor
         #endregion
         public EnumEditController() {
         }
-
-        protected override RepositoryItem OnCreateRepositoryItem() {
+        
+        protected override RepositoryItem OnCreateRepositoryItem(Type objectType) {
             var edit = new RepositoryItemComboBox();
 
             WinFormPublic.AddClearButton(edit);
             // 添加枚举项
-            var enumType = PropertyDescriptor.PropertyType;
-            if (!enumType.IsEnum)
+            if (objectType != null && !objectType.IsEnum)
                 throw new Exception("枚举编辑器只支持枚举类型");
 
-            foreach(var enumValue in Enum.GetNames(enumType)) {
+            foreach(var enumValue in Enum.GetNames(objectType)) {
                 edit.Items.Add(enumValue);
             }
             return edit;

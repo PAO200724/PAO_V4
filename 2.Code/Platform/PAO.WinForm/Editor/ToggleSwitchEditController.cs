@@ -28,7 +28,7 @@ namespace PAO.WinForm.Editor
         public ToggleSwitchEditController() {
         }
 
-        protected override RepositoryItem OnCreateRepositoryItem() {
+        protected override RepositoryItem OnCreateRepositoryItem(Type objectType) {
             var edit = new RepositoryItemToggleSwitch();
             return edit;
         }

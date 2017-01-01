@@ -14,6 +14,7 @@ using PAO.Config.Editor;
 using System.Collections;
 using PAO.WinForm;
 using PAO.WinForm.Editor;
+using System.Windows.Forms;
 
 namespace PAO.Config.Editor
 {
@@ -52,13 +53,13 @@ namespace PAO.Config.Editor
         public ObjectEditController() {
         }
 
-        protected override BaseEditControl OnCreateEditControl() {
+        protected override Control OnCreateEditControl(Type objectType) {
             var editControl = new ObjectEditControl();
             return editControl;
         }
 
         public static ObjectEditControl CreateTypeEditControl() {
-            return DefaultTypeEditController.CreateEditControl() as ObjectEditControl;
+            return DefaultTypeEditController.CreateEditControl(null) as ObjectEditControl;
         }
     }
 }

@@ -71,7 +71,7 @@ namespace PAO.Report.Controls
                     DataFieldsEditControl.Dispose();
                 }
 
-                DataFieldsEditControl = _ReportDataTable.ParameterEditController.CreateEditControl() as DataFieldsEditControl;
+                DataFieldsEditControl = _ReportDataTable.ParameterEditController.CreateEditControl(typeof(DataField)) as DataFieldsEditControl;
                 DataFieldsEditControl.Dock = DockStyle.Top;
                 DataFieldsEditControl.AutoSizeMode = AutoSizeMode.GrowAndShrink;
                 DataFieldsEditControl.AutoSize = true;

@@ -28,7 +28,7 @@ namespace PAO.WinForm.Editor
         public PictureEditController() {
         }
 
-        protected override RepositoryItem OnCreateRepositoryItem() {
+        protected override RepositoryItem OnCreateRepositoryItem(Type objectType) {
             var edit = new RepositoryItemPictureEdit();
             return edit;
         }

@@ -28,7 +28,7 @@ namespace PAO.WinForm.Editor
         public FontEditor() {
         }
 
-        protected override RepositoryItem OnCreateRepositoryItem() {
+        protected override RepositoryItem OnCreateRepositoryItem(Type objectType) {
             var edit = new RepositoryItemFontEdit();
             WinFormPublic.AddClearButton(edit);
             return edit;

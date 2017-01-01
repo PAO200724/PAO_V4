@@ -274,17 +274,17 @@ namespace PAO.Config.Editor
 
             Type editControlType = ConfigPublic.GetEditControllerType(propertyValue.GetType());
             BaseEditControl editControl = null;
+            var objectType = propertyValue.GetType();
             if (editControlType != null) {
                 var editController = editControlType.CreateInstance() as BaseEditController;
-                editControl = editController.CreateEditControl() as BaseEditControl;
+                editControl = editController.CreateEditControl(objectType) as BaseEditControl;
             }
             if (editControl == null) {
-                var objectType = propertyValue.GetType();
                 if (objectType.IsAddonDictionaryType()) {
-                    editControl = new DictionaryEditController().CreateEditControl() as BaseEditControl;
+                    editControl = new DictionaryEditController().CreateEditControl(objectType) as BaseEditControl;
                 }
                 else if (objectType.IsAddonListType()) {
-                    editControl = new ListEditController().CreateEditControl() as BaseEditControl;
+                    editControl = new ListEditController().CreateEditControl(objectType) as BaseEditControl;
                 }
             }
             if (editControl == null) {

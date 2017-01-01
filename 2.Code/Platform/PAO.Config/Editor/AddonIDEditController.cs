@@ -13,6 +13,7 @@ using DevExpress.XtraEditors;
 using PAO.UI;
 using PAO.Controls;
 using PAO.WinForm.Editor;
+using DevExpress.XtraEditors.Controls;
 
 namespace PAO.Config.Editor
 {
@@ -30,11 +31,27 @@ namespace PAO.Config.Editor
     public class AddonIDEditController : BaseDevEditController
     {
         #region 插件属性
+
+        #region 属性：AddonType
+        /// <summary>
+        /// 属性：AddonType
+        /// 插件类型
+        /// 插件类型
+        /// </summary>
+        [AddonProperty]
+        [DataMember(EmitDefaultValue = false)]
+        [Name("插件类型")]
+        [Description("插件类型")]
+        public Type AddonType {
+            get;
+            set;
+        }
+        #endregion 属性：AddonType
         #endregion
         public AddonIDEditController() {
         }
 
-        protected override RepositoryItem OnCreateRepositoryItem() {
+        protected override RepositoryItem OnCreateRepositoryItem(Type objectType) {
             var edit = new RepositoryItemButtonEdit();
             WinFormPublic.AddClearButton(edit);
             edit.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
@@ -45,16 +62,9 @@ namespace PAO.Config.Editor
         private void Edit_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e) {
             var edit = (ButtonEdit)sender;
             Type AddonType = null;
-            if (e.Button.Kind == DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis) {
+            if (e.Button.Kind == ButtonPredefines.Ellipsis) {
                 var editValue = edit.EditValue;
                 var editControl = new AddonSelectControl();
-
-                var componentType = PropertyDescriptor.ComponentType;
-                if (componentType.IsDerivedFrom(typeof(AddonFactory<>))) {
-                    AddonType = componentType.GetGenericArguments()[0];
-                } else {
-                    AddonType = null;
-                }
 
                 editControl.AddonFilter = (addon) =>
                 {

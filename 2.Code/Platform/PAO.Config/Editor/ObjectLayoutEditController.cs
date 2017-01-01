@@ -6,6 +6,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using PAO;
 using PAO.WinForm;
+using System.Windows.Forms;
 
 namespace PAO.Config.Editor
 {
@@ -44,13 +45,13 @@ namespace PAO.Config.Editor
         public ObjectLayoutEditController() {
         }
 
-        protected override BaseEditControl OnCreateEditControl() {
+        protected override Control OnCreateEditControl(Type objectType) {
             var editControl = new ObjectLayoutEditControl();
             return editControl;
         }
 
         public static ObjectLayoutEditControl CreateTypeEditControl() {
-            return DefaultTypeEditController.CreateEditControl() as ObjectLayoutEditControl;
+            return DefaultTypeEditController.CreateEditControl(null) as ObjectLayoutEditControl;
         }
     }
 }
