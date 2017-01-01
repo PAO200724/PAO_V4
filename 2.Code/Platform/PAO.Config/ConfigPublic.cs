@@ -142,64 +142,79 @@ namespace PAO.Config
         /// </summary>
         /// <param name="type">类型</param>
         /// <returns>编辑器</returns>
-        private static BaseEditController GetDefaultEditorByType(Type type) {
-            BaseEditController editor;
+        private static Type GetDefaultEditorType(Type type) {
+            Type editorType;
             if (type == typeof(string)) {
-                editor = new TextEditController();
+                editorType = typeof(TextEditController);
             }
             else if (type.IsEnum) {
-                editor = new EnumEditController();
+                editorType = typeof(EnumEditController);
             }
             else if (type == typeof(Color)) {
-                editor = new ColorPickEditController();
+                editorType = typeof(ColorPickEditController);
             }
             else if (type == typeof(Font)) {
-                editor = new FontEditController();
+                editorType = typeof(FontEditController);
             }
             else if (type == typeof(DateTime)) {
-                editor = new DateEditController();
+                editorType = typeof(DateEditController);
             }
             else if (type == typeof(bool)) {
-                editor = new CheckEditController();
+                editorType = typeof(CheckEditController);
             }
             else if (type == typeof(Image)) {
-                editor = new ImageEditController();
+                editorType = typeof(ImageEditController);
             }
             else if (type.IsNumberType()) {
-                editor = new TextEditController();
+                editorType = typeof(TextEditController);
             }
             else if (type == typeof(Guid)) {
-                editor = new GuidEditController();
+                editorType = typeof(GuidEditController);
             }
             else if (AddonPublic.IsAddonDictionaryType(type)) {
-                editor = new DictionaryEditController();
+                editorType = typeof(DictionaryEditController);
             }
             else if (AddonPublic.IsAddonListType(type)) {
-                editor = new ListEditController();
+                editorType = typeof(ListEditController);
             }
             else if (AddonPublic.IsAddon(type)) {
-                editor = new ObjectPropertyEditController();
+                editorType = typeof(ObjectPropertyEditController);
             }
             else {
                 return null;
             }
-            return editor;
+            return editorType;
         }
-
+        
         private static BaseEditController GetEditController(Type objectType) {
-            BaseEditController editController = EditorPublic.GetDefaultEditController(objectType);
+            BaseEditController editController = null;
+            var editorType = EditorPublic.GetEditorType(objectType);
+            if (editorType == null) {
+                editorType = GetDefaultEditorType(objectType);
+            }
+
+            if (editorType == null)
+                return null;
+
+            editController = EditorPublic.GetDefaultEditController(objectType, editorType);
             if (editController == null) {
-                editController = GetDefaultEditorByType(objectType);
+                editController = editorType.CreateInstance() as BaseEditController;
                 EditorPublic.SetDefaultEditController(objectType, editController);
             }
             return editController;
         }
 
+
         private static BaseEditController GetEditController(PropertyDescriptor propertyDescriptor) {
-            BaseEditController editController = EditorPublic.GetEditController(propertyDescriptor);
-            if(editController == null) {
-                editController = GetDefaultEditorByType(propertyDescriptor.PropertyType);
+            BaseEditController editController = null;
+            var editorType = EditorPublic.GetEditorType(propertyDescriptor);
+            if (editorType != null) {
+                editController = editorType.CreateInstance() as BaseEditController;
                 EditorPublic.SetDefaultEditController(propertyDescriptor.PropertyType, editController);
+            }
+
+            if (editController == null) {
+                editController = GetEditController(propertyDescriptor.PropertyType);
             }
 
             return editController;
