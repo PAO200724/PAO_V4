@@ -19,6 +19,8 @@ using PAO.WinForm.Properties;
 using PAO.App.MDI.Properties;
 using PAO.UI;
 using PAO.WinForm;
+using PAO.WinForm.Editor;
+using PAO.IO;
 
 namespace PAO.App.MDI
 {
@@ -151,6 +153,21 @@ namespace PAO.App.MDI
         }
         #endregion 属性：TimeSyncInterval
 
+        #region 属性：DefaultEditControllerFile
+        /// <summary>
+        /// 属性：DefaultEditControllerPath
+        /// 默认编辑控制器配置文件路径
+        /// 默认编辑控制器的默认布局配置文件的路径
+        /// </summary>
+        [AddonProperty]
+        [DataMember(EmitDefaultValue = false)]
+        [Name("默认编辑控制器配置文件路径")]
+        [Description("默认编辑控制器的默认布局配置文件的路径")]
+        public string DefaultEditControllerFile {
+            get;
+            set;
+        }
+        #endregion 属性：DefaultEditControllerPath
         #endregion
 
         #region 属性：LayoutData
@@ -171,6 +188,7 @@ namespace PAO.App.MDI
 
         public MDIApplication() {
             TimeSyncInterval = 5;
+            DefaultEditControllerFile = "Editors.config";
         }
         public static new MDIApplication Default {
             get {
@@ -207,10 +225,42 @@ namespace PAO.App.MDI
             if (!Login())
                 return;
 
+            TransactionPublic.Run("编辑器配置文件加载", () =>
+            {
+                if(DefaultEditControllerFile.IsNotNullOrEmpty()) {
+                    string editorPath = AppPublic.GetAbsolutePath(DefaultEditControllerFile);
+                    try {
+                        EditorPublic.LoadDefaultEditControllerList(editorPath);
+                    } catch (Exception err) {
+                        if (UIPublic.ShowYesNoDialog("配置加载错误，可能是配置文件版本错误，如果您选择继续，程序可以运行，但配置将会丢失，您确认要继续吗。") == DialogReturn.Yes) {
+                            // 备份
+                            IOPublic.MoveToBackupFile(editorPath);
+
+                            EditorPublic.SaveDefaultEditControllerList(editorPath);
+                            // 加载编辑器配置如果出现异常，可能是版本问题，直接退出。
+
+                            EventPublic.Exception(err);
+                        }
+                        else {
+                            throw err;
+                        }
+                    }
+                }
+            });
+
             MainForm = new MDIMainForm();
             MVCPublic.MainForm = MainForm;
             MainForm.Initialize(this);
             Application.Run(MainForm);
+
+
+            TransactionPublic.Run("编辑器配置文件保存", () =>
+            {
+                if (DefaultEditControllerFile.IsNotNullOrEmpty()) {
+                    string editorPath = AppPublic.GetAbsolutePath(DefaultEditControllerFile);
+                    EditorPublic.SaveDefaultEditControllerList(editorPath);
+                }
+            });
         }
 
         private void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e) {

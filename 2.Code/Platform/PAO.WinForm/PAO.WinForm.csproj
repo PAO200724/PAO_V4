@@ -111,6 +111,7 @@
     <Compile Include="Editor\ColorEditController.cs" />
     <Compile Include="Editor\ColorPickEditController.cs" />
     <Compile Include="Editor\DateEditController.cs" />
+    <Compile Include="Editor\EditorPublic.cs" />
     <Compile Include="Editor\EditorTypeAttirbute.cs" />
     <Compile Include="Editor\EnumEditController.cs" />
     <Compile Include="Editor\FontNameEditor.cs" />

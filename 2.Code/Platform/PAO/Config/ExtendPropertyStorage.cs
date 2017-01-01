@@ -85,14 +85,7 @@ namespace PAO.Config
         /// 备份扩展配置
         /// </summary>
         public void Backup() {
-            if (FilePath.IsNullOrEmpty() || !File.Exists(FilePath))
-                return;
-
-            string fileName = Path.GetFileName(FilePath);
-            string dirName = Path.GetDirectoryName(FilePath);
-            string backupFileName = Path.Combine(dirName, Guid.NewGuid().ToString() + "." + fileName);
-
-            File.Move(FilePath, backupFileName);
+            IOPublic.MoveToBackupFile(FilePath);
         }
 
         /// <summary>

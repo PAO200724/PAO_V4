@@ -65,6 +65,7 @@ namespace PAO.Configuration
                     ServiceName = "SecurityService"
                 },
                 ExtendConfigFile = "ExtendProperties.config",
+                DefaultEditControllerFile = "Editors.config",
                 ExtendAddonList = new List<PaoObject>()
                     .Append(new TcpRemoteFactory<IDataService>()
                     {

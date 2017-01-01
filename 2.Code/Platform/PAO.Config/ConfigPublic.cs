@@ -138,32 +138,6 @@ namespace PAO.Config
         #region Editors
         #region RepositoryItem & EditControl
         /// <summary>
-        /// 获取某个成员的编辑器类型
-        /// </summary>
-        /// <param name="member">类型</param>
-        /// <returns>编辑器类型</returns>
-        private static Type GetEditorType(MemberInfo member) {
-            var editorAttr = member.GetAttribute<EditorTypeAttribute>(true);
-            if (editorAttr != null && editorAttr.EditorType != null)
-                return editorAttr.EditorType;
-
-            return null;
-        }
-
-        /// <summary>
-        /// 获取某个成员的编辑器类型
-        /// </summary>
-        /// <param name="type">类型</param>
-        /// <returns>编辑器类型</returns>
-        private static Type GetEditorType(MemberDescriptor member) {
-            var editorAttr = member.Attributes.GetAttribute<EditorTypeAttribute>();
-            if (editorAttr != null && editorAttr.EditorType != null)
-                return editorAttr.EditorType;
-
-            return null;
-        }
-
-        /// <summary>
         /// 创建默认编辑器
         /// </summary>
         /// <param name="type">类型</param>
@@ -211,35 +185,21 @@ namespace PAO.Config
             }
             return editor;
         }
-        
-        /// <summary>
-        /// 根据类型保存的编辑器列表
-        /// </summary>
-        private static Dictionary<Type, BaseEditController> EditControllerList = new Dictionary<Type, BaseEditController>();
 
         private static BaseEditController GetEditController(Type objectType) {
-            if (EditControllerList.ContainsKey(objectType))
-                return EditControllerList[objectType];
-
-            BaseEditController editController = null;
-            var editorType = GetEditorType(objectType);
-            if(editorType != null) {
-                editController = editorType.CreateInstance() as  BaseEditController;
-            } else {
+            BaseEditController editController = EditorPublic.GetDefaultEditController(objectType);
+            if (editController == null) {
                 editController = GetDefaultEditorByType(objectType);
+                EditorPublic.SetDefaultEditController(objectType, editController);
             }
-            EditControllerList.Add(objectType, editController);
             return editController;
         }
 
         private static BaseEditController GetEditController(PropertyDescriptor propertyDescriptor) {
-            BaseEditController editController = null;
-            var editorType = GetEditorType(propertyDescriptor);
-            if (editorType != null) {
-                editController = editorType.CreateInstance() as BaseEditController;
-            }
-            else {
-                editController = GetEditController(propertyDescriptor.PropertyType);
+            BaseEditController editController = EditorPublic.GetEditController(propertyDescriptor);
+            if(editController == null) {
+                editController = GetDefaultEditorByType(propertyDescriptor.PropertyType);
+                EditorPublic.SetDefaultEditController(propertyDescriptor.PropertyType, editController);
             }
 
             return editController;

@@ -21,6 +21,54 @@ namespace PAO.IO
         /// </summary>
         public static Encoding DefaultEncoding = Encoding.UTF8;
 
+        #region BackupFile
+        /// <summary>
+        /// 获取备份文件路径
+        /// </summary>
+        /// <param name="path">路径</param>
+        /// <returns>备份文件路径</returns>
+        public static string GetBackupFilePath(string path) {
+            var dirName = Path.GetDirectoryName(path);
+            var fileName = Path.GetFileName(path);
+            return Path.Combine(dirName, DateTime.Now.ToString("yyyy-MM-dd.hh-mm-ss.ffff") + "." + fileName);
+        }
+
+        /// <summary>
+        /// 移动到备份文件
+        /// </summary>
+        /// <param name="path">路径</param>
+        /// <returns>备份文件路径</returns>
+        public static string MoveToBackupFile(string path) {
+            if (path.IsNullOrEmpty())
+                return null;
+
+            if (File.Exists(path))
+                return null;
+
+            var backupFilePath = GetBackupFilePath(path);
+
+            File.Move(path, backupFilePath);
+            return backupFilePath;
+        }
+
+        /// <summary>
+        /// 备份文件
+        /// </summary>
+        /// <param name="path">路径</param>
+        /// <returns>备份文件路径</returns>
+        public static string BackupFile(string path) {
+            if (path.IsNullOrEmpty())
+                return null;
+
+            if (File.Exists(path))
+                return null;
+
+            var backupFilePath = GetBackupFilePath(path);
+
+            File.Copy(path, backupFilePath, true);
+            return backupFilePath;
+        }
+        #endregion
         #region Export/Import
         /// <summary>
         /// 导出当前对象
