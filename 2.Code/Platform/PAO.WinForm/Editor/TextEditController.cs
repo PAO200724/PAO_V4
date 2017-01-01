@@ -21,7 +21,7 @@ namespace PAO.WinForm.Editor
     [DataContract(Namespace = "")]
     [Name("文本编辑器")]
     [Description("用于编辑文本的编辑器")]
-    public class TextEditController : BaseDevEditController
+    public class TextEditController : BaseRepositoryItemEditController
     {
         #region 插件属性
         #endregion

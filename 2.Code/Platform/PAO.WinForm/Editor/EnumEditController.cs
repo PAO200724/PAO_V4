@@ -22,7 +22,7 @@ namespace PAO.WinForm.Editor
     [DataContract(Namespace = "")]
     [Name("枚举编辑器")]
     [Description("枚举类型的列表编辑器")]
-    public class EnumEditController : BaseDevEditController
+    public class EnumEditController : BaseRepositoryItemEditController
     {
         #region 插件属性
         #endregion

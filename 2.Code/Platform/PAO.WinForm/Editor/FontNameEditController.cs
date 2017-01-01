@@ -11,25 +11,25 @@ using PAO.WinForm;
 namespace PAO.WinForm.Editor
 {
     /// <summary>
-    /// 类：MemoEditor
-    /// 多行文本编辑器
-    /// 多行文本编辑器
+    /// 类：FontNameEditController
+    /// 字体名称编辑器
+    /// 字体名称编辑器
     /// 作者：PAO
     /// </summary>
     [Addon]
     [Serializable]
     [DataContract(Namespace = "")]
-    [Name("多行文本编辑器")]
-    [Description("多行文本编辑器")]
-    public class MemoEditController : BaseRepositoryItemEditController
+    [Name("字体名称编辑器")]
+    [Description("字体名称编辑器")]
+    public class FontNameEditController : BaseRepositoryItemEditController
     {
         #region 插件属性
         #endregion
-        public MemoEditController() {
+        public FontNameEditController() {
         }
 
         protected override RepositoryItem OnCreateRepositoryItem(Type objectType) {
-            var edit = new RepositoryItemMemoExEdit();
+            var edit = new RepositoryItemFontEdit();
             WinFormPublic.AddClearButton(edit);
             return edit;
         }

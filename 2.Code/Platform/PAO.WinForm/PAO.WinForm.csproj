@@ -103,7 +103,7 @@
       <DependentUpon>ImageControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Editor\BaseEditController.cs" />
-    <Compile Include="Editor\BaseDevEditController.cs" />
+    <Compile Include="Editor\BaseRepositoryItemEditController.cs" />
     <Compile Include="Editor\BaseObjectEditController.cs" />
     <Compile Include="Editor\CalcEditController.cs" />
     <Compile Include="Editor\CheckComboBoxEditController.cs" />
@@ -114,14 +114,15 @@
     <Compile Include="Editor\EditorPublic.cs" />
     <Compile Include="Editor\EditorTypeAttirbute.cs" />
     <Compile Include="Editor\EnumEditController.cs" />
-    <Compile Include="Editor\FontNameEditor.cs" />
-    <Compile Include="Editor\FontEditor.cs" />
+    <Compile Include="Editor\FontNameEditController.cs" />
+    <Compile Include="Editor\FontEditController.cs" />
     <Compile Include="Editor\GuidEditController.cs" />
     <Compile Include="Editor\ImageEditController.cs" />
     <Compile Include="Editor\MemoEditController.cs" />
     <Compile Include="Editor\MemoExEditController.cs" />
     <Compile Include="Editor\ObjectEditMode.cs" />
     <Compile Include="Editor\PictureEditController.cs" />
+    <Compile Include="Editor\SkinNameEditController.cs" />
     <Compile Include="Editor\SpinEditController.cs" />
     <Compile Include="Editor\TextEditController.cs" />
     <Compile Include="Editor\TimeEditController.cs" />

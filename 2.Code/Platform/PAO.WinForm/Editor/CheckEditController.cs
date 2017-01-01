@@ -21,7 +21,7 @@ namespace PAO.WinForm.Editor
     [DataContract(Namespace = "")]
     [Name("复选框编辑器")]
     [Description("复选框编辑器")]
-    public class CheckEditController : BaseDevEditController
+    public class CheckEditController : BaseRepositoryItemEditController
     {
         #region 插件属性
         #endregion

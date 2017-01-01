@@ -95,6 +95,7 @@ namespace PAO.App.MDI
         /// 皮肤名称
         /// </summary>
         [AddonProperty]
+        [EditorType(typeof(SkinNameEditController))]
         [DataMember(EmitDefaultValue = false)]
         [Name("皮肤名称")]
         [Description("皮肤名称")]

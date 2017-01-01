@@ -21,7 +21,7 @@ namespace PAO.WinForm.Editor
     [DataContract(Namespace = "")]
     [Name("下拉式多行文本编辑器")]
     [Description("下拉式用于编辑多行文本的编辑器")]
-    public class MemoExEditController : BaseDevEditController
+    public class MemoExEditController : BaseRepositoryItemEditController
     {
         #region 插件属性
         #endregion

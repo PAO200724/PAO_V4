@@ -21,7 +21,7 @@ namespace PAO.WinForm.Editor
     [DataContract(Namespace = "")]
     [Name("时间编辑器")]
     [Description("时间编辑器")]
-    public class TimeController : BaseDevEditController
+    public class TimeController : BaseRepositoryItemEditController
     {
         #region 插件属性
         #endregion

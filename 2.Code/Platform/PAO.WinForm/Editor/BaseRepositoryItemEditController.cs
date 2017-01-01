@@ -11,7 +11,7 @@ using System.Windows.Forms;
 namespace PAO.WinForm.Editor
 {
     /// <summary>
-    /// 类：BaseRepositoryItemEditor
+    /// 类：BaseRepositoryItemEditController
     /// RepositoryItem编辑器
     /// RepositoryItem形式的编辑器
     /// 作者：PAO
@@ -21,7 +21,7 @@ namespace PAO.WinForm.Editor
     [DataContract(Namespace = "")]
     [Name("RepositoryItem编辑器")]
     [Description("RepositoryItem形式的编辑器")]
-    public abstract class BaseDevEditController : BaseEditController
+    public abstract class BaseRepositoryItemEditController : BaseEditController
     {
         #region 插件属性
         #endregion

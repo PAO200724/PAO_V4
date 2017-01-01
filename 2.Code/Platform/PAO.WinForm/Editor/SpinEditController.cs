@@ -21,7 +21,7 @@ namespace PAO.WinForm.Editor
     [DataContract(Namespace = "")]
     [Name("微调编辑器")]
     [Description("微调编辑器")]
-    public class SpinEditController : BaseDevEditController
+    public class SpinEditController : BaseRepositoryItemEditController
     {
         #region 插件属性
         #endregion

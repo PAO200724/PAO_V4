@@ -21,7 +21,7 @@ namespace PAO.WinForm.Editor
     [DataContract(Namespace = "")]
     [Name("是否切换编辑器")]
     [Description("是否切换编辑器")]
-    public class ToggleSwitchEditController : BaseDevEditController
+    public class ToggleSwitchEditController : BaseRepositoryItemEditController
     {
         #region 插件属性
         #endregion

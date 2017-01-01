@@ -14,7 +14,7 @@ using System.Windows.Forms;
 namespace PAO.WinForm.Editor
 {
     /// <summary>
-    /// 类：FontEditor
+    /// 类：FontEditController
     /// 字体编辑器
     /// 字体编辑器
     /// 作者：PAO
@@ -24,11 +24,11 @@ namespace PAO.WinForm.Editor
     [DataContract(Namespace = "")]
     [Name("字体编辑器")]
     [Description("字体编辑器")]
-    public class FontEditor : BaseDevEditController
+    public class FontEditController : BaseRepositoryItemEditController
     {
         #region 插件属性
         #endregion
-        public FontEditor() {
+        public FontEditController() {
         }
 
         protected override RepositoryItem OnCreateRepositoryItem(Type objectType) {

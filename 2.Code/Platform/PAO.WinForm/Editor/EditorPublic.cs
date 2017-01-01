@@ -16,7 +16,6 @@ namespace PAO.WinForm.Editor
     /// </summary>
     public static class EditorPublic
     {
-
         /// <summary>
         /// 根据类型保存的编辑器列表
         /// </summary>

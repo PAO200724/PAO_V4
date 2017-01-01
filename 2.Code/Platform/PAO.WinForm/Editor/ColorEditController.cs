@@ -21,7 +21,7 @@ namespace PAO.WinForm.Editor
     [DataContract(Namespace = "")]
     [Name("颜色编辑器")]
     [Description("颜色编辑器")]
-    public class ColorEditController : BaseDevEditController
+    public class ColorEditController : BaseRepositoryItemEditController
     {
         #region 插件属性
         #endregion

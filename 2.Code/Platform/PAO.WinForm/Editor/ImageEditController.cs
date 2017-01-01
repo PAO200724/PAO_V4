@@ -21,7 +21,7 @@ namespace PAO.WinForm.Editor
     [DataContract(Namespace = "")]
     [Name("下拉式图片编辑器")]
     [Description("下拉式图片编辑器")]
-    public class ImageEditController : BaseDevEditController
+    public class ImageEditController : BaseRepositoryItemEditController
     {
         #region 插件属性
         #endregion

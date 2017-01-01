@@ -6,31 +6,36 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using DevExpress.XtraEditors.Repository;
-using PAO.WinForm;
+using DevExpress.Skins;
 
 namespace PAO.WinForm.Editor
 {
     /// <summary>
-    /// 类：FontNameEditor
-    /// 字体名称编辑器
-    /// 字体名称编辑器
+    /// 类：SkinNameEditController
+    /// 皮肤名称编辑控制器
+    /// 用于编辑皮肤名称的编辑器
     /// 作者：PAO
     /// </summary>
     [Addon]
     [Serializable]
     [DataContract(Namespace = "")]
-    [Name("字体名称编辑器")]
-    [Description("字体名称编辑器")]
-    public class FontNameEditor : BaseDevEditController
+    [Name("皮肤名称编辑控制器")]
+    [Description("用于编辑皮肤名称的编辑器")]
+    public class SkinNameEditController : BaseRepositoryItemEditController
     {
         #region 插件属性
         #endregion
-        public FontNameEditor() {
+        public SkinNameEditController() {
         }
 
         protected override RepositoryItem OnCreateRepositoryItem(Type objectType) {
-            var edit = new RepositoryItemFontEdit();
+            var edit = new RepositoryItemComboBox();
+
             WinFormPublic.AddClearButton(edit);
+            // 添加皮肤项
+            foreach (SkinContainer cnt in SkinManager.Default.Skins) {
+                edit.Items.Add(cnt.SkinName);
+            }
             return edit;
         }
     }
