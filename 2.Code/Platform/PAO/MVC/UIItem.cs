@@ -13,16 +13,16 @@ namespace PAO.MVC
 {
     /// <summary>
     /// 类：Controller
-    /// 控制器
-    /// 控制器（可以作为菜单）
+    /// 界面项
+    /// 界面项（可以作为空菜单）
     /// 作者：PAO
     /// </summary>
     [Addon]
     [Icon(typeof(Resources), "form")]
     [Serializable]
     [DataContract(Namespace = "")]
-    [Name("控制器")]
-    [Description("控制器（可以作为菜单）")]
+    [Name("界面项")]
+    [Description("界面项（可以作为空菜单）")]
     public class UIItem : PaoObject, IUIItem
     {
         #region 插件属性

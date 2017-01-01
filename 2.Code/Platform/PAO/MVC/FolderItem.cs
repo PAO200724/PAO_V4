@@ -11,16 +11,16 @@ namespace PAO.MVC
 {
     /// <summary>
     /// 类：FolderItem
-    /// 目录项
-    /// 目录项
+    /// 菜单目录
+    /// 可以包含子菜单的菜单项
     /// 作者：PAO
     /// </summary>
     [Addon]
     [Icon(typeof(Resources), "folder")]
     [Serializable]
     [DataContract(Namespace = "")]
-    [Name("功能项")]
-    [Description("功能项")]
+    [Name("菜单目录")]
+    [Description("可以包含子菜单的菜单项")]
     public class FolderItem : UIItem
     {
         #region 插件属性
