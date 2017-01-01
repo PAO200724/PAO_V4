@@ -111,7 +111,9 @@
     <Compile Include="Editor\ColorEditController.cs" />
     <Compile Include="Editor\ColorPickEditController.cs" />
     <Compile Include="Editor\DateEditController.cs" />
+    <Compile Include="Editor\EditorTypeAttirbute.cs" />
     <Compile Include="Editor\EnumEditController.cs" />
+    <Compile Include="Editor\FontNameEditor.cs" />
     <Compile Include="Editor\FontEditor.cs" />
     <Compile Include="Editor\GuidEditController.cs" />
     <Compile Include="Editor\ImageEditController.cs" />
@@ -125,9 +127,6 @@
     <Compile Include="Editor\ToggleSwitchEditController.cs" />
     <Compile Include="IBarSupport.cs" />
     <Compile Include="IPropertyView.cs" />
-    <Compile Include="Property\ConfigPropertyDescriptor.cs" />
-    <Compile Include="Property\PropertyConfigInfo.cs" />
-    <Compile Include="Property\TypeConfigInfo.cs" />
     <Compile Include="Security\LoginControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

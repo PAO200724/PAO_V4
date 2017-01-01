@@ -25,6 +25,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginControl));
             this.LayoutControl = new DevExpress.XtraLayout.LayoutControl();
             this.HyperlinkLabelControlRegisterUser = new DevExpress.XtraEditors.HyperlinkLabelControl();
             this.HyperlinkLabelControlForgetPassword = new DevExpress.XtraEditors.HyperlinkLabelControl();
@@ -35,8 +36,8 @@
             this.LayoutControlItemUser = new DevExpress.XtraLayout.LayoutControlItem();
             this.LayoutControlItemPassword = new DevExpress.XtraLayout.LayoutControlItem();
             this.LayoutControlItemRememberPassword = new DevExpress.XtraLayout.LayoutControlItem();
-            this.LayoutControlItemForgetPassword = new DevExpress.XtraLayout.LayoutControlItem();
             this.LayoutControlItemRegisterUser = new DevExpress.XtraLayout.LayoutControlItem();
+            this.LayoutControlItemForgetPassword = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.LayoutControl)).BeginInit();
             this.LayoutControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CheckEditRememberPassword.Properties)).BeginInit();
@@ -46,8 +47,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.LayoutControlItemUser)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.LayoutControlItemPassword)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.LayoutControlItemRememberPassword)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.LayoutControlItemForgetPassword)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.LayoutControlItemRegisterUser)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.LayoutControlItemForgetPassword)).BeginInit();
             this.SuspendLayout();
             // 
             // LayoutControl
@@ -159,15 +160,6 @@
             this.LayoutControlItemRememberPassword.TextSize = new System.Drawing.Size(0, 0);
             this.LayoutControlItemRememberPassword.TextVisible = false;
             // 
-            // LayoutControlItemForgetPassword
-            // 
-            this.LayoutControlItemForgetPassword.Control = this.HyperlinkLabelControlForgetPassword;
-            this.LayoutControlItemForgetPassword.Location = new System.Drawing.Point(193, 48);
-            this.LayoutControlItemForgetPassword.Name = "LayoutControlItemForgetPassword";
-            this.LayoutControlItemForgetPassword.Size = new System.Drawing.Size(52, 23);
-            this.LayoutControlItemForgetPassword.TextSize = new System.Drawing.Size(0, 0);
-            this.LayoutControlItemForgetPassword.TextVisible = false;
-            // 
             // LayoutControlItemRegisterUser
             // 
             this.LayoutControlItemRegisterUser.Control = this.HyperlinkLabelControlRegisterUser;
@@ -177,11 +169,21 @@
             this.LayoutControlItemRegisterUser.TextSize = new System.Drawing.Size(0, 0);
             this.LayoutControlItemRegisterUser.TextVisible = false;
             // 
+            // LayoutControlItemForgetPassword
+            // 
+            this.LayoutControlItemForgetPassword.Control = this.HyperlinkLabelControlForgetPassword;
+            this.LayoutControlItemForgetPassword.Location = new System.Drawing.Point(193, 48);
+            this.LayoutControlItemForgetPassword.Name = "LayoutControlItemForgetPassword";
+            this.LayoutControlItemForgetPassword.Size = new System.Drawing.Size(52, 23);
+            this.LayoutControlItemForgetPassword.TextSize = new System.Drawing.Size(0, 0);
+            this.LayoutControlItemForgetPassword.TextVisible = false;
+            // 
             // LoginControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.LayoutControl);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "LoginControl";
             this.Size = new System.Drawing.Size(297, 91);
             ((System.ComponentModel.ISupportInitialize)(this.LayoutControl)).EndInit();
@@ -193,8 +195,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.LayoutControlItemUser)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.LayoutControlItemPassword)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.LayoutControlItemRememberPassword)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.LayoutControlItemForgetPassword)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.LayoutControlItemRegisterUser)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.LayoutControlItemForgetPassword)).EndInit();
             this.ResumeLayout(false);
 
         }

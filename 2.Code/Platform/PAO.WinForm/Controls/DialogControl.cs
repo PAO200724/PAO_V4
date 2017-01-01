@@ -26,6 +26,11 @@ namespace PAO.WinForm.Controls
         }
 
         /// <summary>
+        /// 图标
+        /// </summary>
+        public Icon Icon { get; set; }
+
+        /// <summary>
         /// 显示应用按钮
         /// </summary>
         public virtual bool ShowApplyButton { get; set; }
@@ -66,7 +71,12 @@ namespace PAO.WinForm.Controls
 
 
         public virtual void SetFormState(Form form) {
-            if(OnSetFormState != null) {
+            form.Text = this.Text;
+            if(Icon != null) {
+                form.Icon = Icon;
+                form.ShowIcon = true;
+            }
+            if (OnSetFormState != null) {
                 OnSetFormState(form);
             }
         }

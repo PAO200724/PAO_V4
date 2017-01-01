@@ -52,6 +52,8 @@ namespace PAO.WinForm.Security
         public override void SetFormState(Form form) {
             form.MaximizeBox = false;
             form.MinimizeBox = false;
+            form.TopMost = true;
+            form.ShowInTaskbar = true;
             form.FormClosing += (sender, e) =>
             {
                 if (form.DialogResult == DialogResult.OK) {

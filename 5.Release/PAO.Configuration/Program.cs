@@ -44,10 +44,7 @@ namespace PAO.Configuration
         }
 
         private static void PrepareAppliation(PaoApplication app) {
-            ExtendConfigPublic.RegisterEditors();
         }
-
-        
 
         private static PaoApplication CreateApplication() {
             var app = new MDIApplication()

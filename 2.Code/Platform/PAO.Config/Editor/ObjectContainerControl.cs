@@ -41,7 +41,6 @@ namespace PAO.Config.Editor
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public object Key { get; set; }
 
-
         /// <summary>
         /// 对象类型
         /// </summary>
@@ -56,11 +55,11 @@ namespace PAO.Config.Editor
         /// </summary>
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public BaseObjectEditControl EditControl {
+        private BaseObjectEditControl EditControl {
             get {
                 return _EditControl;
             }
-            private set {
+            set {
                 if (_EditControl != null) {
                     UnMergeBars();
                     _EditControl.CloseControl();
@@ -68,11 +67,13 @@ namespace PAO.Config.Editor
                 }
 
                 _EditControl = value;
-                _EditControl.Dock = DockStyle.Fill;
-                _EditControl.DataModifyStateChanged -= EditControl_DataModifyStateChanged;
-                _EditControl.DataModifyStateChanged += EditControl_DataModifyStateChanged;
-                this.Controls.Add(_EditControl);
-                MergeBars();
+                if (_EditControl != null) {
+                    _EditControl.Dock = DockStyle.Fill;
+                    _EditControl.DataModifyStateChanged -= EditControl_DataModifyStateChanged;
+                    _EditControl.DataModifyStateChanged += EditControl_DataModifyStateChanged;
+                    this.Controls.Add(_EditControl);
+                    MergeBars();
+                }
             }
         }
 
@@ -91,8 +92,15 @@ namespace PAO.Config.Editor
                     value = null;
                 }
                 base.EditValue = value;
-                if (_EditControl != null) {
-                    _EditControl.EditValue = value;
+                if (value == null) {
+                    EditControl = null;
+                } else {
+                    var editControl = ConfigPublic.CreateEditControl(value.GetType()) as BaseObjectEditControl;
+                    if (editControl == null)
+                        editControl = new ObjectPropertyEditController().CreateEditControl(value.GetType()) as BaseObjectEditControl;
+
+                    EditControl = editControl;
+                    EditControl.EditValue = value;
                 }
                 SetControlStatus();
             }
@@ -127,29 +135,25 @@ namespace PAO.Config.Editor
             ObjectType = null;
         }
 
-        public void StartEditObject(Type objectType, BaseObjectEditControl editControl) {
+        public void StartEditObject(Type objectType) {
             EditMode = ObjectEditMode.Object;
-            EditControl = editControl;
             ObjectType = objectType;
         }
 
-        public void StartEditProperty(object componentObject, string propertyName, BaseObjectEditControl editControl) {
+        public void StartEditProperty(object componentObject, string propertyName) {
             EditMode = ObjectEditMode.Property;
-            EditControl = editControl;
             ComponentObject = componentObject;
             Key = propertyName;
         }
 
-        public void StartEditListEelement(object componentObject, int index, BaseObjectEditControl editControl) {
+        public void StartEditListElement(object componentObject, int index) {
             EditMode = ObjectEditMode.ListElement;
-            EditControl = editControl;
             ComponentObject = componentObject;
             Key = index;
         }
 
-        public void StartEditDictionaryElement(object componentObject, object key, BaseObjectEditControl editControl) {
+        public void StartEditDictionaryElement(object componentObject, object key) {
             EditMode = ObjectEditMode.DictionaryElement;
-            EditControl = editControl;
             ComponentObject = componentObject;
             Key = key;
         }
@@ -266,23 +270,10 @@ namespace PAO.Config.Editor
             UIPublic.ShowWaitingForm();
             var propertyValue = EditValue;
 
-            Type editControlType = ConfigPublic.GetEditControllerType(propertyValue.GetType());
-            BaseObjectEditControl editControl = null;
             var objectType = propertyValue.GetType();
-            if (editControlType != null) {
-                var editController = editControlType.CreateInstance() as BaseEditController;
-                editControl = editController.CreateEditControl(objectType) as BaseObjectEditControl;
-            }
+            BaseObjectEditControl editControl = ConfigPublic.CreateEditControl(objectType) as BaseObjectEditControl;
             if (editControl == null) {
-                if (objectType.IsAddonDictionaryType()) {
-                    editControl = new DictionaryEditController().CreateEditControl(objectType) as BaseObjectEditControl;
-                }
-                else if (objectType.IsAddonListType()) {
-                    editControl = new ListEditController().CreateEditControl(objectType) as BaseObjectEditControl;
-                }
-            }
-            if (editControl == null) {
-                editControl = new ObjectLayoutEditController().CreateEditControl(objectType) as BaseObjectEditControl;
+                editControl = new CommonObjectEditController().CreateEditControl(objectType) as BaseObjectEditControl;
             }
 
             editControl.EditValue = IOPublic.ObjectClone(propertyValue);

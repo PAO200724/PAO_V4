@@ -7,6 +7,9 @@ using System.Runtime.Serialization;
 using System.Text;
 using DevExpress.XtraEditors.Repository;
 using PAO.WinForm;
+using DevExpress.XtraEditors;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace PAO.WinForm.Editor
 {
@@ -29,8 +32,22 @@ namespace PAO.WinForm.Editor
         }
 
         protected override RepositoryItem OnCreateRepositoryItem(Type objectType) {
-            var edit = new RepositoryItemFontEdit();
+            var edit = new RepositoryItemButtonEdit();
             WinFormPublic.AddClearButton(edit);
+            edit.ButtonClick += (sender, e) =>
+            {
+                if(e.Button.Kind == DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis) {
+                    var buttonEdit = sender as ButtonEdit;
+                    var font = buttonEdit.EditValue as Font;
+                    var fontDialog = new FontDialog()
+                    {
+                        Font = font
+                    };
+                    if (fontDialog.ShowDialog() == DialogResult.OK) {
+                        buttonEdit.EditValue = fontDialog.Font;
+                    }
+                }
+            };
             return edit;
         }
     }

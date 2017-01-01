@@ -15,12 +15,12 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using DevExpress.XtraGrid.Views.Grid;
-using PAO.WinForm.Config;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraGrid.Views.BandedGrid;
 using DevExpress.XtraLayout;
 using PAO.IO;
+using System.Reflection;
 
 namespace PAO.Config
 {
@@ -135,47 +135,40 @@ namespace PAO.Config
         }
         #endregion
 
-        #region 属性的Editors
+        #region Editors
+        #region RepositoryItem & EditControl
         /// <summary>
-        /// 创建默认编辑器
+        /// 获取某个成员的编辑器类型
         /// </summary>
-        /// <param name="propertyDescriptor">属性</param>
-        /// <returns>编辑器</returns>
-        public static BaseEditController GetEditor(PropertyDescriptor propertyDescriptor, bool textEditorForNull = false) {
-            BaseEditController editor = null;
+        /// <param name="member">类型</param>
+        /// <returns>编辑器类型</returns>
+        private static Type GetEditorType(MemberInfo member) {
+            var editorAttr = member.GetAttribute<EditorTypeAttribute>(true);
+            if (editorAttr != null && editorAttr.EditorType != null)
+                return editorAttr.EditorType;
 
-            // 如果属性是定义好了的扩展属性，则直接获取编辑器
-            if (propertyDescriptor is ConfigPropertyDescriptor) {
-                var configProp = propertyDescriptor as ConfigPropertyDescriptor;
-                if (configProp.Editor != null) {
-                    editor = IOPublic.ObjectClone(configProp.Editor) as BaseEditController;
-                }
-            }
-
-            // 从扩展的配置中获取编辑器
-            if (editor == null) {
-                var propConfigInfo = WinFormPublic.GetPropertyConfigInfo(propertyDescriptor.ComponentType, propertyDescriptor.Name);
-                if (propConfigInfo != null) {
-                    editor = propConfigInfo.Editor;
-                }
-            }
-
-            // 根据属性类型获取编辑器
-            if (editor == null) {
-                editor = GetDefaultEditorByType(propertyDescriptor.PropertyType);
-            }
-
-            if (textEditorForNull && editor == null) {
-                editor = new TextEditController();
-            }
-            return editor;
+            return null;
         }
+
+        /// <summary>
+        /// 获取某个成员的编辑器类型
+        /// </summary>
+        /// <param name="type">类型</param>
+        /// <returns>编辑器类型</returns>
+        private static Type GetEditorType(MemberDescriptor member) {
+            var editorAttr = member.Attributes.GetAttribute<EditorTypeAttribute>();
+            if (editorAttr != null && editorAttr.EditorType != null)
+                return editorAttr.EditorType;
+
+            return null;
+        }
+
         /// <summary>
         /// 创建默认编辑器
         /// </summary>
         /// <param name="type">类型</param>
         /// <returns>编辑器</returns>
-        public static BaseEditController GetDefaultEditorByType(Type type) {
+        private static BaseEditController GetDefaultEditorByType(Type type) {
             BaseEditController editor;
             if (type == typeof(string)) {
                 editor = new TextEditController();
@@ -204,34 +197,91 @@ namespace PAO.Config
             else if (type == typeof(Guid)) {
                 editor = new GuidEditController();
             }
+            else if (AddonPublic.IsAddonDictionaryType(type)) {
+                editor = new DictionaryEditController();
+            }
+            else if (AddonPublic.IsAddonListType(type)) {
+                editor = new ListEditController();
+            }
             else if (AddonPublic.IsAddon(type)) {
-                editor = new CommonObjectEditController();
+                editor = new ObjectPropertyEditController();
             }
             else {
                 return null;
             }
             return editor;
         }
-
-        #endregion
-
-        #region 类型的EditorCotrols
+        
         /// <summary>
-        /// 获取某个类型的编辑器类型
+        /// 根据类型保存的编辑器列表
         /// </summary>
-        /// <param name="type">类型</param>
-        /// <returns>编辑器类型</returns>
-        public static Type GetEditControllerType(Type type) {
-            var typeConfigInfo = WinFormPublic.GetTypeConfigInfo(type);
-            if (typeConfigInfo != null && typeConfigInfo.EditControlType != null)
-                return typeConfigInfo.EditControlType;
+        private static Dictionary<Type, BaseEditController> EditControllerList = new Dictionary<Type, BaseEditController>();
 
-            var addonAttr = type.GetAttribute<AddonAttribute>(true);
-            if (addonAttr != null && addonAttr.EditorType != null)
-                return addonAttr.EditorType;
+        private static BaseEditController GetEditController(Type objectType) {
+            if (EditControllerList.ContainsKey(objectType))
+                return EditControllerList[objectType];
 
+            BaseEditController editController = null;
+            var editorType = GetEditorType(objectType);
+            if(editorType != null) {
+                editController = editorType.CreateInstance() as  BaseEditController;
+            } else {
+                editController = GetDefaultEditorByType(objectType);
+            }
+            EditControllerList.Add(objectType, editController);
+            return editController;
+        }
+
+        private static BaseEditController GetEditController(PropertyDescriptor propertyDescriptor) {
+            BaseEditController editController = null;
+            var editorType = GetEditorType(propertyDescriptor);
+            if (editorType != null) {
+                editController = editorType.CreateInstance() as BaseEditController;
+            }
+            else {
+                editController = GetEditController(propertyDescriptor.PropertyType);
+            }
+
+            return editController;
+        }
+
+        /// <summary>
+        /// 根据类型保存的编辑器列表
+        /// </summary>
+        private static Dictionary<Type, Control> EditControlListByType = new Dictionary<Type, Control>();
+
+        /// <summary>
+        /// 创建编辑控件
+        /// </summary>
+        /// <param name="objectType">对象类型</param>
+        /// <returns>编辑控件</returns>
+        public static Control CreateEditControl(Type objectType) {
+            if (EditControlListByType.ContainsKey(objectType))
+                return EditControlListByType[objectType];
+
+            var editController = GetEditController(objectType);
+            if (editController != null) {
+                var editControl = editController.CreateEditControl(objectType);
+                EditControlListByType.Add(objectType, editControl);
+                return editControl;
+            }
             return null;
         }
+        
+        /// <summary>
+        /// 创建RepositoryItem
+        /// </summary>
+        /// <param name="propertyDescriptor">属性描述器</param>
+        /// <returns>RepositoryItem</returns>
+        public static RepositoryItem CreateRepositoryItem(PropertyDescriptor propertyDescriptor) {
+            var editController = GetEditController(propertyDescriptor);
+            if (editController != null) {
+                var repositoryItem = editController.CreateRepositoryItem(propertyDescriptor.PropertyType);
+                return repositoryItem;
+            }
+            return null;
+        }
+        #endregion RepositoryItem & EditControl
 
         /// <summary>
         /// 获取对象编辑器ID
@@ -250,7 +300,7 @@ namespace PAO.Config
         /// <param name="objectType">对象类型</param>
         /// <typeparam name="T">编辑器类型类型</typeparam>
         /// <returns>编辑器控制器</returns>
-        public static T GetEditControllerByType<T>(Type objectType) where T : BaseEditController {
+        private static T GetEditControllerByType<T>(Type objectType) where T : BaseEditController {
             var id = GetTypeEditControlID(typeof(T), objectType);
 
             var editController = (T)ExtendAddonPublic.GetExtendLocalAddon(id);
@@ -263,7 +313,7 @@ namespace PAO.Config
         /// <typeparam name="T">编辑器类型类型</typeparam>
         /// <param name="objectType">对象类型</param>
         /// <returns>新的编辑器控制器</returns>
-        public static T CreateEditControllerByType<T>(Type objectType) where T : BaseEditController, new() {
+        private static T CreateEditControllerByType<T>(Type objectType) where T : BaseEditController, new() {
             var id = GetTypeEditControlID(typeof(T), objectType);
             var editController = new T();
             editController.ID = id;

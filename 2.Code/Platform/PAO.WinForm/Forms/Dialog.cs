@@ -79,7 +79,6 @@ namespace PAO.WinForm.Forms
             ShowCancelButton = dialogControl.ShowCancelButton;
             ShowApplyButton = dialogControl.ShowApplyButton;
             dialogControl.DataModifyStateChanged += DialogControl_DataModifyStateChanged;
-            dialogControl.SetFormState(this);
 
             PanelClient.SuspendLayout();
             PanelClient.Controls.Clear();
@@ -88,7 +87,7 @@ namespace PAO.WinForm.Forms
                 this.Width += ChildControl.Width - PanelClient.ClientRectangle.Width;
                 this.Height += ChildControl.Height - PanelClient.ClientRectangle.Height;
                 PanelClient.Controls.Add(dialogControl);
-                Text = ChildControl.Text;
+                dialogControl.SetFormState(this);
                 ChildControl.Dock = DockStyle.Fill;
             }
             PanelClient.ResumeLayout();

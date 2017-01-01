@@ -77,10 +77,6 @@ namespace PAO.Config.Editor
 
         protected override void OnClose() {
             var controller = Controller as ObjectLayoutEditController;
-            if (controller.IsTypeEditController) {
-                controller = ConfigPublic.CreateEditControllerByType<ObjectLayoutEditController>(ObjectType);
-            }
-
             if (controller != null) {
                 controller.LayoutData = this.DataLayoutControl.GetLayoutData();
                 ExtendAddonPublic.SetExtendLocalAddon(controller);
@@ -134,9 +130,6 @@ namespace PAO.Config.Editor
             EditControls.Clear();
 
             var controller = Controller as ObjectLayoutEditController;
-            if (controller.IsTypeEditController) {
-                controller = ConfigPublic.GetEditControllerByType<ObjectLayoutEditController>(objType);
-            }
             if (controller != null) {
                 this.DataLayoutControl.SetLayoutData(controller.LayoutData);
             }
@@ -147,28 +140,12 @@ namespace PAO.Config.Editor
             this.DataLayoutControl.SuspendLayout();
             TabbedControlGroup tabbledGroup = null;
             foreach (PropertyDescriptor propDesc in TypeDescriptor.GetProperties(objType)) {
-                var configedPropDesc = WinFormPublic.GetConfigedProperty(propDesc);
-
-                if (configedPropDesc == null || !configedPropDesc.IsBrowsable)
+                if (!propDesc.IsBrowsable)
                     continue;
 
-                Control editControl = null;
-                if(controller != null) {
-                   editControl = controller.CreateEditControl(propDesc.PropertyType, propDesc.Name);
-                }
-
-                if (editControl == null) {
-                    if (AddonPublic.IsAddonDictionaryType(configedPropDesc.PropertyType)) {
-                        editControl = new DictionaryEditController().CreateEditControl(propDesc.PropertyType) as BaseObjectEditControl;
-                    }
-                    else if (AddonPublic.IsAddonListType(configedPropDesc.PropertyType)) {
-                        editControl = new ListEditController().CreateEditControl(propDesc.PropertyType) as BaseObjectEditControl;
-                    }
-                    else {
-                        // 此处第二个参数为true，确保了最少能创建一种编辑器
-                        BaseEditController editor = ConfigPublic.GetEditor(configedPropDesc, true);
-                        editControl = editor.CreateEditControl(propDesc.PropertyType);
-                    }
+                Control editControl = ConfigPublic.CreateEditControl(propDesc.PropertyType);
+                if(editControl == null) {
+                    editControl = new CommonObjectEditController().CreateEditControl(propDesc.PropertyType);
                 }
                 
                 if (editControl.GetType().GetProperty("EditValue") == null)
@@ -178,16 +155,16 @@ namespace PAO.Config.Editor
                 if (editControl is BaseObjectEditControl) {
                     // 在BaseEditControl外套一层ObjectContainerEditControl，用于实现属性的新增删除等
                     var objectContainerEditControl = new ObjectContainerControl();
-                    objectContainerEditControl.StartEditProperty(EditValue, propDesc.Name, editControl as BaseObjectEditControl);
+                    objectContainerEditControl.StartEditProperty(EditValue, propDesc.Name);
                     editControl = objectContainerEditControl;
 
                     if (tabbledGroup == null) {
                         tabbledGroup = groupItem.AddTabbedGroup();
                     }
                     var layoutGroupItem = tabbledGroup.AddTabPage();
-                    layoutGroupItem.Name = "Group_" + configedPropDesc.Name;
-                    layoutGroupItem.Text = configedPropDesc.DisplayName;
-                    layoutGroupItem.CustomizationFormText = "组_" + configedPropDesc.DisplayName;
+                    layoutGroupItem.Name = "Group_" + propDesc.Name;
+                    layoutGroupItem.Text = propDesc.DisplayName;
+                    layoutGroupItem.CustomizationFormText = "组_" + propDesc.DisplayName;
                     layoutGroupItem.Padding = new DevExpress.XtraLayout.Utils.Padding(0);
 
                     layoutControlItem = layoutGroupItem.AddItem();
@@ -198,13 +175,13 @@ namespace PAO.Config.Editor
                     layoutControlItem.TextLocation = DevExpress.Utils.Locations.Left;
                 }
                 EditControls.Add(propDesc, editControl);
-                editControl.Tag = configedPropDesc;
-                editControl.Name = configedPropDesc.Name;
+                editControl.Tag = propDesc;
+                editControl.Name = propDesc.Name;
 
                 layoutControlItem.Control = editControl;
-                layoutControlItem.Name = configedPropDesc.Name;
-                layoutControlItem.Text = configedPropDesc.DisplayName;
-                layoutControlItem.CustomizationFormText = configedPropDesc.DisplayName;
+                layoutControlItem.Name = propDesc.Name;
+                layoutControlItem.Text = propDesc.DisplayName;
+                layoutControlItem.CustomizationFormText = propDesc.DisplayName;
 
                 if (editControl is BaseObjectEditControl) {
                     layoutControlItem.TextVisible = false;

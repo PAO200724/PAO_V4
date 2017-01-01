@@ -31,7 +31,6 @@ using DevExpress.XtraSpreadsheet;
 using PAO.WinForm.Controls;
 using System.ComponentModel;
 using PAO.WinForm.Editor;
-using PAO.WinForm.Config;
 using PAO.Event;
 using PAO.IO;
 using PAO.UI;
@@ -393,97 +392,6 @@ namespace PAO.WinForm
         }
         #endregion
 
-        #region 属性配置
-        private static Dictionary<Type, TypeConfigInfo> TypeConfigInfoList = new Dictionary<Type, TypeConfigInfo>();
-
-        /// <summary>
-        /// 添加类型配置
-        /// </summary>
-        /// <param name="type">类型</param>
-        /// <param name="typeConfigInfo">类型配置信息</param>
-        public static void RegisterTypeConfig(Type type, TypeConfigInfo typeConfigInfo) {
-            if (type.IsGenericType)
-                type = type.GetGenericTypeDefinition();
-            if (TypeConfigInfoList.ContainsKey(type)) {
-                TypeConfigInfoList[type] = typeConfigInfo;
-            }
-            else {
-                TypeConfigInfoList.Add(type, typeConfigInfo);
-            }
-        }
-
-        /// <summary>
-        /// 获取类型配置信息
-        /// </summary>
-        /// <param name="type">类型</param>
-        /// <returns>类型配置信息</returns>
-        public static TypeConfigInfo GetTypeConfigInfo(Type type) {
-            TypeConfigInfo result = null;
-            // 遍历
-            type.TraverseParentTypeList((t)=>
-            {
-                result = TypeConfigInfoList
-                    .Where(p=>p.Key == t)
-                    .Select(p=>p.Value).FirstOrDefault();
-                if (result != null)
-                    return false;
-
-                return true;
-            });
-            return result;
-        }
-
-        /// <summary>
-        /// 获取属性配置信息
-        /// </summary>
-        /// <param name="type">类型</param>
-        /// <param name="propertyName">属性名称</param>
-        /// <returns>属性配置信息</returns>
-        public static PropertyConfigInfo GetPropertyConfigInfo(Type type, string propertyName) {
-            PropertyConfigInfo result = null;
-            // 遍历
-            type.TraverseParentTypeList((t) =>
-            {
-                var typeConfigInfo = TypeConfigInfoList
-                    .Where(p => p.Key == t)
-                    .Select(p => p.Value).FirstOrDefault();
-                if (typeConfigInfo != null) {
-                    // 如果能找到配置属性，则返回
-                    var propertyConfigInfo = typeConfigInfo.GetPropertyConfigInfo(propertyName);
-                    if (propertyConfigInfo != null) {
-                        result = propertyConfigInfo;
-                        return false;
-                    }
-                }
-
-                return true;
-            });
-            return result;
-        }
-
-        /// <summary>
-        /// 获取配置后的属性
-        /// </summary>
-        /// <param name="propertyDesc">属性描述</param>
-        /// <returns>如果属性经过定义，返回经过定义的属性，如果属性定义为不再显示，则返回空</returns>
-        public static PropertyDescriptor GetConfigedProperty(PropertyDescriptor propertyDesc) {
-            var typeConfigInfo = WinFormPublic.GetTypeConfigInfo(propertyDesc.ComponentType);
-            var propertyConfigInfo = WinFormPublic.GetPropertyConfigInfo(propertyDesc.ComponentType, propertyDesc.Name);
-            if (propertyConfigInfo != null) {
-                if (propertyConfigInfo.Browsable) {
-                    return new ConfigPropertyDescriptor(propertyDesc, propertyConfigInfo);
-                }
-            }
-            else {
-                if (typeConfigInfo == null || !typeConfigInfo.ShowDefinedPropertyOnly) {
-                    return propertyDesc;
-                }
-            }
-
-            return null;
-        }
-        #endregion
-
         #region PropertyView
         public static IPropertyView DefaultPropertyView;
 
@@ -496,7 +404,6 @@ namespace PAO.WinForm
                 DefaultPropertyView.SelectedObject = selectedObject;
             }
         }
-
         #endregion
 
         #region 关闭(Close)

@@ -127,17 +127,11 @@ namespace PAO.Config.Editor
                 return;
 
             foreach (var dataField in DataFields) {
-                Control editControl = null;
-                editControl = controller.CreateEditControl(dataField.ObjectType, dataField.Name);
-
+                Control editControl = ConfigPublic.CreateEditControl(dataField.ObjectType);
                 if (editControl == null) {
-                    // 此处第二个参数为true，确保了最少能创建一种编辑器
-                    BaseEditController editor = ConfigPublic.GetDefaultEditorByType(dataField.ObjectType);
-                    if (editor == null)
-                        editor = new TextEditController();
-                    editControl = editor.CreateEditControl(dataField.ObjectType);
+                    editControl = new CommonObjectEditController().CreateEditControl(dataField.ObjectType);
                 }
-                
+
                 if (editControl.GetType().GetProperty("EditValue") == null)
                     throw new Exception("编辑控件必须实现EditValue属性");
 

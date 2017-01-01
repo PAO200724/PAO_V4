@@ -29,56 +29,9 @@ namespace PAO.WinForm.Editor
     public abstract class BaseObjectEditController : BaseEditController
     {
         #region 插件属性
-        #region 属性：PropertyEditorTypes
-        /// <summary>
-        /// 属性：PropertyEditorTypes
-        /// 属性编辑器类型
-        /// 自定义的属性编辑器类型列表，Key是属性名称，Value是编辑器（BaseEditor或者是BaseEditControl）
-        /// </summary>
-        [AddonProperty]
-        [DataMember(EmitDefaultValue = false)]
-        [Name("属性编辑器类型")]
-        [Description("自定义的属性编辑器类型列表，Key是属性名称，Value是编辑器（BaseEditor或者是BaseEditControl）")]
-        public Dictionary<string, BaseEditController> PropertyEditorTypes {
-            get;
-            set;
-        }
-        #endregion 属性：PropertyEditorTypes
-
-        #region 属性：IsTypeEditController
-        /// <summary>
-        /// 属性：IsTypeEditController
-        /// 是否类型编辑控制器
-        /// 是否类型编辑控制器
-        /// </summary>
-        [AddonProperty]
-        [DataMember(EmitDefaultValue = false)]
-        [Name("是否类型编辑控制器")]
-        [Description("是否类型编辑控制器")]
-        public bool IsTypeEditController {
-            get;
-            set;
-        }
-        #endregion 属性：IsTypeEditController
         #endregion
 
         public BaseObjectEditController() {
-            IsTypeEditController = false;
-        }
-
-
-        /// <summary>
-        /// 根据属性创建编辑控件
-        /// </summary>
-        /// <param name="propertyName"></param>
-        /// <returns></returns>
-        public Control CreateEditControl(Type objectType, string propertyName) {
-            if (PropertyEditorTypes.IsNotNullOrEmpty()
-                    && PropertyEditorTypes.ContainsKey(propertyName)) {
-                var editController = PropertyEditorTypes[propertyName];
-                return editController.CreateEditControl(objectType);
-            }
-            return null;
         }
         
         public override Control CreateEditControl(Type objectType) {

@@ -11,7 +11,6 @@ using PAO.WinForm;
 using PAO.Config.Editor;
 using PAO.IO;
 using PAO.WinForm.Editor;
-using PAO.WinForm.Config;
 using DevExpress.XtraBars;
 using DevExpress.XtraEditors.Repository;
 using DevExpress.XtraVerticalGrid;
@@ -39,10 +38,6 @@ namespace PAO.Config.Editor
 
                 this.PropertyGridControl.SelectedObject = value;
                 var controller = Controller as ObjectPropertyEditController;
-                if (controller.IsTypeEditController && value != null) {
-                    controller = ConfigPublic.GetEditControllerByType<ObjectPropertyEditController>(value.GetType());
-                }
-
                 DefaultLayoutData = this.PropertyGridControl.GetLayoutData();
                 if (controller != null) {
                     this.PropertyGridControl.SetLayoutData(controller.LayoutData);
@@ -72,10 +67,6 @@ namespace PAO.Config.Editor
         protected override void OnClose() {
             var editValue = EditValue;
             var controller = Controller as ObjectPropertyEditController;
-            if (controller.IsTypeEditController && editValue != null) {
-                controller = ConfigPublic.CreateEditControllerByType<ObjectPropertyEditController>(editValue.GetType());
-            }
-
             if (controller != null) {
                 controller.LayoutData = this.PropertyGridControl.GetLayoutData();
                 ExtendAddonPublic.SetExtendLocalAddon(controller);
@@ -101,61 +92,25 @@ namespace PAO.Config.Editor
             , DevExpress.XtraVerticalGrid.Events.GetCustomRowCellEditEventArgs e) {
         }
 
-        Dictionary<PropertyDescriptor, RepositoryItem> EditList = new Dictionary<PropertyDescriptor, RepositoryItem>();
         private void PropertyGridControl_CustomRecordCellEdit(object sender, DevExpress.XtraVerticalGrid.Events.GetCustomRowCellEditEventArgs e) {
-            BaseEditController edit = null;
+            RepositoryItem repositoryItem = null;
             var propDesc = PropertyGridControl.GetPropertyDescriptor(e.Row);
             if (propDesc == null)
                 return;
 
-            if(EditList.ContainsKey(propDesc)) {
-                e.RepositoryItem = EditList[propDesc];
-                return;
+            if(repositoryItem == null) {
+                repositoryItem = ConfigPublic.CreateRepositoryItem(propDesc);
             }
-
-            if(propDesc is ConfigPropertyDescriptor) {
-                var configProp = propDesc as ConfigPropertyDescriptor;
-                if(configProp.Editor != null) {
-                    edit = IOPublic.ObjectClone(configProp.Editor) as BaseEditController;
-                }
+            
+            if (repositoryItem != null) {
+                e.RepositoryItem = repositoryItem;
             }
-
-            if(edit == null) {
-                edit = ConfigPublic.GetEditor(propDesc);
-            }
-
-            if (edit == null) {
-                if(propDesc.PropertyType.IsDerivedFrom(typeof(PaoObject))) {
-                    edit = new CommonObjectEditController();
-                }
-            }
-
-            if (edit != null) {
-                e.RepositoryItem = edit.CreateRepositoryItem(propDesc.PropertyType);
-            }
-
-            EditList.Add(propDesc, e.RepositoryItem);
         }
-        
-        private void ObjectEditControl_Leave(object sender, EventArgs e) {
+
+        private void ObjectPropertyEditControl_Validating(object sender, CancelEventArgs e) {
             this.PropertyGridControl.CloseEditor();
         }
-
-        private void PropertyGridControl_CustomPropertyDescriptors(object sender, DevExpress.XtraVerticalGrid.Events.CustomPropertyDescriptorsEventArgs e) {
-            if (e.Properties.IsNullOrEmpty())
-                return;
-
-            var propertyDescriptors = new List<PropertyDescriptor>();
-            foreach (PropertyDescriptor propertyDesc in e.Properties) {
-                var configedProperty = WinFormPublic.GetConfigedProperty(propertyDesc);
-                if(configedProperty != null) {
-                    propertyDescriptors.Add(configedProperty);
-                }
-            }
-
-            e.Properties = new PropertyDescriptorCollection(propertyDescriptors.ToArray());
-        }
-
+        
         private void PropertyGridControl_MouseUp(object sender, MouseEventArgs e) {
             if (e.Button == MouseButtons.Right) {
                 var pt = new Point(e.X, e.Y);
@@ -195,6 +150,14 @@ namespace PAO.Config.Editor
                     this.PropertyGridControl.SetLayoutData(DefaultLayoutData);
                 }
             }
+        }
+
+        private void ButtonSaveFormat_ItemClick(object sender, ItemClickEventArgs e) {
+            
+        }
+
+        private void ButtonLoadFormat_ItemClick(object sender, ItemClickEventArgs e) {
+
         }
     }
 }

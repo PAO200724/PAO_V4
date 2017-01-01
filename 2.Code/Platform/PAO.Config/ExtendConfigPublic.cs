@@ -6,7 +6,7 @@ using PAO.Config.Editor;
 using PAO.Data;
 using PAO.WinForm;
 using PAO.WinForm.Editor;
-using PAO.WinForm.Config;
+using PAO.WinForm.Property;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

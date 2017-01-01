@@ -29,11 +29,6 @@ namespace PAO.Config.Editor
     /// </summary>
     public partial class ObjectTreeEditControl : BaseObjectEditControl
     {
-
-        ListEditControl ListEditControl = new ListEditController().CreateEditControl(null) as ListEditControl;
-        DictionaryEditControl DictionaryEditControl = new DictionaryEditController().CreateEditControl(null) as DictionaryEditControl;
-        ObjectPropertyEditControl ObjectEditControl = new ObjectPropertyEditController().CreateEditControl(typeof(object)) as ObjectPropertyEditControl;
-
         /// <summary>
         /// 扩展属性存储
         /// </summary>
@@ -113,8 +108,7 @@ namespace PAO.Config.Editor
             if (ExtendPropertyStorage != null) {
                 ExtendPropertyStorage.Save();
             }
-            this.DictionaryEditControl.Close();
-            this.ListEditControl.Close();
+
             base.OnClose();
         }
         #endregion
@@ -350,11 +344,6 @@ namespace PAO.Config.Editor
         protected override void SetControlStatus() {
             var focusedNode = this.TreeListObject.FocusedNode;
             if (focusedNode != null && focusedNode.Id >= 0) {
-                var nodeType = (ObjectTreeNodeType)focusedNode.GetValue(ColumnPropertyElementType);
-                var propDesc = (PropertyDescriptor)focusedNode.GetValue(ColumnPropertyDescriptor);
-                var propertyValue = focusedNode.GetValue(ColumnPropertyValue);
-                var obj = focusedNode.GetValue(ColumnObject);
-                this.ObjectEditControl.EditValue = propertyValue;
                 this.ButtonExportExtend.Enabled = ExtendPropertyStorage.PropertyTable != null;
             }
 
@@ -423,25 +412,21 @@ namespace PAO.Config.Editor
             this.AddonExtentionEditControl.Enabled = false;
             switch (nodeType) {
                 case ObjectTreeNodeType.ListProperty:
-                    this.ObjectContainerEditControl.StartEditProperty(obj, propDesc.Name, ListEditControl);
-                    break;
                 case ObjectTreeNodeType.DictionaryProperty:
-                    this.ObjectContainerEditControl.StartEditProperty(obj, propDesc.Name, DictionaryEditControl);
-                    break;
                 case ObjectTreeNodeType.ObjectProperty:
-                    this.ObjectContainerEditControl.StartEditProperty(obj, propDesc.Name, ObjectEditControl);
+                    this.ObjectContainerEditControl.StartEditProperty(obj, propDesc.Name);
                     break;
                 case ObjectTreeNodeType.ListElement:
                     var index = (int)node.GetValue(ColumnIndex);
-                    this.ObjectContainerEditControl.StartEditListEelement(obj, index, ObjectEditControl);
+                    this.ObjectContainerEditControl.StartEditListElement(obj, index);
                     break;
                 case ObjectTreeNodeType.DictionaryElement:
                     var key = node.GetValue(ColumnIndex);
-                    this.ObjectContainerEditControl.StartEditDictionaryElement(obj, key, ObjectEditControl);
+                    this.ObjectContainerEditControl.StartEditDictionaryElement(obj, key);
                     break;
                 case ObjectTreeNodeType.Object:
                     if(propertyValue is PaoObject) {
-                        this.ObjectContainerEditControl.StartEditObject(propertyValue.GetType(), ObjectEditControl);
+                        this.ObjectContainerEditControl.StartEditObject(propertyValue.GetType());
                     } else {
                         this.ObjectContainerEditControl.StartEditNull();
                     }
