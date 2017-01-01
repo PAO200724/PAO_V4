@@ -355,29 +355,18 @@ namespace PAO.Report.Views
             this.LayoutControl.SetLayoutData(controller.LayoutData);
         }
 
-        protected override bool OnClosing(DialogReturn dialogResult) {
+        protected override void OnClose() {
             // 杀掉背景线程
-            while(BackgroundWorkers.Count > 0) {
+            while (BackgroundWorkers.Count > 0) {
                 var backgroundWorker = BackgroundWorkers[0];
                 BackgroundWorkers.RemoveAt(0);
                 backgroundWorker.CancelAsync();
-            }
-            foreach (var tableControl in TableControls.Values) {
-                if (tableControl.Close(dialogResult))
-                    return true;
-            }
-            
-            if (ViewList.IsNotNullOrEmpty()) {
-                foreach (var view in ViewList) {
-                    if (view.Close(dialogResult))
-                        return true;
-                }
             }
             var controller = Controller as ReportController;
             // 保存报表和数据的客户端设置
             controller.LayoutData = this.LayoutControl.GetLayoutData();
             ExtendAddonPublic.SetAddonExtendProperties(controller, "LayoutData", "QueryBehavior");
-            return base.OnClosing(dialogResult);
+            base.OnClose();
         }
         #endregion
 

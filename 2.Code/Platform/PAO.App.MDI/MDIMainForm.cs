@@ -111,18 +111,7 @@ namespace PAO.App.MDI
         protected override void OnClosing(CancelEventArgs e) {
             this.DialogResult = DialogResult.OK;
 
-            if(DockViews.IsNotNullOrEmpty()) {
-                foreach(var dockView in DockViews) {
-                    dockView.Close(WinFormPublic.DialogResultToDialogReturn(DialogResult));
-                }
-            }
-
-            foreach(Document doc in this.TabbedView.Documents) {
-                var view = doc.Control as IView;
-                if (view != null) {
-                    view.Close(WinFormPublic.DialogResultToDialogReturn(DialogResult));
-                }
-            }
+            this.CloseControl();
 
             _MDIApplication.LayoutData = this.DockManager.GetLayoutData();
             _MDIApplication.SkinName = DevExpress.LookAndFeel.UserLookAndFeel.Default.SkinName;
@@ -193,9 +182,9 @@ namespace PAO.App.MDI
         }
 
         private void TabbedView_DocumentClosing(object sender, DevExpress.XtraBars.Docking2010.Views.DocumentCancelEventArgs e) {
-            var view = e.Document.Control as IView;
+            var view = e.Document.Control;
             if (view != null) {
-                view.Close(WinFormPublic.DialogResultToDialogReturn(DialogResult.OK));
+                view.CloseControl();
             }
         }
 

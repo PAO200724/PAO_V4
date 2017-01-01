@@ -108,14 +108,14 @@ namespace PAO.Config.Editor
             form.WindowState = FormWindowState.Maximized;
         }
 
-        protected override bool OnClosing(DialogReturn dialogResult) {
+        protected override void OnClose() {
             /// 保存
-            if(ExtendPropertyStorage != null) {
+            if (ExtendPropertyStorage != null) {
                 ExtendPropertyStorage.Save();
             }
-            this.ObjectContainerEditControl.Close(dialogResult);
-            this.AddonExtentionEditControl.Close(dialogResult);
-            return base.OnClosing(dialogResult);
+            this.DictionaryEditControl.Close();
+            this.ListEditControl.Close();
+            base.OnClose();
         }
         #endregion
 

@@ -106,10 +106,10 @@ namespace PAO.Config.Editor
             this.BindingSource.EndEdit();
         }
 
-        protected override bool OnClosing(DialogReturn dialogResult) {
+        protected override void OnClose() {
             var controller = Controller as DataFieldsEditController;
             controller.LayoutData = this.DataLayoutControl.GetLayoutData();
-            return base.OnClosing(dialogResult);
+            base.OnClose();
         }
 
 

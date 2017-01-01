@@ -40,28 +40,7 @@ namespace PAO.WinForm.Security
                 this.TextEditUser.Properties.MaxLength = value;
             }
         }
-
-        protected override bool OnClosing(DialogReturn dialogResult) {
-            if (dialogResult == DialogReturn.OK) {
-                try {
-                    string hashPassword = null;
-                    if (SecurtiyService == null)
-                        throw new Exception("安全服务还未初始化");
-                    if (TextEditPassword.Text.IsNotNullOrEmpty())
-                        hashPassword = SecurityPublic.ComputeHashString(TextEditPassword.Text);
-                    var userID = SecurtiyService.Login(TextEditUser.Text, hashPassword);
-                    SecurityPublic.ApplicationUser = new UserToken()
-                    {
-                        UserID = userID,
-                    };
-                } catch (Exception err){
-                    UIPublic.ShowExceptionDialog(err);
-                    return true;
-                }
-            }
-            return base.OnClosing(dialogResult);
-        }
-
+        
         private void HyperlinkLabelControlRegisterUser_HyperlinkClick(object sender, DevExpress.Utils.HyperlinkClickEventArgs e) {
 
         }
@@ -73,6 +52,27 @@ namespace PAO.WinForm.Security
         public override void SetFormState(Form form) {
             form.MaximizeBox = false;
             form.MinimizeBox = false;
+            form.FormClosing += (sender, e) =>
+            {
+                if (form.DialogResult == DialogResult.OK) {
+                    try {
+                        string hashPassword = null;
+                        if (SecurtiyService == null)
+                            throw new Exception("安全服务还未初始化");
+                        if (TextEditPassword.Text.IsNotNullOrEmpty())
+                            hashPassword = SecurityPublic.ComputeHashString(TextEditPassword.Text);
+                        var userID = SecurtiyService.Login(TextEditUser.Text, hashPassword);
+                        SecurityPublic.ApplicationUser = new UserToken()
+                        {
+                            UserID = userID,
+                        };
+                    }
+                    catch (Exception err) {
+                        UIPublic.ShowExceptionDialog(err);
+                        e.Cancel = true;
+                    }
+                }
+            };
             base.SetFormState(form);
         }
     }

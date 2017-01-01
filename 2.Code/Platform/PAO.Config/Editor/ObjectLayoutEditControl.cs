@@ -75,7 +75,7 @@ namespace PAO.Config.Editor
             }
         }
 
-        protected override bool OnClosing(DialogReturn dialogResult) {
+        protected override void OnClose() {
             var controller = Controller as ObjectLayoutEditController;
             if (controller.IsTypeEditController) {
                 controller = ConfigPublic.CreateEditControllerByType<ObjectLayoutEditController>(ObjectType);
@@ -86,7 +86,7 @@ namespace PAO.Config.Editor
                 ExtendAddonPublic.SetExtendLocalAddon(controller);
             }
 
-            return base.OnClosing(dialogResult);
+            base.OnClose();
         }
 
         private void GetTypeLayoutData() {
@@ -114,8 +114,8 @@ namespace PAO.Config.Editor
                     continue;
 
                 var editControl = EditControls[propDesc];
-                if(editControl is ObjectContainerEditControl) {
-                    editControl.As<ObjectContainerEditControl>().ComponentObject = editValue;
+                if(editControl is ObjectContainerControl) {
+                    editControl.As<ObjectContainerControl>().ComponentObject = editValue;
                 }
                 editControl.DataBindings.Clear();
                 if (this.BindingSource != null) {
@@ -177,7 +177,7 @@ namespace PAO.Config.Editor
                 LayoutControlItem layoutControlItem = null;
                 if (editControl is BaseEditControl) {
                     // 在BaseEditControl外套一层ObjectContainerEditControl，用于实现属性的新增删除等
-                    var objectContainerEditControl = new ObjectContainerEditControl();
+                    var objectContainerEditControl = new ObjectContainerControl();
                     objectContainerEditControl.StartEditProperty(EditValue, propDesc.Name, editControl as BaseEditControl);
                     editControl = objectContainerEditControl;
 

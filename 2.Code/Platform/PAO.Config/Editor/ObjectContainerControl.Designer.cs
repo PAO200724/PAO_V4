@@ -1,6 +1,6 @@
 ﻿namespace PAO.Config.Editor
 {
-    partial class ObjectContainerEditControl
+    partial class ObjectContainerControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -26,7 +26,7 @@
         /// </summary>
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ObjectContainerEditControl));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ObjectContainerControl));
             this.BarManagerObject = new DevExpress.XtraBars.BarManager(this.components);
             this.BarToolObject = new DevExpress.XtraBars.Bar();
             this.ButtonCreate = new DevExpress.XtraBars.BarButtonItem();

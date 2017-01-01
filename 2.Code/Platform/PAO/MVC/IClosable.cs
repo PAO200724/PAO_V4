@@ -18,6 +18,8 @@ namespace PAO.MVC
     [Description("可关闭接口")]
     public interface IClosable
     {
-        bool Close(DialogReturn dialogReturn);
+        event EventHandler Closing;
+
+        void Close();
     }
 }

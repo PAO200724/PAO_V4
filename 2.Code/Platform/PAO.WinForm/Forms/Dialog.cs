@@ -64,11 +64,13 @@ namespace PAO.WinForm.Forms
         }
 
         protected override void OnClosing(CancelEventArgs e) {
-            if (ChildControl is DialogControl) {
-                var dialogControl = ChildControl as DialogControl;
-                bool cancel = e.Cancel;
-                cancel = dialogControl.Close(WinFormPublic.DialogResultToDialogReturn(DialogResult));
-                e.Cancel = cancel;
+            var dialogControl = ChildControl as DialogControl;
+            try {
+                dialogControl.CloseControl();
+            }
+            catch (Exception err) {
+                e.Cancel = true;
+                throw err;
             }
             base.OnClosing(e);
         }

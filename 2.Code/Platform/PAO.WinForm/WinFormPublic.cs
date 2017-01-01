@@ -499,5 +499,22 @@ namespace PAO.WinForm
 
         #endregion
 
+        #region 关闭(Close)
+        /// <summary>
+        /// 关闭控件
+        /// </summary>
+        /// <param name="control">控件</param>
+        public static void CloseControl(this Control control) {
+            // 关闭子控件
+            if(control.Controls.IsNotNullOrEmpty()) {
+                foreach(Control childControl in control.Controls) {
+                    CloseControl(childControl);
+                }
+            }
+            if(control is IClosable) {
+                control.As<IClosable>().Close();
+            }
+        }
+        #endregion
     }
 }

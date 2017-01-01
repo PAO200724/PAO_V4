@@ -67,7 +67,7 @@ namespace PAO.Report.Controls
 
                 if (DataFieldsEditControl != null) {
                     DataFieldsEditControl.Parent = null;
-                    DataFieldsEditControl.Close(DialogReturn.Cancel);
+                    DataFieldsEditControl.CloseControl();
                     DataFieldsEditControl.Dispose();
                 }
 
@@ -108,13 +108,9 @@ namespace PAO.Report.Controls
             }
         }
 
-        protected override bool OnClosing(DialogReturn dialogResult) {
-            if (this.DataFieldsEditControl != null) {
-                if (this.DataFieldsEditControl.Close(dialogResult))
-                    return true;
-            }
+        protected override void OnClose() {
             ExtendAddonPublic.SetAddonExtendProperties(_ReportDataTable, "QueryBehavior", "ParameterEditController");
-            return base.OnClosing(dialogResult);
+            base.OnClose();
         }
 
         public void StartQuery() {

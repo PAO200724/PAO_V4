@@ -19,7 +19,7 @@ namespace PAO.Config.Editor
     /// 对象容器编辑控件
     /// 作者：PAO
     /// </summary>
-    public partial class ObjectContainerEditControl : BaseEditControl {
+    public partial class ObjectContainerControl : BaseEditControl {
         /// <summary>
         /// 组件对象，在属性、列表元素和字典元素编辑模式下分别代表组件对象、列表和字典
         /// </summary>
@@ -63,7 +63,7 @@ namespace PAO.Config.Editor
             private set {
                 if (_EditControl != null) {
                     UnMergeBars();
-                    _EditControl.Close(DialogReturn.Cancel);
+                    _EditControl.CloseControl();
                     this.Controls.Remove(_EditControl);
                 }
 
@@ -116,7 +116,7 @@ namespace PAO.Config.Editor
             }
         }
 
-        public ObjectContainerEditControl() {
+        public ObjectContainerControl() {
             InitializeComponent();
         }
 
@@ -173,13 +173,7 @@ namespace PAO.Config.Editor
             base.OnLoad(e);
             MergeBars();
         }
-
-        protected override bool OnClosing(DialogReturn dialogResult) {
-            if (_EditControl != null)
-                _EditControl.Close(dialogResult);
-            return base.OnClosing(dialogResult);
-        }
-
+        
         private void EditControl_DataModifyStateChanged(object sender, DataModifyStateChangedEventArgs e) {
             if (e.DataModified) {
                 ModifyData();

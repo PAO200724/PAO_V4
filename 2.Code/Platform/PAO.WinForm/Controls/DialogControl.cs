@@ -16,7 +16,7 @@ namespace PAO.WinForm.Controls
     /// 基础对话框控件
     /// 作者：刘丹
     /// </summary>
-    public partial class DialogControl : XtraUserControl, IClosable
+    public partial class DialogControl : BaseControl
     {
         public DialogControl() {
             InitializeComponent();
@@ -50,13 +50,6 @@ namespace PAO.WinForm.Controls
         /// </summary>
         public event EventHandler<DataModifyStateChangedEventArgs> DataModifyStateChanged;
 
-        protected override void OnParentChanged(EventArgs e) {
-            if (Parent == null) {
-                Close(DialogReturn.Cancel);
-            }
-            base.OnParentChanged(e);
-        }
-
         protected virtual void SetControlStatus() {
             
         }
@@ -71,9 +64,6 @@ namespace PAO.WinForm.Controls
             base.OnLoad(e);
         }
 
-        protected virtual bool OnClosing(DialogReturn dialogResult) {
-            return false;
-        }
 
         public virtual void SetFormState(Form form) {
             if(OnSetFormState != null) {
@@ -91,8 +81,5 @@ namespace PAO.WinForm.Controls
             FileDataModifyStateChangedEvent(DataModified);
         }
 
-        public bool Close(DialogReturn dialogReturn) {
-            return OnClosing(dialogReturn);
-        }
     }
 }

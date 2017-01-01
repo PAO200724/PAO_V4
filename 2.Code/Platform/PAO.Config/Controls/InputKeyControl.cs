@@ -27,16 +27,15 @@ namespace PAO.Config.Controls
         public override void SetFormState(Form form) {
             form.WindowState = FormWindowState.Normal;
             form.FormBorderStyle = FormBorderStyle.FixedDialog;
+            form.FormClosing += (sender, e) =>
+            {
+                if (form.DialogResult == DialogResult.OK && KeyValue.IsNullOrEmpty()) {
+                    UIPublic.ShowWarningDialog("键值不能为空");
+                    e.Cancel = true;
+                }
+            };
         }
-
-        protected override bool OnClosing(DialogReturn dialogResult) {
-            if (dialogResult == DialogReturn.OK && KeyValue.IsNullOrEmpty()) {
-                UIPublic.ShowWarningDialog("键值不能为空");
-                return true;
-            }
-            return false;
-        }
-
+        
         public string KeyValue {
             get {
                 return TextEditKey.Text;

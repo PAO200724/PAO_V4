@@ -23,10 +23,6 @@ namespace PAO.MVC
         /// </summary>
         BaseController Controller { get; set; }
         /// <summary>
-        /// 关闭事件
-        /// </summary>
-        event EventHandler Closing;
-        /// <summary>
         /// 视图容器
         /// </summary>
         IViewContainer ViewContainer { get; set; }

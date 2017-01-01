@@ -42,10 +42,5 @@ namespace PAO.Config.Views
             }
             ObjectTreeEditControl.EditValue = addon;
         }
-
-        protected override bool OnClosing(DialogReturn dialogResult) {
-            ObjectTreeEditControl.Close(dialogResult);
-            return base.OnClosing(dialogResult);
-        }
     }
 }

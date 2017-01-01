@@ -62,7 +62,7 @@ namespace PAO.Config.Editor
             SetControlStatus();
         }
 
-        protected override bool OnClosing(DialogReturn dialogResult) {
+        protected override void OnClose() {
             var editValue = EditValue;
             var controller = Controller as ObjectEditController;
             if (controller.IsTypeEditController && editValue != null) {
@@ -73,7 +73,7 @@ namespace PAO.Config.Editor
                 controller.LayoutData = this.PropertyGridControl.GetLayoutData();
                 ExtendAddonPublic.SetExtendLocalAddon(controller);
             }
-            return base.OnClosing(dialogResult);
+            base.OnClose();
         }
 
         protected override void SetControlStatus() {

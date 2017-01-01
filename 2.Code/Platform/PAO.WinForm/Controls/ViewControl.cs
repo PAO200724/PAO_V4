@@ -19,7 +19,7 @@ namespace PAO.WinForm.Controls
     /// 作者：PAO
     /// </summary>
     [Icon(typeof(Resources), "view")]
-    public partial class ViewControl : DevExpress.XtraEditors.XtraUserControl, IView
+    public partial class ViewControl : BaseControl, IView
     {
         public ViewControl() {
             InitializeComponent();
@@ -61,10 +61,6 @@ namespace PAO.WinForm.Controls
         /// 视图容器
         /// </summary>
         public IViewContainer ViewContainer { get; set; }
-        /// <summary>
-        /// 关闭
-        /// </summary>
-        public event EventHandler Closing;
 
         /// <summary>
         /// 控制器
@@ -113,13 +109,6 @@ namespace PAO.WinForm.Controls
             if(ViewContainer != null && ViewContainer.UIActionDispatcher != null) {
                 ViewContainer.UIActionDispatcher.DoUIAction(this, actionName, parameters, asyncRun);
             }
-        }
-
-        public bool Close(DialogReturn dialogReturn) {
-            if (Closing != null)
-                Closing(this, new EventArgs());
-
-            return OnClosing(dialogReturn);
         }
     }
 }
