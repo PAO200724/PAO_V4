@@ -226,42 +226,10 @@ namespace PAO.App.MDI
             if (!Login())
                 return;
 
-            TransactionPublic.Run("编辑器配置文件加载", () =>
-            {
-                if(DefaultEditControllerFile.IsNotNullOrEmpty()) {
-                    string editorPath = AppPublic.GetAbsolutePath(DefaultEditControllerFile);
-                    try {
-                        EditorPublic.LoadDefaultEditControllerList(editorPath);
-                    } catch (Exception err) {
-                        if (UIPublic.ShowYesNoDialog("配置加载错误，可能是配置文件版本错误，如果您选择继续，程序可以运行，但配置将会丢失，您确认要继续吗。") == DialogReturn.Yes) {
-                            // 备份
-                            IOPublic.MoveToBackupFile(editorPath);
-
-                            EditorPublic.SaveDefaultEditControllerList(editorPath);
-                            // 加载编辑器配置如果出现异常，可能是版本问题，直接退出。
-
-                            EventPublic.Exception(err);
-                        }
-                        else {
-                            throw err;
-                        }
-                    }
-                }
-            });
-
             MainForm = new MDIMainForm();
             MVCPublic.MainForm = MainForm;
             MainForm.Initialize(this);
             Application.Run(MainForm);
-
-
-            TransactionPublic.Run("编辑器配置文件保存", () =>
-            {
-                if (DefaultEditControllerFile.IsNotNullOrEmpty()) {
-                    string editorPath = AppPublic.GetAbsolutePath(DefaultEditControllerFile);
-                    EditorPublic.SaveDefaultEditControllerList(editorPath);
-                }
-            });
         }
 
         private void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e) {

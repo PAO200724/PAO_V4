@@ -1,4 +1,5 @@
-﻿using PAO.IO;
+﻿using PAO.Config;
+using PAO.IO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,16 +17,12 @@ namespace PAO.WinForm.Editor
     /// </summary>
     public static class EditorPublic
     {
-        /// <summary>
-        /// 根据类型保存的编辑器列表
-        /// </summary>
-        private static Dictionary<string, BaseEditController> EditControllerList = new Dictionary<string, BaseEditController>();
-
+        public const string EditorsStorageName = "Editors";
         /// <summary>
         /// 获取编辑器ID
         /// </summary>
         private static string GetEditorID(Type editorType, Type objectType) {
-            return String.Format("{0}.{1}", editorType.FullName, objectType.FullName);
+            return String.Format("{0}_{1}", editorType.FullName, objectType.FullName);
         }
 
         /// <summary>
@@ -53,31 +50,7 @@ namespace PAO.WinForm.Editor
 
             return null;
         }
-        
-        /// <summary>
-        /// 读取默认编辑控制器列表
-        /// </summary>
-        /// <param name="path">路径</param>
-        public static void LoadDefaultEditControllerList(string path) {
-            if(File.Exists(path))
-                EditControllerList = IOPublic.ReadObjectFromFile(path) as Dictionary<string, BaseEditController>;
-        }
-        
-        /// <summary>
-        /// 保存默认的编辑控制器列表
-        /// </summary>
-        /// <param name="path">路径</param>
-        public static void SaveDefaultEditControllerList(string path) {
-            IOPublic.WriteObjectToFile(path, EditControllerList);
-        }
-
-        /// <summary>
-        /// 清除默认编辑控制器列表
-        /// </summary>
-        public static void ClearDefaultEditControllerList() {
-            EditControllerList = new Dictionary<string, BaseEditController>();
-        }
-
+           
         /// <summary>
         /// 移除默认的编辑控制器
         /// </summary>
@@ -85,8 +58,7 @@ namespace PAO.WinForm.Editor
         /// <param name="editorType">编辑器类型</param>
         public static void RemoveDefaultEditController(Type objectType, Type editorType) {
             string editorID = GetEditorID(editorType, objectType);
-            if (EditControllerList.ContainsKey(editorID))
-                EditControllerList.Remove(editorID);
+            ConfigStoragePublic.RemoveConfig(EditorsStorageName, editorID);
         }
 
         /// <summary>
@@ -97,10 +69,7 @@ namespace PAO.WinForm.Editor
         /// <returns>默认编辑控制器</returns>
         public static BaseEditController GetDefaultEditController(Type objectType, Type editorType) {
             string editorID = GetEditorID(editorType, objectType);
-            if (EditControllerList.ContainsKey(editorID))
-                return EditControllerList[editorID];
-
-            return null;
+            return ConfigStoragePublic.GetConfig(EditorsStorageName, editorID) as BaseEditController;
         }
 
         /// <summary>
@@ -110,12 +79,7 @@ namespace PAO.WinForm.Editor
         /// <param name="editController">默认编辑控制器</param>
         public static void SetDefaultEditController(Type objectType, BaseEditController editController) {
             string editorID = GetEditorID(editController.GetType(), objectType);
-            if (EditControllerList == null)
-                EditControllerList = new Dictionary<string, BaseEditController>();
-            if (EditControllerList.ContainsKey(editorID))
-                EditControllerList[editorID] = editController;
-            else
-                EditControllerList.Add(editorID, editController);
+            ConfigStoragePublic.SetConfig(EditorsStorageName, editorID, editController);
         }
         
     }

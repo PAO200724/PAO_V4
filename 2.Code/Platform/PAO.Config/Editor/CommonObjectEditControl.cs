@@ -284,15 +284,13 @@ namespace PAO.Config.Editor
 
             var objectType = propertyValue.GetType();
             BaseObjectEditControl editControl = null;
-            if (objectType.IsAddonType()) {
-                // 如果是PaoObject，则用ObjectLayoutEditControl打开
-                editControl = new ObjectLayoutEditController().CreateEditControl(objectType) as BaseObjectEditControl;
-            }
-            else {
+            // 如果不是PaoObject类型，则显示默认编辑控件
+            if (!objectType.IsAddonType()) {
                 editControl = ConfigPublic.CreateEditControl(objectType) as BaseObjectEditControl;
-                if (editControl == null) {
-                    editControl = new ObjectLayoutEditController().CreateEditControl(objectType) as BaseObjectEditControl;
-                }
+            }
+
+            if (editControl == null) {
+                editControl = new ObjectLayoutEditController().CreateEditControl(objectType) as BaseObjectEditControl;
             }
 
             editControl.EditValue = IOPublic.ObjectClone(propertyValue);

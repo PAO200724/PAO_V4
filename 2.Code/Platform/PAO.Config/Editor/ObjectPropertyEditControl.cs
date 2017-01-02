@@ -54,7 +54,7 @@ namespace PAO.Config.Editor
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public Type ObjectType {
+        public bool StaticType {
             get;
             set;
         }
@@ -69,6 +69,10 @@ namespace PAO.Config.Editor
             var controller = Controller as ObjectPropertyEditController;
             if (controller != null) {
                 controller.LayoutData = this.PropertyGridControl.GetLayoutData();
+                // 如果设置了ObjectType，则保存默认配置
+                if(StaticType && EditValue!=null) {
+                    EditorPublic.SetDefaultEditController(EditValue.GetType(), controller);
+                }
             }
             base.OnClose();
         }

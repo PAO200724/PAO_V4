@@ -32,8 +32,7 @@ namespace PAO.Config.Editor
     public class ObjectPropertyEditController : BaseObjectEditController
     {
         #region 插件属性
-        #endregion
-
+        #region LayoutData
         /// <summary>
         /// 属性：LayoutData
         /// 布局数据
@@ -47,13 +46,35 @@ namespace PAO.Config.Editor
             get;
             set;
         }
+        #endregion
+
+        #region 属性：StaticType
+        /// <summary>
+        /// 属性：StaticType
+        /// 固定类型
+        /// 此控制器对应的固定类型
+        /// </summary>
+        [AddonProperty]
+        [DataMember(EmitDefaultValue = false)]
+        [Name("固定类型")]
+        [Description("此控制器对应的固定类型")]
+        public bool StaticType {
+            get;
+            set;
+        }
+        #endregion 属性：StaticType
+        #endregion
 
         public ObjectPropertyEditController() {
+            StaticType = true;
+        }
+        public ObjectPropertyEditController(bool staticType) {
+            StaticType = staticType;
         }
 
         protected override Control OnCreateEditControl(Type objectType) {
             var editControl = new ObjectPropertyEditControl();
-            editControl.ObjectType = objectType;
+            editControl.StaticType = StaticType;
             return editControl;
         }
         

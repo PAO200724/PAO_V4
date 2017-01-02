@@ -49,6 +49,8 @@
     <Compile Include="AOP\AddonPropertyAttribute.cs" />
     <Compile Include="AOP\AddonFactory.cs" />
     <Compile Include="AOP\AddonPublic.cs" />
+    <Compile Include="Config\ConfigStorage.cs" />
+    <Compile Include="Config\ConfigStoragePublic.cs" />
     <Compile Include="Config\DataSetExtendProperty.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

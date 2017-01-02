@@ -412,14 +412,16 @@ namespace PAO.WinForm
         /// </summary>
         /// <param name="control">控件</param>
         public static void CloseControl(this Control control) {
-            // 关闭子控件
-            if(control.Controls.IsNotNullOrEmpty()) {
-                foreach(Control childControl in control.Controls) {
-                    CloseControl(childControl);
-                }
-            }
-            if(control is IClosable) {
+            // 关闭子控件，避免循环关闭
+            if (control is IClosable) {
                 control.As<IClosable>().Close();
+            } else {
+                // 关闭子控件
+                if (control.Controls.IsNotNullOrEmpty()) {
+                    foreach (Control childControl in control.Controls) {
+                        CloseControl(childControl);
+                    }
+                }
             }
         }
         #endregion

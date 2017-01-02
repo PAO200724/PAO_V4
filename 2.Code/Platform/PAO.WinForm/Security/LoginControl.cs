@@ -23,6 +23,11 @@ namespace PAO.WinForm.Security
             Text = "用户登录";
         }
 
+        protected override void OnLoad(EventArgs e) {
+            this.TextEditUser.Focus();
+            base.OnLoad(e);
+        }
+
         public ISecurity SecurtiyService { get; set; }
 
         public string User {

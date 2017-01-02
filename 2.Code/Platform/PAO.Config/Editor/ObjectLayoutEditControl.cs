@@ -31,18 +31,14 @@ namespace PAO.Config.Editor
         /// </summary>
         private Dictionary<PropertyDescriptor, Control> EditControls = new Dictionary<PropertyDescriptor, Control>();
 
-        private Type _ObjectType;
-        /// <summary>
-        /// 对象类型
-        /// </summary>
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public Type ObjectType {
-            get { return _ObjectType; }
-            set { _ObjectType = value;
-                GetTypeLayoutData();
-            }
+        public bool StaticType {
+            get;
+            set;
         }
+
+        private Type ObjectType = null;
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
@@ -53,13 +49,18 @@ namespace PAO.Config.Editor
 
             set {
                 var valueString = "[未设置对象]";
+                Type objectType = null;
                 if (value.IsNull())
                     value = null;
                 else {
                     valueString = value.ToString();
-                    if(ObjectType == null) {
-                        ObjectType = value.GetType();
-                    }
+                    objectType = value.GetType();
+                }
+                if (ObjectType != objectType) {
+                    ObjectType = objectType;
+                }
+                if(ObjectType != null) {
+                    RetrieveFields(this.LayoutControlGroupRoot, ObjectType);
                 }
 
                 Text = String.Format("属性: {0}", valueString);
@@ -79,24 +80,16 @@ namespace PAO.Config.Editor
             var controller = Controller as ObjectLayoutEditController;
             if (controller != null) {
                 controller.LayoutData = this.DataLayoutControl.GetLayoutData();
+                // 如果设置了ObjectType，则保存默认配置
+                if (StaticType && ObjectType != null) {
+                    EditorPublic.SetDefaultEditController(ObjectType, controller);
+                }
+
             }
 
             base.OnClose();
         }
-
-        private void GetTypeLayoutData() {
-            if (ObjectType.IsNull())
-                return;
-
-            string typeID = GetTypeID();
-
-            RetrieveFields(this.LayoutControlGroupRoot, ObjectType);
-        }
-
-        private string GetTypeID() {
-            return ObjectType.FullName;
-        }
-        
+                
         /// <summary>
         /// 绑定编辑值
         /// </summary>

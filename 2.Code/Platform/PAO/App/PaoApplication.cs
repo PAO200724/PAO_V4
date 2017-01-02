@@ -117,7 +117,23 @@ namespace PAO.App {
             set;
         }
         #endregion 属性：ExtendConfigFile
-        
+
+        #region 属性：ConfigStorageDirName
+        /// <summary>
+        /// 属性：ConfigStorageDirName
+        /// 配置存储目录名称
+        /// 用于保存配置存储的目录名称
+        /// </summary>
+        [AddonProperty]
+        [DataMember(EmitDefaultValue = false)]
+        [Name("配置存储目录名称")]
+        [Description("用于保存配置存储的目录名称")]
+        public string ConfigStorageDirName {
+            get;
+            set;
+        }
+        #endregion 属性：ConfigStorageDirName
+
         #endregion
 
         #region Actions
@@ -152,6 +168,7 @@ namespace PAO.App {
             ServerList = new List<PAO.Ref<Server.BaseServer>>();
             EventProcessorList = new List<PAO.Ref<BaseEventProcessor>>();
             ExceptionAction = ShowExceptionDialog;
+            ConfigStorageDirName = "LocalConfigs";
         }
 
 
@@ -212,6 +229,11 @@ namespace PAO.App {
                         }
                         // 加载本地扩展插件
                         ExtendAddonPublic.GetAddonExtendProperties(this);
+
+                        // 加载本地配置存储
+                        if(ConfigStorageDirName.IsNotNullOrEmpty()) {
+                            ConfigStoragePublic.LoadConfigStorages(AppPublic.GetAbsolutePath(ConfigStorageDirName));
+                        }
                     });
 
                     TransactionPublic.Run("检索全局插件", ()=> {
@@ -253,11 +275,14 @@ namespace PAO.App {
 
                 TransactionPublic.Run("应用程序退出", () =>
                 {
-                    // 保存本地扩展插件
-                    ExtendAddonPublic.SetAddonExtendProperties(this, "ExtendLocalAddonList");
                     TransactionPublic.Run("扩展属性保存", ()=>
                     {
                         ExtendAddonPublic.SaveAddonExtendPropertiesToStorage();
+
+                        // 保存本地配置存储
+                        if (ConfigStorageDirName.IsNotNullOrEmpty()) {
+                            ConfigStoragePublic.SaveConfigStorages(AppPublic.GetAbsolutePath(ConfigStorageDirName));
+                        }
                     });
                 });
             }, OnException);
