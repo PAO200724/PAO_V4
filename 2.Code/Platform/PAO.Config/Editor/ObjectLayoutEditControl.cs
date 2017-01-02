@@ -119,15 +119,12 @@ namespace PAO.Config.Editor
         /// <param name="groupItem">组项目</param>
         /// <param name="objType">对象类型</param>
         private void RetrieveFields(LayoutControlGroup groupItem, Type objType) {
-            groupItem.Items.Clear();
+            UIPublic.ShowWaitingForm();
             this.DataLayoutControl.CloseControl();
             EditControls.Clear();
             this.DataLayoutControl.Clear(true, true);
 
             var controller = Controller as ObjectLayoutEditController;
-            if (controller != null) {
-                this.DataLayoutControl.SetLayoutData(controller.LayoutData);
-            }
 
             if (objType == null)
                 return;
@@ -200,6 +197,7 @@ namespace PAO.Config.Editor
             if(controller != null  && controller.LayoutData.IsNotNullOrEmpty()) {
                 this.DataLayoutControl.SetLayoutData(controller.LayoutData);
             }
+            UIPublic.CloseWaitingForm();
         }
 
         private void ButtonCustom_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
