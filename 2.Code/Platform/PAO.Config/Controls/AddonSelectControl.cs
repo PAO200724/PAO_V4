@@ -17,6 +17,7 @@ namespace PAO.Controls
 {
     /// <summary>
     /// 插件选择控件
+    /// 作者：PAO
     /// </summary>
     public partial class AddonSelectControl : BaseObjectEditControl
     {

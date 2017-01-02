@@ -74,5 +74,9 @@ namespace PAO.WinForm.Editor
             var editControl = OnCreateEditControl(objectType);
             return editControl;
         }
+
+        public static bool TypeFilter(Type type) {
+            return true;
+        }
     }
 }

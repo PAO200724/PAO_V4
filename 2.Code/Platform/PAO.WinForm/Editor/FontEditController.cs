@@ -50,5 +50,10 @@ namespace PAO.WinForm.Editor
             };
             return edit;
         }
+
+        public static new bool TypeFilter(Type type) {
+            return type == typeof(Font);
+        }
+
     }
 }

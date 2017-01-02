@@ -10,5 +10,63 @@
         LastKnownName="Editor"
         LastKnownLocation="PAO.Config.Editor.uml" />
     </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="d97f8497-884e-40d2-b0a3-8329884aca64"
+        name="ConfigStorage"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="87a0bc82-8833-4718-bd8f-c3e0c32aaf34"
+        name="ConfigStoragePublic"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <suppliersInternal>
+          <dependency
+            Id="5e7bece6-7d45-4c40-8935-e6fcacf5a1fd">
+            <interfaceMoniker
+              Id="ddfef4be-e287-4d9b-8240-e99159b65a1b"
+              LastKnownName="IConfigStorageService"
+              LastKnownLocation="PAO.Config.uml" />
+          </dependency>
+          <dependency
+            Id="8532113a-725a-4d59-afe8-b57d5a8f23f0">
+            <classMoniker
+              Id="d97f8497-884e-40d2-b0a3-8329884aca64"
+              LastKnownName="ConfigStorage"
+              LastKnownLocation="PAO.Config.uml" />
+          </dependency>
+        </suppliersInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="9c79e76d-fbf6-43bf-8993-23d2511a1b9d"
+        name="ExtendAddonPublic"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <suppliersInternal>
+          <dependency
+            Id="5159217a-36a6-424c-850e-d6591af90358">
+            <classMoniker
+              Id="87a0bc82-8833-4718-bd8f-c3e0c32aaf34"
+              LastKnownName="ConfigStoragePublic"
+              LastKnownLocation="PAO.Config.uml" />
+          </dependency>
+        </suppliersInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="ddfef4be-e287-4d9b-8240-e99159b65a1b"
+        name="IConfigStorageService"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
   </packagedElements>
 </package>

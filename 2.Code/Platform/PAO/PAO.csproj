@@ -158,6 +158,7 @@
     <Compile Include="MVC\IMenuContainer.cs" />
     <Compile Include="MVC\MVCPublic.cs" />
     <Compile Include="MVC\UIItem.cs" />
+    <Compile Include="TypeFilterAttribute.cs" />
     <Compile Include="UI\DialogReturn.cs" />
     <Compile Include="UI\IUserInterface.cs" />
     <Compile Include="UI\DialogType.cs" />

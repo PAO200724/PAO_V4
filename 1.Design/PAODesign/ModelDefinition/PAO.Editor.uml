@@ -29,19 +29,8 @@
         </suppliersInternal>
         <ownedAttributesInternal>
           <property
-            Id="bdd825c8-b607-4390-814c-2805a66ba5a3"
-            name="PropertyDescriptor"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false" />
-          <property
-            Id="a0d2d973-821c-4e57-8d6c-4d164ab41385"
-            name="EditMode"
+            Id="43c1ed27-8bea-42cc-891c-7ed8db7d409a"
+            name="StaticType"
             isLeaf="false"
             isStatic="false"
             isReadOnly="false"
@@ -159,6 +148,24 @@
               LastKnownLocation="PAO.Editor.uml" />
           </generalization>
         </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="41e8e920-efda-49d9-9f3c-1ecaa987a84c"
+        name="EditorPublic"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <suppliersInternal>
+          <dependency
+            Id="59461f28-c8c5-4ac3-a374-743ee962507d">
+            <classMoniker
+              Id="87a0bc82-8833-4718-bd8f-c3e0c32aaf34"
+              LastKnownName="ConfigStoragePublic"
+              LastKnownLocation="PAO.Config.uml" />
+          </dependency>
+        </suppliersInternal>
       </class>
     </packageHasNamedElement>
   </packagedElements>

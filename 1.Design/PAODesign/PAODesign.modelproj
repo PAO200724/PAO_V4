@@ -22,6 +22,9 @@
   </PropertyGroup>
   <Import Project="$(VSToolsPath)\ArchitectureTools\Microsoft.VisualStudio.TeamArchitect.ModelingProject.targets" Condition="'$(VSToolsPath)' != ''" />
   <ItemGroup>
+    <Content Include="ModelDefinition\PAO.Ext.Config.uml">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="ModelDefinition\PAO.Config.Editor.uml">
       <SubType>Content</SubType>
     </Content>
@@ -211,6 +214,13 @@
       <SubType>Content</SubType>
       <DependentUpon>微架构\远程\Remote.classdiagram</DependentUpon>
     </Content>
+    <Content Include="微架构\配置\Config.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="微架构\配置\Config.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>微架构\配置\Config.classdiagram</DependentUpon>
+    </Content>
     <Content Include="总体系统图.componentdiagram">
       <SubType>Content</SubType>
     </Content>
@@ -224,6 +234,7 @@
     </Content>
     <Folder Include="微架构" />
     <Folder Include="微架构\MVC" />
+    <Folder Include="微架构\配置" />
     <Folder Include="微架构\编辑器" />
     <Folder Include="微架构\安全" />
     <Folder Include="微架构\序列化" />

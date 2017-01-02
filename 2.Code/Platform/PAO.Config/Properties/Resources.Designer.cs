@@ -163,6 +163,26 @@ namespace PAO.Config.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap clearformatting_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("clearformatting_16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap clearformatting_32x32 {
+            get {
+                object obj = ResourceManager.GetObject("clearformatting_32x32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap cog {
             get {
                 object obj = ResourceManager.GetObject("cog", resourceCulture);
@@ -346,6 +366,26 @@ namespace PAO.Config.Properties {
         internal static System.Drawing.Bitmap removeitem_32x32 {
             get {
                 object obj = ResourceManager.GetObject("removeitem_32x32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap renamedatasource_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("renamedatasource_16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap renamedatasource_32x32 {
+            get {
+                object obj = ResourceManager.GetObject("renamedatasource_32x32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

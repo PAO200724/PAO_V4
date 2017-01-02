@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm11="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner" dslVersion="1.0.0.0" Id="33e7d432-a1ca-4353-9143-d919d7fbf713" name="Config" linkedPackageId="9db10c0c-04da-403d-b289-9b33f934655d" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
+  <profileInstances>
+    <packageHasProfileInstances Id="39365142-f5be-4d10-bb4a-fbe1992e6bc0">
+      <profileInstance Id="b7e542cb-0a67-45b3-a87a-fbddb457cb39" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="c15d0219-4b04-4848-9119-31323714451f">
+      <profileInstance Id="452d9681-e259-4892-a344-1c99131f2dbc" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="ea46a2d1-b537-4762-98f8-97f0cdae529b" name="ExtendAddonPublic" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="9c79e76d-fbf6-43bf-8993-23d2511a1b9d" />
+        <suppliersInternal>
+          <dependency Id="f5b10d06-05c4-4dbb-b9cf-98e118984582">
+            <classMoniker Id="4f892d4d-4c09-476b-8718-afd33108297f" LastKnownName="ConfigStoragePublic" />
+            <elementDefinition Id="5159217a-36a6-424c-850e-d6591af90358" />
+          </dependency>
+        </suppliersInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="4f892d4d-4c09-476b-8718-afd33108297f" name="ConfigStoragePublic" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="87a0bc82-8833-4718-bd8f-c3e0c32aaf34" />
+        <suppliersInternal>
+          <dependency Id="32114486-ee5e-41bc-bd79-3a913fae7258">
+            <interfaceMoniker Id="62da066c-9792-4a50-91b6-18f7c6a7d580" LastKnownName="IConfigStorageService" />
+            <elementDefinition Id="5e7bece6-7d45-4c40-8935-e6fcacf5a1fd" />
+          </dependency>
+          <dependency Id="53ac0fb3-00e7-488e-b6e4-0a03b080b250">
+            <classMoniker Id="87364e17-6f84-436d-984f-861c82aea613" LastKnownName="ConfigStorage" />
+            <elementDefinition Id="8532113a-725a-4d59-afe8-b57d5a8f23f0" />
+          </dependency>
+        </suppliersInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="87364e17-6f84-436d-984f-861c82aea613" name="ConfigStorage" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="d97f8497-884e-40d2-b0a3-8329884aca64" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="224d7648-114f-4ceb-82d2-e309840ba30b" name="ConfigStorageService" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="f583842c-636a-439a-a16e-ba6f8275f514" />
+        <suppliersInternal>
+          <interfaceRealization Id="5d17a399-5c87-4e98-abda-af973c4bfc83">
+            <interfaceMoniker Id="62da066c-9792-4a50-91b6-18f7c6a7d580" LastKnownName="IConfigStorageService" />
+            <elementDefinition Id="b580b81e-3933-4602-b469-fd37ca44e5e1" />
+          </interfaceRealization>
+        </suppliersInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <Interface Id="62da066c-9792-4a50-91b6-18f7c6a7d580" name="IConfigStorageService" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="ddfef4be-e287-4d9b-8240-e99159b65a1b" />
+      </Interface>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="6a8d5774-71d1-4e62-88b0-5bf3cd534948" name="EditorPublic" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="41e8e920-efda-49d9-9f3c-1ecaa987a84c" />
+        <suppliersInternal>
+          <dependency Id="ac3506fa-563b-4ec9-8403-5885eca67dda">
+            <classMoniker Id="4f892d4d-4c09-476b-8718-afd33108297f" LastKnownName="ConfigStoragePublic" />
+            <elementDefinition Id="59461f28-c8c5-4ac3-a374-743ee962507d" />
+          </dependency>
+        </suppliersInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+  </packagedElements>
+  <package Id="9db10c0c-04da-403d-b289-9b33f934655d" name="PAODesign">
+    <elementDefinition Id="f7c6b53f-1c2e-4762-ad13-eb71efcb9a9d" />
+  </package>
+</logicalClassDesignerModel>

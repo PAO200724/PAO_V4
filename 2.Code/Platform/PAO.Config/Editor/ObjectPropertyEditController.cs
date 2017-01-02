@@ -20,15 +20,15 @@ namespace PAO.Config.Editor
 {
     /// <summary>
     /// 类：ObjectEditor
-    /// 插件编辑控制器
-    /// 插件编辑控制器
+    /// 属性式编辑控制器
+    /// PropertyGrid样式的编辑控制器
     /// 作者：PAO
     /// </summary>
     [Addon]
     [Serializable]
     [DataContract(Namespace = "")]
-    [Name("插件编辑控制器")]
-    [Description("插件编辑控制器")]
+    [Name("属性式编辑控制器")]
+    [Description("PropertyGrid样式的编辑控制器")]
     public class ObjectPropertyEditController : BaseObjectEditController
     {
         #region 插件属性
@@ -46,6 +46,7 @@ namespace PAO.Config.Editor
             get;
             set;
         }
+
         #endregion
 
         #endregion

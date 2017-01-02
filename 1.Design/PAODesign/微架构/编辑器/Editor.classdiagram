@@ -4,22 +4,9 @@
     <logicalClassDesignerModelHasTypes>
       <class Id="e9aabf7a-4dea-4d09-b9cc-7fc802f19701" name="BaseEditController" isAbstract="false" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="bde51c3b-5360-4715-9b8b-39be3d06c2b7" />
-        <suppliersInternal>
-          <interfaceRealization Id="80b90823-0f37-4ab9-8868-2d46a931a8cd">
-            <interfaceMoniker Id="24f60b1b-8da7-4554-9966-8c7456ae1af5" LastKnownName="IPropertyEditController" />
-            <elementDefinition Id="b4ff114e-329c-4511-9f69-50d826fc5cfd" />
-          </interfaceRealization>
-          <interfaceRealization Id="033b6e0e-95f2-4e61-937c-3232077d8657">
-            <interfaceMoniker Id="acb772f1-7dac-436b-ba1a-1b972a5a4579" LastKnownName="ITypeEditController" />
-            <elementDefinition Id="41ace2f4-5b26-41bb-a6f8-2fe32a242424" />
-          </interfaceRealization>
-        </suppliersInternal>
         <ownedAttributesInternal>
-          <property Id="83969f4c-45e6-4fa8-842b-59e7e1e07dd1" name="PropertyDescriptor" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
-            <elementDefinition Id="bdd825c8-b607-4390-814c-2805a66ba5a3" />
-          </property>
-          <property Id="5f9d9509-1ffb-4313-81fd-3a6c63478826" name="EditMode" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
-            <elementDefinition Id="a0d2d973-821c-4e57-8d6c-4d164ab41385" />
+          <property Id="acde18bc-e2e8-4f73-b5d3-38dbb18f6313" name="StaticType" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="43c1ed27-8bea-42cc-891c-7ed8db7d409a" />
           </property>
         </ownedAttributesInternal>
         <ownedOperationsInternal>
@@ -75,16 +62,6 @@
           </generalization>
         </generalsInternal>
       </class>
-    </logicalClassDesignerModelHasTypes>
-    <logicalClassDesignerModelHasTypes>
-      <Interface Id="24f60b1b-8da7-4554-9966-8c7456ae1af5" name="IPropertyEditController" isAbstract="false" isLeaf="false">
-        <elementDefinition Id="c8f3ef91-dd73-4ca7-82da-2db638b41ccc" />
-      </Interface>
-    </logicalClassDesignerModelHasTypes>
-    <logicalClassDesignerModelHasTypes>
-      <Interface Id="acb772f1-7dac-436b-ba1a-1b972a5a4579" name="ITypeEditController" isAbstract="false" isLeaf="false">
-        <elementDefinition Id="80f799b4-2a55-4810-b249-17af6ee604c3" />
-      </Interface>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
       <class Id="93e42eb4-57cc-4b6a-a5f9-9e1555abe6de" name="ObjectPropertyEditController" isAbstract="false" isLeaf="false" isActiveClass="false">

@@ -10,5 +10,11 @@
         LastKnownName="Security"
         LastKnownLocation="PAO.Ext.Security.uml" />
     </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="8bddfdb3-4563-492a-b3b0-9e78d6b595f3"
+        LastKnownName="Config"
+        LastKnownLocation="PAO.Ext.Config.uml" />
+    </packageHasNamedElement>
   </packagedElements>
 </package>

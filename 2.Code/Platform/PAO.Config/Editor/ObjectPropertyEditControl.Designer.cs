@@ -25,20 +25,20 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            this.components = new System.ComponentModel.Container();
             this.PropertyDescriptionControl = new DevExpress.XtraVerticalGrid.PropertyDescriptionControl();
             this.PropertyGridControl = new DevExpress.XtraVerticalGrid.PropertyGridControl();
             this.SplitContainerControl = new DevExpress.XtraEditors.SplitContainerControl();
-            this.PopupMenu = new DevExpress.XtraBars.PopupMenu();
-            this.EditCaption = new DevExpress.XtraBars.BarEditItem();
-            this.TextEditCaption = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
+            this.PopupMenu = new DevExpress.XtraBars.PopupMenu(this.components);
             this.ButtonDeleteRow = new DevExpress.XtraBars.BarButtonItem();
             this.ButtonCustom = new DevExpress.XtraBars.BarButtonItem();
-            this.BarManager = new DevExpress.XtraBars.BarManager();
-            this.BarTools = new DevExpress.XtraBars.Bar();
-            this.MenuFormat = new DevExpress.XtraBars.BarSubItem();
             this.ButtonRecoverFormat = new DevExpress.XtraBars.BarButtonItem();
-            this.ButtonSaveFormat = new DevExpress.XtraBars.BarButtonItem();
-            this.ButtonLoadFormat = new DevExpress.XtraBars.BarButtonItem();
+            this.EditCaption = new DevExpress.XtraBars.BarEditItem();
+            this.TextEditCaption = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
+            this.ButtonEditor = new DevExpress.XtraBars.BarButtonItem();
+            this.BarManager = new DevExpress.XtraBars.BarManager(this.components);
+            this.BarTools = new DevExpress.XtraBars.Bar();
+            this.ButtonRecoverEditor = new DevExpress.XtraBars.BarButtonItem();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
@@ -95,25 +95,14 @@
             // PopupMenu
             // 
             this.PopupMenu.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.ButtonDeleteRow, "", true, true, true, 0, null, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
+            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonCustom),
+            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonRecoverFormat),
             new DevExpress.XtraBars.LinkPersistInfo(this.EditCaption, true),
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.ButtonDeleteRow, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
-            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonCustom)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonEditor),
+            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonRecoverEditor)});
             this.PopupMenu.Manager = this.BarManager;
             this.PopupMenu.Name = "PopupMenu";
-            // 
-            // EditCaption
-            // 
-            this.EditCaption.Caption = "标题(&C)";
-            this.EditCaption.Edit = this.TextEditCaption;
-            this.EditCaption.EditWidth = 144;
-            this.EditCaption.Id = 0;
-            this.EditCaption.Name = "EditCaption";
-            this.EditCaption.EditValueChanged += new System.EventHandler(this.EditCaption_EditValueChanged);
-            // 
-            // TextEditCaption
-            // 
-            this.TextEditCaption.AutoHeight = false;
-            this.TextEditCaption.Name = "TextEditCaption";
             // 
             // ButtonDeleteRow
             // 
@@ -132,6 +121,38 @@
             this.ButtonCustom.Name = "ButtonCustom";
             this.ButtonCustom.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonCustom_ItemClick);
             // 
+            // ButtonRecoverFormat
+            // 
+            this.ButtonRecoverFormat.Caption = "恢复默认格式(&R)";
+            this.ButtonRecoverFormat.Glyph = global::PAO.Config.Properties.Resources.reset_16x16;
+            this.ButtonRecoverFormat.Id = 3;
+            this.ButtonRecoverFormat.LargeGlyph = global::PAO.Config.Properties.Resources.reset_32x32;
+            this.ButtonRecoverFormat.Name = "ButtonRecoverFormat";
+            this.ButtonRecoverFormat.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonRecoverFormat_ItemClick);
+            // 
+            // EditCaption
+            // 
+            this.EditCaption.Caption = "标题(&C)";
+            this.EditCaption.Edit = this.TextEditCaption;
+            this.EditCaption.EditWidth = 144;
+            this.EditCaption.Id = 0;
+            this.EditCaption.Name = "EditCaption";
+            this.EditCaption.EditValueChanged += new System.EventHandler(this.EditCaption_EditValueChanged);
+            // 
+            // TextEditCaption
+            // 
+            this.TextEditCaption.AutoHeight = false;
+            this.TextEditCaption.Name = "TextEditCaption";
+            // 
+            // ButtonEditor
+            // 
+            this.ButtonEditor.Caption = "修改编辑器(&E)";
+            this.ButtonEditor.Glyph = global::PAO.Config.Properties.Resources.renamedatasource_16x16;
+            this.ButtonEditor.Id = 7;
+            this.ButtonEditor.LargeGlyph = global::PAO.Config.Properties.Resources.renamedatasource_32x32;
+            this.ButtonEditor.Name = "ButtonEditor";
+            this.ButtonEditor.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonEditor_ItemClick);
+            // 
             // BarManager
             // 
             this.BarManager.Bars.AddRange(new DevExpress.XtraBars.Bar[] {
@@ -146,10 +167,9 @@
             this.ButtonDeleteRow,
             this.ButtonCustom,
             this.ButtonRecoverFormat,
-            this.MenuFormat,
-            this.ButtonSaveFormat,
-            this.ButtonLoadFormat});
-            this.BarManager.MaxItemId = 7;
+            this.ButtonEditor,
+            this.ButtonRecoverEditor});
+            this.BarManager.MaxItemId = 9;
             this.BarManager.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.TextEditCaption});
             // 
@@ -162,45 +182,23 @@
             this.BarTools.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.ButtonDeleteRow, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.ButtonCustom),
-            new DevExpress.XtraBars.LinkPersistInfo(this.MenuFormat),
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.EditCaption, "", true, true, true, 0, null, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonRecoverFormat),
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.EditCaption, "", true, true, true, 0, null, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
+            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonEditor),
+            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonRecoverEditor)});
             this.BarTools.OptionsBar.AllowQuickCustomization = false;
             this.BarTools.OptionsBar.DrawDragBorder = false;
             this.BarTools.OptionsBar.UseWholeRow = true;
             this.BarTools.Text = "工具条";
             // 
-            // MenuFormat
+            // ButtonRecoverEditor
             // 
-            this.MenuFormat.Caption = "格式(&F)";
-            this.MenuFormat.Id = 4;
-            this.MenuFormat.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonRecoverFormat),
-            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonSaveFormat, true),
-            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonLoadFormat)});
-            this.MenuFormat.Name = "MenuFormat";
-            // 
-            // ButtonRecoverFormat
-            // 
-            this.ButtonRecoverFormat.Caption = "恢复默认格式(&R)";
-            this.ButtonRecoverFormat.Glyph = global::PAO.Config.Properties.Resources.reset_16x16;
-            this.ButtonRecoverFormat.Id = 3;
-            this.ButtonRecoverFormat.LargeGlyph = global::PAO.Config.Properties.Resources.reset_32x32;
-            this.ButtonRecoverFormat.Name = "ButtonRecoverFormat";
-            this.ButtonRecoverFormat.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonRecoverFormat_ItemClick);
-            // 
-            // ButtonSaveFormat
-            // 
-            this.ButtonSaveFormat.Caption = "保存格式(&S)...";
-            this.ButtonSaveFormat.Id = 5;
-            this.ButtonSaveFormat.Name = "ButtonSaveFormat";
-            this.ButtonSaveFormat.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonSaveFormat_ItemClick);
-            // 
-            // ButtonLoadFormat
-            // 
-            this.ButtonLoadFormat.Caption = "读取格式(&L)...";
-            this.ButtonLoadFormat.Id = 6;
-            this.ButtonLoadFormat.Name = "ButtonLoadFormat";
-            this.ButtonLoadFormat.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonLoadFormat_ItemClick);
+            this.ButtonRecoverEditor.Caption = "恢复默认编辑器(&R)";
+            this.ButtonRecoverEditor.Glyph = global::PAO.Config.Properties.Resources.clearformatting_16x16;
+            this.ButtonRecoverEditor.Id = 8;
+            this.ButtonRecoverEditor.LargeGlyph = global::PAO.Config.Properties.Resources.clearformatting_32x32;
+            this.ButtonRecoverEditor.Name = "ButtonRecoverEditor";
+            this.ButtonRecoverEditor.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonRecoverEditor_ItemClick);
             // 
             // barDockControlTop
             // 
@@ -270,8 +268,7 @@
         private DevExpress.XtraBars.BarButtonItem ButtonCustom;
         private DevExpress.XtraBars.Bar BarTools;
         private DevExpress.XtraBars.BarButtonItem ButtonRecoverFormat;
-        private DevExpress.XtraBars.BarSubItem MenuFormat;
-        private DevExpress.XtraBars.BarButtonItem ButtonSaveFormat;
-        private DevExpress.XtraBars.BarButtonItem ButtonLoadFormat;
+        private DevExpress.XtraBars.BarButtonItem ButtonEditor;
+        private DevExpress.XtraBars.BarButtonItem ButtonRecoverEditor;
     }
 }

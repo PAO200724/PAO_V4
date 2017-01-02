@@ -248,5 +248,54 @@ namespace PAO.Config
         }
 
         #endregion
+
+        #region 查找编辑器类型(EditorTypeFinder)
+        /// <summary>
+        /// 根据对象类型查找编辑器类型
+        /// </summary>
+        /// <param name="type">待检测的类型</param>
+        /// <param name="objectType">对象类型</param>
+        /// <returns>编辑器类型</returns>
+        public static bool IsEditControllerTypeOfType(Type type, Type objectType) {
+            if (!type.IsDerivedFrom(typeof(BaseEditController)) || type.IsAbstract)
+                return false;
+
+            var typeFilterMethod = type.GetMethod("TypeFilter", BindingFlags.Static | BindingFlags.Public);
+            if (typeFilterMethod == null)
+                return true;
+
+            return (bool)typeFilterMethod.Invoke(null, new object[] { objectType });
+        }
+        /// <summary>
+        /// 根据对象类型查找编辑器类型
+        /// </summary>
+        /// <param name="objectType">对象类型</param>
+        /// <returns>编辑器类型</returns>
+        public static IEnumerable<Type> FindEditorTypesByObjectType(Type objectType) {
+            return AddonPublic.AddonTypeList.Where(p =>
+            {
+                return IsEditControllerTypeOfType(p, objectType);
+            });
+        }
+
+        /// <summary>
+        /// 选择编辑器类型
+        /// </summary>
+        /// <param name="objectType">对象类型</param>
+        /// <returns>编辑器类型</returns>
+        public static DialogReturn SelectEditControllerType(Type objectType, out Type editControllerType) {
+            var typeSelectControl = new TypeSelectControl();
+            typeSelectControl.Initialize(p => {
+                return IsEditControllerTypeOfType(p, objectType);
+            });
+
+            editControllerType = null;
+            var result = WinFormPublic.ShowDialog(typeSelectControl);
+            if (result == DialogReturn.OK) {
+                editControllerType = typeSelectControl.SelectedType;
+            }
+            return result;
+        }
+        #endregion
     }
 }

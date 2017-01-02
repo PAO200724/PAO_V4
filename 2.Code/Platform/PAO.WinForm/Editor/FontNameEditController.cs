@@ -7,6 +7,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using DevExpress.XtraEditors.Repository;
 using PAO.WinForm;
+using System.Drawing;
 
 namespace PAO.WinForm.Editor
 {
@@ -32,6 +33,10 @@ namespace PAO.WinForm.Editor
             var edit = new RepositoryItemFontEdit();
             WinFormPublic.AddClearButton(edit);
             return edit;
+        }
+
+        public static new bool TypeFilter(Type type) {
+            return type == typeof(Font) || type == typeof(string);
         }
     }
 }

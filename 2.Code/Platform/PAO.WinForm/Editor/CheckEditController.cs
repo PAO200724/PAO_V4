@@ -32,5 +32,9 @@ namespace PAO.WinForm.Editor
             var edit = new RepositoryItemCheckEdit();
             return edit;
         }
+
+        public static new bool TypeFilter(Type type) {
+            return type == typeof(bool);
+        }
     }
 }

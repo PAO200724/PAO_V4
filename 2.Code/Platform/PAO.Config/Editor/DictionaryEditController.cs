@@ -39,5 +39,9 @@ namespace PAO.Config.Editor
             var editControl = new DictionaryEditControl();
             return editControl;
         }
+
+        public static new bool TypeFilter(Type type) {
+            return type.IsAddonDictionaryType();
+        }
     }
 }

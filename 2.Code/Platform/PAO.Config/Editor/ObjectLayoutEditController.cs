@@ -40,7 +40,6 @@ namespace PAO.Config.Editor
             set;
         }
         #endregion 属性：LayoutData
-
         #endregion
         public ObjectLayoutEditController() {
         }

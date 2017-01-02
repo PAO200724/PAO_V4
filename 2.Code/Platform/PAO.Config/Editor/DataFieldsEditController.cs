@@ -9,6 +9,7 @@ using PAO;
 using PAO.WinForm;
 using System.Windows.Forms;
 using PAO.WinForm.Editor;
+using PAO.Data;
 
 namespace PAO.Config.Editor
 {
@@ -49,6 +50,10 @@ namespace PAO.Config.Editor
         protected override Control OnCreateEditControl(Type objectType) {
             var editControl = new DataFieldsEditControl();
             return editControl;
-        }   
+        }
+
+        public static new bool TypeFilter(Type type) {
+            return type.IsDerivedFrom(typeof(IEnumerable<DataField>));
+        }
     }
 }

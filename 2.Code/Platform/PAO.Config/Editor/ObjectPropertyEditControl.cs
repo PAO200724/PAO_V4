@@ -76,6 +76,13 @@ namespace PAO.Config.Editor
             this.ButtonDeleteRow.Enabled = this.PropertyGridControl.FocusedRow != null;
             if (this.PropertyGridControl.FocusedRow != null) {
                 EditCaption.EditValue = this.PropertyGridControl.FocusedRow.Properties.Caption;
+
+                var propDesc = PropertyGridControl.GetPropertyDescriptor(PropertyGridControl.FocusedRow);
+                this.ButtonEditor.Enabled = propDesc != null;
+                this.ButtonRecoverEditor.Enabled = propDesc != null;
+            }
+            else {
+                this.ButtonEditor.Enabled = false;
             }
         }
 
@@ -93,14 +100,23 @@ namespace PAO.Config.Editor
             var propDesc = PropertyGridControl.GetPropertyDescriptor(e.Row);
             if (propDesc == null)
                 return;
+            var controller = Controller as ObjectPropertyEditController;
+            if(controller != null) {
+                var editController = controller.GetPredefinedEditController(propDesc.Name);
+                if(editController != null)
+                    repositoryItem = editController.CreateRepositoryItem(propDesc.PropertyType);
+            }
 
-            if(propDesc.PropertyType.IsAddon()) {
-                // 如果是插件，统一使用CommonObjectEditControl，这样可以新增空对象
-                var editController = new CommonObjectEditController();
-                editController.StartEditProperty(EditValue, propDesc.Name);
-                repositoryItem = editController.CreateRepositoryItem(propDesc.PropertyType);
-            } else {
-                repositoryItem = ConfigPublic.CreateRepositoryItem(propDesc);
+            if (repositoryItem == null) {
+                if (propDesc.PropertyType.IsAddon()) {
+                    // 如果是插件，统一使用CommonObjectEditControl，这样可以新增空对象
+                    var editController = new CommonObjectEditController();
+                    editController.StartEditProperty(EditValue, propDesc.Name);
+                    repositoryItem = editController.CreateRepositoryItem(propDesc.PropertyType);
+                }
+                else {
+                    repositoryItem = ConfigPublic.CreateRepositoryItem(propDesc);
+                }
             }
 
             if (repositoryItem != null) {
@@ -147,18 +163,43 @@ namespace PAO.Config.Editor
 
         private void ButtonRecoverFormat_ItemClick(object sender, ItemClickEventArgs e) {
             if(DefaultLayoutData.IsNotNullOrEmpty()) {
-                if(UIPublic.ShowYesNoCancelDialog("您是否需要默认格式？") == DialogReturn.Yes) {
+                if(UIPublic.ShowYesNoDialog("您是否需要默认格式？") == DialogReturn.Yes) {
                     this.PropertyGridControl.SetLayoutData(DefaultLayoutData);
                 }
             }
         }
+        
+        private void ButtonEditor_ItemClick(object sender, ItemClickEventArgs e) {
+            if (this.PropertyGridControl.FocusedRow != null) {
+                var propDesc = PropertyGridControl.GetPropertyDescriptor(PropertyGridControl.FocusedRow);
+                if (propDesc == null)
+                    return;
 
-        private void ButtonSaveFormat_ItemClick(object sender, ItemClickEventArgs e) {
-            
+                Type editControllerType;
+                if(ConfigPublic.SelectEditControllerType(propDesc.PropertyType, out editControllerType) == DialogReturn.OK) {
+                    if(editControllerType != null) {
+                        var controller = Controller as ObjectPropertyEditController;
+                        var editController = editControllerType.CreateInstance() as BaseEditController;
+                        if(controller != null) {
+                            controller.SetPredfinedEditController(propDesc.Name, editController);
+                        }
+                    }
+                }
+            }
         }
 
-        private void ButtonLoadFormat_ItemClick(object sender, ItemClickEventArgs e) {
-
+        private void ButtonRecoverEditor_ItemClick(object sender, ItemClickEventArgs e) {
+            if (this.PropertyGridControl.FocusedRow != null) {
+                var propDesc = PropertyGridControl.GetPropertyDescriptor(PropertyGridControl.FocusedRow);
+                if (propDesc == null)
+                    return;
+                var controller = Controller as ObjectPropertyEditController;
+                if (controller != null) {
+                    if(UIPublic.ShowYesNoDialog("您确定要恢复默认的编辑器吗？") == DialogReturn.Yes) {
+                        controller.RemovePredefinedEditController(propDesc.Name);
+                    }
+                }
+            }
         }
     }
 }
