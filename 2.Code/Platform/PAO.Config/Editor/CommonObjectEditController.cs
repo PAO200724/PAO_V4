@@ -37,7 +37,8 @@ namespace PAO.Config.Editor
         
         public CommonObjectEditController() {
         }
-
+        public CommonObjectEditController(bool staticType) : base(staticType) {
+        }
         #region StartEditXXX
         public void StartEdit(ObjectEditMode editMode, Type objectType, object componentObject, object key) {
             EditMode = editMode;

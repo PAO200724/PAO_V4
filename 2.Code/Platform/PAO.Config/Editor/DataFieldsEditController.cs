@@ -27,7 +27,6 @@ namespace PAO.Config.Editor
     public class DataFieldsEditController : BaseObjectEditController
     {
         #region 插件属性
-
         #region 属性：LayoutData
         /// <summary>
         /// 属性：LayoutData

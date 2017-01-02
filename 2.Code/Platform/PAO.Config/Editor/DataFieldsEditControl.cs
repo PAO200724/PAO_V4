@@ -16,6 +16,7 @@ using System.Collections;
 using PAO.Data;
 using PAOData = PAO.Data;
 using SysData = System.Data;
+using DevExpress.Utils.Menu;
 
 namespace PAO.Config.Editor
 {
@@ -93,6 +94,7 @@ namespace PAO.Config.Editor
 
                 Text = String.Format("属性: {0}", valueString);
 
+                DataTable.Clear();
                 this.BindingSource.DataSource = DataTable;
                 if (DataFields != null) {
                     this.BindingSource.DataSource = DataTable;
@@ -119,15 +121,26 @@ namespace PAO.Config.Editor
         /// <param name="groupItem">组项目</param>
         /// <param name="objType">对象类型</param>
         private void RetrieveFields(LayoutControlGroup groupItem) {
-            groupItem.Items.Clear();
+            this.DataLayoutControl.CloseControl();
             EditControls.Clear();
+            this.DataLayoutControl.Clear(true, true);
             var controller = Controller as DataFieldsEditController;
 
             if (DataFields == null)
                 return;
 
             foreach (var dataField in DataFields) {
-                Control editControl = ConfigPublic.CreateEditControl(dataField.ObjectType);
+                Control editControl = null;
+                if (controller != null) {
+                    var editController = controller.GetPredefinedEditController(dataField.ObjectType, dataField.Name);
+                    if(editController != null) {
+                        editControl = editController.CreateEditControl(dataField.ObjectType);
+                    }
+                }
+
+                if(editControl == null) {
+                    editControl = ConfigPublic.CreateEditControl(dataField.ObjectType);
+                }
                 if (editControl == null) {
                     var editController = new CommonObjectEditController();
                     editController.StartEditObject(dataField.ObjectType);
@@ -143,7 +156,7 @@ namespace PAO.Config.Editor
 
                 EditControls.Add(dataField.Name, editControl);
 
-                editControl.Tag = dataField.Name;
+                editControl.Tag = dataField;
                 editControl.Name = dataField.Name;
 
                 dynamic dynamicControl = editControl;
@@ -174,6 +187,53 @@ namespace PAO.Config.Editor
             /// 读取布局数据
             if (controller.LayoutData.IsNotNull()) {
                 this.DataLayoutControl.SetLayoutData(controller.LayoutData);
+            }
+        }
+
+        private void DataLayoutControl_PopupMenuShowing(object sender, PopupMenuShowingEventArgs e) {
+            if(e.HitInfo.Item != null) {
+                var layoutItem = e.HitInfo.Item as LayoutControlItem;
+                // 增加菜单
+                var menuChangeEditor = new DXMenuItem("更改编辑器(&C)..."
+                    , (s, a) => {
+                        var editControl = layoutItem.Control;
+                        var dataField = editControl.Tag as DataField;
+                        if (dataField == null)
+                            return;
+
+                        Type editControllerType;
+                        if (ConfigPublic.SelectEditControllerType(dataField.ObjectType, out editControllerType) == DialogReturn.OK) {
+                            if (editControllerType != null) {
+                                var controller = Controller as DataFieldsEditController;
+                                var editController = editControllerType.CreateInstance() as BaseEditController;
+                                if (controller != null) {
+                                    controller.SetPredfinedEditController(dataField.Name, editController.GetType());
+                                }
+                            }
+                        }
+                        EditValue = EditValue;
+                    }
+                    , Properties.Resources.renamedatasource_16x16);
+                menuChangeEditor.BeginGroup = true;
+                // 增加菜单
+                var menuRecoverEditor = new DXMenuItem("恢复编辑器(&C)..."
+                    , (s, a) => {
+                        var editControl = layoutItem.Control;
+                        var dataField = editControl.Tag as DataField;
+                        if (dataField == null)
+                            return;
+
+                        var controller = Controller as ObjectLayoutEditController;
+                        if (controller != null) {
+                            if (UIPublic.ShowYesNoDialog("您确定要恢复默认的编辑器吗？") == DialogReturn.Yes) {
+                                controller.RemovePredefinedEditController(dataField.Name);
+                            }
+                        }
+                        EditValue = EditValue;
+                    }
+                    , Properties.Resources.clearformatting_16x16);
+                e.Menu.Items.Add(menuChangeEditor);
+                e.Menu.Items.Add(menuRecoverEditor);
             }
         }
     }

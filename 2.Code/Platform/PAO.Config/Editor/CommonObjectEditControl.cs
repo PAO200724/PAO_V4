@@ -97,8 +97,13 @@ namespace PAO.Config.Editor
                     EditControl = null;
                 } else {
                     var editControl = ConfigPublic.CreateEditControl(value.GetType()) as BaseObjectEditControl;
-                    if (editControl == null)
-                        editControl = new ObjectPropertyEditController().CreateEditControl(value.GetType()) as BaseObjectEditControl;
+                    if (editControl == null) {
+                        var controller = Controller as CommonObjectEditController;
+                        bool staticType = true;
+                        if (controller != null)
+                            staticType = controller.StaticType;
+                        editControl = new ObjectPropertyEditController(staticType).CreateEditControl(value.GetType()) as BaseObjectEditControl;
+                    }
 
                     EditControl = editControl;
                     EditControl.EditValue = value;
