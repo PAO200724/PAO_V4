@@ -186,7 +186,7 @@ namespace PAO.Config
             return editorType;
         }
         
-        private static BaseEditController GetEditController(Type objectType) {
+        public static BaseEditController GetEditController(Type objectType) {
             BaseEditController editController = null;
             var editorType = EditorPublic.GetEditorType(objectType);
             if (editorType == null) {
@@ -205,7 +205,7 @@ namespace PAO.Config
         }
 
 
-        private static BaseEditController GetEditController(PropertyDescriptor propertyDescriptor) {
+        public static BaseEditController GetEditController(PropertyDescriptor propertyDescriptor) {
             BaseEditController editController = null;
             var editorType = EditorPublic.GetEditorType(propertyDescriptor);
             if (editorType != null) {

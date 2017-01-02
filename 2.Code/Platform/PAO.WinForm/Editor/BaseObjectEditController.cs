@@ -12,6 +12,7 @@ using PAO.WinForm.Editor;
 using PAO.WinForm;
 using PAO.IO;
 using PAO.UI;
+using System.Diagnostics;
 
 namespace PAO.WinForm.Editor
 {
@@ -34,7 +35,7 @@ namespace PAO.WinForm.Editor
         public BaseObjectEditController() {
         }
         
-        public override Control CreateEditControl(Type objectType) {
+        public override Control CreateEditControl(Type objectType = null) {
             var editControl = base.CreateEditControl(objectType) as BaseObjectEditControl;
             if(editControl != null)
                 editControl.Controller = this;
@@ -54,9 +55,11 @@ namespace PAO.WinForm.Editor
 
                     if (edit.EditValue.IsNotNull()) {
                         editControl.EditValue = IOPublic.ObjectClone(editValue);
-                        if (WinFormPublic.ShowDialog(editControl) == DialogReturn.OK) {
-                            edit.EditValue = editControl.EditValue;
-                        }
+                    } else {
+                        editControl.EditValue = null;
+                    }
+                    if (WinFormPublic.ShowDialog(editControl) == DialogReturn.OK) {
+                        edit.EditValue = editControl.EditValue;
                     }
                 }
             };

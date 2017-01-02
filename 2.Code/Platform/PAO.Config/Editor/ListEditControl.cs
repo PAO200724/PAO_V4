@@ -27,7 +27,9 @@ namespace PAO.Config.Editor
     {
         public ListEditControl() {
             InitializeComponent();
-            this.ColumnObject.ColumnEdit = new CommonObjectEditController().CreateRepositoryItem(typeof(object));
+            var commonEditController = new CommonObjectEditController();
+            commonEditController.StartEditObject(null);
+            this.ColumnObject.ColumnEdit = commonEditController.CreateRepositoryItem();
         }
         
         private void Element_RowChanged(object sender, DataRowChangeEventArgs e) {

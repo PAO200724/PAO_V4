@@ -98,10 +98,15 @@ namespace PAO.Config.Editor
             if (propDesc == null)
                 return;
 
-            if(repositoryItem == null) {
+            if(propDesc.PropertyType.IsAddon()) {
+                // 如果是插件，统一使用CommonObjectEditControl，这样可以新增空对象
+                var editController = new CommonObjectEditController();
+                editController.StartEditProperty(EditValue, propDesc.Name);
+                repositoryItem = editController.CreateRepositoryItem(propDesc.PropertyType);
+            } else {
                 repositoryItem = ConfigPublic.CreateRepositoryItem(propDesc);
             }
-            
+
             if (repositoryItem != null) {
                 e.RepositoryItem = repositoryItem;
             }

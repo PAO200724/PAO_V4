@@ -97,11 +97,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataSetList.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Editor\ObjectContainerControl.cs">
+    <Compile Include="Editor\CommonObjectEditControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Editor\ObjectContainerControl.Designer.cs">
-      <DependentUpon>ObjectContainerControl.cs</DependentUpon>
+    <Compile Include="Editor\CommonObjectEditControl.Designer.cs">
+      <DependentUpon>CommonObjectEditControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Editor\DataFieldsEditControl.cs">
       <SubType>UserControl</SubType>
@@ -223,8 +223,8 @@
     <EmbeddedResource Include="Editor\ListEditControl.resx">
       <DependentUpon>ListEditControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Editor\ObjectContainerControl.resx">
-      <DependentUpon>ObjectContainerControl.cs</DependentUpon>
+    <EmbeddedResource Include="Editor\CommonObjectEditControl.resx">
+      <DependentUpon>CommonObjectEditControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Editor\ObjectPropertyEditControl.resx">
       <DependentUpon>ObjectPropertyEditControl.cs</DependentUpon>

@@ -12,14 +12,15 @@ using System.Collections;
 using PAO.UI;
 using PAO.IO;
 using PAO.WinForm.Editor;
+using DevExpress.XtraBars;
 
 namespace PAO.Config.Editor
 {
     /// <summary>
-    /// 对象容器编辑控件
+    /// 通用对象编辑控件
     /// 作者：PAO
     /// </summary>
-    public partial class ObjectContainerControl : BaseObjectEditControl {
+    public partial class CommonObjectEditControl : BaseObjectEditControl {
         /// <summary>
         /// 组件对象，在属性、列表元素和字典元素编辑模式下分别代表组件对象、列表和字典
         /// </summary>
@@ -124,53 +125,70 @@ namespace PAO.Config.Editor
             }
         }
 
-        public ObjectContainerControl() {
+        public CommonObjectEditControl() {
             InitializeComponent();
         }
 
         #region StartEditXXX
-        public void StartEditNull() {
-            EditMode = ObjectEditMode.Object;
-            EditControl = null;
-            ObjectType = null;
-        }
-
-        public void StartEditObject(Type objectType) {
-            EditMode = ObjectEditMode.Object;
+        public void StartEdit(ObjectEditMode editMode, Type objectType, object componentObject, object key) {
+            EditMode = editMode;
             ObjectType = objectType;
-        }
-
-        public void StartEditProperty(object componentObject, string propertyName) {
-            EditMode = ObjectEditMode.Property;
-            ComponentObject = componentObject;
-            Key = propertyName;
-        }
-
-        public void StartEditListElement(object componentObject, int index) {
-            EditMode = ObjectEditMode.ListElement;
-            ComponentObject = componentObject;
-            Key = index;
-        }
-
-        public void StartEditDictionaryElement(object componentObject, object key) {
-            EditMode = ObjectEditMode.DictionaryElement;
             ComponentObject = componentObject;
             Key = key;
+            SetControlStatus();
+        }
+
+        public void StartEditNull() {
+            StartEdit(ObjectEditMode.Object, null, null, null);
+            EditValue = null;
+        }
+        /// <summary>
+        /// 编辑对象
+        /// </summary>
+        /// <param name="objectType">对象类型</param>
+        public void StartEditObject(Type objectType) {
+            StartEdit(ObjectEditMode.Object, objectType, null, null);
+        }
+        /// <summary>
+        /// 编辑属性
+        /// </summary>
+        /// <param name="componentObject">组件对象</param>
+        /// <param name="propertyName">属性名</param>
+        public void StartEditProperty(object componentObject, string propertyName) {
+            StartEdit(ObjectEditMode.Property, null, componentObject, propertyName);
+        }
+        /// <summary>
+        /// 编辑列表元素
+        /// </summary>
+        /// <param name="componentObject">组件对象</param>
+        /// <param name="index">索引</param>
+        public void StartEditListElement(object componentObject, int index) {
+            StartEdit(ObjectEditMode.ListElement, null, componentObject, index);
+        }
+        /// <summary>
+        /// 编辑字典元素
+        /// </summary>
+        /// <param name="componentObject">组件对象</param>
+        /// <param name="key">键</param>
+        public void StartEditDictionaryElement(object componentObject, object key) {
+            StartEdit(ObjectEditMode.DictionaryElement, null, componentObject, key);
         }
         #endregion
 
         private void MergeBars() {
-            this.BarToolObject.UnMerge();
+            UnMergeBars();
             if (_EditControl is IBarSupport) {
                 foreach (var bar in _EditControl.As<IBarSupport>().ExtendBars) {
-                    this.BarToolObject.Merge(bar);
+                    this.BarElement.Merge(bar);
                     bar.Visible = false;
                 }
             }
+            this.BarElement.Visible = this.BarElement.VisibleLinks.Count > 0;
         }
 
         private void UnMergeBars() {
-            this.BarToolObject.UnMerge();
+            this.BarElement.UnMerge();
+            this.BarElement.Visible = false;
         }
 
         protected override void OnLoad(EventArgs e) {
@@ -190,11 +208,17 @@ namespace PAO.Config.Editor
         protected override void SetControlStatus() {
             object editValue = base.EditValue;
             this.ButtonExport.Enabled = editValue.IsNotNull();
-            this.ButtonCreate.Enabled = editValue.IsNull();
-            this.ButtonDelete.Enabled = editValue.IsNotNull();
-            this.W.Enabled = editValue.IsNotNull();
-            this.ButtonCreate.Visibility = (EditMode == ObjectEditMode.Object && ObjectType == null)? DevExpress.XtraBars.BarItemVisibility.Never : DevExpress.XtraBars.BarItemVisibility.Always;
-            this.ButtonDelete.Visibility = (EditMode == ObjectEditMode.Object && ObjectType == null) ? DevExpress.XtraBars.BarItemVisibility.Never : DevExpress.XtraBars.BarItemVisibility.Always;
+            this.ButtonProperty.Enabled = editValue.IsNotNull();
+
+            bool canCreate = false;
+            if((EditMode == ObjectEditMode.Object && ObjectType != null) || (EditMode == ObjectEditMode.Property)) {
+                canCreate = true;
+            }
+
+            this.ButtonCreate.Visibility = (canCreate) ? BarItemVisibility.Always : BarItemVisibility.Never;
+            this.ButtonDelete.Visibility = (canCreate) ? BarItemVisibility.Always : BarItemVisibility.Never;
+            this.ButtonDelete.Enabled = canCreate & editValue.IsNotNull();
+            this.ButtonCreate.Enabled = canCreate & editValue.IsNull();
             base.SetControlStatus();
         }
 
@@ -212,16 +236,6 @@ namespace PAO.Config.Editor
                     var property = ComponentObject.GetType().GetProperty(propertyName);
                     if (ConfigPublic.CreateNewAddonValue(property.PropertyType
                         , false
-                        , out newObject)) {
-                        EditValue = newObject;
-                        SetComponentPropertyValue();
-                        ModifyData();
-                    }
-                    break;
-                case ObjectEditMode.ListElement:
-                case ObjectEditMode.DictionaryElement:
-                    if (ConfigPublic.CreateNewAddonValue(ComponentObject.GetType()
-                        , true
                         , out newObject)) {
                         EditValue = newObject;
                         SetComponentPropertyValue();
@@ -248,8 +262,6 @@ namespace PAO.Config.Editor
         private void ButtonDelete_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             switch (EditMode) {
                 case ObjectEditMode.Property:
-                case ObjectEditMode.ListElement:
-                case ObjectEditMode.DictionaryElement:
                     EditValue = null;
                     SetComponentPropertyValue();
                     ModifyData();
@@ -271,9 +283,16 @@ namespace PAO.Config.Editor
             var propertyValue = EditValue;
 
             var objectType = propertyValue.GetType();
-            BaseObjectEditControl editControl = ConfigPublic.CreateEditControl(objectType) as BaseObjectEditControl;
-            if (editControl == null) {
-                editControl = new CommonObjectEditController().CreateEditControl(objectType) as BaseObjectEditControl;
+            BaseObjectEditControl editControl = null;
+            if (objectType.IsAddonType()) {
+                // 如果是PaoObject，则用ObjectLayoutEditControl打开
+                editControl = new ObjectLayoutEditController().CreateEditControl(objectType) as BaseObjectEditControl;
+            }
+            else {
+                editControl = ConfigPublic.CreateEditControl(objectType) as BaseObjectEditControl;
+                if (editControl == null) {
+                    editControl = new ObjectLayoutEditController().CreateEditControl(objectType) as BaseObjectEditControl;
+                }
             }
 
             editControl.EditValue = IOPublic.ObjectClone(propertyValue);

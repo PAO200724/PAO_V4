@@ -1,6 +1,6 @@
 ﻿namespace PAO.Config.Editor
 {
-    partial class ObjectContainerControl
+    partial class CommonObjectEditControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -26,13 +26,14 @@
         /// </summary>
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ObjectContainerControl));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CommonObjectEditControl));
             this.BarManagerObject = new DevExpress.XtraBars.BarManager(this.components);
             this.BarToolObject = new DevExpress.XtraBars.Bar();
             this.ButtonCreate = new DevExpress.XtraBars.BarButtonItem();
             this.ButtonDelete = new DevExpress.XtraBars.BarButtonItem();
             this.ButtonExport = new DevExpress.XtraBars.BarButtonItem();
-            this.W = new DevExpress.XtraBars.BarButtonItem();
+            this.ButtonProperty = new DevExpress.XtraBars.BarButtonItem();
+            this.BarElement = new DevExpress.XtraBars.Bar();
             this.barDockControl1 = new DevExpress.XtraBars.BarDockControl();
             this.barDockControl2 = new DevExpress.XtraBars.BarDockControl();
             this.barDockControl3 = new DevExpress.XtraBars.BarDockControl();
@@ -44,7 +45,8 @@
             // 
             this.BarManagerObject.AllowMoveBarOnToolbar = false;
             this.BarManagerObject.Bars.AddRange(new DevExpress.XtraBars.Bar[] {
-            this.BarToolObject});
+            this.BarToolObject,
+            this.BarElement});
             this.BarManagerObject.DockControls.Add(this.barDockControl1);
             this.BarManagerObject.DockControls.Add(this.barDockControl2);
             this.BarManagerObject.DockControls.Add(this.barDockControl3);
@@ -54,7 +56,7 @@
             this.ButtonExport,
             this.ButtonCreate,
             this.ButtonDelete,
-            this.W});
+            this.ButtonProperty});
             this.BarManagerObject.MaxItemId = 19;
             // 
             // BarToolObject
@@ -67,13 +69,11 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.ButtonCreate),
             new DevExpress.XtraBars.LinkPersistInfo(this.ButtonDelete),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.ButtonExport, "", true, true, true, 0, null, DevExpress.XtraBars.BarItemPaintStyle.CaptionInMenu),
-            new DevExpress.XtraBars.LinkPersistInfo(this.W, true)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonProperty, true)});
             this.BarToolObject.OptionsBar.AllowQuickCustomization = false;
             this.BarToolObject.OptionsBar.DisableClose = true;
             this.BarToolObject.OptionsBar.DisableCustomization = true;
-            this.BarToolObject.OptionsBar.DrawDragBorder = false;
-            this.BarToolObject.OptionsBar.UseWholeRow = true;
-            this.BarToolObject.Text = "对象工具条";
+            this.BarToolObject.Text = "对象";
             // 
             // ButtonCreate
             // 
@@ -100,20 +100,30 @@
             this.ButtonExport.Name = "ButtonExport";
             this.ButtonExport.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonExport_ItemClick);
             // 
-            // W
+            // ButtonProperty
             // 
-            this.W.Caption = "属性(&P)";
-            this.W.Glyph = global::PAO.Config.Properties.Resources.properties_16x16;
-            this.W.Id = 18;
-            this.W.Name = "W";
-            this.W.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonProperty_ItemClick);
+            this.ButtonProperty.Caption = "属性(&P)";
+            this.ButtonProperty.Glyph = global::PAO.Config.Properties.Resources.properties_16x16;
+            this.ButtonProperty.Id = 18;
+            this.ButtonProperty.Name = "ButtonProperty";
+            this.ButtonProperty.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonProperty_ItemClick);
+            // 
+            // BarElement
+            // 
+            this.BarElement.BarName = "元素";
+            this.BarElement.DockCol = 1;
+            this.BarElement.DockRow = 0;
+            this.BarElement.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
+            this.BarElement.OptionsBar.AllowQuickCustomization = false;
+            this.BarElement.OptionsBar.DisableClose = true;
+            this.BarElement.Text = "元素";
             // 
             // barDockControl1
             // 
             this.barDockControl1.CausesValidation = false;
             this.barDockControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControl1.Location = new System.Drawing.Point(0, 0);
-            this.barDockControl1.Size = new System.Drawing.Size(674, 28);
+            this.barDockControl1.Size = new System.Drawing.Size(674, 31);
             // 
             // barDockControl2
             // 
@@ -126,17 +136,17 @@
             // 
             this.barDockControl3.CausesValidation = false;
             this.barDockControl3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControl3.Location = new System.Drawing.Point(0, 28);
-            this.barDockControl3.Size = new System.Drawing.Size(0, 397);
+            this.barDockControl3.Location = new System.Drawing.Point(0, 31);
+            this.barDockControl3.Size = new System.Drawing.Size(0, 394);
             // 
             // barDockControl4
             // 
             this.barDockControl4.CausesValidation = false;
             this.barDockControl4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControl4.Location = new System.Drawing.Point(674, 28);
-            this.barDockControl4.Size = new System.Drawing.Size(0, 397);
+            this.barDockControl4.Location = new System.Drawing.Point(674, 31);
+            this.barDockControl4.Size = new System.Drawing.Size(0, 394);
             // 
-            // ObjectContainerEditControl
+            // CommonObjectEditControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -145,7 +155,7 @@
             this.Controls.Add(this.barDockControl2);
             this.Controls.Add(this.barDockControl1);
             this.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.Name = "ObjectContainerEditControl";
+            this.Name = "CommonObjectEditControl";
             this.Size = new System.Drawing.Size(674, 425);
             ((System.ComponentModel.ISupportInitialize)(this.BarManagerObject)).EndInit();
             this.ResumeLayout(false);
@@ -164,6 +174,7 @@
         private DevExpress.XtraBars.BarDockControl barDockControl2;
         private DevExpress.XtraBars.BarDockControl barDockControl3;
         private DevExpress.XtraBars.BarDockControl barDockControl4;
-        private DevExpress.XtraBars.BarButtonItem W;
+        private DevExpress.XtraBars.BarButtonItem ButtonProperty;
+        private DevExpress.XtraBars.Bar BarElement;
     }
 }

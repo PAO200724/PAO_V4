@@ -25,8 +25,9 @@ namespace PAO.Config.Editor
     {
         public DictionaryEditControl() {
             InitializeComponent();
-            this.ColumnObject.ColumnEdit = new CommonObjectEditController().CreateRepositoryItem(typeof(object));
-            this.ColumnIndex.ColumnEdit = new TextEditController().CreateRepositoryItem(typeof(object));
+            var commonEditController = new CommonObjectEditController();
+            commonEditController.StartEditObject(null);
+            this.ColumnObject.ColumnEdit = commonEditController.CreateRepositoryItem();
         }
 
         private void Element_RowChanged(object sender, DataRowChangeEventArgs e) {

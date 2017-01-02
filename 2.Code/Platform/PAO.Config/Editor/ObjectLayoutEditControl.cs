@@ -110,8 +110,8 @@ namespace PAO.Config.Editor
                     continue;
 
                 var editControl = EditControls[propDesc];
-                if(editControl is ObjectContainerControl) {
-                    editControl.As<ObjectContainerControl>().ComponentObject = editValue;
+                if(editControl is CommonObjectEditControl) {
+                    editControl.As<CommonObjectEditControl>().ComponentObject = editValue;
                 }
                 editControl.DataBindings.Clear();
                 if (this.BindingSource != null) {
@@ -143,21 +143,21 @@ namespace PAO.Config.Editor
                 if (!propDesc.IsBrowsable)
                     continue;
 
-                Control editControl = ConfigPublic.CreateEditControl(propDesc.PropertyType);
-                if(editControl == null) {
-                    editControl = new CommonObjectEditController().CreateEditControl(propDesc.PropertyType);
+                BaseEditController editController = ConfigPublic.GetEditController(propDesc);
+                Control editControl = null;
+                if(editController == null) {
+                    var commonEditController = new CommonObjectEditController();
+                    commonEditController.StartEditProperty(EditValue, propDesc.Name);
+                    editController = commonEditController;
                 }
+
+                editControl = editController.CreateEditControl(objType);
                 
                 if (editControl.GetType().GetProperty("EditValue") == null)
                     throw new Exception("编辑控件必须实现EditValue属性");
 
                 LayoutControlItem layoutControlItem = null;
                 if (editControl is BaseObjectEditControl) {
-                    // 在BaseEditControl外套一层ObjectContainerEditControl，用于实现属性的新增删除等
-                    var objectContainerEditControl = new ObjectContainerControl();
-                    objectContainerEditControl.StartEditProperty(EditValue, propDesc.Name);
-                    editControl = objectContainerEditControl;
-
                     if (tabbledGroup == null) {
                         tabbledGroup = groupItem.AddTabbedGroup();
                     }

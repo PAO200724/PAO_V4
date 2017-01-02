@@ -52,7 +52,7 @@
             this.LabelControlPropertyDescription = new DevExpress.XtraEditors.LabelControl();
             this.LabelControlPropertyType = new DevExpress.XtraEditors.LabelControl();
             this.LabelControlPropertyTitle = new DevExpress.XtraEditors.LabelControl();
-            this.ObjectContainerEditControl = new PAO.Config.Editor.ObjectContainerControl();
+            this.ObjectContainerEditControl = new PAO.Config.Editor.CommonObjectEditControl();
             this.AddonExtentionEditControl = new PAO.Config.Editor.AddonExtentionEditControl();
             this.TabControl = new DevExpress.XtraTab.XtraTabControl();
             this.TabPageProperty = new DevExpress.XtraTab.XtraTabPage();
@@ -446,7 +446,7 @@
         private DevExpress.XtraBars.BarSubItem MenuItemExtend;
         private DevExpress.XtraBars.BarButtonItem ButtonImportExtend;
         private DevExpress.XtraBars.BarButtonItem ButtonExportExtend;
-        private ObjectContainerControl ObjectContainerEditControl;
+        private CommonObjectEditControl ObjectContainerEditControl;
         private DevExpress.XtraTab.XtraTabControl TabControl;
         private DevExpress.XtraTab.XtraTabPage TabPageProperty;
         private DevExpress.XtraTab.XtraTabPage TabPageExtendProperty;

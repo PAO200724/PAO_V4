@@ -129,7 +129,9 @@ namespace PAO.Config.Editor
             foreach (var dataField in DataFields) {
                 Control editControl = ConfigPublic.CreateEditControl(dataField.ObjectType);
                 if (editControl == null) {
-                    editControl = new CommonObjectEditController().CreateEditControl(dataField.ObjectType);
+                    var editController = new CommonObjectEditController();
+                    editController.StartEditObject(dataField.ObjectType);
+                    editControl = editController.CreateEditControl(dataField.ObjectType);
                 }
 
                 if (editControl.GetType().GetProperty("EditValue") == null)

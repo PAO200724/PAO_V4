@@ -38,7 +38,7 @@ namespace PAO.WinForm.Editor
         /// </summary>
         /// <param name="objectType">对象类型</param>
         /// <returns>RepositoryItem</returns>
-        public virtual RepositoryItem CreateRepositoryItem(Type objectType) {
+        public virtual RepositoryItem CreateRepositoryItem(Type objectType = null) {
             var repositoryItem = OnCreateRepositoryItem(objectType);
             return repositoryItem;
         }
@@ -50,7 +50,7 @@ namespace PAO.WinForm.Editor
         /// </summary>
         /// <param name="objectType">对象类型</param>
         /// <returns>编辑控件</returns>
-        public virtual Control CreateEditControl(Type objectType) {
+        public virtual Control CreateEditControl(Type objectType = null) {
             var editControl = OnCreateEditControl(objectType);
             return editControl;
         }

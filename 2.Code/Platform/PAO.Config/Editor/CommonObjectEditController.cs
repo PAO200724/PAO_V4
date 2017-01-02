@@ -25,23 +25,53 @@ namespace PAO.Config.Editor
     {
         #region 插件属性
         #endregion
+
+        [NonSerialized]
+        private ObjectEditMode EditMode;
+        [NonSerialized]
+        private object ComponentObject;
+        [NonSerialized]
+        private object ElementKey;
+        [NonSerialized]
+        private Type ObjectType;
+        
         public CommonObjectEditController() {
         }
 
+        #region StartEditXXX
+        public void StartEdit(ObjectEditMode editMode, Type objectType, object componentObject, object key) {
+            EditMode = editMode;
+            ObjectType = objectType;
+            ComponentObject = componentObject;
+            ElementKey = key;
+        }
+
+        public void StartEditNull() {
+            StartEdit(ObjectEditMode.Object, null, null, null);
+        }
+
+        public void StartEditObject(Type objectType) {
+            StartEdit(ObjectEditMode.Object, objectType, null, null);
+        }
+
+        public void StartEditProperty(object componentObject, string propertyName) {
+            StartEdit(ObjectEditMode.Property, null, componentObject, propertyName);
+        }
+
+        public void StartEditListElement(object componentObject, int index) {
+            StartEdit(ObjectEditMode.ListElement, null, componentObject, index);
+        }
+
+        public void StartEditDictionaryElement(object componentObject, object key) {
+            StartEdit(ObjectEditMode.DictionaryElement, null, componentObject, key);
+        }
+
+        #endregion
+
         protected override Control OnCreateEditControl(Type objectType) {
-            if(objectType == null) {
-                return null;
-            } 
-
-            if(objectType.IsAddonDictionaryType()) {
-                return new DictionaryEditController().CreateEditControl(objectType); ;
-            }
-
-            if (objectType.IsAddonListType()) {
-                return new ListEditController().CreateEditControl(objectType); ;
-            }
-
-            return new ObjectPropertyEditController().CreateEditControl(objectType); ;
+            var editControl = new CommonObjectEditControl();
+            editControl.StartEdit(EditMode, ObjectType, ComponentObject, ElementKey);
+            return editControl;
         }
     }
 }
