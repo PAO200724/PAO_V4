@@ -41,7 +41,7 @@ namespace PAO.WinForm.Editor
         [DataMember(EmitDefaultValue = false)]
         [Name("预定义编辑器")]
         [Description("预定义编辑器")]
-        public Dictionary<string, BaseEditController> PredefinedEditors {
+        public Dictionary<string, Type> PredefinedEditors {
             get;
             set;
         }
@@ -98,13 +98,15 @@ namespace PAO.WinForm.Editor
         /// <summary>
         /// 获取预定义的编辑控制器
         /// </summary>
+        /// <param name="objectType">对象类型</param>
         /// <param name="propertyName">属性名称</param>
         /// <returns>编辑控制器</returns>
-        public BaseEditController GetPredefinedEditController(string propertyName) {
+        public BaseEditController GetPredefinedEditController(Type objectType, string propertyName) {
             if (PredefinedEditors.IsNotNullOrEmpty()
                     && PredefinedEditors.ContainsKey(propertyName)
                     && PredefinedEditors[propertyName] != null) {
-                return PredefinedEditors[propertyName];
+
+                return EditorPublic.GetOrCreateDefaultEditController(objectType, PredefinedEditors[propertyName]);
             }
             return null;
         }
@@ -125,16 +127,16 @@ namespace PAO.WinForm.Editor
         /// 设置预定义的编辑控制器
         /// </summary>
         /// <param name="propertyName">属性名称</param>
-        /// <param name="editController">编辑控制器</param>
-        public void SetPredfinedEditController(string propertyName, BaseEditController editController) {
+        /// <param name="editControllerType">编辑控制器类型</param>
+        public void SetPredfinedEditController(string propertyName, Type editControllerType) {
             if (PredefinedEditors == null)
-                PredefinedEditors = new Dictionary<string, BaseEditController>();
+                PredefinedEditors = new Dictionary<string, Type>();
 
             if (PredefinedEditors.ContainsKey(propertyName)) {
-                PredefinedEditors[propertyName] = editController;
+                PredefinedEditors[propertyName] = editControllerType;
             }
             else {
-                PredefinedEditors.Add(propertyName, editController);
+                PredefinedEditors.Add(propertyName, editControllerType);
             }
         }
     }

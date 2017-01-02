@@ -102,7 +102,7 @@ namespace PAO.Config.Editor
                 return;
             var controller = Controller as ObjectPropertyEditController;
             if(controller != null) {
-                var editController = controller.GetPredefinedEditController(propDesc.Name);
+                var editController = controller.GetPredefinedEditController(propDesc.PropertyType, propDesc.Name);
                 if(editController != null)
                     repositoryItem = editController.CreateRepositoryItem(propDesc.PropertyType);
             }
@@ -181,7 +181,7 @@ namespace PAO.Config.Editor
                         var controller = Controller as ObjectPropertyEditController;
                         var editController = editControllerType.CreateInstance() as BaseEditController;
                         if(controller != null) {
-                            controller.SetPredfinedEditController(propDesc.Name, editController);
+                            controller.SetPredfinedEditController(propDesc.Name, editController.GetType());
                         }
                     }
                 }

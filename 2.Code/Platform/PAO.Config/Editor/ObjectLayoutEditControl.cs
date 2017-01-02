@@ -142,7 +142,7 @@ namespace PAO.Config.Editor
                 Control editControl = null;
 
                 if (controller != null) {
-                    editController = controller.GetPredefinedEditController(propDesc.Name);
+                    editController = controller.GetPredefinedEditController(propDesc.PropertyType, propDesc.Name);
                 }
 
                 if(editController == null) {
@@ -225,7 +225,7 @@ namespace PAO.Config.Editor
                         var controller = Controller as ObjectLayoutEditController;
                         var editController = editControllerType.CreateInstance() as BaseEditController;
                         if (controller != null) {
-                            controller.SetPredfinedEditController(propDesc.Name, editController);
+                            controller.SetPredfinedEditController(propDesc.Name, editController.GetType());
                         }
                     }
                 }
