@@ -69,7 +69,6 @@ namespace PAO.Config.Editor
             var controller = Controller as ObjectPropertyEditController;
             if (controller != null) {
                 controller.LayoutData = this.PropertyGridControl.GetLayoutData();
-                ExtendAddonPublic.SetExtendLocalAddon(controller);
             }
             base.OnClose();
         }

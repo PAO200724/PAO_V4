@@ -79,7 +79,6 @@ namespace PAO.Config.Editor
             var controller = Controller as ObjectLayoutEditController;
             if (controller != null) {
                 controller.LayoutData = this.DataLayoutControl.GetLayoutData();
-                ExtendAddonPublic.SetExtendLocalAddon(controller);
             }
 
             base.OnClose();

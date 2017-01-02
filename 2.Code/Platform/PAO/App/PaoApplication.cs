@@ -37,6 +37,7 @@ namespace PAO.App {
             private set;
         }
         #region 插件属性
+
         #region 属性:SoftwareID
         /// <summary>
         /// 属性:ClientID
@@ -99,23 +100,7 @@ namespace PAO.App {
             get;
             set;
         }
-        #endregion 属性：ExtendAddonList       
-
-        #region 属性：ExtendLocalAddonList
-        /// <summary>
-        /// 属性：ExtendLocalAddonList
-        /// 本地扩展插件
-        /// 保存在本地的扩展插件
-        /// </summary>
-        [AddonProperty]
-        [DataMember(EmitDefaultValue = false)]
-        [Name("本地扩展插件")]
-        [Description("保存在本地的扩展插件")]
-        public List<PaoObject> ExtendLocalAddonList {
-            get;
-            set;
-        }
-        #endregion 属性：ExtendAddonList       
+        #endregion 属性：ExtendAddonList        
 
         #region 属性：ExtendConfigFile
         /// <summary>
@@ -294,32 +279,5 @@ namespace PAO.App {
             UIPublic.CloseWaitingForm();
             UIPublic.ShowEventDialog(eventInfo);
         }
-
-        /// <summary>
-        /// 设置本地扩展插件
-        /// </summary>
-        /// <param name="addon">插件</param>
-        public void SetExtendLocalAddon(PaoObject addon) {
-            if (ExtendLocalAddonList == null) {
-                ExtendLocalAddonList = new List<PaoObject>();
-            }
-            var extendAddon = ExtendLocalAddonList.Where(p => p.ID == addon.ID).FirstOrDefault();
-            if (extendAddon != null)
-                ExtendLocalAddonList.Remove(extendAddon);
-
-            ExtendLocalAddonList.Add(addon);
-        }
-
-        /// <summary>
-        /// 设置本地扩展插件
-        /// </summary>
-        /// <param name="addon">插件</param>
-        public PaoObject GetExtendLocalAddon(string addonID) {
-            if (ExtendLocalAddonList == null) {
-                return null;
-            }
-            var extendAddon = ExtendLocalAddonList.Where(p => p.ID == addonID).FirstOrDefault();
-            return extendAddon;
-        }       
     }
 }

@@ -16,25 +16,6 @@ namespace PAO.Config
     /// </summary>
     public static class ExtendAddonPublic
     {
-        #region 本地扩展插件
-
-        /// <summary>
-        /// 设置本地扩展插件
-        /// </summary>
-        /// <param name="addon">插件</param>
-        public static void SetExtendLocalAddon(PaoObject addon) {
-            PaoApplication.Default.SetExtendLocalAddon(addon);
-        }
-
-        /// <summary>
-        /// 设置本地扩展插件
-        /// </summary>
-        /// <param name="addon">插件</param>
-        public static PaoObject GetExtendLocalAddon(string addonID) {
-            return PaoApplication.Default.GetExtendLocalAddon(addonID);
-        }
-        #endregion
-
         #region 扩展属性
             /// <summary>
             /// 扩展属性存储器
