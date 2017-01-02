@@ -34,7 +34,8 @@ namespace PAO.WinForm.Editor
 
         public BaseObjectEditController() {
         }
-        
+        public BaseObjectEditController(bool staticType) : base(staticType){
+        }
         public override Control CreateEditControl(Type objectType = null) {
             var editControl = base.CreateEditControl(objectType) as BaseObjectEditControl;
             if(editControl != null)

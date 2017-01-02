@@ -27,10 +27,30 @@ namespace PAO.WinForm.Editor
     public abstract class BaseEditController : PaoObject
     {
         #region 插件属性
+
+        #region 属性：StaticType
+        /// <summary>
+        /// 属性：StaticType
+        /// 固定类型
+        /// 指示此控制器是否对应固定的类型
+        /// </summary>
+        [AddonProperty]
+        [DataMember(EmitDefaultValue = false)]
+        [Name("固定类型")]
+        [Description("指示此控制器是否对应固定的类型")]
+        public bool StaticType {
+            get;
+            set;
+        }
+        #endregion 属性：StaticType
+
         #endregion
         public BaseEditController() {
+            StaticType = true;
         }
-
+        public BaseEditController(bool staticType) {
+            StaticType = staticType;
+        }
         protected abstract RepositoryItem OnCreateRepositoryItem(Type objectType);
         
         /// <summary>

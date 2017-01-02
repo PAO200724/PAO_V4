@@ -48,33 +48,16 @@ namespace PAO.Config.Editor
         }
         #endregion
 
-        #region 属性：StaticType
-        /// <summary>
-        /// 属性：StaticType
-        /// 固定类型
-        /// 此控制器对应的固定类型
-        /// </summary>
-        [AddonProperty]
-        [DataMember(EmitDefaultValue = false)]
-        [Name("固定类型")]
-        [Description("此控制器对应的固定类型")]
-        public bool StaticType {
-            get;
-            set;
-        }
-        #endregion 属性：StaticType
         #endregion
 
         public ObjectPropertyEditController() {
-            StaticType = true;
+
         }
-        public ObjectPropertyEditController(bool staticType) {
-            StaticType = staticType;
+        public ObjectPropertyEditController(bool staticType) : base(staticType){
         }
 
         protected override Control OnCreateEditControl(Type objectType) {
             var editControl = new ObjectPropertyEditControl();
-            editControl.StaticType = StaticType;
             return editControl;
         }
         

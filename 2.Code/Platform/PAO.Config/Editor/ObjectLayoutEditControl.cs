@@ -30,14 +30,7 @@ namespace PAO.Config.Editor
         /// 编辑控件列表
         /// </summary>
         private Dictionary<PropertyDescriptor, Control> EditControls = new Dictionary<PropertyDescriptor, Control>();
-
-        [Browsable(false)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public bool StaticType {
-            get;
-            set;
-        }
-
+        
         private Type ObjectType = null;
 
         [Browsable(false)]
@@ -81,7 +74,7 @@ namespace PAO.Config.Editor
             if (controller != null) {
                 controller.LayoutData = this.DataLayoutControl.GetLayoutData();
                 // 如果设置了ObjectType，则保存默认配置
-                if (StaticType && ObjectType != null) {
+                if (controller.StaticType && ObjectType != null) {
                     EditorPublic.SetDefaultEditController(ObjectType, controller);
                 }
 

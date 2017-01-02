@@ -26,6 +26,11 @@ namespace PAO.WinForm.Editor
         #region 插件属性
         #endregion
 
+        public BaseRepositoryItemEditController() {
+
+        }
+        public BaseRepositoryItemEditController(bool staticType) : base(staticType){
+        }
         protected override Control OnCreateEditControl(Type objectType) {
             
             var repositoryItem = CreateRepositoryItem(objectType);

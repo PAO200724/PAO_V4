@@ -51,14 +51,7 @@ namespace PAO.Config.Editor
                 return new Bar[] { this.BarTools };
             }
         }
-
-        [Browsable(false)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public bool StaticType {
-            get;
-            set;
-        }
-
+        
         public ObjectPropertyEditControl() {
             InitializeComponent();
             SetControlStatus();
@@ -70,7 +63,7 @@ namespace PAO.Config.Editor
             if (controller != null) {
                 controller.LayoutData = this.PropertyGridControl.GetLayoutData();
                 // 如果设置了ObjectType，则保存默认配置
-                if(StaticType && EditValue!=null) {
+                if(controller.StaticType && EditValue!=null) {
                     EditorPublic.SetDefaultEditController(EditValue.GetType(), controller);
                 }
             }
