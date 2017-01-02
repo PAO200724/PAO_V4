@@ -31,6 +31,8 @@ namespace PAO.Config
     /// </summary>
     public static class ConfigPublic
     {
+        #region 权限
+        #endregion
         #region 插件列表
         /// <summary>
         /// 编辑时根对象

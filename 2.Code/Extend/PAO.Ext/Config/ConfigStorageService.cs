@@ -44,11 +44,10 @@ namespace PAO.Ext.Config
         #endregion 属性：DataService
         #endregion
 
-        public const string Permission_SaveGlobalConfig = "SaveGlobalConfig";
-        public IDictionary<string, string> Permissions {
+        public const string Permission_SaveGlobalConfig = "保存全局配置";
+        public IEnumerable<string> Permissions {
             get {
-                return new Dictionary<string, string>()
-                    .Append(Permission_SaveGlobalConfig, "保存全局配置");
+                return new string[] { Permission_SaveGlobalConfig };
             }
         }
 
@@ -184,7 +183,7 @@ namespace PAO.Ext.Config
         
         public void SaveGlobalConfig(PaoObject configObject, int priority, IClientFilter clientFilter) {
             var dataService = DataService.Value;
-            SecurityPublic.CheckPermission(ID, Permission_SaveGlobalConfig).CheckTrue("当前用户不拥有保存全局配置的权限");
+            SecurityPublic.DemandPermission(ID, Permission_SaveGlobalConfig);
             dataService.ExecuteBySql(Sql_DisableCurrentLocalConfig
                 , new DataField("@ConfigName", configObject.ID)
                 , new DataField("@SoftwareID", PaoApplication.Default.SoftwareID));

@@ -99,5 +99,14 @@ namespace PAO.Security
         public static bool CheckPermission(string commandID, string permission) {
             return true;
         }
+
+        /// <summary>
+        /// 要求权限
+        /// </summary>
+        /// <param name="commandID">命令ID</param>
+        /// <param name="permission">许可</param>
+        public static void DemandPermission(string commandID, string permission) {
+            CheckPermission(commandID, permission).CheckTrue(String.Format("当前用户不拥有权限:[{0}]", permission));
+        }
     }
 }

@@ -20,6 +20,6 @@ namespace PAO.Security
         /// <summary>
         /// 允许的权限
         /// </summary>
-        IDictionary<string, string> Permissions { get; }
+        IEnumerable<string> Permissions { get; }
     }
 }
