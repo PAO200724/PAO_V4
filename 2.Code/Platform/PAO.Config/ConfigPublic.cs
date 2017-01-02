@@ -208,13 +208,13 @@ namespace PAO.Config
         public static BaseEditController GetEditController(PropertyDescriptor propertyDescriptor) {
             BaseEditController editController = null;
             var editorType = EditorPublic.GetEditorType(propertyDescriptor);
-            if (editorType != null) {
+
+            if (editorType == null) {
+                editController = GetEditController(propertyDescriptor.PropertyType);
+            }
+            else {
                 editController = editorType.CreateInstance() as BaseEditController;
                 EditorPublic.SetDefaultEditController(propertyDescriptor.PropertyType, editController);
-            }
-
-            if (editController == null) {
-                editController = GetEditController(propertyDescriptor.PropertyType);
             }
 
             return editController;

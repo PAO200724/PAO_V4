@@ -26,6 +26,8 @@ namespace PAO.Config.Editor
             InitializeComponent();
         }
 
+        private LayoutControlItem SelectedLayoutItem = null;
+
         /// <summary>
         /// 编辑控件列表
         /// </summary>
@@ -67,6 +69,12 @@ namespace PAO.Config.Editor
                     BindEditValue(value);
                 }
             }
+        }
+
+        protected override void SetControlStatus() {
+            this.ButtonRecoverEditor.Enabled = this.DataLayoutControl.CustomizationForm!=null && this.DataLayoutControl.CustomizationForm.Visible && SelectedLayoutItem != null;
+            this.ButtonChangeEditor.Enabled = this.DataLayoutControl.CustomizationForm != null && this.DataLayoutControl.CustomizationForm.Visible && SelectedLayoutItem != null;
+            base.SetControlStatus();
         }
 
         protected override void OnClose() {
@@ -112,7 +120,9 @@ namespace PAO.Config.Editor
         /// <param name="objType">对象类型</param>
         private void RetrieveFields(LayoutControlGroup groupItem, Type objType) {
             groupItem.Items.Clear();
+            this.DataLayoutControl.CloseControl();
             EditControls.Clear();
+            this.DataLayoutControl.Clear(true, true);
 
             var controller = Controller as ObjectLayoutEditController;
             if (controller != null) {
@@ -128,8 +138,16 @@ namespace PAO.Config.Editor
                 if (!propDesc.IsBrowsable)
                     continue;
 
-                BaseEditController editController = ConfigPublic.GetEditController(propDesc);
+                BaseEditController editController = null;
                 Control editControl = null;
+
+                if (controller != null) {
+                    editController = controller.GetPredefinedEditController(propDesc.Name);
+                }
+
+                if(editController == null) {
+                    editController = ConfigPublic.GetEditController(propDesc);
+                }
                 if(editController == null) {
                     var commonEditController = new CommonObjectEditController();
                     commonEditController.StartEditProperty(EditValue, propDesc.Name);
@@ -192,6 +210,57 @@ namespace PAO.Config.Editor
             if (UIPublic.ShowYesNoCancelDialog("您是否需要默认格式？") == DialogReturn.Yes) {
                 this.DataLayoutControl.RestoreDefaultLayout();
             }
+        }
+
+        private void ButtonChangeEditor_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+            if(SelectedLayoutItem != null) {
+                var editControl = SelectedLayoutItem.Control;
+                var propDesc = editControl.Tag as PropertyDescriptor;
+                if (propDesc == null)
+                    return;
+
+                Type editControllerType;
+                if (ConfigPublic.SelectEditControllerType(propDesc.PropertyType, out editControllerType) == DialogReturn.OK) {
+                    if (editControllerType != null) {
+                        var controller = Controller as ObjectLayoutEditController;
+                        var editController = editControllerType.CreateInstance() as BaseEditController;
+                        if (controller != null) {
+                            controller.SetPredfinedEditController(propDesc.Name, editController);
+                        }
+                    }
+                }
+                EditValue = EditValue;
+            }
+        }
+
+        private void ButtonRecoverEditor_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+            if (SelectedLayoutItem != null) {
+                var editControl = SelectedLayoutItem.Control;
+                var propDesc = editControl.Tag as PropertyDescriptor;
+                if (propDesc == null)
+                    return;
+
+                var controller = Controller as ObjectLayoutEditController;
+                if (controller != null) {
+                    if (UIPublic.ShowYesNoDialog("您确定要恢复默认的编辑器吗？") == DialogReturn.Yes) {
+                        controller.RemovePredefinedEditController(propDesc.Name);
+                    }
+                }
+                EditValue = EditValue;
+            }
+        }
+
+        private void DataLayoutControl_ItemSelectionChanged(object sender, EventArgs e) {
+            SelectedLayoutItem = sender as LayoutControlItem;
+            SetControlStatus();
+        }
+
+        private void DataLayoutControl_ShowCustomization(object sender, EventArgs e) {
+            SetControlStatus();
+        }
+
+        private void DataLayoutControl_HideCustomization(object sender, EventArgs e) {
+            SetControlStatus();
         }
     }
 }

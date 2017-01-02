@@ -29,8 +29,7 @@ namespace PAO.WinForm.Editor
         }
 
         protected override RepositoryItem OnCreateRepositoryItem(Type objectType) {
-            var edit = new RepositoryItemMemoExEdit();
-            WinFormPublic.AddClearButton(edit);
+            var edit = new RepositoryItemMemoEdit();
             return edit;
         }
 

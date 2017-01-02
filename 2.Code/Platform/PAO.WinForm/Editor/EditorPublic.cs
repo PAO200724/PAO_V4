@@ -81,6 +81,20 @@ namespace PAO.WinForm.Editor
             string editorID = GetEditorID(editController.GetType(), objectType);
             ConfigStoragePublic.SetConfig(EditorsStorageName, editorID, editController);
         }
-        
+
+        /// <summary>
+        /// 获取默认的编辑控制器
+        /// </summary>
+        /// <param name="objectType">对象类型</param>
+        /// <param name="editorType">编辑器类型</param>
+        /// <returns>默认编辑控制器</returns>
+        public static BaseEditController GetOrCreateDefaultEditController(Type objectType, Type editorType) {
+            var editController = EditorPublic.GetDefaultEditController(objectType, editorType);
+            if (editController == null) {
+                editController = editorType.CreateInstance() as BaseEditController;
+                EditorPublic.SetDefaultEditController(objectType, editController);
+            }
+            return editController;
+        }
     }
 }
