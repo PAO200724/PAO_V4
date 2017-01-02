@@ -45,22 +45,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AOP\AddonAttribute.cs" />
-    <Compile Include="Config\AddonExtention.cs" />
     <Compile Include="AOP\AddonPropertyAttribute.cs" />
     <Compile Include="AOP\AddonFactory.cs" />
     <Compile Include="AOP\AddonPublic.cs" />
     <Compile Include="Config\ConfigStorage.cs" />
     <Compile Include="Config\ConfigStoragePublic.cs" />
-    <Compile Include="Config\DataSetExtendProperty.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DataSetExtendProperty.xsd</DependentUpon>
-    </Compile>
     <Compile Include="App\IClientFilter.cs" />
     <Compile Include="Config\ExtendAddonPublic.cs" />
-    <Compile Include="Config\ExtendPropertyStorage.cs" />
     <Compile Include="AOP\IconAttribute.cs" />
-    <Compile Include="Config\IConfigStorage.cs" />
     <Compile Include="AOP\NameAttribute.cs" />
     <Compile Include="AOP\BaseRef.cs" />
     <Compile Include="AOP\ObjectFolder.cs" />
@@ -176,19 +168,6 @@
     <Compile Include="MVC\UIActionEventArgs.cs" />
     <Compile Include="UI\Surface.cs" />
     <Compile Include="UI\UIPublic.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Config\DataSetExtendProperty.xsc">
-      <DependentUpon>DataSetExtendProperty.xsd</DependentUpon>
-    </None>
-    <None Include="Config\DataSetExtendProperty.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>DataSetExtendProperty.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="Config\DataSetExtendProperty.xss">
-      <DependentUpon>DataSetExtendProperty.xsd</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">

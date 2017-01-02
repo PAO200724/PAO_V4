@@ -27,12 +27,6 @@ namespace PAO.Config.Views
 
         protected override void OnSetController(BaseController value) {
             var controller = value as ObjectConfigController;
-            if (controller.ExtendPropertyConfigFile.IsNullOrEmpty()) {
-                this.ObjectTreeEditControl.ExtendPropertyStorageFilePath = AppPublic.GetAbsolutePath(ObjectConfigController.DefaultExtendPropertyConfigFile);
-            }
-            else {
-                this.ObjectTreeEditControl.ExtendPropertyStorageFilePath = AppPublic.GetAbsolutePath(controller.ExtendPropertyConfigFile);
-            }
             object addon;
             if (controller.ConfigFile.IsNullOrEmpty()) {
                 addon = PaoApplication.Default;

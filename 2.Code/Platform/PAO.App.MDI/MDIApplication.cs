@@ -153,22 +153,6 @@ namespace PAO.App.MDI
             set;
         }
         #endregion 属性：TimeSyncInterval
-
-        #region 属性：DefaultEditControllerFile
-        /// <summary>
-        /// 属性：DefaultEditControllerPath
-        /// 默认编辑控制器配置文件路径
-        /// 默认编辑控制器的默认布局配置文件的路径
-        /// </summary>
-        [AddonProperty]
-        [DataMember(EmitDefaultValue = false)]
-        [Name("默认编辑控制器配置文件路径")]
-        [Description("默认编辑控制器的默认布局配置文件的路径")]
-        public string DefaultEditControllerFile {
-            get;
-            set;
-        }
-        #endregion 属性：DefaultEditControllerPath
         #endregion
 
         #region 属性：LayoutData
@@ -189,7 +173,6 @@ namespace PAO.App.MDI
 
         public MDIApplication() {
             TimeSyncInterval = 5;
-            DefaultEditControllerFile = "Editors.config";
         }
         public static new MDIApplication Default {
             get {

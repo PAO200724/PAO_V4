@@ -64,8 +64,6 @@ namespace PAO.Configuration
                     ServerAddress = "localhost:7990",
                     ServiceName = "SecurityService"
                 },
-                ExtendConfigFile = "ExtendProperties.config",
-                DefaultEditControllerFile = "Editors.config",
                 ExtendAddonList = new List<PaoObject>()
                     .Append(new TcpRemoteFactory<IDataService>()
                     {

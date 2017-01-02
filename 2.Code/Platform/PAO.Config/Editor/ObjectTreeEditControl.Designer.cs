@@ -31,9 +31,6 @@
             this.BarManagerObjectTree = new DevExpress.XtraBars.BarManager(this.components);
             this.BarMainTools = new DevExpress.XtraBars.Bar();
             this.ButtonExport = new DevExpress.XtraBars.BarButtonItem();
-            this.MenuItemExtend = new DevExpress.XtraBars.BarSubItem();
-            this.ButtonImportExtend = new DevExpress.XtraBars.BarButtonItem();
-            this.ButtonExportExtend = new DevExpress.XtraBars.BarButtonItem();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
@@ -53,10 +50,6 @@
             this.LabelControlPropertyType = new DevExpress.XtraEditors.LabelControl();
             this.LabelControlPropertyTitle = new DevExpress.XtraEditors.LabelControl();
             this.ObjectContainerEditControl = new PAO.Config.Editor.CommonObjectEditControl();
-            this.AddonExtentionEditControl = new PAO.Config.Editor.AddonExtentionEditControl();
-            this.TabControl = new DevExpress.XtraTab.XtraTabControl();
-            this.TabPageProperty = new DevExpress.XtraTab.XtraTabPage();
-            this.TabPageExtendProperty = new DevExpress.XtraTab.XtraTabPage();
             ((System.ComponentModel.ISupportInitialize)(this.ImageCollectionTree)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BarManagerObjectTree)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainerControlMain)).BeginInit();
@@ -64,10 +57,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainerControlLeft)).BeginInit();
             this.SplitContainerControlLeft.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TreeListObject)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TabControl)).BeginInit();
-            this.TabControl.SuspendLayout();
-            this.TabPageProperty.SuspendLayout();
-            this.TabPageExtendProperty.SuspendLayout();
             this.SuspendLayout();
             // 
             // ImageCollectionTree
@@ -92,10 +81,7 @@
             this.BarManagerObjectTree.DockControls.Add(this.barDockControlRight);
             this.BarManagerObjectTree.Form = this;
             this.BarManagerObjectTree.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
-            this.ButtonExport,
-            this.ButtonImportExtend,
-            this.ButtonExportExtend,
-            this.MenuItemExtend});
+            this.ButtonExport});
             this.BarManagerObjectTree.MaxItemId = 14;
             // 
             // BarMainTools
@@ -105,8 +91,7 @@
             this.BarMainTools.DockRow = 0;
             this.BarMainTools.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
             this.BarMainTools.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.ButtonExport, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
-            new DevExpress.XtraBars.LinkPersistInfo(this.MenuItemExtend, true)});
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.ButtonExport, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph)});
             this.BarMainTools.OptionsBar.AllowQuickCustomization = false;
             this.BarMainTools.OptionsBar.DisableCustomization = true;
             this.BarMainTools.Text = "主工具条";
@@ -121,35 +106,12 @@
             this.ButtonExport.Name = "ButtonExport";
             this.ButtonExport.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonExport_ItemClick);
             // 
-            // MenuItemExtend
-            // 
-            this.MenuItemExtend.Caption = "扩展配置(&T)";
-            this.MenuItemExtend.Id = 13;
-            this.MenuItemExtend.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonImportExtend),
-            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonExportExtend)});
-            this.MenuItemExtend.Name = "MenuItemExtend";
-            // 
-            // ButtonImportExtend
-            // 
-            this.ButtonImportExtend.Caption = "导入扩展配置";
-            this.ButtonImportExtend.Id = 11;
-            this.ButtonImportExtend.Name = "ButtonImportExtend";
-            this.ButtonImportExtend.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonImportExtend_ItemClick);
-            // 
-            // ButtonExportExtend
-            // 
-            this.ButtonExportExtend.Caption = "导出扩展配置";
-            this.ButtonExportExtend.Id = 12;
-            this.ButtonExportExtend.Name = "ButtonExportExtend";
-            this.ButtonExportExtend.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonExportExtend_ItemClick);
-            // 
             // barDockControlTop
             // 
             this.barDockControlTop.CausesValidation = false;
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(922, 28);
+            this.barDockControlTop.Size = new System.Drawing.Size(922, 31);
             // 
             // barDockControlBottom
             // 
@@ -162,30 +124,30 @@
             // 
             this.barDockControlLeft.CausesValidation = false;
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 28);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 543);
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 31);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 540);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(922, 28);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 543);
+            this.barDockControlRight.Location = new System.Drawing.Point(922, 31);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 540);
             // 
             // SplitContainerControlMain
             // 
             this.SplitContainerControlMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SplitContainerControlMain.FixedPanel = DevExpress.XtraEditors.SplitFixedPanel.None;
-            this.SplitContainerControlMain.Location = new System.Drawing.Point(0, 28);
+            this.SplitContainerControlMain.Location = new System.Drawing.Point(0, 31);
             this.SplitContainerControlMain.Name = "SplitContainerControlMain";
             this.SplitContainerControlMain.Panel1.Controls.Add(this.SplitContainerControlLeft);
             this.SplitContainerControlMain.Panel1.Text = "Panel1";
             this.SplitContainerControlMain.Panel2.AppearanceCaption.Font = new System.Drawing.Font("微软雅黑", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SplitContainerControlMain.Panel2.AppearanceCaption.Options.UseFont = true;
             this.SplitContainerControlMain.Panel2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Default;
-            this.SplitContainerControlMain.Panel2.Controls.Add(this.TabControl);
+            this.SplitContainerControlMain.Panel2.Controls.Add(this.ObjectContainerEditControl);
             this.SplitContainerControlMain.Panel2.ShowCaption = true;
-            this.SplitContainerControlMain.Size = new System.Drawing.Size(922, 543);
+            this.SplitContainerControlMain.Size = new System.Drawing.Size(922, 540);
             this.SplitContainerControlMain.SplitterPosition = 504;
             this.SplitContainerControlMain.TabIndex = 7;
             this.SplitContainerControlMain.Text = "splitContainerControl1";
@@ -204,7 +166,7 @@
             this.SplitContainerControlLeft.Panel2.Controls.Add(this.LabelControlPropertyType);
             this.SplitContainerControlLeft.Panel2.Controls.Add(this.LabelControlPropertyTitle);
             this.SplitContainerControlLeft.Panel2.Text = "Panel2";
-            this.SplitContainerControlLeft.Size = new System.Drawing.Size(504, 543);
+            this.SplitContainerControlLeft.Size = new System.Drawing.Size(504, 540);
             this.SplitContainerControlLeft.SplitterPosition = 93;
             this.SplitContainerControlLeft.TabIndex = 0;
             this.SplitContainerControlLeft.Text = "splitContainerControl2";
@@ -239,7 +201,7 @@
             this.TreeListObject.OptionsView.ShowAutoFilterRow = true;
             this.TreeListObject.OptionsView.ShowIndicator = false;
             this.TreeListObject.SelectImageList = this.ImageCollectionTree;
-            this.TreeListObject.Size = new System.Drawing.Size(504, 444);
+            this.TreeListObject.Size = new System.Drawing.Size(504, 442);
             this.TreeListObject.TabIndex = 1;
             this.TreeListObject.FocusedNodeChanged += new DevExpress.XtraTreeList.FocusedNodeChangedEventHandler(this.TreeListObject_FocusedNodeChanged);
             // 
@@ -343,53 +305,15 @@
             // ObjectContainerEditControl
             // 
             this.ObjectContainerEditControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ObjectContainerEditControl.Icon = null;
             this.ObjectContainerEditControl.Location = new System.Drawing.Point(0, 0);
             this.ObjectContainerEditControl.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.ObjectContainerEditControl.Name = "ObjectContainerEditControl";
             this.ObjectContainerEditControl.ShowApplyButton = false;
             this.ObjectContainerEditControl.ShowCancelButton = true;
-            this.ObjectContainerEditControl.Size = new System.Drawing.Size(402, 476);
+            this.ObjectContainerEditControl.Size = new System.Drawing.Size(409, 500);
             this.ObjectContainerEditControl.TabIndex = 0;
             this.ObjectContainerEditControl.DataModifyStateChanged += new System.EventHandler<PAO.WinForm.DataModifyStateChangedEventArgs>(this.ObjectContainerEditControl_DataModifyStateChanged);
-            // 
-            // AddonExtentionEditControl
-            // 
-            this.AddonExtentionEditControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.AddonExtentionEditControl.Location = new System.Drawing.Point(0, 0);
-            this.AddonExtentionEditControl.Name = "AddonExtentionEditControl";
-            this.AddonExtentionEditControl.OriginAddon = null;
-            this.AddonExtentionEditControl.ShowApplyButton = false;
-            this.AddonExtentionEditControl.ShowCancelButton = true;
-            this.AddonExtentionEditControl.Size = new System.Drawing.Size(402, 476);
-            this.AddonExtentionEditControl.TabIndex = 0;
-            this.AddonExtentionEditControl.DataModifyStateChanged += new System.EventHandler<PAO.WinForm.DataModifyStateChangedEventArgs>(this.AddonExtentionEditControl_DataModifyStateChanged);
-            // 
-            // TabControl
-            // 
-            this.TabControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TabControl.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom;
-            this.TabControl.Location = new System.Drawing.Point(0, 0);
-            this.TabControl.Name = "TabControl";
-            this.TabControl.SelectedTabPage = this.TabPageProperty;
-            this.TabControl.Size = new System.Drawing.Size(408, 503);
-            this.TabControl.TabIndex = 3;
-            this.TabControl.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
-            this.TabPageProperty,
-            this.TabPageExtendProperty});
-            // 
-            // TabPageProperty
-            // 
-            this.TabPageProperty.Controls.Add(this.ObjectContainerEditControl);
-            this.TabPageProperty.Name = "TabPageProperty";
-            this.TabPageProperty.Size = new System.Drawing.Size(402, 476);
-            this.TabPageProperty.Text = "属性";
-            // 
-            // TabPageExtendProperty
-            // 
-            this.TabPageExtendProperty.Controls.Add(this.AddonExtentionEditControl);
-            this.TabPageExtendProperty.Name = "TabPageExtendProperty";
-            this.TabPageExtendProperty.Size = new System.Drawing.Size(402, 476);
-            this.TabPageExtendProperty.Text = "扩展属性";
             // 
             // ObjectTreeEditControl
             // 
@@ -410,10 +334,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainerControlLeft)).EndInit();
             this.SplitContainerControlLeft.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.TreeListObject)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TabControl)).EndInit();
-            this.TabControl.ResumeLayout(false);
-            this.TabPageProperty.ResumeLayout(false);
-            this.TabPageExtendProperty.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -442,13 +362,6 @@
         private DevExpress.XtraEditors.LabelControl LabelControlPropertyDescription;
         private DevExpress.XtraEditors.LabelControl LabelControlPropertyType;
         private DevExpress.XtraEditors.LabelControl LabelControlPropertyTitle;
-        private AddonExtentionEditControl AddonExtentionEditControl;
-        private DevExpress.XtraBars.BarSubItem MenuItemExtend;
-        private DevExpress.XtraBars.BarButtonItem ButtonImportExtend;
-        private DevExpress.XtraBars.BarButtonItem ButtonExportExtend;
         private CommonObjectEditControl ObjectContainerEditControl;
-        private DevExpress.XtraTab.XtraTabControl TabControl;
-        private DevExpress.XtraTab.XtraTabPage TabPageProperty;
-        private DevExpress.XtraTab.XtraTabPage TabPageExtendProperty;
     }
 }

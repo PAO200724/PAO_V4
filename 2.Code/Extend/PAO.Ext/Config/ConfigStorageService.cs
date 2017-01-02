@@ -24,7 +24,7 @@ namespace PAO.Ext.Config
     [DataContract(Namespace = "")]
     [Name("配置存储服务")]
     [Description("保存/读取配置的服务")]
-    public class ConfigStorageService : PaoObject, IConfigStorage, IPermissionSet
+    public class ConfigStorageService : PaoObject, IPermissionSet
     {
         #region 插件属性
         #region 属性：DataService

@@ -59,7 +59,6 @@ namespace WinFormTest
         private void ButtonConfigTools_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             UIPublic.ShowWaitingForm();
             var objectTreeControl = new ObjectTreeEditControl();
-            objectTreeControl.ExtendPropertyStorageFilePath = AppPublic.GetAbsolutePath("ExtendProperties.config");
             objectTreeControl.EditValue = PaoApplication.Default;
             UIPublic.CloseWaitingForm();
             WinFormPublic.ShowDialog(objectTreeControl);

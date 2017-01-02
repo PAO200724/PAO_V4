@@ -43,27 +43,10 @@ namespace PAO.Config.Views
             set;
         }
         #endregion 属性：ConfigFile
-
-        #region 属性：ExtendPropertyConfigFile
-        /// <summary>
-        /// 属性：ExtendPropertyConfigFile
-        /// 扩展属性配置文件
-        /// 扩展属性配置文件路径
-        /// </summary>
-        [AddonProperty]
-        [DataMember(EmitDefaultValue = false)]
-        [Name("扩展属性配置文件")]
-        [Description("扩展属性配置文件路径")]
-        public string ExtendPropertyConfigFile {
-            get;
-            set;
-        }
-        #endregion 属性：ExtendPropertyConfigFile
         #endregion
         public ObjectConfigController() {
         }
 
-        internal const string DefaultExtendPropertyConfigFile = "ExtendProperties.config";
         protected override Type ViewType {
             get {
                 return typeof(ObjectConfigView);

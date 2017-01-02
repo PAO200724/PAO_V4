@@ -99,10 +99,26 @@ namespace PAO.Config
             if (Configs == null)
                 Configs = new Dictionary<string, object>();
 
+            if (configObject.IsNull())
+                return;
+
+            var cloneObject = IOPublic.ObjectClone(configObject);
             if (Configs.ContainsKey(id))
-                Configs[id] = configObject;
+                Configs[id] = cloneObject;
             else
-                Configs.Add(id, configObject);
+                Configs.Add(id, cloneObject);
+        }
+
+        /// <summary>
+        /// 查找配置Key列表
+        /// </summary>
+        /// <param name="keyFilter">Key过滤器</param>
+        /// <returns>配置Key列表</returns>
+        public IEnumerable<string> FindConfigKeys(Func<string, bool> keyFilter) {
+            if (Configs == null)
+                return null;
+
+            return Configs.Keys.Where(keyFilter);
         }
     }
 }

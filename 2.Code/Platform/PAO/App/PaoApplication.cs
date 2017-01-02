@@ -102,22 +102,6 @@ namespace PAO.App {
         }
         #endregion 属性：ExtendAddonList        
 
-        #region 属性：ExtendConfigFile
-        /// <summary>
-        /// 属性：ExtendConfigFile
-        /// 插件扩展配置文件名
-        /// 插件扩展配置文件名
-        /// </summary>
-        [AddonProperty]
-        [DataMember(EmitDefaultValue = false)]
-        [Name("插件扩展配置文件名")]
-        [Description("插件扩展配置文件名")]
-        public string ExtendConfigFile {
-            get;
-            set;
-        }
-        #endregion 属性：ExtendConfigFile
-
         #region 属性：ConfigStorageDirName
         /// <summary>
         /// 属性：ConfigStorageDirName
@@ -211,29 +195,13 @@ namespace PAO.App {
 
                     TransactionPublic.Run("本地配置加载", () =>
                     {
-                        if (ExtendConfigFile.IsNotNullOrEmpty()) {
-                            ExtendAddonPublic.Initialize(ExtendConfigFile);
-                            try {
-                                ExtendAddonPublic.LoadAddonExtendPropertiesFromStorage();
-                            }
-                            catch (Exception err){
-                                if(UIPublic.ShowYesNoDialog("本地配置加载错误，可能是本地配置文件版本错误，如果您选择继续，程序可以运行，但本地配置将会丢失，您确认要继续吗。") == DialogReturn.Yes) {
-                                    ExtendAddonPublic.BackupStorage();
-                                    ExtendAddonPublic.SaveAddonExtendPropertiesToStorage();
-                                    // 加载扩展插件如果出现异常，可能是版本问题，直接退出。
-                                    EventPublic.Exception(err);
-                                } else {
-                                    throw err;
-                                }
-                            }
-                        }
-                        // 加载本地扩展插件
-                        ExtendAddonPublic.GetAddonExtendProperties(this);
-
                         // 加载本地配置存储
                         if(ConfigStorageDirName.IsNotNullOrEmpty()) {
                             ConfigStoragePublic.LoadConfigStorages(AppPublic.GetAbsolutePath(ConfigStorageDirName));
                         }
+
+                        // 加载Application扩展属性
+                        ExtendAddonPublic.GetAddonExtendProperties(this);
                     });
 
                     TransactionPublic.Run("检索全局插件", ()=> {
@@ -277,8 +245,6 @@ namespace PAO.App {
                 {
                     TransactionPublic.Run("扩展属性保存", ()=>
                     {
-                        ExtendAddonPublic.SaveAddonExtendPropertiesToStorage();
-
                         // 保存本地配置存储
                         if (ConfigStorageDirName.IsNotNullOrEmpty()) {
                             ConfigStoragePublic.SaveConfigStorages(AppPublic.GetAbsolutePath(ConfigStorageDirName));

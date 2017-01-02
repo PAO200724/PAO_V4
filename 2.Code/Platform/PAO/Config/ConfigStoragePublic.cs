@@ -111,5 +111,21 @@ namespace PAO.Config
                 ConfigStorages.Add(storageName, configStorage);
             }
         }
+
+        /// <summary>
+        /// 查找配置Key列表
+        /// </summary>
+        /// <param name="storageName">配置名称</param>
+        /// <param name="keyFilter">Key过滤器</param>
+        /// <returns>配置Key列表</returns>
+        public static IEnumerable<string> FindConfigKeys(string storageName, Func<string, bool> keyFilter) {
+            if (ConfigStorages == null)
+                return null;
+
+            if (!ConfigStorages.ContainsKey(storageName))
+                return null;
+
+            return ConfigStorages[storageName].FindConfigKeys(keyFilter);
+        }
     }
 }

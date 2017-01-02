@@ -78,7 +78,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConfigPublic.cs" />
-    <Compile Include="Editor\AddonExtentionEditController.cs" />
     <Compile Include="Editor\CommonObjectEditController.cs" />
     <Compile Include="Editor\DataCommandInfoEditController.cs" />
     <Compile Include="Editor\DataFieldsEditController.cs" />
@@ -128,12 +127,6 @@
     <Compile Include="Editor\ObjectTreeEditController.cs" />
     <None Include="ExtendConfigPublic.cs" />
     <Compile Include="Views\ObjectConfigController.cs" />
-    <Compile Include="Editor\AddonExtentionEditControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Editor\AddonExtentionEditControl.Designer.cs">
-      <DependentUpon>AddonExtentionEditControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="Editor\AddonPropertyInfo.cs" />
     <Compile Include="Editor\DictionaryEditControl.cs">
       <SubType>UserControl</SubType>
@@ -214,9 +207,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Editor\AddonExtentionEditControl.resx">
-      <DependentUpon>AddonExtentionEditControl.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Editor\DictionaryEditControl.resx">
       <DependentUpon>DictionaryEditControl.cs</DependentUpon>
     </EmbeddedResource>

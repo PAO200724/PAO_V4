@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using static PAO.Config.DataSetExtendProperty;
 
 namespace PAO.Config
 {
@@ -16,69 +15,61 @@ namespace PAO.Config
     /// </summary>
     public static class ExtendAddonPublic
     {
-        #region 扩展属性
-            /// <summary>
-            /// 扩展属性存储器
-            /// </summary>
-        private static ExtendPropertyStorage ExtendPropertyStorage;
+        public const string ExtendAddonStorageName = "ExtendAddons";
 
         /// <summary>
-        /// 初始化
+        /// 获取插件属性ID，用于在配置存储中检索
         /// </summary>
-        /// <param name="filePath">扩展插件路径</param>
-        public static void Initialize(string filePath) {
-            if(filePath != null) {
-                ExtendPropertyStorage = new Config.ExtendPropertyStorage()
-                {
-                    FilePath = filePath
-                };
-            } else {
-                ExtendPropertyStorage = null;
-            }
+        /// <param name="addon">插件</param>
+        /// <param name="propertyName">属性名</param>
+        /// <returns>插件属性ID</returns>
+        private static string GetAddonPropertyID(PaoObject addon, string propertyName) {
+            var id = String.Format("{0}&{1}", addon.ID, propertyName);
+            return id;
         }
+        #region 扩展属性
 
         /// <summary>
         /// 抽取插件扩展属性
         /// </summary>
+        /// <param name="dataTable">扩展数据表</param>
         /// <param name="addon">插件</param>
         /// <param name="properties">需要纳入扩展的属性</param>
         public static void SetAddonExtendProperties(PaoObject addon, params string[] properties) {
-            ExtendPropertyStorage.CheckNotNull("扩展插件存储尚未初始化.");
-            ExtendPropertyStorage.SaveAddonExtendProperties(addon, properties);
+            if (addon.IsNotNull() && properties.IsNotNullOrEmpty()) {
+                foreach (var property in properties) {
+                    var propertyValue = addon.GetPropertyValueByPath(property);
+                    var propertyID = GetAddonPropertyID(addon, property);
+                    if (propertyValue.IsNotNull()) {
+                        ConfigStoragePublic.SetConfig(ExtendAddonStorageName, propertyID, propertyValue);
+                    }
+                }
+            }
         }
 
         /// <summary>
         /// 应用插件扩展属性
         /// </summary>
+        /// <param name="dataTable">扩展数据表</param>
         /// <param name="addon">插件</param>
         public static void GetAddonExtendProperties(PaoObject addon) {
-            ExtendPropertyStorage.CheckNotNull("扩展插件存储尚未初始化.");
-            ExtendPropertyStorage.LoadAddonExtendProperties(addon);
-        }
+            if (addon == null)
+                return;
 
-        /// <summary>
-        /// 备份Storage
-        /// </summary>
-        /// <param name="extendPropertyStorage">扩展属性存储器</param>
-        public static void BackupStorage() {
-            ExtendPropertyStorage.Backup();
-        }
+            var keys = ConfigStoragePublic.FindConfigKeys(ExtendAddonStorageName
+                , (key) =>{
+                    return key.IndexOf(addon.ID + "&") == 0;
+                });
 
-        /// <summary>
-        /// 从Storage加载扩展插件
-        /// </summary>
-        /// <param name="extendPropertyStorage">扩展属性存储器</param>
-        public static void LoadAddonExtendPropertiesFromStorage() {
-            ExtendPropertyStorage.Load();
-        }
+            if (keys.IsNullOrEmpty())
+                return;
 
-        /// <summary>
-        /// 保存扩展插件到存储器
-        /// </summary>
-        /// <param name="extendPropertyStorage">扩展属性存储器</param>
-        public static void SaveAddonExtendPropertiesToStorage() {
-            ExtendPropertyStorage.CheckNotNull("扩展插件存储尚未初始化.");
-            ExtendPropertyStorage.Save();
+            foreach(var key in keys) {
+                string[] ids = key.Split(new char[] { '&' }, 2);
+                string propertyName = ids[1];
+                var propertyValue = ConfigStoragePublic.GetConfig(ExtendAddonStorageName, key);
+                AddonPublic.SetPropertyValueByPath(addon, propertyName, propertyValue);
+            }
         }
         #endregion
     }

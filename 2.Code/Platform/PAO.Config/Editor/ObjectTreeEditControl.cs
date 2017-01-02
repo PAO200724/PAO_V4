@@ -19,7 +19,6 @@ using PAO.IO;
 using PAO.WinForm;
 using PAO.MVC;
 using PAO.Config.Controls;
-using static PAO.Config.DataSetExtendProperty;
 using PAO.WinForm.Editor;
 
 namespace PAO.Config.Editor
@@ -29,11 +28,6 @@ namespace PAO.Config.Editor
     /// </summary>
     public partial class ObjectTreeEditControl : BaseObjectEditControl
     {
-        /// <summary>
-        /// 扩展属性存储
-        /// </summary>
-        ExtendPropertyStorage ExtendPropertyStorage;
-
         #region 公共属性
         /// <summary>
         /// 当前选择的对象
@@ -64,31 +58,7 @@ namespace PAO.Config.Editor
                 this.SplitContainerControlMain.Panel2.Visible = _EditMode;
             }
         }
-
-        private string _ExtendPropertyStorageFilePath;
-        [Browsable(false)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public string ExtendPropertyStorageFilePath {
-            get { return _ExtendPropertyStorageFilePath; }
-            set {
-                _ExtendPropertyStorageFilePath = value;
-                if(_ExtendPropertyStorageFilePath.IsNotNullOrEmpty() ) {
-                    ExtendPropertyStorage = new ExtendPropertyStorage() { FilePath = value };
-                    this.TabPageExtendProperty.Visible = true;
-                    ExtendPropertyStorage = new ExtendPropertyStorage()
-                    {
-                        FilePath = _ExtendPropertyStorageFilePath
-                    };
-                    ExtendPropertyStorage.Load();
-                    this.AddonExtentionEditControl.EditValue = ExtendPropertyStorage.PropertyTable;
-                }
-                else {
-                    this.TabPageExtendProperty.Visible = false;
-                }
-                this.TabControl.SelectedTabPage = this.TabPageProperty;
-                SetControlStatus();
-            }
-        }
+        
         #endregion
 
         public ObjectTreeEditControl() {
@@ -104,11 +74,6 @@ namespace PAO.Config.Editor
         }
 
         protected override void OnClose() {
-            /// 保存
-            if (ExtendPropertyStorage != null) {
-                ExtendPropertyStorage.Save();
-            }
-
             base.OnClose();
         }
         #endregion
@@ -343,9 +308,6 @@ namespace PAO.Config.Editor
         #region 私有方法
         protected override void SetControlStatus() {
             var focusedNode = this.TreeListObject.FocusedNode;
-            if (focusedNode != null && focusedNode.Id >= 0) {
-                this.ButtonExportExtend.Enabled = ExtendPropertyStorage.PropertyTable != null;
-            }
 
             this.ButtonExport.Enabled = (EditValue != null);
             base.SetControlStatus();
@@ -409,7 +371,6 @@ namespace PAO.Config.Editor
             this.LabelControlPropertyDescription.Text = propDesc == null ? null : propDesc.Description;
             this.LabelControlPropertyType.Text = propDesc == null ? null : propDesc.PropertyType.GetTypeFullString();
             var nodeType = (ObjectTreeNodeType)node.GetValue(ColumnPropertyElementType);
-            this.AddonExtentionEditControl.Enabled = false;
             switch (nodeType) {
                 case ObjectTreeNodeType.ListProperty:
                 case ObjectTreeNodeType.DictionaryProperty:
@@ -435,16 +396,8 @@ namespace PAO.Config.Editor
                 default:
                     throw new Exception("此节点不支持显示数据");
             }
-
-            if (propertyValue is PaoObject) {
-                this.AddonExtentionEditControl.Enabled = true;
-                this.AddonExtentionEditControl.OriginAddon = propertyValue as PaoObject;
-            } else {
-                this.AddonExtentionEditControl.Enabled = false;
-                this.AddonExtentionEditControl.OriginAddon = null;
-            }
+            
             this.ObjectContainerEditControl.EditValue = propertyValue;
-            ExtendPropertyStorage.Save();
         }
 
         /// <summary>
@@ -488,23 +441,6 @@ namespace PAO.Config.Editor
             ExportSelectedObject();
         }
         
-        private void AddonExtentionEditControl_DataModifyStateChanged(object sender, DataModifyStateChangedEventArgs e) {
-            // 保存到扩展存储中
-            this.AddonExtentionEditControl.GetDataFromControl();
-        }
-
-        private void ButtonImportExtend_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            IOPublic.ImportObject((obj) =>
-            {
-                ExtendPropertyStorage.PropertyTable = obj as ExtendPropertyDataTable;
-                this.AddonExtentionEditControl.EditValue = ExtendPropertyStorage.PropertyTable;
-                SetControlStatus();
-            });
-        }
-
-        private void ButtonExportExtend_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            IOPublic.ExportObject(ExtendPropertyStorage.PropertyTable);
-        }
         #endregion
 
     }
