@@ -112,6 +112,17 @@ namespace PAO.WinForm.Editor
         }
 
         /// <summary>
+        /// 清除所有预定义的编辑控制器
+        /// </summary>
+        /// <param name="propertyName">属性名称</param>
+        /// <returns>编辑控制器</returns>
+        public void ClearPredefinedEditControllers() {
+            if (PredefinedEditors.IsNotNullOrEmpty()) {
+                PredefinedEditors.Clear();
+            }
+        }
+
+        /// <summary>
         /// 获取预定义的编辑控制器
         /// </summary>
         /// <param name="propertyName">属性名称</param>

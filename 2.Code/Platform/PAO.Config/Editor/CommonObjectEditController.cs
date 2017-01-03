@@ -74,5 +74,10 @@ namespace PAO.Config.Editor
             editControl.StartEdit(EditMode, ObjectType, ComponentObject, ElementKey);
             return editControl;
         }
+
+
+        public static new bool TypeFilter(Type type) {
+            return !type.IsValueType;
+        }
     }
 }

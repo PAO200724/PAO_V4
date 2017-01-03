@@ -201,5 +201,14 @@ namespace PAO.Config.Editor
                 }
             }
         }
+
+        private void ButtonClearEditors_ItemClick(object sender, ItemClickEventArgs e) {
+            var controller = Controller as ObjectPropertyEditController;
+            if (controller != null) {
+                if (UIPublic.ShowYesNoDialog("您确定要恢复所有默认的编辑器吗？") == DialogReturn.Yes) {
+                    controller.ClearPredefinedEditControllers();
+                }
+            }
+        }
     }
 }

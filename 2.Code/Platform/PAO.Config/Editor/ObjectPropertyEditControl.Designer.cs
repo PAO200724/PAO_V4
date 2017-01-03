@@ -36,9 +36,10 @@
             this.EditCaption = new DevExpress.XtraBars.BarEditItem();
             this.TextEditCaption = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.ButtonEditor = new DevExpress.XtraBars.BarButtonItem();
+            this.ButtonRecoverEditor = new DevExpress.XtraBars.BarButtonItem();
             this.BarManager = new DevExpress.XtraBars.BarManager(this.components);
             this.BarTools = new DevExpress.XtraBars.Bar();
-            this.ButtonRecoverEditor = new DevExpress.XtraBars.BarButtonItem();
+            this.ButtonClearEditors = new DevExpress.XtraBars.BarButtonItem();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
@@ -57,7 +58,7 @@
             this.PropertyDescriptionControl.Location = new System.Drawing.Point(0, 0);
             this.PropertyDescriptionControl.Name = "PropertyDescriptionControl";
             this.PropertyDescriptionControl.PropertyGrid = this.PropertyGridControl;
-            this.PropertyDescriptionControl.Size = new System.Drawing.Size(466, 96);
+            this.PropertyDescriptionControl.Size = new System.Drawing.Size(517, 96);
             this.PropertyDescriptionControl.TabIndex = 0;
             this.PropertyDescriptionControl.TabStop = false;
             // 
@@ -68,7 +69,7 @@
             this.PropertyGridControl.Location = new System.Drawing.Point(0, 0);
             this.PropertyGridControl.Name = "PropertyGridControl";
             this.PropertyGridControl.OptionsView.MinRowAutoHeight = 30;
-            this.PropertyGridControl.Size = new System.Drawing.Size(466, 540);
+            this.PropertyGridControl.Size = new System.Drawing.Size(517, 540);
             this.PropertyGridControl.TabIndex = 0;
             this.PropertyGridControl.FocusedRowChanged += new DevExpress.XtraVerticalGrid.Events.FocusedRowChangedEventHandler(this.PropertyGridControl_FocusedRowChanged);
             this.PropertyGridControl.CustomRecordCellEdit += new DevExpress.XtraVerticalGrid.Events.GetCustomRowCellEditEventHandler(this.PropertyGridControl_CustomRecordCellEdit);
@@ -87,7 +88,7 @@
             this.SplitContainerControl.Panel1.Text = "Panel1";
             this.SplitContainerControl.Panel2.Controls.Add(this.PropertyDescriptionControl);
             this.SplitContainerControl.Panel2.Text = "Panel2";
-            this.SplitContainerControl.Size = new System.Drawing.Size(466, 641);
+            this.SplitContainerControl.Size = new System.Drawing.Size(517, 641);
             this.SplitContainerControl.SplitterPosition = 96;
             this.SplitContainerControl.TabIndex = 1;
             this.SplitContainerControl.Text = "splitContainerControl1";
@@ -153,6 +154,15 @@
             this.ButtonEditor.Name = "ButtonEditor";
             this.ButtonEditor.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonEditor_ItemClick);
             // 
+            // ButtonRecoverEditor
+            // 
+            this.ButtonRecoverEditor.Caption = "恢复默认编辑器(&R)";
+            this.ButtonRecoverEditor.Glyph = global::PAO.Config.Properties.Resources.clearformatting_16x16;
+            this.ButtonRecoverEditor.Id = 8;
+            this.ButtonRecoverEditor.LargeGlyph = global::PAO.Config.Properties.Resources.clearformatting_32x32;
+            this.ButtonRecoverEditor.Name = "ButtonRecoverEditor";
+            this.ButtonRecoverEditor.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonRecoverEditor_ItemClick);
+            // 
             // BarManager
             // 
             this.BarManager.Bars.AddRange(new DevExpress.XtraBars.Bar[] {
@@ -168,8 +178,9 @@
             this.ButtonCustom,
             this.ButtonRecoverFormat,
             this.ButtonEditor,
-            this.ButtonRecoverEditor});
-            this.BarManager.MaxItemId = 9;
+            this.ButtonRecoverEditor,
+            this.ButtonClearEditors});
+            this.BarManager.MaxItemId = 10;
             this.BarManager.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.TextEditCaption});
             // 
@@ -185,34 +196,35 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.ButtonRecoverFormat),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.EditCaption, "", true, true, true, 0, null, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(this.ButtonEditor),
-            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonRecoverEditor)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonRecoverEditor),
+            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonClearEditors)});
             this.BarTools.OptionsBar.AllowQuickCustomization = false;
             this.BarTools.OptionsBar.DrawDragBorder = false;
             this.BarTools.OptionsBar.UseWholeRow = true;
             this.BarTools.Text = "工具条";
             // 
-            // ButtonRecoverEditor
+            // ButtonClearEditors
             // 
-            this.ButtonRecoverEditor.Caption = "恢复默认编辑器(&R)";
-            this.ButtonRecoverEditor.Glyph = global::PAO.Config.Properties.Resources.clearformatting_16x16;
-            this.ButtonRecoverEditor.Id = 8;
-            this.ButtonRecoverEditor.LargeGlyph = global::PAO.Config.Properties.Resources.clearformatting_32x32;
-            this.ButtonRecoverEditor.Name = "ButtonRecoverEditor";
-            this.ButtonRecoverEditor.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonRecoverEditor_ItemClick);
+            this.ButtonClearEditors.Caption = "恢复所有编辑器(&C)";
+            this.ButtonClearEditors.Glyph = global::PAO.Config.Properties.Resources.clear_16x16;
+            this.ButtonClearEditors.Id = 9;
+            this.ButtonClearEditors.LargeGlyph = global::PAO.Config.Properties.Resources.clear_32x32;
+            this.ButtonClearEditors.Name = "ButtonClearEditors";
+            this.ButtonClearEditors.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonClearEditors_ItemClick);
             // 
             // barDockControlTop
             // 
             this.barDockControlTop.CausesValidation = false;
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(466, 31);
+            this.barDockControlTop.Size = new System.Drawing.Size(517, 31);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.barDockControlBottom.Location = new System.Drawing.Point(0, 672);
-            this.barDockControlBottom.Size = new System.Drawing.Size(466, 0);
+            this.barDockControlBottom.Size = new System.Drawing.Size(517, 0);
             // 
             // barDockControlLeft
             // 
@@ -225,7 +237,7 @@
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(466, 31);
+            this.barDockControlRight.Location = new System.Drawing.Point(517, 31);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 641);
             // 
             // ObjectPropertyEditControl
@@ -238,7 +250,7 @@
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
             this.Name = "ObjectPropertyEditControl";
-            this.Size = new System.Drawing.Size(466, 672);
+            this.Size = new System.Drawing.Size(517, 672);
             this.Validating += new System.ComponentModel.CancelEventHandler(this.ObjectPropertyEditControl_Validating);
             ((System.ComponentModel.ISupportInitialize)(this.PropertyGridControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainerControl)).EndInit();
@@ -270,5 +282,6 @@
         private DevExpress.XtraBars.BarButtonItem ButtonRecoverFormat;
         private DevExpress.XtraBars.BarButtonItem ButtonEditor;
         private DevExpress.XtraBars.BarButtonItem ButtonRecoverEditor;
+        private DevExpress.XtraBars.BarButtonItem ButtonClearEditors;
     }
 }

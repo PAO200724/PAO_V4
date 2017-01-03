@@ -10,6 +10,7 @@ using PAO.Server.Properties;
 using PAO.Time;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -36,6 +37,9 @@ namespace PAO.Server
                 & new Sql("ComputerID LIKE @ComputerID")
                 & new Sql("ConfigName LIKE @ConfigName")
                 & new Sql("EnabledTime <= @TimeStart AND DisabledTime > @TimeEnd"),
+            Parameters = new List<DataField>()
+                .Append(new DataField("@TimeStart", DbType.DateTime))
+                .Append(new DataField("@TimeEnd", DbType.DateTime))
         };
         #endregion
 

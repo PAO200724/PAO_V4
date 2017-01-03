@@ -50,5 +50,9 @@ namespace PAO.Config.Editor
             var editControl = new ObjectLayoutEditControl();
             return editControl;
         }
+
+        public static new bool TypeFilter(Type type) {
+            return !type.IsValueType;
+        }
     }
 }

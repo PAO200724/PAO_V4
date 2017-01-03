@@ -74,6 +74,22 @@ namespace PAO.Data
         }
         #endregion 属性:DataFilter
 
+        #region 属性：Parameters
+        /// <summary>
+        /// 属性：Parameters
+        /// 参数
+        /// 参数列表
+        /// </summary>
+        [AddonProperty]
+        [DataMember(EmitDefaultValue = false)]
+        [Name("参数")]
+        [Description("参数列表")]
+        public List<DataField> Parameters {
+            get;
+            set;
+        }
+        #endregion 属性：Parameters
+
         #endregion
 
         const string TrueFilter = "1=1";
@@ -111,10 +127,17 @@ namespace PAO.Data
                 if (parameters.Any(p => p.Name == paramName)) {
                     continue;
                 }
-
-                var newParam = new DataField(paramName,DbType.String);
-
-                parameters.Add(newParam);
+                DataField predefinedParam = null;
+                if (Parameters.IsNotNull()) {
+                    predefinedParam = Parameters.Where(p => p.Name == paramName).FirstOrDefault();
+                }
+                if (predefinedParam != null) {
+                    parameters.Add(predefinedParam);
+                }
+                else {
+                    var newParam = new DataField(paramName, DbType.String);
+                    parameters.Add(newParam);
+                }
             }
             return parameters.ToArray();
         }

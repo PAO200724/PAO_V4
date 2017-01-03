@@ -192,48 +192,92 @@ namespace PAO.Config.Editor
 
         private void DataLayoutControl_PopupMenuShowing(object sender, PopupMenuShowingEventArgs e) {
             if(e.HitInfo.Item != null) {
-                var layoutItem = e.HitInfo.Item as LayoutControlItem;
-                // 增加菜单
-                var menuChangeEditor = new DXMenuItem("更改编辑器(&C)..."
-                    , (s, a) => {
-                        var editControl = layoutItem.Control;
-                        var dataField = editControl.Tag as DataField;
-                        if (dataField == null)
-                            return;
+                var controller = Controller as DataFieldsEditController;
+                if (controller == null)
+                    return;
 
-                        Type editControllerType;
-                        if (ConfigPublic.SelectEditControllerType(dataField.ObjectType, out editControllerType) == DialogReturn.OK) {
-                            if (editControllerType != null) {
-                                var controller = Controller as DataFieldsEditController;
-                                var editController = editControllerType.CreateInstance() as BaseEditController;
-                                if (controller != null) {
+                var layoutItem = e.HitInfo.Item as LayoutControlItem;
+                var editControl = layoutItem.Control;
+                var dataField = editControl.Tag as DataField;
+
+                if (dataField != null) {
+
+                    // 修改字段标题
+                    var menuChangeCaption = new DXEditMenuItem("标题(&C)"
+                        , new TextEditController().CreateRepositoryItem(typeof(string)));
+                    menuChangeCaption.Width = 100;
+                    menuChangeCaption.EditValue = layoutItem.Text;
+                    menuChangeCaption.EditValueChanged += (s, a) =>
+                    {
+                        if (menuChangeCaption.EditValue.IsNull())
+                            layoutItem.Text = dataField.Name;
+                        else
+                            layoutItem.Text = (string)menuChangeCaption.EditValue;
+                    };
+                    menuChangeCaption.BeginGroup = true;
+                    e.Menu.Items.Add(menuChangeCaption);
+
+                    // 修改字段类型
+                    var menuChangeDbType = new DXEditMenuItem("类型(&T)"
+                        , new EnumEditController().CreateRepositoryItem(typeof(DbType)));
+                    menuChangeDbType.Width = 100;
+                    menuChangeDbType.EditValue = dataField.DbType;
+                    menuChangeDbType.EditValueChanged += (s, a) =>
+                    {
+                        if (menuChangeDbType.EditValue.IsNull())
+                            dataField.DbType = DbType.String;
+                        else
+                            dataField.DbType = (DbType)menuChangeDbType.EditValue;
+                    };
+                    e.Menu.Items.Add(menuChangeDbType);
+
+                    // 增加更改编辑器菜单
+                    var menuChangeEditor = new DXMenuItem("更改编辑器(&C)..."
+                        , (s, a) => {
+                            Type editControllerType;
+                            if (ConfigPublic.SelectEditControllerType(dataField.ObjectType, out editControllerType) == DialogReturn.OK) {
+                                if (editControllerType != null) {
+                                    var editController = editControllerType.CreateInstance() as BaseEditController;
+                                    // 清除前保存配置
+                                    controller.LayoutData = this.DataLayoutControl.GetLayoutData();
                                     controller.SetPredfinedEditController(dataField.Name, editController.GetType());
+                                    EditValue = EditValue;
                                 }
                             }
                         }
-                        EditValue = EditValue;
-                    }
-                    , Properties.Resources.renamedatasource_16x16);
-                menuChangeEditor.BeginGroup = true;
-                // 增加菜单
-                var menuRecoverEditor = new DXMenuItem("恢复编辑器(&C)..."
-                    , (s, a) => {
-                        var editControl = layoutItem.Control;
-                        var dataField = editControl.Tag as DataField;
-                        if (dataField == null)
-                            return;
-
-                        var controller = Controller as ObjectLayoutEditController;
-                        if (controller != null) {
+                        , Properties.Resources.renamedatasource_16x16);
+                    menuChangeEditor.BeginGroup = true;
+                    e.Menu.Items.Add(menuChangeEditor);
+                    // 增加恢复编辑器菜单
+                    var menuRecoverEditor = new DXMenuItem("恢复编辑器(&R)"
+                        , (s, a) => {
                             if (UIPublic.ShowYesNoDialog("您确定要恢复默认的编辑器吗？") == DialogReturn.Yes) {
+                                // 清除前保存配置
+                                controller.LayoutData = this.DataLayoutControl.GetLayoutData();
                                 controller.RemovePredefinedEditController(dataField.Name);
+                                EditValue = EditValue;
                             }
                         }
-                        EditValue = EditValue;
+                        , Properties.Resources.clearformatting_16x16);
+                    e.Menu.Items.Add(menuRecoverEditor);
+                }
+
+                // 恢复所有编辑器
+                var menuClearEditors = new DXMenuItem("恢复所有编辑器(&C)"
+                    , (s, a) => {
+                        if (controller != null) {
+                            if (UIPublic.ShowYesNoDialog("您确定要恢复所有默认的编辑器吗？") == DialogReturn.Yes) {
+                                // 清除前保存配置
+                                controller.LayoutData = this.DataLayoutControl.GetLayoutData();
+                                controller.ClearPredefinedEditControllers();
+                                EditValue = EditValue;
+                            }
+                        }
                     }
-                    , Properties.Resources.clearformatting_16x16);
-                e.Menu.Items.Add(menuChangeEditor);
-                e.Menu.Items.Add(menuRecoverEditor);
+                    , Properties.Resources.clear_16x16);
+                menuClearEditors.BeginGroup = true;
+                e.Menu.Items.Add(menuClearEditors);
+
             }
         }
     }

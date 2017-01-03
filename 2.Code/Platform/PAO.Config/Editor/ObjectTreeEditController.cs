@@ -33,5 +33,10 @@ namespace PAO.Config.Editor
             var editControl = new ObjectTreeEditControl();
             return editControl;
         }
+
+
+        public static new bool TypeFilter(Type type) {
+            return false;
+        }
     }
 }

@@ -28,7 +28,6 @@ namespace PAO.WinForm.Editor
         #endregion
         public EnumEditController() {
         }
-        
         protected override RepositoryItem OnCreateRepositoryItem(Type objectType) {
             var edit = new RepositoryItemComboBox();
 
@@ -37,7 +36,7 @@ namespace PAO.WinForm.Editor
             if (objectType != null && !objectType.IsEnum)
                 throw new Exception("枚举编辑器只支持枚举类型");
 
-            foreach(var enumValue in Enum.GetNames(objectType)) {
+            foreach(var enumValue in Enum.GetValues(objectType)) {
                 edit.Items.Add(enumValue);
             }
             return edit;
