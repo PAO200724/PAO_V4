@@ -56,9 +56,6 @@
             this.DataLayoutControl.Size = new System.Drawing.Size(535, 612);
             this.DataLayoutControl.TabIndex = 0;
             this.DataLayoutControl.Text = "布局控件";
-            this.DataLayoutControl.ItemSelectionChanged += new System.EventHandler(this.DataLayoutControl_ItemSelectionChanged);
-            this.DataLayoutControl.ShowCustomization += new System.EventHandler(this.DataLayoutControl_ShowCustomization);
-            this.DataLayoutControl.HideCustomization += new System.EventHandler(this.DataLayoutControl_HideCustomization);
             this.DataLayoutControl.PopupMenuShowing += new DevExpress.XtraLayout.PopupMenuShowingEventHandler(this.DataLayoutControl_PopupMenuShowing);
             // 
             // BindingSource

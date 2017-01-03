@@ -63,7 +63,8 @@ namespace PAO.Config.Editor
         }
 
         public static new bool TypeFilter(Type type) {
-            return !type.IsValueType;
+            // 只支持通过代码创建此控制器
+            return false;
         }
     }
 }

@@ -15,6 +15,7 @@ using DevExpress.XtraBars;
 using DevExpress.XtraEditors.Repository;
 using DevExpress.XtraVerticalGrid;
 using PAO.UI;
+using DevExpress.Utils.Menu;
 
 namespace PAO.Config.Editor
 {
@@ -72,18 +73,6 @@ namespace PAO.Config.Editor
 
         protected override void SetControlStatus() {
             base.SetControlStatus();
-            this.EditCaption.Enabled = this.PropertyGridControl.FocusedRow != null;
-            this.ButtonDeleteRow.Enabled = this.PropertyGridControl.FocusedRow != null;
-            if (this.PropertyGridControl.FocusedRow != null) {
-                EditCaption.EditValue = this.PropertyGridControl.FocusedRow.Properties.Caption;
-
-                var propDesc = PropertyGridControl.GetPropertyDescriptor(PropertyGridControl.FocusedRow);
-                this.ButtonEditor.Enabled = propDesc != null;
-                this.ButtonRecoverEditor.Enabled = propDesc != null;
-            }
-            else {
-                this.ButtonEditor.Enabled = false;
-            }
         }
 
         private void PropertyGridControl_CellValueChanged(object sender
@@ -128,39 +117,10 @@ namespace PAO.Config.Editor
             this.PropertyGridControl.CloseEditor();
         }
         
-        private void PropertyGridControl_MouseUp(object sender, MouseEventArgs e) {
-            if (e.Button == MouseButtons.Right) {
-                var pt = new Point(e.X, e.Y);
-                var HitInfo = this.PropertyGridControl.CalcHitInfo(pt);
-                if(HitInfo.HitInfoType == DevExpress.XtraVerticalGrid.HitInfoTypeEnum.HeaderCell) {
-                    this.PropertyGridControl.FocusedRow = HitInfo.Row;
-                    // 显示菜单
-                    PopupMenu.ShowPopup(this.PropertyGridControl.PointToScreen(pt));
-                }
-            }
-        }
-
-        private void EditCaption_EditValueChanged(object sender, EventArgs e) {
-            if(this.PropertyGridControl.FocusedRow != null) {
-                this.PropertyGridControl.FocusedRow.Properties.Caption = EditCaption.EditValue as string;
-            }
-        }
-                        
         private void ButtonCustom_ItemClick(object sender, ItemClickEventArgs e) {
             this.PropertyGridControl.RowsCustomization();
         }
-
-        private void ButtonDeleteRow_ItemClick(object sender, ItemClickEventArgs e) {
-            if (this.PropertyGridControl.FocusedRow != null) {
-                this.PropertyGridControl.FocusedRow.Visible = false;
-                SetControlStatus();
-            }
-        }
-
-        private void PropertyGridControl_FocusedRowChanged(object sender, DevExpress.XtraVerticalGrid.Events.FocusedRowChangedEventArgs e) {
-            SetControlStatus();
-        }
-
+        
         private void ButtonRecoverFormat_ItemClick(object sender, ItemClickEventArgs e) {
             if(DefaultLayoutData.IsNotNullOrEmpty()) {
                 if(UIPublic.ShowYesNoDialog("您是否需要默认格式？") == DialogReturn.Yes) {
@@ -169,45 +129,77 @@ namespace PAO.Config.Editor
             }
         }
         
-        private void ButtonEditor_ItemClick(object sender, ItemClickEventArgs e) {
-            if (this.PropertyGridControl.FocusedRow != null) {
-                var propDesc = PropertyGridControl.GetPropertyDescriptor(PropertyGridControl.FocusedRow);
-                if (propDesc == null)
+        private void PropertyGridControl_PopupMenuShowing(object sender, DevExpress.XtraVerticalGrid.Events.PopupMenuShowingEventArgs e) {
+            if (e.Row != null) {
+                var controller = Controller as ObjectPropertyEditController;
+                if (controller == null)
                     return;
+                var propDesc = PropertyGridControl.GetPropertyDescriptor(e.Row);
 
-                Type editControllerType;
-                if(ConfigPublic.SelectEditControllerType(propDesc.PropertyType, out editControllerType) == DialogReturn.OK) {
-                    if(editControllerType != null) {
-                        var controller = Controller as ObjectPropertyEditController;
-                        var editController = editControllerType.CreateInstance() as BaseEditController;
-                        if(controller != null) {
-                            controller.SetPredfinedEditController(propDesc.Name, editController.GetType());
+                if (propDesc != null) {
+                    // 修改字段标题
+                    var menuChangeCaption = new DXEditMenuItem("标题(&C)"
+                        , new TextEditController().CreateRepositoryItem(typeof(string)));
+                    menuChangeCaption.Width = 100;
+                    menuChangeCaption.EditValue = e.Row.Properties.Caption;
+                    menuChangeCaption.BeginGroup = true;
+                    menuChangeCaption.EditValueChanged += (s, a) =>
+                    {
+                        if (menuChangeCaption.EditValue.IsNull())
+                            e.Row.Properties.Caption = propDesc.Name;
+                        else
+                            e.Row.Properties.Caption = (string)menuChangeCaption.EditValue;
+                    };
+                    e.Menu.Items.Add(menuChangeCaption);
+
+                    // 增加删除行菜单
+                    var menuHideRow = new DXMenuItem("隐藏行(&D)"
+                        , (s, a) =>
+                        {
+                            e.Row.Visible = false;
+                        });
+                    e.Menu.Items.Add(menuHideRow);
+
+                    // 增加更改编辑器菜单
+                    var menuChangeEditor = new DXMenuItem("更改编辑器(&E)..."
+                        , (s, a) =>
+                        {
+                            Type editControllerType;
+                            if (ConfigPublic.SelectEditControllerType(propDesc.PropertyType, out editControllerType) == DialogReturn.OK) {
+                                if (editControllerType != null) {
+                                    var editController = editControllerType.CreateInstance() as BaseEditController;
+                                    if (controller != null) {
+                                        controller.SetPredfinedEditController(propDesc.Name, editController.GetType());
+                                    }
+                                }
+                            }
+                        }
+                        , Properties.Resources.renamedatasource_16x16);
+                    menuChangeEditor.BeginGroup = true;
+                    e.Menu.Items.Add(menuChangeEditor);
+                    // 增加恢复编辑器菜单
+                    var menuRecoverEditor = new DXMenuItem("恢复编辑器(&R)"
+                        , (s, a) =>
+                        {
+                            if (UIPublic.ShowYesNoDialog("您确定要恢复默认的编辑器吗？") == DialogReturn.Yes) {
+                                controller.RemovePredefinedEditController(propDesc.Name);
+                            }
+                        }
+                        , Properties.Resources.clearformatting_16x16);
+                    e.Menu.Items.Add(menuRecoverEditor);
+                }
+
+                // 恢复所有编辑器
+                var menuClearEditors = new DXMenuItem("恢复所有编辑器(&C)"
+                    , (s, a) =>
+                    {
+                        if (UIPublic.ShowYesNoDialog("您确定要恢复所有默认的编辑器吗？") == DialogReturn.Yes) {
+                            controller.ClearPredefinedEditControllers();
                         }
                     }
-                }
-            }
-        }
-
-        private void ButtonRecoverEditor_ItemClick(object sender, ItemClickEventArgs e) {
-            if (this.PropertyGridControl.FocusedRow != null) {
-                var propDesc = PropertyGridControl.GetPropertyDescriptor(PropertyGridControl.FocusedRow);
-                if (propDesc == null)
-                    return;
-                var controller = Controller as ObjectPropertyEditController;
-                if (controller != null) {
-                    if(UIPublic.ShowYesNoDialog("您确定要恢复默认的编辑器吗？") == DialogReturn.Yes) {
-                        controller.RemovePredefinedEditController(propDesc.Name);
-                    }
-                }
-            }
-        }
-
-        private void ButtonClearEditors_ItemClick(object sender, ItemClickEventArgs e) {
-            var controller = Controller as ObjectPropertyEditController;
-            if (controller != null) {
-                if (UIPublic.ShowYesNoDialog("您确定要恢复所有默认的编辑器吗？") == DialogReturn.Yes) {
-                    controller.ClearPredefinedEditControllers();
-                }
+                    , Properties.Resources.clear_16x16);
+                menuClearEditors.BeginGroup = true;
+                e.Menu.Items.Add(menuClearEditors);
             }
         }
     }

@@ -207,6 +207,7 @@ namespace PAO.Config.Editor
                         , new TextEditController().CreateRepositoryItem(typeof(string)));
                     menuChangeCaption.Width = 100;
                     menuChangeCaption.EditValue = layoutItem.Text;
+                    menuChangeCaption.BeginGroup = true;
                     menuChangeCaption.EditValueChanged += (s, a) =>
                     {
                         if (menuChangeCaption.EditValue.IsNull())
@@ -232,7 +233,7 @@ namespace PAO.Config.Editor
                     e.Menu.Items.Add(menuChangeDbType);
 
                     // 增加更改编辑器菜单
-                    var menuChangeEditor = new DXMenuItem("更改编辑器(&C)..."
+                    var menuChangeEditor = new DXMenuItem("更改编辑器(&E)..."
                         , (s, a) => {
                             Type editControllerType;
                             if (ConfigPublic.SelectEditControllerType(dataField.ObjectType, out editControllerType) == DialogReturn.OK) {
@@ -265,13 +266,11 @@ namespace PAO.Config.Editor
                 // 恢复所有编辑器
                 var menuClearEditors = new DXMenuItem("恢复所有编辑器(&C)"
                     , (s, a) => {
-                        if (controller != null) {
-                            if (UIPublic.ShowYesNoDialog("您确定要恢复所有默认的编辑器吗？") == DialogReturn.Yes) {
-                                // 清除前保存配置
-                                controller.LayoutData = this.DataLayoutControl.GetLayoutData();
-                                controller.ClearPredefinedEditControllers();
-                                EditValue = EditValue;
-                            }
+                        if (UIPublic.ShowYesNoDialog("您确定要恢复所有默认的编辑器吗？") == DialogReturn.Yes) {
+                            // 清除前保存配置
+                            controller.LayoutData = this.DataLayoutControl.GetLayoutData();
+                            controller.ClearPredefinedEditControllers();
+                            EditValue = EditValue;
                         }
                     }
                     , Properties.Resources.clear_16x16);

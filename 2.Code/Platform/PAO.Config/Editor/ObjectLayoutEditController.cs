@@ -52,7 +52,7 @@ namespace PAO.Config.Editor
         }
 
         public static new bool TypeFilter(Type type) {
-            return !type.IsValueType;
+            return type.IsAddonType();
         }
     }
 }
