@@ -109,7 +109,8 @@ namespace PAO.Report.Controls
         }
 
         protected override void OnClose() {
-            ExtendAddonPublic.SetAddonExtendProperties(_ReportDataTable, "QueryBehavior", "ParameterEditController");
+            _ReportDataTable.QueryParameters = this.DataFieldsEditControl.EditValue as List<DataField>;
+            ExtendAddonPublic.SetAddonExtendProperties(_ReportDataTable, "QueryBehavior", "ParameterEditController", "QueryParameters");
             base.OnClose();
         }
 

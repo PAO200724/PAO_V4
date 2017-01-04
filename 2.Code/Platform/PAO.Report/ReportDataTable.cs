@@ -1,6 +1,7 @@
 ﻿using PAO;
 using PAO.Config.Editor;
 using PAO.Data;
+using PAO.Report.Controls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -122,7 +123,6 @@ namespace PAO.Report
         }
         #endregion 属性：ParameterEditController
 
-
         #region 属性：DataFetcher
         /// <summary>
         /// 属性：DataFetcher
@@ -140,7 +140,7 @@ namespace PAO.Report
         #endregion 属性：DataFetcher
         #endregion
         public ReportDataTable() {
-            ParameterEditController = new Config.Editor.DataFieldsEditController();
+            ParameterEditController = new DataFieldsEditController();
         }
 
         /// <summary>
@@ -202,13 +202,12 @@ namespace PAO.Report
                     queryParameters.AddRange(parameters);
             }
 
-            if(QueryParameters.IsNotNullOrEmpty()) {
-                foreach(var parameter in QueryParameters) {
-                    var foundParam = queryParameters.Where(p => p.Name == parameter.Name).FirstOrDefault();
+            if (QueryParameters.IsNotNullOrEmpty()) {
+                for (int i = 0; i < queryParameters.Count; i++) {
+                    var foundParam = QueryParameters.Where(p => p.Name == queryParameters[i].Name).FirstOrDefault();
                     if (foundParam != null) {
-                        queryParameters.Remove(foundParam);
+                        queryParameters[i] = foundParam;
                     }
-                    queryParameters.Add(parameter);
                 }
             }
             return queryParameters;

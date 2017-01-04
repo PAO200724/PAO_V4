@@ -11,7 +11,7 @@ using System.Windows.Forms;
 using PAO.WinForm.Editor;
 using PAO.Data;
 
-namespace PAO.Config.Editor
+namespace PAO.Report.Controls
 {
     /// <summary>
     /// 类：DataFieldsEditController

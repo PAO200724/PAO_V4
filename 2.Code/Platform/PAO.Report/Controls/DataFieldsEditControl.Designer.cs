@@ -1,4 +1,4 @@
-﻿namespace PAO.Config.Editor
+﻿namespace PAO.Report.Controls
 {
     partial class DataFieldsEditControl
     {

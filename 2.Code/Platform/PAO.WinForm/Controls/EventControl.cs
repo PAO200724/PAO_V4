@@ -36,6 +36,11 @@ namespace PAO.WinForm.Controls
             ShowCancelButton = false;
         }
 
+        public override void SetFormState(Form form) {
+            form.TopMost = true;
+            base.SetFormState(form);
+        }
+
         public void Initialize(EventInfo eventInfo) {
             _EventInfo = eventInfo;
             this.TextEditSource.Text = _EventInfo.Source;

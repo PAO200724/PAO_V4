@@ -17,8 +17,10 @@ using PAO.Data;
 using PAOData = PAO.Data;
 using SysData = System.Data;
 using DevExpress.Utils.Menu;
+using PAO.Config;
+using PAO.Config.Editor;
 
-namespace PAO.Config.Editor
+namespace PAO.Report.Controls
 {
     /// <summary>
     /// 对象布局式编辑控件
@@ -88,7 +90,8 @@ namespace PAO.Config.Editor
                 if (!DataFields.IsNull()) {
                     valueString = value.ToString();
                     DataTable = DataPublic.GetTableByFields(DataFields);
-                } else {
+                }
+                else {
                     DataTable = null;
                 }
 
