@@ -48,13 +48,7 @@ namespace PAO.MVC
         public BaseController() {
         }
 
-        /// <summary>
-        /// 创建并打开视图
-        /// </summary>
-        /// <param name="viewContainer">视图容器</param>
-        public virtual IView CreateAndOpenView(IViewContainer viewContainer) {
-            SecurityPublic.CheckPermission(ID, Permission_DoCommand).CheckTrue("当前用户不拥有执行此命令的权限.");
-
+        public virtual IView CreateView() {
             var View = ViewType.CreateInstance() as IView;
             if (View == null)
                 throw new Exception("视图创建失败.");
@@ -63,9 +57,21 @@ namespace PAO.MVC
             View.Caption = Caption;
             View.Icon = Icon;
             View.LargeIcon = LargeIcon;
-            View.ViewContainer = viewContainer;
             View.Controller = this;
 
+            return View;
+        }
+
+        /// <summary>
+        /// 创建并打开视图
+        /// </summary>
+        /// <param name="viewContainer">视图容器</param>
+        public virtual IView CreateAndOpenView(IViewContainer viewContainer) {
+            SecurityPublic.CheckPermission(ID, Permission_DoCommand).CheckTrue("当前用户不拥有执行此命令的权限.");
+
+            var View = CreateView();
+
+            View.ViewContainer = viewContainer;
             viewContainer.OpenView(View);
             return View;
         }

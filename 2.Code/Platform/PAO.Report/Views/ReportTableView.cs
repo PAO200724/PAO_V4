@@ -16,20 +16,22 @@ using PAO.Config;
 using PAO.WinForm.Controls;
 using PAO.UI;
 using PAO.Config.Editor;
+using PAO.Report.Controls;
+using PAO.MVC;
 
-namespace PAO.Report.Controls
+namespace PAO.Report.Views
 {
     /// <summary>
     /// 报表数据表控件
     /// 作者：PAO
     /// </summary>
-    public partial class ReportTableControl : ViewControl
+    public partial class ReportTableView : ViewControl
     {
-        public ReportTableControl() {
+        public ReportTableView() {
             InitializeComponent();
             QueryCompleted = false;
         }
-
+        
         /// <summary>
         /// 查询更多事件
         /// </summary>
@@ -52,38 +54,7 @@ namespace PAO.Report.Controls
         public event EventHandler ClearQueryBehavior;
 
         private DataFieldsEditControl DataFieldsEditControl;
-
-        private ReportDataTable _ReportDataTable;
-        [Browsable(false)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public ReportDataTable ReportDataTable {
-            get {
-                return _ReportDataTable;
-            }
-            set {
-                _ReportDataTable = value;
-                if (_ReportDataTable == null)
-                    return;
-
-                if (DataFieldsEditControl != null) {
-                    DataFieldsEditControl.Parent = null;
-                    DataFieldsEditControl.CloseControl();
-                    DataFieldsEditControl.Dispose();
-                }
-
-                DataFieldsEditControl = _ReportDataTable.ParameterEditController.CreateEditControl(typeof(DataField)) as DataFieldsEditControl;
-                DataFieldsEditControl.Dock = DockStyle.Top;
-                DataFieldsEditControl.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-                DataFieldsEditControl.AutoSize = true;
-                DataFieldsEditControl.Parent = this;
-
-
-                ExtendAddonPublic.GetAddonExtendProperties(_ReportDataTable);
-
-                RecreateParameterInputControls();
-            }
-        }
-
+        
         private bool _QueryCompleted;
         /// <summary>
         /// 查询完成
@@ -102,16 +73,42 @@ namespace PAO.Report.Controls
 
         public string TableName {
             get {
-                if (_ReportDataTable == null)
+                var controller = Controller as ReportTableController;
+                if (controller == null)
                     return null;
-                return _ReportDataTable.TableName;
+                return controller.TableName;
             }
         }
-
+        
         protected override void OnClose() {
-            _ReportDataTable.QueryParameters = this.DataFieldsEditControl.EditValue as List<DataField>;
-            ExtendAddonPublic.SetAddonExtendProperties(_ReportDataTable, "QueryBehavior", "ParameterEditController", "QueryParameters");
+            var controller = Controller as ReportTableController;
+            controller.QueryParameters = this.DataFieldsEditControl.EditValue as List<DataField>;
+            ExtendAddonPublic.SetAddonExtendProperties(controller, "QueryBehavior", "ParameterEditController");
             base.OnClose();
+        }
+
+        protected override void OnSetController(BaseController value) {
+            var controller = value as ReportTableController;
+            if (controller == null)
+                return;
+
+            if (DataFieldsEditControl != null) {
+                DataFieldsEditControl.Parent = null;
+                DataFieldsEditControl.CloseControl();
+                DataFieldsEditControl.Dispose();
+            }
+
+            DataFieldsEditControl = controller.ParameterEditController.CreateEditControl(typeof(DataField)) as DataFieldsEditControl;
+            DataFieldsEditControl.Dock = DockStyle.Top;
+            DataFieldsEditControl.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            DataFieldsEditControl.AutoSize = true;
+            DataFieldsEditControl.Parent = this;
+
+            ExtendAddonPublic.GetAddonExtendProperties(controller);
+
+            RecreateParameterInputControls();
+
+            base.OnSetController(value);
         }
 
         public void StartQuery() {
@@ -161,8 +158,9 @@ namespace PAO.Report.Controls
         /// 创建参数输入控件
         /// </summary>
         private void RecreateParameterInputControls() {
-            if(ReportDataTable != null) {
-                this.DataFieldsEditControl.EditValue = ReportDataTable.GetParameters();
+            var controller = Controller as ReportTableController;
+            if (controller != null) {
+                this.DataFieldsEditControl.EditValue = controller.GetParameters();
             } else {
                 this.DataFieldsEditControl.EditValue = null;
             }

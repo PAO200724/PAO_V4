@@ -1,6 +1,7 @@
 ﻿using PAO;
 using PAO.Config.Editor;
 using PAO.Data;
+using PAO.MVC;
 using PAO.Report.Controls;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 
-namespace PAO.Report
+namespace PAO.Report.Views
 {
     /// <summary>
     /// 类：ReportDataTable
@@ -24,7 +25,7 @@ namespace PAO.Report
     [DataContract(Namespace = "")]
     [Name("报表的数据表定义")]
     [Description("报表的数据表定义")]
-    public class ReportDataTable : PaoObject
+    public class ReportTableController : BaseController
     {
         #region 插件属性
         #region 属性：TableName
@@ -42,23 +43,7 @@ namespace PAO.Report
             set;
         }
         #endregion 属性：TableName
-
-        #region 属性：Caption
-        /// <summary>
-        /// 属性：Caption
-        /// 标题
-        /// 报表标题
-        /// </summary>
-        [AddonProperty]
-        [DataMember(EmitDefaultValue = false)]
-        [Name("标题")]
-        [Description("报表标题")]
-        public string Caption {
-            get;
-            set;
-        }
-        #endregion 属性：Caption
-
+        
         #region 属性：QueryBehavior
         /// <summary>
         /// 属性：QueryBehavior
@@ -139,7 +124,14 @@ namespace PAO.Report
         }
         #endregion 属性：DataFetcher
         #endregion
-        public ReportDataTable() {
+
+        protected override Type ViewType {
+            get {
+                return typeof(ReportTableView);
+            }
+        }
+
+        public ReportTableController() {
             ParameterEditController = new DataFieldsEditController();
         }
 

@@ -56,7 +56,7 @@ namespace PAO.Report.Views
         [DataMember(EmitDefaultValue = false)]
         [Name("数据表定义")]
         [Description("报表中的数据表定义")]
-        public List<ReportDataTable> Tables {
+        public List<ReportTableController> Tables {
             get;
             set;
         }
@@ -78,8 +78,6 @@ namespace PAO.Report.Views
         }
         #endregion 属性：QueryBehavior
 
-        #endregion
-
         #region 属性：LayoutData
         /// <summary>
         /// 属性：LayoutData
@@ -95,6 +93,8 @@ namespace PAO.Report.Views
             set;
         }
         #endregion 属性：LayoutData
+
+        #endregion
         public ReportController() {
         }
         protected override Type ViewType {

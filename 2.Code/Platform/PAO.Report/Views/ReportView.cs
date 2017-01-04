@@ -48,7 +48,7 @@ namespace PAO.Report.Views
         /// <summary>
         /// 表格控件列表
         /// </summary>
-        private Dictionary<string, ReportTableControl> TableControls = new Dictionary<string, ReportTableControl>();
+        private Dictionary<string, ReportTableView> TableControls = new Dictionary<string, ReportTableView>();
 
         /// <summary>
         /// 背景工作
@@ -89,7 +89,7 @@ namespace PAO.Report.Views
         /// 重新查询表，查询前清空数据
         /// </summary>
         /// <param name="reportTable"></param>
-        private void RequeryTable(ReportDataTable reportTable) {
+        private void RequeryTable(ReportTableController reportTable) {
             var reportControl = TableControls[reportTable.TableName];
             reportControl.QueryCompleted = false;
             reportControl.RowCount = 0;
@@ -123,7 +123,7 @@ namespace PAO.Report.Views
         /// 查询表，查询前不清空数据
         /// </summary>
         /// <param name="reportTable"></param>
-        private void QueryTable(ReportDataTable reportTable) {
+        private void QueryTable(ReportTableController reportTable) {
             var controller = Controller as ReportController;
             var tableControl = this.TableControls[reportTable.TableName];
             tableControl.StartQuery();
@@ -151,9 +151,10 @@ namespace PAO.Report.Views
                 if (maxCount <= 0)
                     maxCount = Int32.MaxValue;
 
+                var paramValues = tableControl.ParameterValues;
                 Action query = () =>
                 {
-                    queryTable = dataFetcher.FetchData(currentCount, maxCount, tableControl.ParameterValues);
+                    queryTable = dataFetcher.FetchData(currentCount, maxCount, paramValues);
                     queryTable.TableName = reportTable.TableName;
                 };
 
@@ -232,20 +233,19 @@ namespace PAO.Report.Views
         /// </summary>
         private void RecreateTableView() {
             var controller = Controller as ReportController;
-            TableControls = new Dictionary<string, Report.Controls.ReportTableControl>();
+            TableControls = new Dictionary<string, ReportTableView>();
             foreach (var reportDataTable in controller.Tables) {
                 ExtendAddonPublic.GetAddonExtendProperties(reportDataTable);
-                var reportTableControl = new ReportTableControl();
-                reportTableControl.ReportDataTable = reportDataTable;
-                reportTableControl.Dock = DockStyle.Top;
-                reportTableControl.AutoSize = true;
-                reportTableControl.RowCount = 0;
+                var reportTableView = reportDataTable.CreateView() as ReportTableView;
+                reportTableView.Dock = DockStyle.Top;
+                reportTableView.AutoSize = true;
+                reportTableView.RowCount = 0;
 
-                reportTableControl.QueryAll += ReportTableControl_QueryAll;
-                reportTableControl.QueryMore += ReportTableControl_QueryMore;
-                reportTableControl.Requery += ReportTableControl_Requery;
-                reportTableControl.SetupQueryBehavior += ReportTableControl_SetupQueryBehavior;
-                reportTableControl.ClearQueryBehavior += ReportTableControl_ClearQueryBehavior;
+                reportTableView.QueryAll += ReportTableControl_QueryAll;
+                reportTableView.QueryMore += ReportTableControl_QueryMore;
+                reportTableView.Requery += ReportTableControl_Requery;
+                reportTableView.SetupQueryBehavior += ReportTableControl_SetupQueryBehavior;
+                reportTableView.ClearQueryBehavior += ReportTableControl_ClearQueryBehavior;
 
                 var elementParameterView = new AccordionControlElement();
                 elementParameterView.Name = reportDataTable.ID;
@@ -253,16 +253,16 @@ namespace PAO.Report.Views
                 elementParameterView.Expanded = true;
                 elementParameterView.Text = String.Format("{0}({1})", reportDataTable.Caption, reportDataTable.TableName);
                 var container = new AccordionContentContainer();
-                container.Controls.Add(reportTableControl);
-                container.Height = reportTableControl.Height;
+                container.Controls.Add(reportTableView);
+                container.Height = reportTableView.Height;
                 elementParameterView.ContentContainer = container;
 
                 this.AccordionControl.Elements.Add(elementParameterView);
                 this.AccordionControl.Refresh();
-                reportTableControl.SizeChanged += (sender, e) => {
-                    container.Height = reportTableControl.Height;
+                reportTableView.SizeChanged += (sender, e) => {
+                    container.Height = reportTableView.Height;
                 };
-                TableControls.Add(reportDataTable.TableName, reportTableControl);
+                TableControls.Add(reportDataTable.TableName, reportTableView);
             }
         }
         #endregion
@@ -401,37 +401,37 @@ namespace PAO.Report.Views
         }
 
         private void ReportTableControl_QueryMore(object sender, EventArgs e) {
-            var tableControl = sender as ReportTableControl;
-            QueryTable(tableControl.ReportDataTable);
+            var tableControl = sender as ReportTableView;
+            QueryTable(tableControl.Controller as ReportTableController);
         }
 
         private void ReportTableControl_QueryAll(object sender, EventArgs e) {
-            var tableControl = sender as ReportTableControl;
-            QueryTable(tableControl.ReportDataTable);
+            var tableControl = sender as ReportTableView;
+            QueryTable(tableControl.Controller as ReportTableController);
         }
 
         private void ReportTableControl_Requery(object sender, EventArgs e) {
-            var tableControl = sender as ReportTableControl;
-            RequeryTable(tableControl.ReportDataTable);
+            var tableControl = sender as ReportTableView;
+            RequeryTable(tableControl.Controller as ReportTableController);
         }
 
         private void ReportTableControl_SetupQueryBehavior(object sender, EventArgs e) {
-            var tableControl = sender as ReportTableControl;
+            var tableControl = sender as ReportTableView;
             var objectEditControl = new ObjectPropertyEditController().CreateEditControl(typeof(ReportQueryBehavior)) as BaseObjectEditControl;
-            var queryBehavior = IOPublic.ObjectClone(tableControl.ReportDataTable.QueryBehavior);
+            var queryBehavior = IOPublic.ObjectClone(tableControl.Controller.As<ReportTableController>().QueryBehavior);
             if (queryBehavior == null)
                 queryBehavior = new ReportQueryBehavior();
             objectEditControl.EditValue = queryBehavior;
             if(WinFormPublic.ShowDialog(objectEditControl) == DialogReturn.OK) {
-                tableControl.ReportDataTable.QueryBehavior = objectEditControl.EditValue as ReportQueryBehavior;
+                tableControl.Controller.As<ReportTableController>().QueryBehavior = objectEditControl.EditValue as ReportQueryBehavior;
             }
             ResetAutoQuery();
         }
 
 
         private void ReportTableControl_ClearQueryBehavior(object sender, EventArgs e) {
-            var tableControl = sender as ReportTableControl;
-            tableControl.ReportDataTable.QueryBehavior = null;
+            var tableControl = sender as ReportTableView;
+            tableControl.Controller.As<ReportTableController>().QueryBehavior = null;
             ResetAutoQuery();
         }
 

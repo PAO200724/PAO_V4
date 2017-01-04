@@ -93,8 +93,8 @@ namespace PAO.Configuration
                             {
                                 ID = "Smart_Report",
                                 Caption = "智能报表",
-                                Tables = new List<ReportDataTable>()
-                                    .Append(new ReportDataTable()
+                                Tables = new List<ReportTableController>()
+                                    .Append(new ReportTableController()
                                     {
                                         ID = "Smart_Report_User",
                                         TableName = "User",
@@ -113,7 +113,7 @@ namespace PAO.Configuration
                                                     ConstValue = "PAO"
                                                 }.ToRef()
                                             }),
-                                    }).Append(new ReportDataTable()
+                                    }).Append(new ReportTableController()
                                     {
                                         ID = "Smart_Report_Config",
                                         TableName = "Config",

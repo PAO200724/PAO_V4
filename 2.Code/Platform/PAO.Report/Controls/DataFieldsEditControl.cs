@@ -74,9 +74,9 @@ namespace PAO.Report.Controls
             get {
                 // 从SchemaTable中获取值
                 this.BindingSource.EndEdit();
-                foreach(var dataColumn in DataFields) {
+                foreach (var dataColumn in DataFields) {
                     dynamic editControl = EditControls[dataColumn.Name];
-                    if(editControl != null) {
+                    if (editControl != null) {
                         dataColumn.Value = editControl.EditValue;
                     }
                 }
@@ -106,7 +106,7 @@ namespace PAO.Report.Controls
                 RetrieveFields(this.LayoutControlGroupRoot);
             }
         }
-        
+
         public void EndEdit() {
             this.BindingSource.EndEdit();
         }

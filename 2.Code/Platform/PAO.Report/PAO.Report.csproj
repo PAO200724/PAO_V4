@@ -116,11 +116,11 @@
       <DependentUpon>DataFieldsEditControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\DataFieldsEditController.cs" />
-    <Compile Include="Controls\ReportTableControl.cs">
+    <Compile Include="Views\ReportTableView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\ReportTableControl.Designer.cs">
-      <DependentUpon>ReportTableControl.cs</DependentUpon>
+    <Compile Include="Views\ReportTableView.Designer.cs">
+      <DependentUpon>ReportTableView.cs</DependentUpon>
     </Compile>
     <Compile Include="Displayers\BaseDataDisplayer.cs">
       <SubType>UserControl</SubType>
@@ -149,7 +149,7 @@
     <Compile Include="ReportSurface.cs" />
     <Compile Include="ValueFetchers\ReportDataValueFetcher.cs" />
     <Compile Include="Views\ReportController.cs" />
-    <Compile Include="ReportDataTable.cs" />
+    <Compile Include="Views\ReportTableController.cs" />
     <Compile Include="Views\ReportView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -161,8 +161,8 @@
     <EmbeddedResource Include="Controls\DataFieldsEditControl.resx">
       <DependentUpon>DataFieldsEditControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\ReportTableControl.resx">
-      <DependentUpon>ReportTableControl.cs</DependentUpon>
+    <EmbeddedResource Include="Views\ReportTableView.resx">
+      <DependentUpon>ReportTableView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Displayers\GridControlDataDisplayer.resx">
       <DependentUpon>GridControlDataDisplayer.cs</DependentUpon>
