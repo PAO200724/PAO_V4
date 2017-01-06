@@ -16,7 +16,6 @@ using PAO.Data;
 using PAO.WinForm;
 using PAO.UI;
 using DevExpress.XtraVerticalGrid.Rows;
-using PAO.Report.ValueFetchers;
 using PAO.WinForm.Editor;
 using DevExpress.XtraEditors.Repository;
 using PAO.Report.Controls;
@@ -71,20 +70,6 @@ namespace PAO.Report.Views
         }
 
         #region 私有方法
-        /// <summary>
-        /// 初始化值获取器
-        /// </summary>   
-        private void InitValueFetcher() {
-            var controller = Controller as ReportController;
-            foreach (var reportTable in controller.Tables) {
-                foreach (var parameter in reportTable.GetParameters()) {
-                    if (parameter.ValueFetcher != null && parameter.ValueFetcher.Value is IReportElement) {
-                        parameter.ValueFetcher.Value.As<IReportElement>().ReportView = this;
-                    }
-                }
-            }
-        }
-
         /// <summary>
         /// 重新查询表，查询前清空数据
         /// </summary>
@@ -332,7 +317,6 @@ namespace PAO.Report.Views
         #region ViewControl
         protected override void OnSetController(BaseController value) {
             var controller = value as ReportController;
-            InitValueFetcher();
 
             // 打开子视图控制器
             this.BindingSourceTable.DataSource = controller.Tables;

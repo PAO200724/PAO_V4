@@ -122,6 +122,46 @@
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
+        <targetEnds>
+          <association
+            Id="f602cbb3-2c69-40fc-931e-e3af75c531f8"
+            isDerived="false"
+            sourceEndRoleName=""
+            targetEndRoleName="ValueFetcher"
+            isLeaf="false"
+            isAbstract="false">
+            <interfaceMoniker
+              Id="316e5c56-ece2-41e0-83eb-eb207f7c8c2b"
+              LastKnownName="IValueFetch"
+              LastKnownLocation="PAO.Data.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="bb31ce68-30e7-436e-9a61-7a577e78a207"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="Composite"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="4ab9e6e2-3da5-4f12-906e-4f3cbc159e18"
+                  name="ValueFetcher"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="true" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
         <ownedAttributesInternal>
           <property
             Id="0ab614d9-3a8b-4f65-b0db-beb04092e5e0"

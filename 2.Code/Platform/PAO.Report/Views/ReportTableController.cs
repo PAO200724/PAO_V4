@@ -28,6 +28,7 @@ namespace PAO.Report.Views
     public class ReportTableController : BaseController
     {
         #region 插件属性
+
         #region 属性：TableName
         /// <summary>
         /// 属性：TableName
@@ -44,22 +45,6 @@ namespace PAO.Report.Views
         }
         #endregion 属性：TableName
         
-        #region 属性：QueryBehavior
-        /// <summary>
-        /// 属性：QueryBehavior
-        /// 查询行为
-        /// 查询行为的定义
-        /// </summary>
-        [AddonProperty]
-        [DataMember(EmitDefaultValue = false)]
-        [Name("查询行为")]
-        [Description("查询行为的定义")]
-        public ReportQueryBehavior QueryBehavior {
-            get;
-            set;
-        }
-        #endregion 属性：QueryBehavior
-
         #region 属性：DataColumns
         /// <summary>
         /// 属性：DataColumns
@@ -76,38 +61,6 @@ namespace PAO.Report.Views
         }
         #endregion 属性：DataColumns
 
-        #region 属性：QueryParameters
-        /// <summary>
-        /// 属性：QueryParameters
-        /// 查询参数
-        /// 查询参数
-        /// </summary>
-        [AddonProperty]
-        [DataMember(EmitDefaultValue = false)]
-        [Name("查询参数")]
-        [Description("查询参数")]
-        public List<DataField> QueryParameters {
-            get;
-            set;
-        }
-        #endregion 属性：QueryParameters
-
-        #region 属性：ParameterEditController
-        /// <summary>
-        /// 属性：ParameterEditController
-        /// 参数编辑控制器
-        /// 参数编辑控制器
-        /// </summary>
-        [AddonProperty]
-        [DataMember(EmitDefaultValue = false)]
-        [Name("参数编辑控制器")]
-        [Description("参数编辑控制器")]
-        public DataFieldsEditController ParameterEditController {
-            get;
-            set;
-        }
-        #endregion 属性：ParameterEditController
-
         #region 属性：DataFetcher
         /// <summary>
         /// 属性：DataFetcher
@@ -123,6 +76,39 @@ namespace PAO.Report.Views
             set;
         }
         #endregion 属性：DataFetcher
+
+        #region 属性：ChildTables
+        /// <summary>
+        /// 属性：ChildTables
+        /// 子表
+        /// 子表列表
+        /// </summary>
+        [AddonProperty]
+        [DataMember(EmitDefaultValue = false)]
+        [Name("子表")]
+        [Description("子表列表")]
+        public List<ChildReportTableController> ChildTables {
+            get;
+            set;
+        }
+        #endregion 属性：ChildTables
+
+        #region 属性：QueryBehavior
+        /// <summary>
+        /// 属性：QueryBehavior
+        /// 查询行为
+        /// 查询行为的定义
+        /// </summary>
+        [AddonProperty]
+        [DataMember(EmitDefaultValue = false)]
+        [Name("查询行为")]
+        [Description("查询行为的定义")]
+        public ReportQueryBehavior QueryBehavior {
+            get;
+            set;
+        }
+        #endregion 属性：QueryBehavior
+
         #endregion
 
         protected override Type ViewType {
@@ -132,7 +118,6 @@ namespace PAO.Report.Views
         }
 
         public ReportTableController() {
-            ParameterEditController = new DataFieldsEditController();
         }
 
         /// <summary>
@@ -181,28 +166,5 @@ namespace PAO.Report.Views
             return dataColumns;
         }
 
-        /// <summary>
-        /// 获取查询参数列表
-        /// 如果QueryParameters有值，则以其为准，否则，以DataFetcher为准
-        /// </summary>
-        /// <returns>查询参数列表</returns>
-        public IEnumerable<DataField> GetParameters() {
-            List<DataField> queryParameters = new List<DataField>();
-            if (DataFetcher.IsNotNull()) {
-                var parameters = DataFetcher.Value.GetParameters();
-                if (parameters.IsNotNullOrEmpty())
-                    queryParameters.AddRange(parameters);
-            }
-
-            if (QueryParameters.IsNotNullOrEmpty()) {
-                for (int i = 0; i < queryParameters.Count; i++) {
-                    var foundParam = QueryParameters.Where(p => p.Name == queryParameters[i].Name).FirstOrDefault();
-                    if (foundParam != null) {
-                        queryParameters[i] = foundParam;
-                    }
-                }
-            }
-            return queryParameters;
-        }
     }
 }

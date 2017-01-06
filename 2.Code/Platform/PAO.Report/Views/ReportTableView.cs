@@ -82,13 +82,18 @@ namespace PAO.Report.Views
         
         protected override void OnClose() {
             var controller = Controller as ReportTableController;
-            controller.QueryParameters = this.DataFieldsEditControl.EditValue as List<DataField>;
-            ExtendAddonPublic.SetAddonExtendProperties(controller, "QueryBehavior", "ParameterEditController");
+            if(Controller is MainReportTableController) {
+                controller.As< MainReportTableController>().QueryParameters = this.DataFieldsEditControl.EditValue as List<DataField>;
+                ExtendAddonPublic.SetAddonExtendProperties(controller, "QueryBehavior", "ParameterEditController");
+            }
+            else {
+                ExtendAddonPublic.SetAddonExtendProperties(controller, "QueryBehavior");
+            }
             base.OnClose();
         }
 
         protected override void OnSetController(BaseController value) {
-            var controller = value as ReportTableController;
+            var controller = value as MainReportTableController;
             if (controller == null)
                 return;
 
@@ -158,7 +163,7 @@ namespace PAO.Report.Views
         /// 创建参数输入控件
         /// </summary>
         private void RecreateParameterInputControls() {
-            var controller = Controller as ReportTableController;
+            var controller = Controller as MainReportTableController;
             if (controller != null) {
                 this.DataFieldsEditControl.EditValue = controller.GetParameters();
             } else {

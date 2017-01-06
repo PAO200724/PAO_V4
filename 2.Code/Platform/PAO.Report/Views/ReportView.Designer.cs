@@ -67,7 +67,7 @@
             // 
             // BindingSourceTable
             // 
-            this.BindingSourceTable.DataSource = typeof(ReportTableController);
+            this.BindingSourceTable.DataSource = typeof(PAO.Report.Views.ReportTableController);
             // 
             // BarManager
             // 

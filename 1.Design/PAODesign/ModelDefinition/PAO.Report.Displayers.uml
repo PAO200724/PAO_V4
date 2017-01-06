@@ -32,5 +32,24 @@
         </generalsInternal>
       </class>
     </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="3c4f7367-7d1e-42b8-ada3-eb538afb3cd4"
+        name="GridControlController"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="94dd96a0-c7ef-4d98-8377-8ff21435ae10"
+            isSubstitutable="false">
+            <classMoniker
+              Id="6d73fbe3-60ee-41be-8f41-5fc2c880f99c"
+              LastKnownName="BaseDataDisplayerController"
+              LastKnownLocation="PAO.Report.Displayers.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
   </packagedElements>
 </package>

@@ -56,7 +56,7 @@ namespace PAO.Report.Views
         [DataMember(EmitDefaultValue = false)]
         [Name("数据表定义")]
         [Description("报表中的数据表定义")]
-        public List<ReportTableController> Tables {
+        public List<MainReportTableController> Tables {
             get;
             set;
         }

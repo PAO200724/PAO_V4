@@ -7,7 +7,7 @@
     <packageHasNamedElement>
       <class
         Id="c8bf257d-7f57-4ef2-bbf1-2356dd1e19ab"
-        name="DataServiceFetcher"
+        name="RmoteDataServiceFetcher"
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
@@ -61,6 +61,44 @@
             </relationshipOwnedElementsInternal>
           </association>
         </targetEnds>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="fa1fa83f-6a32-4744-acaf-9de01adc2ba4"
+        name="DataFileFetcher"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="af29d256-9fbe-4cad-833a-6057ba2dc2a2"
+            isSubstitutable="false">
+            <classMoniker
+              Id="f114f859-b123-416d-9dd3-d8e0e0846373"
+              LastKnownName="DataFetcher"
+              LastKnownLocation="PAO.Data.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="06c88135-2045-438b-9141-8a5685a58dfd"
+        name="LocalDataServiceFetcher"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="674a4d6d-fbda-4a57-824f-391af4846887"
+            isSubstitutable="false">
+            <classMoniker
+              Id="f114f859-b123-416d-9dd3-d8e0e0846373"
+              LastKnownName="DataFetcher"
+              LastKnownLocation="PAO.Data.uml" />
+          </generalization>
+        </generalsInternal>
       </class>
     </packageHasNamedElement>
   </packagedElements>
