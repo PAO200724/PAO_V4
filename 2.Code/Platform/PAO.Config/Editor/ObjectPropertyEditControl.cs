@@ -37,8 +37,10 @@ namespace PAO.Config.Editor
                 base.EditValue = value;
 
                 this.PropertyGridControl.SelectedObject = value;
-                var controller = Controller as ObjectPropertyEditController;
+
                 DefaultLayoutData = this.PropertyGridControl.GetLayoutData();
+
+                var controller = Controller as ObjectPropertyEditController;
                 if (controller != null) {
                     this.PropertyGridControl.SetLayoutData(controller.LayoutData);
                 }
@@ -63,8 +65,8 @@ namespace PAO.Config.Editor
             if (controller != null) {
                 controller.LayoutData = this.PropertyGridControl.GetLayoutData();
                 // 如果设置了ObjectType，则保存默认配置
-                if(controller.StaticType && EditValue!=null) {
-                    EditorPublic.SetEditControllerToStorage(EditValue.GetType(), controller);
+                if(controller.StaticType && editValue != null) {
+                    EditorPublic.SetEditControllerToStorage(editValue.GetType(), controller);
                 }
             }
             base.OnClose();
@@ -123,6 +125,7 @@ namespace PAO.Config.Editor
         private void ButtonRecoverFormat_ItemClick(object sender, ItemClickEventArgs e) {
             if(DefaultLayoutData.IsNotNullOrEmpty()) {
                 if(UIPublic.ShowYesNoDialog("您是否需要默认格式？") == DialogReturn.Yes) {
+                    EditorPublic.RemoveEditControllerFromStorage(EditValue.GetType(), Controller.GetType());
                     this.PropertyGridControl.SetLayoutData(DefaultLayoutData);
                 }
             }

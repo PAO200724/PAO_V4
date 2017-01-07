@@ -83,7 +83,7 @@ namespace PAO.Config.Editor
         public override object EditValue {
             get {
                 if (_EditControl != null) {
-                    _EditControl.EditValue = _EditControl.EditValue;
+                    base.EditValue = _EditControl.EditValue;
                 }
                 return base.EditValue;
             }
