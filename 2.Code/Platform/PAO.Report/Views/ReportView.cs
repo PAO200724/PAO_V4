@@ -177,6 +177,13 @@ namespace PAO.Report.Views
                 };
                 BackgroundWorkers.Add(backgroundWorker);
                 backgroundWorker.RunWorkerAsync();
+
+                // 迭代查询子表
+                if(reportTable.ChildTables.IsNotNullOrEmpty()) {
+                    foreach(var childTable in reportTable.ChildTables) {
+                        QueryTable(childTable);
+                    }
+                }
             }
         }
 
@@ -219,12 +226,32 @@ namespace PAO.Report.Views
         private void RecreateTableView() {
             var controller = Controller as ReportController;
             TableControls = new Dictionary<string, ReportTableView>();
-            foreach (var reportDataTable in controller.Tables) {
+            this.AccordionControl.Elements.Clear();
+            RecreateTableView(this.AccordionControl.Elements, controller.Tables);
+            this.AccordionControl.Refresh();
+        }
+
+
+        /// <summary>
+        /// 重建参数视图
+        /// </summary>
+        private void RecreateTableView(AccordionControlElementCollection elements, IEnumerable<ReportTableController> tables) {
+            foreach (var reportDataTable in tables) {
                 ExtendAddonPublic.GetAddonExtendProperties(reportDataTable);
+
+                var elementTableView = new AccordionControlElement();
+                elementTableView.Name = reportDataTable.ID;
+                elementTableView.Style = ElementStyle.Group;
+                elementTableView.Expanded = true;
+                elementTableView.Text = String.Format("{0}({1})", reportDataTable.Caption, reportDataTable.TableName);
+                elements.Add(elementTableView);
+                
+
                 var reportTableView = reportDataTable.CreateView() as ReportTableView;
                 reportTableView.Dock = DockStyle.Top;
                 reportTableView.AutoSize = true;
                 reportTableView.RowCount = 0;
+                reportTableView.BorderStyle = BorderStyle.FixedSingle;
 
                 reportTableView.QueryAll += ReportTableControl_QueryAll;
                 reportTableView.QueryMore += ReportTableControl_QueryMore;
@@ -236,18 +263,20 @@ namespace PAO.Report.Views
                 elementParameterView.Name = reportDataTable.ID;
                 elementParameterView.Style = ElementStyle.Item;
                 elementParameterView.Expanded = true;
-                elementParameterView.Text = String.Format("{0}({1})", reportDataTable.Caption, reportDataTable.TableName);
+                elementParameterView.Text = "查询";
                 var container = new AccordionContentContainer();
                 container.Controls.Add(reportTableView);
                 container.Height = reportTableView.Height;
                 elementParameterView.ContentContainer = container;
-
-                this.AccordionControl.Elements.Add(elementParameterView);
-                this.AccordionControl.Refresh();
                 reportTableView.SizeChanged += (sender, e) => {
                     container.Height = reportTableView.Height;
                 };
                 TableControls.Add(reportDataTable.TableName, reportTableView);
+                elementTableView.Elements.Add(elementParameterView);
+
+                if (reportDataTable.ChildTables.IsNotNullOrEmpty()) {
+                    RecreateTableView(elementTableView.Elements, reportDataTable.ChildTables);
+                }
             }
         }
         #endregion

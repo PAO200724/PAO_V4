@@ -141,15 +141,16 @@ namespace PAO.Config.Editor
                 }
 
                 if (editController == null) {
-                    editController = ConfigPublic.GetEditController(propDesc);
-                }
-                if (editController == null) {
-                    var commonEditController = new CommonObjectEditController();
-                    commonEditController.StartEditProperty(EditValue, propDesc.Name);
-                    editController = commonEditController;
+                    if (propDesc.PropertyType.IsAddon()) {
+                        var commonEditController = new CommonObjectEditController();
+                        commonEditController.StartEditProperty(EditValue, propDesc.Name);
+                        editController = commonEditController;
+                    } else {
+                        editController = ConfigPublic.GetEditController(propDesc);
+                    }
                 }
 
-                editControl = editController.CreateEditControl(objType);
+                editControl = editController.CreateEditControl(propDesc.PropertyType);
 
                 if (editControl.GetType().GetProperty("EditValue") == null)
                     throw new Exception("编辑控件必须实现EditValue属性");

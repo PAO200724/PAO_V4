@@ -22,6 +22,7 @@ namespace PAO.Server
         private static readonly DataCommandInfo Command_QueryUser = new DataCommandInfo()
         {
             ID = "Command_QueryUser",
+            Name = "查询用户",
             Sql = @"SELECT * FROM T_User WHERE {0}",
             DataFilter = new Sql("ID LIKE @ID")
                 & new Sql("Name LIKE @Name")
@@ -29,17 +30,24 @@ namespace PAO.Server
                 & new Sql("Tel LIKE @Tel")
                 & new Sql("Email LIKE @Email"),
         };
+        private static readonly DataCommandInfo Command_QueryUserByID = new DataCommandInfo()
+        {
+            ID = "Command_QueryUserByID",
+            Name = "根据ID查询用户",
+            Sql = @"SELECT * FROM T_User WHERE ID = @ID"
+        };
         private static readonly DataCommandInfo Command_QueryConfig = new DataCommandInfo()
         {
             ID = "Command_QueryConfig",
+            Name = "查询配置",
             Sql = @"SELECT * FROM T_Config WHERE {0}",
             DataFilter = new Sql("SoftwareID LIKE @SoftwareID")
                 & new Sql("ComputerID LIKE @ComputerID")
                 & new Sql("ConfigName LIKE @ConfigName")
                 & new Sql("EnabledTime <= @TimeStart AND DisabledTime > @TimeEnd"),
-            Parameters = new List<DataField>()
-                .Append(new DataField("@TimeStart", DbType.DateTime))
-                .Append(new DataField("@TimeEnd", DbType.DateTime))
+            Parameters = new List<DataParameter>()
+                .Append(new DataParameter("@TimeStart", DbType.DateTime))
+                .Append(new DataParameter("@TimeEnd", DbType.DateTime))
         };
         #endregion
 
@@ -97,6 +105,7 @@ namespace PAO.Server
                 }.ToRef(),
                 CommandList = new List<DataCommandInfo>()
                     .Append(Command_QueryUser)
+                    .Append(Command_QueryUserByID)
                     .Append(Command_QueryConfig)
             };
         }

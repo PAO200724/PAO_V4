@@ -31,7 +31,7 @@ namespace PAO.Data.Filters
 
         #region IDataFilter 成员
 
-        public abstract string GetFilterString(DataField[] paramValues, bool ignoreNullValue);
+        public abstract string GetFilterString(DataParameter[] paramValues, bool ignoreNullValue);
         
         #endregion
 

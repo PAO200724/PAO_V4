@@ -87,7 +87,7 @@ namespace PAO.Report.Views
         [DataMember(EmitDefaultValue = false)]
         [Name("子表")]
         [Description("子表列表")]
-        public List<ChildReportTableController> ChildTables {
+        public List<ReportTableController> ChildTables {
             get;
             set;
         }
@@ -109,6 +109,39 @@ namespace PAO.Report.Views
         }
         #endregion 属性：QueryBehavior
 
+        #region 属性：QueryParameters
+        /// <summary>
+        /// 属性：QueryParameters
+        /// 查询参数
+        /// 查询参数
+        /// </summary>
+        [AddonProperty]
+        [DataMember(EmitDefaultValue = false)]
+        [Name("查询参数")]
+        [Description("查询参数")]
+        public List<DataParameter> QueryParameters {
+            get;
+            set;
+        }
+        #endregion 属性：QueryParameters
+
+        #region 属性：ParameterEditController
+        /// <summary>
+        /// 属性：ParameterEditController
+        /// 参数编辑控制器
+        /// 参数编辑控制器
+        /// </summary>
+        [AddonProperty]
+        [DataMember(EmitDefaultValue = false)]
+        [Name("参数编辑控制器")]
+        [Description("参数编辑控制器")]
+        [ReadOnly(true)]
+        public DataFieldsEditController ParameterEditController {
+            get;
+            set;
+        }
+        #endregion 属性：ParameterEditController
+
         #endregion
 
         protected override Type ViewType {
@@ -118,6 +151,7 @@ namespace PAO.Report.Views
         }
 
         public ReportTableController() {
+            ParameterEditController = new DataFieldsEditController();
         }
 
         /// <summary>
@@ -134,7 +168,7 @@ namespace PAO.Report.Views
             }
 
             // 根据DataColumn填充DataChema
-            var columnSchemaTable = DataPublic.GetTableByFields(DataColumns);
+            var columnSchemaTable = DataPublic.GetTableByDataItems(DataColumns);
             if(columnSchemaTable != null) {
                 schemaTable.Merge(columnSchemaTable);
             }
@@ -151,7 +185,7 @@ namespace PAO.Report.Views
             List<DataField> dataColumns = new List<DataField>(); ;
             if (DataFetcher.IsNotNull()) {
                 var schemaTable = DataFetcher.Value.GetDataSchema();
-                var fields = DataPublic.GetFieldsByTable(schemaTable);
+                var fields = DataPublic.GetDataFieldsByTable(schemaTable);
                 dataColumns.AddRange(fields);
             }
 
@@ -166,5 +200,28 @@ namespace PAO.Report.Views
             return dataColumns;
         }
 
+        /// <summary>
+        /// 获取查询参数列表
+        /// 如果QueryParameters有值，则以其为准，否则，以DataFetcher为准
+        /// </summary>
+        /// <returns>查询参数列表</returns>
+        public IEnumerable<DataParameter> GetParameters() {
+            List<DataParameter> queryParameters = new List<DataParameter>();
+            if (DataFetcher.IsNotNull()) {
+                var parameters = DataFetcher.Value.GetParameters();
+                if (parameters.IsNotNullOrEmpty())
+                    queryParameters.AddRange(parameters);
+            }
+
+            if (QueryParameters.IsNotNullOrEmpty()) {
+                for (int i = 0; i < queryParameters.Count; i++) {
+                    var foundParam = QueryParameters.Where(p => p.Name == queryParameters[i].Name).FirstOrDefault();
+                    if (foundParam != null) {
+                        queryParameters[i] = foundParam;
+                    }
+                }
+            }
+            return queryParameters;
+        }
     }
 }

@@ -109,8 +109,8 @@ namespace PAO.Ext.Config
         private void TraverseGlobalConfig(Func<PaoObject, bool> traverseMethod, string configName) {
             var configTable = new ConfigDataSet.T_ConfigDataTable();
             DataService.Value.FillAll(configTable, Sql_QueryCurrentGlobalConfig
-                , new DataField("@ConfigName", configName)
-                , new DataField("@SoftwareID", PaoApplication.Default.SoftwareID));
+                , new DataParameter("@ConfigName", configName)
+                , new DataParameter("@SoftwareID", PaoApplication.Default.SoftwareID));
 
             TraverseConfigRows(configTable, traverseMethod, configName);
         }
@@ -118,9 +118,9 @@ namespace PAO.Ext.Config
         private void TraverseLocalConfig(Func<PaoObject, bool> traverseMethod, string configName) {
             var configTable = new ConfigDataSet.T_ConfigDataTable();
             DataService.Value.FillAll(configTable, Sql_QueryCurrentGlobalConfig
-                , new DataField("@ConfigName", configName)
-                , new DataField("@ComputerID", SecurityPublic.CurrentUser.ComputerID)
-                , new DataField("@SoftwareID", PaoApplication.Default.SoftwareID));
+                , new DataParameter("@ConfigName", configName)
+                , new DataParameter("@ComputerID", SecurityPublic.CurrentUser.ComputerID)
+                , new DataParameter("@SoftwareID", PaoApplication.Default.SoftwareID));
 
             TraverseConfigRows(configTable, traverseMethod, configName);
         }
@@ -185,8 +185,8 @@ namespace PAO.Ext.Config
             var dataService = DataService.Value;
             SecurityPublic.DemandPermission(ID, Permission_SaveGlobalConfig);
             dataService.ExecuteBySql(Sql_DisableCurrentLocalConfig
-                , new DataField("@ConfigName", configObject.ID)
-                , new DataField("@SoftwareID", PaoApplication.Default.SoftwareID));
+                , new DataParameter("@ConfigName", configObject.ID)
+                , new DataParameter("@SoftwareID", PaoApplication.Default.SoftwareID));
 
             var configTable = new ConfigDataSet.T_ConfigDataTable();
             var configRow = configTable.AddT_ConfigRow(Guid.NewGuid()
@@ -204,9 +204,9 @@ namespace PAO.Ext.Config
         public void SaveLocalConfig(PaoObject configObject) {
             var dataService = DataService.Value;
             dataService.ExecuteBySql(Sql_DisableCurrentLocalConfig
-                , new DataField("@ConfigName", configObject.ID)
-                , new DataField("@ComputerID", SecurityPublic.CurrentUser.ComputerID)
-                , new DataField("@SoftwareID", PaoApplication.Default.SoftwareID));
+                , new DataParameter("@ConfigName", configObject.ID)
+                , new DataParameter("@ComputerID", SecurityPublic.CurrentUser.ComputerID)
+                , new DataParameter("@SoftwareID", PaoApplication.Default.SoftwareID));
 
             var configTable = new ConfigDataSet.T_ConfigDataTable();
             var configRow = configTable.AddT_ConfigRow(Guid.NewGuid()

@@ -51,7 +51,7 @@ namespace PAO.Data.Filters
         /// <returns>逻辑运算符</returns>
         protected abstract string GetLogicSign();
 
-        public override string GetFilterString(DataField[] paramValues, bool ignoreNullValue) {
+        public override string GetFilterString(DataParameter[] paramValues, bool ignoreNullValue) {
             string sql = null;
 
             foreach (var dataFilter in ChildFilters) {

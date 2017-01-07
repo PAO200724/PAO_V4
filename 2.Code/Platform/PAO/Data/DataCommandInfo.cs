@@ -84,7 +84,7 @@ namespace PAO.Data
         [DataMember(EmitDefaultValue = false)]
         [Name("参数")]
         [Description("参数列表")]
-        public List<DataField> Parameters {
+        public List<DataParameter> Parameters {
             get;
             set;
         }
@@ -103,7 +103,7 @@ namespace PAO.Data
             return ObjectPublic.ObjectToString(this, null, "Name");
         }
 
-        public virtual string GetCommandText(DataField[] parameterList, bool ignoreNullValue) {
+        public virtual string GetCommandText(DataParameter[] parameterList, bool ignoreNullValue) {
             string filterString;
             if (DataFilter == null) {
                 return Sql;
@@ -116,8 +116,8 @@ namespace PAO.Data
             return String.Format(Sql, filterString);
         }
         
-        public virtual DataField[] GetDefinedParameters() {
-            List<DataField> parameters = new List<Data.DataField>();
+        public virtual DataParameter[] GetDefinedParameters() {
+            List<DataParameter> parameters = new List<Data.DataParameter>();
 
             string sql = GetCommandText(null, false);
             // 从Sql创建参数
@@ -127,7 +127,7 @@ namespace PAO.Data
                 if (parameters.Any(p => p.Name == paramName)) {
                     continue;
                 }
-                DataField predefinedParam = null;
+                DataParameter predefinedParam = null;
                 if (Parameters.IsNotNull()) {
                     predefinedParam = Parameters.Where(p => p.Name == paramName).FirstOrDefault();
                 }
@@ -135,14 +135,14 @@ namespace PAO.Data
                     parameters.Add(predefinedParam);
                 }
                 else {
-                    var newParam = new DataField(paramName, DbType.String);
+                    var newParam = new DataParameter(paramName, DbType.String);
                     parameters.Add(newParam);
                 }
             }
             return parameters.ToArray();
         }
 
-        public virtual void FillCommand(DbCommand command, DataField[] parameterList) {
+        public virtual void FillCommand(DbCommand command, DataParameter[] parameterList) {
             command.CommandText = GetCommandText(parameterList, true);
 
             string sql = GetCommandText(parameterList, true);

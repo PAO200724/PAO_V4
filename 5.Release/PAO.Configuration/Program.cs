@@ -23,6 +23,7 @@ using PAO.WinForm;
 using PAO.App.MDI.DockViews;
 using PAO.Data.Filters;
 using PAO.Data.ValueFetchers;
+using PAO.Report.ValueFetchers;
 
 namespace PAO.Configuration
 {
@@ -93,8 +94,8 @@ namespace PAO.Configuration
                             {
                                 ID = "Smart_Report",
                                 Caption = "智能报表",
-                                Tables = new List<MainReportTableController>()
-                                    .Append(new MainReportTableController()
+                                Tables = new List<ReportTableController>()
+                                    .Append(new ReportTableController()
                                     {
                                         ID = "Smart_Report_User",
                                         TableName = "User",
@@ -104,16 +105,28 @@ namespace PAO.Configuration
                                             DataService = new AddonFactory<IDataService>("CommonDataService"),
                                             CommandID = "Command_QueryUser",
                                         }.ToRef(),
-                                        QueryParameters = new List<DataField>()
-                                            .Append(new DataField()
-                                            {
-                                                Name = "@LoginName",
-                                                ValueFetcher = new ConstValueFetcher<string>()
+                                        ChildTables = new List<ReportTableController>()
+                                            .Append(new ReportTableController()
                                                 {
-                                                    ConstValue = "PAO"
-                                                }.ToRef()
+                                                    ID = "Smart_Report_Child_User",
+                                                    TableName = "User1",
+                                                    Caption = "用户1",
+                                                    DataFetcher = new RemoteDataServiceFetcher()
+                                                    {
+                                                        DataService = new AddonFactory<IDataService>("CommonDataService"),
+                                                        CommandID = "Command_QueryUserByID",
+                                                    }.ToRef(),
+                                                    QueryParameters = new List<DataParameter>()
+                                                        .Append(new DataParameter()
+                                                        {
+                                                            Name = "@ID",
+                                                            ValueFetcher = new BindingSourceValueFetcher()
+                                                            {
+                                                                FieldName = "ID"
+                                                            }.ToRef()
+                                                        }),
                                             }),
-                                    }).Append(new MainReportTableController()
+                                    }).Append(new ReportTableController()
                                     {
                                         ID = "Smart_Report_Config",
                                         TableName = "Config",
@@ -123,13 +136,13 @@ namespace PAO.Configuration
                                             DataService = new AddonFactory<IDataService>("CommonDataService"),
                                             CommandID = "Command_QueryConfig",
                                         }.ToRef(),
-                                        QueryParameters = new List<DataField>()
-                                            .Append(new DataField()
+                                        QueryParameters = new List<DataParameter>()
+                                            .Append(new DataParameter()
                                             {
                                                 Name = "@TimeStart",
                                                 DbType = System.Data.DbType.DateTime
                                             })
-                                            .Append(new DataField()
+                                            .Append(new DataParameter()
                                             {
                                                 Name = "@TimeEnd",
                                                 DbType = System.Data.DbType.DateTime

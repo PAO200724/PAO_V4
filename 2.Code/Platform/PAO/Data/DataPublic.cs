@@ -147,7 +147,7 @@ namespace PAO.Data {
         /// <param name="parameters">参数</param>
         /// <param name="dataService">数据服务</param>
         /// <returns>数据表</returns>
-        public static DataTable QueryAllBySql(this DataService dataService, string sql, params DataField[] parameters) {
+        public static DataTable QueryAllBySql(this DataService dataService, string sql, params DataParameter[] parameters) {
             return dataService.QueryBySql(sql, 0, Int32.MaxValue, parameters);
         }
 
@@ -160,7 +160,7 @@ namespace PAO.Data {
         /// <param name="parameters">参数</param>
         /// <param name="dataService">数据服务</param>
         /// <param name="dataTable">数据表</param>
-        public static void FillBySql(this DataService dataService, DataTable dataTable, string sql, int startIndex, int maxCount, params DataField[] parameters) {
+        public static void FillBySql(this DataService dataService, DataTable dataTable, string sql, int startIndex, int maxCount, params DataParameter[] parameters) {
             var table = dataService.QueryBySql(sql, startIndex, maxCount, parameters);
 
             dataTable.Merge(table, false, MissingSchemaAction.Ignore);
@@ -173,7 +173,7 @@ namespace PAO.Data {
         /// <param name="parameters">参数</param>
         /// <param name="dataService">数据服务</param>
         /// <param name="dataTable">数据表</param>
-        public static void FillAllBySql(this DataService dataService, DataTable dataTable, string sql, params DataField[] parameters) {
+        public static void FillAllBySql(this DataService dataService, DataTable dataTable, string sql, params DataParameter[] parameters) {
             FillBySql(dataService, dataTable, sql, 0, Int32.MaxValue, parameters);
         }
 
@@ -184,7 +184,7 @@ namespace PAO.Data {
         /// <param name="parameters">参数</param>
         /// <param name="dataService">数据服务</param>
         /// <returns>数据表</returns>
-        public static DataTable QueryAll(this IDataService dataService, string commandID, params DataField[] parameters) {
+        public static DataTable QueryAll(this IDataService dataService, string commandID, params DataParameter[] parameters) {
             return dataService.Query(commandID, 0, Int32.MaxValue, parameters);
         }
 
@@ -197,7 +197,7 @@ namespace PAO.Data {
         /// <param name="parameters">参数</param>
         /// <param name="dataService">数据服务</param>
         /// <param name="dataTable">数据表</param>
-        public static void Fill(this IDataService dataService, DataTable dataTable, string commandID, int startIndex, int maxCount, params DataField[] parameters) {
+        public static void Fill(this IDataService dataService, DataTable dataTable, string commandID, int startIndex, int maxCount, params DataParameter[] parameters) {
             var table = dataService.Query(commandID, startIndex, maxCount, parameters);
 
             dataTable.Merge(table, false, MissingSchemaAction.Ignore);
@@ -210,7 +210,7 @@ namespace PAO.Data {
         /// <param name="parameters">参数</param>
         /// <param name="dataService">数据服务</param>
         /// <param name="dataTable">数据表</param>
-        public static void FillAll(this IDataService dataService, DataTable dataTable, string commandID, params DataField[] parameters) {
+        public static void FillAll(this IDataService dataService, DataTable dataTable, string commandID, params DataParameter[] parameters) {
             Fill(dataService, dataTable, commandID, 0, Int32.MaxValue, parameters);
         }
         #endregion
@@ -239,15 +239,15 @@ namespace PAO.Data {
         /// </summary>
         /// <param name="dataFields">数据列列表</param>
         /// <returns>数据表</returns>
-        public static DataTable GetTableByFields(IEnumerable<DataField> dataFields) {
+        public static DataTable GetTableByDataItems(IEnumerable<DataItem> dataFields) {
             if (dataFields == null)
                 return null;
             var schemaTable = new DataTable();
             var keyColumnList = new List<System.Data.DataColumn>();
             foreach(var dataField in dataFields) {
                 var newColumn = schemaTable.Columns.Add();
-                DataFieldToDataColumn(dataField, newColumn);
-                if (dataField.IsKey) {
+                DataItemToDataColumn(dataField, newColumn);
+                if(dataField is DataField && dataField.As<DataField>().IsKey) {
                     keyColumnList.Add(newColumn);
                 }
             }
@@ -262,14 +262,14 @@ namespace PAO.Data {
         /// </summary>
         /// <param name="dataTable">数据表</param>
         /// <returns>数据列列表</returns>
-        public static IEnumerable<DataField> GetFieldsByTable(DataTable dataTable) {
+        public static IEnumerable<DataField> GetDataFieldsByTable(DataTable dataTable) {
             if (dataTable == null)
                 return null;
 
             var dataFields = new List<DataField>();
             foreach(DataColumn dataColumn in dataTable.Columns) {
                 var newField = new DataField();
-                DataColumnToDataField(dataColumn, newField);
+                DataColumnToDataItem(dataColumn, newField);
                 if (dataTable.PrimaryKey.Contains(dataColumn))
                     newField.IsKey = true;
                 dataFields.Add(newField);
@@ -282,28 +282,32 @@ namespace PAO.Data {
         /// 将数据列转换为报表列
         /// </summary>
         /// <param name="dataColumns">数据列</param>
-        /// <param name="dataField">报表列</param>
-        public static void DataColumnToDataField(DataColumn dataColumn, DataField dataField) {
-            if (dataColumn == null || dataField == null)
+        /// <param name="dataItem">报表列</param>
+        public static void DataColumnToDataItem(DataColumn dataColumn, DataItem dataItem) {
+            if (dataColumn == null || dataItem == null)
                 return;
 
-            dataField.Name = dataColumn.ColumnName;
-            dataField.ObjectType = dataColumn.DataType;
-            dataField.Expression = dataColumn.Expression;
+            dataItem.Name = dataColumn.ColumnName;
+            dataItem.ObjectType = dataColumn.DataType;
+            if(dataItem is DataField) {
+                dataItem.As<DataField>().Expression = dataColumn.Expression;
+            }
         }
 
         /// <summary>
         /// 将数据列转换为报表列
         /// </summary>
         /// <param name="dataColumns">数据列</param>
-        /// <param name="dataField">报表列</param>
-        public static void DataFieldToDataColumn(DataField dataField, DataColumn dataColumn) {
-            if (dataColumn == null || dataField == null)
+        /// <param name="dataItem">报表列</param>
+        public static void DataItemToDataColumn(DataItem dataItem, DataColumn dataColumn) {
+            if (dataColumn == null || dataItem == null)
                 return;
 
-            dataColumn.ColumnName = dataField.Name;
-            dataColumn.DataType = dataField.ObjectType;
-            dataColumn.Expression = dataField.Expression;
+            dataColumn.ColumnName = dataItem.Name;
+            dataColumn.DataType = dataItem.ObjectType;
+            if (dataItem is DataField) {
+                dataItem.As<DataField>().Expression = dataColumn.Expression;
+            }
         }
         
         #endregion

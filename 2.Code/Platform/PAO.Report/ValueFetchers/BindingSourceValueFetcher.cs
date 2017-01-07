@@ -22,7 +22,7 @@ namespace PAO.Report.ValueFetchers
     [DataContract(Namespace = "")]
     [Name("数据源值获取器")]
     [Description("从数据源获取值的获取器")]
-    public class DataSourceValueFetcher : PaoObject, IValueFetch
+    public class BindingSourceValueFetcher : PaoObject, IValueFetch
     {
         #region 插件属性
 
@@ -68,7 +68,7 @@ namespace PAO.Report.ValueFetchers
 
         #endregion 属性：DataSource
 
-        public DataSourceValueFetcher() {
+        public BindingSourceValueFetcher() {
         }
     }
 }

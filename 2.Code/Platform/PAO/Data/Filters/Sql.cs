@@ -48,7 +48,7 @@ namespace PAO.Data.Filters
             Filter = sql;
         }
 
-        public override string GetFilterString(DataField[] paramValues, bool ignoreNullValue) {
+        public override string GetFilterString(DataParameter[] paramValues, bool ignoreNullValue) {
             if (ignoreNullValue && paramValues == null)
                 return null;
 

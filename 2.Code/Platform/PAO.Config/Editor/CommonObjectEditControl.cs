@@ -295,11 +295,7 @@ namespace PAO.Config.Editor
             }
 
             if (editControl == null) {
-                var editController = EditorPublic.GetDefaultEditController(objectType, typeof(ObjectLayoutEditController));
-                if(editController == null) {
-                    editController = new ObjectLayoutEditController();
-                    EditorPublic.SetDefaultEditController(objectType, editController);
-                }
+                var editController = ConfigPublic.CreateObjectLayoutEditControl(objectType);
                 editControl = editController.CreateEditControl(objectType) as BaseObjectEditControl;
             }
 

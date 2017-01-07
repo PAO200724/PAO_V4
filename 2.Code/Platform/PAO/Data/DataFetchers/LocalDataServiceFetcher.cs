@@ -61,7 +61,7 @@ namespace PAO.Data.DataFetchers
         public LocalDataServiceFetcher() {
         }
 
-        public DataTable FetchData(int startIndex, int count, params DataField[] parameterValues) {
+        public DataTable FetchData(int startIndex, int count, params DataParameter[] parameterValues) {
             var dataService = DataService.Value;
             return dataService.QueryBySql(Sql, startIndex, count, parameterValues);
         }
@@ -71,7 +71,7 @@ namespace PAO.Data.DataFetchers
             return dataService.GetSchemaBySql(Sql);
         }
 
-        public DataField[] GetParameters() {
+        public DataParameter[] GetParameters() {
             var dataService = DataService.Value;
             return dataService.GetParametersBySql(Sql);
         }

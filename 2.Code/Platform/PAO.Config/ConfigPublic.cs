@@ -299,5 +299,38 @@ namespace PAO.Config
             return result;
         }
         #endregion
+
+        #region ObjectLayoutEditControl
+        /// <summary>
+        /// 显示对象布局控件
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public static ObjectLayoutEditController CreateObjectLayoutEditControl(Type objectType) {
+            var editController = EditorPublic.GetDefaultEditController(objectType, typeof(ObjectLayoutEditController)) as ObjectLayoutEditController;
+            if (editController == null) {
+                editController = new ObjectLayoutEditController();
+                EditorPublic.SetDefaultEditController(objectType, editController);
+            }
+            return editController;
+        }
+
+        /// <summary>
+        /// 显示对象布局控件
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public static DialogReturn ShowObjectLayoutEditControl(object obj) {
+            var objectType = obj.GetType();
+            var editController = CreateObjectLayoutEditControl(objectType);
+            var dataFieldEditControl = editController.CreateEditControl(objectType) as ObjectLayoutEditControl;
+            dataFieldEditControl.EditValue = obj;
+            var result = WinFormPublic.ShowDialog(dataFieldEditControl);
+            if (result == DialogReturn.OK) {
+            }
+
+            return result;
+        }
+        #endregion
     }
 }

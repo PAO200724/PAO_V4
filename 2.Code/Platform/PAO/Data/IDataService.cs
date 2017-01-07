@@ -31,7 +31,7 @@ namespace PAO.Data {
         /// <param name="commandID">命令ID</param>
         /// <returns>数据表</returns>
         [OperationContract]
-        DataField[] GetParameters(string commandID);
+        DataParameter[] GetParameters(string commandID);
 
         /// <summary>
         /// 通过命令步进式查询
@@ -42,7 +42,7 @@ namespace PAO.Data {
         /// <param name="parameterList">参数</param>
         /// <returns>数据记录集</returns>
         [OperationContract]
-        DataTable Query(string commandID, int startIndex, int maxCount, params DataField[] parameters);
+        DataTable Query(string commandID, int startIndex, int maxCount, params DataParameter[] parameters);
 
         /// <summary>
         /// 执行命令
@@ -50,7 +50,7 @@ namespace PAO.Data {
         /// <param name="commandID">命令ID</param>
         /// <param name="parameterList">参数</param>
         [OperationContract]
-        void Execute(string commandID, params DataField[] parameterList);
+        void Execute(string commandID, params DataParameter[] parameterList);
 
         /// <summary>
         /// 执行命令
@@ -59,7 +59,7 @@ namespace PAO.Data {
         /// <param name="parameterList">参数</param>
         /// <returns>返回值</returns>
         [OperationContract]
-        object ExecuteScalar(string commandID, params DataField[] parameterList);
+        object ExecuteScalar(string commandID, params DataParameter[] parameterList);
 
         /// <summary>
         /// 更新表数据

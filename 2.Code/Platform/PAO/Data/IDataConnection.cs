@@ -21,20 +21,20 @@ namespace PAO.Data
         /// </summary>
         /// <param name="commandInfo">命令信息</param>
         /// <param name="parameterList">参数列表</param>
-        void Execute(DataCommandInfo commandInfo, params DataField[] parameterList);
+        void Execute(DataCommandInfo commandInfo, params DataParameter[] parameterList);
         /// <summary>
         /// 执行并返回
         /// </summary>
         /// <param name="commandInfo">命令信息</param>
         /// <param name="parameterList">参数列表</param>
         /// <returns>返回值</returns>
-        object ExecuteScalar(DataCommandInfo commandInfo, params DataField[] parameterList);
+        object ExecuteScalar(DataCommandInfo commandInfo, params DataParameter[] parameterList);
         /// <summary>
         /// 获取参数
         /// </summary>
         /// <param name="commandInfo">命令信息</param>
         /// <returns>参数列表</returns>
-        DataField[] GetParameters(DataCommandInfo commandInfo);
+        DataParameter[] GetParameters(DataCommandInfo commandInfo);
         /// <summary>
         /// 获取数据架构
         /// </summary>
@@ -49,7 +49,7 @@ namespace PAO.Data
         /// <param name="maxCount">行数</param>
         /// <param name="parameterList">参数列表</param>
         /// <returns>数据表</returns>
-        DataTable QueryTableByCommand(DataCommandInfo commandInfo, int startIndex, int maxCount, params DataField[] parameterList);
+        DataTable QueryTableByCommand(DataCommandInfo commandInfo, int startIndex, int maxCount, params DataParameter[] parameterList);
         /// <summary>
         /// 更新表
         /// </summary>

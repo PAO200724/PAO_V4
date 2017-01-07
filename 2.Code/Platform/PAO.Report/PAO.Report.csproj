@@ -117,8 +117,6 @@
     </Compile>
     <Compile Include="Controls\DataFieldsEditController.cs" />
     <Compile Include="ValueFetchers\BindingSourceValueFetcher.cs" />
-    <Compile Include="Views\ChildReportTableController.cs" />
-    <Compile Include="Views\MainReportTableController.cs" />
     <Compile Include="Views\ReportTableView.cs">
       <SubType>UserControl</SubType>
     </Compile>

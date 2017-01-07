@@ -118,7 +118,7 @@ namespace PAO.Data
         /// <param name="paramValues">参数值</param>
         /// <returns>数据命令</returns>
         public DbCommand CreateDataCommand(DataCommandInfo commandInfo
-                , params DataField[] parameterList) {
+                , params DataParameter[] parameterList) {
             DbCommand command = Factory.CreateCommand();
             command.Connection = CreateConnection();
             commandInfo.FillCommand(command, parameterList);
@@ -133,7 +133,7 @@ namespace PAO.Data
         /// <param name="paramValues">参数值</param>
         /// <returns>数据适配器</returns>
         public IDbDataAdapter CreateDataAdapter(DataCommandInfo commandInfo
-                , params DataField[] paramValues) {
+                , params DataParameter[] paramValues) {
             DbCommand command = CreateDataCommand(commandInfo, paramValues);
             DbDataAdapter adapter = CreateDataAdapter();
             adapter.SelectCommand = command;
@@ -203,7 +203,7 @@ namespace PAO.Data
         /// </summary>
         /// <param name="commandInfo">命令ID</param>
         /// <returns>参数列表</returns>
-        public DataField[] GetParameters(DataCommandInfo commandInfo) {
+        public DataParameter[] GetParameters(DataCommandInfo commandInfo) {
             return commandInfo.GetDefinedParameters();
         }
 
@@ -251,7 +251,7 @@ namespace PAO.Data
         /// <param name="commandInfo">查询命令</param>
         /// <param name="parameterList">参数</param>
         /// <returns>数据记录集</returns>
-        public DataTable QueryTableByCommand(DataCommandInfo commandInfo, int startIndex, int maxCount, params DataField[] parameterList) {
+        public DataTable QueryTableByCommand(DataCommandInfo commandInfo, int startIndex, int maxCount, params DataParameter[] parameterList) {
             var dataTable = GetSchema(commandInfo);
             var command = CreateDataCommand(commandInfo, parameterList);
             QueryData(command, startIndex, maxCount, dataTable);
@@ -266,7 +266,7 @@ namespace PAO.Data
         /// <param name="dataFilter">数据查询器</param>
         /// <param name="parameterList">参数</param>
         /// <returns>数据记录集</returns>
-        public DataTable QueryTableBySql(string sql, DataFilter dataFilter, int startIndex, int maxCount, params DataField[] parameterList) {
+        public DataTable QueryTableBySql(string sql, DataFilter dataFilter, int startIndex, int maxCount, params DataParameter[] parameterList) {
             var commandInfo = new DataCommandInfo() { Sql = sql, DataFilter = dataFilter };
             var command = CreateDataCommand(commandInfo, parameterList);
             var dataTable = GetSchema(commandInfo);
@@ -279,7 +279,7 @@ namespace PAO.Data
         /// </summary>
         /// <param name="commandInfo">命令ID</param>
         /// <param name="parameterList">参数列表</param>
-        public void Execute(DataCommandInfo commandInfo, params DataField[] parameterList) {
+        public void Execute(DataCommandInfo commandInfo, params DataParameter[] parameterList) {
             var command = CreateDataCommand(commandInfo, parameterList);
             command.Connection.Open();
             try {
@@ -295,7 +295,7 @@ namespace PAO.Data
         /// </summary>
         /// <param name="commandInfo">命令ID</param>
         /// <param name="parameterList">参数列表</param>
-        public object ExecuteScalar(DataCommandInfo commandInfo, params DataField[] parameterList) {
+        public object ExecuteScalar(DataCommandInfo commandInfo, params DataParameter[] parameterList) {
             var command = CreateDataCommand(commandInfo, parameterList);
             command.Connection.Open();
             try {

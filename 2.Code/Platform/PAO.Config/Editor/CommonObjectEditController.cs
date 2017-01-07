@@ -54,7 +54,7 @@ namespace PAO.Config.Editor
         public void StartEditObject(Type objectType) {
             StartEdit(ObjectEditMode.Object, objectType, null, null);
         }
-
+        
         public void StartEditProperty(object componentObject, string propertyName) {
             StartEdit(ObjectEditMode.Property, null, componentObject, propertyName);
         }

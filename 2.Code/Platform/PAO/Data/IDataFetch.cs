@@ -28,7 +28,7 @@ namespace PAO.Data
         /// 获取参数
         /// </summary>
         /// <returns>参数</returns>
-        DataField[] GetParameters();
+        DataParameter[] GetParameters();
         /// <summary>
         /// 获取数据
         /// </summary>
@@ -36,6 +36,6 @@ namespace PAO.Data
         /// <param name="count">数量</param>
         /// <param name="parameterValues">参数值</param>
         /// <returns>数据表</returns>
-        DataTable FetchData(int startIndex, int count, params DataField[] parameterValues);
+        DataTable FetchData(int startIndex, int count, params DataParameter[] parameterValues);
     }
 }

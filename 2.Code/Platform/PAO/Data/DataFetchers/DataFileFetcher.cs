@@ -66,7 +66,7 @@ namespace PAO.Data.DataFetchers
             _DataTable = IOPublic.ReadObjectFromFile(filePath) as DataTable;
         }
 
-        public DataTable FetchData(int startIndex, int count, params DataField[] parameterValues) {
+        public DataTable FetchData(int startIndex, int count, params DataParameter[] parameterValues) {
             Requery();
             var dataTable = DataTable;
             return dataTable;
@@ -77,7 +77,7 @@ namespace PAO.Data.DataFetchers
             return dataTable;
         }
 
-        public DataField[] GetParameters() {
+        public DataParameter[] GetParameters() {
             return null;
         }
     }

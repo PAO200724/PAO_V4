@@ -67,6 +67,8 @@
     <Compile Include="Data\DataFetchers\DataFileFetcher.cs" />
     <Compile Include="Data\DataFetchers\LocalDataServiceFetcher.cs" />
     <Compile Include="Data\DataFetchers\RemoteDataServiceFetcher.cs" />
+    <Compile Include="Data\DataItem.cs" />
+    <Compile Include="Data\DataParameter.cs" />
     <Compile Include="Data\DataField.cs" />
     <Compile Include="Data\DataPublic.cs" />
     <Compile Include="Data\DataService.cs" />

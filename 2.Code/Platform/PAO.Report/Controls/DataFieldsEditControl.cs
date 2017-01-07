@@ -40,7 +40,7 @@ namespace PAO.Report.Controls
         /// <summary>
         /// 数据列
         /// </summary>
-        private IEnumerable<PAOData.DataField> DataFields;
+        private IEnumerable<DataParameter> DataFields;
         /// <summary>
         /// 数据表
         /// </summary>
@@ -85,11 +85,11 @@ namespace PAO.Report.Controls
 
             set {
                 var valueString = "[未设置对象]";
-                DataFields = value as IEnumerable<PAOData.DataField>;
+                DataFields = value as IEnumerable<DataParameter>;
 
                 if (!DataFields.IsNull()) {
                     valueString = value.ToString();
-                    DataTable = DataPublic.GetTableByFields(DataFields);
+                    DataTable = DataPublic.GetTableByDataItems(DataFields);
                 }
                 else {
                     DataTable = null;
@@ -201,7 +201,7 @@ namespace PAO.Report.Controls
 
                 var layoutItem = e.HitInfo.Item as LayoutControlItem;
                 var editControl = layoutItem.Control;
-                var dataField = editControl.Tag as DataField;
+                var dataField = editControl.Tag as DataParameter;
 
                 if (dataField != null) {
 
@@ -234,7 +234,7 @@ namespace PAO.Report.Controls
                             dataField.DbType = (DbType)menuChangeDbType.EditValue;
                     };
                     e.Menu.Items.Add(menuChangeDbType);
-
+                    
                     // 增加更改编辑器菜单
                     var menuChangeEditor = new DXMenuItem("更改编辑器(&E)..."
                         , (s, a) => {
@@ -252,6 +252,7 @@ namespace PAO.Report.Controls
                         , Properties.Resources.renamedatasource_16x16);
                     menuChangeEditor.BeginGroup = true;
                     e.Menu.Items.Add(menuChangeEditor);
+
                     // 增加恢复编辑器菜单
                     var menuRecoverEditor = new DXMenuItem("恢复编辑器(&R)"
                         , (s, a) => {
@@ -264,6 +265,14 @@ namespace PAO.Report.Controls
                         }
                         , Properties.Resources.clearformatting_16x16);
                     e.Menu.Items.Add(menuRecoverEditor);
+
+                    // 增加恢复编辑器菜单
+                    var menuEditField = new DXMenuItem("字段属性(&P)..."
+                        , (s, a) => {
+                            ConfigPublic.ShowObjectLayoutEditControl(dataField);
+                        });
+                    menuEditField.BeginGroup = true;
+                    e.Menu.Items.Add(menuEditField);
                 }
 
                 // 恢复所有编辑器
