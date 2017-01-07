@@ -42,10 +42,13 @@ namespace PAO.Config.Editor
             }
 
             set {
-                var valueString = "[未设置对象]";
+                var valueString = "[空]";
                 Type objectType = null;
-                if (value.IsNull())
+
+                if (value.IsNull()) {
                     value = null;
+                    this.TextEditValue.Caption = "[空]";
+                }
                 else {
                     valueString = value.ToString();
                     objectType = value.GetType();
@@ -58,6 +61,7 @@ namespace PAO.Config.Editor
                 }
 
                 Text = String.Format("属性: {0}", valueString);
+                this.TextEditValue.Caption = valueString;
                 base.EditValue = value;
 
                 if (value == null) {

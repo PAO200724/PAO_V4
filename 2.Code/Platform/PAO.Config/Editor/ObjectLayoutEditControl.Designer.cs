@@ -38,6 +38,7 @@
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.TextEditCaption = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
+            this.TextEditValue = new DevExpress.XtraBars.BarStaticItem();
             ((System.ComponentModel.ISupportInitialize)(this.DataLayoutControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.LayoutControlGroupRoot)).BeginInit();
@@ -49,11 +50,11 @@
             // 
             this.DataLayoutControl.DataSource = this.BindingSource;
             this.DataLayoutControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DataLayoutControl.Location = new System.Drawing.Point(0, 31);
+            this.DataLayoutControl.Location = new System.Drawing.Point(0, 32);
             this.DataLayoutControl.Name = "DataLayoutControl";
             this.DataLayoutControl.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(300, 200, 500, 600);
             this.DataLayoutControl.Root = this.LayoutControlGroupRoot;
-            this.DataLayoutControl.Size = new System.Drawing.Size(535, 612);
+            this.DataLayoutControl.Size = new System.Drawing.Size(535, 611);
             this.DataLayoutControl.TabIndex = 0;
             this.DataLayoutControl.Text = "布局控件";
             this.DataLayoutControl.PopupMenuShowing += new DevExpress.XtraLayout.PopupMenuShowingEventHandler(this.DataLayoutControl_PopupMenuShowing);
@@ -68,7 +69,7 @@
             this.LayoutControlGroupRoot.GroupBordersVisible = false;
             this.LayoutControlGroupRoot.Location = new System.Drawing.Point(0, 0);
             this.LayoutControlGroupRoot.Name = "Root";
-            this.LayoutControlGroupRoot.Size = new System.Drawing.Size(535, 612);
+            this.LayoutControlGroupRoot.Size = new System.Drawing.Size(535, 611);
             this.LayoutControlGroupRoot.Text = "根";
             this.LayoutControlGroupRoot.TextVisible = false;
             // 
@@ -83,8 +84,9 @@
             this.BarManager.Form = this;
             this.BarManager.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.ButtonCustom,
-            this.ButtonRecoverFormat});
-            this.BarManager.MaxItemId = 7;
+            this.ButtonRecoverFormat,
+            this.TextEditValue});
+            this.BarManager.MaxItemId = 8;
             this.BarManager.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.TextEditCaption});
             // 
@@ -96,7 +98,8 @@
             this.BarTools.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
             this.BarTools.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.ButtonCustom),
-            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonRecoverFormat)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonRecoverFormat),
+            new DevExpress.XtraBars.LinkPersistInfo(this.TextEditValue)});
             this.BarTools.OptionsBar.AllowQuickCustomization = false;
             this.BarTools.OptionsBar.DrawDragBorder = false;
             this.BarTools.OptionsBar.UseWholeRow = true;
@@ -125,7 +128,7 @@
             this.barDockControlTop.CausesValidation = false;
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(535, 31);
+            this.barDockControlTop.Size = new System.Drawing.Size(535, 32);
             // 
             // barDockControlBottom
             // 
@@ -138,20 +141,27 @@
             // 
             this.barDockControlLeft.CausesValidation = false;
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 31);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 612);
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 32);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 611);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(535, 31);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 612);
+            this.barDockControlRight.Location = new System.Drawing.Point(535, 32);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 611);
             // 
             // TextEditCaption
             // 
             this.TextEditCaption.AutoHeight = false;
             this.TextEditCaption.Name = "TextEditCaption";
+            // 
+            // TextEditValue
+            // 
+            this.TextEditValue.AutoSize = DevExpress.XtraBars.BarStaticItemSize.Spring;
+            this.TextEditValue.Id = 7;
+            this.TextEditValue.Name = "TextEditValue";
+            this.TextEditValue.TextAlignment = System.Drawing.StringAlignment.Near;
             // 
             // ObjectLayoutEditControl
             // 
@@ -188,5 +198,6 @@
         private DevExpress.XtraBars.BarDockControl barDockControlBottom;
         private DevExpress.XtraBars.BarDockControl barDockControlLeft;
         private DevExpress.XtraBars.BarDockControl barDockControlRight;
+        private DevExpress.XtraBars.BarStaticItem TextEditValue;
     }
 }

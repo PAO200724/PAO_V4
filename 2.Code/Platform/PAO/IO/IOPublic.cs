@@ -69,6 +69,7 @@ namespace PAO.IO
             return backupFilePath;
         }
         #endregion
+
         #region Export/Import
         /// <summary>
         /// 导出当前对象
@@ -140,13 +141,13 @@ namespace PAO.IO
         /// <summary>
         /// 将文本转换为对象
         /// </summary>
-        /// <param name="text">文本字符串</param>
+        /// <param name="streamObject">文本字符串</param>
         /// <param name="types">需要用到的对象类型</param>
         /// <returns>对象</returns>
-        public static object Deserialize<T>(T text) {
+        public static object Deserialize<T>(T streamObject) {
             if (!(DefaultSerializer is ISerialize<T>))
                 throw new Exception("默认的序列化器不支持此类型的反序列化").AddExceptionData("Type",typeof(T));
-            return DefaultSerializer.As<ISerialize<T>>().Deserialize(text);
+            return DefaultSerializer.As<ISerialize<T>>().Deserialize(streamObject);
         }
 
         /// <summary>

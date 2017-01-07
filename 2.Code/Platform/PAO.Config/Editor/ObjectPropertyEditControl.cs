@@ -34,6 +34,18 @@ namespace PAO.Config.Editor
             }
 
             set {
+                var valueString = "[空]";
+
+                if (value.IsNull()) {
+                    value = null;
+                }
+                else {
+                    valueString = value.ToString();
+                }
+
+                Text = String.Format("属性: {0}", valueString);
+                this.TextEditValue.Caption = valueString;
+
                 base.EditValue = value;
 
                 this.PropertyGridControl.SelectedObject = value;
