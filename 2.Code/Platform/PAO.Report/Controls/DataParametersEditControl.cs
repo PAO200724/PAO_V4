@@ -10,7 +10,6 @@ using DevExpress.XtraEditors;
 using PAO.WinForm;
 using DevExpress.XtraDataLayout;
 using DevExpress.XtraLayout;
-using PAO.WinForm.Editor;
 using PAO.UI;
 using System.Collections;
 using PAO.Data;

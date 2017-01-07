@@ -9,7 +9,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Windows.Forms;
 
-namespace PAO.WinForm.Editor
+namespace PAO.Config.Editor
 {
     /// <summary>
     /// 类：EnumEditor

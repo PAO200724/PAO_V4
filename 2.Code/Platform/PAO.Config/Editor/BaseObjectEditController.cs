@@ -8,13 +8,13 @@ using System.Text;
 using DevExpress.XtraEditors.Repository;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
-using PAO.WinForm.Editor;
+using PAO.Config.Editor;
 using PAO.WinForm;
 using PAO.IO;
 using PAO.UI;
 using System.Diagnostics;
 
-namespace PAO.WinForm.Editor
+namespace PAO.Config.Editor
 {
     /// <summary>
     /// 类：BaseObjectEditController

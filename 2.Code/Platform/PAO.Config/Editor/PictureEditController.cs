@@ -7,35 +7,35 @@ using System.Runtime.Serialization;
 using System.Text;
 using DevExpress.XtraEditors.Repository;
 using PAO.WinForm;
+using System.Drawing;
 
-namespace PAO.WinForm.Editor
+namespace PAO.Config.Editor
 {
     /// <summary>
-    /// 类：DateEditor
-    /// 日期编辑器
-    /// 日期编辑器
+    /// 类：ImageEditor
+    /// 图片编辑器
+    /// 图片编辑器
     /// 作者：PAO
     /// </summary>
     [Addon]
     [Serializable]
     [DataContract(Namespace = "")]
-    [Name("日期编辑器")]
-    [Description("日期编辑器")]
-    public class DateEditController : BaseRepositoryItemEditController
+    [Name("图片编辑器")]
+    [Description("图片编辑器")]
+    public class PictureEditController : BaseRepositoryItemEditController
     {
         #region 插件属性
         #endregion
-        public DateEditController() {
+        public PictureEditController() {
         }
 
         protected override RepositoryItem OnCreateRepositoryItem(Type objectType) {
-            var edit = new RepositoryItemDateEdit();
-            WinFormPublic.AddClearButton(edit);
+            var edit = new RepositoryItemPictureEdit();
             return edit;
         }
 
         public static new bool TypeFilter(Type type) {
-            return type == typeof(DateTime);
+            return type == typeof(Image) || type == typeof(byte[]);
         }
     }
 }

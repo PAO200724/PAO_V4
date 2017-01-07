@@ -19,7 +19,7 @@ using PAO.WinForm.Properties;
 using PAO.App.MDI.Properties;
 using PAO.UI;
 using PAO.WinForm;
-using PAO.WinForm.Editor;
+using PAO.Config.Editor;
 using PAO.IO;
 
 namespace PAO.App.MDI

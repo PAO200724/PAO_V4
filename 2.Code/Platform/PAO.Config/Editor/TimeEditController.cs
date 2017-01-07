@@ -8,34 +8,34 @@ using System.Text;
 using DevExpress.XtraEditors.Repository;
 using PAO.WinForm;
 
-namespace PAO.WinForm.Editor
+namespace PAO.Config.Editor
 {
     /// <summary>
-    /// 类：SpinEditor
-    /// 微调编辑器
-    /// 微调编辑器
+    /// 类：TimeController
+    /// 时间编辑器
+    /// 时间编辑器
     /// 作者：PAO
     /// </summary>
     [Addon]
     [Serializable]
     [DataContract(Namespace = "")]
-    [Name("微调编辑器")]
-    [Description("微调编辑器")]
-    public class SpinEditController : BaseRepositoryItemEditController
+    [Name("时间编辑器")]
+    [Description("时间编辑器")]
+    public class TimeController : BaseRepositoryItemEditController
     {
         #region 插件属性
         #endregion
-        public SpinEditController() {
+        public TimeController() {
         }
 
         protected override RepositoryItem OnCreateRepositoryItem(Type objectType) {
-            var edit = new RepositoryItemSpinEdit();
+            var edit = new RepositoryItemTimeEdit();
             WinFormPublic.AddClearButton(edit);
             return edit;
         }
 
         public static new bool TypeFilter(Type type) {
-            return type.IsNumberType();
+            return type == typeof(DateTime);
         }
     }
 }

@@ -11,7 +11,7 @@ using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
 using PAO.UI;
 
-namespace PAO.WinForm.Editor
+namespace PAO.Config.Editor
 {
     /// <summary>
     /// 类：GuidEdit

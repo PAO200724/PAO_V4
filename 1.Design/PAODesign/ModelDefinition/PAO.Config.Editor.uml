@@ -18,7 +18,7 @@
             <classMoniker
               Id="80a06339-0d8b-4871-ae65-3393e8a899e5"
               LastKnownName="BaseObjectEditController"
-              LastKnownLocation="PAO.Editor.uml" />
+              LastKnownLocation="PAO.Config.Editor.uml" />
           </generalization>
         </generalsInternal>
       </class>
@@ -37,7 +37,7 @@
             <classMoniker
               Id="80a06339-0d8b-4871-ae65-3393e8a899e5"
               LastKnownName="BaseObjectEditController"
-              LastKnownLocation="PAO.Editor.uml" />
+              LastKnownLocation="PAO.Config.Editor.uml" />
           </generalization>
         </generalsInternal>
       </class>
@@ -56,7 +56,7 @@
             <classMoniker
               Id="80a06339-0d8b-4871-ae65-3393e8a899e5"
               LastKnownName="BaseObjectEditController"
-              LastKnownLocation="PAO.Editor.uml" />
+              LastKnownLocation="PAO.Config.Editor.uml" />
           </generalization>
         </generalsInternal>
       </class>
@@ -75,7 +75,7 @@
             <classMoniker
               Id="80a06339-0d8b-4871-ae65-3393e8a899e5"
               LastKnownName="BaseObjectEditController"
-              LastKnownLocation="PAO.Editor.uml" />
+              LastKnownLocation="PAO.Config.Editor.uml" />
           </generalization>
         </generalsInternal>
       </class>
@@ -129,7 +129,7 @@
             <classMoniker
               Id="80a06339-0d8b-4871-ae65-3393e8a899e5"
               LastKnownName="BaseObjectEditController"
-              LastKnownLocation="PAO.Editor.uml" />
+              LastKnownLocation="PAO.Config.Editor.uml" />
           </generalization>
         </generalsInternal>
       </class>
@@ -171,7 +171,171 @@
             <classMoniker
               Id="80a06339-0d8b-4871-ae65-3393e8a899e5"
               LastKnownName="BaseObjectEditController"
-              LastKnownLocation="PAO.Editor.uml" />
+              LastKnownLocation="PAO.Config.Editor.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="c8f3ef91-dd73-4ca7-82da-2db638b41ccc"
+        name="IPropertyEditController"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="80f799b4-2a55-4810-b249-17af6ee604c3"
+        name="ITypeEditController"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="c5619593-028b-4716-a82d-2a838045f3be"
+        name="BaseDevEditController"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="a135bda3-cca1-4ece-a3c6-f603068c415a"
+            isSubstitutable="false">
+            <classMoniker
+              Id="bde51c3b-5360-4715-9b8b-39be3d06c2b7"
+              LastKnownName="BaseEditController"
+              LastKnownLocation="PAO.Config.Editor.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="bde51c3b-5360-4715-9b8b-39be3d06c2b7"
+        name="BaseEditController"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <suppliersInternal>
+          <interfaceRealization
+            Id="b4ff114e-329c-4511-9f69-50d826fc5cfd">
+            <interfaceMoniker
+              Id="c8f3ef91-dd73-4ca7-82da-2db638b41ccc"
+              LastKnownName="IPropertyEditController"
+              LastKnownLocation="PAO.Config.Editor.uml" />
+          </interfaceRealization>
+          <interfaceRealization
+            Id="41ace2f4-5b26-41bb-a6f8-2fe32a242424">
+            <interfaceMoniker
+              Id="80f799b4-2a55-4810-b249-17af6ee604c3"
+              LastKnownName="ITypeEditController"
+              LastKnownLocation="PAO.Config.Editor.uml" />
+          </interfaceRealization>
+        </suppliersInternal>
+        <ownedAttributesInternal>
+          <property
+            Id="43c1ed27-8bea-42cc-891c-7ed8db7d409a"
+            name="StaticType"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="eed1dcc9-dbce-43b4-8441-5d98b40fb634"
+            name="CreateRepositoryItem"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+          <operation
+            Id="3338b7ca-f1f7-4bd4-827c-8b909e60d6da"
+            name="CreateEditControl"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+        </ownedOperationsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="80a06339-0d8b-4871-ae65-3393e8a899e5"
+        name="BaseObjectEditController"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="79138ffb-263f-4fc2-a706-7aad58cf3f41"
+            isSubstitutable="false">
+            <classMoniker
+              Id="bde51c3b-5360-4715-9b8b-39be3d06c2b7"
+              LastKnownName="BaseEditController"
+              LastKnownLocation="PAO.Config.Editor.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="41e8e920-efda-49d9-9f3c-1ecaa987a84c"
+        name="EditorPublic"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <suppliersInternal>
+          <dependency
+            Id="59461f28-c8c5-4ac3-a374-743ee962507d">
+            <classMoniker
+              Id="87a0bc82-8833-4718-bd8f-c3e0c32aaf34"
+              LastKnownName="ConfigStoragePublic"
+              LastKnownLocation="PAO.Config.uml" />
+          </dependency>
+        </suppliersInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="ab53c523-3d98-4ab9-a7b3-100574b9d04c"
+        name="ImageEditController"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="966047fa-7185-4d29-af52-e27f52cfd634"
+            isSubstitutable="false">
+            <classMoniker
+              Id="c5619593-028b-4716-a82d-2a838045f3be"
+              LastKnownName="BaseDevEditController"
+              LastKnownLocation="PAO.Config.Editor.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="f2a237ae-121e-469f-8136-e14cbb32ae92"
+        name="TextEditController"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="53e49b71-198e-40e8-81e3-42b691847779"
+            isSubstitutable="false">
+            <classMoniker
+              Id="c5619593-028b-4716-a82d-2a838045f3be"
+              LastKnownName="BaseDevEditController"
+              LastKnownLocation="PAO.Config.Editor.uml" />
           </generalization>
         </generalsInternal>
       </class>

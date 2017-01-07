@@ -1,6 +1,7 @@
 ﻿using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Repository;
 using PAO;
+using PAO.Config.Properties;
 using PAO.WinForm.Properties;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Windows.Forms;
 
-namespace PAO.WinForm.Editor
+namespace PAO.Config.Editor
 {
     /// <summary>
     /// 类：BaseEditor

@@ -8,7 +8,7 @@ using System.Text;
 using DevExpress.XtraEditors.Repository;
 using PAO.WinForm;
 
-namespace PAO.WinForm.Editor
+namespace PAO.Config.Editor
 {
     /// <summary>
     /// 类：CalcEditor

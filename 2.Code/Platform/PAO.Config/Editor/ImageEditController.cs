@@ -7,35 +7,36 @@ using System.Runtime.Serialization;
 using System.Text;
 using DevExpress.XtraEditors.Repository;
 using PAO.WinForm;
+using System.Drawing;
 
-namespace PAO.WinForm.Editor
+namespace PAO.Config.Editor
 {
     /// <summary>
-    /// 类：TimeController
-    /// 时间编辑器
-    /// 时间编辑器
+    /// 类：ImageEditor
+    /// 下拉式图片编辑器
+    /// 下拉式图片编辑器
     /// 作者：PAO
     /// </summary>
     [Addon]
     [Serializable]
     [DataContract(Namespace = "")]
-    [Name("时间编辑器")]
-    [Description("时间编辑器")]
-    public class TimeController : BaseRepositoryItemEditController
+    [Name("下拉式图片编辑器")]
+    [Description("下拉式图片编辑器")]
+    public class ImageEditController : BaseRepositoryItemEditController
     {
         #region 插件属性
         #endregion
-        public TimeController() {
+        public ImageEditController() {
         }
 
         protected override RepositoryItem OnCreateRepositoryItem(Type objectType) {
-            var edit = new RepositoryItemTimeEdit();
+            var edit = new RepositoryItemImageEdit();
             WinFormPublic.AddClearButton(edit);
             return edit;
         }
 
         public static new bool TypeFilter(Type type) {
-            return type == typeof(DateTime);
+            return type == typeof(Image) || type == typeof(byte[]);
         }
     }
 }

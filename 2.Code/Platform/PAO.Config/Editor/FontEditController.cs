@@ -11,7 +11,7 @@ using DevExpress.XtraEditors;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace PAO.WinForm.Editor
+namespace PAO.Config.Editor
 {
     /// <summary>
     /// 类：FontEditController

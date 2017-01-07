@@ -15,7 +15,6 @@ using PAO.IO;
 using System.IO;
 using PAO.WinForm;
 using DevExpress.XtraBars;
-using PAO.WinForm.Editor;
 
 namespace PAO.Config.Editor
 {

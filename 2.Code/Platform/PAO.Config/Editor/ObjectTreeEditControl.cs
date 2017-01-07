@@ -19,7 +19,7 @@ using PAO.IO;
 using PAO.WinForm;
 using PAO.MVC;
 using PAO.Config.Controls;
-using PAO.WinForm.Editor;
+using PAO.Config.Editor;
 
 namespace PAO.Config.Editor
 {

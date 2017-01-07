@@ -8,33 +8,34 @@ using System.Text;
 using DevExpress.XtraEditors.Repository;
 using PAO.WinForm;
 
-namespace PAO.WinForm.Editor
+namespace PAO.Config.Editor
 {
     /// <summary>
-    /// 类：CheckEditor
-    /// 复选框编辑器
-    /// 复选框编辑器
+    /// 类：SpinEditor
+    /// 微调编辑器
+    /// 微调编辑器
     /// 作者：PAO
     /// </summary>
     [Addon]
     [Serializable]
     [DataContract(Namespace = "")]
-    [Name("复选框编辑器")]
-    [Description("复选框编辑器")]
-    public class CheckEditController : BaseRepositoryItemEditController
+    [Name("微调编辑器")]
+    [Description("微调编辑器")]
+    public class SpinEditController : BaseRepositoryItemEditController
     {
         #region 插件属性
         #endregion
-        public CheckEditController() {
+        public SpinEditController() {
         }
 
         protected override RepositoryItem OnCreateRepositoryItem(Type objectType) {
-            var edit = new RepositoryItemCheckEdit();
+            var edit = new RepositoryItemSpinEdit();
+            WinFormPublic.AddClearButton(edit);
             return edit;
         }
 
         public static new bool TypeFilter(Type type) {
-            return type == typeof(bool);
+            return type.IsNumberType();
         }
     }
 }

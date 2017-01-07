@@ -78,9 +78,31 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConfigPublic.cs" />
+    <Compile Include="Editor\BaseEditController.cs" />
+    <Compile Include="Editor\BaseObjectEditControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Editor\BaseObjectEditControl.Designer.cs">
+      <DependentUpon>BaseObjectEditControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editor\BaseObjectEditController.cs" />
+    <Compile Include="Editor\BaseRepositoryItemEditController.cs" />
+    <Compile Include="Editor\CalcEditController.cs" />
+    <Compile Include="Editor\CheckComboBoxEditController.cs" />
+    <Compile Include="Editor\CheckEditController.cs" />
+    <Compile Include="Editor\ColorEditController.cs" />
+    <Compile Include="Editor\ColorPickEditController.cs" />
     <Compile Include="Editor\CommonObjectEditController.cs" />
     <Compile Include="Editor\DataCommandInfoEditController.cs" />
     <Compile Include="Editor\DataFilterEditController.cs" />
+    <Compile Include="Editor\DateEditController.cs" />
+    <Compile Include="Editor\EditorPublic.cs" />
+    <Compile Include="Editor\EditorTypeAttirbute.cs" />
+    <Compile Include="Editor\EnumEditController.cs" />
+    <Compile Include="Editor\FontEditController.cs" />
+    <Compile Include="Editor\FontNameEditController.cs" />
+    <Compile Include="Editor\GuidEditController.cs" />
+    <Compile Include="Editor\ImageEditController.cs" />
     <Compile Include="Editor\ListEditControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -101,6 +123,9 @@
     <Compile Include="Editor\CommonObjectEditControl.Designer.cs">
       <DependentUpon>CommonObjectEditControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Editor\MemoEditController.cs" />
+    <Compile Include="Editor\MemoExEditController.cs" />
+    <Compile Include="Editor\ObjectEditMode.cs" />
     <Compile Include="Editor\ObjectLayoutEditControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -119,6 +144,12 @@
     <Compile Include="Editor\ObjectLayoutEditController.cs" />
     <Compile Include="Editor\ObjectTreeEditController.cs" />
     <None Include="ExtendConfigPublic.cs" />
+    <Compile Include="Editor\PictureEditController.cs" />
+    <Compile Include="Editor\SkinNameEditController.cs" />
+    <Compile Include="Editor\SpinEditController.cs" />
+    <Compile Include="Editor\TextEditController.cs" />
+    <Compile Include="Editor\TimeEditController.cs" />
+    <Compile Include="Editor\ToggleSwitchEditController.cs" />
     <Compile Include="Views\ObjectConfigController.cs" />
     <Compile Include="Editor\AddonPropertyInfo.cs" />
     <Compile Include="Editor\DictionaryEditControl.cs">
@@ -200,6 +231,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Editor\BaseObjectEditControl.resx">
+      <DependentUpon>BaseObjectEditControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Editor\DictionaryEditControl.resx">
       <DependentUpon>DictionaryEditControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -381,6 +415,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\clear_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\textfield.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

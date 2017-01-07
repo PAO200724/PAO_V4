@@ -1,5 +1,5 @@
 ﻿using PAO;
-using PAO.WinForm.Editor;
+using PAO.Config.Editor;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

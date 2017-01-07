@@ -13,7 +13,6 @@ using DevExpress.XtraEditors;
 using PAO.Config.Editor;
 using System.Collections;
 using PAO.WinForm;
-using PAO.WinForm.Editor;
 using System.Windows.Forms;
 
 namespace PAO.Config.Editor

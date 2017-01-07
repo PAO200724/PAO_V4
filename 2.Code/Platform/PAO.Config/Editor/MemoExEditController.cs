@@ -7,36 +7,35 @@ using System.Runtime.Serialization;
 using System.Text;
 using DevExpress.XtraEditors.Repository;
 using PAO.WinForm;
-using System.Drawing;
 
-namespace PAO.WinForm.Editor
+namespace PAO.Config.Editor
 {
     /// <summary>
-    /// 类：FontNameEditController
-    /// 字体名称编辑器
-    /// 字体名称编辑器
+    /// 类：MemoExEditor
+    /// 下拉式多行文本编辑器
+    /// 下拉式用于编辑多行文本的编辑器
     /// 作者：PAO
     /// </summary>
     [Addon]
     [Serializable]
     [DataContract(Namespace = "")]
-    [Name("字体名称编辑器")]
-    [Description("字体名称编辑器")]
-    public class FontNameEditController : BaseRepositoryItemEditController
+    [Name("下拉式多行文本编辑器")]
+    [Description("下拉式用于编辑多行文本的编辑器")]
+    public class MemoExEditController : BaseRepositoryItemEditController
     {
         #region 插件属性
         #endregion
-        public FontNameEditController() {
+        public MemoExEditController() {
         }
 
         protected override RepositoryItem OnCreateRepositoryItem(Type objectType) {
-            var edit = new RepositoryItemFontEdit();
+            var edit = new RepositoryItemMemoExEdit();
             WinFormPublic.AddClearButton(edit);
             return edit;
         }
 
         public static new bool TypeFilter(Type type) {
-            return type == typeof(Font) || type == typeof(string);
+            return type == typeof(string);
         }
     }
 }

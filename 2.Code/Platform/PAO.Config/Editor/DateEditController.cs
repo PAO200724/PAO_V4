@@ -8,33 +8,34 @@ using System.Text;
 using DevExpress.XtraEditors.Repository;
 using PAO.WinForm;
 
-namespace PAO.WinForm.Editor
+namespace PAO.Config.Editor
 {
     /// <summary>
-    /// 类：CheckEditor
-    /// 组合框式复选框
-    /// 组合框式复选框
+    /// 类：DateEditor
+    /// 日期编辑器
+    /// 日期编辑器
     /// 作者：PAO
     /// </summary>
     [Addon]
     [Serializable]
     [DataContract(Namespace = "")]
-    [Name("组合框式复选框")]
-    [Description("组合框式复选框")]
-    public class CheckComboBoxEditController : BaseRepositoryItemEditController
+    [Name("日期编辑器")]
+    [Description("日期编辑器")]
+    public class DateEditController : BaseRepositoryItemEditController
     {
         #region 插件属性
         #endregion
-        public CheckComboBoxEditController() {
+        public DateEditController() {
         }
 
         protected override RepositoryItem OnCreateRepositoryItem(Type objectType) {
-            var edit = new RepositoryItemCheckedComboBoxEdit();
+            var edit = new RepositoryItemDateEdit();
+            WinFormPublic.AddClearButton(edit);
             return edit;
         }
 
         public static new bool TypeFilter(Type type) {
-            return type == typeof(bool);
+            return type == typeof(DateTime);
         }
     }
 }

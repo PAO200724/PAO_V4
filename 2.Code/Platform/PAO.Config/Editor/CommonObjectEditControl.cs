@@ -11,7 +11,7 @@ using PAO.WinForm;
 using System.Collections;
 using PAO.UI;
 using PAO.IO;
-using PAO.WinForm.Editor;
+using PAO.Config.Editor;
 using DevExpress.XtraBars;
 
 namespace PAO.Config.Editor

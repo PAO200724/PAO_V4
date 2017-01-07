@@ -10,7 +10,6 @@ using DevExpress.XtraEditors;
 using PAO.WinForm;
 using PAO.Config.Editor;
 using PAO.IO;
-using PAO.WinForm.Editor;
 using DevExpress.XtraBars;
 using DevExpress.XtraEditors.Repository;
 using DevExpress.XtraVerticalGrid;

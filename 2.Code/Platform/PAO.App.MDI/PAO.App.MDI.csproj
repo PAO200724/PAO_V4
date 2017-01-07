@@ -121,6 +121,10 @@
       <Project>{64fdc3f2-2c3e-4925-bbd4-e0afa5cd6161}</Project>
       <Name>PAO.App</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PAO.Config\PAO.Config.csproj">
+      <Project>{A0F88184-CB49-4C7D-A56B-AE323FDB67BA}</Project>
+      <Name>PAO.Config</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PAO.WinForm\PAO.WinForm.csproj">
       <Project>{49bd4858-22c7-431e-a0ac-638a182fd35e}</Project>
       <Name>PAO.WinForm</Name>

@@ -11,7 +11,6 @@ using PAO.Config.Editor;
 using PAO.Data;
 using PAO.WinForm;
 using PAO.Data.Filters;
-using PAO.WinForm.Editor;
 
 namespace PAO.Config.Editor
 {

@@ -7,36 +7,34 @@ using System.Runtime.Serialization;
 using System.Text;
 using DevExpress.XtraEditors.Repository;
 using PAO.WinForm;
-using System.Drawing;
 
-namespace PAO.WinForm.Editor
+namespace PAO.Config.Editor
 {
     /// <summary>
-    /// 类：ColorEditor
-    /// 颜色编辑器
-    /// 颜色编辑器
+    /// 类：CheckEditor
+    /// 复选框编辑器
+    /// 复选框编辑器
     /// 作者：PAO
     /// </summary>
     [Addon]
     [Serializable]
     [DataContract(Namespace = "")]
-    [Name("颜色编辑器")]
-    [Description("颜色编辑器")]
-    public class ColorEditController : BaseRepositoryItemEditController
+    [Name("复选框编辑器")]
+    [Description("复选框编辑器")]
+    public class CheckEditController : BaseRepositoryItemEditController
     {
         #region 插件属性
         #endregion
-        public ColorEditController() {
+        public CheckEditController() {
         }
 
         protected override RepositoryItem OnCreateRepositoryItem(Type objectType) {
-            var edit = new RepositoryItemColorEdit();
-            WinFormPublic.AddClearButton(edit);
+            var edit = new RepositoryItemCheckEdit();
             return edit;
         }
 
         public static new bool TypeFilter(Type type) {
-            return type == typeof(Color);
+            return type == typeof(bool);
         }
     }
 }

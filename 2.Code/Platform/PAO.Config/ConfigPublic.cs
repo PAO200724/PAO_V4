@@ -5,7 +5,6 @@ using PAO.Config.Editor;
 using PAO.Data;
 using PAO.UI;
 using PAO.WinForm;
-using PAO.WinForm.Editor;
 using System;
 using System.Collections;
 using System.Collections.Generic;

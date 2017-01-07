@@ -10,7 +10,6 @@ using PAO.WinForm;
 using System.Data.Common;
 using System.Data;
 using PAO.Config.Editor;
-using PAO.WinForm.Editor;
 
 namespace PAO.Config.Editor
 {

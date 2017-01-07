@@ -12,7 +12,6 @@ using PAO.IO;
 using DevExpress.XtraEditors;
 using PAO.UI;
 using PAO.Controls;
-using PAO.WinForm.Editor;
 using DevExpress.XtraEditors.Controls;
 
 namespace PAO.Config.Editor

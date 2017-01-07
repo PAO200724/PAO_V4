@@ -12,7 +12,6 @@ using PAO.Data.Filters;
 using PAO.Data;
 using DevExpress.XtraTreeList.Nodes;
 using PAO.WinForm;
-using PAO.WinForm.Editor;
 
 namespace PAO.Config.Editor
 {

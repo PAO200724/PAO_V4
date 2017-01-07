@@ -71,12 +71,6 @@
     <Compile Include="Controls\BaseControl.Designer.cs">
       <DependentUpon>BaseControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Editor\BaseObjectEditControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Editor\BaseObjectEditControl.Designer.cs">
-      <DependentUpon>BaseObjectEditControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="Controls\ViewControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -102,31 +96,6 @@
     <Compile Include="Controls\ImageControl.Designer.cs">
       <DependentUpon>ImageControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Editor\BaseEditController.cs" />
-    <Compile Include="Editor\BaseRepositoryItemEditController.cs" />
-    <Compile Include="Editor\BaseObjectEditController.cs" />
-    <Compile Include="Editor\CalcEditController.cs" />
-    <Compile Include="Editor\CheckComboBoxEditController.cs" />
-    <Compile Include="Editor\CheckEditController.cs" />
-    <Compile Include="Editor\ColorEditController.cs" />
-    <Compile Include="Editor\ColorPickEditController.cs" />
-    <Compile Include="Editor\DateEditController.cs" />
-    <Compile Include="Editor\EditorPublic.cs" />
-    <Compile Include="Editor\EditorTypeAttirbute.cs" />
-    <Compile Include="Editor\EnumEditController.cs" />
-    <Compile Include="Editor\FontNameEditController.cs" />
-    <Compile Include="Editor\FontEditController.cs" />
-    <Compile Include="Editor\GuidEditController.cs" />
-    <Compile Include="Editor\ImageEditController.cs" />
-    <Compile Include="Editor\MemoEditController.cs" />
-    <Compile Include="Editor\MemoExEditController.cs" />
-    <Compile Include="Editor\ObjectEditMode.cs" />
-    <Compile Include="Editor\PictureEditController.cs" />
-    <Compile Include="Editor\SkinNameEditController.cs" />
-    <Compile Include="Editor\SpinEditController.cs" />
-    <Compile Include="Editor\TextEditController.cs" />
-    <Compile Include="Editor\TimeEditController.cs" />
-    <Compile Include="Editor\ToggleSwitchEditController.cs" />
     <Compile Include="IBarSupport.cs" />
     <Compile Include="IPropertyView.cs" />
     <Compile Include="Security\LoginControl.cs">
@@ -169,9 +138,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Editor\BaseObjectEditControl.resx">
-      <DependentUpon>BaseObjectEditControl.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Controls\ViewControl.resx">
       <DependentUpon>ViewControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -231,6 +197,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\save_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Editor\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -7,35 +7,37 @@ using System.Runtime.Serialization;
 using System.Text;
 using DevExpress.XtraEditors.Repository;
 using PAO.WinForm;
-using System.Drawing;
 
-namespace PAO.WinForm.Editor
+namespace PAO.Config.Editor
 {
     /// <summary>
-    /// 类：ImageEditor
-    /// 图片编辑器
-    /// 图片编辑器
+    /// 类：TextEditor
+    /// 文本编辑器
+    /// 用于编辑文本的编辑器
     /// 作者：PAO
     /// </summary>
     [Addon]
     [Serializable]
     [DataContract(Namespace = "")]
-    [Name("图片编辑器")]
-    [Description("图片编辑器")]
-    public class PictureEditController : BaseRepositoryItemEditController
+    [Name("文本编辑器")]
+    [Description("用于编辑文本的编辑器")]
+    public class TextEditController : BaseRepositoryItemEditController
     {
         #region 插件属性
         #endregion
-        public PictureEditController() {
+        public TextEditController() {
         }
 
         protected override RepositoryItem OnCreateRepositoryItem(Type objectType) {
-            var edit = new RepositoryItemPictureEdit();
+            var edit = new RepositoryItemButtonEdit();
+            edit.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
+            edit.Buttons.RemoveAt(0);
+            WinFormPublic.AddClearButton(edit);
             return edit;
         }
 
         public static new bool TypeFilter(Type type) {
-            return type == typeof(Image) || type == typeof(byte[]);
+            return type == typeof(string);
         }
     }
 }

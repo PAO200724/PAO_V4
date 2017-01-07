@@ -31,9 +31,6 @@
     <Content Include="ModelDefinition\PAO.Config.uml">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="ModelDefinition\PAO.Editor.uml">
-      <SubType>Content</SubType>
-    </Content>
     <Content Include="ModelDefinition\PAO.Ext.Security.uml">
       <SubType>Content</SubType>
     </Content>

@@ -7,7 +7,7 @@ using System.Text;
 using PAO;
 using PAO.WinForm;
 using System.Windows.Forms;
-using PAO.WinForm.Editor;
+using PAO.Config.Editor;
 
 namespace PAO.Config.Editor
 {

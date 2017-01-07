@@ -11,9 +11,9 @@ using PAO.WinForm.Controls;
 using PAO.UI;
 using PAO.IO;
 using System.IO;
-using PAO.WinForm.Editor;
+using PAO.Config.Editor;
 
-namespace PAO.WinForm.Editor
+namespace PAO.Config.Editor
 {
     /// <summary>
     /// 基础编辑控件
