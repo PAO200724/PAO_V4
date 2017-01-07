@@ -17,6 +17,7 @@ using PAO.WinForm.Controls;
 using PAO.UI;
 using PAO.Report.Controls;
 using PAO.MVC;
+using PAO.IO;
 
 namespace PAO.Report.Views
 {
@@ -43,18 +44,14 @@ namespace PAO.Report.Views
         /// 重新查询事件
         /// </summary>
         public event EventHandler Requery;
-        /// <summary>
-        /// 重新查询事件
-        /// </summary>
-        public event EventHandler SetupQueryBehavior;
-        /// <summary>
-        /// 重新查询事件
-        /// </summary>
-        public event EventHandler ClearQueryBehavior;
 
         private DataParametersEditControl DataFieldsEditControl;
         
         private bool _QueryCompleted;
+        /// <summary>
+        /// 上级查询行为
+        /// </summary>
+        private ReportQueryBehavior ParentQueryBehavior;
         /// <summary>
         /// 查询完成
         /// </summary>
@@ -83,7 +80,7 @@ namespace PAO.Report.Views
             var controller = Controller as ReportTableController;
             if(controller != null) {
                 controller.QueryParameters = this.DataFieldsEditControl.EditValue as List<DataParameter>;
-                ExtendAddonPublic.SetAddonExtendProperties(controller, "QueryBehavior", "ParameterEditController");
+                ExtendAddonPublic.SetAddonExtendProperties(controller, "QueryBehavior", "ParameterEditController", "QueryParameters", "DataColumns");
             }
             base.OnClose();
         }
@@ -189,13 +186,38 @@ namespace PAO.Report.Views
         }
 
         private void ButtonQueryBehavior_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            if (SetupQueryBehavior != null)
-                SetupQueryBehavior(this, new EventArgs());
+            var controller = Controller as ReportTableController;
+            if (EditorPublic.ShowEditPropertyDialog(controller, "QueryBehavior") == DialogReturn.OK) {
+                ResetAutoQuery();
+            }
         }
         
         private void ButtonClearQueryBehavior_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            if (ClearQueryBehavior != null)
-                ClearQueryBehavior(this, new EventArgs());
+            var controller = Controller as ReportTableController;
+            controller.QueryBehavior = null;
+            ResetAutoQuery();
         }
+
+        /// <summary>
+        /// 重置自动查询
+        /// </summary>
+        /// <param name="parentQueryBehavior">上级查询行为</param>
+        public void ResetAutoQuery(ReportQueryBehavior parentQueryBehavior = null) {
+            var controller = Controller as ReportTableController;
+            if(parentQueryBehavior != null) {
+                ParentQueryBehavior = parentQueryBehavior;
+            }
+            var queryBehavior = controller.QueryBehavior;
+            if(queryBehavior == null) {
+                queryBehavior = ParentQueryBehavior;
+            }
+            if (queryBehavior != null) {
+                AutoQuery(queryBehavior.AutoQueryInterval);
+            }
+            else {
+                AutoQuery(-1);
+            }
+        }
+
     }
 }

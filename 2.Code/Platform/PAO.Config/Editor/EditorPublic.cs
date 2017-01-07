@@ -5,6 +5,7 @@ using PAO.IO;
 using PAO.UI;
 using PAO.WinForm;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -88,6 +89,85 @@ namespace PAO.Config.Editor
             }
 
             return result;
+        }
+        #endregion
+
+        #region CommonObjectEditControl
+        /// <summary>
+        /// 编辑属性
+        /// </summary>
+        /// <param name="componentObject">组件对象</param>
+        /// <param name="propertyName"></param>
+        /// <returns>DialogReturn</returns>
+        public static DialogReturn ShowEditPropertyDialog(object componentObject, string propertyName) {
+            var commonObjectEditController = new CommonObjectEditController();
+            commonObjectEditController.StartEditProperty(componentObject, propertyName);
+            var propDesc = ReflectionPublic.GetPropertyDescriptor(componentObject.GetType(), propertyName);
+            var propObj = propDesc.GetValue(componentObject);
+            var objectEditControl = commonObjectEditController.CreateEditControl(propDesc.PropertyType) as BaseObjectEditControl;
+            objectEditControl.EditValue = propObj;
+            return WinFormPublic.ShowDialog(objectEditControl);
+        }
+
+        /// <summary>
+        /// 编辑列表元素
+        /// </summary>
+        /// <param name="list">列表</param>
+        /// <param name="index">索引</param>
+        /// <returns>DialogReturn</returns>
+        public static DialogReturn ShowEditListElementDialog(IList list, int index) {
+            list.CheckNotNull("待编辑列表不能为空");
+            var commonObjectEditController = new CommonObjectEditController();
+            commonObjectEditController.StartEditListElement(list, index);
+            var obj = list[index];
+            var objectEditControl = commonObjectEditController.CreateEditControl(null) as BaseObjectEditControl;
+            objectEditControl.EditValue = obj;
+            return WinFormPublic.ShowDialog(objectEditControl);
+        }
+
+        /// <summary>
+        /// 编辑字典元素
+        /// </summary>
+        /// <param name="dict">字典</param>
+        /// <param name="key">键</param>
+        /// <returns>DialogReturn</returns>
+        public static DialogReturn ShowEditDictionaryElementDialog(IDictionary dict, object key) {
+            dict.CheckNotNull("待编辑字典不能为空");
+            var commonObjectEditController = new CommonObjectEditController();
+            commonObjectEditController.StartEditDictionaryElement(dict, key);
+            var obj = dict[key];
+            var objectEditControl = commonObjectEditController.CreateEditControl(null) as BaseObjectEditControl;
+            objectEditControl.EditValue = obj;
+            return WinFormPublic.ShowDialog(objectEditControl);
+        }
+
+        /// <summary>
+        /// 编辑对象（不允许新增和删除）
+        /// </summary>
+        /// <param name="obj">待编辑的对象</param>
+        /// <returns>DialogReturn</returns>
+        public static DialogReturn ShowEditObjectDialog(object obj) {
+            obj.CheckNotNull("待编辑对象不能为空");
+            var commonObjectEditController = new CommonObjectEditController();
+            var objType = obj.GetType();
+            commonObjectEditController.StartEditObject(null);
+            var objectEditControl = commonObjectEditController.CreateEditControl(obj.GetType()) as BaseObjectEditControl;
+            objectEditControl.EditValue = obj;
+            return WinFormPublic.ShowDialog(objectEditControl);
+        }
+
+        /// <summary>
+        /// 编辑对象（允许新增和删除）
+        /// </summary>
+        /// <param name="objectType">对象类型</param>
+        /// <param name="obj">待编辑的对象</param>
+        /// <returns>DialogReturn</returns>
+        public static DialogReturn ShowEditObjectDialog(Type objectType, object obj) {
+            var commonObjectEditController = new CommonObjectEditController();
+            commonObjectEditController.StartEditObject(objectType);
+            var objectEditControl = commonObjectEditController.CreateEditControl(objectType) as BaseObjectEditControl;
+            objectEditControl.EditValue = obj;
+            return WinFormPublic.ShowDialog(objectEditControl);
         }
         #endregion
 

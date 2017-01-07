@@ -37,7 +37,6 @@
             this.ButtonRebuildDataFields = new DevExpress.XtraBars.BarButtonItem();
             this.ButtonClearDataFields = new DevExpress.XtraBars.BarButtonItem();
             this.ButtonSetupQueryBehavior = new DevExpress.XtraBars.BarButtonItem();
-            this.ButtonClearQueryBehavior = new DevExpress.XtraBars.BarButtonItem();
             this.MenuConfig = new DevExpress.XtraBars.BarSubItem();
             this.ButtonRecoverLayout = new DevExpress.XtraBars.BarButtonItem();
             this.ButtonProperties = new DevExpress.XtraBars.BarButtonItem();
@@ -94,7 +93,6 @@
             this.ButtonRebuildDataFields,
             this.ButtonClearDataFields,
             this.ButtonSetupQueryBehavior,
-            this.ButtonClearQueryBehavior,
             this.BarItemSelectedObject});
             this.BarManager.MaxItemId = 19;
             this.BarManager.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
@@ -134,8 +132,7 @@
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.ButtonPrint, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(this.ButtonRebuildDataFields, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.ButtonClearDataFields),
-            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonSetupQueryBehavior, true),
-            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonClearQueryBehavior)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonSetupQueryBehavior, true)});
             this.MenuData.Name = "MenuData";
             // 
             // ButtonExport
@@ -174,13 +171,6 @@
             this.ButtonSetupQueryBehavior.Id = 16;
             this.ButtonSetupQueryBehavior.Name = "ButtonSetupQueryBehavior";
             this.ButtonSetupQueryBehavior.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonSetupQueryBehavior_ItemClick);
-            // 
-            // ButtonClearQueryBehavior
-            // 
-            this.ButtonClearQueryBehavior.Caption = "清除查询行为(&L)";
-            this.ButtonClearQueryBehavior.Id = 17;
-            this.ButtonClearQueryBehavior.Name = "ButtonClearQueryBehavior";
-            this.ButtonClearQueryBehavior.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonClearQueryBehavior_ItemClick);
             // 
             // MenuConfig
             // 
@@ -385,7 +375,6 @@
         private DevExpress.XtraBars.BarButtonItem ButtonClearDataFields;
         private DevExpress.XtraBars.Navigation.AccordionControl AccordionControl;
         private DevExpress.XtraBars.BarButtonItem ButtonSetupQueryBehavior;
-        private DevExpress.XtraBars.BarButtonItem ButtonClearQueryBehavior;
         private DevExpress.XtraBars.Bar BarExtend;
         private DevExpress.XtraBars.BarStaticItem BarItemSelectedObject;
     }

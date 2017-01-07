@@ -39,7 +39,7 @@ namespace PAO.Report.Controls
         /// <summary>
         /// 数据列
         /// </summary>
-        private IEnumerable<DataParameter> DataFields;
+        private IEnumerable<DataParameter> DataParameters;
         /// <summary>
         /// 数据表
         /// </summary>
@@ -73,22 +73,22 @@ namespace PAO.Report.Controls
             get {
                 // 从SchemaTable中获取值
                 this.BindingSource.EndEdit();
-                foreach (var dataColumn in DataFields) {
+                foreach (var dataColumn in DataParameters) {
                     dynamic editControl = EditControls[dataColumn.Name];
                     if (editControl != null) {
                         dataColumn.Value = editControl.EditValue;
                     }
                 }
-                return DataFields; 
+                return DataParameters; 
             }
 
             set {
                 var valueString = "[未设置对象]";
-                DataFields = value as IEnumerable<DataParameter>;
+                DataParameters = value as IEnumerable<DataParameter>;
 
-                if (!DataFields.IsNull()) {
+                if (!DataParameters.IsNull()) {
                     valueString = value.ToString();
-                    DataTable = DataPublic.GetTableByDataItems(DataFields);
+                    DataTable = DataPublic.GetTableByDataItems(DataParameters);
                 }
                 else {
                     DataTable = null;
@@ -98,7 +98,7 @@ namespace PAO.Report.Controls
 
                 DataTable.Clear();
                 this.BindingSource.DataSource = DataTable;
-                if (DataFields != null) {
+                if (DataParameters != null) {
                     this.BindingSource.DataSource = DataTable;
                     this.BindingSource.AddNew();
                 }
@@ -124,57 +124,26 @@ namespace PAO.Report.Controls
         /// <param name="objType">对象类型</param>
         private void RetrieveFields(LayoutControlGroup groupItem) {
             this.DataLayoutControl.CloseControl();
+            this.DataLayoutControl.SuspendLayout();
             EditControls.Clear();
             this.DataLayoutControl.Clear(true, true);
             var controller = Controller as DataParametersEditController;
 
-            if (DataFields == null)
+            if (DataParameters == null)
                 return;
 
-            foreach (var dataField in DataFields) {
-                Control editControl = null;
-                if (controller != null) {
-                    var editController = controller.GetPredefinedEditController(dataField.ObjectType, dataField.Name);
-                    if(editController != null) {
-                        editControl = editController.CreateEditControl(dataField.ObjectType);
-                    }
-                }
-
-                if(editControl == null) {
-                    editControl = EditorPublic.CreateEditControl(dataField.ObjectType);
-                }
-                if (editControl == null) {
-                    var editController = new CommonObjectEditController();
-                    editController.StartEditObject(dataField.ObjectType);
-                    editControl = editController.CreateEditControl(dataField.ObjectType);
-                }
-
-                if (editControl.GetType().GetProperty("EditValue") == null)
-                    throw new Exception("编辑控件必须实现EditValue属性");
+            foreach (var dataParameter in DataParameters) {
+                Control editControl = CreateEditControl(dataParameter);
 
                 LayoutControlItem layoutControlItem = null;
                 layoutControlItem = groupItem.AddItem();
                 layoutControlItem.TextLocation = DevExpress.Utils.Locations.Left;
 
-                EditControls.Add(dataField.Name, editControl);
-
-                editControl.Tag = dataField;
-                editControl.Name = dataField.Name;
-
-                dynamic dynamicControl = editControl;
-                if(dataField.ValueFetcher.IsNotNull()){
-                    editControl.DataBindings.Add(new Binding("EditValue", dataField.ValueFetcher, "Value", true));
-                    dynamicControl.Enabled = false;
-                } else {
-                    if (this.BindingSource != null) {
-                        editControl.DataBindings.Add(new Binding("EditValue", this.BindingSource, dataField.Name, true));
-                    }
-                }
-
                 layoutControlItem.Control = editControl;
-                layoutControlItem.Name = dataField.Name;
-                layoutControlItem.Text = dataField.Name;
-                layoutControlItem.CustomizationFormText = dataField.Name;
+                var parameterName = DataPublic.GetParameterName(dataParameter.Name);
+                layoutControlItem.Name = parameterName;
+                layoutControlItem.Text = parameterName;
+                layoutControlItem.CustomizationFormText = dataParameter.Name;
 
                 if (editControl is BaseObjectEditControl) {
                     layoutControlItem.TextVisible = false;
@@ -190,6 +159,51 @@ namespace PAO.Report.Controls
             if (controller.LayoutData.IsNotNull()) {
                 this.DataLayoutControl.SetLayoutData(controller.LayoutData);
             }
+            this.DataLayoutControl.ResumeLayout();
+        }
+
+        /// <summary>
+        /// 设置LayoutItemDataField
+        /// </summary>
+        /// <param name="layoutControlItem">LayoutControlItem</param>
+        /// <param name="dataParameter">数据字段</param>
+        private Control CreateEditControl(DataParameter dataParameter) {
+            var controller = Controller as DataParametersEditController;
+            Control editControl = null;
+            if (controller != null) {
+                var editController = controller.GetPredefinedEditController(dataParameter.ObjectType, dataParameter.Name);
+                if (editController != null) {
+                    editControl = editController.CreateEditControl(dataParameter.ObjectType);
+                }
+            }
+
+            if (editControl == null) {
+                editControl = EditorPublic.CreateEditControl(dataParameter.ObjectType);
+            }
+            if (editControl == null) {
+                var editController = new CommonObjectEditController();
+                editController.StartEditObject(dataParameter.ObjectType);
+                editControl = editController.CreateEditControl(dataParameter.ObjectType);
+            }
+
+            if (editControl.GetType().GetProperty("EditValue") == null)
+                throw new Exception("编辑控件必须实现EditValue属性");
+
+            editControl.Tag = dataParameter;
+            editControl.Name = dataParameter.Name;
+            dynamic dynamicControl = editControl;
+            if (dataParameter.ValueFetcher.IsNotNull()) {
+                editControl.DataBindings.Add(new Binding("EditValue", dataParameter.ValueFetcher, "Value", true));
+                dynamicControl.Enabled = false;
+            }
+            else {
+                if (this.BindingSource != null) {
+                    editControl.DataBindings.Add(new Binding("EditValue", this.BindingSource, dataParameter.Name, true));
+                }
+            }
+            EditControls.Add(dataParameter.Name, editControl);
+
+            return editControl;
         }
 
         private void DataLayoutControl_PopupMenuShowing(object sender, PopupMenuShowingEventArgs e) {
@@ -199,6 +213,9 @@ namespace PAO.Report.Controls
                     return;
 
                 var layoutItem = e.HitInfo.Item as LayoutControlItem;
+                if (layoutItem == null)
+                    return;
+
                 var editControl = layoutItem.Control;
                 var dataField = editControl.Tag as DataParameter;
 
@@ -231,6 +248,7 @@ namespace PAO.Report.Controls
                             dataField.DbType = DbType.String;
                         else
                             dataField.DbType = (DbType)menuChangeDbType.EditValue;
+                        EditValue = EditValue;
                     };
                     e.Menu.Items.Add(menuChangeDbType);
                     
@@ -269,6 +287,7 @@ namespace PAO.Report.Controls
                     var menuEditField = new DXMenuItem("字段属性(&P)..."
                         , (s, a) => {
                             EditorPublic.ShowObjectLayoutEditControl(dataField);
+                            EditValue = EditValue;
                         });
                     menuEditField.BeginGroup = true;
                     e.Menu.Items.Add(menuEditField);

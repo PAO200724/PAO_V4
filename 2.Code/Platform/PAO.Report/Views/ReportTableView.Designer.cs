@@ -27,15 +27,15 @@
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReportTableView));
-            DevExpress.Utils.SuperToolTip superToolTip6 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem6 = new DevExpress.Utils.ToolTipTitleItem();
-            DevExpress.Utils.ToolTipItem toolTipItem6 = new DevExpress.Utils.ToolTipItem();
-            DevExpress.Utils.SuperToolTip superToolTip4 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem4 = new DevExpress.Utils.ToolTipTitleItem();
-            DevExpress.Utils.ToolTipItem toolTipItem4 = new DevExpress.Utils.ToolTipItem();
-            DevExpress.Utils.SuperToolTip superToolTip5 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem5 = new DevExpress.Utils.ToolTipTitleItem();
-            DevExpress.Utils.ToolTipItem toolTipItem5 = new DevExpress.Utils.ToolTipItem();
+            DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem1 = new DevExpress.Utils.ToolTipTitleItem();
+            DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
+            DevExpress.Utils.SuperToolTip superToolTip2 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem2 = new DevExpress.Utils.ToolTipTitleItem();
+            DevExpress.Utils.ToolTipItem toolTipItem2 = new DevExpress.Utils.ToolTipItem();
+            DevExpress.Utils.SuperToolTip superToolTip3 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem3 = new DevExpress.Utils.ToolTipTitleItem();
+            DevExpress.Utils.ToolTipItem toolTipItem3 = new DevExpress.Utils.ToolTipItem();
             this.BarManager = new DevExpress.XtraBars.BarManager(this.components);
             this.BarTools = new DevExpress.XtraBars.Bar();
             this.BarItemCount = new DevExpress.XtraBars.BarEditItem();
@@ -45,7 +45,6 @@
             this.ButtonAll = new DevExpress.XtraBars.BarButtonItem();
             this.MenuSetup = new DevExpress.XtraBars.BarSubItem();
             this.ButtonQueryBehavior = new DevExpress.XtraBars.BarButtonItem();
-            this.ButtonClearQueryBehavior = new DevExpress.XtraBars.BarButtonItem();
             this.BarProgress = new DevExpress.XtraBars.Bar();
             this.BarItemQueryProgress = new DevExpress.XtraBars.BarEditItem();
             this.EditItemProgress = new DevExpress.XtraEditors.Repository.RepositoryItemMarqueeProgressBar();
@@ -77,8 +76,7 @@
             this.BarItemQueryProgress,
             this.ButtonRequery,
             this.MenuSetup,
-            this.ButtonQueryBehavior,
-            this.ButtonClearQueryBehavior});
+            this.ButtonQueryBehavior});
             this.BarManager.MaxItemId = 9;
             this.BarManager.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.TextEditCount,
@@ -123,12 +121,12 @@
             this.ButtonRequery.Glyph = ((System.Drawing.Image)(resources.GetObject("ButtonRequery.Glyph")));
             this.ButtonRequery.Id = 4;
             this.ButtonRequery.Name = "ButtonRequery";
-            toolTipTitleItem6.Text = "重新查询";
-            toolTipItem6.LeftIndent = 6;
-            toolTipItem6.Text = "清空数据后重新查询";
-            superToolTip6.Items.Add(toolTipTitleItem6);
-            superToolTip6.Items.Add(toolTipItem6);
-            this.ButtonRequery.SuperTip = superToolTip6;
+            toolTipTitleItem1.Text = "重新查询";
+            toolTipItem1.LeftIndent = 6;
+            toolTipItem1.Text = "清空数据后重新查询";
+            superToolTip1.Items.Add(toolTipTitleItem1);
+            superToolTip1.Items.Add(toolTipItem1);
+            this.ButtonRequery.SuperTip = superToolTip1;
             this.ButtonRequery.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonRequery_ItemClick);
             // 
             // ButtonMore
@@ -137,12 +135,12 @@
             this.ButtonMore.Glyph = global::PAO.Report.Properties.Resources.doublenext_16x16;
             this.ButtonMore.Id = 1;
             this.ButtonMore.Name = "ButtonMore";
-            toolTipTitleItem4.Text = "更多";
-            toolTipItem4.LeftIndent = 6;
-            toolTipItem4.Text = "查询更多的数据，耗时较短";
-            superToolTip4.Items.Add(toolTipTitleItem4);
-            superToolTip4.Items.Add(toolTipItem4);
-            this.ButtonMore.SuperTip = superToolTip4;
+            toolTipTitleItem2.Text = "更多";
+            toolTipItem2.LeftIndent = 6;
+            toolTipItem2.Text = "查询更多的数据，耗时较短";
+            superToolTip2.Items.Add(toolTipTitleItem2);
+            superToolTip2.Items.Add(toolTipItem2);
+            this.ButtonMore.SuperTip = superToolTip2;
             this.ButtonMore.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonMore_ItemClick);
             // 
             // ButtonAll
@@ -151,12 +149,12 @@
             this.ButtonAll.Glyph = global::PAO.Report.Properties.Resources.last_16x16;
             this.ButtonAll.Id = 2;
             this.ButtonAll.Name = "ButtonAll";
-            toolTipTitleItem5.Text = "所有";
-            toolTipItem5.LeftIndent = 6;
-            toolTipItem5.Text = "查询所有的数据，耗时较长";
-            superToolTip5.Items.Add(toolTipTitleItem5);
-            superToolTip5.Items.Add(toolTipItem5);
-            this.ButtonAll.SuperTip = superToolTip5;
+            toolTipTitleItem3.Text = "所有";
+            toolTipItem3.LeftIndent = 6;
+            toolTipItem3.Text = "查询所有的数据，耗时较长";
+            superToolTip3.Items.Add(toolTipTitleItem3);
+            superToolTip3.Items.Add(toolTipItem3);
+            this.ButtonAll.SuperTip = superToolTip3;
             this.ButtonAll.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonAll_ItemClick);
             // 
             // MenuSetup
@@ -165,8 +163,7 @@
             this.MenuSetup.Glyph = global::PAO.Report.Properties.Resources.managedatasource_16x16;
             this.MenuSetup.Id = 6;
             this.MenuSetup.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonQueryBehavior),
-            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonClearQueryBehavior)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.ButtonQueryBehavior)});
             this.MenuSetup.Name = "MenuSetup";
             // 
             // ButtonQueryBehavior
@@ -175,13 +172,6 @@
             this.ButtonQueryBehavior.Id = 7;
             this.ButtonQueryBehavior.Name = "ButtonQueryBehavior";
             this.ButtonQueryBehavior.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonQueryBehavior_ItemClick);
-            // 
-            // ButtonClearQueryBehavior
-            // 
-            this.ButtonClearQueryBehavior.Caption = "清除查询行为(&C)";
-            this.ButtonClearQueryBehavior.Id = 8;
-            this.ButtonClearQueryBehavior.Name = "ButtonClearQueryBehavior";
-            this.ButtonClearQueryBehavior.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ButtonClearQueryBehavior_ItemClick);
             // 
             // BarProgress
             // 
@@ -280,6 +270,5 @@
         private System.Windows.Forms.Timer TimerAutoQuery;
         private DevExpress.XtraBars.BarSubItem MenuSetup;
         private DevExpress.XtraBars.BarButtonItem ButtonQueryBehavior;
-        private DevExpress.XtraBars.BarButtonItem ButtonClearQueryBehavior;
     }
 }

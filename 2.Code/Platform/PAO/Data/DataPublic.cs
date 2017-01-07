@@ -24,6 +24,38 @@ namespace PAO.Data {
                 "@", ":"
         };
 
+        /// <summary>
+        /// 是否为参数名称
+        /// </summary>
+        /// <param name="parameterName">参数名称</param>
+        /// <returns>是参数名称</returns>
+        public static bool IsParameterName(string parameterName) {
+            if (parameterName.IsNotNullOrEmpty())
+                return false;
+
+            foreach(var paramPrefix in ParamPrefixes) {
+                if (parameterName.StartsWith(paramPrefix))
+                    return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// 是否为参数名称
+        /// </summary>
+        /// <param name="parameterName">参数名称</param>
+        /// <returns>是参数名称</returns>
+        public static string GetParameterName(string parameterName) {
+            if (parameterName.IsNull())
+                return null;
+
+            foreach (var paramPrefix in ParamPrefixes) {
+                if (parameterName.StartsWith(paramPrefix))
+                    return parameterName.Substring(paramPrefix.Length);
+            }
+            return parameterName;
+        }
+
         #region 数据类型
         /// <summary>
         /// 本地Type转换为DbType

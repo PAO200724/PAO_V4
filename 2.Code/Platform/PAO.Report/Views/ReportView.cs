@@ -84,26 +84,6 @@ namespace PAO.Report.Views
         }
 
         /// <summary>
-        /// 重置自动查询
-        /// </summary>
-        /// <param name="reportTable">报表</param>
-        private void ResetAutoQuery() {
-            var controller = Controller as ReportController;
-            foreach (var reportTable in controller.Tables) {
-                var queryBehavior = reportTable.QueryBehavior;
-                if (queryBehavior == null)
-                    queryBehavior = controller.QueryBehavior;
-
-                var tableControl = this.TableControls[reportTable.TableName];
-                if (queryBehavior != null) {
-                    tableControl.AutoQuery(queryBehavior.AutoQueryInterval);
-                } else {
-                    tableControl.AutoQuery(-1);
-                }
-            }
-        }
-
-        /// <summary>
         /// 查询表，查询前不清空数据
         /// </summary>
         /// <param name="reportTable"></param>
@@ -255,8 +235,6 @@ namespace PAO.Report.Views
                 reportTableView.QueryAll += ReportTableControl_QueryAll;
                 reportTableView.QueryMore += ReportTableControl_QueryMore;
                 reportTableView.Requery += ReportTableControl_Requery;
-                reportTableView.SetupQueryBehavior += ReportTableControl_SetupQueryBehavior;
-                reportTableView.ClearQueryBehavior += ReportTableControl_ClearQueryBehavior;
 
                 var elementParameterView = new AccordionControlElement();
                 elementParameterView.Name = reportDataTable.ID;
@@ -276,6 +254,16 @@ namespace PAO.Report.Views
                 if (reportDataTable.ChildTables.IsNotNullOrEmpty()) {
                     RecreateTableView(elementTableView.Elements, reportDataTable.ChildTables);
                 }
+            }
+        }
+
+        /// <summary>
+        /// 重置自动更新
+        /// </summary>
+        private void ResetAutoQuery() {
+            var controller = Controller as ReportController;
+            foreach (var tableControl in TableControls.Values) {
+                tableControl.ResetAutoQuery(controller.QueryBehavior);
             }
         }
         #endregion
@@ -426,55 +414,22 @@ namespace PAO.Report.Views
             var tableControl = sender as ReportTableView;
             RequeryTable(tableControl.Controller as ReportTableController);
         }
-
-        private void ReportTableControl_SetupQueryBehavior(object sender, EventArgs e) {
-            var tableControl = sender as ReportTableView;
-            var objectEditControl = new ObjectPropertyEditController().CreateEditControl(typeof(ReportQueryBehavior)) as BaseObjectEditControl;
-            var queryBehavior = IOPublic.ObjectClone(tableControl.Controller.As<ReportTableController>().QueryBehavior);
-            if (queryBehavior == null)
-                queryBehavior = new ReportQueryBehavior();
-            objectEditControl.EditValue = queryBehavior;
-            if(WinFormPublic.ShowDialog(objectEditControl) == DialogReturn.OK) {
-                tableControl.Controller.As<ReportTableController>().QueryBehavior = objectEditControl.EditValue as ReportQueryBehavior;
-            }
-            ResetAutoQuery();
-        }
-
-
-        private void ReportTableControl_ClearQueryBehavior(object sender, EventArgs e) {
-            var tableControl = sender as ReportTableView;
-            tableControl.Controller.As<ReportTableController>().QueryBehavior = null;
-            ResetAutoQuery();
-        }
-
-
+        
         private void ButtonQuery_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             RequeryAllTable();
         }
-
-        private void ButtonSetupQueryBehavior_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            var controller = Controller as ReportController;
-            var objectEditControl = new ObjectPropertyEditController().CreateEditControl(typeof(ReportQueryBehavior)) as BaseObjectEditControl;
-            var queryBehavior = IOPublic.ObjectClone(controller.QueryBehavior);
-            if (queryBehavior == null)
-                queryBehavior = new ReportQueryBehavior();
-            objectEditControl.EditValue = queryBehavior;
-            if (WinFormPublic.ShowDialog(objectEditControl) == DialogReturn.OK) {
-                controller.QueryBehavior = objectEditControl.EditValue as ReportQueryBehavior;
-            }
-            ResetAutoQuery();
-        }
-
-        private void ButtonClearQueryBehavior_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            var controller = Controller as ReportController;
-            controller.QueryBehavior = null;
-            ResetAutoQuery();
-        }
-
+        
         private void ButtonProperties_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             var objectEditControl = new ObjectLayoutEditController().CreateEditControl(Controller.GetType()) as BaseObjectEditControl;
             objectEditControl.EditValue = Controller;
             WinFormPublic.ShowDialog(objectEditControl);
+        }
+
+        private void ButtonSetupQueryBehavior_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+            var controller = Controller as ReportController;
+            if (EditorPublic.ShowEditPropertyDialog(controller, "QueryBehavior") == DialogReturn.OK) {
+                ResetAutoQuery();
+            }
         }
         #endregion
     }
