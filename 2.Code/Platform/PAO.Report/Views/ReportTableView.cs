@@ -53,7 +53,7 @@ namespace PAO.Report.Views
         /// </summary>
         public event EventHandler ClearQueryBehavior;
 
-        private DataFieldsEditControl DataFieldsEditControl;
+        private DataParametersEditControl DataFieldsEditControl;
         
         private bool _QueryCompleted;
         /// <summary>
@@ -100,7 +100,7 @@ namespace PAO.Report.Views
                 DataFieldsEditControl.Dispose();
             }
 
-            DataFieldsEditControl = controller.ParameterEditController.CreateEditControl(typeof(DataField)) as DataFieldsEditControl;
+            DataFieldsEditControl = controller.ParameterEditController.CreateEditControl(typeof(DataField)) as DataParametersEditControl;
             DataFieldsEditControl.Dock = DockStyle.Top;
             DataFieldsEditControl.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             DataFieldsEditControl.AutoSize = true;

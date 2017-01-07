@@ -44,14 +44,16 @@ namespace PAO.Report.ValueFetchers
 
         #endregion
 
-        #region 属性：DataSource
+        #region 属性：DataBinding
         [NonSerialized]
         private BindingManagerBase _DataBinding;
-
+        [Browsable(false)]
         public BindingManagerBase DataBinding {
             get { return _DataBinding; }
             set { _DataBinding = value; }
         }
+
+        #endregion 属性：DataSource
 
         public object Value {
             get {
@@ -65,8 +67,6 @@ namespace PAO.Report.ValueFetchers
                 return dataRowView[FieldName];
             }
         }
-
-        #endregion 属性：DataSource
 
         public BindingSourceValueFetcher() {
         }

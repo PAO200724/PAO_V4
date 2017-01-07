@@ -14,7 +14,7 @@ using PAO.Data;
 namespace PAO.Report.Controls
 {
     /// <summary>
-    /// 类：DataFieldsEditController
+    /// 类：DataParametersEditController
     /// 数据项编辑控制器
     /// 数据项编辑器的控制
     /// 作者：PAO
@@ -24,7 +24,7 @@ namespace PAO.Report.Controls
     [DataContract(Namespace = "")]
     [Name("数据项编辑控制器")]
     [Description("数据项编辑器的控制")]
-    public class DataFieldsEditController : BaseObjectEditController
+    public class DataParametersEditController : BaseObjectEditController
     {
         #region 插件属性
         #region 属性：LayoutData
@@ -43,16 +43,16 @@ namespace PAO.Report.Controls
         }
         #endregion 属性：LayoutData
         #endregion
-        public DataFieldsEditController() {
+        public DataParametersEditController() {
         }
 
         protected override Control OnCreateEditControl(Type objectType) {
-            var editControl = new DataFieldsEditControl();
+            var editControl = new DataParametersEditControl();
             return editControl;
         }
 
         public static new bool TypeFilter(Type type) {
-            return type.IsDerivedFrom(typeof(IEnumerable<DataField>));
+            return type.IsDerivedFrom(typeof(IEnumerable<DataParameter>));
         }
     }
 }

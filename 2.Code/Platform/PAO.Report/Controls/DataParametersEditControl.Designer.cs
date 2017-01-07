@@ -1,6 +1,6 @@
 ﻿namespace PAO.Report.Controls
 {
-    partial class DataFieldsEditControl
+    partial class DataParametersEditControl
     {
         /// <summary> 
         /// Required designer variable.

@@ -26,9 +26,9 @@ namespace PAO.Report.Controls
     /// 对象布局式编辑控件
     /// 作者：PAO
     /// </summary>
-    public partial class DataFieldsEditControl : BaseObjectEditControl
+    public partial class DataParametersEditControl : BaseObjectEditControl
     {
-        internal DataFieldsEditControl() {
+        internal DataParametersEditControl() {
             InitializeComponent();
             this.DataLayoutControl.AutoSizeMode = AutoSizeMode.GrowAndShrink;
         }
@@ -112,7 +112,7 @@ namespace PAO.Report.Controls
         }
 
         protected override void OnClose() {
-            var controller = Controller as DataFieldsEditController;
+            var controller = Controller as DataParametersEditController;
             controller.LayoutData = this.DataLayoutControl.GetLayoutData();
             base.OnClose();
         }
@@ -127,7 +127,7 @@ namespace PAO.Report.Controls
             this.DataLayoutControl.CloseControl();
             EditControls.Clear();
             this.DataLayoutControl.Clear(true, true);
-            var controller = Controller as DataFieldsEditController;
+            var controller = Controller as DataParametersEditController;
 
             if (DataFields == null)
                 return;
@@ -195,7 +195,7 @@ namespace PAO.Report.Controls
 
         private void DataLayoutControl_PopupMenuShowing(object sender, PopupMenuShowingEventArgs e) {
             if(e.HitInfo.Item != null) {
-                var controller = Controller as DataFieldsEditController;
+                var controller = Controller as DataParametersEditController;
                 if (controller == null)
                     return;
 

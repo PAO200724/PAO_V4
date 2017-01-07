@@ -136,7 +136,7 @@ namespace PAO.Report.Views
         [Name("参数编辑控制器")]
         [Description("参数编辑控制器")]
         [ReadOnly(true)]
-        public DataFieldsEditController ParameterEditController {
+        public DataParametersEditController ParameterEditController {
             get;
             set;
         }
@@ -151,7 +151,7 @@ namespace PAO.Report.Views
         }
 
         public ReportTableController() {
-            ParameterEditController = new DataFieldsEditController();
+            ParameterEditController = new DataParametersEditController();
         }
 
         /// <summary>

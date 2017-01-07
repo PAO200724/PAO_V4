@@ -109,13 +109,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controls\DataFieldsEditControl.cs">
+    <Compile Include="Controls\DataParametersEditControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\DataFieldsEditControl.Designer.cs">
-      <DependentUpon>DataFieldsEditControl.cs</DependentUpon>
+    <Compile Include="Controls\DataParametersEditControl.Designer.cs">
+      <DependentUpon>DataParametersEditControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\DataFieldsEditController.cs" />
+    <Compile Include="Controls\DataParametersEditController.cs" />
     <Compile Include="ValueFetchers\BindingSourceValueFetcher.cs" />
     <Compile Include="Views\ReportTableView.cs">
       <SubType>UserControl</SubType>
@@ -157,8 +157,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Controls\DataFieldsEditControl.resx">
-      <DependentUpon>DataFieldsEditControl.cs</DependentUpon>
+    <EmbeddedResource Include="Controls\DataParametersEditControl.resx">
+      <DependentUpon>DataParametersEditControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\ReportTableView.resx">
       <DependentUpon>ReportTableView.cs</DependentUpon>
