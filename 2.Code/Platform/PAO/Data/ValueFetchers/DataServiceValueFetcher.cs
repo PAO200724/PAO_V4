@@ -19,7 +19,7 @@ namespace PAO.Data.ValueFetchers
     [DataContract(Namespace = "")]
     [Name("数据服务值获取器")]
     [Description("通过数据服务获取值的获取器")]
-    public class DataServiceValueFetcher<T> : ValueFetcher<T>
+    public class DataServiceValueFetcher : ValueFetcher
     {
         #region 插件属性
         #region 属性：DataService
@@ -60,13 +60,16 @@ namespace PAO.Data.ValueFetchers
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public override T Value {
+        public override object Value {
             get {
+                if (DataService.IsNull())
+                    return GetDefaultValue();
+
                 var dataService = DataService.Value;
-                object result = dataService.ExecuteScalar(CommandID);
-                if (result == null)
-                    return default(T);
-                return (T)result;
+                if (dataService.IsNull())
+                    return GetDefaultValue();
+
+                return dataService.ExecuteScalar(CommandID);
             }
         }
     }

@@ -23,7 +23,7 @@ namespace PAO.Report.ValueFetchers
     [DataContract(Namespace = "")]
     [Name("数据源值获取器")]
     [Description("从数据源获取值的获取器")]
-    public class BindingSourceValueFetcher<T> : ValueFetcher<T>
+    public class BindingSourceValueFetcher : ValueFetcher
     {
         #region 插件属性
 
@@ -58,16 +58,16 @@ namespace PAO.Report.ValueFetchers
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public override T Value {
+        public override object Value {
             get {
                 if (DataBinding == null || DataBinding.Position == -1 || FieldName.IsNullOrEmpty())
-                    return default(T);
+                    return GetDefaultValue();
 
                 var dataRowView = DataBinding.Current as DataRowView;
                 if (dataRowView == null)
-                    return default(T);
+                    return GetDefaultValue();
 
-                return (T)dataRowView[FieldName];
+                return dataRowView[FieldName];
             }
         }
 

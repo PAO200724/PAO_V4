@@ -20,7 +20,7 @@ namespace PAO.Data.ValueFetchers
     [DataContract(Namespace = "")]
     [Name("常量值获取器")]
     [Description("值为常量的获取器")]
-    public class ConstValueFetcher<T> : ValueFetcher<T>
+    public class ConstValueFetcher : ValueFetcher
     {
         #region 插件属性
         #region 属性：ConstValue
@@ -44,12 +44,17 @@ namespace PAO.Data.ValueFetchers
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public override T Value {
+        public override object Value {
             get {
                 if (ConstValue.IsNullOrEmpty())
-                    return default(T);
+                    return GetDefaultValue();
 
-                return (T)IOPublic.Deserialize<string>(ConstValue);
+                if (ValueType == typeof(object)) {
+                    return IOPublic.Deserialize<string>(ConstValue);
+                }
+                else {
+                    return Convert.ChangeType(ConstValue, ValueType);
+                }
             }
         }
     }

@@ -20,7 +20,7 @@ namespace PAO.Data.ValueFetchers
     [DataContract(Namespace = "")]
     [Name("插件值获取器")]
     [Description("获取插件的值的获取器")]
-    public class AddonValueFetcher<T> : ValueFetcher<T>
+    public class AddonValueFetcher : ValueFetcher
     {
         #region 插件属性
 
@@ -61,23 +61,23 @@ namespace PAO.Data.ValueFetchers
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public override T Value {
+        public override object Value {
             get {
                 // 获取插件
                 var addon = AddonPublic.GetRuntimeAddonByID(AddonID);
                 if (addon == null)
-                    return default(T);
+                    return GetDefaultValue();
 
                 // 获取插件的值
                 Type addonType = addon.GetType();
                 var propInfo = addonType.GetProperty(MemberName, BindingFlags.Instance | BindingFlags.Public | BindingFlags.GetProperty);
                 if (propInfo != null)
-                    return (T)propInfo.GetValue(addon, null);
+                    return propInfo.GetValue(addon, null);
                 var fieldInfo = addonType.GetField(MemberName, BindingFlags.Instance | BindingFlags.Public | BindingFlags.GetField);
                 if (fieldInfo != null)
-                    return (T)fieldInfo.GetValue(addon);
+                    return fieldInfo.GetValue(addon);
 
-                return default(T);
+                return GetDefaultValue();
             }
         }
         

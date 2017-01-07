@@ -15,12 +15,12 @@ namespace PAO.Data
     [Addon]
     [Name("值获取接口")]
     [Description("获取单个值的接口")]
-    public interface IValueFetch<T>
+    public interface IValueFetch
     {
         /// <summary>
         /// 获取值
         /// </summary>
         /// <returns>值</returns>
-        T Value { get; }
+        object Value { get; }
     }
 }

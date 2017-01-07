@@ -53,7 +53,7 @@ namespace PAO.Data
         [DataMember(EmitDefaultValue = false)]
         [Name("值获取器")]
         [Description("值获取器")]
-        public IValueFetch<object> ValueFetcher {
+        public IValueFetch ValueFetcher {
             get;
             set;
         }
@@ -77,13 +77,13 @@ namespace PAO.Data
             Value = value;
         }
         
-        public DataParameter(string name, Type dataType, IValueFetch<object> valueFetcher) {
+        public DataParameter(string name, Type dataType, IValueFetch valueFetcher) {
             Name = name;
             ObjectType = dataType;
             ValueFetcher = valueFetcher;
         }
 
-        public DataParameter(string name, DbType dbType, IValueFetch<object> valueFetcher) {
+        public DataParameter(string name, DbType dbType, IValueFetch valueFetcher) {
             Name = name;
             DbType = dbType;
             ValueFetcher = valueFetcher;

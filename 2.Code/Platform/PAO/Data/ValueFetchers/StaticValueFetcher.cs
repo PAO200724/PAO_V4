@@ -20,7 +20,7 @@ namespace PAO.Data.ValueFetchers
     [DataContract(Namespace = "")]
     [Name("静态值获取器")]
     [Description("静态属性值获取器")]
-    public class StaticValueFetcher<T> : ValueFetcher<T>
+    public class StaticValueFetcher : ValueFetcher
     {
         #region 插件属性
 
@@ -62,16 +62,16 @@ namespace PAO.Data.ValueFetchers
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public override T Value {
+        public override object Value {
             get {
                 var propInfo = Type.GetProperty(MemberName, BindingFlags.Static | BindingFlags.Public | BindingFlags.GetProperty);
                 if (propInfo != null)
-                    return (T)propInfo.GetValue(null, null);
+                    return propInfo.GetValue(null, null);
                 var fieldInfo = Type.GetField(MemberName, BindingFlags.Static | BindingFlags.Public | BindingFlags.GetField);
                 if (fieldInfo != null)
-                    return (T)fieldInfo.GetValue(null);
+                    return fieldInfo.GetValue(null);
 
-                return default(T);
+                return GetDefaultValue();
             }
         }
     }
