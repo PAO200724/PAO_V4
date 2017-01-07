@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using PAO.Data;
 using System.Data;
+using PAO.Data.ValueFetchers;
 
 namespace PAO.Report.ValueFetchers
 {
@@ -22,7 +23,7 @@ namespace PAO.Report.ValueFetchers
     [DataContract(Namespace = "")]
     [Name("数据源值获取器")]
     [Description("从数据源获取值的获取器")]
-    public class BindingSourceValueFetcher : PaoObject, IValueFetch
+    public class BindingSourceValueFetcher<T> : ValueFetcher<T>
     {
         #region 插件属性
 
@@ -55,16 +56,18 @@ namespace PAO.Report.ValueFetchers
 
         #endregion 属性：DataSource
 
-        public object Value {
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public override T Value {
             get {
                 if (DataBinding == null || DataBinding.Position == -1 || FieldName.IsNullOrEmpty())
-                    return null;
+                    return default(T);
 
                 var dataRowView = DataBinding.Current as DataRowView;
                 if (dataRowView == null)
-                    return null;
+                    return default(T);
 
-                return dataRowView[FieldName];
+                return (T)dataRowView[FieldName];
             }
         }
 

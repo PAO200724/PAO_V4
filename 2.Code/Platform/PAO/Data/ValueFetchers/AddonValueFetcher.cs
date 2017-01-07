@@ -20,7 +20,7 @@ namespace PAO.Data.ValueFetchers
     [DataContract(Namespace = "")]
     [Name("插件值获取器")]
     [Description("获取插件的值的获取器")]
-    public class AddonValueFetcher<T> : PaoObject, IValueFetch
+    public class AddonValueFetcher<T> : ValueFetcher<T>
     {
         #region 插件属性
 
@@ -59,7 +59,9 @@ namespace PAO.Data.ValueFetchers
         public AddonValueFetcher() {
         }
 
-        public object Value {
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public override T Value {
             get {
                 // 获取插件
                 var addon = AddonPublic.GetRuntimeAddonByID(AddonID);

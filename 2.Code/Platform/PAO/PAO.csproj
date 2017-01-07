@@ -87,6 +87,7 @@
     <Compile Include="Data\ValueFetchers\ConstValueFetcher.cs" />
     <Compile Include="Data\ValueFetchers\DataServiceValueFetcher.cs" />
     <Compile Include="Data\ValueFetchers\StaticValueFetcher.cs" />
+    <Compile Include="Data\ValueFetchers\ValueFetcher.cs" />
     <Compile Include="Event\EventInfo.cs" />
     <Compile Include="Event\EventPublic.cs" />
     <Compile Include="Event\ExceptionEventInfo.cs" />

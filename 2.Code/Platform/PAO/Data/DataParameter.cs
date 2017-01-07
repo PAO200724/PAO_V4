@@ -6,6 +6,7 @@ using System.Text;
 using System.ComponentModel;
 using System.Data;
 using PAO.Properties;
+using PAO.Data.ValueFetchers;
 
 namespace PAO.Data
 {
@@ -52,7 +53,7 @@ namespace PAO.Data
         [DataMember(EmitDefaultValue = false)]
         [Name("值获取器")]
         [Description("值获取器")]
-        public Ref<IValueFetch> ValueFetcher {
+        public IValueFetch<object> ValueFetcher {
             get;
             set;
         }
@@ -76,13 +77,13 @@ namespace PAO.Data
             Value = value;
         }
         
-        public DataParameter(string name, Type dataType, Ref<IValueFetch> valueFetcher) {
+        public DataParameter(string name, Type dataType, IValueFetch<object> valueFetcher) {
             Name = name;
             ObjectType = dataType;
             ValueFetcher = valueFetcher;
         }
 
-        public DataParameter(string name, DbType dbType, Ref<IValueFetch> valueFetcher) {
+        public DataParameter(string name, DbType dbType, IValueFetch<object> valueFetcher) {
             Name = name;
             DbType = dbType;
             ValueFetcher = valueFetcher;

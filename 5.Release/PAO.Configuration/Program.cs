@@ -120,10 +120,10 @@ namespace PAO.Configuration
                                                         .Append(new DataParameter()
                                                         {
                                                             Name = "@ID",
-                                                            ValueFetcher = new BindingSourceValueFetcher()
+                                                            ValueFetcher = new BindingSourceValueFetcher<object>()
                                                             {
                                                                 FieldName = "ID"
-                                                            }.ToRef()
+                                                            }
                                                         }),
                                             }),
                                     }).Append(new ReportTableController()

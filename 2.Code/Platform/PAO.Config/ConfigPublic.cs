@@ -104,8 +104,9 @@ namespace PAO.Config
                                 newObject = objectRefType.CreateInstance();
                                 return true;
                             }
-                            else {
-                                // 创建新的对象
+                            else
+                            {
+                                // 创建新的对象并用ObjectRef引用
                                 var newInstance = selectedAddonType.CreateInstance();
                                 var objectRefType = typeof(ObjectRef<>).MakeGenericType(refType);
                                 newObject = objectRefType.CreateInstance(newInstance);
@@ -117,14 +118,27 @@ namespace PAO.Config
                 else {
                     typeSelectControl.Initialize(p =>
                     {
-                        return p.IsDerivedFrom(objectType) && p.IsClass && !p.IsAbstract;
+                        if(objectType.IsGenericType) {
+                            return p.IsDerivedFrom(objectType.GetGenericTypeDefinition()) && p.IsClass && !p.IsAbstract;
+                        } else {
+                            return p.IsDerivedFrom(objectType) && p.IsClass && !p.IsAbstract;
+                        }
                     });
                     if (WinFormPublic.ShowDialog(typeSelectControl) == DialogReturn.OK) {
                         var selectedAddonType = typeSelectControl.SelectedType;
                         if (selectedAddonType != null) {
-                            // 创建新的对象
-                            newObject = selectedAddonType.CreateInstance();
-                            return true;
+                            if(selectedAddonType.IsGenericType) {
+                                // 泛型
+                                var genericArgs = objectType.GetGenericArguments();
+                                var genericType = selectedAddonType.MakeGenericType(genericArgs);
+                                // 创建新的对象
+                                newObject = genericType.CreateInstance();
+                                return true;
+                            } else {
+                                // 创建新的对象
+                                newObject = selectedAddonType.CreateInstance();
+                                return true;
+                            }
                         }
                     }
                 }

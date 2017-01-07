@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
+using PAO.IO;
 
 namespace PAO.Data.ValueFetchers
 {
@@ -19,10 +20,9 @@ namespace PAO.Data.ValueFetchers
     [DataContract(Namespace = "")]
     [Name("常量值获取器")]
     [Description("值为常量的获取器")]
-    public class ConstValueFetcher<T> : PaoObject, IValueFetch
+    public class ConstValueFetcher<T> : ValueFetcher<T>
     {
         #region 插件属性
-
         #region 属性：ConstValue
         /// <summary>
         /// 属性：ConstValue
@@ -33,7 +33,7 @@ namespace PAO.Data.ValueFetchers
         [DataMember(EmitDefaultValue = false)]
         [Name("常量")]
         [Description("常量")]
-        public T ConstValue {
+        public string ConstValue {
             get;
             set;
         }
@@ -42,9 +42,14 @@ namespace PAO.Data.ValueFetchers
         public ConstValueFetcher() {
         }
 
-        public object Value {
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public override T Value {
             get {
-                return ConstValue;
+                if (ConstValue.IsNullOrEmpty())
+                    return default(T);
+
+                return (T)IOPublic.Deserialize<string>(ConstValue);
             }
         }
     }

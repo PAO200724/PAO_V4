@@ -215,6 +215,9 @@ namespace PAO.Config.Editor
                 if (controller == null)
                     return;
                 var layoutItem = e.HitInfo.Item as LayoutControlItem;
+                if (layoutItem == null)
+                    return;
+
                 var editControl = layoutItem.Control;
                 var propDesc = editControl.Tag as PropertyDescriptor;
 

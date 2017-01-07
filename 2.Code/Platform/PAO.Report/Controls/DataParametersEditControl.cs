@@ -163,7 +163,7 @@ namespace PAO.Report.Controls
 
                 dynamic dynamicControl = editControl;
                 if(dataField.ValueFetcher.IsNotNull()){
-                    editControl.DataBindings.Add(new Binding("EditValue", dataField.ValueFetcher.Value, "Value", true));
+                    editControl.DataBindings.Add(new Binding("EditValue", dataField.ValueFetcher, "Value", true));
                     dynamicControl.Enabled = false;
                 } else {
                     if (this.BindingSource != null) {
