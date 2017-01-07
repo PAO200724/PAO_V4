@@ -31,17 +31,17 @@ namespace PAO.Config.Editor
     {
         #region 插件属性
 
-        #region 属性：PredefinedEditors
+        #region 属性：PredefinedEditorTypes
         /// <summary>
-        /// 属性：PredefinedEditors
+        /// 属性：PredefinedEditorTypes
         /// 预定义编辑器
-        /// 预定义编辑器
+        /// 预定义编辑控制器类型列表
         /// </summary>
         [AddonProperty]
         [DataMember(EmitDefaultValue = false)]
         [Name("预定义编辑器")]
         [Description("预定义编辑器")]
-        public Dictionary<string, Type> PredefinedEditors {
+        public Dictionary<string, Type> PredefinedEditorTypes {
             get;
             set;
         }
@@ -102,11 +102,11 @@ namespace PAO.Config.Editor
         /// <param name="propertyName">属性名称</param>
         /// <returns>编辑控制器</returns>
         public BaseEditController GetPredefinedEditController(Type objectType, string propertyName) {
-            if (PredefinedEditors.IsNotNullOrEmpty()
-                    && PredefinedEditors.ContainsKey(propertyName)
-                    && PredefinedEditors[propertyName] != null) {
+            if (PredefinedEditorTypes.IsNotNullOrEmpty()
+                    && PredefinedEditorTypes.ContainsKey(propertyName)
+                    && PredefinedEditorTypes[propertyName] != null) {
 
-                return EditorPublic.GetOrCreateDefaultEditController(objectType, PredefinedEditors[propertyName]);
+                return EditorPublic.GetOrCreateEditControllerFromStorage(objectType, PredefinedEditorTypes[propertyName]);
             }
             return null;
         }
@@ -117,8 +117,8 @@ namespace PAO.Config.Editor
         /// <param name="propertyName">属性名称</param>
         /// <returns>编辑控制器</returns>
         public void ClearPredefinedEditControllers() {
-            if (PredefinedEditors.IsNotNullOrEmpty()) {
-                PredefinedEditors.Clear();
+            if (PredefinedEditorTypes.IsNotNullOrEmpty()) {
+                PredefinedEditorTypes.Clear();
             }
         }
 
@@ -128,9 +128,9 @@ namespace PAO.Config.Editor
         /// <param name="propertyName">属性名称</param>
         /// <returns>编辑控制器</returns>
         public void RemovePredefinedEditController(string propertyName) {
-            if (PredefinedEditors.IsNotNullOrEmpty()
-                    && PredefinedEditors.ContainsKey(propertyName)) {
-                PredefinedEditors.Remove(propertyName);
+            if (PredefinedEditorTypes.IsNotNullOrEmpty()
+                    && PredefinedEditorTypes.ContainsKey(propertyName)) {
+                PredefinedEditorTypes.Remove(propertyName);
             }
         }
 
@@ -140,14 +140,14 @@ namespace PAO.Config.Editor
         /// <param name="propertyName">属性名称</param>
         /// <param name="editControllerType">编辑控制器类型</param>
         public void SetPredfinedEditController(string propertyName, Type editControllerType) {
-            if (PredefinedEditors == null)
-                PredefinedEditors = new Dictionary<string, Type>();
+            if (PredefinedEditorTypes == null)
+                PredefinedEditorTypes = new Dictionary<string, Type>();
 
-            if (PredefinedEditors.ContainsKey(propertyName)) {
-                PredefinedEditors[propertyName] = editControllerType;
+            if (PredefinedEditorTypes.ContainsKey(propertyName)) {
+                PredefinedEditorTypes[propertyName] = editControllerType;
             }
             else {
-                PredefinedEditors.Add(propertyName, editControllerType);
+                PredefinedEditorTypes.Add(propertyName, editControllerType);
             }
         }
     }

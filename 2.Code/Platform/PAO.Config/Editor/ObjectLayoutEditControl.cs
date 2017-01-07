@@ -81,7 +81,7 @@ namespace PAO.Config.Editor
                 controller.LayoutData = this.DataLayoutControl.GetLayoutData();
                 // 如果设置了ObjectType，则保存默认配置
                 if (controller.StaticType && ObjectType != null) {
-                    EditorPublic.SetDefaultEditController(ObjectType, controller);
+                    EditorPublic.SetEditControllerToStorage(ObjectType, controller);
                 }
 
             }
@@ -146,7 +146,7 @@ namespace PAO.Config.Editor
                         commonEditController.StartEditProperty(EditValue, propDesc.Name);
                         editController = commonEditController;
                     } else {
-                        editController = ConfigPublic.GetEditController(propDesc);
+                        editController = EditorPublic.GetEditController(propDesc);
                     }
                 }
 
@@ -240,7 +240,7 @@ namespace PAO.Config.Editor
                         , (s, a) =>
                         {
                             Type editControllerType;
-                            if (ConfigPublic.SelectEditControllerType(propDesc.PropertyType, out editControllerType) == DialogReturn.OK) {
+                            if (EditorPublic.SelectEditControllerType(propDesc.PropertyType, out editControllerType) == DialogReturn.OK) {
                                 if (editControllerType != null) {
                                     var editController = editControllerType.CreateInstance() as BaseEditController;
                                     // 清除前保存配置

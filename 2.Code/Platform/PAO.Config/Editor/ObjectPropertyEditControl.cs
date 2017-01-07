@@ -64,7 +64,7 @@ namespace PAO.Config.Editor
                 controller.LayoutData = this.PropertyGridControl.GetLayoutData();
                 // 如果设置了ObjectType，则保存默认配置
                 if(controller.StaticType && EditValue!=null) {
-                    EditorPublic.SetDefaultEditController(EditValue.GetType(), controller);
+                    EditorPublic.SetEditControllerToStorage(EditValue.GetType(), controller);
                 }
             }
             base.OnClose();
@@ -103,7 +103,7 @@ namespace PAO.Config.Editor
                     repositoryItem = editController.CreateRepositoryItem(propDesc.PropertyType);
                 }
                 else {
-                    repositoryItem = ConfigPublic.CreateRepositoryItem(propDesc);
+                    repositoryItem = EditorPublic.CreateRepositoryItem(propDesc);
                 }
             }
 
@@ -164,7 +164,7 @@ namespace PAO.Config.Editor
                         , (s, a) =>
                         {
                             Type editControllerType;
-                            if (ConfigPublic.SelectEditControllerType(propDesc.PropertyType, out editControllerType) == DialogReturn.OK) {
+                            if (EditorPublic.SelectEditControllerType(propDesc.PropertyType, out editControllerType) == DialogReturn.OK) {
                                 if (editControllerType != null) {
                                     var editController = editControllerType.CreateInstance() as BaseEditController;
                                     if (controller != null) {

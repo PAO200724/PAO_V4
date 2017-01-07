@@ -30,9 +30,7 @@ namespace PAO.Config
     /// </summary>
     public static class ConfigPublic
     {
-        #region 权限
-        #endregion
-        #region 插件列表
+        #region 编辑时插件
         /// <summary>
         /// 编辑时根对象
         /// </summary>
@@ -64,7 +62,7 @@ namespace PAO.Config
         }
         #endregion
 
-        #region NewAddonValue
+        #region 创建新的插件值
         /// <summary>
         /// 创建新的属性值
         /// </summary>
@@ -133,202 +131,6 @@ namespace PAO.Config
             }
             newObject = null;
             return false;
-        }
-        #endregion
-
-        #region Editors
-
-        /// <summary>
-        /// 创建默认编辑器
-        /// </summary>
-        /// <param name="type">类型</param>
-        /// <returns>编辑器</returns>
-        private static Type GetDefaultEditorType(Type type) {
-            Type editorType;
-            if (type == typeof(string)) {
-                editorType = typeof(TextEditController);
-            }
-            else if (type.IsEnum) {
-                editorType = typeof(EnumEditController);
-            }
-            else if (type == typeof(Color)) {
-                editorType = typeof(ColorPickEditController);
-            }
-            else if (type == typeof(Font)) {
-                editorType = typeof(FontEditController);
-            }
-            else if (type == typeof(DateTime)) {
-                editorType = typeof(DateEditController);
-            }
-            else if (type == typeof(bool)) {
-                editorType = typeof(CheckEditController);
-            }
-            else if (type == typeof(Image)) {
-                editorType = typeof(ImageEditController);
-            }
-            else if (type.IsNumberType()) {
-                editorType = typeof(TextEditController);
-            }
-            else if (type == typeof(Guid)) {
-                editorType = typeof(GuidEditController);
-            }
-            else if (AddonPublic.IsAddonDictionaryType(type)) {
-                editorType = typeof(DictionaryEditController);
-            }
-            else if (AddonPublic.IsAddonListType(type)) {
-                editorType = typeof(ListEditController);
-            }
-            else if (AddonPublic.IsAddon(type)) {
-                editorType = typeof(ObjectPropertyEditController);
-            }
-            else {
-                return null;
-            }
-            return editorType;
-        }
-        
-        public static BaseEditController GetEditController(Type objectType) {
-            BaseEditController editController = null;
-            var editorType = EditorPublic.GetEditorType(objectType);
-            if (editorType == null) {
-                editorType = GetDefaultEditorType(objectType);
-            }
-
-            if (editorType == null)
-                return null;
-
-            editController = EditorPublic.GetDefaultEditController(objectType, editorType);
-            if (editController == null) {
-                editController = editorType.CreateInstance() as BaseEditController;
-                EditorPublic.SetDefaultEditController(objectType, editController);
-            }
-            return editController;
-        }
-
-
-        public static BaseEditController GetEditController(PropertyDescriptor propertyDescriptor) {
-            BaseEditController editController = null;
-            var editorType = EditorPublic.GetEditorType(propertyDescriptor);
-
-            if (editorType == null) {
-                editController = GetEditController(propertyDescriptor.PropertyType);
-            }
-            else {
-                editController = editorType.CreateInstance() as BaseEditController;
-                EditorPublic.SetDefaultEditController(propertyDescriptor.PropertyType, editController);
-            }
-
-            return editController;
-        }
-        /// <summary>
-        /// 创建编辑控件
-        /// </summary>
-        /// <param name="objectType">对象类型</param>
-        /// <returns>编辑控件</returns>
-        public static Control CreateEditControl(Type objectType) {
-            var editController = GetEditController(objectType);
-            if (editController != null) {
-                var editControl = editController.CreateEditControl(objectType);
-                return editControl;
-            }
-            return null;
-        }
-        
-        /// <summary>
-        /// 创建RepositoryItem
-        /// </summary>
-        /// <param name="propertyDescriptor">属性描述器</param>
-        /// <returns>RepositoryItem</returns>
-        public static RepositoryItem CreateRepositoryItem(PropertyDescriptor propertyDescriptor) {
-            var editController = GetEditController(propertyDescriptor);
-            if (editController != null) {
-                var repositoryItem = editController.CreateRepositoryItem(propertyDescriptor.PropertyType);
-                return repositoryItem;
-            }
-            return null;
-        }
-
-        #endregion
-
-        #region 查找编辑器类型(EditorTypeFinder)
-        /// <summary>
-        /// 根据对象类型查找编辑器类型
-        /// </summary>
-        /// <param name="type">待检测的类型</param>
-        /// <param name="objectType">对象类型</param>
-        /// <returns>编辑器类型</returns>
-        public static bool IsEditControllerTypeOfType(Type type, Type objectType) {
-            if (!type.IsDerivedFrom(typeof(BaseEditController)) || type.IsAbstract)
-                return false;
-
-            var typeFilterMethod = type.GetMethod("TypeFilter", BindingFlags.Static | BindingFlags.Public);
-            if (typeFilterMethod == null)
-                return true;
-
-            return (bool)typeFilterMethod.Invoke(null, new object[] { objectType });
-        }
-        /// <summary>
-        /// 根据对象类型查找编辑器类型
-        /// </summary>
-        /// <param name="objectType">对象类型</param>
-        /// <returns>编辑器类型</returns>
-        public static IEnumerable<Type> FindEditorTypesByObjectType(Type objectType) {
-            return AddonPublic.AddonTypeList.Where(p =>
-            {
-                return IsEditControllerTypeOfType(p, objectType);
-            });
-        }
-
-        /// <summary>
-        /// 选择编辑器类型
-        /// </summary>
-        /// <param name="objectType">对象类型</param>
-        /// <returns>编辑器类型</returns>
-        public static DialogReturn SelectEditControllerType(Type objectType, out Type editControllerType) {
-            var typeSelectControl = new TypeSelectControl();
-            typeSelectControl.Initialize(p => {
-                return IsEditControllerTypeOfType(p, objectType);
-            });
-
-            editControllerType = null;
-            var result = WinFormPublic.ShowDialog(typeSelectControl);
-            if (result == DialogReturn.OK) {
-                editControllerType = typeSelectControl.SelectedType;
-            }
-            return result;
-        }
-        #endregion
-
-        #region ObjectLayoutEditControl
-        /// <summary>
-        /// 显示对象布局控件
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
-        public static ObjectLayoutEditController CreateObjectLayoutEditControl(Type objectType) {
-            var editController = EditorPublic.GetDefaultEditController(objectType, typeof(ObjectLayoutEditController)) as ObjectLayoutEditController;
-            if (editController == null) {
-                editController = new ObjectLayoutEditController();
-                EditorPublic.SetDefaultEditController(objectType, editController);
-            }
-            return editController;
-        }
-
-        /// <summary>
-        /// 显示对象布局控件
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
-        public static DialogReturn ShowObjectLayoutEditControl(object obj) {
-            var objectType = obj.GetType();
-            var editController = CreateObjectLayoutEditControl(objectType);
-            var dataFieldEditControl = editController.CreateEditControl(objectType) as ObjectLayoutEditControl;
-            dataFieldEditControl.EditValue = obj;
-            var result = WinFormPublic.ShowDialog(dataFieldEditControl);
-            if (result == DialogReturn.OK) {
-            }
-
-            return result;
         }
         #endregion
     }

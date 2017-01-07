@@ -141,7 +141,7 @@ namespace PAO.Report.Controls
                 }
 
                 if(editControl == null) {
-                    editControl = ConfigPublic.CreateEditControl(dataField.ObjectType);
+                    editControl = EditorPublic.CreateEditControl(dataField.ObjectType);
                 }
                 if (editControl == null) {
                     var editController = new CommonObjectEditController();
@@ -238,7 +238,7 @@ namespace PAO.Report.Controls
                     var menuChangeEditor = new DXMenuItem("更改编辑器(&E)..."
                         , (s, a) => {
                             Type editControllerType;
-                            if (ConfigPublic.SelectEditControllerType(dataField.ObjectType, out editControllerType) == DialogReturn.OK) {
+                            if (EditorPublic.SelectEditControllerType(dataField.ObjectType, out editControllerType) == DialogReturn.OK) {
                                 if (editControllerType != null) {
                                     var editController = editControllerType.CreateInstance() as BaseEditController;
                                     // 清除前保存配置
@@ -268,7 +268,7 @@ namespace PAO.Report.Controls
                     // 增加恢复编辑器菜单
                     var menuEditField = new DXMenuItem("字段属性(&P)..."
                         , (s, a) => {
-                            ConfigPublic.ShowObjectLayoutEditControl(dataField);
+                            EditorPublic.ShowObjectLayoutEditControl(dataField);
                         });
                     menuEditField.BeginGroup = true;
                     e.Menu.Items.Add(menuEditField);

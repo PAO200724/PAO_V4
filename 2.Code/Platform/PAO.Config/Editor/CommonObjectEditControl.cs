@@ -96,7 +96,7 @@ namespace PAO.Config.Editor
                 if (value == null) {
                     EditControl = null;
                 } else {
-                    var editControl = ConfigPublic.CreateEditControl(value.GetType()) as BaseObjectEditControl;
+                    var editControl = EditorPublic.CreateEditControl(value.GetType()) as BaseObjectEditControl;
                     if (editControl == null) {
                         var controller = Controller as CommonObjectEditController;
                         bool staticType = true;
@@ -291,11 +291,11 @@ namespace PAO.Config.Editor
             BaseObjectEditControl editControl = null;
             // 如果不是PaoObject类型，则显示默认编辑控件
             if (!objectType.IsAddonType()) {
-                editControl = ConfigPublic.CreateEditControl(objectType) as BaseObjectEditControl;
+                editControl = EditorPublic.CreateEditControl(objectType) as BaseObjectEditControl;
             }
 
             if (editControl == null) {
-                var editController = ConfigPublic.CreateObjectLayoutEditControl(objectType);
+                var editController = EditorPublic.GetOrCreateEditControllerFromStorage<ObjectLayoutEditController>(objectType);
                 editControl = editController.CreateEditControl(objectType) as BaseObjectEditControl;
             }
 
