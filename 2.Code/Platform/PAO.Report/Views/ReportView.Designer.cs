@@ -27,7 +27,6 @@
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReportView));
-            this.BindingSourceTable = new System.Windows.Forms.BindingSource(this.components);
             this.BarManager = new DevExpress.XtraBars.BarManager(this.components);
             this.BarTools = new DevExpress.XtraBars.Bar();
             this.ButtonQuery = new DevExpress.XtraBars.BarButtonItem();
@@ -53,7 +52,6 @@
             this.RepositoryItemTextEditCaption = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.LayoutControl = new DevExpress.XtraLayout.LayoutControl();
             this.LayoutControlGroupRoot = new DevExpress.XtraLayout.LayoutControlGroup();
-            ((System.ComponentModel.ISupportInitialize)(this.BindingSourceTable)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BarManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DockManager)).BeginInit();
             this.DockPanelTables.SuspendLayout();
@@ -63,10 +61,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.LayoutControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.LayoutControlGroupRoot)).BeginInit();
             this.SuspendLayout();
-            // 
-            // BindingSourceTable
-            // 
-            this.BindingSourceTable.DataSource = typeof(PAO.Report.Views.ReportTableController);
             // 
             // BarManager
             // 
@@ -335,7 +329,6 @@
             this.Controls.Add(this.barDockControlTop);
             this.Name = "ReportView";
             this.Size = new System.Drawing.Size(880, 527);
-            ((System.ComponentModel.ISupportInitialize)(this.BindingSourceTable)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BarManager)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DockManager)).EndInit();
             this.DockPanelTables.ResumeLayout(false);
@@ -368,7 +361,6 @@
         private DevExpress.XtraBars.Docking.DockManager DockManager;
         private DevExpress.XtraBars.Docking.DockPanel DockPanelTables;
         private DevExpress.XtraBars.Docking.ControlContainer DockPanelData_Container;
-        private System.Windows.Forms.BindingSource BindingSourceTable;
         private DevExpress.XtraBars.BarButtonItem ButtonQuery;
         private DevExpress.XtraBars.BarSubItem MenuData;
         private DevExpress.XtraBars.BarButtonItem ButtonRebuildDataFields;

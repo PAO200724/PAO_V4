@@ -34,10 +34,12 @@ namespace PAO.Config.Controls
         /// </summary>
         /// <param name="typeFilter">类型过滤器</param>
         public void Initialize(Func<Type, bool> typeFilter = null) {
+            IEnumerable<Type> typeList = AddonPublic.AddonTypeList;
+
             if (typeFilter == null)
-                Initialize(AddonPublic.AddonTypeList);
+                Initialize(typeList);
             else
-                Initialize(AddonPublic.AddonTypeList.Where(typeFilter));
+                Initialize(typeList.Where(typeFilter));
         }
 
         /// <summary>

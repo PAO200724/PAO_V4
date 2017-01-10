@@ -31,19 +31,24 @@ namespace PAO.Report.Views
             InitializeComponent();
             QueryCompleted = false;
         }
-        
         /// <summary>
-        /// 查询更多事件
+        /// 数据表
         /// </summary>
-        public event EventHandler QueryMore;
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public DataTable DataTable;
+
+        internal List<ReportTableView> ChildTableViews;
+
+        private BackgroundWorker QueryWorker;
         /// <summary>
-        /// 查询所有事件
+        /// 数据发生了变更
         /// </summary>
-        public event EventHandler QueryAll;
+        public event EventHandler<DataFetchedEventArgs> DataFetched;
         /// <summary>
-        /// 重新查询事件
+        /// 数据发生了变更
         /// </summary>
-        public event EventHandler Requery;
+        public event EventHandler DataRequery;
 
         private DataParametersEditControl DataFieldsEditControl;
         
@@ -52,6 +57,7 @@ namespace PAO.Report.Views
         /// 上级查询行为
         /// </summary>
         private ReportQueryBehavior ParentQueryBehavior;
+
         /// <summary>
         /// 查询完成
         /// </summary>
@@ -121,12 +127,113 @@ namespace PAO.Report.Views
             this.Refresh();
         }
 
-        public void AutoQuery(int timeBreak) {
+        public void ResetAutoQueryTimer(int timeBreak) {
             if(timeBreak <= 0) {
                 this.TimerAutoQuery.Enabled = false;
             } else {
                 this.TimerAutoQuery.Enabled = true;
                 this.TimerAutoQuery.Interval = timeBreak;
+            }
+        }
+
+        /// <summary>
+        /// 重新查询表，查询前清空数据
+        /// </summary>
+        /// <param name="queryAll">是否查询所有数据</param>
+        public void RequeryTable(bool queryAll) {
+            var controller = Controller as ReportTableController;
+            QueryCompleted = false;
+            RowCount = 0;
+            DataTable = new DataTable(controller.TableName);
+
+            if (DataRequery != null)
+                DataRequery(this, new EventArgs());
+            QueryTable(DataTable, queryAll);
+        }
+
+        /// <summary>
+        /// 查询表，查询前不清空数据
+        /// </summary>
+        /// <param name="dataTable">数据表，用于保存结果</param>
+        /// <param name="queryAll">是否查询所有数据</param>
+        public void QueryTable(DataTable dataTable, bool queryAll) {
+            var controller = Controller as ReportTableController;
+            StartQuery();
+            if (controller.DataFetcher != null) {
+                var dataFetcher = controller.DataFetcher.Value;
+                DataTable queryTable = null;
+
+                int currentCount = 0;
+
+                // 获取当前行号
+                currentCount = DataTable.Rows.Count;
+
+                // 获取查询行为
+                ReportQueryBehavior queryBehavior = controller.QueryBehavior;
+                if (queryBehavior == null) {
+                    queryBehavior = controller.QueryBehavior;
+                }
+                // 获取每次查询的最大量
+                int maxCount = 0;
+                if(!queryAll && queryBehavior != null) {
+                    maxCount = queryBehavior.QueryCountPerTime;
+                }
+                if (maxCount <= 0) {
+                    maxCount = Int32.MaxValue;
+                }
+
+                var paramValues = ParameterValues;
+                Action query = () =>
+                {
+                    queryTable = dataFetcher.FetchData(currentCount, maxCount, paramValues);
+                    queryTable.TableName = controller.TableName;
+                };
+
+                Action queryComplete = () =>
+                {
+                    // 如果当前DataTable已经变化，说明在上一次查询完成前开始了下一轮查询，则不再继续查询
+                    if (dataTable != DataTable)
+                        return;
+
+                    if (queryTable != null) {
+                        if (queryTable.Rows.Count < maxCount) {
+                            QueryCompleted = true;
+                        }
+                        else {
+                            QueryCompleted = false;
+                        }
+                        DataTable.Merge(queryTable);
+
+                        RowCount = DataTable.Rows.Count;
+
+                        if (DataFetched != null) {
+                            DataFetched(this, new DataFetchedEventArgs(queryTable));
+                        }
+                    }
+                    EndQuery();
+                };
+
+                // 异步查询(避免同步查询导致的死机问题)
+                QueryWorker = new BackgroundWorker();
+                QueryWorker.DoWork += (s, e) =>
+                {
+                    query();
+                };
+                QueryWorker.RunWorkerCompleted += (s, e) =>
+                {
+                    // 如果背景线程已经取消，则不再执行后续工作
+                    if (QueryWorker.CancellationPending)
+                        return;
+
+                    queryComplete();
+                };
+                QueryWorker.RunWorkerAsync(DataTable);
+            }
+        }
+
+        public void CancelQuery() {
+            if(QueryWorker != null) {
+                QueryWorker.CancelAsync();
             }
         }
 
@@ -165,24 +272,19 @@ namespace PAO.Report.Views
             this.Refresh();
         }
 
-        private void ButtonMore_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            if (QueryMore != null)
-                QueryMore(this, new EventArgs());
-        }
-
         private void ButtonAll_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            if (QueryAll != null)
-                QueryAll(this, new EventArgs());
+            RequeryTable(true);
         }
 
+        private void ButtonMore_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+            RequeryTable(false);
+        }
+        
         private void ButtonRequery_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            if (Requery != null)
-                Requery(this, new EventArgs());
+            RequeryTable(false);
         }
 
         private void TimerAutoQuery_Tick(object sender, EventArgs e) {
-            if (Requery != null)
-                Requery(this, new EventArgs());
         }
 
         private void ButtonQueryBehavior_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
@@ -212,10 +314,10 @@ namespace PAO.Report.Views
                 queryBehavior = ParentQueryBehavior;
             }
             if (queryBehavior != null) {
-                AutoQuery(queryBehavior.AutoQueryInterval);
+                ResetAutoQueryTimer(queryBehavior.AutoQueryInterval);
             }
             else {
-                AutoQuery(-1);
+                ResetAutoQueryTimer(-1);
             }
         }
 

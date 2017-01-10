@@ -25,6 +25,7 @@ namespace PAO.Config.Editor
     {
         public ObjectLayoutEditControl() {
             InitializeComponent();
+            ShowCancelButton = false;
         }
 
         /// <summary>

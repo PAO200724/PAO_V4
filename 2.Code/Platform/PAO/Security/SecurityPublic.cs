@@ -13,6 +13,7 @@ namespace PAO.Security
     /// 安全公共类
     /// 作者：PAO
     /// </summary>
+    [Addon]
     public static class SecurityPublic
     {
         /// <summary>

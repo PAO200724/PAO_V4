@@ -69,110 +69,13 @@ namespace PAO.Report.Views
         }
 
         #region 私有方法
-        /// <summary>
-        /// 重新查询表，查询前清空数据
-        /// </summary>
-        /// <param name="reportTable"></param>
-        private void RequeryTable(ReportTableController reportTable) {
-            var reportControl = TableControls[reportTable.TableName];
-            reportControl.QueryCompleted = false;
-            reportControl.RowCount = 0;
-            if (DataSource.Tables.Contains(reportTable.TableName)) {
-                DataSource.Tables[reportTable.TableName].Clear();
-            }
-            QueryTable(reportTable);
-        }
-
-        /// <summary>
-        /// 查询表，查询前不清空数据
-        /// </summary>
-        /// <param name="reportTable"></param>
-        private void QueryTable(ReportTableController reportTable) {
-            var controller = Controller as ReportController;
-            var tableControl = this.TableControls[reportTable.TableName];
-            tableControl.StartQuery();
-            if (reportTable.DataFetcher != null) {
-                var dataFetcher = reportTable.DataFetcher.Value;
-                DataTable queryTable = null;
-
-                int currentCount = 0;
-                DataTable currentDataTable = null;
-
-                // 获取当前行
-                if (DataSource.Tables.Contains(reportTable.TableName)) {
-                    currentDataTable = DataSource.Tables[reportTable.TableName];
-                    currentCount = currentDataTable.Rows.Count;
-                }
-                // 获取查询行为
-                ReportQueryBehavior queryBehavior = reportTable.QueryBehavior;
-                if (queryBehavior == null) {
-                    queryBehavior = controller.QueryBehavior;
-                }
-                // 获取每次查询的最大量
-                int maxCount = 0;
-                if (queryBehavior != null)
-                    maxCount = queryBehavior.QueryCountPerTime;
-                if (maxCount <= 0)
-                    maxCount = Int32.MaxValue;
-
-                var paramValues = tableControl.ParameterValues;
-                Action query = () =>
-                {
-                    queryTable = dataFetcher.FetchData(currentCount, maxCount, paramValues);
-                    queryTable.TableName = reportTable.TableName;
-                };
-
-                Action queryComplete = () =>
-                {
-                    if (queryTable != null) {
-                        if (queryTable.Rows.Count < maxCount) {
-                            tableControl.QueryCompleted = true;
-                        }
-                        else {
-                            tableControl.QueryCompleted = false;
-                        }
-                        DataSource.Merge(queryTable);
-                        tableControl.RowCount = DataSource.Tables[reportTable.TableName].Rows.Count;
-                    }
-                    tableControl.EndQuery();
-                    SetDataSource();
-                };
-
-                // 异步查询(避免同步查询导致的死机问题)
-                var backgroundWorker = new BackgroundWorker();
-                backgroundWorker.DoWork += (s, e) =>
-                {
-                    query();
-                };
-                backgroundWorker.RunWorkerCompleted += (s, e) =>
-                {
-                    // 如果背景线程已经取消，则不再执行后续工作
-                    if (backgroundWorker.CancellationPending)
-                        return;
-
-                    queryComplete();
-                    // 执行完毕后从包内移除
-                    BackgroundWorkers.Remove(backgroundWorker);
-                };
-                BackgroundWorkers.Add(backgroundWorker);
-                backgroundWorker.RunWorkerAsync();
-
-                // 迭代查询子表
-                if(reportTable.ChildTables.IsNotNullOrEmpty()) {
-                    foreach(var childTable in reportTable.ChildTables) {
-                        QueryTable(childTable);
-                    }
-                }
-            }
-        }
-
+        
         /// <summary>
         /// 查询所有表格
         /// </summary>
         private void RequeryAllTable() {
-            var controller = Controller as ReportController;
-            foreach (var reportTable in controller.Tables) {
-                RequeryTable(reportTable);
+            foreach (var tableControl in TableControls.Values) {
+                tableControl.RequeryTable(false);
             }
         }
 
@@ -206,7 +109,7 @@ namespace PAO.Report.Views
             var controller = Controller as ReportController;
             TableControls = new Dictionary<string, ReportTableView>();
             this.AccordionControl.Elements.Clear();
-            RecreateTableView(this.AccordionControl.Elements, controller.Tables);
+            RecreateTableView(this.AccordionControl.Elements, null, controller.Tables);
             this.AccordionControl.Refresh();
         }
 
@@ -214,7 +117,12 @@ namespace PAO.Report.Views
         /// <summary>
         /// 重建参数视图
         /// </summary>
-        private void RecreateTableView(AccordionControlElementCollection elements, IEnumerable<ReportTableController> tables) {
+        private void RecreateTableView(AccordionControlElementCollection elements
+            , ReportTableView parentTableView
+            , IEnumerable<ReportTableController> tables) {
+            if(parentTableView != null) {
+                parentTableView.ChildTableViews = new List<Views.ReportTableView>();
+            }
             foreach (var reportDataTable in tables) {
                 ExtendAddonPublic.GetAddonExtendProperties(reportDataTable);
 
@@ -231,10 +139,8 @@ namespace PAO.Report.Views
                 reportTableView.AutoSize = true;
                 reportTableView.RowCount = 0;
                 reportTableView.BorderStyle = BorderStyle.FixedSingle;
-
-                reportTableView.QueryAll += ReportTableControl_QueryAll;
-                reportTableView.QueryMore += ReportTableControl_QueryMore;
-                reportTableView.Requery += ReportTableControl_Requery;
+                reportTableView.DataFetched += ReportTableView_DataFetched;
+                reportTableView.DataRequery += ReportTableView_DataRequery;
 
                 var elementParameterView = new AccordionControlElement();
                 elementParameterView.Name = reportDataTable.ID;
@@ -250,15 +156,18 @@ namespace PAO.Report.Views
                 };
                 TableControls.Add(reportDataTable.TableName, reportTableView);
                 elementTableView.Elements.Add(elementParameterView);
+                if(parentTableView != null) {
+                    parentTableView.ChildTableViews.Add(reportTableView);
+                }
 
                 if (reportDataTable.ChildTables.IsNotNullOrEmpty()) {
-                    RecreateTableView(elementTableView.Elements, reportDataTable.ChildTables);
+                    RecreateTableView(elementTableView.Elements, reportTableView, reportDataTable.ChildTables);
                 }
             }
         }
 
         /// <summary>
-        /// 重置自动更新
+        /// 重置自动查询
         /// </summary>
         private void ResetAutoQuery() {
             var controller = Controller as ReportController;
@@ -335,7 +244,6 @@ namespace PAO.Report.Views
             var controller = value as ReportController;
 
             // 打开子视图控制器
-            this.BindingSourceTable.DataSource = controller.Tables;
             foreach(var childControllerRef in controller.Displayers) {
                 var childController = childControllerRef.Value;
                 childController.CreateAndOpenView(this);
@@ -371,6 +279,21 @@ namespace PAO.Report.Views
         #endregion
 
         #region 事件
+        
+
+        private void ReportTableView_DataFetched(object sender, DataFetchedEventArgs e) {
+            SetDataSource();
+        }
+
+        private void ReportTableView_DataRequery(object sender, EventArgs e) {
+            var tableView = sender as ReportTableView;
+            var dataTable = tableView.DataTable;
+            if (DataSource.Tables.Contains(dataTable.TableName)) {
+                DataSource.Tables.Remove(dataTable.TableName);
+            }
+            DataSource.Tables.Add(dataTable);
+        }
+
         private void ButtonRecoverLayout_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             LayoutControl.RestoreDefaultLayout();
         }
@@ -399,22 +322,7 @@ namespace PAO.Report.Views
         private void ButtonRebuildDataFields_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             RebuildTableColumns();
         }
-
-        private void ReportTableControl_QueryMore(object sender, EventArgs e) {
-            var tableControl = sender as ReportTableView;
-            QueryTable(tableControl.Controller as ReportTableController);
-        }
-
-        private void ReportTableControl_QueryAll(object sender, EventArgs e) {
-            var tableControl = sender as ReportTableView;
-            QueryTable(tableControl.Controller as ReportTableController);
-        }
-
-        private void ReportTableControl_Requery(object sender, EventArgs e) {
-            var tableControl = sender as ReportTableView;
-            RequeryTable(tableControl.Controller as ReportTableController);
-        }
-        
+                
         private void ButtonQuery_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             RequeryAllTable();
         }

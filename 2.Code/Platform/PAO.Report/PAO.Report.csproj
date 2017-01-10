@@ -117,6 +117,7 @@
     </Compile>
     <Compile Include="Controls\DataParametersEditController.cs" />
     <Compile Include="ValueFetchers\BindingSourceValueFetcher.cs" />
+    <Compile Include="Views\DataFetchedEventArgs.cs" />
     <Compile Include="Views\ReportTableView.cs">
       <SubType>UserControl</SubType>
     </Compile>

@@ -10,6 +10,7 @@ using PAO.WinForm;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
 using PAO.UI;
+using PAO.Config.Controls;
 
 namespace PAO.Config.Editor
 {
@@ -28,13 +29,20 @@ namespace PAO.Config.Editor
     {
         #region 插件属性
         #endregion
+
+        [NonSerialized]
+        public Func<bool, Type> TypePredicate = null;
+
         public TypeEditController() {
+        }
+        public TypeEditController(Func<bool, Type> typePredicate) {
+            TypePredicate = typePredicate;
         }
 
         protected override RepositoryItem OnCreateRepositoryItem(Type objectType) {
             var edit = new RepositoryItemButtonEdit();
-            edit.Buttons.Clear();
             edit.ParseEditValue += Edit_ParseEditValue;
+            edit.ButtonClick += Edit_ButtonClick;
             WinFormPublic.AddClearButton(edit);
             return edit;
         }
@@ -42,7 +50,27 @@ namespace PAO.Config.Editor
         private void Edit_ParseEditValue(object sender, ConvertEditValueEventArgs e) {
             e.Handled = true;
             if(e.Value.IsNotNullOrEmpty()) {
-                e.Value = ReflectionPublic.GetType(e.Value as string);
+                if (e.Value is string) {
+                    e.Value = ReflectionPublic.GetType(e.Value as string);
+                }
+            }
+        }
+
+        private void Edit_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e) {
+            if (e.Button.Kind == ButtonPredefines.Ellipsis) {
+                var typeSelectControl = new TypeSelectControl();
+                if (TypePredicate == null) {
+                    typeSelectControl.Initialize((p) => {
+                        return true;
+                    });
+                }
+                else {
+                    typeSelectControl.Initialize(TypeFilter);
+                }
+                if (WinFormPublic.ShowDialog(typeSelectControl) == DialogReturn.OK) {
+                    var edit = sender as ButtonEdit;
+                    edit.EditValue = typeSelectControl.SelectedType;
+                }
             }
         }
 

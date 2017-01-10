@@ -286,8 +286,9 @@ namespace PAO.Report.Controls
                     // 增加恢复编辑器菜单
                     var menuEditField = new DXMenuItem("字段属性(&P)..."
                         , (s, a) => {
-                            EditorPublic.ShowObjectLayoutEditControl(dataField);
-                            EditValue = EditValue;
+                            if(EditorPublic.ShowObjectLayoutEditControl(dataField) == DialogReturn.OK) {
+                                EditValue = EditValue;
+                            }
                         });
                     menuEditField.BeginGroup = true;
                     e.Menu.Items.Add(menuEditField);

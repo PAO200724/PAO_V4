@@ -113,7 +113,10 @@ namespace PAO.Report.Displayers
         public void SetDataSource(DataSet dataSet) {
             var controller = Controller as GridControlController;
 
-            if(dataSet.Tables.Contains(controller.DataMember)) {
+            this.GridControl.DataMember = null;
+            this.GridControl.DataSource = null;
+
+            if (dataSet.Tables.Contains(controller.DataMember)) {
                 this.GridControl.DataMember = controller.DataMember;
             }
             this.GridControl.DataSource = dataSet;
