@@ -48,6 +48,7 @@
     <Compile Include="AOP\AddonPropertyAttribute.cs" />
     <Compile Include="AOP\AddonFactory.cs" />
     <Compile Include="AOP\AddonPublic.cs" />
+    <Compile Include="AOP\EditorTypeAttirbute.cs" />
     <Compile Include="Config\ConfigStorage.cs" />
     <Compile Include="Config\ConfigStoragePublic.cs" />
     <Compile Include="App\IClientFilter.cs" />

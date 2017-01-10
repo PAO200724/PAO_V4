@@ -63,6 +63,9 @@ namespace PAO.Data.ValueFetchers
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public override object Value {
             get {
+                if (AddonID.IsNullOrEmpty())
+                    return GetDefaultValue();
+
                 // 获取插件
                 var addon = AddonPublic.GetRuntimeAddonByID(AddonID);
                 if (addon == null)

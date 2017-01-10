@@ -34,6 +34,7 @@ namespace PAO.Data.ValueFetchers
         [DataMember(EmitDefaultValue = false)]
         [Name("类型")]
         [Description("静态变量所在的类型")]
+        [EditorType("PAO.Config.Editor.TypeEditController")]
         public Type Type {
             get;
             set;
@@ -64,6 +65,9 @@ namespace PAO.Data.ValueFetchers
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public override object Value {
             get {
+                if (Type == null || MemberName.IsNullOrEmpty())
+                    return GetDefaultValue();
+
                 var propInfo = Type.GetProperty(MemberName, BindingFlags.Static | BindingFlags.Public | BindingFlags.GetProperty);
                 if (propInfo != null)
                     return propInfo.GetValue(null, null);

@@ -97,10 +97,10 @@
     <Compile Include="Editor\DataFilterEditController.cs" />
     <Compile Include="Editor\DateEditController.cs" />
     <Compile Include="Editor\EditorPublic.cs" />
-    <Compile Include="Editor\EditorTypeAttirbute.cs" />
     <Compile Include="Editor\EnumEditController.cs" />
     <Compile Include="Editor\FontEditController.cs" />
     <Compile Include="Editor\FontNameEditController.cs" />
+    <Compile Include="Editor\TypeEditController.cs" />
     <Compile Include="Editor\GuidEditController.cs" />
     <Compile Include="Editor\ImageEditController.cs" />
     <Compile Include="Editor\ListEditControl.cs">

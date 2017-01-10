@@ -35,6 +35,7 @@ namespace PAO.Data
         [DataMember(EmitDefaultValue = false)]
         [Name("数据工厂名称")]
         [Description("用于创建数据连接的数据工厂名称")]
+        [EditorType("PAO.Config.Editor.DbFactoryEditController")]
         public string DbFactoryName {
             get;
             set;

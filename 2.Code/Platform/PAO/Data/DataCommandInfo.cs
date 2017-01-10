@@ -52,6 +52,7 @@ namespace PAO.Data
         [DataMember(EmitDefaultValue = false)]
         [Name("SQL语句")]
         [Description("数据查询语句")]
+        [EditorType("PAO.Config.Editor.MemoExEditController")]
         public string Sql {
             get;
             set;

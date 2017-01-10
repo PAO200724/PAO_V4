@@ -34,6 +34,7 @@ namespace PAO
         [DataMember(EmitDefaultValue = false)]
         [Name("插件ID")]
         [Description("插件ID")]
+        [EditorType("PAO.Config.Editor.AddonIDEditController")]
         public string AddonID {
             get;
             set;
